@@ -855,9 +855,9 @@ main(int argc, const char **argv)
       { "krb5realm", '\0', POPT_ARG_STRING, &krb5Realm, 0,
 	i18n("default kerberos realm\n"), i18n("<realm>")},
 
-      { "enablesmb", '\0', POPT_ARG_NONE, &enableSmb, 0,
+      { "enablesmbauth", '\0', POPT_ARG_NONE, &enableSmb, 0,
 	i18n("enable SMB authentication by default"), NULL},
-      { "disablesmb", '\0', POPT_ARG_NONE, &disableSmb, 0,
+      { "disablesmbauth", '\0', POPT_ARG_NONE, &disableSmb, 0,
 	i18n("disable SMB authentication by default"), NULL},
       { "smbworkgroup", '\0', POPT_ARG_STRING, &smbWorkgroup, 0,
 	i18n("workgroup authentication servers are in"), i18n("<workgroup>")},

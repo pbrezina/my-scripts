@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.8
+Version: 4.1.9
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -36,6 +36,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Tue Jun 12 2001 Nalin Dahyabhai <nalin@redhat.com>
+- rename --{enable,disable}smb to --{enable,disable}smbauth
+
 * Thu May 31 2001 Nalin Dahyabhai <nalin@redhat.com>
 - add --probe option to guess at LDAP and Kerberos configuration using DNS
 - add preliminary support for SMB authentication
