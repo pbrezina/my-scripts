@@ -24,9 +24,9 @@ msgid "%s: cannot open /etc/yp.conf: %s\n"
 msgstr "%s : impossible d'ouvrir /etc/yp.conf : %s\n"
 
 #: ../authconfig.c:202 ../authconfig.c:898
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/yp.conf : %s\n"
+msgstr "%s : impossible d'ouvrir /etc/ldap.conf : %s\n"
 
 #.
 #. * find length of longest string. Looks useless when strings
@@ -34,7 +34,6 @@ msgstr "%s : impossible d'ouvrir /etc/yp.conf : %s\n"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:318 ../authconfig.c:486
-#, fuzzy
 msgid "    NIS Domain:"
 msgstr "Domaine NIS :"
 
@@ -51,14 +50,12 @@ msgstr "Serveur NIS :"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:320 ../authconfig.c:449
-#, fuzzy
 msgid "         or use:"
 msgstr "ou utiliser :"
 
 #: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-#, fuzzy
 msgid "   LDAP Domain:"
-msgstr "Domaine NIS :"
+msgstr "Domaine LDAP :"
 
 #: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
 msgid "    LDAP Server:"
@@ -76,9 +73,8 @@ msgstr ""
 #. * what kind of authentication?
 #.
 #: ../authconfig.c:416
-#, fuzzy
 msgid "Authentication Type:"
-msgstr "Configuration de l'authentification"
+msgstr "Type de l'authentification"
 
 #: ../authconfig.c:417
 msgid "Password File"
@@ -139,7 +135,6 @@ msgid "You must enter a NIS server or request via broadcast."
 msgstr "Vous devez entrer un serveur NIS ou une demande via la diffusion."
 
 #: ../authconfig.c:650
-#, fuzzy
 msgid "You must enter an authentication domain."
 msgstr "Vous devez entrer un domaine NIS."
 
@@ -154,19 +149,19 @@ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s : impossible d'ouvrir /etc/yp.conf- pour écriture : %s\n"
 
 #: ../authconfig.c:905
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/yp.conf- pour écriture : %s\n"
+msgstr "%s : impossible d'ouvrir /etc/ldap.conf- pour écriture : %s\n"
 
 #: ../authconfig.c:994
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/yp.conf : %s\n"
+msgstr "%s : impossible d'ouvrir /etc/nsswitch.conf : %s\n"
 
 #: ../authconfig.c:1001
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/yp.conf- pour écriture : %s\n"
+msgstr "%s : impossible d'ouvrir /etc/nsswitch.conf- pour écriture : %s\n"
 
 #: ../authconfig.c:1230
 #, c-format
@@ -265,28 +260,27 @@ msgid "%s: critical error turning on NIS service\n"
 msgstr "%s : erreur critique lors de l'activation du service NIS\n"
 
 #: ../authconfig.c:1513
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing /etc/ldap.conf\n"
-msgstr "%s : erreur critique lors de l'écriture de /etc/yp.conf\n"
+msgstr "%s : erreur critique lors de l'écriture de /etc/ldap.conf\n"
 
 #: ../authconfig.c:1518
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing files in /etc/pam.d\n"
-msgstr "%s : erreur critique lors de l'écriture de /etc/yp.conf\n"
+msgstr "%s : erreur critique lors de l'écriture des fichiers en répertoire /etc/pam.d\n"
 
 #: ../authconfig.c:1528
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing /etc/nsswitch.conf\n"
-msgstr "%s : erreur critique lors de l'écriture de /etc/yp.conf\n"
+msgstr "%s : erreur critique lors de l'écriture de /etc/nsswitch.conf\n"
 
 #: ../authconfig.c:1537
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
 msgstr "%s : erreur critique lors de la manipulation du mot de passe masqué\n"
 
-#, fuzzy
 #~ msgid "%s: critical error reading /etc/ldap.conf"
-#~ msgstr "%s : erreur critique lors de la lecture de /etc/yp.conf"
+#~ msgstr "%s : erreur critique lors de la lecture de /etc/ldap.conf"
 
 #~ msgid "Enable NIS"
 #~ msgstr "Activer NIS"
