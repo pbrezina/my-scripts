@@ -1,6 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 1.3
+%define version 1.3
+Version: %{version}
 Release: 1
 Copyright: GPL
 ExclusiveOS: Linux
@@ -18,7 +19,7 @@ automatically turn on NIS at system startup.
 %setup -q
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS"
+make
 
 %install
 make INSTROOT=$RPM_BUILD_ROOT install
