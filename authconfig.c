@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 1999-2002 Red Hat, Inc.
+  * Copyright (c) 1999-2003 Red Hat, Inc.
   *
   * Authors: Preston Brown <pbrown@redhat.com>
   *          Nalin Dahyabhai <nalin@redhat.com>
@@ -275,9 +275,9 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   struct hesiod_cb hesiod;
   struct ldap_cb ldap;
 
-  char *hesiodLHS = NULL, *hesiodRHS = NULL;
-  char *ldapServer = NULL, *ldapBaseDN = NULL;
-  char *nisServer = NULL, *nisDomain = NULL;
+  const char *hesiodLHS = NULL, *hesiodRHS = NULL;
+  const char *ldapServer = NULL, *ldapBaseDN = NULL;
+  const char *nisServer = NULL, *nisDomain = NULL;
 
   mechGrid = newtCreateGrid(3, 9);
 
@@ -456,9 +456,9 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   struct smb_cb smb;
 
   char shadow = 0, md5 = 0;
-  char *ldapServer = NULL, *ldapBaseDN = NULL;
-  char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
-  char *smbWorkgroup = NULL, *smbServers = NULL;
+  const char *ldapServer = NULL, *ldapBaseDN = NULL;
+  const char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
+  const char *smbWorkgroup = NULL, *smbServers = NULL;
   int height = 10;
 
 #ifdef LOCAL_POLICIES

@@ -86,6 +86,11 @@ if test x$GCC = xyes ; then
 	CFLAGS="${CFLAGS} -Wcast-align"
 fi
 
+case "$host_cpu" in
+x86_64|ppc64|s390x) AC_DEFINE(PREFER_LIB64,1,[Define if your native architecture defines libdir to be $prefix/lib64 instead of $prefix/lib.]) ;;
+*) : ;;
+esac
+
 AM_CONFIG_HEADER(config.h)
 
 AC_OUTPUT([

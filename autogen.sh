@@ -1,10 +1,10 @@
 set -x
 glib-gettextize -f -c
 touch config.h.in
-autoheader-2.53
+autoheader
 libtoolize -f -c
-aclocal-1.6
-automake-1.6 -a
+aclocal
+automake -a
 intltoolize -f
-autoconf-2.53
+autoconf
 ./configure $@

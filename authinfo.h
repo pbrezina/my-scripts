@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 1999-2001 Red Hat, Inc.
+  * Copyright (c) 1999-2003 Red Hat, Inc.
   *
   * This is free software; you can redistribute it and/or modify it
   * under the terms of the GNU General Public License as published by
@@ -43,6 +43,21 @@
 #define PATH_YPBIND "/sbin/ypbind"
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
 
+#ifdef PREFER_LIB64
+
+#define PATH_LIBNSS_DB "/lib64/libnss_db.so.2"
+#define PATH_LIBNSS_LDAP "/lib64/libnss_ldap.so.2"
+#define PATH_LIBNSS_NIS "/lib64/libnss_nis.so.2"
+#define PATH_LIBNSS_ODBCBIND "/lib64/libnss_odbcbind.so.2"
+#define PATH_LIBNSS_WINBIND "/lib64/libnss_winbind.so.2"
+
+#define PATH_PAM_KRB5 "/lib64/security/pam_krb5.so"
+#define PATH_PAM_LDAP "/lib64/security/pam_ldap.so"
+#define PATH_PAM_SMB "/lib64/security/pam_smb_auth.so"
+#define PATH_PAM_WINBIND "/lib64/security/pam_winbind.so"
+
+#else
+
 #define PATH_LIBNSS_DB "/lib/libnss_db.so.2"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
@@ -53,6 +68,8 @@
 #define PATH_PAM_LDAP "/lib/security/pam_ldap.so"
 #define PATH_PAM_SMB "/lib/security/pam_smb_auth.so"
 #define PATH_PAM_WINBIND "/lib/security/pam_winbind.so"
+
+#endif
 
 #define _(String) gettext((String))
 #define AUTHCONFIG_PACKAGE_WARNING _("The %s file was not found, but it is "\
