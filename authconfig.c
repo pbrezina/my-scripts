@@ -684,7 +684,7 @@ int doShadowStuff(char useShadow, char enableMD5)
 
 void usage(void) {
     fprintf(stderr, i18n("Usage: %s [options]\n\n"
-			 "     --nostart            no not start/stop yp\n"
+			 "     --nostart            do not start/stop yp\n"
 			 "     --enablenis          enable nis by default\n"
 			 "     --nisdomain <domain> default NIS domain\n"
 			 "     --nisserver <server> default NIS server\n"
