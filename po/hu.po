@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "POT-Creation-Date: 2000-07-31 17:07-0400\n"
-"PO-Revision-Date: 2000-02-24 18:32+0100\n"
+"PO-Revision-Date: 2000-08-03 18:32+0200\n"
 "Last-Translator: László Németh <nemeth@qwertynet.hu>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -15,81 +15,75 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
+"A %s file nem található, de szükség van rá a %s támogatás mûködéséhez. "
+"Telepítse a %s csomagot, amely tartalmazza ezt a file-t."
 
 #: ../authconfig.c:157
 msgid "Warning"
-msgstr ""
+msgstr "Figyelem"
 
 #: ../authconfig.c:157 ../authconfig.c:529 ../authconfig.c:534
 msgid "Ok"
 msgstr "Ok"
 
 #: ../authconfig.c:167 ../authconfig.c:241
-#, fuzzy
 msgid "  Domain:"
-msgstr "    NIS domain:"
+msgstr "  Domain:"
 
 #: ../authconfig.c:168 ../authconfig.c:214
-#, fuzzy
 msgid "  Server:"
-msgstr "NIS szerver:"
+msgstr "  Szerver:"
 
 #: ../authconfig.c:188
 msgid "     LHS:"
-msgstr ""
+msgstr "     LHS:"
 
 #: ../authconfig.c:189
 msgid "     RHS:"
-msgstr ""
+msgstr "     RHS:"
 
 #: ../authconfig.c:215
 msgid " Base DN:"
-msgstr ""
+msgstr " Base DN:"
 
 #: ../authconfig.c:258
-#, fuzzy
 msgid "          Realm:"
-msgstr "           vagy:"
+msgstr "          Realm:"
 
 #: ../authconfig.c:259
-#, fuzzy
 msgid "            KDC:"
-msgstr "           vagy:"
+msgstr "            KDC:"
 
 #: ../authconfig.c:260
-#, fuzzy
 msgid "   Admin Server:"
-msgstr "   LDAP szerver:"
+msgstr "  Admin szerver:"
 
 #. Create the window and a form to put into it.
 #: ../authconfig.c:300
-#, fuzzy
 msgid "User Information Configuration"
-msgstr "Azonosítás beállítás"
+msgstr "Felhasználói adatok  beállítása"
 
 #. NSS modules: NIS.
 #: ../authconfig.c:304
-#, fuzzy
 msgid "Use NIS"
-msgstr "NIS"
+msgstr "NIS használata"
 
 #: ../authconfig.c:327
-#, fuzzy
 msgid "Use LDAP"
-msgstr "LDAP"
+msgstr "LDAP használata"
 
 #: ../authconfig.c:346
 msgid "Use WinBind"
-msgstr ""
+msgstr "WinBind használata"
 
 #: ../authconfig.c:360
 msgid "Use Hesiod"
-msgstr ""
+msgstr "Hesiod használata"
 
 #. Create the buttons.
 #: ../authconfig.c:381
 msgid "Next"
-msgstr ""
+msgstr "Következõ"
 
 #: ../authconfig.c:382 ../authconfig.c:530 ../authconfig.c:535
 msgid "Back"
@@ -110,24 +104,20 @@ msgid "Use Shadow Passwords"
 msgstr "Shadow jelszók használata"
 
 #: ../authconfig.c:455
-#, fuzzy
 msgid "Use MD5 Passwords"
 msgstr "MD5 jelszók használata"
 
 #: ../authconfig.c:460
-#, fuzzy
 msgid "Use LDAP Authentication"
-msgstr "Azonosítás típusa:"
+msgstr "LDAP azonosítás használata"
 
 #: ../authconfig.c:481
-#, fuzzy
 msgid "Use WinBind Authentication"
-msgstr "Azonosítás típusa:"
+msgstr "WinBind azonosítás használata"
 
 #: ../authconfig.c:496
-#, fuzzy
 msgid "Use Kerberos 5"
-msgstr "Kerberos"
+msgstr "Kerberos 5 használata"
 
 #: ../authconfig.c:626
 #, c-format
@@ -170,12 +160,48 @@ msgid ""
 "     --kickstart                don't display user interface\n"
 "     --help                     show this screen\n"
 msgstr ""
+"Usage: %s [options]\n"
+"\n"
+"     --useshadow\n"
+"     --enableshadow             shadow jelszók engedélyezése alapban\n"
+"     --disableshadow            shadow jelszók tiltása alapban\n"
+"     --enablemd5                MD5 jelszók engedélyezése alapban\n"
+"     --disablemd5               MD5 jelszók tiltása alapban\n"
+"\n"
+"     --enablenis                NIS engedélyezése\n"
+"     --disablenis               NIS tiltása\n"
+"     --nisdomain <domain>       alapértelmezett NIS domain\n"
+"     --nisserver <server>       alapértelmezett NIS szerver\n"
+"\n"
+"     --enableldap               ldap engedélyezése felh. infóhoz alapban\n"
+"     --disableldap              ldap tiltása felh. infóhoz alapban\n"
+"     --enableldapauth           ldap engedélyezése azonosításhoz alapban\n"
+"     --disableldapauth          ldap tiltása azonosításhoz alapban\n"
+"     --ldapserver <server>      alapértelmezett LDAP szerver\n"
+"     --ldapbasedn <dn>          alapértelmezett LDAP base DN\n"
+"\n"
+"     --enablekrb5               kerberos azonosítás engedélyezése alapban\n"
+"     --disablekrb5              kerberos azonosítás tiltása alapban\n"
+"     --krb5kdc <server>         alapértelmezett kerberos KDC\n"
+"     --krb5adminserver <server> alapértelmezett kerberos admin szerver\n"
+"     --krb5realm <realm>        alapértelmezett kerberos realm\n"
+"\n"
+"     --enablehesiod             hesiod engedélyezése felh. infóhoz alapban\n"
+"     --disablehesiod            hesiod tiltása felh. infóhoz alapban\n"
+"     --hesiodlhs <lhs>          alapértelmezett hesiod LHS\n"
+"     --hesiodrhs <rhs>          alapértelmezett hesiod RHS\n"
+"\n"
+"     --nostart                  ne állítsa meg/indítsa az ypbind-et\n"
+"     --kickstart                ne jelenítsen meg felhasználói felületet\n"
+"     --help                     ez a képernyõ\n"
 
 #: ../authconfig.c:665
 msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
 msgstr ""
+"\n"
+"     --enablelocal              helyben definiált szabályok használata "
 
 #: ../authconfig.c:776
 #, c-format
@@ -197,7 +223,7 @@ msgstr "%s: csak root-ként futtatható\n"
 #: ../authconfig.c:850 ../authconfig.c:857
 #, fuzzy, c-format
 msgid "%s: critical error reading %s/%s"
-msgstr "%s: kritikus hiba az /etc/pam.d/passwd olvasásakor\n"
+msgstr "%s: kritikus hiba %s/pam.d/%s olvasásakor"
 
 #: ../authconfig.c:914
 msgid ""
@@ -216,146 +242,46 @@ msgstr "párbeszéd leállítva\n"
 #: ../authconfig.c:1021 ../authconfig.c:1026
 #, fuzzy, c-format
 msgid "%s: critical error writing %s/%s"
-msgstr "%s: kritikus hiba az /etc/pam.d -be való íráskor\n"
+msgstr "%s: kritikus hiba %s/pam.d/%s írásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/hesiod.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf olvasásakor"
+#~ msgstr "%s: kritikus hiba %s/hesiod.conf olvasásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/krb5.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf olvasásakor"
+#~ msgstr "%s: kritikus hiba %s/krb5.conf olvasásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/ldap.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf olvasásakor"
+#~ msgstr "%s: kritikus hiba %s/ldap.conf olvasásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/smb.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf olvasásakor"
+#~ msgstr "%s: kritikus hiba %s/smb.conf olvasásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/yp.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf olvasásakor"
+#~ msgstr "%s: kritikus hiba %s/yp.conf olvasásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/nsswitch.conf"
-#~ msgstr "%s: kritikus hiba az /etc/nsswitch.conf írásakor\n"
+#~ msgstr "%s: kritikus hiba %s/nsswitch.conf olvasásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/sysconfig/network"
-#~ msgstr "%s: kritikus hiba az /etc/sysconfig/network olvasásakor"
+#~ msgstr "%s: kritikus hiba %s/sysconfig/network olvasásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/hesiod.conf"
-#~ msgstr "%s: kritikus hiba az /etc/ldap.conf írásakor\n"
+#~ msgstr "%s: kritikus hiba %s/hesiod.conf írásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/krb5.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf írásakor\n"
+#~ msgstr "%s: kritikus hiba %s/krb5.conf írásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/ldap.conf"
-#~ msgstr "%s: kritikus hiba az /etc/ldap.conf írásakor\n"
+#~ msgstr "%s: kritikus hiba %s/ldap.conf írásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/yp.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf írásakor\n"
+#~ msgstr "%s: kritikus hiba %s/yp.conf írásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/smb.conf"
-#~ msgstr "%s: kritikus hiba az /etc/yp.conf írásakor\n"
+#~ msgstr "%s: kritikus hiba %s/smb.conf írásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/nsswitch.conf"
-#~ msgstr "%s: kritikus hiba az /etc/nsswitch.conf írásakor\n"
+#~ msgstr "%s: kritikus hiba %s/nsswitch.conf írásakor"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/sysconfig/network"
-#~ msgstr "%s: kritikus hiba az /etc/sysconfig/network írásakor\n"
-
-#~ msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-#~ msgstr "%s: /etc/sysconfig/network nem megnyitható: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf: %s\n"
-#~ msgstr "%s: /etc/yp.conf nem megnyitható: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf: %s\n"
-#~ msgstr "%s: /etc/ldap.conf nem megnyitható: %s\n"
-
-#~ msgid "   LDAP Domain:"
-#~ msgstr "   LDAP domain:"
-
-#~ msgid "Kerberos Realm:"
-#~ msgstr "Kerberos Realm:"
-
-#~ msgid "Kerberos Server:"
-#~ msgstr "Kerberos Szerver:"
-
-#~ msgid "Password File"
-#~ msgstr "Jelszó file"
-
-#~ msgid "Request via broadcast"
-#~ msgstr "Lekérés broadcast-tal"
-
-#~ msgid "Error"
-#~ msgstr "Hiba"
-
-#~ msgid "You must enter a NIS server or request via broadcast."
-#~ msgstr "Adjon meg egy NIS szervert, vagy kérje le broadcast-tal."
-
-#~ msgid "You must enter an authentication domain."
-#~ msgstr "Meg kell adnia egy azonosítási domain-t."
-
-#~ msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-#~ msgstr "%s: /etc/sysconfig/network- irásra nem nyitható meg: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-#~ msgstr "%s: /etc/yp.conf- írásra nem nyitható meg: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-#~ msgstr "%s: /etc/ldap.conf- írásra nem nyitható meg: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-#~ msgstr "%s: /etc/nsswitch.conf nem megnyitható: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-#~ msgstr "%s: /etc/nsswitch.conf- írásra nem nyitható meg: %s\n"
-
-#~ msgid "%s: error opening %s\n"
-#~ msgstr "%s: hiba %s megnyitásánál\n"
-
-#~ msgid ""
-#~ "Usage: %s [options]\n"
-#~ "\n"
-#~ "     --nostart            do not start/stop yp\n"
-#~ "     --enablenis          enable nis by default\n"
-#~ "     --nisdomain <domain> default NIS domain\n"
-#~ "     --nisserver <server> default NIS server\n"
-#~ "     --useshadow          use shadow passwords\n"
-#~ "     --enablemd5          enable MD5 passwords\n"
-#~ "     --kickstart          don't display user interface\n"
-#~ "     --help               show this screen\n"
-#~ msgstr ""
-#~ "Usage: %s [options]\n"
-#~ "\n"
-#~ "     --nostart            ne indítsa/állítsa le az yp-t\n"
-#~ "     --enablenis          nis engedélyezése alapért.\n"
-#~ "     --nisdomain <domain> alapért. NIS domain\n"
-#~ "     --nisserver <server> alapért. NIS server\n"
-#~ "     --useshadow          shadow jelszók használata\n"
-#~ "     --enablemd5          MD5 jelszók használata\n"
-#~ "     --kickstart          felhasználói felület nelkül\n"
-#~ "     --help               ezt a képernyõt jeleníti meg\n"
-
-#~ msgid "%s: unknown authorization type %s\n"
-#~ msgstr "%s: ismeretlen azonosítási típus: %s\n"
-
-#~ msgid "authentication type selected: "
-#~ msgstr "kiválasztott azonosítási típus: "
-
-#~ msgid "%s: critical error turning on NIS service\n"
-#~ msgstr "%s: kritikus hiba a NIS szolgáltatás indításánál\n"
-
-#~ msgid "%s: critical error with shadow password manipulation\n"
-#~ msgstr "%s: kritikus hiba a shadow jelszók manipulálásánál\n"
+#~ msgstr "%s: kritikus hiba %s/sysconfig/network írásakor"
