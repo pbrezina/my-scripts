@@ -1,8 +1,13 @@
 #!/usr/bin/python2.2
-import gettext, gtk, gtk.glade, authconfig
-import signal
-import sys
+import authconfig, gettext, os, signal, sys
 from rhpl.translate import _, textdomain
+try:
+	import gtk, gtk.glade
+except RuntimeError, e:
+	if os.isatty(sys.stdin.fileno()):
+		os.execv('/usr/bin/authconfig',('authconfig',))
+	else:
+		raise e
 
 class childWindow:
 	def __init__(self):
@@ -157,4 +162,3 @@ if __name__ == '__main__':
 	if dialog.run () == gtk.RESPONSE_OK:
 		module.apply ()
 	sys.exit (0)
-
