@@ -1,4 +1,4 @@
-set -x -e
+set -x
 gettextize --intl
 autoheader
 automake-1.5 -a
