@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: authconfig VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-11-12 19:30-0500\n"
-"PO-Revision-Date: 2003-10-16 00:47+0200\n"
+"PO-Revision-Date: 2003-11-18 12:39+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -258,76 +258,74 @@ msgid "names of servers to authenticate against\n"
 msgstr "jména serverů, proti kterým se autentizovat\n"
 
 #: authconfig.c:846
-#, fuzzy
 msgid "enable winbind for user information and authentication by default"
-msgstr "povolit Hesiod pro informace o uživatelích"
+msgstr "implicitně povolit winbind pro informace o uživatelích a autentizaci"
 
 #: authconfig.c:849
-#, fuzzy
 msgid "disable winbind for user information and authentication by default"
-msgstr "zakázat Hesiod pro informace o uživatelích"
+msgstr "implicitně zakázat winbind pro informace o uživatelích a autentizaci"
 
 #: authconfig.c:852
 msgid "security mode to use for samba and winbind"
-msgstr ""
+msgstr "režim zabezpečení, který používat pro sambu a winbind"
 
 #: authconfig.c:854
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
+msgstr "implicitní realm pro sambu a winbind, když security=ads"
 
 #: authconfig.c:856
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "rozsah uid, které bude winbind přiřazovat uživatelům domény nebo ads"
 
 #: authconfig.c:857 authconfig.c:860
 msgid "<lowest-highest>"
-msgstr ""
+msgstr "<nejnižší-nejvyšší>"
 
 #: authconfig.c:859
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "rozsah gid, které bude winbind přiřazovat uživatelům domény nebo ads"
 
 #: authconfig.c:863
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
+msgstr "znak, který se bude používat pro oddělení domény a uživatele v jménech uživatelů vytvářených winbindem, pokud není povoleno winbindusedefaultdomain"
 
 #: authconfig.c:867
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
+msgstr "adresář, který budou mít uživatelé vytvoření winbindem jako domovský adresář"
 
 #: authconfig.c:871
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
+msgstr "skupina, kterou budou mít uživatelé vytvoření winbindem jako primární"
 
 #: authconfig.c:874
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
+msgstr "shell, který budou mít uživatelé vytvoření winbindem"
 
 #: authconfig.c:878
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr ""
+msgstr "nastaví winbind, aby předpokládal, že uživatelé bez domény ve jménu uživatele jsou uživatelé domény"
 
 #: authconfig.c:882
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr ""
+msgstr "nastaví winbind, aby předpokládal, že uživatelé bez domény ve jménu uživatele nejsou uživatelé domény"
 
 #: authconfig.c:886
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
+msgstr "připojit se do domény winbind nebo realmu ads nyní jako tento administrátor\n"
 
 #: authconfig.c:890
 msgid "enable wins for hostname resolution"
-msgstr ""
+msgstr "povolit wins pro vyhledávání jmen počítačů"
 
 #: authconfig.c:892
 msgid "disable wins for hostname resolution\n"
-msgstr ""
+msgstr "zakázat wins pro vyhledávání jmen počítačů\n"
 
 #: authconfig.c:895
 msgid "enable hesiod for user information by default"
@@ -463,7 +461,7 @@ msgstr "_Kešovat uživatelské informace"
 
 #: glade.strings:9
 msgid "_Configure NIS..."
-msgstr "Konfigurace N_IS..."
+msgstr "Nastavit N_IS..."
 
 #: glade.strings:10
 msgid "Enable _NIS Support"
@@ -487,7 +485,7 @@ msgstr "Povolit podporu _LDAP"
 
 #: glade.strings:14 glade.strings:29
 msgid "_Configure LDAP..."
-msgstr "Konfigurace L_DAP..."
+msgstr "Nastavit L_DAP..."
 
 #: glade.strings:15 glade.strings:30
 msgid ""
@@ -509,7 +507,7 @@ msgstr "Povolit podporu _Hesiod"
 
 #: glade.strings:18
 msgid "_Configure Hesiod..."
-msgstr "Konfigurace H_esiod..."
+msgstr "Nastavit H_esiod..."
 
 #: glade.strings:19
 msgid ""
@@ -524,25 +522,23 @@ msgid "Hesiod"
 msgstr "Hesiod"
 
 #: glade.strings:21 glade.strings:40
-#, fuzzy
 msgid "Enable _Winbind Support"
-msgstr "Povolit podporu _Hesiod"
+msgstr "Povolit podporu _winbind"
 
 #: glade.strings:22 glade.strings:41
-#, fuzzy
 msgid "_Configure Winbind..."
-msgstr "Konfigurace H_esiod..."
+msgstr "_Nastavit winbind..."
 
 #: glade.strings:23 glade.strings:42
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
-msgstr ""
+msgstr "Winbind umožňuje systému získávat informace o uživatelích a autentizovat je pomocí informací uložených na serveru NTDOM nebo ADS. Používá se v malých i velkých sítích."
 
 #: glade.strings:24 glade.strings:43
 msgid "Winbind"
-msgstr ""
+msgstr "Winbind"
 
 #: glade.strings:25
 msgid "User Information"
@@ -562,7 +558,7 @@ msgstr "Povolit podporu _Kerberos"
 
 #: glade.strings:33
 msgid "_Configure Kerberos..."
-msgstr "Konfigurace K_erberos..."
+msgstr "Nastavit K_erberos..."
 
 #: glade.strings:34
 msgid ""
@@ -582,7 +578,7 @@ msgstr "Povolit podporu _SMB"
 
 #: glade.strings:37
 msgid "_Configure SMB..."
-msgstr "Konfigurace S_MB..."
+msgstr "Nastavit S_MB..."
 
 #: glade.strings:38
 msgid ""
@@ -594,7 +590,7 @@ msgstr ""
 
 #: glade.strings:39
 msgid "SMB"
-msgstr ""
+msgstr "SMB"
 
 #: glade.strings:45
 msgid "NIS Settings"
@@ -605,7 +601,7 @@ msgstr "Nastavení NIS"
 #: glade.strings:66 glade.strings:68 glade.strings:71 glade.strings:77
 #: glade.strings:79 glade.strings:82 glade.strings:85 glade.strings:89
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: glade.strings:47
 msgid "NIS _Server"
@@ -672,88 +668,72 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Pro šifrování spojení použít _TLS"
 
 #: glade.strings:73
-#, fuzzy
 msgid "Winbind Settings"
-msgstr "Nastavení Hesiod"
+msgstr "Nastavení winbind"
 
 #: glade.strings:74
-#, fuzzy
 msgid "_Join Domain"
-msgstr "Doména:"
+msgstr "_Připojit se k doméně"
 
 #: glade.strings:75
 msgid "_Security Model"
-msgstr ""
+msgstr "_Model zabepečení"
 
 #: glade.strings:76
-#, fuzzy
 msgid "Winbind _Domain"
-msgstr "NIS doména"
+msgstr "_Doména winbind"
 
 #: glade.strings:78
-#, fuzzy
 msgid "Winbind Domain _Controllers"
-msgstr "_Doménové kontroléry"
+msgstr "Doménové _kontroléry winbindu"
 
 #: glade.strings:80
 msgid "Template _Shell"
-msgstr ""
+msgstr "Šablona _shellu"
 
 #: glade.strings:81
 msgid "Winbind ADS _Realm"
-msgstr ""
+msgstr "ADS _realm winbindu"
 
 #: glade.strings:83
 msgid "Joining Winbind Domain"
-msgstr ""
+msgstr "Připojuji se k doméně winbindu"
 
 #: glade.strings:84
 msgid "Administrator"
-msgstr ""
+msgstr "Administrator"
 
 #: glade.strings:86
-#, fuzzy
 msgid "Domain _Administrator"
-msgstr "_Doménové kontroléry"
+msgstr "_Administrátor domény"
 
 #: glade.strings:87
-#, fuzzy
 msgid "Domain"
-msgstr "Doména:"
+msgstr "Doména"
 
 #: glade.strings:88
-#, fuzzy
 msgid "_Password"
-msgstr "Používat _MD5 hesla"
+msgstr "_Heslo"
 
 #: glade.strings:90
 msgid "EXAMPLE.COM"
-msgstr ""
+msgstr "EXAMPLE.COM"
 
 #: glade.strings:91
 msgid "Alert"
-msgstr ""
+msgstr "Upozornění"
 
 #: glade.strings:92
 msgid "Do_n't Save"
-msgstr ""
+msgstr "_Neukládat"
 
 #: glade.strings:93
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr ""
+msgstr "Některé ze změn konfigurace, které jste provedli, by měly být před pokračováním uloženy na disk. Pokud je neuložíte, váš pokus připojit se k doméně možná selže. Uložit změny?"
 
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Použít lokální politiky"
-
-#~ msgid "SMB Authentication"
-#~ msgstr "SMB autentizace"
-
-#~ msgid "Apply"
-#~ msgstr "Použít"
-
-#~ msgid "Close"
-#~ msgstr "Zavřít"
