@@ -1,4 +1,7 @@
-.TH AUTHCONFIG 8 "Tue Mar 23 1999"
+.de FN
+\fI\|\\$1\|\fP
+..
+.TH AUTHCONFIG 8 "Tue 23 September 1999" "Red Hat, Inc."
 .UC 4
 .SH NAME
 authconfig \- simple interface for configuring system authorization resources
@@ -25,17 +28,22 @@ other options (\fB--enablenis\fR, \fB--usehadow\fR, etc.).
 \fBauthconfig\fR returns 0 on success, 2 on error, and 1 if the user cancelled
 the program (by using either the \fBCancel\fR or \fBBack\fR button).
 
+.PD
 .SH FILES
 .PD 0
-.TP 20
-\fI/etc/sysconfig/network\fR - Enables for disables NIS support
-\fI/etc/yp.conf\rR - configuration file for NIS support
-\fl/etc/passwd, /etc/shadow\fR  - Used for shadow password support
+.TP
+.FN /etc/sysconfig/network
+Enables or disables NIS support
+.TP
+.FN /etc/yp.conf
+configuration file for NIS support
+.TP
+.FN /etc/passwd, /etc/shadow
+Used for shadow password support
 
 .PD
 .SH "SEE ALSO"
-.BR passwd (5), shadow (5), pwconv(1),
- BR domainname (1), ypbind (8)
+passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8)
 
 .SH AUTHORS
 .nf
