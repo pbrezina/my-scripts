@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-12 19:30-0500\n"
+"POT-Creation-Date: 2003-11-18 16:17-0500\n"
 "PO-Revision-Date: 2003-07-04 23:00+0300\n"
 "Last-Translator: Erçin EKER <erc.caldera@gmx.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -16,111 +16,256 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.2\n"
 
-#: authconfig.c:125
-msgid "Warning"
-msgstr "Uyarı"
-
-#: authconfig.c:125 authconfig.c:601 authconfig.c:614
-msgid "Ok"
-msgstr "Tamam"
-
-#: authconfig.c:143
-msgid "Domain:"
-msgstr "Alan:"
-
-#: authconfig.c:144 authconfig.c:184
-msgid "Server:"
-msgstr "Sunucu:"
-
-#: authconfig.c:164
+#: authconfig.c:312
 msgid "LHS:"
 msgstr "LHS:"
 
-#: authconfig.c:165
+#: authconfig.c:314
 msgid "RHS:"
 msgstr "RHS:"
 
-#: authconfig.c:185
-msgid "Base DN:"
-msgstr "Taban DN:"
+#: authconfig.c:317 glade.strings:50
+msgid "Hesiod Settings"
+msgstr "Hesiod Ayarları"
 
-#: authconfig.c:218
-msgid "Realm:"
-msgstr "Alan:"
-
-#: authconfig.c:219
-msgid "KDC:"
-msgstr "KDC:"
-
-#: authconfig.c:220
-msgid "Admin Server:"
-msgstr "Yetkili Sunucu:"
-
-#: authconfig.c:244
-msgid "Workgroup:"
-msgstr "Çalışmagrubu:"
-
-#: authconfig.c:245
-msgid "Servers:"
-msgstr "Sunucular:"
-
-#. NSCD
-#: authconfig.c:285
-msgid "Cache Information"
-msgstr "Önbellek Bilgisi"
-
-#. NSS modules: NIS.
-#: authconfig.c:293
-msgid "Use NIS"
-msgstr "NIS Kullan"
-
-#: authconfig.c:323
-msgid "Use LDAP"
-msgstr "LDAP Kullan"
-
-#: authconfig.c:328 authconfig.c:491
-msgid "Use TLS"
-msgstr "TLS Kullan"
-
-#. NSS modules: hesiod.
-#: authconfig.c:362
-msgid "Use Hesiod"
-msgstr "Hesiod Kullan"
-
-#: authconfig.c:392
-msgid "Next"
-msgstr "İleri"
-
-#: authconfig.c:393 authconfig.c:602 authconfig.c:615
+#: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
+#: authconfig.c:385 authconfig.c:461 authconfig.c:659
 msgid "Back"
 msgstr "Geri"
 
-#: authconfig.c:393 authconfig.c:603
+#: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
+#: authconfig.c:385 authconfig.c:461 authconfig.c:660
+msgid "Next"
+msgstr "İleri"
+
+#: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
+#: authconfig.c:385 authconfig.c:404 authconfig.c:461 authconfig.c:488
+msgid "Ok"
+msgstr "Tamam"
+
+#: authconfig.c:326
+msgid "Use TLS"
+msgstr "TLS Kullan"
+
+#: authconfig.c:328 authconfig.c:344
+msgid "Server:"
+msgstr "Sunucu:"
+
+#: authconfig.c:330
+msgid "Base DN:"
+msgstr "Taban DN:"
+
+#: authconfig.c:333 glade.strings:69
+msgid "LDAP Settings"
+msgstr "LDAP Ayarları"
+
+#: authconfig.c:342 authconfig.c:451
+msgid "Domain:"
+msgstr "Alan:"
+
+#: authconfig.c:347 glade.strings:45
+msgid "NIS Settings"
+msgstr "NIS Ayarları"
+
+#: authconfig.c:356
+msgid "Realm:"
+msgstr "Alan:"
+
+#: authconfig.c:358
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:360
+msgid "Admin Server:"
+msgstr "Yetkili Sunucu:"
+
+#: authconfig.c:362
+msgid "Use DNS to resolve hosts to realms"
+msgstr ""
+
+#: authconfig.c:364
+msgid "Use DNS to locate KDCs for realms"
+msgstr ""
+
+#: authconfig.c:367 glade.strings:55
+msgid "Kerberos Settings"
+msgstr "Kerberos Ayarları"
+
+#: authconfig.c:376
+msgid "Workgroup:"
+msgstr "Çalışmagrubu:"
+
+#: authconfig.c:378
+msgid "Servers:"
+msgstr "Sunucular:"
+
+#: authconfig.c:380
+msgid "Shell:"
+msgstr ""
+
+#: authconfig.c:383 glade.strings:64
+msgid "SMB Settings"
+msgstr "SMB Ayarları"
+
+#: authconfig.c:393
+#, fuzzy
+msgid "Domain Administrator:"
+msgstr "Alan Adı _Denetçileri"
+
+#: authconfig.c:395
+#, fuzzy
+msgid "Password:"
+msgstr "_MD5 Parolalar Kullanılsın"
+
+#: authconfig.c:402
+#, fuzzy
+msgid "Join Settings"
+msgstr "Hesiod Ayarları"
+
+#: authconfig.c:404 authconfig.c:659
 msgid "Cancel"
 msgstr "İptal"
 
-#: authconfig.c:413
-msgid "User Information Configuration"
-msgstr "Kullanıcı Bilgisi Yapılandırması"
+#: authconfig.c:421 glade.strings:94
+msgid ""
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
+"may fail.  Save changes?"
+msgstr ""
 
-#: authconfig.c:474
-msgid "Use Shadow Passwords"
+#: authconfig.c:427
+#, fuzzy
+msgid "Save Settings"
+msgstr "NIS Ayarları"
+
+#: authconfig.c:429
+msgid "No"
+msgstr ""
+
+#: authconfig.c:429
+msgid "Yes"
+msgstr ""
+
+#: authconfig.c:449
+msgid "Security Model:"
+msgstr ""
+
+#: authconfig.c:453
+#, fuzzy
+msgid "Domain Controllers:"
+msgstr "Alan Adı _Denetçileri"
+
+#: authconfig.c:455
+#, fuzzy
+msgid "ADS Realm:"
+msgstr "Alan:"
+
+#: authconfig.c:458 glade.strings:75
+#, fuzzy
+msgid "Winbind Settings"
+msgstr "Hesiod Ayarları"
+
+#: authconfig.c:460
+#, fuzzy
+msgid "Join Domain"
+msgstr "Alan:"
+
+#: authconfig.c:488
+msgid "Warning"
+msgstr "Uyarı"
+
+#: authconfig.c:505
+msgid "caching"
+msgstr ""
+
+#: authconfig.c:509 glade.strings:35
+msgid "Kerberos"
+msgstr "Kerberos"
+
+#: authconfig.c:513
+#, fuzzy
+msgid "LDAP authentication"
+msgstr "LDAP Kimlik Sınaması Kullan"
+
+#: authconfig.c:517 glade.strings:16 glade.strings:31
+msgid "LDAP"
+msgstr "LDAP"
+
+#: authconfig.c:521 glade.strings:12
+msgid "NIS"
+msgstr "NIS"
+
+#: authconfig.c:525
+#, fuzzy
+msgid "shadow password"
 msgstr "Shadow Parolaları Kullan"
 
-#: authconfig.c:479
+#: authconfig.c:529
+#, fuzzy
+msgid "SMB authentication"
+msgstr "SMB Kimlik Sınaması"
+
+#: authconfig.c:533 authconfig.c:541 glade.strings:24 glade.strings:43
+msgid "Winbind"
+msgstr ""
+
+#: authconfig.c:537
+#, fuzzy
+msgid "Winbind authentication"
+msgstr "Kimlik Denetimi"
+
+#: authconfig.c:552 glade.strings:25
+msgid "User Information"
+msgstr "Kullanıcı Bilgileri"
+
+#: authconfig.c:556
+msgid "Cache Information"
+msgstr "Önbellek Bilgisi"
+
+#: authconfig.c:563
+msgid "Use Hesiod"
+msgstr "Hesiod Kullan"
+
+#: authconfig.c:569
+msgid "Use LDAP"
+msgstr "LDAP Kullan"
+
+#: authconfig.c:576
+msgid "Use NIS"
+msgstr "NIS Kullan"
+
+#: authconfig.c:583
+msgid "Use Winbind"
+msgstr ""
+
+#: authconfig.c:593 authconfig.desktop.in.h:1 glade.strings:44
+msgid "Authentication"
+msgstr "Kimlik Denetimi"
+
+#: authconfig.c:597
 msgid "Use MD5 Passwords"
 msgstr "MD5 Parolaları kullan"
 
-#: authconfig.c:486
+#: authconfig.c:603
+msgid "Use Shadow Passwords"
+msgstr "Shadow Parolaları Kullan"
+
+#: authconfig.c:610
 msgid "Use LDAP Authentication"
 msgstr "LDAP Kimlik Sınaması Kullan"
 
-#: authconfig.c:524
-msgid "Use Kerberos 5"
+#: authconfig.c:617
+#, fuzzy
+msgid "Use Kerberos"
 msgstr "Kerberos 5 Kullan"
 
-#: authconfig.c:562
+#: authconfig.c:624
 msgid "Use SMB Authentication"
+msgstr "SMB Kimlik Sınaması Kullan"
+
+#: authconfig.c:631
+#, fuzzy
+msgid "Use Winbind Authentication"
 msgstr "SMB Kimlik Sınaması Kullan"
 
 #. !/usr/bin/python
@@ -137,324 +282,337 @@ msgstr "SMB Kimlik Sınaması Kullan"
 #. Toggle a boolean.
 #. Create a vbox or dialog using the file, and return it. */
 #. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:632 authconfig-gtk.py:283 glade.strings:7
+#: authconfig.c:675 authconfig-gtk.py:287 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Kimlik Bilgisi Yapılandırması"
 
-#: authconfig.c:789
+#: authconfig.c:848
 msgid "enable shadowed passwords by default"
 msgstr "gölge parolaları öntanımlı kullan"
 
-#: authconfig.c:791
+#: authconfig.c:850
 msgid "disable shadowed passwords by default"
 msgstr "gölge parolaları kullanma"
 
-#: authconfig.c:795
+#: authconfig.c:854
 msgid "enable MD5 passwords by default"
 msgstr "MD5 parolaları öntanımlı kullan"
 
-#: authconfig.c:797
+#: authconfig.c:856
 msgid "disable MD5 passwords by default\n"
 msgstr "MD5 parolalarını kullanma\n"
 
-#: authconfig.c:800
+#: authconfig.c:859
 msgid "enable NIS"
 msgstr "NIS'i etkinleştir"
 
-#: authconfig.c:802
+#: authconfig.c:861
 msgid "disable NIS"
 msgstr "NIS'i kapat"
 
-#: authconfig.c:804
+#: authconfig.c:863
 msgid "default NIS domain"
 msgstr "öntanımlı NIS alanı"
 
-#: authconfig.c:804
+#: authconfig.c:863
 msgid "<domain>"
 msgstr "<alan>"
 
-#: authconfig.c:806
+#: authconfig.c:865
 msgid "default NIS server\n"
 msgstr "öntanımlı NIS sunucusu\n"
 
-#: authconfig.c:806 authconfig.c:821 authconfig.c:830 authconfig.c:832
-#: authconfig.c:843
+#: authconfig.c:865 authconfig.c:880 authconfig.c:889 authconfig.c:891
+#: authconfig.c:911
 msgid "<server>"
 msgstr "<sunucu>"
 
-#: authconfig.c:809
+#: authconfig.c:868
 msgid "enable LDAP for user information by default"
 msgstr "kullanıcı bilgisi için LDAP kullanılsın"
 
-#: authconfig.c:811
+#: authconfig.c:870
 msgid "disable LDAP for user information by default"
 msgstr "kullanıcı bilgisi için LDAP'ı kullanılmasın"
 
-#: authconfig.c:813
+#: authconfig.c:872
 msgid "enable use of TLS with LDAP"
 msgstr "LDAP ile birlikte TLS kullanılsın"
 
-#: authconfig.c:815
+#: authconfig.c:874
 msgid "disable use of TLS with LDAP"
 msgstr "LDAP ile TLS kullanılmasın"
 
-#: authconfig.c:817
+#: authconfig.c:876
 msgid "enable LDAP for authentication by default"
 msgstr "öntanımlı kimlik denetimi için LDAP kullanılsın"
 
-#: authconfig.c:819
+#: authconfig.c:878
 msgid "disable LDAP for authentication by default"
 msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
 
-#: authconfig.c:821
+#: authconfig.c:880
 msgid "default LDAP server"
 msgstr "öntanımlı LDAP sunucusu"
 
-#: authconfig.c:823
+#: authconfig.c:882
 msgid "default LDAP base DN\n"
 msgstr "öntanımlı LDAP taban DN\n"
 
-#: authconfig.c:823
+#: authconfig.c:882
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:826
+#: authconfig.c:885
 msgid "enable kerberos authentication by default"
 msgstr "öntanımlı olarak kerberos kimlik denetimi kullanılsın"
 
-#: authconfig.c:828
+#: authconfig.c:887
 msgid "disable kerberos authentication by default"
 msgstr "kerberos kimlik denetimi kullanılmasın"
 
-#: authconfig.c:830
+#: authconfig.c:889
 msgid "default kerberos KDC"
 msgstr "öntanımlı kerberos KDC"
 
-#: authconfig.c:832
+#: authconfig.c:891
 msgid "default kerberos admin server"
 msgstr "öntanımlı kerberos yönetim sunucusu"
 
-#: authconfig.c:834
+#: authconfig.c:893
 msgid "default kerberos realm\n"
 msgstr "öntanımlı kerberos bölgesi\n"
 
-#: authconfig.c:834
+#: authconfig.c:893
 msgid "<realm>"
 msgstr "<bölge>"
 
-#: authconfig.c:837
+#: authconfig.c:896
+msgid "enable use of DNS to find kerberos KDCs"
+msgstr ""
+
+#: authconfig.c:898
+msgid "disable use of DNS to find kerberos KDCs"
+msgstr ""
+
+#: authconfig.c:900
+msgid "enable use of DNS to find kerberos realms"
+msgstr ""
+
+#: authconfig.c:902
+#, fuzzy
+msgid "disable use of DNS to find kerberos realms\n"
+msgstr "öntanımlı kerberos bölgesi\n"
+
+#: authconfig.c:905
 msgid "enable SMB authentication by default"
 msgstr "öntanımlı olarak SMB kimlik denetimi kullanılsın"
 
-#: authconfig.c:839
+#: authconfig.c:907
 msgid "disable SMB authentication by default"
 msgstr "öntanımlı kimlik denetimi için SMB kullanılmasın"
 
-#: authconfig.c:841
+#: authconfig.c:909
 msgid "workgroup authentication servers are in"
 msgstr "çalışmagrubu kimlik denetimi sunucularının yeri"
 
-#: authconfig.c:841
+#: authconfig.c:909
 msgid "<workgroup>"
 msgstr "<çalışmagrubu>"
 
-#: authconfig.c:843
+#: authconfig.c:911
 msgid "names of servers to authenticate against\n"
 msgstr "Kullanıcıların kimlik denetimi sunucuların isimleri\n"
 
-#: authconfig.c:846
+#: authconfig.c:914
 #, fuzzy
 msgid "enable winbind for user information and authentication by default"
 msgstr "kullanıcı bilgisi için hesiod kullanılsın"
 
-#: authconfig.c:849
+#: authconfig.c:917
 #, fuzzy
 msgid "disable winbind for user information and authentication by default"
 msgstr "kullanıcı bilgisi için hesiod kullanılmasın"
 
-#: authconfig.c:852
+#: authconfig.c:920
 msgid "security mode to use for samba and winbind"
 msgstr ""
 
-#: authconfig.c:854
+#: authconfig.c:922
 msgid "default realm for samba and winbind when security=ads"
 msgstr ""
 
-#: authconfig.c:856
+#: authconfig.c:924
 msgid "uid range winbind will assign to domain or ads users"
 msgstr ""
 
-#: authconfig.c:857 authconfig.c:860
+#: authconfig.c:925 authconfig.c:928
 msgid "<lowest-highest>"
 msgstr ""
 
-#: authconfig.c:859
+#: authconfig.c:927
 msgid "gid range winbind will assign to domain or ads users"
 msgstr ""
 
-#: authconfig.c:863
+#: authconfig.c:931
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
 
-#: authconfig.c:867
+#: authconfig.c:935
 msgid "the directory which winbind-created users will have as home directories"
 msgstr ""
 
-#: authconfig.c:871
+#: authconfig.c:939
 msgid "the group which winbind-created users will have as their primary group"
 msgstr ""
 
-#: authconfig.c:874
+#: authconfig.c:942
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr ""
 
-#: authconfig.c:878
+#: authconfig.c:946
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
 
-#: authconfig.c:882
+#: authconfig.c:950
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
 
-#: authconfig.c:886
+#: authconfig.c:954
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr ""
 
-#: authconfig.c:890
+#: authconfig.c:958
 msgid "enable wins for hostname resolution"
 msgstr ""
 
-#: authconfig.c:892
+#: authconfig.c:960
 msgid "disable wins for hostname resolution\n"
 msgstr ""
 
-#: authconfig.c:895
+#: authconfig.c:963
 msgid "enable hesiod for user information by default"
 msgstr "kullanıcı bilgisi için hesiod kullanılsın"
 
-#: authconfig.c:897
+#: authconfig.c:965
 msgid "disable hesiod for user information by default"
 msgstr "kullanıcı bilgisi için hesiod kullanılmasın"
 
-#: authconfig.c:899
+#: authconfig.c:967
 msgid "default hesiod LHS"
 msgstr "öntanımlı hesiod LHS"
 
-#: authconfig.c:899
+#: authconfig.c:967
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:901
+#: authconfig.c:969
 msgid "default hesiod RHS\n"
 msgstr "öntanımlı hesiod RHS\n"
 
-#: authconfig.c:901
+#: authconfig.c:969
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:904
+#: authconfig.c:972
 msgid "enable caching of user information by default"
 msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılsın"
 
-#: authconfig.c:906
+#: authconfig.c:974
 msgid "disable caching of user information by default\n"
 msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılmasın\n"
 
-#: authconfig.c:913
+#: authconfig.c:981
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind, ncsd'yi çalıştırMa/durdurMa"
 
-#: authconfig.c:915
+#: authconfig.c:983
 msgid "don't display user interface"
 msgstr "kullanıcı arayüzünü gösterme"
 
-#: authconfig.c:917
+#: authconfig.c:985
 msgid "probe network for defaults and print them"
 msgstr "öntanımlılar için ağı tara ve onları göster"
 
-#: authconfig.c:920
+#: authconfig.c:988
 msgid "use locally-defined policies"
 msgstr "yerel olarak atanmış önlemler kullanılsın"
 
-#: authconfig.c:922
+#: authconfig.c:990
 msgid "don't use locally-defined policies"
 msgstr "yerel olarak atanmış önlemler kullanılmasın"
 
-#: authconfig.c:933
+#: authconfig.c:1001
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: hatalı argüman %s: %s\n"
 
-#: authconfig.c:942
+#: authconfig.c:1010
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s: devam edilmeye çalışılıyor\n"
 
-#: authconfig.c:946
+#: authconfig.c:1014
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: beklenmeyen argüman\n"
 
-#: authconfig.c:978
+#: authconfig.c:1046
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: sadece yetkili kullanıcı (root) tarafından çalıştırılabilir\n"
 
-#: authconfig.c:989 authconfig.c:997 authconfig.c:1005 authconfig.c:1013
-#: authconfig.c:1021 authconfig.c:1029 authconfig.c:1037 authconfig.c:1050
-#: authconfig.c:1058
+#: authconfig.c:1057 authconfig.c:1065 authconfig.c:1073 authconfig.c:1081
+#: authconfig.c:1089 authconfig.c:1097 authconfig.c:1105 authconfig.c:1118
+#: authconfig.c:1126
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: %s/%s dosyasının okunmasında önemli hata"
 
-#: authconfig.c:1044
+#: authconfig.c:1112
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s: önbellekleme yapılandırması okunamıyor"
 
-#: authconfig.c:1140
+#: authconfig.c:1212
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 "  <Tab>/<Alt-Tab> ileri/geri   |   <Boşluk> seçer   |   <F12> sonraki ekran"
 
-#: authconfig.c:1143
+#: authconfig.c:1215
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 Red Hat, Inc."
 
-#: authconfig.c:1150
+#: authconfig.c:1222
 msgid "dialog was cancelled\n"
 msgstr "diyalog iptal edildi\n"
 
-#: authconfig.c:1165
+#: authconfig.c:1237
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s: önbellekleme ayarları kaydedilirken önemli hata"
 
-#: authconfig.c:1171 authconfig.c:1177 authconfig.c:1183 authconfig.c:1189
-#: authconfig.c:1194 authconfig.c:1200 authconfig.c:1205 authconfig.c:1210
-#: authconfig.c:1215 authconfig.c:1221
+#: authconfig.c:1243 authconfig.c:1249 authconfig.c:1255 authconfig.c:1261
+#: authconfig.c:1266 authconfig.c:1272 authconfig.c:1277 authconfig.c:1282
+#: authconfig.c:1287 authconfig.c:1293
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: %s/%s dosyasının yazılmasında önemli hata"
-
-#: authconfig.desktop.in.h:1 glade.strings:44
-msgid "Authentication"
-msgstr "Kimlik Denetimi"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
 msgstr ""
 "Sisteme giriş yapmak isteyen kullanıcıların nasıl doğrulanacağını denetler"
 
-#: authinfo.h:65
+#: authinfo.h:68
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -483,10 +641,6 @@ msgstr ""
 "NIS Alan Adı Bilgilendirme Hizmetidir.  Çoğunlukla küçük ve orta "
 "büyüklükteki ağlarda kullanılmaktadır."
 
-#: glade.strings:12
-msgid "NIS"
-msgstr "NIS"
-
 #: glade.strings:13 glade.strings:28
 msgid "Enable _LDAP Support"
 msgstr "_LDAP Desteğini Etkinleştir"
@@ -504,10 +658,6 @@ msgstr ""
 "Hafif Dizin Erişim Protokolü, yapısal bir hiyerarşi içinde çeşitli "
 "bilgilerin tutulduğu bir dizini aramak için kullanılır. LDAP, küçük-büyük "
 "her türlü ağ tarafından giderek artan bir yoğunlukta kullanılmaktadır."
-
-#: glade.strings:16 glade.strings:31
-msgid "LDAP"
-msgstr "LDAP"
 
 #: glade.strings:17
 msgid "Enable _Hesiod Support"
@@ -546,14 +696,6 @@ msgid ""
 "It is used in small to large networks."
 msgstr ""
 
-#: glade.strings:24 glade.strings:43
-msgid "Winbind"
-msgstr ""
-
-#: glade.strings:25
-msgid "User Information"
-msgstr "Kullanıcı Bilgileri"
-
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
 msgstr "_Gölge Parolalar Kullanılsın"
@@ -578,10 +720,6 @@ msgstr ""
 "Kerberos, orta ve geniş büyüklükteki ağlarda kullanılan güvenli bir kimlik "
 "sınama sistemidir."
 
-#: glade.strings:35
-msgid "Kerberos"
-msgstr "Kerberos"
-
 #: glade.strings:36
 msgid "Enable _SMB Support"
 msgstr "_SMB Desteği Etkinleştirilsin"
@@ -602,14 +740,10 @@ msgstr ""
 msgid "SMB"
 msgstr ""
 
-#: glade.strings:45
-msgid "NIS Settings"
-msgstr "NIS Ayarları"
-
 #: glade.strings:46 glade.strings:49 glade.strings:51 glade.strings:54
-#: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:63
-#: glade.strings:66 glade.strings:68 glade.strings:71 glade.strings:77
-#: glade.strings:79 glade.strings:82 glade.strings:85 glade.strings:89
+#: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:65
+#: glade.strings:68 glade.strings:70 glade.strings:73 glade.strings:79
+#: glade.strings:81 glade.strings:84 glade.strings:86 glade.strings:90
 msgid "*"
 msgstr ""
 
@@ -621,10 +755,6 @@ msgstr "NIS _Sunucu"
 msgid "NIS _Domain"
 msgstr "NIS _Alanı"
 
-#: glade.strings:50
-msgid "Hesiod Settings"
-msgstr "Hesiod Ayarları"
-
 #: glade.strings:52
 msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
@@ -632,10 +762,6 @@ msgstr "Hesiod _RHS"
 #: glade.strings:53
 msgid "Hesiod _LHS"
 msgstr "Hesiod _LHS"
-
-#: glade.strings:55
-msgid "Kerberos Settings"
-msgstr "Kerberos Ayarları"
 
 #: glade.strings:57
 msgid "_Admin Servers"
@@ -650,113 +776,97 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings:62
-msgid "SMB Settings"
-msgstr "SMB Ayarları"
+msgid "Use DNS to resolve hosts to _realms"
+msgstr ""
 
-#: glade.strings:64
+#: glade.strings:63
+msgid "Use DNS to locate _KDCs for realms"
+msgstr ""
+
+#: glade.strings:66
 msgid "_Domain Controllers"
 msgstr "Alan Adı _Denetçileri"
 
-#: glade.strings:65
+#: glade.strings:67
 msgid "_Workgroup"
 msgstr "Çalışma _Grubu"
 
-#: glade.strings:67
-msgid "LDAP Settings"
-msgstr "LDAP Ayarları"
-
-#: glade.strings:69
+#: glade.strings:71
 msgid "LDAP _Server"
 msgstr "LDAP _Sunucu"
 
-#: glade.strings:70
+#: glade.strings:72
 msgid "LDAP Search _Base DN"
 msgstr "LDAP Arama _Tabanı DN"
 
-#: glade.strings:72
+#: glade.strings:74
 msgid "Use _TLS to encrypt connections"
 msgstr "Bağlantıları şifrelemede _TLS kullanılsın"
 
-#: glade.strings:73
-#, fuzzy
-msgid "Winbind Settings"
-msgstr "Hesiod Ayarları"
-
-#: glade.strings:74
+#: glade.strings:76
 #, fuzzy
 msgid "_Join Domain"
 msgstr "Alan:"
 
-#: glade.strings:75
+#: glade.strings:77
 msgid "_Security Model"
 msgstr ""
 
-#: glade.strings:76
+#: glade.strings:78
 #, fuzzy
 msgid "Winbind _Domain"
 msgstr "NIS _Alanı"
 
-#: glade.strings:78
+#: glade.strings:80
 #, fuzzy
 msgid "Winbind Domain _Controllers"
 msgstr "Alan Adı _Denetçileri"
 
-#: glade.strings:80
+#: glade.strings:82
 msgid "Template _Shell"
 msgstr ""
 
-#: glade.strings:81
+#: glade.strings:83
 msgid "Winbind ADS _Realm"
 msgstr ""
 
-#: glade.strings:83
+#: glade.strings:85
 msgid "Joining Winbind Domain"
 msgstr ""
 
-#: glade.strings:84
-msgid "Administrator"
-msgstr ""
-
-#: glade.strings:86
+#: glade.strings:87
 #, fuzzy
 msgid "Domain _Administrator"
 msgstr "Alan Adı _Denetçileri"
 
-#: glade.strings:87
+#: glade.strings:88
 #, fuzzy
 msgid "Domain"
 msgstr "Alan:"
 
-#: glade.strings:88
+#: glade.strings:89
 #, fuzzy
 msgid "_Password"
 msgstr "_MD5 Parolalar Kullanılsın"
 
-#: glade.strings:90
+#: glade.strings:91
 msgid "EXAMPLE.COM"
 msgstr ""
 
-#: glade.strings:91
+#: glade.strings:92
 msgid "Alert"
 msgstr ""
 
-#: glade.strings:92
-msgid "Do_n't Save"
-msgstr ""
-
 #: glade.strings:93
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
+msgid "Do_n't Save"
 msgstr ""
 
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Yerel Önlemler Kullanılsın"
 
-#~ msgid "SMB Authentication"
-#~ msgstr "SMB Kimlik Sınaması"
+#~ msgid "User Information Configuration"
+#~ msgstr "Kullanıcı Bilgisi Yapılandırması"
 
 #~ msgid "Apply"
 #~ msgstr "Uygula"
