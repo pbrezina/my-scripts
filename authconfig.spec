@@ -61,6 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/authconfig
 %{_sbindir}/authconfig
 %{_mandir}/man8/*
+%{_libdir}/python*/site-packages/authconfigmodule.so
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
 

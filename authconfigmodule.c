@@ -25,6 +25,11 @@
 
 #define authInfoObject_Check(op) PyObject_TypeCheck(op, &authInfoObjectType)
 extern PyTypeObject authInfoObjectType;
+static PyObject *authconfig_write(PyObject *self, PyObject *args,
+				  PyObject *kwargs);
+static PyObject *authconfig_post(PyObject *self, PyObject *args,
+				 PyObject *kwargs);
+
 
 /* Define a mapping for the fields in the authInfo structure we want to
  * expose through python. */
@@ -185,6 +190,10 @@ authInfoObject_getattr(PyObject *self, char *attribute)
 	char **p;
 	gboolean *b;
 	PyMethodDef methods[] = {
+		{"write", (PyCFunction)authconfig_write,
+		 METH_VARARGS | METH_KEYWORDS},
+		{"post", (PyCFunction)authconfig_post,
+		 METH_VARARGS | METH_KEYWORDS},
 		{NULL, NULL, 0},
 	};
 	if (authInfoObject_Check(self)) {
@@ -204,7 +213,7 @@ authInfoObject_getattr(PyObject *self, char *attribute)
 				case svalue:
 					p = G_STRUCT_MEMBER_P(info->info,
 							      map[i].offset);
-					return PyString_FromString(*p);
+					return PyString_FromString(*p ?: "");
 					break;
 				default:
 					return Py_BuildValue("s", "Ouch!  What do you do?");
@@ -258,6 +267,9 @@ authconfig_write(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *info = NULL;
 	char *keywords[] = {"info", NULL};
+	if (authInfoObject_Check(self)) {
+		info = (struct authInfoObject *)self;
+	} else
 	if (PyTuple_Check(args)) {
 		if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!", keywords,
 						 &authInfoObjectType, &info)) {
@@ -283,6 +295,10 @@ authconfig_post(PyObject *self, PyObject *args, PyObject *kwargs)
 	struct authInfoObject *info;
 	char *keywords[] = {"info", "start_daemons", NULL};
 	PyObject *start = NULL;
+	if (authInfoObject_Check(self)) {
+		info = (struct authInfoObject *)self;
+		start = args;
+	} else
 	if (PyTuple_Check(args)) {
 		if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!O", keywords,
 						 &authInfoObjectType, &info,

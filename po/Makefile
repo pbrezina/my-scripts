@@ -10,7 +10,7 @@ NLSPACKAGE = authconfig
 
 CATALOGS = $(shell ls *.po | sed 's/po/mo/')
 
-POTFILES  = ../authconfig.c ../authinfo.h ../localpol.h ../glade.strings
+POTFILES  = ../authconfig.c ../authinfo.h ../localpol.h ../glade.strings ../authconfig-gtk.py
 
 all: $(NLSPACKAGE).pot $(CATALOGS)
 
