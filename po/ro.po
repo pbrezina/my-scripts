@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 1.0\n"
-"POT-Creation-Date: 2000-07-13 13:08-0400\n"
+"POT-Creation-Date: 2000-07-31 17:07-0400\n"
 "PO-Revision-Date: 1999-04-13 11:56-04:00\n"
 "Last-Translator: Cristian Gafton <gafton@redhat.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -13,127 +13,127 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-2\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ../authconfig.c:147
+#: ../authconfig.c:153
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
 
-#: ../authconfig.c:151
+#: ../authconfig.c:157
 msgid "Warning"
 msgstr ""
 
-#: ../authconfig.c:151 ../authconfig.c:523 ../authconfig.c:528
+#: ../authconfig.c:157 ../authconfig.c:529 ../authconfig.c:534
 msgid "Ok"
 msgstr "Ok"
 
-#: ../authconfig.c:161 ../authconfig.c:235
+#: ../authconfig.c:167 ../authconfig.c:241
 #, fuzzy
 msgid "  Domain:"
 msgstr "   Domeniu NIS:"
 
-#: ../authconfig.c:162 ../authconfig.c:208
+#: ../authconfig.c:168 ../authconfig.c:214
 #, fuzzy
 msgid "  Server:"
 msgstr "Server NIS:"
 
-#: ../authconfig.c:182
+#: ../authconfig.c:188
 msgid "     LHS:"
 msgstr ""
 
-#: ../authconfig.c:183
+#: ../authconfig.c:189
 msgid "     RHS:"
 msgstr ""
 
-#: ../authconfig.c:209
+#: ../authconfig.c:215
 msgid " Base DN:"
 msgstr ""
 
-#: ../authconfig.c:252
+#: ../authconfig.c:258
 #, fuzzy
 msgid "          Realm:"
 msgstr "   sau folosiþi:"
 
-#: ../authconfig.c:253
+#: ../authconfig.c:259
 #, fuzzy
 msgid "            KDC:"
 msgstr "   sau folosiþi:"
 
-#: ../authconfig.c:254
+#: ../authconfig.c:260
 #, fuzzy
 msgid "   Admin Server:"
 msgstr "    Server LDAP:"
 
 #. Create the window and a form to put into it.
-#: ../authconfig.c:294
+#: ../authconfig.c:300
 #, fuzzy
 msgid "User Information Configuration"
 msgstr "Configurare Metode de Autentificare"
 
 #. NSS modules: NIS.
-#: ../authconfig.c:298
+#: ../authconfig.c:304
 #, fuzzy
 msgid "Use NIS"
 msgstr "NIS"
 
-#: ../authconfig.c:321
+#: ../authconfig.c:327
 #, fuzzy
 msgid "Use LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.c:340
+#: ../authconfig.c:346
 msgid "Use WinBind"
 msgstr ""
 
-#: ../authconfig.c:354
+#: ../authconfig.c:360
 msgid "Use Hesiod"
 msgstr ""
 
 #. Create the buttons.
-#: ../authconfig.c:375
+#: ../authconfig.c:381
 msgid "Next"
 msgstr ""
 
-#: ../authconfig.c:376 ../authconfig.c:524 ../authconfig.c:529
+#: ../authconfig.c:382 ../authconfig.c:530 ../authconfig.c:535
 msgid "Back"
 msgstr "Înapoi"
 
-#: ../authconfig.c:376 ../authconfig.c:525
+#: ../authconfig.c:382 ../authconfig.c:531
 msgid "Cancel"
 msgstr "Abandon"
 
 #. Create the window and a form to put into it.
-#: ../authconfig.c:441
+#: ../authconfig.c:447
 msgid "Authentication Configuration"
 msgstr "Configurare Metode de Autentificare"
 
 #. PAM setup.
-#: ../authconfig.c:445
+#: ../authconfig.c:451
 msgid "Use Shadow Passwords"
 msgstr "Activeazã Shadow Passwords"
 
-#: ../authconfig.c:449
+#: ../authconfig.c:455
 #, fuzzy
 msgid "Use MD5 Passwords"
 msgstr "Activeazã MD5 passwords"
 
-#: ../authconfig.c:454
+#: ../authconfig.c:460
 #, fuzzy
 msgid "Use LDAP Authentication"
 msgstr "Tip Autentificare:"
 
-#: ../authconfig.c:475
+#: ../authconfig.c:481
 #, fuzzy
 msgid "Use WinBind Authentication"
 msgstr "Tip Autentificare:"
 
-#: ../authconfig.c:490
+#: ../authconfig.c:496
 #, fuzzy
 msgid "Use Kerberos 5"
 msgstr "Kerberos"
 
-#: ../authconfig.c:620
+#: ../authconfig.c:626
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -175,68 +175,35 @@ msgid ""
 "     --help                     show this screen\n"
 msgstr ""
 
-#: ../authconfig.c:659
+#: ../authconfig.c:665
 msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
 msgstr ""
 
-#: ../authconfig.c:770
+#: ../authconfig.c:776
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: argument invalid %s: %s\n"
 
-#: ../authconfig.c:777
+#: ../authconfig.c:783
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: argument incorect\n"
 
-#: ../authconfig.c:789
+#: ../authconfig.c:795
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: poate fi rulat numai de cãtre root\n"
 
-#: ../authconfig.c:800
+#: ../authconfig.c:806 ../authconfig.c:813 ../authconfig.c:820
+#: ../authconfig.c:828 ../authconfig.c:836 ../authconfig.c:843
+#: ../authconfig.c:850 ../authconfig.c:857
 #, fuzzy, c-format
-msgid "%s: critical error reading %s/hesiod.conf"
-msgstr "%s: eroare fatalã la citirea /etc/ldap.conf"
-
-#: ../authconfig.c:807
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/krb5.conf"
-msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
-
-#: ../authconfig.c:814
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/ldap.conf"
-msgstr "%s: eroare fatalã la citirea /etc/ldap.conf"
-
-#: ../authconfig.c:822
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/smb.conf"
-msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
-
-#: ../authconfig.c:830
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/yp.conf"
-msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
-
-#: ../authconfig.c:837
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/nsswitch.conf"
-msgstr "%s: nu se poate scrie /etc/nsswitch.conf\n"
-
-#: ../authconfig.c:844
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/sysconfig/network"
-msgstr "%s: eroare fatalã la citirea /etc/sysconfig/network"
-
-#: ../authconfig.c:851
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/pam.d/%s"
+msgid "%s: critical error reading %s/%s"
 msgstr "%s: eroare fatalã la citirea  /etc/pam.d/passwd\n"
 
-#: ../authconfig.c:908
+#: ../authconfig.c:914
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -244,49 +211,72 @@ msgstr ""
 " <Tab>/<Alt-Tab> între elemente   |   <Space> selecteazã   |  <F12> "
 "urmãtorul ecran"
 
-#: ../authconfig.c:916
+#: ../authconfig.c:922
 msgid "dialog was cancelled\n"
 msgstr "interacþiunea a fost opritã\n"
 
-#: ../authconfig.c:984
+#: ../authconfig.c:990 ../authconfig.c:995 ../authconfig.c:1000
+#: ../authconfig.c:1005 ../authconfig.c:1011 ../authconfig.c:1017
+#: ../authconfig.c:1021 ../authconfig.c:1026
 #, fuzzy, c-format
-msgid "%s: critical error writing %s/hesiod.conf"
-msgstr "%s: nu se poate scrie /etc/ldap.conf\n"
-
-#: ../authconfig.c:989
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/krb5.conf"
-msgstr "%s: nu se poate scrie /etc/yp.conf\n"
-
-#: ../authconfig.c:994
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/ldap.conf"
-msgstr "%s: nu se poate scrie /etc/ldap.conf\n"
-
-#: ../authconfig.c:999
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/yp.conf"
-msgstr "%s: nu se poate scrie /etc/yp.conf\n"
-
-#: ../authconfig.c:1005
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/smb.conf"
-msgstr "%s: nu se poate scrie /etc/yp.conf\n"
-
-#: ../authconfig.c:1011
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/nsswitch.conf"
-msgstr "%s: nu se poate scrie /etc/nsswitch.conf\n"
-
-#: ../authconfig.c:1015
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/sysconfig/network"
-msgstr "%s: nu se poate citi /etc/sysconfig/network\n"
-
-#: ../authconfig.c:1020
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/pam.d/%s"
+msgid "%s: critical error writing %s/%s"
 msgstr "%s: eroare criticã la scrierea fiºierelor în /etc/pam.d\n"
+
+#, fuzzy
+#~ msgid "%s: critical error reading %s/hesiod.conf"
+#~ msgstr "%s: eroare fatalã la citirea /etc/ldap.conf"
+
+#, fuzzy
+#~ msgid "%s: critical error reading %s/krb5.conf"
+#~ msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
+
+#, fuzzy
+#~ msgid "%s: critical error reading %s/ldap.conf"
+#~ msgstr "%s: eroare fatalã la citirea /etc/ldap.conf"
+
+#, fuzzy
+#~ msgid "%s: critical error reading %s/smb.conf"
+#~ msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
+
+#, fuzzy
+#~ msgid "%s: critical error reading %s/yp.conf"
+#~ msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
+
+#, fuzzy
+#~ msgid "%s: critical error reading %s/nsswitch.conf"
+#~ msgstr "%s: nu se poate scrie /etc/nsswitch.conf\n"
+
+#, fuzzy
+#~ msgid "%s: critical error reading %s/sysconfig/network"
+#~ msgstr "%s: eroare fatalã la citirea /etc/sysconfig/network"
+
+#, fuzzy
+#~ msgid "%s: critical error writing %s/hesiod.conf"
+#~ msgstr "%s: nu se poate scrie /etc/ldap.conf\n"
+
+#, fuzzy
+#~ msgid "%s: critical error writing %s/krb5.conf"
+#~ msgstr "%s: nu se poate scrie /etc/yp.conf\n"
+
+#, fuzzy
+#~ msgid "%s: critical error writing %s/ldap.conf"
+#~ msgstr "%s: nu se poate scrie /etc/ldap.conf\n"
+
+#, fuzzy
+#~ msgid "%s: critical error writing %s/yp.conf"
+#~ msgstr "%s: nu se poate scrie /etc/yp.conf\n"
+
+#, fuzzy
+#~ msgid "%s: critical error writing %s/smb.conf"
+#~ msgstr "%s: nu se poate scrie /etc/yp.conf\n"
+
+#, fuzzy
+#~ msgid "%s: critical error writing %s/nsswitch.conf"
+#~ msgstr "%s: nu se poate scrie /etc/nsswitch.conf\n"
+
+#, fuzzy
+#~ msgid "%s: critical error writing %s/sysconfig/network"
+#~ msgstr "%s: nu se poate citi /etc/sysconfig/network\n"
 
 #~ msgid "%s: cannot open /etc/sysconfig/network: %s\n"
 #~ msgstr "%s: nu se poate accesa /etc/sysconfig/network: %s\n"
