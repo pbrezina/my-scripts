@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig VERSION\n"
-"POT-Creation-Date: 2002-11-04 16:50-0500\n"
-"PO-Revision-Date: 2003-06-18 21:06+0700\n"
+"POT-Creation-Date: 2003-06-30 18:17-0400\n"
+"PO-Revision-Date: 2003-07-26 00:45+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "Dùng Xác thực SMB"
 #. Toggle a boolean.
 #. Create a vbox or dialog using the file, and return it. */
 #. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:632 authconfig-gtk.py:112 glade.strings:7
+#: authconfig.c:632 authconfig-gtk.py:119 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Cấu hình Xác thực"
 
@@ -244,19 +244,21 @@ msgstr "Server xác thực nhóm làm việc tại"
 
 #: authconfig.c:827
 msgid "<workgroup>"
-msgstr ""
+msgstr "<workgroup>"
 
 #: authconfig.c:829
 msgid "names of servers to authenticate against\n"
-msgstr ""
+msgstr "tên server cần xác thực\n"
 
 #: authconfig.c:832
+#, fuzzy
 msgid "enable hesiod for user information by default"
-msgstr ""
+msgstr "mặc định bật hesiod for user information"
 
 #: authconfig.c:834
+#, fuzzy
 msgid "disable hesiod for user information by default"
-msgstr ""
+msgstr "mặc định tắt hesiod for user information"
 
 #: authconfig.c:836
 msgid "default hesiod LHS"
@@ -292,7 +294,7 @@ msgstr "không hiển thị giao diện người dùng"
 
 #: authconfig.c:854
 msgid "probe network for defaults and print them"
-msgstr ""
+msgstr "dò mạng tìm thông số mặc định và in ra"
 
 #: authconfig.c:857
 msgid "use locally-defined policies"
@@ -355,7 +357,8 @@ msgid "%s: critical error recording caching setting"
 msgstr ""
 
 #: authconfig.c:1080 authconfig.c:1086 authconfig.c:1092 authconfig.c:1098
-#: authconfig.c:1104 authconfig.c:1109 authconfig.c:1114 authconfig.c:1120
+#: authconfig.c:1103 authconfig.c:1109 authconfig.c:1114 authconfig.c:1119
+#: authconfig.c:1125
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: lỗi nghiêm trong khi ghi %s/%s"
@@ -366,14 +369,16 @@ msgstr "Xác thực"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
+msgstr "Điều khiển cách hệ thống kiểm tra người dùng thử đăng nhập"
 
-#: authinfo.h:58
+#: authinfo.h:75
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
+"Không tìm thấy tập tin %s, nhưng cần có tập tin này để có thể hỗ trợ %s. VUi "
+"lòng cài gói %s, gói cung cấp tập tin này."
 
 #: glade.strings:8
 msgid "_Cache User Information"
@@ -392,10 +397,13 @@ msgid "Enable _NIS Support"
 msgstr "Bật hỗ trợ _NIS"
 
 #: glade.strings:12
+#, fuzzy
 msgid ""
-"NIS is the Name Information Service.  It is commonly used on small to medium "
-"networks."
+"NIS is the Network Information Service.  It is commonly used on small to "
+"medium networks."
 msgstr ""
+"NIS là Dịch vụ Thông tin Tên (Name Information Service) - Thường được dùng "
+"trong mạng vừa và nhỏ."
 
 #: glade.strings:13 glade.strings:24
 msgid "LDAP"
@@ -426,7 +434,7 @@ msgstr "Hesiod"
 
 #: glade.strings:18
 msgid "Enable _Hesiod Support"
-msgstr ""
+msgstr "Bật hỗ trợ _Hesiod"
 
 #: glade.strings:19
 msgid "_Configure Hesiod..."
@@ -437,6 +445,8 @@ msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
 msgstr ""
+"Hesiod cho phép hệ thống công bố thông tin người dùng và thông tin nhóm "
+"trong DNS. Hesiod đôi khi được dùng trong mạng rất lớn."
 
 #: glade.strings:21
 msgid "User Information"
@@ -467,6 +477,8 @@ msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
+"Kerberos là hệ thống xác thực dựa vào bên thứ ba-đáng tin cậy, thường được "
+"dùng trong mạng vừa và lớn."
 
 #: glade.strings:32
 msgid "SMB Authentication"
@@ -485,6 +497,8 @@ msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
 msgstr ""
+"Xác thực SMB kiểm tra mật khẩu người dùng bằng cách kết nối đến server dùng "
+"bộ giao thức SMB (System Message Block)"
 
 #: glade.strings:39
 msgid "NIS Settings"
