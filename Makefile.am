@@ -22,7 +22,6 @@ install-exec-local:
 	mkdir -p $(DESTDIR)/$(bindir)
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-gtk
-	ln -sf consolehelper $(DESTDIR)/$(bindir)/redhat-config-auth
 
 install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(pamdir)
@@ -32,10 +31,8 @@ install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(startheredir)
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
-	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/redhat-config-auth
 	$(INSTALL_DATA) $(srcdir)/authconfig.console $(DESTDIR)/$(consoledir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/authconfig-gtk
-	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/redhat-config-auth
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
 	mkdir -p $(DESTDIR)/$(datadir)/applications
 	desktop-file-install --vendor redhat \
@@ -48,13 +45,10 @@ install-data-local: authconfig.desktop
 uninstall-local:
 	$(RM) $(DESTDIR)/$(bindir)/authconfig
 	$(RM) $(DESTDIR)/$(bindir)/authconfig-gtk
-	$(RM) $(DESTDIR)/$(bindir)/redhat-config-auth
 	$(RM) $(DESTDIR)/$(pamdir)/authconfig
 	$(RM) $(DESTDIR)/$(pamdir)/authconfig-gtk
-	$(RM) $(DESTDIR)/$(pamdir)/redhat-config-auth
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig-gtk
-	$(RM) $(DESTDIR)/$(consoledir)/redhat-config-auth
 	$(RM) $(DESTDIR)/$(sysconfigdir)/authconfig
 	$(RM) $(DESTDIR)$(pkgdatadir)/*.pyc
 	rmdir $(DESTDIR)/$(applnkdir)
