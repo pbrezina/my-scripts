@@ -1,110 +1,109 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# authconfig Bahasa Indonesia
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Mohammad DAMT <mdamt@linux.or.id>, 1999.
 #
-#, fuzzy
+# , fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-03-17 12:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 1999-03-16 23:27-0500\n"
+"PO-Revision-Date: 1998-03-18 00:24+0700\n"
+"Last-Translator: Mohammad DAMT <mdamt@ldp.linux.or.id>\n"
+"Language-Team: LDP Indonesia <http://ldp.linux.or.id>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain\n"
 
+# , c-format
 #: ../authconfig.c:36 ../authconfig.c:386
-#, c-format
 msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr ""
+msgstr "%s: tidak dapat membuka /etc/sysconfig/network: %s\n"
 
+# , c-format
 #: ../authconfig.c:96 ../authconfig.c:468
-#, c-format
 msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr ""
+msgstr "%s: tidak dapat membuka /etc/yp.conf: %s\n"
 
 #.
 #. * NIS stuff.
 #.
 #: ../authconfig.c:215
 msgid "NIS Server:"
-msgstr ""
+msgstr "Server NIS:"
 
 #: ../authconfig.c:216
 msgid "Request via broadcast"
-msgstr ""
+msgstr "Merequest lewat broadcast"
 
 #: ../authconfig.c:233
 msgid "Enable NIS"
-msgstr ""
+msgstr "Jalankan NIS"
 
 #: ../authconfig.c:235
 msgid "NIS Domain:"
-msgstr ""
+msgstr "Domain NIS:"
 
 #. Shadow Stuff
 #: ../authconfig.c:271
 msgid "Use Shadow Passwords"
-msgstr ""
+msgstr "Gunakan password Shadow"
 
 #: ../authconfig.c:273
 msgid "Enable MD5 Passwords"
-msgstr ""
+msgstr "Gunakan password MD5"
 
 #: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../authconfig.c:281
 msgid "Back"
-msgstr ""
+msgstr "Kembali"
 
 #: ../authconfig.c:281
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 #: ../authconfig.c:298
 msgid "(NIS not installed)"
-msgstr ""
+msgstr "(NIS tidak terinstall)"
 
 #: ../authconfig.c:312
 msgid "or use:"
-msgstr ""
+msgstr "atau gunakan:"
 
 #: ../authconfig.c:334
 msgid "Authentication Configuration"
-msgstr ""
+msgstr "Konfigurasi Autentikasi"
 
 #: ../authconfig.c:347 ../authconfig.c:354
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: ../authconfig.c:348
 msgid "You must enter a NIS server or request via broadcast."
-msgstr ""
+msgstr "Masukkan dulu nama server NIS atau request lewat broadcast."
 
 #: ../authconfig.c:355
 msgid "You must enter a NIS domain."
-msgstr ""
+msgstr "Masukkan domain NIS."
 
+# , c-format
 #: ../authconfig.c:393
-#, c-format
 msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr ""
+msgstr "%s: tidak dapat membuka /etc/sysconfig/network- untuk ditulisi: %s\n"
 
+# , c-format
 #: ../authconfig.c:475
-#, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr ""
+msgstr "%s: tidak dapat membuka /etc/yp.conf- untuk ditulisi: %s\n"
 
+# , c-format
 #: ../authconfig.c:652
-#, c-format
 msgid "%s: error opening %s\n"
-msgstr ""
+msgstr "%s: error saat membuka %s\n"
 
+# , c-format
 #: ../authconfig.c:686
-#, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
@@ -117,69 +116,77 @@ msgid ""
 "     --kickstart          don't display user interface\n"
 "     --help               show this screen\n"
 msgstr ""
+"Cara Pakai: %s [options]\n"
+"\n"
+"     --nostart            no not start/stop yp\n"
+"     --enablenis          jalankan nis secara default\n"
+"     --nisdomain <domain> default NIS domain\n"
+"     --nisserver <server> default NIS server\n"
+"     --useshadow          gunakan shadow passwords\n"
+"     --enablemd5          gunakan MD5 passwords\n"
+"     --kickstart          jangan pakai user interface\n"
+"     --help               help\n"
 
+# , c-format
 #: ../authconfig.c:740
-#, c-format
 msgid "%s: bad argument %s: %s\n"
-msgstr ""
+msgstr "%s: argumen salah %s: %s\n"
 
+# , c-format
 #: ../authconfig.c:747
-#, c-format
 msgid "%s: unexpected argument\n"
-msgstr ""
+msgstr "%s: argumen harusnya tidak ada\n"
 
+# , c-format
 #: ../authconfig.c:759
-#, c-format
 msgid "%s: can only be run as root\n"
-msgstr ""
+msgstr "%s: Anda harus jadi root dulu\n"
 
+# , c-format
 #: ../authconfig.c:774
-#, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr ""
+msgstr "%s: gagal membaca /etc/sysconfig/network"
 
+# , c-format
 #: ../authconfig.c:787
-#, c-format
 msgid "%s: critical error reading /etc/yp.conf"
-msgstr ""
+msgstr "%s: gagal membaca /etc/yp.conf"
 
+# , c-format
 #: ../authconfig.c:804
-#, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
-msgstr ""
+msgstr "%s: gagal membaca /etc/pam.d/passwd\n"
 
 #: ../authconfig.c:813
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
+msgstr " <Tab>/<Alt-Tab> untuk switch | <Spasi> untuk memilih | <F12> layar berikutnya"
 
+# , c-format
 #: ../authconfig.c:824
-#, c-format
 msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr ""
+msgstr "%s: domain nis dibuat menjadi %s, tapi dialog dibatalkan\n"
 
+# , c-format
 #: ../authconfig.c:837
-#, c-format
 msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-msgstr ""
+msgstr "nilai hasilnya: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
 
+# , c-format
 #: ../authconfig.c:845
-#, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr ""
+msgstr "%s: tidak dapat menulis /etc/sysconfig/network\n"
 
+# , c-format
 #: ../authconfig.c:853
-#, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr ""
+msgstr "%s: gagal menulis /etc/yp.conf\n"
 
+# , c-format
 #: ../authconfig.c:861
-#, c-format
 msgid "%s: critical error turning on NIS service\n"
-msgstr ""
+msgstr "%s: gagal menghidupkan layanan NIS"
 
+# , c-format
 #: ../authconfig.c:868
-#, c-format
 msgid "%s: critical error with shadow password manipulation\n"
-msgstr ""
+msgstr "%s: gagal memanipulasi password shadow"
