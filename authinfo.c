@@ -1555,6 +1555,10 @@ static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info
 						strncat(buf, " shadow",
 						sizeof(buf) - 1 - strlen(buf));
 					}
+					if(info->enableNIS) {
+						strncat(buf, " nis",
+						sizeof(buf) - 1 - strlen(buf));
+					}
 					if(info->enableBigCrypt) {
 						strncat(buf, " bigcrypt",
 						sizeof(buf) - 1 - strlen(buf));

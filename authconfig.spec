@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.17
+Version: 4.0.18
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Mon Nov 27 2000 Nalin Dahyabhai <nalin@redhat.com>
+- add the "nis" flag to pam_unix when NIS is enabled
+
 * Wed Oct  4 2000 Nalin Dahyabhai <nalin@redhat.com>
 - read/write to /etc/syconfig/authconfig for PAM setup information
 
