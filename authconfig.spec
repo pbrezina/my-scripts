@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.2.9
-Release: 1
+Release: 2
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -59,14 +59,17 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
-%{_datadir}/%{name}/*.py*
-%{_datadir}/%{name}/%{name}.glade
+%{_datadir}/%{name}
 %config(noreplace) %{_sysconfdir}/X11/applnk/System
 %config(noreplace) %{_sysconfdir}/X11/sysconfig
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
+* Wed Jul 17 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.9-2
+- own the pkgdatadir
+- pull in translation updates
+
 * Mon Jun  3 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.9-1
 - add --enable-experimental to enable some of that experimental code
 - add --enable-local to enable local policies
