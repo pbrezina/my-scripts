@@ -1,7 +1,7 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "Mon 9 July 2001" "Red Hat, Inc."
+.TH AUTHCONFIG 8 "Mon 30 July 2001" "Red Hat, Inc."
 .UC 4
 .SH NAME
 authconfig \- an interface for configuring system authentication resources
@@ -65,7 +65,8 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .TP
 .FN /etc/sysconfig/authconfig
 Used to track whether or not particular authentication mechanisms are enabled.
-Currently includes variables named USEMD5, USELDAPAUTH, and USEKERBEROS.
+Currently includes variables named USESHADOW, USEMD5, USEKERBEROS, USELDAPAUTH,
+USESMBAUTH, USEHESIOD, USENIS.
 .TP
 .FN /etc/passwd, /etc/shadow
 Used for shadow password support.

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.11
+Version: 4.1.12
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -39,6 +39,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Mon Jul 30 2001 Nalin Dahyabhai <nalin@redhat.com>
+- use USESHADOW, USENIS, USEHESIOD, and USESMBAUTH variables to
+  /etc/sysconfig/authconfig
+- update translations
+
 * Mon Jul  9 2001 Nalin Dahyabhai <nalin@redhat.com>
 - add "type=" to the list of arguments set up for pam_cracklib
 - also modify /etc/krb.conf when configuring Kerberos (for compatibility)

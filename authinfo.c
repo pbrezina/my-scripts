@@ -604,6 +604,46 @@ authInfoReadPAM(struct authInfoType *authInfo)
 		sv = svNewFile(SYSCONFDIR "/sysconfig/authconfig");
 	}
 	if(sv != NULL) {
+		tmp = svGetValue(sv, "USEHESIOD");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableHesiod = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableHesiod = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USENIS");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableNIS = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableNIS = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USESHADOW");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableShadow = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableShadow = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USESMBAUTH");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableSMB = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableSMB = FALSE;
+			}
+			free(tmp);
+		}
 		tmp = svGetValue(sv, "USEMD5");
 		if(tmp != NULL) {
 			if(strcmp(tmp, "yes") == 0) {
@@ -2008,12 +2048,20 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 
 	sv = svCreateFile(SYSCONFDIR "/sysconfig/authconfig");
 	if(sv != NULL) {
+		svSetValue(sv, "USEHESIOD",
+			   authInfo->enableHesiod ? "yes" : "no");
+		svSetValue(sv, "USENIS",
+			   authInfo->enableNIS ? "yes" : "no");
 		svSetValue(sv, "USEMD5",
 			   authInfo->enableMD5 ? "yes" : "no");
+		svSetValue(sv, "USESHADOW",
+			   authInfo->enableShadow ? "yes" : "no");
 		svSetValue(sv, "USEKERBEROS",
 			   authInfo->enableKerberos ? "yes" : "no");
 		svSetValue(sv, "USELDAPAUTH",
 			   authInfo->enableLDAPAuth ? "yes" : "no");
+		svSetValue(sv, "USESMBAUTH",
+			   authInfo->enableSMB ? "yes" : "no");
 		svWriteFile(sv, 0644);
 		svCloseFile(sv);
 	}
