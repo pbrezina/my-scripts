@@ -19,7 +19,7 @@ SUBDIRS = po man
 
 DESTDIR=
 datadir=/usr/share
-mandir=/usr/man
+mandir=/usr/share/man
 sbindir=/usr/sbin
 CFLAGS += -DDATADIR=\"$(datadir)\"
 

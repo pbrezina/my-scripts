@@ -1,6 +1,6 @@
 all:
 
-mandir=/usr/man
+mandir=/usr/share/man
 
 install:
 	install -m 644 en/authconfig.8 $(DESTDIR)$(mandir)/man8
