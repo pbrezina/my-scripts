@@ -1403,9 +1403,12 @@ int main(int argc, const char **argv) {
     enableNisServer = '*';
 
   /* check for LDAP */
-  if (!access("/etc/ldap.conf", R_OK) && 
+  /*
+   * The following check is disabled because LDAP implementation is
+   * incomplete as of Feb. 2000
+   */
+/*  if (!access("/etc/ldap.conf", R_OK) && 
       !access("/usr/lib/nss_ldap.so", R_OK)) {
-    /* LDAP available */
     if (readLdapConfigFile(&authInfo.ldapServer, 
 			   &authInfo.ldapDomain)) {
       fprintf(stderr, i18n("%s: critical error reading /etc/ldap.conf"),
@@ -1414,7 +1417,7 @@ int main(int argc, const char **argv) {
     }
     ldapAvail = 1;
   } else
-    ldapAvail = 0;
+  ldapAvail = 0;*/
 
   if (!stat("/etc/shadow", &sb))
     authInfo.useShadow = '*';

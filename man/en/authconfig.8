@@ -29,9 +29,11 @@ be normal (non-shadow) UNIX password style authentication with
 traditional crypted (not MD5-hashed) passwords.
 
 The primary option of interest for kickstart users is \fBauthtype\fR.
-The valid authorization types are currently \fBpassword\fR, \fBnis\fR,
-and \fBldap\fR. \fB--enablenis\fR is deprecated and you should use
-\fB--authtype=nis\fR instead.
+The valid authorization types are currently \fBpassword\fR and
+\fBnis\fR.  Support for LDAP and Kerberos is forthcoming.
+
+\fB--enablenis\fR is deprecated and you should use \fB--authtype=nis\fR
+instead.
 
 .PD
 .SH "RETURN CODES"

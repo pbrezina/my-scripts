@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-%define version 3.0.1
+%define version 3.0.2
 Version: %{version}
 Release: 1
 License: GPL
@@ -33,6 +33,9 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Wed Feb 16 2000 Preston Brown <pbrown@redhat.com>
+- disable LDAP, update man page.
+
 * Thu Feb 03 2000 Preston Brown <pbrown@redhat.com>
 - beginning of /etc/pam.d writing, better man page, broadcast on by default.
 - strip man page.
