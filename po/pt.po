@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "POT-Creation-Date: 2000-12-14 00:00-0500\n"
-"PO-Revision-Date: 2000-08-01 22:13+01:00\n"
+"PO-Revision-Date: 2000-12-17 21:10+00:00\n"
 "Last-Translator: Pedro Morais <morais@poli.org>\n"
 "Language-Team: pt <morais@poli.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,9 +68,8 @@ msgid "Use LDAP"
 msgstr "Utilizar LDAP"
 
 #: ../authconfig.c:298 ../authconfig.c:453
-#, fuzzy
 msgid "Use TLS"
-msgstr "Utilizar NIS"
+msgstr "Utilizar TLS"
 
 #. NSS modules: LDAP.
 #: ../authconfig.c:331
@@ -114,7 +113,7 @@ msgid "Authentication Configuration"
 msgstr "Configuração da Autênticação"
 
 #: ../authconfig.c:642
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
@@ -172,6 +171,8 @@ msgstr ""
 "     --enableldap            activar ldap para info utilizador por omissão\n"
 "     --disableldap           desactivar ldap para info utilizador por "
 "omissão\n"
+"     --enableldaptls         activar a utilização de TLS com ldap\n"
+"     --disableldaptls        desactivar a utilização de TLS com ldap\n"
 "     --enableldapauth        activar ldap para autenticação por omissão\n"
 "     --disableldapauth       desactivar ldap para autenticação por omissão\n"
 "     --ldapserver <servidor> servidor LDAP por omissão\n"
@@ -241,9 +242,3 @@ msgstr "diálogo foi cancelado\n"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: erro crítico ao escrever %s/%s"
-
-#~ msgid "Use WinBind"
-#~ msgstr "Utilizar WinBind"
-
-#~ msgid "Use WinBind Authentication"
-#~ msgstr "Utilizar Autênticação WinBind"
