@@ -8,7 +8,7 @@ Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}-%{release}.tar.gz
 Requires: glibc >= 2.1, pam >= 0.73, glib2, pam >= 0.75-43
-Conflicts: pam_krb5 < 1.49
+Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 BuildPrereq: pam-devel >= 0.73, newt-devel, glib2-devel, python, python-devel
 BuildPrereq: desktop-file-utils
 
@@ -71,7 +71,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Mon Nov 10 2003 Nalin Dahyabhai <nalin@redhat.com> 4.4-1
+* Thu Nov 13 2003 Nalin Dahyabhai <nalin@redhat.com> 4.4-1
+- conflict with older versions of samba which expect different configuration
+
+* Mon Nov 10 2003 Nalin Dahyabhai <nalin@redhat.com>
 - initial support for configuring winbind
 
 * Tue Oct 28 2003 Nalin Dahyabhai <nalin@redhat.com>

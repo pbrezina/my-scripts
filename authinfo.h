@@ -26,6 +26,7 @@
 #define AUTH_MODULE_DIR "/lib/security/$ISA"
 
 #define PATH_PORTMAP "/sbin/portmap"
+#define PATH_PWCONV "/usr/sbin/pwconv"
 #define PATH_NSCD "/usr/sbin/nscd"
 #define PATH_NSCD_PID "/var/run/nscd.pid"
 #define PATH_DBBIND "/usr/sbin/dbbind"
@@ -147,6 +148,7 @@ struct authInfoType {
 struct authInfoType *authInfoRead(void);
 void authInfoFree(struct authInfoType *info);
 struct authInfoType *authInfoProbe(void);
+gboolean authInfoDiffers(struct authInfoType *a, struct authInfoType *b);
 struct authInfoType *authInfoCopy(struct authInfoType *info);
 gboolean authInfoWrite(struct authInfoType *info);
 

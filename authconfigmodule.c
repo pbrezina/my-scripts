@@ -415,17 +415,13 @@ authconfig_differs(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *info, *other;
 	char *keywords[] = {"other", NULL};
-	gboolean *b1, *b2, equal;
-	char **p1, **p2;
-	int i;
+	gboolean equal;
 
 	if (!authInfoObject_Check(self)) {
 		return NULL;
 	}
 
-	info = (struct authInfoObject *)self;
 	other = NULL;
-
 	if (PyTuple_Check(args)) {
 		if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!", keywords,
 						 &authInfoObjectType, &other)) {
@@ -439,40 +435,8 @@ authconfig_differs(PyObject *self, PyObject *args, PyObject *kwargs)
 		return NULL;
 	}
 
-	equal = TRUE;
-	for (i = 0; i < G_N_ELEMENTS(map); i++) {
-		switch(map[i].type) {
-			case tfvalue:
-				b1 = G_STRUCT_MEMBER_P(info->info,
-						       map[i].offset);
-				b2 = G_STRUCT_MEMBER_P(other->info,
-						       map[i].offset);
-				if (*b1 != *b2) {
-					equal = FALSE;
-				}
-				break;
-			case svalue:
-				p1 = G_STRUCT_MEMBER_P(info->info,
-						       map[i].offset);
-				p2 = G_STRUCT_MEMBER_P(other->info,
-						       map[i].offset);
-				if (((*p1 == NULL) || (strlen(*p1) == 0)) &&
-				    ((*p2 == NULL) || (strlen(*p2) == 0))) {
-					continue;
-				}
-				if (((*p1 == NULL) || (strlen(*p1) == 0)) ||
-				    ((*p2 == NULL) || (strlen(*p2) == 0))) {
-					equal = FALSE;
-				} else
-				if (strcmp(*p1, *p2) != 0) {
-					equal = FALSE;
-				}
-				break;
-			default:
-				g_error("Ouch!  What do you do?");
-				break;
-		}
-	}
+	info = (struct authInfoObject *) self;
+	equal = authInfoDiffers(info->info, other->info);
 	if (equal) {
 		Py_INCREF(Py_None);
 		return Py_None;

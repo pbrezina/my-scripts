@@ -110,6 +110,7 @@ overrideString(char **dest, const char *source)
   }
 }
 
+#if 0
 static void
 checkWarn(const char *path, const char *service, const char *package)
 {
@@ -260,7 +261,548 @@ smbToggle(newtComponent cb, void *data)
 		      NEWT_FLAGS_SET);
   }
 }
+#endif
 
+enum datatype {lvalue, tfvalue, svalue, rvalue};
+struct formdata {
+	enum datatype type;
+	const char *description;
+	size_t offset;
+	char **valid_values;
+};
+
+static gboolean
+getGenericChoices(const char *dialogTitle,
+		  int n_items, struct formdata *items,
+		  struct authInfoType *authInfo,
+		  const char *anotherText,
+		  gboolean (*anotherCb)(struct authInfoType *),
+		  const char *cancelText, const char *okText)
+{
+  newtComponent form, ok, cancel, another, comp, cb, result;
+  newtGrid mainGrid, questionGrid, buttonGrid, radioGrid;
+  GPtrArray **radios;
+  const char **strings;
+  char *booleans;
+  gboolean *b;
+  char **s;
+  int i, j, row, rows, def;
+
+  radios = g_malloc(n_items * sizeof(GPtrArray *));
+  for (i = 0; i < n_items; i++) {
+    radios[i] = NULL;
+  }
+  strings = g_malloc0(n_items * sizeof(char*));
+  booleans = g_malloc0(n_items);
+
+  /* Count up the number of rows we need in the grid. */
+  rows = n_items;
+
+  /* Create a grid for these questions. */
+  questionGrid = newtCreateGrid(2, rows);
+  row = 0;
+  for (i = 0; i < n_items; i++) {
+    switch (items[i].type) {
+    case tfvalue:
+      b = G_STRUCT_MEMBER_P(authInfo, items[i].offset);
+      cb = newtCheckbox(-1, -1, items[i].description,
+		        *b ? '*' : ' ',
+		        NULL, &booleans[i]);
+      newtGridSetField(questionGrid, 1, row, NEWT_GRID_COMPONENT, cb,
+                       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+      row++;
+      break;
+    case svalue:
+      s = G_STRUCT_MEMBER_P(authInfo, items[i].offset);
+      comp = newtLabel(-1, -1, items[i].description);
+      newtGridSetField(questionGrid, 0, row, NEWT_GRID_COMPONENT, comp,
+                       0, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+      comp = newtEntry(-1, -1, *s ? *s : "", 40, &(strings[i]),
+                       NEWT_ENTRY_SCROLL);
+      newtEntrySetFilter(comp, entryFilter, NULL);
+      newtGridSetField(questionGrid, 1, row, NEWT_GRID_COMPONENT, comp,
+                       0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
+      row++;
+      break;
+    case rvalue:
+      s = G_STRUCT_MEMBER_P(authInfo, items[i].offset);
+      comp = newtLabel(-1, -1, items[i].description);
+      newtGridSetField(questionGrid, 0, row, NEWT_GRID_COMPONENT, comp,
+                       0, 0, 1, 0, NEWT_ANCHOR_TOP | NEWT_ANCHOR_RIGHT, 0);
+      for (j = 0; items[i].valid_values[j] != NULL; j++) /* nothing */;
+      radioGrid = newtCreateGrid(1, j);
+      radios[i] = g_ptr_array_new();
+      def = 0;
+      for (j = 0; items[i].valid_values[j] != NULL; j++) {
+	if (strcmp(*s, items[i].valid_values[j]) == 0) {
+	  def = j;
+	}
+      }
+      for (j = 0; items[i].valid_values[j] != NULL; j++) {
+        comp = newtRadiobutton(-1, -1, items[i].valid_values[j],
+			       j == def,
+			       j == 0 ? NULL : comp);
+	g_ptr_array_add(radios[i], comp);
+	g_ptr_array_add(radios[i], items[i].valid_values[j]);
+        newtGridSetField(radioGrid, 0, j, NEWT_GRID_COMPONENT, comp,
+                         0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+      }
+      newtGridSetField(questionGrid, 1, row, NEWT_GRID_SUBGRID, radioGrid,
+                       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+      row++;
+      break;
+    case lvalue:
+      comp = newtTextboxReflowed(0, 0, (char*) items[i].description,
+				 50, 1, 1, 0);
+      newtGridSetField(questionGrid, 0, row, NEWT_GRID_COMPONENT, comp,
+                       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+      row++;
+      break;
+    }
+  }
+  g_assert(row == rows);
+
+  /* Buttons. */
+  buttonGrid = newtCreateGrid(anotherText ? 3 : 2, 1);
+  cancel = newtButton(-1, -1, cancelText);
+  ok = newtButton(-1, -1, okText);
+  another = anotherText ? newtButton(-1, -1, anotherText) : NULL;
+  newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, cancel,
+		   0, 0, 0, 0, 0, 0);
+  if (anotherText) {
+    newtGridSetField(buttonGrid, 1, 0, NEWT_GRID_COMPONENT, another,
+		     0, 0, 0, 0, 0, 0);
+  }
+  newtGridSetField(buttonGrid, anotherText ? 2 : 1, 0,
+		   NEWT_GRID_COMPONENT, ok, 0, 0, 0, 0, 0, 0);
+
+  /* Top-level grid. */
+  mainGrid = newtCreateGrid(1, 2);
+  newtGridSetField(mainGrid, 0, 0, NEWT_GRID_SUBGRID, questionGrid,
+		   0, 0, 0, 1, 0, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, buttonGrid,
+		   0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
+
+  /* Run the form and interpret the results. */
+  form = newtForm(NULL, NULL, 0);
+  newtGridWrappedWindow(mainGrid, (char*) dialogTitle);
+  newtGridAddComponentsToForm(mainGrid, form, 1);
+
+runform:
+  result = newtRunForm(form);
+
+  if (result != cancel) {
+    for (i = 0; i < n_items; i++) {
+      switch (items[i].type) {
+      case svalue:
+        s = G_STRUCT_MEMBER_P(authInfo, items[i].offset);
+	if (*s) {
+	  g_free(*s);
+	}
+	*s = g_strdup(strings[i]);
+        break;
+      case tfvalue:
+        b = G_STRUCT_MEMBER_P(authInfo, items[i].offset);
+	*b = (booleans[i] == '*');
+        break;
+      case rvalue:
+        s = G_STRUCT_MEMBER_P(authInfo, items[i].offset);
+	if (radios[i]->len > 0) {
+	  comp = g_ptr_array_index(radios[i], 0);
+	  comp = newtRadioGetCurrent(comp);
+	  if (comp != NULL) {
+	    for (j = 0; j < radios[i]->len; j += 2) {
+	      if (comp == g_ptr_array_index(radios[i], j)) {
+	        if (*s) {
+		  g_free(*s);
+		}
+		*s = g_strdup(g_ptr_array_index(radios[i], j + 1));
+	      }
+	    }
+	  }
+	}
+        break;
+      case lvalue:
+	break;
+      }
+    }
+  }
+
+  if (result == another) {
+    anotherCb(authInfo);
+    goto runform;
+  }
+
+  newtFormDestroy(form);
+  newtPopWindow();
+
+  /* Newt frees any strings. */
+  for (i = 0; i < n_items; i++) {
+    if (radios[i] != NULL) {
+      g_ptr_array_free(radios[i], TRUE);
+      radios[i] = NULL;
+    }
+  }
+  g_free(radios);
+  g_free(strings);
+  g_free(booleans);
+
+  return (result != cancel) ? TRUE : FALSE;
+}
+
+static gboolean
+getHesiodSettings(struct authInfoType *authInfo, gboolean next)
+{
+  struct formdata questions[] = {
+    {svalue, _("LHS:"),
+     G_STRUCT_OFFSET(struct authInfoType, hesiodLHS)},
+    {svalue, _("RHS:"),
+     G_STRUCT_OFFSET(struct authInfoType, hesiodRHS)},
+  };
+  return getGenericChoices(_("Hesiod Settings"),
+			   G_N_ELEMENTS(questions), questions, authInfo,
+			   NULL, NULL, _("Back"), next ? _("Next") : _("Ok"));
+}
+
+static gboolean
+getLDAPSettings(struct authInfoType *authInfo, gboolean next)
+{
+  struct formdata questions[] = {
+    {tfvalue, _("Use TLS"),
+     G_STRUCT_OFFSET(struct authInfoType, enableLDAPS)},
+    {svalue, _("Server:"),
+     G_STRUCT_OFFSET(struct authInfoType, ldapServer)},
+    {svalue, _("Base DN:"),
+     G_STRUCT_OFFSET(struct authInfoType, ldapBaseDN)},
+  };
+  return getGenericChoices(_("LDAP Settings"),
+                           G_N_ELEMENTS(questions), questions, authInfo,
+			   NULL, NULL, _("Back"), next ? _("Next") : _("Ok"));
+}
+
+static gboolean
+getNISSettings(struct authInfoType *authInfo, gboolean next)
+{
+  struct formdata questions[] = {
+    {svalue, _("Domain:"),
+     G_STRUCT_OFFSET(struct authInfoType, nisDomain)},
+    {svalue, _("Server:"),
+     G_STRUCT_OFFSET(struct authInfoType, nisServer)},
+  };
+  return getGenericChoices(_("NIS Settings"),
+			   G_N_ELEMENTS(questions), questions, authInfo,
+			   NULL, NULL, _("Back"), next ? _("Next") : _("Ok"));
+}
+
+static gboolean
+getKerberosSettings(struct authInfoType *authInfo, gboolean next)
+{
+  struct formdata questions[] = {
+    {svalue, _("Realm:"),
+     G_STRUCT_OFFSET(struct authInfoType, kerberosRealm)},
+    {svalue, _("KDC:"),
+     G_STRUCT_OFFSET(struct authInfoType, kerberosKDC)},
+    {svalue, _("Admin Server:"),
+     G_STRUCT_OFFSET(struct authInfoType, kerberosAdminServer)},
+  };
+  return getGenericChoices(_("Kerberos Settings"),
+                           G_N_ELEMENTS(questions), questions, authInfo,
+			   NULL, NULL, _("Back"), next ? _("Next") : _("Ok"));
+}
+
+static gboolean
+getSMBSettings(struct authInfoType *authInfo, gboolean next)
+{
+  struct formdata questions[] = {
+    {svalue, _("Workgroup:"),
+     G_STRUCT_OFFSET(struct authInfoType, smbWorkgroup)},
+    {svalue, _("Servers:"),
+     G_STRUCT_OFFSET(struct authInfoType, smbServers)},
+    {svalue, _("Shell:"),
+     G_STRUCT_OFFSET(struct authInfoType, winbindTemplateShell)},
+  };
+  return getGenericChoices(_("SMB Settings"),
+			   G_N_ELEMENTS(questions), questions, authInfo,
+			   NULL, NULL, _("Back"), next ? _("Next") : _("Ok"));
+}
+
+static gboolean
+getJoinSettings(struct authInfoType *authInfo)
+{
+  gboolean ret;
+  struct formdata questions[] = {
+    {svalue, _("Domain Administrator:"),
+     G_STRUCT_OFFSET(struct authInfoType, joinUser)},
+    {svalue, _("Password:"),
+     G_STRUCT_OFFSET(struct authInfoType, joinPassword)},
+  };
+  if (authInfo->joinUser) {
+    g_free(authInfo->joinUser);
+  }
+  authInfo->joinUser = g_strdup("Administrator");
+  ret = getGenericChoices(_("Join Settings"),
+			  G_N_ELEMENTS(questions), questions, authInfo,
+			  NULL, NULL, _("Cancel"), _("Ok"));
+  if (ret == TRUE) {
+    newtSuspend();
+    authInfoUpdate(authInfo);
+    authInfoWrite(authInfo);
+    authInfoJoin(authInfo, TRUE);
+    newtResume();
+  }
+  return TRUE;
+}
+
+static gboolean
+maybeGetJoinSettings(struct authInfoType *authInfo)
+{
+  gboolean ret;
+  struct authInfoType *originalInfo;
+  struct formdata questions[] = {
+    {lvalue, _("Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"),},
+  };
+  originalInfo = authInfoRead();
+  authInfoUpdate(originalInfo);
+  authInfoUpdate(authInfo);
+  if (authInfoDiffers(authInfo, originalInfo)) {
+    ret = getGenericChoices(_("Save Settings"),
+			    G_N_ELEMENTS(questions), questions, authInfo,
+			    NULL, NULL, _("No"), _("Yes"));
+    if (ret == TRUE) {
+      authInfoWrite(authInfo);
+      getJoinSettings(authInfo);
+    }
+  } else {
+    getJoinSettings(authInfo);
+  }
+  authInfoFree(originalInfo);
+  return TRUE;
+}
+
+
+static gboolean
+getWinbindSettings(struct authInfoType *authInfo, gboolean next)
+{
+  const char *security[] = {
+    "ads", "domain", NULL,
+  };
+  struct formdata questions[] = {
+    {rvalue, _("Security Model:"),
+     G_STRUCT_OFFSET(struct authInfoType, smbSecurity), (char**) security},
+    {svalue, _("Domain:"),
+     G_STRUCT_OFFSET(struct authInfoType, smbWorkgroup)},
+    {svalue, _("Domain Controllers:"),
+     G_STRUCT_OFFSET(struct authInfoType, smbServers)},
+    {svalue, _("ADS Realm:"),
+     G_STRUCT_OFFSET(struct authInfoType, smbRealm)},
+  };
+  return getGenericChoices(_("Winbind Settings"),
+			   G_N_ELEMENTS(questions), questions, authInfo,
+			   _("Join Domain"), maybeGetJoinSettings,
+			   _("Back"), next ? _("Next") : _("Ok"));
+}
+
+struct warntype {
+  const char *path, *service, *package;
+};
+
+static void
+warnCallback(newtComponent comp, void *warningp)
+{
+  struct warntype *warning;
+  char *p;
+
+  warning = warningp;
+
+  if (access(warning->path, R_OK) == 0) {
+    return;
+  }
+
+  p = g_strdup_printf(AUTHCONFIG_PACKAGE_WARNING,
+		      warning->path,
+		      warning->service,
+		      warning->package);
+  newtWinMessage(_("Warning"), _("Ok"), p, NULL);
+  g_free(p);
+
+  newtRefresh();
+}
+
+static gboolean
+getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
+	       gboolean kerberosAvail, gboolean smbAvail, gboolean cacheAvail,
+	       struct authInfoType *authInfo)
+{
+  newtComponent form, ok, cancel, comp, cb;
+  newtGrid mainGrid, mechGrid, buttonGrid, infoGrid, authGrid;
+  char cache, hesiod, ldap, nis, krb5, ldapa, smb, winbind, shadow, md5;
+  struct warntype warnCache = {PATH_NSCD,
+			       _("caching"),
+			       "nscd"};
+  struct warntype warnKerberos = {PATH_PAM_KRB5,
+				  _("Kerberos"),
+				  "pam_krb5"};
+  struct warntype warnLDAPAuth = {PATH_PAM_LDAP,
+				  _("LDAP authentication"),
+				  "nss_ldap"};
+  struct warntype warnLDAP = {PATH_LIBNSS_LDAP,
+			      _("LDAP"),
+			      "nss_ldap"};
+  struct warntype warnNIS = {PATH_YPBIND,
+			     _("NIS"),
+			     "ypbind"};
+  struct warntype warnShadow = {PATH_PWCONV,
+			        _("shadow password"),
+				"shadow-utils"};
+  struct warntype warnSMB = {PATH_PAM_SMB,
+			     _("SMB authentication"),
+			     "pam_smb"};
+  struct warntype warnWinbindAuth = {PATH_PAM_WINBIND,
+				     _("Winbind authentication"),
+				     "samba-client"};
+  struct warntype warnWinbind = {PATH_LIBNSS_WINBIND,
+				 _("Winbind"),
+				 "samba-client"};
+
+  /* Information. */
+  infoGrid = newtCreateGrid(1, 6);
+  comp = newtLabel(-1, -1, _("User Information"));
+  newtGridSetField(infoGrid, 0, 0, NEWT_GRID_COMPONENT, comp,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
+  cb = newtCheckbox(-1, -1, _("Cache Information"),
+		    authInfo->enableCache ? '*' : ' ',
+		    NULL, &cache);
+  newtGridSetField(infoGrid, 0, 1, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnCache);
+
+  cb = newtCheckbox(-1, -1, _("Use Hesiod"),
+		    authInfo->enableHesiod ? '*' : ' ',
+		    NULL, &hesiod);
+  newtGridSetField(infoGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
+  cb = newtCheckbox(-1, -1, _("Use LDAP"),
+		    authInfo->enableLDAP ? '*' : ' ',
+		    NULL, &ldap);
+  newtGridSetField(infoGrid, 0, 3, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnLDAP);
+
+  cb = newtCheckbox(-1, -1, _("Use NIS"),
+		    authInfo->enableNIS ? '*' : ' ',
+		    NULL, &nis);
+  newtGridSetField(infoGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnNIS);
+
+  cb = newtCheckbox(-1, -1, _("Use Winbind"),
+		    authInfo->enableWinbind ? '*' : ' ',
+		    NULL, &winbind);
+  newtGridSetField(infoGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnWinbind);
+
+  /* Authentication. */
+  authGrid = newtCreateGrid(1, 7);
+
+  comp = newtLabel(-1, -1, _("Authentication"));
+  newtGridSetField(authGrid, 0, 0, NEWT_GRID_COMPONENT, comp,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
+  cb = newtCheckbox(-1, -1, _("Use MD5 Passwords"),
+		    authInfo->enableMD5 ? '*' : ' ',
+		    NULL, &md5);
+  newtGridSetField(authGrid, 0, 1, NEWT_GRID_COMPONENT, cb,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
+  cb = newtCheckbox(-1, -1, _("Use Shadow Passwords"),
+		    authInfo->enableShadow ? '*' : ' ',
+		    NULL, &shadow);
+  newtGridSetField(authGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnShadow);
+
+  cb = newtCheckbox(-1, -1, _("Use LDAP Authentication"),
+		    authInfo->enableLDAP ? '*' : ' ',
+		    NULL, &ldapa);
+  newtGridSetField(authGrid, 0, 3, NEWT_GRID_COMPONENT, cb,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnLDAPAuth);
+
+  cb = newtCheckbox(-1, -1, _("Use Kerberos"),
+		    authInfo->enableKerberos ? '*' : ' ',
+		    NULL, &krb5);
+  newtGridSetField(authGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnKerberos);
+
+  cb = newtCheckbox(-1, -1, _("Use SMB Authentication"),
+		    authInfo->enableSMB ? '*' : ' ',
+		    NULL, &smb);
+  newtGridSetField(authGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnSMB);
+
+  cb = newtCheckbox(-1, -1, _("Use Winbind Authentication"),
+		    authInfo->enableWinbind ? '*' : ' ',
+		    NULL, &winbind);
+  newtGridSetField(authGrid, 0, 6, NEWT_GRID_COMPONENT, cb,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtComponentAddCallback(cb, warnCallback, &warnWinbindAuth);
+
+  /* Control grid. */
+  mechGrid = newtCreateGrid(2, 1);
+  newtGridSetField(mechGrid, 0, 0, NEWT_GRID_SUBGRID, infoGrid,
+		   1, 0, 1, 1, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 0, NEWT_GRID_SUBGRID, authGrid,
+		   1, 0, 1, 1, NEWT_ANCHOR_RIGHT, 0);
+
+  /* Buttons. */
+  buttonGrid = newtCreateGrid(2, 1);
+  cancel = newtButton(-1, -1, back ? _("Back") : _("Cancel"));
+  ok = newtButton(-1, -1, _("Next"));
+  newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, cancel,
+		   0, 0, 0, 0, 0, 0);
+  newtGridSetField(buttonGrid, 1, 0, NEWT_GRID_COMPONENT, ok,
+		   0, 0, 0, 0, 0, 0);
+
+  /* Top-level grid. */
+  mainGrid = newtCreateGrid(1, 2);
+  newtGridSetField(mainGrid, 0, 0, NEWT_GRID_SUBGRID, mechGrid,
+		   0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, buttonGrid,
+		   0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
+
+  /* Run the form and interpret the results. */
+  form = newtForm(NULL, NULL, 0);
+  newtGridWrappedWindow(mainGrid, _("Authentication Configuration"));
+  newtGridAddComponentsToForm(mainGrid, form, 1);
+
+  /* BEHOLD!  AUTHCONFIG IN ALL ITS GORY GLORY! */
+  comp = newtRunForm(form);
+
+  if (comp != cancel) {
+    authInfo->enableCache = (cache == '*');
+    authInfo->enableHesiod = (hesiod == '*');
+    authInfo->enableLDAP = (ldap == '*');
+    authInfo->enableNIS = (nis == '*');
+    authInfo->enableWinbind = (winbind == '*');
+    authInfo->enableShadow = (shadow == '*');
+    authInfo->enableMD5 = (md5 == '*');
+    authInfo->enableLDAPAuth = (ldapa == '*');
+    authInfo->enableKerberos = (krb5 == '*');
+    authInfo->enableSMB = (smb == '*');
+  }
+
+  newtFormDestroy(form);
+  newtPopWindow();
+
+  return (comp != cancel) ? TRUE : FALSE;
+}
+
+#if 0
 static int
 getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 	      gboolean kerberosAvail, gboolean smbAvail, gboolean cacheAvail,
@@ -675,6 +1217,9 @@ getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 {
   int rc = FALSE, next = 1, i;
 
+  getMainChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo);
+  return 1;
+
   /* State machine (couldn't come up with a cleaner way to express the logic):
    * 1: query for NSS setup.
    * 2: query for PAM setup.
@@ -715,6 +1260,83 @@ getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   return rc;
 }
+#endif
+
+static int
+getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
+	   gboolean kerberosAvail, gboolean smbAvail, gboolean cacheAvail,
+	   struct authInfoType *authInfo)
+{
+  int next = 1;
+  gboolean rc = FALSE, more;
+  while ((next >= 0) && (next <= 7)) {
+    authInfoUpdate(authInfo);
+    switch (next) {
+    case 1:
+      rc = getMainChoices(back, nisAvail, ldapAvail, kerberosAvail,
+			  smbAvail, cacheAvail, authInfo);
+      break;
+    case 2:
+      if (authInfo->enableHesiod) {
+        more = authInfo->enableLDAP ||
+	       authInfo->enableLDAPAuth ||
+	       authInfo->enableKerberos ||
+	       authInfo->enableNIS ||
+	       authInfo->enableSMB ||
+	       authInfo->enableWinbind;
+        rc = getHesiodSettings(authInfo, more);
+      }
+      break;
+    case 3:
+      if (authInfo->enableLDAP || authInfo->enableLDAPAuth) {
+        more = authInfo->enableKerberos ||
+	       authInfo->enableNIS ||
+	       authInfo->enableSMB ||
+	       authInfo->enableWinbind;
+        rc = getLDAPSettings(authInfo, more);
+      }
+      break;
+    case 4:
+      if (authInfo->enableNIS) {
+        more = authInfo->enableKerberos ||
+	       authInfo->enableSMB ||
+	       authInfo->enableWinbind;
+        rc = getNISSettings(authInfo, more);
+      }
+      break;
+    case 5:
+      if (authInfo->enableKerberos) {
+        more = authInfo->enableSMB ||
+	       authInfo->enableWinbind;
+        rc = getKerberosSettings(authInfo, more);
+      }
+      break;
+    case 6:
+      if (authInfo->enableSMB && !authInfo->enableWinbind) {
+        more = authInfo->enableWinbind;
+        rc = getSMBSettings(authInfo, more);
+      }
+      break;
+    case 7:
+      if (authInfo->enableWinbind) {
+        more = FALSE;
+        rc = getWinbindSettings(authInfo, more);
+      }
+      break;
+    default:
+      g_assert_not_reached();
+      break;
+    }
+    authInfoUpdate(authInfo);
+    if (rc) {
+      next++;
+    } else {
+      next--;
+    }
+  }
+  return (next == 8);
+}
+
 
 static gboolean
 fileInaccessible(const char *path, int perms)

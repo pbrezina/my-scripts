@@ -1071,13 +1071,98 @@ authInfoReadNetwork(struct authInfoType *authInfo)
 	return TRUE;
 }
 
+/* Compare two authInfoType structures and return TRUE if they have any
+ * meaningful differences. */
+static gboolean
+string_differs(const char *a, const char *b, gboolean case_sensitive)
+{
+	if (is_empty(a) && is_empty(b)) {
+		return FALSE;
+	}
+	if (is_empty(a) || is_empty(b)) {
+		return TRUE;
+	}
+	if (case_sensitive) {
+		return (strcmp(a, b) != 0) ? TRUE : FALSE;
+	} else {
+		return (g_ascii_strcasecmp(a, b) != 0) ? TRUE : FALSE;
+	}
+}
+gboolean
+authInfoDiffers(struct authInfoType *a, struct authInfoType *b)
+{
+	return  string_differs(a->hesiodLHS, b->hesiodLHS, FALSE) ||
+		string_differs(a->hesiodRHS, b->hesiodRHS, FALSE) ||
+
+		string_differs(a->ldapServer, b->ldapServer, FALSE) ||
+		string_differs(a->ldapBaseDN, b->ldapBaseDN, FALSE) ||
+
+		string_differs(a->kerberosRealm, b->kerberosRealm, TRUE) ||
+		string_differs(a->kerberosKDC, b->kerberosKDC, FALSE) ||
+		string_differs(a->kerberosAdminServer,
+			       b->kerberosAdminServer, FALSE) ||
+		string_differs(a->nisServer, b->nisServer, TRUE) ||
+		string_differs(a->nisDomain, b->nisDomain, TRUE) ||
+
+		string_differs(a->smbWorkgroup, b->smbWorkgroup, FALSE) ||
+		string_differs(a->smbRealm, b->smbRealm, TRUE) ||
+		string_differs(a->smbServers, b->smbServers, FALSE) ||
+		string_differs(a->smbSecurity, b->smbSecurity, FALSE) ||
+		string_differs(a->smbIdmapUid, b->smbIdmapUid, FALSE) ||
+		string_differs(a->smbIdmapGid, b->smbIdmapGid, FALSE) ||
+
+		string_differs(a->winbindSeparator,
+			       b->winbindSeparator, TRUE) ||
+		string_differs(a->winbindTemplateHomedir,
+			       b->winbindTemplateHomedir, TRUE) ||
+		string_differs(a->winbindTemplatePrimaryGroup,
+			       b->winbindTemplatePrimaryGroup, TRUE) ||
+		string_differs(a->winbindTemplateShell,
+			       b->winbindTemplateShell, TRUE) ||
+
+		(a->winbindUseDefaultDomain != b->winbindUseDefaultDomain) ||
+		/* (a->enableCache != b->enableCache) || */
+
+		(a->enableDB != b->enableDB) ||
+		(a->enableDirectories != b->enableDirectories) ||
+		(a->enableHesiod != b->enableHesiod) ||
+		(a->enableLDAP != b->enableLDAP) ||
+		(a->enableLDAPS != b->enableLDAPS) ||
+		(a->enableNIS != b->enableNIS) ||
+		(a->enableNIS3 != b->enableNIS3) ||
+		(a->enableDBbind != b->enableDBbind) ||
+		(a->enableDBIbind != b->enableDBIbind) ||
+		(a->enableHesiodbind != b->enableHesiodbind) ||
+		(a->enableLDAPbind != b->enableLDAPbind) ||
+		(a->enableOdbcbind != b->enableOdbcbind) ||
+		(a->enableWinbind != b->enableWinbind) ||
+		(a->enableWINS != b->enableWINS) ||
+
+		(a->enableAFS != b->enableAFS) ||
+		(a->enableAFSKerberos != b->enableAFSKerberos) ||
+		(a->enableBigCrypt != b->enableBigCrypt) ||
+		(a->enableEPS != b->enableEPS) ||
+		(a->enableKerberos != b->enableKerberos) ||
+		(a->enableLDAPAuth != b->enableLDAPAuth) ||
+		(a->enableMD5 != b->enableMD5) ||
+		(a->enableOTP != b->enableOTP) ||
+		(a->enableShadow != b->enableShadow) ||
+		(a->enableSMB != b->enableSMB) ||
+#ifdef LOCAL_POLICIES
+		(a->enableLocal != b->enableLocal) ||
+#endif
+		(a->brokenShadow != b->brokenShadow) ||
+
+		string_differs(a->joinUser, b->joinUser, TRUE) ||
+		string_differs(a->joinPassword, b->joinPassword, TRUE);
+}
+
 /* There's some serious strangeness in here, because we get called in two
  * different-but-closely-related scenarios.  The first case is when we're
  * initializing the authInfo structure and we want to fill in defaults with
  * suggestions we "know".  The second case is when the user has just made a
  * change to one field and we need to update another field to somehow
  * compensate for the change. */
-
 void
 authInfoUpdate(struct authInfoType *info)
 {
