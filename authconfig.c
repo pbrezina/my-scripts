@@ -139,6 +139,44 @@ static int readYPConfigFile(char **nisServer)
   return 0;
 }
 
+struct servercbInfo {
+    char* state;
+    newtComponent entry;
+};
+
+struct niscbInfo {
+    char* state;
+    char* bcastState;
+    newtComponent domEntry;
+    newtComponent bcast;
+    newtComponent serverEntry;
+};
+
+
+static void serverEntryToggle(newtComponent co, void * arg) {
+    int sense = NEWT_FLAGS_SET;
+    struct servercbInfo *cb = arg;
+
+    if (*cb->state == ' ')
+	sense = NEWT_FLAGS_RESET;
+    
+    newtEntrySetFlags(cb->entry, NEWT_ENTRY_DISABLED, sense);
+}
+
+static void nisEntryToggle(newtComponent co, void * arg) {
+    int sense = NEWT_FLAGS_SET;
+    struct niscbInfo *cb = arg;
+
+    if (*cb->state == '*')
+	sense = NEWT_FLAGS_RESET;
+    
+    newtEntrySetFlags(cb->domEntry, NEWT_ENTRY_DISABLED, sense);
+    newtCheckboxSetFlags(cb->bcast, NEWT_ENTRY_DISABLED, sense);
+    if (((*cb->bcastState == '*' && sense == NEWT_FLAGS_SET)) ||
+	(*cb->bcastState == ' '))
+      newtEntrySetFlags(cb->serverEntry, NEWT_ENTRY_DISABLED, sense);
+}
+
 /*
  * draw the main window for authconfig.  Displays choices about
  * using NIS and shadow passwords.  return results by reference.
@@ -148,35 +186,54 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
 	       char *enableShadow, char *useMD5)
 {
   newtComponent mainForm;
-  /*  newtGrid mainGrid;*/
+  newtGrid mainGrid, subGrid, serverGrid, buttons;
   newtComponent nisCheckBox, nisLabel, nisEntry;
-  newtComponent serverRadios[2], nisServerLabel,  nisServerEntry;
+  newtComponent bcastCheckBox, nisServerLabel,  nisServerEntry;
   newtComponent shadowCheckBox, MD5CheckBox;
   newtComponent okButton, cancelButton;
-  newtComponent hLine;
+  newtComponent answer;
   char *newNisDomain, *newNisServer;
-  char newEnableShadow, newUseMD5;
-
+  char newEnableShadow, newUseMD5, newEnableBroadCast;
+  struct servercbInfo servercb;
+  struct niscbInfo niscb;
+  
   /* create the main form and window */
   mainForm = newtForm(NULL, NULL, 0);
-  newtCenteredWindow(60, 16, i18n("Authentication Configuration"));
 
   /*
    * NIS stuff.
-  */
-  nisServerLabel = newtLabel(10, 4, i18n("NIS Server:"));
-  serverRadios[0] = newtRadiobutton(15, 5, i18n("Request via broadcast"), 
-				    (*enableNisServer == ' ' || *enableNis == ' ' ? 1 : 0), NULL);
-  serverRadios[1] = newtRadiobutton(15, 6, i18n("Specified:"), 
-				    (*enableNisServer == ' ' || *enableNis == ' ' ? 0 : 1), serverRadios[0]);
-  
-  nisServerEntry = newtEntry(30, 6, "", 25, &newNisServer,
+   */
+  nisServerLabel = newtLabel(-1, -1, i18n("NIS Server:"));
+  bcastCheckBox = newtCheckbox(-1, -1, i18n("Request via broadcast"),
+			       *enableNisServer == '*' ? ' ' : '*',
+			       0, &newEnableBroadCast);
+
+  nisServerEntry = newtEntry(-1, -1, "", 25, &newNisServer,
 			     NEWT_FLAG_SCROLL);
-  nisCheckBox = newtCheckbox(5, 1, i18n("Enable NIS"), 0, 0, enableNis);
-  nisLabel = newtLabel(10, 3, i18n("NIS Domain:"));
-  nisEntry = newtEntry(30, 3, "", 20, &newNisDomain, 
+  if (*enableNisServer == ' ')
+      newtEntrySetFlags(nisServerEntry, NEWT_ENTRY_DISABLED,
+			NEWT_FLAGS_SET);
+
+  servercb.state = &newEnableBroadCast;
+  servercb.entry = nisServerEntry;
+  newtComponentAddCallback(bcastCheckBox, serverEntryToggle,
+			   &servercb);
+
+  nisCheckBox = newtCheckbox(-1, -1, i18n("Enable NIS"), 0, 0, enableNis);
+
+  nisLabel = newtLabel(-1, -1, i18n("NIS Domain:"));
+  nisEntry = newtEntry(-1, -1, "", 25, &newNisDomain, 
 		       NEWT_FLAG_SCROLL);
 
+  niscb.state = enableNis;
+  niscb.bcastState = &newEnableBroadCast;
+  niscb.domEntry = nisEntry;
+  niscb.bcast = bcastCheckBox;
+  niscb.serverEntry = nisServerEntry;
+
+  newtComponentAddCallback(nisCheckBox, nisEntryToggle,
+			   &niscb);
+  
   /* if NIS is already enabled, show that. */
   if (strcmp(*nisDomain,"")) {
     newtCheckboxSetValue(nisCheckBox, '*');
@@ -188,43 +245,81 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
     newtEntrySet(nisServerEntry, *nisServer, 1);
   }
 
-  /* horizontal line */
-  hLine = newtLabel(2, 7,
-		    "--------------------------------------------------------");
-
+  serverEntryToggle(bcastCheckBox, &servercb);
+  nisEntryToggle(nisCheckBox, &niscb);
+  
   /* Shadow Stuff */
-  shadowCheckBox = newtCheckbox(5, 8, i18n("Enable Shadow Passwords"),
+  shadowCheckBox = newtCheckbox(-1, -1, i18n("Use Shadow Passwords"),
 				0, 0, &newEnableShadow);
-  MD5CheckBox = newtCheckbox(10, 10, i18n("Use MD5 Hashes"),
+  MD5CheckBox = newtCheckbox(-1, -1, i18n("Enable MD5 Passwords"),
 			     0, 0, &newUseMD5);
 
-  if (*enableShadow == '*')
-    newtCheckboxSetValue(shadowCheckBox, '*');
+  newtCheckboxSetValue(shadowCheckBox, *enableShadow);
 
-  if (*useMD5 == '*')
-    newtCheckboxSetValue(MD5CheckBox, '*');
+  newtCheckboxSetValue(MD5CheckBox, *useMD5);
 
-  okButton = newtButton(18, 12, i18n("  OK  "));
-  cancelButton = newtButton(31, 12, useBack ? i18n(" Back ") : i18n("Cancel"));
+  buttons =  newtButtonBar(i18n("Okay"), &okButton,
+			   useBack ? i18n("Back") : i18n("Cancel"),
+			   &cancelButton,
+			   NULL);
+
+  mainGrid = newtCreateGrid(1, 6);
+
+  /* Begin row 1 of main grid */
+  newtGridSetField(mainGrid, 0, 0, NEWT_GRID_COMPONENT, nisCheckBox,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+
+  /* Row 2 of main grid */
+  subGrid = newtCreateGrid(2, 2);
+
+  /* Create the subgrid for nis info */
+  newtGridSetField(subGrid, 0, 0, NEWT_GRID_COMPONENT, nisLabel,
+		   1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(subGrid, 1, 0, NEWT_GRID_COMPONENT, nisEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(subGrid, 0, 1, NEWT_GRID_COMPONENT, nisServerLabel,
+		   1, 0, 1, 0, NEWT_ANCHOR_RIGHT | NEWT_ANCHOR_TOP, 0);
+
+  /* and the sub subgrid for the nis server info */
+  serverGrid = newtCreateGrid(1, 3);
+
+  newtGridSetField(serverGrid, 0, 0, NEWT_GRID_COMPONENT, bcastCheckBox,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(serverGrid, 0, 1, NEWT_GRID_COMPONENT, 
+		   newtLabel(-1, -1, i18n("or use:")),
+		   0, 0, 0, 0, 0, 0);
+  newtGridSetField(serverGrid, 0, 2, NEWT_GRID_COMPONENT, nisServerEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  /* add the sub subgrid to the subgrid */
+  newtGridSetField(subGrid, 1, 1, NEWT_GRID_SUBGRID, serverGrid,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+
+  /* and the subgrid to the main grid */
+  newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, subGrid, 
+		   0, 1, 0, 1, 0, NEWT_GRID_FLAG_GROWX);
+
+  /* Row 3... and so on */
   
-  /* add the components to the form */
-  newtFormAddComponents(mainForm, 
-			nisCheckBox, nisLabel, nisEntry,
-			nisServerLabel, serverRadios[0], serverRadios[1],
-			nisServerEntry,
-			hLine,
-			shadowCheckBox, MD5CheckBox,
-			okButton, cancelButton,
-			NULL);
+  newtGridSetField(mainGrid, 0, 2, NEWT_GRID_COMPONENT, shadowCheckBox, 
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
-  if (newtRunForm(mainForm) == cancelButton)
+  newtGridSetField(mainGrid, 0, 3, NEWT_GRID_COMPONENT, MD5CheckBox, 
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
+    
+  newtGridSetField(mainGrid, 0, 4, NEWT_GRID_SUBGRID, buttons, 
+		   0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
+
+  newtGridAddComponentsToForm(mainGrid, mainForm, 1);
+  
+  newtGridWrappedWindow(mainGrid, i18n("Authentication Configuration"));
+
+  answer = newtRunForm(mainForm);
+  
+  if (answer == cancelButton)
     return 1;
   else {
     /* process form values */
-    if (newtRadioGetCurrent(serverRadios[0]) == serverRadios[0])
-      *enableNisServer = ' ';
-    else
-      *enableNisServer = '*';
+    *enableNisServer = newEnableBroadCast == '*' ? ' ' : '*';
 
     *nisDomain = newNisDomain;
     *nisServer = newNisServer;
@@ -392,7 +487,6 @@ int rewriteYPConfigFile(char enableNisServer, char *nisServer, char *nisDomain)
   if (!found && enableNisServer == '*') {
     fprintf(f1, "domain %s\n",nisDomain);
     fprintf(f1, "server %s\n",nisServer);
-    fprintf(f1,"# the following line is for backwards compatibility with libc5-based programs\n");
     fprintf(f1, "ypserver %s\n",nisServer);
   }
 
@@ -477,11 +571,11 @@ int toggleShadowPam(int enable, int md5)
 	}
 	s = s1;
 
+	if (md5) {
+	  s = realloc(s, sizeof(char *) * (strlen(s) + 5));
+	  strcat(s, " md5");
+	}
 	if (enable) {
-	  if (md5) {
-	    s = realloc(s, sizeof(char *) * (strlen(s) + 5));
-	    strcat(s, " md5");
-	  }
 	  s = realloc(s, sizeof(char *) * (strlen(s) + 8));
 	  strcat(s, " shadow");
 	}
