@@ -61,7 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/authconfig-gtk
 %{_datadir}/%{name}/*.py*
 %{_datadir}/%{name}/%{name}.glade
-%{_datadir}/firstboot/modules/*
 %config(noreplace) %{_sysconfdir}/X11/applnk/System
 %config(noreplace) %{_sysconfdir}/X11/sysconfig
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
