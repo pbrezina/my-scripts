@@ -84,7 +84,7 @@ authconfigmodule_la_SOURCES = authconfigmodule.c
 authconfigmodule_la_LIBADD = libauthconfig.la
 authconfigmodule_la_LDFLAGS = -module -avoid-version -export-dynamic @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop.in authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png README.samba3 mkinstalldirs glade.strings.h
+EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop.in authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png README.samba3 mkinstalldirs authconfig.glade.h
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update authconfig.desktop
 
 VERSION=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{version}\n' | head -n1)
