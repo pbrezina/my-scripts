@@ -73,13 +73,13 @@ gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
     if (!nostart) {
       system("/etc/rc.d/init.d/ypbind restart");
     }
-    system("/sbin/chkconfig --level 345 ypbind on");
+    system("/sbin/chkconfig ypbind && /sbin/chkconfig --level 345 ypbind on");
   } else {
     system("/bin/domainname \"(none)\"");
     if (!nostart) {
       system("/etc/rc.d/init.d/ypbind stop");
     }
-    system("/sbin/chkconfig --del ypbind");
+    system("/sbin/chkconfig ypbind && /sbin/chkconfig --del ypbind");
   }
 
   return TRUE;
