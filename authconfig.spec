@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Mon Jun  7 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.4-1
-- tweak account management to fix #55xxx correctly
+- tweak account management to fix #55193 correctly
 - require anything we might want to run in the gui subpackage because it
   doesn't warn about missing things and you don't have a terminal to see
   error messages about missing commands
