@@ -912,7 +912,7 @@ int main(int argc, const char **argv)
     newtPushHelpLine(i18n(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
     newtDrawRootText(0, 0, packageVersion);
     newtDrawRootText(strlen(packageVersion), 0,
-		     "(c) 1999, 2000 Red Hat, Inc.");
+		     i18n("(c) 1999-2001 Red Hat, Inc."));
     
     if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
       /* cancelled */
