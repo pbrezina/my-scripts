@@ -824,7 +824,8 @@ gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	l = strlen(host) + 2 + strlen(base) + 2;
 	l += info->ldapBaseDN ? strlen(info->ldapBaseDN) : 0;
 	l += info->ldapServer ? strlen(info->ldapServer) : 0;
-	obuf = g_malloc0(st.st_size + 1 + l);
+	l += strlen("ssl start_tls\n");
+	obuf = g_malloc0((st.st_size + 1 + l) * 2);
 
 	p = ibuf;
 	while(*p != '\0') {
