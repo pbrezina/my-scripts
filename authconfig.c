@@ -610,7 +610,7 @@ int main(int argc, const char **argv)
 
   if (help)
       usage();
-  
+ 
   /* if the test parameter wasn't passed, give an error if not root */
   if (!test && getuid()) {
     fprintf(stderr, i18n("%s: can only be run as root\n"),
@@ -769,53 +769,38 @@ int main(int argc, const char **argv)
     return 0;
   } else {
     if (authInfoWriteHesiod(authInfo) == FALSE) {
-      if (fileInaccessible(SYSCONFDIR "/hesiod.conf", R_OK)) {
-        fprintf(stderr, i18n("%s: critical error writing %s/hesiod.conf"),
-	        progName, SYSCONFDIR);
-        return 2;
-      }
+      fprintf(stderr, i18n("%s: critical error writing %s/hesiod.conf"),
+	      progName, SYSCONFDIR);
+      return 2;
     }
     if (authInfoWriteKerberos(authInfo) == FALSE) {
-      if (fileInaccessible(SYSCONFDIR "/krb5.conf", R_OK)) {
-        fprintf(stderr, i18n("%s: critical error writing %s/krb5.conf"),
-	        progName, SYSCONFDIR);
-        return 2;
-      }
+      fprintf(stderr, i18n("%s: critical error writing %s/krb5.conf"),
+	      progName, SYSCONFDIR);
+      return 2;
     }
     if (authInfoWriteLDAP(authInfo) == FALSE) {
-      if (fileInaccessible(SYSCONFDIR "/ldap.conf", R_OK)) {
-        fprintf(stderr, i18n("%s: critical error writing %s/ldap.conf"),
-	        progName, SYSCONFDIR);
-        return 2;
-      }
+      fprintf(stderr, i18n("%s: critical error writing %s/ldap.conf"),
+	      progName, SYSCONFDIR);
+      return 2;
     }
     if (authInfoWriteNIS(authInfo) == FALSE) {
-      if (fileInaccessible(SYSCONFDIR "/yp.conf", R_OK)) {
-        fprintf(stderr, i18n("%s: critical error writing %s/yp.conf"),
-	        progName, SYSCONFDIR);
-        return 2;
-      }
+      fprintf(stderr, i18n("%s: critical error writing %s/yp.conf"),
+	      progName, SYSCONFDIR);
+      return 2;
     }
     if (authInfoWriteNSS(authInfo) == FALSE) {
-      if (fileInaccessible(SYSCONFDIR "/nsswitch.conf", R_OK)) {
-        fprintf(stderr, i18n("%s: critical error writing %s/nsswitch.conf"),
-	        progName, SYSCONFDIR);
-        return 2;
-      }
+      fprintf(stderr, i18n("%s: critical error writing %s/nsswitch.conf"),
+	      progName, SYSCONFDIR);
     }
     if (authInfoWriteNetwork(authInfo) == FALSE) {
-      if (fileInaccessible(SYSCONFDIR "/sysconfig/network", R_OK)) {
-        fprintf(stderr, i18n("%s: critical error writing %s/sysconfig/network"),
-	        progName, SYSCONFDIR);
-        return 2;
-      }
+      fprintf(stderr, i18n("%s: critical error writing %s/sysconfig/network"),
+	      progName, SYSCONFDIR);
+      return 2;
     }
     if (authInfoWritePAM(authInfo) == FALSE) {
-      if (fileInaccessible(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, R_OK)) {
-        fprintf(stderr, i18n("%s: critical error writing %s/pam.d/%s"),
-	        progName, SYSCONFDIR, AUTH_PAM_SERVICE);
-        return 2;
-      }
+      fprintf(stderr, i18n("%s: critical error writing %s/pam.d/%s"),
+	      progName, SYSCONFDIR, AUTH_PAM_SERVICE);
+      return 2;
     }
     toggleShadow(authInfo);
     toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);

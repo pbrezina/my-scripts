@@ -330,6 +330,7 @@ gboolean authInfoReadKerberos(struct authInfoType *info)
 		memset(buf, '\0', sizeof(buf));
 	}
 
+	fclose(fp);
 	return TRUE;
 }
 
@@ -377,6 +378,7 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 			   ((strstr(nss_config, "nis"))[3] != 'p'));
 
 	g_free(nss_config);
+	fclose(fp);
 	return TRUE;
 }
 
@@ -869,9 +871,15 @@ gboolean authInfoWriteKerberos(struct authInfoType *info)
 				g_free(subsection);
 			}
 			subsection = g_strndup(p, q - p);
-			/* If this is the section for our realm, mark that. */
-			if(strcmp(subsection, info->kerberosRealm) == 0) {
-				wroterealm = TRUE;
+			if(is_empty(subsection)) {
+				g_free(subsection);
+				subsection = NULL;
+			} else {
+				/* If this is the section for our realm, mark
+				 * that. */
+				if(strcmp(subsection,info->kerberosRealm) == 0){
+					wroterealm = TRUE;
+				}
 			}
 		}
 

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.3
+Version: 4.0.4
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,6 +34,12 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Wed Jun  7 2000 Nalin Dahyabhai <nalin@redhat.com>
+- fix multiple realms section bug
+- close all files we open
+- bail on errors, even when we can see the file
+- use RPM_OPT_FLAGS
+
 * Mon Jun  5 2000 Nalin Dahyabhai <nalin@redhat.com>
 - fix for false-matching beginnings of realm subsections
 - FHS fixes
