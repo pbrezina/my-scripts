@@ -4,294 +4,312 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig 6.1\n"
-"POT-Creation-Date: 2000-02-16 15:48-0500\n"
-"PO-Revision-Date: 1999-10-06 13:57-04:00\n"
-"Last-Translator: Cristian Gafton <gafton@redhat.com>\n"
+"Project-Id-Version: Installer 7.0\n"
+"POT-Creation-Date: 2000-06-27 19:39-0400\n"
+"PO-Revision-Date: 2000-07-20 11:05+0200\n"
+"Last-Translator: Jeff Garner <jgarner@us.alpnet.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO8859-1\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
 
-#: ../authconfig.c:76 ../authconfig.c:700
+#: ../authconfig.c:142
 #, c-format
-msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/sysconfig/network : %s\n"
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"Le fichier %s est introuvable mais il est requis pour que le support %s "
+"puisse fonctionner correctement. Installez le paquetage %s qui comprend ce "
+"fichier."
 
-#: ../authconfig.c:140 ../authconfig.c:795
-#, c-format
-msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/yp.conf : %s\n"
+#: ../authconfig.c:146
+msgid "Warning"
+msgstr "Avertissement"
 
-#: ../authconfig.c:202 ../authconfig.c:898
-#, c-format
-msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/ldap.conf : %s\n"
-
-#.
-#. * find length of longest string. Looks useless when strings
-#. * are right-padded as below, but will be necessary for xlations
-#. * if they don't pad.
-#.
-#: ../authconfig.c:318 ../authconfig.c:486
-msgid "    NIS Domain:"
-msgstr "Domaine NIS :"
-
-#: ../authconfig.c:319 ../authconfig.c:461
-msgid "NIS Server:"
-msgstr "Serveur NIS :"
-
-#.
-#. * authentication server stuff.
-#.
-#.
-#. * find length of longest string. Looks useless when strings
-#. * are right-padded as below, but will be necessary for xlations
-#. * if they don't pad.
-#.
-#: ../authconfig.c:320 ../authconfig.c:449
-msgid "         or use:"
-msgstr "ou utiliser :"
-
-#: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-msgid "   LDAP Domain:"
-msgstr "Domaine LDAP :"
-
-#: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
-msgid "    LDAP Server:"
-msgstr "Serveur LDAP :"
-
-#: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
-msgid "Kerberos Realm:"
-msgstr "Dom.Kerberos :"
-
-#: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
-msgid "Kerberos Server:"
-msgstr "Serv.Kerberos:"
-
-#.
-#. * what kind of authentication?
-#.
-#: ../authconfig.c:416
-msgid "Authentication Type:"
-msgstr "Type d'authentification:"
-
-#: ../authconfig.c:417
-msgid "Password File"
-msgstr "Fichier"
-
-#: ../authconfig.c:422
-msgid "NIS"
-msgstr "NIS"
-
-#: ../authconfig.c:428
-msgid "LDAP"
-msgstr "LDAP"
-
-#: ../authconfig.c:434
-msgid "Kerberos"
-msgstr "Kerberos"
-
-#: ../authconfig.c:462
-msgid "Request via broadcast"
-msgstr "Demande via diffusion"
-
-#. if (!nisAvail) {
-#. newtEntrySetFlags(authServerEntry, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
-#. newtCheckboxSetFlags(bcastCheckBox, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
-#. newtEntrySetFlags(authDomainEntry, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
-#. }
-#. Shadow Stuff
-#: ../authconfig.c:535
-msgid "Use Shadow Passwords"
-msgstr "Utiliser des mots de passe masqués"
-
-#: ../authconfig.c:537
-msgid "Enable MD5 Passwords"
-msgstr "Activer les mots de passe MD5"
-
-#: ../authconfig.c:544 ../authconfig.c:640 ../authconfig.c:649
+#: ../authconfig.c:146 ../authconfig.c:507 ../authconfig.c:512
 msgid "Ok"
 msgstr "OK"
 
-#: ../authconfig.c:545
+#: ../authconfig.c:156 ../authconfig.c:230
+msgid "  Domain:"
+msgstr " Domaine:"
+
+#: ../authconfig.c:157 ../authconfig.c:203
+msgid "  Server:"
+msgstr " Serveur:"
+
+#: ../authconfig.c:177
+msgid "     LHS:"
+msgstr "     LHS:"
+
+#: ../authconfig.c:178
+msgid "     RHS:"
+msgstr "     RHS:"
+
+#: ../authconfig.c:204
+msgid " Base DN:"
+msgstr " ND base:"
+
+#: ../authconfig.c:247
+msgid "          Realm:"
+msgstr "           Zone:"
+
+#: ../authconfig.c:248
+msgid "            KDC:"
+msgstr "            KDC:"
+
+#: ../authconfig.c:249
+msgid "   Admin Server:"
+msgstr " Serveur Admin.:"
+
+#. Create the window and a form to put into it.
+#: ../authconfig.c:289
+msgid "User Information Configuration"
+msgstr "Configuration des informations utilisateur"
+
+#. NSS modules: NIS.
+#: ../authconfig.c:293
+msgid "Use NIS"
+msgstr "Utiliser NIS"
+
+#: ../authconfig.c:316
+msgid "Use LDAP"
+msgstr "Utiliser LDAP"
+
+#: ../authconfig.c:335
+msgid "Use WinBind"
+msgstr "Utiliser WinBind"
+
+#: ../authconfig.c:349
+msgid "Use Hesiod"
+msgstr "Utiliser Hesiod"
+
+#. Create the buttons.
+#: ../authconfig.c:370
+msgid "Next"
+msgstr "Suivant"
+
+#: ../authconfig.c:371 ../authconfig.c:508 ../authconfig.c:513
 msgid "Back"
 msgstr "Retour"
 
-#: ../authconfig.c:545
+#: ../authconfig.c:371 ../authconfig.c:509
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../authconfig.c:612
+#. Create the window and a form to put into it.
+#: ../authconfig.c:431
 msgid "Authentication Configuration"
 msgstr "Configuration de l'authentification"
 
-#: ../authconfig.c:640 ../authconfig.c:649
-msgid "Error"
-msgstr "Erreur"
+#. PAM setup.
+#: ../authconfig.c:435
+msgid "Use Shadow Passwords"
+msgstr "Utiliser des mots de passe masqués"
 
-#: ../authconfig.c:641
-msgid "You must enter a NIS server or request via broadcast."
-msgstr "Vous devez entrer un serveur NIS ou une demande via la diffusion."
+#: ../authconfig.c:439
+msgid "Use MD5 Passwords"
+msgstr "Utiliser des mots de passe MD5"
 
-#: ../authconfig.c:650
-msgid "You must enter an authentication domain."
-msgstr "Vous devez entrer un domaine NIS."
+#: ../authconfig.c:444
+msgid "Use LDAP Authentication"
+msgstr "Utiliser l'authentification LDAP"
 
-#: ../authconfig.c:707
-#, c-format
-msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/sysconfig/network- pour écriture : %s\n"
+#: ../authconfig.c:465
+msgid "Use WinBind Authentication"
+msgstr "Utiliser l'authentification WinBind"
 
-#: ../authconfig.c:802
-#, c-format
-msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/yp.conf- en écriture : %s\n"
+#: ../authconfig.c:480
+msgid "Use Kerberos 5"
+msgstr "Utiliser Kerberos 5"
 
-#: ../authconfig.c:905
-#, c-format
-msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/ldap.conf- en écriture : %s\n"
-
-#: ../authconfig.c:994
-#, c-format
-msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/nsswitch.conf : %s\n"
-
-#: ../authconfig.c:1001
-#, c-format
-msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s : impossible d'ouvrir /etc/nsswitch.conf- en écriture : %s\n"
-
-#: ../authconfig.c:1230
-#, c-format
-msgid "%s: error opening %s\n"
-msgstr "%s : erreur lors de l'ouverture de %s\n"
-
-#: ../authconfig.c:1266
+#: ../authconfig.c:601
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
-"     --nostart            do not start/stop yp\n"
-"     --enablenis          enable nis by default\n"
-"     --nisdomain <domain> default NIS domain\n"
-"     --nisserver <server> default NIS server\n"
-"     --useshadow          use shadow passwords\n"
-"     --enablemd5          enable MD5 passwords\n"
-"     --kickstart          don't display user interface\n"
-"     --help               show this screen\n"
+"     --useshadow\n"
+"     --enableshadow             enable shadow passwords by default\n"
+"     --disableshadow            disable shadow passwords by default\n"
+"     --enablemd5                enable MD5 passwords by default\n"
+"     --disablemd5               disable MD5 passwords by default\n"
+"\n"
+"     --enablenis                enable NIS\n"
+"     --disablenis               disable NIS\n"
+"     --nisdomain <domain>       default NIS domain\n"
+"     --nisserver <server>       default NIS server\n"
+"\n"
+"     --enableldap               enable ldap for user information by default\n"
+"     --disableldap              disable ldap for user information by "
+"default\n"
+"     --enableldapauth           enable ldap for authentication by default\n"
+"     --disableldapauth          disable ldap for authentication by default\n"
+"     --ldapserver <server>      default LDAP server\n"
+"     --ldapbasedn <dn>          default LDAP base DN\n"
+"\n"
+"     --enablekrb5               enable kerberos authentication by default\n"
+"     --disablekrb5              disable kerberos authentication by default\n"
+"     --krb5kdc <server>         default kerberos KDC\n"
+"     --krb5adminserver <server> default kerberos admin server\n"
+"     --krb5realm <realm>        default kerberos realm\n"
+"\n"
+"     --enablehesiod             enable hesiod for user information by "
+"default\n"
+"     --disablehesiod            disable hesiod for user information by "
+"default\n"
+"     --hesiodlhs <lhs>          default hesiod LHS\n"
+"     --hesiodrhs <rhs>          default hesiod RHS\n"
+"\n"
+"     --nostart                  do not start/stop ypbind\n"
+"     --kickstart                don't display user interface\n"
+"     --help                     show this screen\n"
 msgstr ""
 "Utilisation : %s [options]\n"
 "\n"
-"     --nostart             Ne pas démarrer/arrêter yp\n"
-"     --enablenis           Activer NIS par défaut\n"
-"     --nisdomain <domaine> Domaine NIS par défaut\n"
-"     --nisserver <serveur> Serveur NIS par défaut\n"
-"     --useshadow           Utiliser des mots de passe masqués\n"
-"     --enablemd5           Activer les mots de passe MD5\n"
-"     --kickstart           Ne pas afficher l'interface utilisateur\n"
-"     --help                Afficher cet écran\n"
+"     --useshadow\n"
+"     --enableshadow             activer mots de passe masqués par défaut\n"
+"     --disableshadow            désactiver mots de passe masqués par défaut\n"
+"     --enablemd5                activer mots de passe MD5 par défaut\n"
+"     --disablemd5               désactiver mots de passe MD5 par défaut\n"
+"\n"
+"     --enablenis                activer NIS\n"
+"     --disablenis               désactiver NIS\n"
+"     --nisdomain <domain>       domaine NIS par défaut\n"
+"     --nisserver <server>       serveur NIS par défaut\n"
+"\n"
+"     --enableldap               activer ldap pour les informations\n"
+"                                utilisateur par défaut\n"
+"     --disableldap              désactiver ldap pour les informations\n"
+"                                utilisateur par défaut\n"
+"     --enableldapauth           activer ldap pour l'authentification\n"
+"                                par défaut\n"
+"     --disableldapauth          désactiver ldap pour l'authentification\n"
+"                                par défaut\n"
+"     --ldapserver <server>      serveur LDAP par défaut\n"
+"     --ldapbasedn <dn>          DN de base LDAP par défaut "
+"\n"
+"     --enablekrb5               activer l'authentification kerberos par défaut\n"
+"     --disablekrb5              désactiver l'authentification kerberos\n"
+"                                par défaut\n"
+"     --krb5kdc <server>         KDC kerberos par défaut\n"
+"     --krb5adminserver <serveur> serveur admin kerberos par défaut\n"
+"     --krb5realm <zone>         zone kerberos par défaut "
+"\n"
+"     --enablehesiod             activer hesiod pour les informations\n"
+"                                utilisateur par défaut\n"
+"     --disablehesiod            désactiver hesiod pour les informations\n"
+"                                utilisateur par défaut\n"
+"     --hesiodlhs <lhs>          LHS hesiod par défaut\n"
+"     --hesiodrhs <rhs>          RHS hesiod par défaut "
+"\n"
+"     --nostart                  ne pas démarrer/arrêter ypbind\n"
+"     --kickstart                ne pas afficher d'interface utilisateur\n"
+"     --help                     afficher cet écran\n"
 
-#: ../authconfig.c:1332
+#: ../authconfig.c:738
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s : argument incorrect %s : %s\n"
 
-#: ../authconfig.c:1339
+#: ../authconfig.c:745
 #, c-format
 msgid "%s: unexpected argument\n"
-msgstr "%s : argument inattendu\n"
+msgstr "%s : argument imprévu\n"
 
-#: ../authconfig.c:1351
+#: ../authconfig.c:757
 #, c-format
 msgid "%s: can only be run as root\n"
-msgstr "%s : peut seulement être exécuté comme root\n"
+msgstr "%s : ne peut être lancé qu'en tant que root\n"
 
-#: ../authconfig.c:1367
+#: ../authconfig.c:768
 #, c-format
-msgid "%s: unknown authorization type %s\n"
-msgstr "%s : type d'autorisation \"%s\" inconnu\n"
+msgid "%s: critical error reading %s/hesiod.conf"
+msgstr "%s : erreur critique lors de la lecture de %s/hesiod.conf"
 
-#: ../authconfig.c:1383
+#: ../authconfig.c:775
 #, c-format
-msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr "%s : erreur critique lors de la lecture de /etc/sysconfig/network"
+msgid "%s: critical error reading %s/krb5.conf"
+msgstr "%s : erreur critique lors de la lecture de %s/krb5.conf"
 
-#: ../authconfig.c:1392
+#: ../authconfig.c:782
 #, c-format
-msgid "%s: critical error reading /etc/yp.conf"
-msgstr "%s : erreur critique lors de la lecture de /etc/yp.conf"
+msgid "%s: critical error reading %s/ldap.conf"
+msgstr "%s : erreur critique lors de la lecture de %s/ldap.conf"
 
-#: ../authconfig.c:1426
+#: ../authconfig.c:790
 #, c-format
-msgid "%s: critical error reading /etc/pam.d/passwd\n"
-msgstr "%s : erreur critique lors de la lecture de /etc/pam.d/passwd\n"
+msgid "%s: critical error reading %s/smb.conf"
+msgstr "%s : erreur critique lors de la lecture de %s/smb.conf"
 
-#: ../authconfig.c:1435
+#: ../authconfig.c:798
+#, c-format
+msgid "%s: critical error reading %s/yp.conf"
+msgstr "%s : erreur critique lors de la lecture de %s/yp.conf"
+
+#: ../authconfig.c:805
+#, c-format
+msgid "%s: critical error reading %s/nsswitch.conf"
+msgstr "%s : erreur critique lors de la lecture de %s/nsswitch.conf"
+
+#: ../authconfig.c:812
+#, c-format
+msgid "%s: critical error reading %s/sysconfig/network"
+msgstr "%s : erreur critique lors de la lecture de %s/sysconfig/network"
+
+#: ../authconfig.c:819
+#, c-format
+msgid "%s: critical error reading %s/pam.d/%s"
+msgstr "%s : erreur critique lors de la lecture de %s/pam.d/%s"
+
+#: ../authconfig.c:872
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
-"<Tab>/<Alt-Tab> Changer d'élément | <Espace> Sélectionner | <F12> Ecran "
-"suivant"
+"<Tab>/<Alt-Tab> Changer d'élément|<Espace> Sélectionner|<F12> Ecran suivant"
 
-#: ../authconfig.c:1445
+#: ../authconfig.c:880
 msgid "dialog was cancelled\n"
-msgstr "Le dialogue a été interrompu\n"
+msgstr "dialogue annulé\n"
 
-#: ../authconfig.c:1456
-msgid "authentication type selected: "
-msgstr "type d'authentification choisi :"
-
-#: ../authconfig.c:1486
+#: ../authconfig.c:944
 #, c-format
-msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr "%s : erreur critique lors de l'écriture de /etc/sysconfig/network\n"
+msgid "%s: critical error writing %s/hesiod.conf"
+msgstr "%s : erreur critique lors de l'écriture de %s/hesiod.conf"
 
-#: ../authconfig.c:1494
+#: ../authconfig.c:949
 #, c-format
-msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr "%s : erreur critique lors de l'écriture de /etc/yp.conf\n"
+msgid "%s: critical error writing %s/krb5.conf"
+msgstr "%s : erreur critique lors de l'écriture de %s/krb5.conf"
 
-#: ../authconfig.c:1501
+#: ../authconfig.c:954
 #, c-format
-msgid "%s: critical error turning on NIS service\n"
-msgstr "%s : erreur critique lors de l'activation du service NIS\n"
+msgid "%s: critical error writing %s/ldap.conf"
+msgstr "%s : erreur critique lors de l'écriture de %s/ldap.conf"
 
-#: ../authconfig.c:1513
+#: ../authconfig.c:959
 #, c-format
-msgid "%s: critical error writing /etc/ldap.conf\n"
-msgstr "%s : erreur critique lors de l'écriture de /etc/ldap.conf\n"
+msgid "%s: critical error writing %s/yp.conf"
+msgstr "%s : erreur critique lors de l'écriture de %s/yp.conf"
 
-#: ../authconfig.c:1518
+#: ../authconfig.c:965
 #, c-format
-msgid "%s: critical error writing files in /etc/pam.d\n"
-msgstr "%s : erreur critique lors de l'écriture des fichiers dans le répertoire /etc/pam.d\n"
+msgid "%s: critical error writing %s/smb.conf"
+msgstr "%s : erreur critique lors de l'écriture de %s/smb.conf"
 
-#: ../authconfig.c:1528
+#: ../authconfig.c:971
 #, c-format
-msgid "%s: critical error writing /etc/nsswitch.conf\n"
-msgstr "%s : erreur critique lors de l'écriture de /etc/nsswitch.conf\n"
+msgid "%s: critical error writing %s/nsswitch.conf"
+msgstr "%s : erreur critique lors de l'écriture de %s/nsswitch.conf"
 
-#: ../authconfig.c:1537
+#: ../authconfig.c:975
 #, c-format
-msgid "%s: critical error with shadow password manipulation\n"
-msgstr "%s : erreur critique lors d'une manipulation de mot de passe masqué\n"
+msgid "%s: critical error writing %s/sysconfig/network"
+msgstr "%s : erreur critique lors de l'écriture de %s/sysconfig/network"
 
-#~ msgid "%s: critical error reading /etc/ldap.conf"
-#~ msgstr "%s : erreur critique lors de la lecture de /etc/ldap.conf"
+#: ../authconfig.c:980
+#, c-format
+msgid "%s: critical error writing %s/pam.d/%s"
+msgstr "%s : erreur critique lors de l'écriture de %s/pam.d/%s"
 
-#~ msgid "Enable NIS"
-#~ msgstr "Activer NIS"
-
-#~ msgid "(NIS not installed)"
-#~ msgstr "(NIS pas installé)"
-
-#~ msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-#~ msgstr ""
-#~ "%s : valeur %s définie pour domaine NIS, mais boîte de dialogue annulée\n"
-
-#~ msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-#~ msgstr ""
-#~ "valeurs de retour : NIS : %c, domaine NIS : %s, masqué : %c, md5 : %c\n"
