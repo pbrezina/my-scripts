@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.3.7
-Release: 2
+Version: 4.3.8
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -71,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Oct 22 2003 Bill Nottingham <notting@redhat.com> 4.3.8-1
+- rebuild with current translations
+
 * Thu Aug 21 2003 Nalin Dahyabhai <nalin@redhat.com> 4.3.7-2
 - make the tarball name include the release number
 
