@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: authconfig 6.0 \n"
+"PO-Revision-Date: 1999-04-10 12:00 +0100 \n"
+"Last-Translator: Jeff Garner <jgarner@alpnet.com> \n"
+"Language-Team: German <de@li.org> \n"
+"MIME-Version: 1.0 \n"
+"Content-Type: text/plain; charset=iso-8859-1 \n"
+"Content-Transfer-Encoding: 8-bit \n"
+
+#: ../authconfig.c:36 ../authconfig.c:386
+#, c-format
+msgid "%s: cannot open /etc/sysconfig/network: %s\n"
+msgstr "%s: /etc/sysconfig/network kann nicht geöffnet werden: %s\n"
+
+#: ../authconfig.c:96 ../authconfig.c:468
+#, c-format
+msgid "%s: cannot open /etc/yp.conf: %s\n"
+msgstr "%s: /etc/yp.conf kann nicht geöffnet werden: %s\n"
+
+#.
+#. * NIS stuff.
+#.
+#: ../authconfig.c:215
+msgid "NIS Server:"
+msgstr "NIS-Server:"
+
+#: ../authconfig.c:216
+msgid "Request via broadcast"
+msgstr "Über Broadcast anfordern"
+
+#: ../authconfig.c:233
+msgid "Enable NIS"
+msgstr "NIS aktivieren"
+
+#: ../authconfig.c:235
+msgid "NIS Domain:"
+msgstr "NIS-Domäne:"
+
+#. Shadow Stuff
+#: ../authconfig.c:271
+msgid "Use Shadow Passwords"
+msgstr "Shadow-Paßwörter verwenden"
+
+#: ../authconfig.c:273
+msgid "Enable MD5 Passwords"
+msgstr "MD5-Paßwörter aktivieren"
+
+#: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
+msgid "Ok"
+msgstr "OK"
+
+#: ../authconfig.c:281
+msgid "Back"
+msgstr "Zurück"
+
+#: ../authconfig.c:281
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../authconfig.c:298
+msgid "(NIS not installed)"
+msgstr "(NIS nicht installiert)"
+
+#: ../authconfig.c:312
+msgid "or use:"
+msgstr "oder:"
+
+#: ../authconfig.c:334
+msgid "Authentication Configuration"
+msgstr "Sicherheitsüberprüfung konfigurieren"
+
+#: ../authconfig.c:347 ../authconfig.c:354
+msgid "Error"
+msgstr "Fehler"
+
+#: ../authconfig.c:348
+msgid "You must enter a NIS server or request via broadcast."
+msgstr "Geben Sie einen NIS-Server an, oder ermitteln Sie ihn über eine Broadcast-Anfrage."
+
+#: ../authconfig.c:355
+msgid "You must enter a NIS domain."
+msgstr "Geben Sie eine NIS-Domäne ein."
+
+#: ../authconfig.c:393
+#, c-format
+msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
+msgstr "%s: /etc/sysconfig/network- kann nicht zum Schreiben geöffnet werden: %s\n"
+
+#: ../authconfig.c:475
+#, c-format
+msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
+msgstr "%s: /etc/yp.conf- kann nicht zum Schreiben geöffnet werden: %s\n"
+
+#: ../authconfig.c:652
+#, c-format
+msgid "%s: error opening %s\n"
+msgstr "%s: Fehler beim Öffnen von %s\n"
+
+#: ../authconfig.c:686
+#, c-format
+msgid ""
+"Usage: %s [options]\n"
+"\n"
+"     --nostart            no not start/stop yp\n"
+"     --enablenis          enable nis by default\n"
+"     --nisdomain <domain> default NIS domain\n"
+"     --nisserver <server> default NIS server\n"
+"     --useshadow          use shadow passwords\n"
+"     --enablemd5          enable MD5 passwords\n"
+"     --kickstart          don't display user interface\n"
+"     --help               show this screen\n"
+msgstr ""
+"Verwendung: %s [Optionen]\n"
+"\n"
+"     --nostart            YP nicht starten/abbrechen\n"
+"     --enablenis          NIS standardmäßig aktivieren\n"
+"     --nisdomain <Domäne> NIS-Standarddomäne\n"
+"     --nisserver <Server> NIS-Standardserver\n"
+"     --useshadow          Shadow-Paßwörter verwenden\n"
+"     --enablemd5          MD5-Paßwörter aktivieren\n"
+"     --kickstart          Benutzerschnittstelle nicht anzeigen\n"
+"     --help               Diese Hilfe anzeigen\n"
+
+#: ../authconfig.c:740
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: ungültiges Argument %s: %s\n"
+
+#: ../authconfig.c:747
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: unerwartetes Argument\n"
+
+#: ../authconfig.c:759
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: kann nur als Root ausgeführt werden\n"
+
+#: ../authconfig.c:774
+#, c-format
+msgid "%s: critical error reading /etc/sysconfig/network"
+msgstr "%s: kritischer Fehler beim Lesen von /etc/sysconfig/network"
+
+#: ../authconfig.c:787
+#, c-format
+msgid "%s: critical error reading /etc/yp.conf"
+msgstr "%s: kritischer Fehler beim Lesen von /etc/yp.conf"
+
+#: ../authconfig.c:804
+#, c-format
+msgid "%s: critical error reading /etc/pam.d/passwd\n"
+msgstr "%s: kritischer Fehler beim Lesen von /etc/pam.d/passwd\n"
+
+#: ../authconfig.c:813
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt+Tab> Zwischen Elementen  |  <Leer> Auswählen |  <F12> Weiter "
+""
+
+#: ../authconfig.c:824
+#, c-format
+msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
+msgstr "%s: Für nisdomain wurde %s eingestellt, aber das Dialogfeld wurde abgebrochen\n"
+
+#: ../authconfig.c:837
+#, c-format
+msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
+msgstr "Ausgabewerte: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
+
+#: ../authconfig.c:845
+#, c-format
+msgid "%s: critical error writing /etc/sysconfig/network\n"
+msgstr "%s: kritischer Fehler beim Schreiben von /etc/sysconfig/network\n"
+
+#: ../authconfig.c:853
+#, c-format
+msgid "%s: critical error writing /etc/yp.conf\n"
+msgstr "%s: kritischer Fehler beim Schreiben von /etc/yp.conf\n"
+
+#: ../authconfig.c:861
+#, c-format
+msgid "%s: critical error turning on NIS service\n"
+msgstr "%s: kritischer Fehler beim Aktivieren des NIS-Dienstes\n"
+
+#: ../authconfig.c:868
+#, c-format
+msgid "%s: critical error with shadow password manipulation\n"
+msgstr "%s: kritischer Fehler beim Bearbeiten von Shadow-Paßwörtern\n"
+
