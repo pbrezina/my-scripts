@@ -43,6 +43,7 @@
 #define PATH_WINBIND_PID "/var/run/winbindd.pid"
 #define PATH_YPBIND "/sbin/ypbind"
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
+#define PATH_SEBOOL "/usr/sbin/setsebool"
 
 #ifdef PREFER_LIB64
 #define LIBDIR "/lib64"

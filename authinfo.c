@@ -4241,6 +4241,11 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 		if (stat(PATH_YPBIND, &st) == 0) {
 			system("/sbin/chkconfig --add ypbind");
 			system("/sbin/chkconfig --level 345 ypbind on");
+			if (access("PATH_SEBOOL", R_OK | X_OK) == 0) {
+				char seboolcmd[PATH_MAX];
+				snprintf(seboolcmd, sizeof(seboolcmd), "%s allow_ypbind 1", PATH_SEBOOL);
+				system(seboolcmd);
+			}
 			if (!nostart) {
 				if (stat(PATH_YPBIND_PID, &st) == 0) {
 					system("/sbin/service ypbind restart");
@@ -4258,6 +4263,11 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 				}
 			}
 			system("/sbin/chkconfig --level 345 ypbind off");
+			if (access("PATH_SEBOOL", R_OK | X_OK) == 0) {
+				char seboolcmd[PATH_MAX];
+				snprintf(seboolcmd, sizeof(seboolcmd), "%s allow_ypbind 0", PATH_SEBOOL);
+				system(seboolcmd);
+			}
 		}
 	}
 
