@@ -1,107 +1,106 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Norwegian translation of authconfig.
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Kjartan Maraas <kmaraas@online.no>, 1999.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: authconfig VERSION\n"
 "POT-Creation-Date: 1999-03-17 12:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 1999-03-23 13:42+0100\n"
+"Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
+"Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
 
 #: ../authconfig.c:36 ../authconfig.c:386
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr ""
+msgstr "%s: kan ikke åpne /etc/sysconfig/network: %s\n"
 
 #: ../authconfig.c:96 ../authconfig.c:468
 #, c-format
 msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr ""
+msgstr "%s: kan ikke åpne /etc/yp.conf: %s\n"
 
 #.
 #. * NIS stuff.
 #.
 #: ../authconfig.c:215
 msgid "NIS Server:"
-msgstr ""
+msgstr "NIS-tjener:"
 
 #: ../authconfig.c:216
 msgid "Request via broadcast"
-msgstr ""
+msgstr "Forespørsel via kringkasting"
 
 #: ../authconfig.c:233
 msgid "Enable NIS"
-msgstr ""
+msgstr "Slå på NIS"
 
 #: ../authconfig.c:235
 msgid "NIS Domain:"
-msgstr ""
+msgstr "NIS-domene:"
 
 #. Shadow Stuff
 #: ../authconfig.c:271
 msgid "Use Shadow Passwords"
-msgstr ""
+msgstr "Bruk skyggepassord"
 
 #: ../authconfig.c:273
 msgid "Enable MD5 Passwords"
-msgstr ""
+msgstr "Slå på MD5-passord"
 
 #: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../authconfig.c:281
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 #: ../authconfig.c:281
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: ../authconfig.c:298
 msgid "(NIS not installed)"
-msgstr ""
+msgstr "(NIS ikke installert)"
 
 #: ../authconfig.c:312
 msgid "or use:"
-msgstr ""
+msgstr "eller bruk:"
 
 #: ../authconfig.c:334
 msgid "Authentication Configuration"
-msgstr ""
+msgstr "Autentiseringskonfigurasjon"
 
 #: ../authconfig.c:347 ../authconfig.c:354
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #: ../authconfig.c:348
 msgid "You must enter a NIS server or request via broadcast."
-msgstr ""
+msgstr "Du må skrive inn en NIS-tjener eller kringkaste en forespørsel."
 
 #: ../authconfig.c:355
 msgid "You must enter a NIS domain."
-msgstr ""
+msgstr "Du må skrive inn et NIS-domene."
 
 #: ../authconfig.c:393
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr ""
+msgstr "%s: kan ikke åpne /etc/sysconfig/network for skriving: %s\n"
 
 #: ../authconfig.c:475
 #, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr ""
+msgstr "%s: kan ikke åpne /etc/yp.conf for skriving: %s\n"
 
 #: ../authconfig.c:652
 #, c-format
 msgid "%s: error opening %s\n"
-msgstr ""
+msgstr "%s: feil under åpning av %s\n"
 
 #: ../authconfig.c:686
 #, c-format
@@ -117,69 +116,80 @@ msgid ""
 "     --kickstart          don't display user interface\n"
 "     --help               show this screen\n"
 msgstr ""
+"Bruk: %s [flagg]\n"
+"     --nostart               ikke start/stopp yp\n"
+"     --enablenis             slå på nis som standard\n"
+"     --nisdomain <nisdomene> standard NIS-domene\n"
+"     --nisserver <tjener>    standard NIS-tjener\n"
+"     --useshadow             bruk skyggepassord\n"
+"     --enablemd5             slå på MD5-passord\n"
+"     --kickstart             ikke vis brukergrensesnitt\n"
+"     --help                  vis denne teksten\n"
 
 #: ../authconfig.c:740
 #, c-format
 msgid "%s: bad argument %s: %s\n"
-msgstr ""
+msgstr "%s: dårlig argument %s: %s\n"
 
 #: ../authconfig.c:747
 #, c-format
 msgid "%s: unexpected argument\n"
-msgstr ""
+msgstr "%s: uventet argument\n"
 
 #: ../authconfig.c:759
 #, c-format
 msgid "%s: can only be run as root\n"
-msgstr ""
+msgstr "%s: kan bare kjøres av root\n"
 
 #: ../authconfig.c:774
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr ""
+msgstr "%s: kritisk feil under lesing av /etc/sysconfig/network"
 
 #: ../authconfig.c:787
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
-msgstr ""
+msgstr "%s: kritisk feil under lesing av /etc/yp.conf"
 
 #: ../authconfig.c:804
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
-msgstr ""
+msgstr "%s: kritisk feil under lesing av /etc/pam.d/passwd\n"
 
 #: ../authconfig.c:813
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
+" <Tab>/<Alt-Tab> mellom elementer   |   <Mellomrom> velger |  <F12> neste "
+"skjerm"
 
 #: ../authconfig.c:824
 #, c-format
 msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr ""
+msgstr "%s: nis-domenet ble satt til %s, men dialogen ble avbrutt\n"
 
 #: ../authconfig.c:837
 #, c-format
 msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-msgstr ""
+msgstr "returnerte verdier: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
 
 #: ../authconfig.c:845
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr ""
+msgstr "%s: kritisk feil under skriving til /etc/sysconfig/network\n"
 
 #: ../authconfig.c:853
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr ""
+msgstr "%s: kritisk feil under skriving til /etc/yp.conf\n"
 
 #: ../authconfig.c:861
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
-msgstr ""
+msgstr "%s: kritisk feil når NIS-tjenesten ble slått på\n"
 
 #: ../authconfig.c:868
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
-msgstr ""
+msgstr "%s: kritisk feil ved manipulasjon av skyggepassord\n"
