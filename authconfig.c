@@ -1034,6 +1034,27 @@ int rewriteNsswitchFile(int authType, struct authInfoType *authInfo)
 
 	fprintf(f1, "passwd:     %s%s\n",(authType == AUTH_LDAP ?
 					  "ldap " : ""), s);
+      } else if (!strncmp("shadow:", s, 6)) {
+	s += 7;
+	// skip over intermediate whitespace
+	while (*s && isspace(*s))
+	  s++;
+	/* replace newline with \0. */
+	p = strchr(s, '\n');
+	if (p != 0)
+	  *p = '\0';
+
+	p = strstr(s, "ldap");
+	if (p != 0) {
+	  p2 = p + 5; /* skip over ldap text and a space */
+	  if (*p2 == '\0')
+	    *p = '\0';
+	  else
+	    memmove(p, p2, strlen(p2) + 1); /* include \0 */
+	}
+
+	fprintf(f1, "shadow:     %s%s\n",(authType == AUTH_LDAP ?
+					  "ldap " : ""), s);
       } else if (!strncmp("group:", s, 6)) {
 	s += 6;
 	// skip over intermediate whitespace
