@@ -1434,6 +1434,10 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	struct flock lock;
 	struct stat st;
 
+	id((info->kerberosRealm == NULL) || (strlen(info->kerberosRealm) == 0)) {
+		return FALSE;
+	}
+
 	fd = open(SYSCONFDIR "/krb.conf", O_RDWR | O_CREAT, 0644);
 	if(fd == -1) {
 		return FALSE;
