@@ -203,6 +203,17 @@ gboolean authInfoReadLDAP(struct authInfoType *info)
 			continue;
 		}
 
+		/* Is it a "ssl" statement? */
+		if(strncmp("ssl", p, 3) == 0) {
+			/* Skip intervening whitespace. */
+			for(p += 3; (isspace(*p) && (*p != '\0')); p++);
+
+			info->enableLDAPS = (strncmp(p, "yes", 3) == 0);
+
+			memset(buf, '\0', sizeof(buf));
+			continue;
+		}
+
 		memset(buf, '\0', sizeof(buf));
 	}
 
@@ -775,13 +786,14 @@ gboolean authInfoWriteNIS(struct authInfoType *info)
 
 /* Write LDAP setup to /etc/ldap.conf. */
 gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
-			    const char *host, const char *base)
+			    const char *host, const char *base,
+			    gboolean writessl)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
 	struct stat st;
 	struct flock lock;
-	gboolean wrotebasedn = FALSE, wroteserver = FALSE;
+	gboolean wrotebasedn = FALSE, wroteserver = FALSE, wrotessl = FALSE;
 
 	fd = open(filename, O_RDWR | O_CREAT, 0644);
 	if(fd == -1) {
@@ -814,7 +826,7 @@ gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		for(q = p; (*q != '\0') && (*q != '\n'); q++);
 		if(*q != '\0') q++;
 
-		/* If it's a 'HOST' line, insert ours instead. */
+		/* If it's a 'host' line, insert ours instead. */
 		if(strncmp(host, p, 4) == 0) {
 			if(!wroteserver)
 			if(non_empty(info->ldapServer)) {
@@ -835,6 +847,17 @@ gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 				strcat(obuf, info->ldapBaseDN);
 				strcat(obuf, "\n");
 				wrotebasedn = TRUE;
+			}
+		} else
+
+		/* If it's an 'ssl' line, insert ours instead. */
+		if(writessl && (strncmp("ssl", p, 3)) == 0) {
+			if(!wrotessl) {
+				strcat(obuf, "ssl");
+				strcat(obuf, " ");
+				strcat(obuf, info->enableLDAPS ? "yes" : "no");
+				strcat(obuf, "\n");
+				wrotessl = TRUE;
 			}
 		} else
 
@@ -860,6 +883,12 @@ gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 			strcat(obuf, "\n");
 		}
 	}
+	if(writessl && !wrotessl) {
+		strcat(obuf, "ssl");
+		strcat(obuf, " ");
+		strcat(obuf, info->enableLDAPS ? "yes" : "no");
+		strcat(obuf, "\n");
+	}
 
 	/* Write it out and close it. */
 	ftruncate(fd, 0);
@@ -878,12 +907,12 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 	gboolean ret = TRUE;
 	if(ret) {
 		ret = authInfoWriteLDAP2(info, SYSCONFDIR "/ldap.conf",
-					 "host", "base");
+					 "host", "base", TRUE);
 	}
 	if(ret) {
 		/* Ignore errors here. */
 		authInfoWriteLDAP2(info, SYSCONFDIR "/openldap/ldap.conf",
-				   "HOST", "BASE");
+				   "HOST", "BASE", FALSE);
 	}
 	return ret;
 }

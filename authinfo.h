@@ -52,6 +52,7 @@ struct authInfoType {
 	gboolean enableDB;
 	gboolean enableHesiod;
 	gboolean enableLDAP;
+	gboolean enableLDAPS;
 	gboolean enableNIS;
 	gboolean enableNIS3;
 

@@ -40,6 +40,7 @@ struct hesiod_cb {
 struct ldap_cb {
 	char nss_ldap;
 	char pam_ldap;
+	char ssl;
 	newtComponent serverLabel, baseDnLabel;
        	newtComponent serverEntry, baseDnEntry;
 };
@@ -197,7 +198,7 @@ void ldapToggle(newtComponent cb, void *data)
   struct ldap_cb *ldap = (struct ldap_cb*) data;
   newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
   newtLabelSetText(ldap->baseDnLabel, i18n(" Base DN:"));
-  if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*')) {
+  if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*') || (ldap->ssl == '*')) {
     if(ldap->nss_ldap == '*') {
       checkWarn(PATH_LIBNSS_LDAP, "LDAP", "nss_ldap");
     } else {
@@ -245,7 +246,7 @@ int getNSSChoices(int back,
 	          gboolean nisAvail, gboolean ldapAvail,
 		  gboolean kerberosAvail, struct authInfoType *authInfo)
 {
-  newtComponent form, ok, cancel, comp, cb;
+  newtComponent form, ok, cancel, comp, cb, cbs;
   newtGrid mainGrid, mechGrid, buttonGrid;
   int rc = 0;
 
@@ -257,7 +258,7 @@ int getNSSChoices(int back,
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *nisServer = NULL, *nisDomain = NULL;
 
-  mechGrid = newtCreateGrid(3, 6);
+  mechGrid = newtCreateGrid(3, 7);
 
   /* NSS modules: NIS. */
   cb = newtCheckbox(-1, -1, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
@@ -293,6 +294,11 @@ int getNSSChoices(int back,
 		    authInfo->enableLDAP ? '*' : ' ', NULL, &ldap.nss_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
+  ldap.ssl = authInfo->enableLDAPS ? '*' : ' ';
+  cbs = newtCheckbox(-1, -1, i18n("Use TLS"),
+		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.ssl);
+  newtComponentAddCallback(cb, ldapToggle, &ldap);
+
   ldap.serverLabel = newtLabel(-1, -1, "");
   ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 35, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
@@ -304,15 +310,21 @@ int getNSSChoices(int back,
 
   newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, ldap.serverLabel,
-		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.serverEntry,
-		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, cbs,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.serverLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.serverEntry,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
+  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* NSS modules: LDAP. */
@@ -331,17 +343,17 @@ int getNSSChoices(int back,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
 
-  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
+  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, hesiod.lhsLabel,
+  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, hesiod.lhsLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, hesiod.lhsEntry,
+  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, hesiod.lhsEntry,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, hesiod.rhsLabel,
+  newtGridSetField(mechGrid, 0, 6, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 6, NEWT_GRID_COMPONENT, hesiod.rhsLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, hesiod.rhsEntry,
+  newtGridSetField(mechGrid, 2, 6, NEWT_GRID_COMPONENT, hesiod.rhsEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* Create the buttons. */
@@ -377,6 +389,7 @@ int getNSSChoices(int back,
     setString(&authInfo->hesiodRHS, hesiodRHS);
 
     authInfo->enableLDAP = (ldap.nss_ldap == '*');
+    authInfo->enableLDAPS = (ldap.ssl == '*');
     setString(&authInfo->ldapServer, ldapServer);
     setString(&authInfo->ldapBaseDN, ldapBaseDN);
 
@@ -399,7 +412,7 @@ int getPAMChoices(int back,
 	          gboolean nisAvail, gboolean ldapAvail,
 		  gboolean kerberosAvail, struct authInfoType *authInfo)
 {
-  newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
+  newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb, cbs;
   newtGrid mainGrid, mechGrid, buttonGrid;
   int rc = 0;
 
@@ -409,16 +422,18 @@ int getPAMChoices(int back,
   char shadow = 0, md5 = 0;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
+  int height = 8;
 
 #ifdef LOCAL_POLICIES
   char local = ' ';
+  height++;
 #endif
 
   /* Create the window and a form to put into it. */
   mainGrid = newtCreateGrid(1, 2);
 
   /* PAM setup. */
-  mechGrid = newtCreateGrid(3, 8);
+  mechGrid = newtCreateGrid(3, height);
   cb = newtCheckbox(-1, -1, i18n("Use Shadow Passwords"),
 		    authInfo->enableShadow ? '*' : ' ', NULL, &shadow);
   newtGridSetField(mechGrid, 0, 0, NEWT_GRID_COMPONENT, cb,
@@ -434,6 +449,11 @@ int getPAMChoices(int back,
 		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
+  ldap.ssl = authInfo->enableLDAPS ? '*' : ' ';
+  cbs = newtCheckbox(-1, -1, i18n("Use TLS"),
+		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.ssl);
+  newtComponentAddCallback(cb, ldapToggle, &ldap);
+
   ldap.serverLabel = newtLabel(-1, -1, "");
   ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 30, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
@@ -445,15 +465,21 @@ int getPAMChoices(int back,
 
   newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, ldap.serverLabel,
-		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.serverEntry,
-		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, cbs,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.serverLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.serverEntry,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
+  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   cb = newtCheckbox(-1, -1, i18n("Use Kerberos 5"),
@@ -475,29 +501,29 @@ int getPAMChoices(int back,
 		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
 
-  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
+  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, krb5.realmLabel,
+  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, krb5.realmLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, krb5.realmEntry,
-		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, krb5.kdcLabel,
-		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, krb5.kdcEntry,
+  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, krb5.realmEntry,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtGridSetField(mechGrid, 0, 6, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 6, NEWT_GRID_COMPONENT, krb5.kdcLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 6, NEWT_GRID_COMPONENT, krb5.kdcEntry,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 7, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 6, NEWT_GRID_COMPONENT, krb5.kadminLabel,
+  newtGridSetField(mechGrid, 1, 7, NEWT_GRID_COMPONENT, krb5.kadminLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 6, NEWT_GRID_COMPONENT, krb5.kadminEntry,
+  newtGridSetField(mechGrid, 2, 7, NEWT_GRID_COMPONENT, krb5.kadminEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
 #ifdef LOCAL_POLICIES
   cb = newtCheckbox(1,  12, LOCAL_POLICY_COMMENT,
 		    authInfo->enableLocal ? '*' : ' ', NULL, &local);
-  newtGridSetField(mechGrid, 0, 7, NEWT_GRID_COMPONENT, cb,
+  newtGridSetField(mechGrid, 0, 8, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 #endif
 
@@ -544,6 +570,7 @@ int getPAMChoices(int back,
     authInfo->enableShadow = (shadow == '*');
 
     authInfo->enableLDAPAuth = (ldap.pam_ldap == '*');
+    authInfo->enableLDAPS = (ldap.ssl == '*');
     setString(&authInfo->ldapServer, ldapServer);
     setString(&authInfo->ldapBaseDN, ldapBaseDN);
     authInfo->enableKerberos = (krb5.pam_krb5 == '*');
@@ -627,6 +654,8 @@ void usage(void) {
    
 			    "     --enableldap               enable ldap for user information by default\n"
 			    "     --disableldap              disable ldap for user information by default\n"
+			    "     --enableldapssl            enable use of TLS with ldap\n"
+			    "     --disableldapssl           disable use of TLS with ldap\n"
 			    "     --enableldapauth           enable ldap for authentication by default\n"
 			    "     --disableldapauth          disable ldap for authentication by default\n"
 			    "     --ldapserver <server>      default LDAP server\n"
@@ -683,7 +712,8 @@ int main(int argc, const char **argv)
   int enableHesiod = 0, disableHesiod = 0;
   char *hesiodLHS = NULL, *hesiodRHS = NULL;
 
-  int enableLDAP = 0, disableLDAP = 0, enableLDAPAuth = 0, disableLDAPAuth = 0;
+  int enableLDAP = 0, enableLDAPS = 0, disableLDAP = 0, disableLDAPS = 0,
+      enableLDAPAuth = 0, disableLDAPAuth = 0;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
 
   int enableNIS = 0, disableNIS = 0;
@@ -720,6 +750,8 @@ int main(int argc, const char **argv)
 
     { "enableldap", '\0', POPT_ARG_NONE, &enableLDAP, 0, NULL, NULL},
     { "disableldap", '\0', POPT_ARG_NONE, &disableLDAP, 0, NULL, NULL},
+    { "enableldapssl", '\0', POPT_ARG_NONE, &enableLDAPS, 0, NULL, NULL},
+    { "disableldapssl", '\0', POPT_ARG_NONE, &disableLDAPS, 0, NULL, NULL},
     { "enableldapauth", '\0', POPT_ARG_NONE, &enableLDAPAuth, 0, NULL, NULL},
     { "disableldapauth", '\0', POPT_ARG_NONE, &disableLDAPAuth, 0, NULL, NULL},
     { "ldapserver", '\0', POPT_ARG_STRING, &ldapServer, 0, NULL, NULL},
@@ -861,6 +893,7 @@ int main(int argc, const char **argv)
   overrideString(&authInfo->hesiodRHS, hesiodRHS);
 
   overrideBoolean(&authInfo->enableLDAP, enableLDAP, disableLDAP);
+  overrideBoolean(&authInfo->enableLDAPS, enableLDAPS, disableLDAPS);
   overrideBoolean(&authInfo->enableLDAPAuth, enableLDAPAuth, disableLDAPAuth);
   overrideString(&authInfo->ldapServer, ldapServer);
   overrideString(&authInfo->ldapBaseDN, ldapBaseDN);
@@ -906,6 +939,8 @@ int main(int argc, const char **argv)
 	   authInfo->hesiodRHS ? authInfo->hesiodRHS : "");
     printf("nss_ldap is %s\n",
 	   authInfo->enableLDAP ? "enabled" : "disabled");
+    printf(" LDAP+TLS is %s\n",
+	   authInfo->enableLDAPS ? "enabled" : "disabled");
     printf(" LDAP server = \"%s\"\n",
 	   authInfo->ldapServer ? authInfo->ldapServer : "");
     printf(" LDAP base DN = \"%s\"\n",
@@ -935,6 +970,8 @@ int main(int argc, const char **argv)
 	   authInfo->kerberosAdminServer ? authInfo->kerberosAdminServer : "");
     printf("pam_ldap is %s\n",
 	   authInfo->enableLDAPAuth ? "enabled" : "disabled");
+    printf(" LDAP+TLS is %s\n",
+	   authInfo->enableLDAPS ? "enabled" : "disabled");
     printf(" LDAP server = \"%s\"\n",
 	   authInfo->ldapServer ? authInfo->ldapServer : "");
     printf(" LDAP base DN = \"%s\"\n",

@@ -1,7 +1,7 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "Wed 4 October 2000" "Red Hat, Inc."
+.TH AUTHCONFIG 8 "Thu 7 December 2000" "Red Hat, Inc."
 .UC 4
 .SH NAME
 authconfig \- an interface for configuring system authorization resources
@@ -11,7 +11,7 @@ authconfig \- an interface for configuring system authorization resources
 [--disablenis]
 [--enableshadow] [--disableshadow]
 [--enablemd5] ] [--disablemd5] ]
-[--enableldap [--enableldapauth]
+[--enableldap [--enableldapauth] [--enableldapssl]
 [--ldapserver <ldapserver>] [--ldapbasedn <basedn>] ]
 [--disableldap] [--disableldapauth]
 [--enablekrb5 [ --krb5realm <realm> ] [--krb5kdc <hostname[,hostname,...]>]
@@ -57,8 +57,7 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .TP
 .FN /etc/sysconfig/auth
 Used to track whether or not particular authentication mechanisms are enabled.
-Currently includes variables named USESHADOW, USEMD5, USELDAPAUTH, and
-USEKERBEROS.
+Currently includes variables named USEMD5, USELDAPAUTH, and USEKERBEROS.
 .TP
 .FN /etc/passwd, /etc/shadow
 Used for shadow password support.

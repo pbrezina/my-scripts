@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.20
+Version: 4.0.21
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Thu Dec  7 2000 Nalin Dahyabhai <nalin@redhat.com>
+- add support for toggling TLS on and off in /etc/ldap.conf
+
 * Wed Nov 29 2000 Nalin Dahyabhai <nalin@redhat.com>
 - don't bother with USESHADOW; testing for /etc/shadow is sufficient
 - use newtGrids to make NLS text fit (mostly)
