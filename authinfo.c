@@ -820,8 +820,9 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 					 "host", "base");
 	}
 	if(ret) {
-		ret = authInfoWriteLDAP2(info, SYSCONFDIR "/openldap/ldap.conf",
-					 "HOST", "BASE");
+		/* Ignore errors here. */
+		authInfoWriteLDAP2(info, SYSCONFDIR "/openldap/ldap.conf",
+				   "HOST", "BASE");
 	}
 	return ret;
 }
