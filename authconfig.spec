@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.17
+Version: 4.0.18
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,9 +34,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Wed Oct  4 2000 Nalin Dahyabhai <nalin@redhat.com>
+- use whether or not /etc/shadow exists to determine is shadow is enabled
+
 * Tue Aug 29 2000 Nalin Dahyabhai <nalin@redhat.com>
 - don't set "shadow" or "md5" for authentication with pam_unix, they're
   not needed (remove for clarity)
+- add an authInfoCopy() routine to authinfo.c
 
 * Mon Aug 28 2000 Nalin Dahyabhai <nalin@redhat.com>
 - edit /etc/openldap/ldap.conf in addition to /etc/ldap.conf

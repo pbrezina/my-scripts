@@ -416,6 +416,7 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 	char flags[PATH_MAX];
 	char *p, *q, *stack;
 	FILE *fp;
+	struct stat st;
 
 	fp = fopen(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, "r");
 	if(fp == NULL) {
@@ -472,7 +473,7 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 				authInfo->enableMD5 =
 					(strstr(p, "md5") != NULL);
 				authInfo->enableShadow =
-					(strstr(p, "shadow") != NULL);
+					stat("/etc/shadow", &st) == 0;
 				authInfo->enableBigCrypt =
 					(strstr(p, "bigcrypt") != NULL);
 			}
