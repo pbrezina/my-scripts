@@ -38,17 +38,6 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
-touch $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/authconfig
-mkdir -p $RPM_BUILD_ROOT/usr/bin
-ln -s consolehelper $RPM_BUILD_ROOT/usr/bin/authconfig
-ln -s consolehelper $RPM_BUILD_ROOT/usr/bin/authconfig-gtk
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pam.d
-install -m644 authconfig.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/authconfig
-install -m644 authconfig.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/authconfig-gtk
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps
-install -m644 authconfig.console     $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/authconfig
-install -m644 authconfig-gtk.console $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %find_lang %{name}
 
