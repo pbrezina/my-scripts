@@ -15,6 +15,8 @@ sbin_PROGRAMS = authconfig
 pkgdata_SCRIPTS = authconfig-gtk.py
 pkgdata_DATA = authconfig.glade
 pythonsite_PROGRAMS = authconfigmodule.so
+pixmapdir = $(datadir)/pixmaps
+pixmap_DATA = user_auth.png
 
 install-exec-local:
 	mkdir -p $(DESTDIR)/$(bindir)
@@ -35,8 +37,8 @@ install-data-local: authconfig.desktop
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/authconfig-gtk
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/redhat-config-auth
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
-	$(INSTALL_DATA) $(srcdir)/authconfig.desktop $(DESTDIR)/$(applnkdir)/authconfig.desktop
-	$(INSTALL_DATA) $(srcdir)/authconfig.desktop $(DESTDIR)/$(startheredir)/authconfig.desktop
+	mkdir -p $(DESTDIR)/$(datadir)/applications
+	desktop-file-install --vendor redhat --add-category='X-Red-Hat-Base;Application;System' authconfig.desktop --dir=$(DESTDIR)$(datadir)/applications
 
 uninstall-local:
 	$(RM) $(DESTDIR)/$(bindir)/authconfig
@@ -49,8 +51,6 @@ uninstall-local:
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig-gtk
 	$(RM) $(DESTDIR)/$(consoledir)/redhat-config-auth
 	$(RM) $(DESTDIR)/$(sysconfigdir)/authconfig
-	$(RM) $(DESTDIR)/$(applnkdir)/authconfig.desktop
-	$(RM) $(DESTDIR)/$(startheredir)/authconfig.desktop
 	$(RM) $(DESTDIR)$(pkgdatadir)/*.pyc
 	rmdir $(DESTDIR)/$(applnkdir)
 	rmdir $(DESTDIR)/$(startheredir)
@@ -59,7 +59,6 @@ uninstall-local:
 	rmdir $(DESTDIR)/$(consoledir)
 	rmdir $(DESTDIR)/$(sysconfigdir)
 
-ACLOCAL_AMFLAGS = -I m4
 CFLAGS = @GLIB_CFLAGS@ @CFLAGS@ @PYTHON_CFLAGS@
 
 authconfig_SOURCES = \
@@ -83,7 +82,7 @@ authconfigmodule_so_SOURCES = \
 	shvar.h
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in
+EXTRA_DIST = authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png
 
 CVSTAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}\n' | head -1 | sed 's,\.,-,g')
 tag:

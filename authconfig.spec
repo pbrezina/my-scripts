@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.2.9
-Release: 2
+Version: 4.2.10
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -10,6 +10,7 @@ Source: %{name}-%{version}.tar.gz
 Requires: glibc >= 2.1, pam >= 0.73, glib2
 Conflicts: pam_krb5 < 1.49
 BuildPrereq: pam-devel >= 0.73, newt-devel, glib2-devel, python, python-devel
+BuildPrereq: desktop-file-utils
 
 %description 
 Authconfig is a terminal mode program which can configure a workstation
@@ -63,9 +64,13 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/X11/applnk/System
 %config(noreplace) %{_sysconfdir}/X11/sysconfig
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
-%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
+%{_datadir}/applications/*
 
 %changelog
+* Tue Jul 23 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.10-1
+- use desktop-file-install (#69376)
+- include an icon for the menu item (#68577)
+
 * Wed Jul 17 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.9-2
 - own the pkgdatadir
 - pull in translation updates
