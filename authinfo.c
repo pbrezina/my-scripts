@@ -846,25 +846,20 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				continue;
 			}
 #endif
-		}
-
-		for (p = q; isspace(*p) && (*p != '\0'); p++);
-		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* flags */
-		if (q - p < sizeof(module)) {
 			if (strncmp(stack, "auth", 4) == 0)
-			if (strstr(module, "pam_unix") ||
-			   strstr(module, "pam_pwdb")) {
-				authInfo->enableMD5 =
-					(strstr(p, "md5") != NULL);
-				authInfo->enableShadow =
+			    if (strstr(module, "pam_unix") ||
+				strstr(module, "pam_pwdb")) {
+				    authInfo->enableMD5 =
+					(strstr(args, "md5") != NULL);
+				    authInfo->enableShadow =
 					stat("/etc/shadow", &st) == 0;
-				authInfo->enableBigCrypt =
-					(strstr(p, "bigcrypt") != NULL);
-			}
+				    authInfo->enableBigCrypt =
+					(strstr(args, "bigcrypt") != NULL);
+			    }
 			if (strncmp(stack, "account", 7) == 0)
-			if (strstr(module, "pam_unix")) {
-				authInfo->brokenShadow =
-					(strstr(p, "broken_shadow") != NULL);
+			    if (strstr(module, "pam_unix")) {
+				    authInfo->brokenShadow =
+					(strstr(args, "broken_shadow") != NULL);
 			}
 		}
 	}
@@ -1129,7 +1124,13 @@ authInfoReadPAM(struct authInfoType *authInfo)
 	if (!authInfo->enableCracklib && !authInfo->enablePasswdQC) {
 		authInfo->enableCracklib = TRUE;
 	}
-
+	
+	/* Special handling for broken_shadow option */
+	if (authInfo->brokenShadow && !authInfo->enableLDAPAuth &&
+	    !authInfo->enableKerberos && !authInfo->enableWinbindAuth) {
+		authInfo->forceBrokenShadow = TRUE;
+	}
+	    	
 	return TRUE;
 }
 
@@ -1244,6 +1245,7 @@ authInfoDiffers(struct authInfoType *a, struct authInfoType *b)
 		(a->enableLocal != b->enableLocal) ||
 #endif
 		(a->brokenShadow != b->brokenShadow) ||
+		(a->forceBrokenShadow != b->forceBrokenShadow) ||
 
 		string_differs(a->joinUser, b->joinUser, TRUE) ||
 		string_differs(a->joinPassword, b->joinPassword, TRUE);
@@ -3780,7 +3782,8 @@ fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 					}
 				}
 				if ((strcmp(stack, "account") == 0)) {
-					if (info->brokenShadow) {
+					if (info->forceBrokenShadow || info->enableLDAPAuth ||
+					    info->enableKerberos || info->enableWinbindAuth) {
 						strncat(buf, " broken_shadow",
 						sizeof(buf) - 1 - strlen(buf));
 					}
@@ -4241,9 +4244,9 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 		if (stat(PATH_YPBIND, &st) == 0) {
 			system("/sbin/chkconfig --add ypbind");
 			system("/sbin/chkconfig --level 345 ypbind on");
-			if (access("PATH_SEBOOL", R_OK | X_OK) == 0) {
+			if (access(PATH_SEBOOL, R_OK | X_OK) != -1) {
 				char seboolcmd[PATH_MAX];
-				snprintf(seboolcmd, sizeof(seboolcmd), "%s allow_ypbind 1", PATH_SEBOOL);
+				snprintf(seboolcmd, sizeof(seboolcmd), "%s -P allow_ypbind 1", PATH_SEBOOL);
 				system(seboolcmd);
 			}
 			if (!nostart) {
@@ -4263,9 +4266,9 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 				}
 			}
 			system("/sbin/chkconfig --level 345 ypbind off");
-			if (access("PATH_SEBOOL", R_OK | X_OK) == 0) {
+			if (access(PATH_SEBOOL, R_OK | X_OK) != -1) {
 				char seboolcmd[PATH_MAX];
-				snprintf(seboolcmd, sizeof(seboolcmd), "%s allow_ypbind 0", PATH_SEBOOL);
+				snprintf(seboolcmd, sizeof(seboolcmd), "%s -P allow_ypbind 0", PATH_SEBOOL);
 				system(seboolcmd);
 			}
 		}

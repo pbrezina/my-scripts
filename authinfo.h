@@ -149,6 +149,7 @@ struct authInfoType {
 	gboolean enableLocal;
 #endif
 	gboolean brokenShadow;
+	gboolean forceBrokenShadow;
 
 	/* Not really options. */
 	char *joinUser, *joinPassword;

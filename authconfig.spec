@@ -1,15 +1,18 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.6.4
-Release: 6
+Version: 4.6.6
+# Don't change release in elvis CVS, up version after merging all patches
+# from dist CVS instead.
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
-Source: %{name}-%{version}-%{release}.tar.bz2
-Requires: glibc >= 2.1, pam >= 0.73, glib2, pam >= 0.75-43
+Source: %{name}-%{version}.tar.bz2
+Requires: glibc >= 2.1, glib2, pam >= 0.77-56, nscd
+Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]")
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
-BuildPrereq: pam-devel >= 0.73, newt-devel, glib2-devel, python, python-devel
+BuildPrereq: pam-devel >= 0.77, newt-devel, glib2-devel, python, python-devel
 BuildPrereq: desktop-file-utils, intltool, gettext, perl-XML-Parser
 
 %description 
@@ -21,7 +24,7 @@ authentication schemes.
 %package gtk
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}, pygtk2-libglade, pam >= 0.75-37, rhpl
+Requires: %{name} = %{version}-%{release}, pygtk2-libglade, rhpl
 # It occurs that while text-mode authconfig warns about needed files not being
 # there, it's much simpler to just have the GUI require anything it might want
 # to use.
@@ -35,7 +38,7 @@ a system to be a client for certain networked user information and
 authentication schemes.
 
 %prep
-%setup -q -n %{name}-%{version}-%{release}
+%setup -q -n %{name}-%{version}
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -fPIC"; export CFLAGS
@@ -78,8 +81,38 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Thu Oct 28 2004 Dan Walsh <dwalsh@redhat.com> 4.6.4-6
-- Add support for setsebool when turning on and off NIS
+* Thu Nov 18 2004 Tomas Mraz <tmraz@redhat.com> - 4.6.6-1
+- merged patches from dist
+- fix versioning
+
+* Mon Nov  8 2004 Jeremy Katz <katzj@redhat.com> - 4.6.5-6
+- rebuild against python 2.4
+
+* Thu Oct 28 2004 Dan Walsh <dwalsh@redhat.com>
+- Fix setsebool patch to turn off boolean
+
+* Thu Oct 28 2004 Dan Walsh <dwalsh@redhat.com>
+- Add setsebool for NIS
+
+* Fri Oct 15 2004 Tomas Mraz <tmraz@redhat.com>
+- force broken_shadow option on network auth (#136760)
+
+* Fri Oct 15 2004 Tomas Mraz <tmraz@redhat.com>
+- force restart of autofs on firstboot call when using NIS (#133035, #124498)
+
+* Thu Oct 07 2004 Tomas Mraz <tmraz@redhat.com>
+- require python to install (#134654)
+
+* Mon Oct 04 2004 Jindrich Novy <jnovy@redhat.com> 4.6.5-1
+- updated translations from upstream
+- autogeneration of build stripts in prep phase
+
+* Fri Sep 30 2004 Jindrich Novy <jnovy@redhat.com>
+- fixed man page
+- added dependency on nscd
+
+* Wed Sep 29 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-6
+- regenerated build scripts
 
 * Wed Sep 29 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-5
 - fixed all po files to translate correctly messages with modified accelerators (#133742)

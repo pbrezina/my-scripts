@@ -88,9 +88,8 @@ EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.cons
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update authconfig.desktop
 
 VERSION=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{version}\n' | head -n1)
-RELEASE=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{release}\n' | head -n1)
-TAG=$(shell echo r-$(VERSION)-$(RELEASE) | sed 's,\.,-,g')
-distdir=$(PACKAGE)-$(VERSION)-$(RELEASE)
+TAG=$(shell echo r-$(VERSION) | sed 's,\.,-,g')
+distdir=$(PACKAGE)-$(VERSION)
 
 tag:
 	cvs tag -cR $(TAG)
@@ -99,7 +98,7 @@ force-tag forcetag:
 	cvs tag -cFR $(TAG)
 
 archive:
-	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION)-$(RELEASE).tar.gz
+	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.gz
 	dir=`pwd` ; \
 	root=`cat CVS/Root` ; \
 	cd /tmp ; \

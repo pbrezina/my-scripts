@@ -3,7 +3,6 @@ import authconfig, gettext, os, signal, sys
 from rhpl.translate import _, textdomain
 
 firstbootservices = [
-	"autofs",
 	"dovecot",
 	"messagebus",
 	"postfix",
@@ -340,6 +339,12 @@ class childWindow:
 			for service in firstbootservices:
 				if os.access("/etc/init.d/" + service, os.X_OK):
 					os.system("/etc/init.d/" + service + " condrestart")
+			if os.access("/etc/init.d/autofs", os.X_OK):
+    				if self.info.enableNIS:
+					cond = ""
+				else:
+    					cond = "cond"
+				os.system("/etc/init.d/autofs " + cond + "restart")
 		return
 
 # Fake the firstboot setup.
