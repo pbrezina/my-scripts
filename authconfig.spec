@@ -1,9 +1,9 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-%define version 2.0
+%define version 3.0
 Version: %{version}
-Release: 2
-Copyright: GPL
+Release: 1
+License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: /var/tmp/%{name}-root
@@ -33,8 +33,11 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Jan 11 2000 Preston Brown <pbrown@redhat.com>
+- support for LDAP authentication added.
+
 * Tue Sep 21 1999 Matt Wilson <msw@redhat.com>
-- udpated man page
+- updated man page
 
 * Mon Sep 20 1999 Matt Wilson <msw@redhat.com>
 - set up shadowed /etc/group

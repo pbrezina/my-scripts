@@ -2,7 +2,7 @@ VERSION=$(shell awk '/define version/ { print $$3 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PROGNAME = authconfig
 
-CFLAGS += -Wall -DVERSION=\"$(VERSION)\" -O2 -g
+CFLAGS += -Wall -DVERSION=\"$(VERSION)\" -g
 
 LOADLIBES = -lnewt -lpopt
 SUBDIRS = po man
