@@ -1,107 +1,109 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ahmet Takcý <ahmet@cs.kou.edu.tr>, 1999.
+# Görkem Çetin <gorkem@gelecek.com.tr>, 1999.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 1999-04-01 16:48-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 1999-04-09 00:50+0200\n"
+"Last-Translator: Ahmet Takcý <ahmet@cs.kou.edu.tr>\n"
+"Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=iso8859-9\n"
 "Content-Transfer-Encoding: ENCODING\n"
 
 #: ../authconfig.c:36 ../authconfig.c:386
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr ""
+msgstr "%s: /etc/sysconfig/network dosyasý açýlamýyor: %s\n"
 
 #: ../authconfig.c:96 ../authconfig.c:468
 #, c-format
 msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr ""
+msgstr "%s: /etc/yp.conf dosyasý açýlamýyor: %s\n"
 
 #.
 #. * NIS stuff.
 #.
 #: ../authconfig.c:215
 msgid "NIS Server:"
-msgstr ""
+msgstr "NIS Sunucu:"
 
 #: ../authconfig.c:216
 msgid "Request via broadcast"
-msgstr ""
+msgstr "Broadcast aracýlýðýyla istek"
 
 #: ../authconfig.c:233
 msgid "Enable NIS"
-msgstr ""
+msgstr "NIS'i aktifleþtir"
 
 #: ../authconfig.c:235
 msgid "NIS Domain:"
-msgstr ""
+msgstr "NIS Alaný:"
 
 #. Shadow Stuff
 #: ../authconfig.c:271
 msgid "Use Shadow Passwords"
-msgstr ""
+msgstr "Gölge Þifre Kullan"
 
 #: ../authconfig.c:273
 msgid "Enable MD5 Passwords"
-msgstr ""
+msgstr "MD5 Sifrelemeyi aktive et"
 
 #: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
 msgid "Ok"
-msgstr ""
+msgstr "Tamam"
 
 #: ../authconfig.c:281
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #: ../authconfig.c:281
 msgid "Cancel"
-msgstr ""
+msgstr "Ýptal"
 
 #: ../authconfig.c:298
 msgid "(NIS not installed)"
-msgstr ""
+msgstr "(NIS kurulmamýþ)"
 
 #: ../authconfig.c:312
 msgid "or use:"
-msgstr ""
+msgstr "ya da bunu kullanýn:"
 
 #: ../authconfig.c:334
 msgid "Authentication Configuration"
-msgstr ""
+msgstr "Kimlik Bilgisi Yapýlandýrmasý"
 
 #: ../authconfig.c:347 ../authconfig.c:354
 msgid "Error"
-msgstr ""
+msgstr "Hata"
 
 #: ../authconfig.c:348
 msgid "You must enter a NIS server or request via broadcast."
 msgstr ""
+"Bir NIS sunucu girmeli veya broadcast aracýlýðýyla istekte bulunmalýsýnýz."
 
 #: ../authconfig.c:355
 msgid "You must enter a NIS domain."
-msgstr ""
+msgstr "Bir NIS alaný girmelisiniz."
 
 #: ../authconfig.c:393
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr ""
+msgstr "%s: /etc/sysconfig/network- dosyasýna yazýlamýyor: %s\n"
 
 #: ../authconfig.c:475
 #, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr ""
+msgstr "%s: /etc/yp.conf- dosyasýna yazýlamýyor: %s\n"
 
 #: ../authconfig.c:657
 #, c-format
 msgid "%s: error opening %s\n"
-msgstr ""
+msgstr "%s: %s dosyasý açýlýrken hata\n"
 
 #: ../authconfig.c:691
 #, c-format
@@ -117,69 +119,81 @@ msgid ""
 "     --kickstart          don't display user interface\n"
 "     --help               show this screen\n"
 msgstr ""
+"Kullaným: %s [seçenekler]\n"
+"\n"
+"     --nostart            YP'yi çalýþtýrma/kapatma\n"
+"     --enablenis          NIS'i öntanýmlý olarak aktifleþtir\n"
+"     --nisdomain <alan>   Öntanýmlý NIS alaný\n"
+"     --nisserver <sunucu> Öntanýmlý NIS sunucu\n"
+"     --useshadow          gölge þifreleme kullan\n"
+"     --enablemd5          MD5 þifreleme kullan\n"
+"     --kickstart          kullanýcý arabirimini gösterme\n"
+"     --help               yardým sayfasýný göster\n"
 
 #: ../authconfig.c:745
 #, c-format
 msgid "%s: bad argument %s: %s\n"
-msgstr ""
+msgstr "%s: hatalý argüman %s: %s\n"
 
 #: ../authconfig.c:752
 #, c-format
 msgid "%s: unexpected argument\n"
-msgstr ""
+msgstr "%s: beklenmeyen argüman\n"
 
 #: ../authconfig.c:764
 #, c-format
 msgid "%s: can only be run as root\n"
-msgstr ""
+msgstr "%s: sadece yetkili kullanýcý (root) tarafýndan çalýþtýrýlabilir\n"
 
 #: ../authconfig.c:779
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr ""
+msgstr "%s: /etc/sysconfig/network dosyasýnýn okunmasýnda önemli hata"
 
 #: ../authconfig.c:792
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
-msgstr ""
+msgstr "%s: /etc/yp.conf dosyasýnýn okunmasýnda önemli hata"
 
 #: ../authconfig.c:809
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
-msgstr ""
+msgstr "%s: /etc/pam.d/passwd dosyasýnýn okunmasýnda önemli hata\n"
 
 #: ../authconfig.c:818
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
+"  <Tab>/<Alt-Tab> ileri/geri   |   <Boþluk> iþaretle   |   <F12> sonraki "
+"ekran"
 
 #: ../authconfig.c:829
 #, c-format
 msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr ""
+msgstr "%s: nis alaný %s olarak belirtildi, fakat diyalog iptal edildi\n"
 
 #: ../authconfig.c:842
 #, c-format
 msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-msgstr ""
+msgstr "çýkýþ deðerleri: nis: %c, nis alaný: %s, gölge: %c, md5: %c\n"
 
 #: ../authconfig.c:850
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr ""
+msgstr "%s: /etc/sysconfig/network dosyasýnýn yazýlmasýnda önemli hata\n"
 
 #: ../authconfig.c:858
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr ""
+msgstr "%s: /etc/yp.conf dosyasýnýn yazýlmasýnda önemli hata\n"
 
 #: ../authconfig.c:866
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
-msgstr ""
+msgstr "%s: NIS hizmetinin çalýþtýrýlmasý esnasýnda önemli hata\n"
 
 #: ../authconfig.c:873
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
-msgstr ""
+msgstr "%s: gölge þifrenin düzenlenmesinde önemli hata\n"
