@@ -1434,7 +1434,7 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	struct flock lock;
 	struct stat st;
 
-	id((info->kerberosRealm == NULL) || (strlen(info->kerberosRealm) == 0)) {
+	if((info->kerberosRealm == NULL) || (strlen(info->kerberosRealm) == 0)) {
 		return FALSE;
 	}
 
