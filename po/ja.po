@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-06-05 10:10-0400\n"
+"POT-Creation-Date: 2000-06-27 19:39-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,218 +14,299 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 
-#: ../authconfig.c:119
+#: ../authconfig.c:142
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"%s ファイルが見つかりません。このファイルは %s サポートを正しく機能させる"
+"ために必要です。  このファイルを含む %s パッケージをインストールしてください。"
+
+#: ../authconfig.c:146
+msgid "Warning"
+msgstr "警告"
+
+#: ../authconfig.c:146 ../authconfig.c:507 ../authconfig.c:512
+msgid "Ok"
+msgstr "OK"
+
+#: ../authconfig.c:156 ../authconfig.c:230
 msgid "  Domain:"
-msgstr ""
+msgstr "  ドメイン:"
 
-#: ../authconfig.c:120 ../authconfig.c:161
+#: ../authconfig.c:157 ../authconfig.c:203
 msgid "  Server:"
-msgstr ""
+msgstr "  サーバ:"
 
-#: ../authconfig.c:140
+#: ../authconfig.c:177
 msgid "     LHS:"
-msgstr ""
+msgstr "     LHS:"
 
-#: ../authconfig.c:141
+#: ../authconfig.c:178
 msgid "     RHS:"
-msgstr ""
+msgstr "     RHS:"
 
-#: ../authconfig.c:162
+#: ../authconfig.c:204
 msgid " Base DN:"
-msgstr ""
+msgstr " ベースDN:"
 
-#: ../authconfig.c:182
+#: ../authconfig.c:247
 msgid "          Realm:"
-msgstr ""
+msgstr "          領域:"
 
-#: ../authconfig.c:183
+#: ../authconfig.c:248
 msgid "            KDC:"
-msgstr ""
+msgstr "            KDC:"
 
-#: ../authconfig.c:184
+#: ../authconfig.c:249
 msgid "   Admin Server:"
-msgstr ""
+msgstr "   管理サーバ:"
 
 #. Create the window and a form to put into it.
-#: ../authconfig.c:222
+#: ../authconfig.c:289
 msgid "User Information Configuration"
-msgstr ""
-
-#. NSS files.
-#: ../authconfig.c:227
-msgid "Use /etc/passwd"
-msgstr ""
+msgstr "ユーザ情報の設定"
 
 #. NSS modules: NIS.
-#: ../authconfig.c:233
+#: ../authconfig.c:293
 msgid "Use NIS"
-msgstr ""
+msgstr "NIS を使用する"
 
-#: ../authconfig.c:256
+#: ../authconfig.c:316
 msgid "Use LDAP"
-msgstr ""
+msgstr "LDAP を使用する"
 
-#: ../authconfig.c:274
+#: ../authconfig.c:335
+msgid "Use WinBind"
+msgstr "WindBind を使用する"
+
+#: ../authconfig.c:349
 msgid "Use Hesiod"
-msgstr ""
+msgstr "Hesiod を使用する"
 
 #. Create the buttons.
-#: ../authconfig.c:295
+#: ../authconfig.c:370
 msgid "Next"
-msgstr ""
+msgstr "次"
 
-#: ../authconfig.c:296 ../authconfig.c:406 ../authconfig.c:411
+#: ../authconfig.c:371 ../authconfig.c:508 ../authconfig.c:513
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
-#: ../authconfig.c:296 ../authconfig.c:407
+#: ../authconfig.c:371 ../authconfig.c:509
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #. Create the window and a form to put into it.
-#: ../authconfig.c:345
+#: ../authconfig.c:431
 msgid "Authentication Configuration"
-msgstr ""
+msgstr "認証の設定"
 
 #. PAM setup.
-#: ../authconfig.c:349
+#: ../authconfig.c:435
 msgid "Use Shadow Passwords"
-msgstr ""
+msgstr "シャドウパスワードを使用する"
 
-#: ../authconfig.c:353
+#: ../authconfig.c:439
 msgid "Use MD5 Passwords"
-msgstr ""
+msgstr "MD5 パスワードを使用する"
 
-#: ../authconfig.c:358
+#: ../authconfig.c:444
 msgid "Use LDAP Authentication"
-msgstr ""
+msgstr "LDAP 認証を使用する"
 
-#: ../authconfig.c:378
+#: ../authconfig.c:465
+msgid "Use WinBind Authentication"
+msgstr "WindBind 認証を使用する"
+
+#: ../authconfig.c:480
 msgid "Use Kerberos 5"
-msgstr ""
+msgstr "Kerberos 5 を使用する"
 
-#: ../authconfig.c:405 ../authconfig.c:410
-msgid "Ok"
-msgstr ""
-
-#: ../authconfig.c:492
+#: ../authconfig.c:601
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
-"     --nostart                  do not start/stop ypbind\n"
-"     --useshadow                use shadow passwords by default\n"
+"     --useshadow\n"
+"     --enableshadow             enable shadow passwords by default\n"
+"     --disableshadow            disable shadow passwords by default\n"
 "     --enablemd5                enable MD5 passwords by default\n"
+"     --disablemd5               disable MD5 passwords by default\n"
+"\n"
 "     --enablenis                enable NIS\n"
+"     --disablenis               disable NIS\n"
 "     --nisdomain <domain>       default NIS domain\n"
 "     --nisserver <server>       default NIS server\n"
+"\n"
 "     --enableldap               enable ldap for user information by default\n"
+"     --disableldap              disable ldap for user information by "
+"default\n"
 "     --enableldapauth           enable ldap for authentication by default\n"
+"     --disableldapauth          disable ldap for authentication by default\n"
 "     --ldapserver <server>      default LDAP server\n"
 "     --ldapbasedn <dn>          default LDAP base DN\n"
+"\n"
 "     --enablekrb5               enable kerberos authentication by default\n"
+"     --disablekrb5              disable kerberos authentication by default\n"
 "     --krb5kdc <server>         default kerberos KDC\n"
 "     --krb5adminserver <server> default kerberos admin server\n"
 "     --krb5realm <realm>        default kerberos realm\n"
+"\n"
 "     --enablehesiod             enable hesiod for user information by "
+"default\n"
+"     --disablehesiod            disable hesiod for user information by "
 "default\n"
 "     --hesiodlhs <lhs>          default hesiod LHS\n"
 "     --hesiodrhs <rhs>          default hesiod RHS\n"
+"\n"
+"     --nostart                  do not start/stop ypbind\n"
 "     --kickstart                don't display user interface\n"
 "     --help                     show this screen\n"
 msgstr ""
+"使用法: %s [options]\n"
+"\n"
+"     --useshadow\n"
+"     --enableshadow             デフォルトでシャドウパスワードを有効にする\n"
+"     --disableshadow            デフォルトでシャドウパスワードを無効にする\n"
+"     --enablemd5                デフォルトで MD5 パスワードを有効にする\n"
+"     --disablemd5               デフォルトで MD5 を無効にする\n"
+"\n"
+"     --enablenis                NIS を有効にする\n"
+"     --disablenis               NIS を無効にする\n"
+"     --nisdomain <ドメイン>       デフォルトの NIS ドメイン\n"
+"     --nisserver <サーバ>       デフォルトの NIS サーバ\n"
+"\n"
+"     --enableldap               ユーザ情報に関して ldap をデフォルトで"
+"有効にする\n"
+"     --disableldap              ユーザ情報に関して ldap をデフォルトで"
+"無効にする\n"
+"     --enableldapauth           認証に関して ldap をデフォルトで有効にする\n"
+"     --disableldapauth          認証に関して ldap をデフォルトで無効にする\n"
+"     --ldapserver <サーバ>      デフォルトの LDAP サーバ\n"
+"     --ldapbasedn <dn>          デフォルトの LDAP ベース DN\n"
+"\n"
+"     --enablekrb5               kerberos 認証をデフォルトで有効にする\n"
+"     --disablekrb5              kerberos 認証をデフォルトで無効にする\n"
+"     --krb5kdc <サーバ>         デフォルトの kerberos KDC\n"
+"     --krb5adminserver <サーバ> デフォルトの kerberos 管理サーバ\n"
+"     --krb5realm <領域>        デフォルトの kerberos 領域\n"
+"\n"
+"     --enablehesiod             ユーザ情報に関して hesiod をデフォルトで"
+"有効にする\n"
+"     --disablehesiod            ユーザ情報に関して hesiod をデフォルトで"
+"無効にする\n"
+"     --hesiodlhs <lhs>          デフォルトの hesiod LHS\n"
+"     --hesiodrhs <rhs>          デフォルトの hesiod RHS\n"
+"\n"
+"     --nostart                  ypbind を起動/停止しない\n"
+"     --kickstart                ユーザインタフェースを表示しない\n"
+"     --help                     この画面を表示する\n"
 
-#: ../authconfig.c:597
+#: ../authconfig.c:738
 #, c-format
 msgid "%s: bad argument %s: %s\n"
-msgstr ""
+msgstr "%s: 不適切な引数 %s: %s\n"
 
-#: ../authconfig.c:604
+#: ../authconfig.c:745
 #, c-format
 msgid "%s: unexpected argument\n"
-msgstr ""
+msgstr "%s: 予期しない引数\n"
 
-#: ../authconfig.c:616
+#: ../authconfig.c:757
 #, c-format
 msgid "%s: can only be run as root\n"
-msgstr ""
+msgstr "%s: root としてのみ実行できます\n"
 
-#: ../authconfig.c:627
+#: ../authconfig.c:768
 #, c-format
 msgid "%s: critical error reading %s/hesiod.conf"
-msgstr ""
+msgstr "%s: %s/hesiod.conf の書き込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:634
+#: ../authconfig.c:775
 #, c-format
 msgid "%s: critical error reading %s/krb5.conf"
-msgstr ""
+msgstr "%s: %s/krb5.conf の読み込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:641
+#: ../authconfig.c:782
 #, c-format
 msgid "%s: critical error reading %s/ldap.conf"
-msgstr ""
+msgstr "%s: %s/ldap.conf の読み込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:648
+#: ../authconfig.c:790
+#, c-format
+msgid "%s: critical error reading %s/smb.conf"
+msgstr "%s: %s/sysconfig/network の読み込み中に重大なエラーが発生しました"
+
+#: ../authconfig.c:798
 #, c-format
 msgid "%s: critical error reading %s/yp.conf"
-msgstr ""
+msgstr "%s: %s/yp.conf の読み込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:655
+#: ../authconfig.c:805
 #, c-format
 msgid "%s: critical error reading %s/nsswitch.conf"
-msgstr ""
+msgstr "%s: %s/nsswitch.conf の読み込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:662
+#: ../authconfig.c:812
 #, c-format
 msgid "%s: critical error reading %s/sysconfig/network"
-msgstr ""
+msgstr "%s: %s/sysconfig/network の読み込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:669
+#: ../authconfig.c:819
 #, c-format
 msgid "%s: critical error reading %s/pam.d/%s"
-msgstr ""
+msgstr "%s: %s/pam.d/%s の読み込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:712
+#: ../authconfig.c:872
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
+" <Tab>/<Alt-Tab> 項目間の移動|  <Space> 選択   |  <F12> 次の画面"
 
-#: ../authconfig.c:720
+#: ../authconfig.c:880
 msgid "dialog was cancelled\n"
-msgstr ""
+msgstr "ダイアログはキャンセルされました\n"
 
-#: ../authconfig.c:773
+#: ../authconfig.c:944
 #, c-format
 msgid "%s: critical error writing %s/hesiod.conf"
-msgstr ""
+msgstr "%s: %s/hesiod.conf の書き込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:780
+#: ../authconfig.c:949
 #, c-format
 msgid "%s: critical error writing %s/krb5.conf"
-msgstr ""
+msgstr "%s: %s/krb5.conf の書き込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:787
+#: ../authconfig.c:954
 #, c-format
 msgid "%s: critical error writing %s/ldap.conf"
-msgstr ""
+msgstr "%s: %s/ldap.conf の書き込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:794
+#: ../authconfig.c:959
 #, c-format
 msgid "%s: critical error writing %s/yp.conf"
-msgstr ""
+msgstr "%s: %s/yp.conf の書き込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:801
+#: ../authconfig.c:965
+#, c-format
+msgid "%s: critical error writing %s/smb.conf"
+msgstr "%s: %s/sysconfig/network の書き込み中に重大なエラーが発生しました"
+
+#: ../authconfig.c:971
 #, c-format
 msgid "%s: critical error writing %s/nsswitch.conf"
-msgstr ""
+msgstr "%s: %s/nsswitch.conf の書き込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:808
+#: ../authconfig.c:975
 #, c-format
 msgid "%s: critical error writing %s/sysconfig/network"
-msgstr ""
+msgstr "%s: %s/sysconfig/network の書き込み中に重大なエラーが発生しました"
 
-#: ../authconfig.c:815
+#: ../authconfig.c:980
 #, c-format
 msgid "%s: critical error writing %s/pam.d/%s"
-msgstr ""
+msgstr "%s: %s/pam.d/%s の書き込み中に重大なエラーが発生しました"
+
