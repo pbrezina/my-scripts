@@ -7,8 +7,8 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
-Requires: glibc >= 2.1, pam >= 0.73, glib
-BuildPrereq: pam-devel >= 0.73, newt-devel, gtk2-devel, libglade2-devel
+Requires: glibc >= 2.1, pam >= 0.73, glib2
+BuildPrereq: pam-devel >= 0.73, newt-devel, gtk2-devel, libglade2-devel, python
 
 %description 
 Authconfig is a terminal mode program which can configure a workstation
@@ -70,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/authconfig-gtk
 %{_datadir}/%{name}/*.py*
 %{_datadir}/%{name}/%{name}.glade
+%{_datadir}/firstboot/modules/*
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 

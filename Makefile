@@ -49,7 +49,8 @@ install:
 	install -m 644 $(DATA) $(DESTDIR)$(datadir)/$(PACKAGE)/
 	chmod 755 $(DESTDIR)$(datadir)/$(PACKAGE)/*.py
 	python -c "import compileall; compileall.compile_dir(\""$(DESTDIR)$(datadir)/$(PACKAGE)"\", 2, \""$(datadir)/$(PACKAGE)"\", 1)"
-	cd  $(DESTDIR)$(datadir)/firstboot/modules ; ln -s -f ../../$(PACKAGE)/*.py* .
+	cd  $(DESTDIR)$(datadir)/firstboot/modules ; ln -s -f ../../$(PACKAGE)/$(PACKAGE)-gtk.py  authentication.py
+	cd  $(DESTDIR)$(datadir)/firstboot/modules ; ln -s -f ../../$(PACKAGE)/$(PACKAGE)-gtk.pyc authentication.pyc
 
 	mkdir -p $(DESTDIR)$(mandir)/man8
 	for d in $(SUBDIRS); do \

@@ -79,10 +79,18 @@ class childWindow:
 	# Create a vbox with the right controls and return the vbox. */
 	def run_on_button(self, button, top = "vbox", mapname = "main_map"):
 		box, events = self.launch(top, mapname)
+		events.destroy()
 		box.show()
 		return
 
 	def launch(self, top = "vbox", mapname = "main_map"):
+		# Create a header.
+		eventbox = gtk.HBox()
+		image = None
+		try:
+			image = gtk.gdk.pixbuf_new_from_file("/usr/share/firstboot/pixmaps/authconfig.png")
+			image = gtk.gdk.pixbuf_new_from_file("/usr/share/authconfig/authconfig.png")
+		# Construct the XML object.
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
 				    top, "authconfig")
 		box = xml.get_widget(top)
@@ -119,7 +127,7 @@ class childWindow:
 							  map[entry][0]))
 				widget.connect("toggled", self.toggleboolean,
 					       map[entry][0])
-		return (box, box)
+		return box, eventbox
 
 	# Save changes.
 	def apply(self, button = None):
