@@ -61,13 +61,21 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
+%{_bindir}/redhat-config-authentication
 %{_datadir}/%{name}
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
+%config(noreplace) %{_sysconfdir}/pam.d/redhat-config-authentication
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
+%config(noreplace) %{_sysconfdir}/security/console.apps/redhat-config-authentication
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Jun 30 2003 Nalin Dahyabhai <nalin@redhat.com>
+- add 'redhat-config-authentication' as an alias for authconfig-gtk
+- make authconfig-gtk exec authconfig if gui startup fails and it looks like
+  we're connected to a tty
+
 * Mon May  5 2003 Nalin Dahyabhai <nalin@redhat.com> 4.3.5-1
 - translation updates
 - close unusable file descriptors if locking fails
