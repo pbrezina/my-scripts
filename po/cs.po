@@ -60,17 +60,16 @@ msgstr "Admin server:"
 
 #: ../authconfig.c:318
 msgid "Workgroup:"
-msgstr ""
+msgstr "Pracovní skupina:"
 
 #: ../authconfig.c:319
-#, fuzzy
 msgid "Servers:"
-msgstr "Server:"
+msgstr "Servery:"
 
 #. NSCD
 #: ../authconfig.c:359
 msgid "Cache Information"
-msgstr ""
+msgstr "Informace o cache"
 
 #. NSS modules: NIS.
 #: ../authconfig.c:366
@@ -123,9 +122,8 @@ msgid "Use Kerberos 5"
 msgstr "Pou¾ít Kerberos 5"
 
 #: ../authconfig.c:635
-#, fuzzy
 msgid "Use SMB Authentication"
-msgstr "Pou¾ít LDAP autentizaci"
+msgstr "Pou¾ít SMB autentizaci"
 
 #: ../authconfig.c:705
 msgid "Authentication Configuration"
@@ -233,26 +231,24 @@ msgid "<realm>"
 msgstr "<realm>"
 
 #: ../authconfig.c:896
-#, fuzzy
 msgid "enable SMB authentication by default"
-msgstr "povolit autentizaci Kerberosem"
+msgstr "povolit implicitnì SMB autentizaci"
 
 #: ../authconfig.c:898
-#, fuzzy
 msgid "disable SMB authentication by default"
-msgstr "zakázat LDAP pro autentizaci"
+msgstr "zakázat implicitní SMB autentizaci"
 
 #: ../authconfig.c:900
 msgid "workgroup authentication servers are in"
-msgstr ""
+msgstr "autentizaèní servery pro pracovní skupinu jsou v"
 
 #: ../authconfig.c:900
 msgid "<workgroup>"
-msgstr ""
+msgstr "<pracovní_skupina>"
 
 #: ../authconfig.c:902
 msgid "names of servers to authenticate against\n"
-msgstr ""
+msgstr "jména serverù, proti kterým se autentizovat\n"
 
 #: ../authconfig.c:905
 msgid "enable hesiod for user information by default"
@@ -279,14 +275,12 @@ msgid "<rhs>"
 msgstr "<rhs>"
 
 #: ../authconfig.c:914
-#, fuzzy
 msgid "enable caching of user information by default"
-msgstr "povolit Hesiod pro informace o u¾ivatelích"
+msgstr "povolit implicitní cachování informací o u¾ivatelích"
 
 #: ../authconfig.c:916
-#, fuzzy
 msgid "disable caching of user information by default\n"
-msgstr "zakázat Hesiod pro informace o u¾ivatelích"
+msgstr "zakázat implicitní cachování informací o u¾ivatelích\n"
 
 #: ../authconfig.c:923
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -298,7 +292,7 @@ msgstr "nezobrazovat u¾ivatelský interface"
 
 #: ../authconfig.c:927
 msgid "probe network for defaults"
-msgstr ""
+msgstr "implicitní hodnoty získat ze sítì"
 
 #: ../authconfig.c:930
 msgid "use locally-defined policies"
@@ -316,7 +310,7 @@ msgstr "%s: chybný argument %s: %s\n"
 #: ../authconfig.c:952
 #, c-format
 msgid "%s: attempting to continue\n"
-msgstr ""
+msgstr "%s: pokou¹ím se pokraèovat\n"
 
 #: ../authconfig.c:956
 #, c-format
@@ -336,9 +330,9 @@ msgid "%s: critical error reading %s/%s"
 msgstr "%s: kritická chyba pøi ètení %s/%s"
 
 #: ../authconfig.c:1041
-#, fuzzy, c-format
+#, c-format
 msgid "%s: unable to read caching configuration"
-msgstr "Konfigurace informací o u¾ivateli"
+msgstr "%s: nemohu naèíst informace z cache"
 
 #: ../authconfig.c:1117
 msgid ""
@@ -356,9 +350,9 @@ msgid "dialog was cancelled\n"
 msgstr "dialog byl stornován\n"
 
 #: ../authconfig.c:1194
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error recording caching setting"
-msgstr "%s: kritická chyba pøi ètení %s/%s"
+msgstr "%s: kritická chyba pøi ukládání nastavení cache"
 
 #: ../authconfig.c:1200 ../authconfig.c:1206 ../authconfig.c:1212
 #: ../authconfig.c:1218 ../authconfig.c:1224 ../authconfig.c:1229
@@ -368,6 +362,5 @@ msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritická chyba pøi zápisu %s/%s"
 
 #: ../localpol.h:9
-#, fuzzy
 msgid "Use Local Policies"
-msgstr "pou¾ít lokálnì definované politiky"
+msgstr "Pou¾ít lokální politiky"
