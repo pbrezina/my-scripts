@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-01-08 02:25-0500\n"
-"PO-Revision-Date: 2004-02-15 21:26-0300\n"
+"PO-Revision-Date: 2004-02-16 01:46-0300\n"
 "Last-Translator: Hernán Fernández <uk@mitierra.cl>\n"
 "Language-Team: Español <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -85,14 +85,12 @@ msgstr "Servidor de administración:"
 
 #: authconfig.c:362
 # interpretación de realms (entornos o dominios)
-#, fuzzy
 msgid "Use DNS to resolve hosts to realms"
-msgstr "Utilizar DNS para resolver maquinas a dominios"
+msgstr "Utilizar DNS para resolver hosts a entornos"
 
 #: authconfig.c:364
-#, fuzzy
 msgid "Use DNS to locate KDCs for realms"
-msgstr "Utilizar DNS para localizar KDCs para dominios"
+msgstr "Utilizar DNS para localizar KDCs para los entornos"
 
 #: authconfig.c:367 glade.strings:55
 msgid "Kerberos Settings"
@@ -165,7 +163,6 @@ msgid "ADS Realm:"
 msgstr "Entorno ADS:"
 
 #: authconfig.c:465
-#, fuzzy
 msgid "Template Shell:"
 msgstr "Shell Modelo:"
 
@@ -182,7 +179,6 @@ msgid "Warning"
 msgstr "Aviso"
 
 #: authconfig.c:530
-#, fuzzy
 msgid "caching"
 msgstr "caching"
 
@@ -204,7 +200,7 @@ msgstr "NIS"
 
 #: authconfig.c:550
 msgid "shadow password"
-msgstr "contraseña oculta"
+msgstr "contraseña oculta (shadow)"
 
 #: authconfig.c:554
 msgid "SMB authentication"
@@ -252,7 +248,7 @@ msgstr "Utilizar contraseñas MD5"
 
 #: authconfig.c:628
 msgid "Use Shadow Passwords"
-msgstr "Utilizar contraseñas ocultas"
+msgstr "Utilizar contraseñas ocultas (shadow)"
 
 #: authconfig.c:635
 msgid "Use LDAP Authentication"
@@ -289,13 +285,12 @@ msgid "Authentication Configuration"
 msgstr "Configuración de la autenticación"
 
 #: authconfig.c:873
-
 msgid "enable shadowed passwords by default"
-msgstr "habilitar por defecto el sombrado de contraseñas"
+msgstr "habilitar por defecto contraseñas ocultas (shadow)"
 
 #: authconfig.c:875
 msgid "disable shadowed passwords by default"
-msgstr "inhabilitar por defecto el sombreado de contraseñas"
+msgstr "inhabilitar por defecto contraseñas ocultas (shadow)"
 
 #: authconfig.c:879
 msgid "enable MD5 passwords by default"
@@ -459,21 +454,20 @@ msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
-"el caracter utilizado para separar el dominio y la parte de usuario de "
-"winbind-creado si es que winbindusodominiopredeterminado no esta habilitado"
+"el caracter que se utilizará para separar la parte de dominio y usuario de los nombres "
+"de usuarios creados por winbind si winbindusedefaultdomain no esta habilitado"
 
 #: authconfig.c:960
 msgid "the directory which winbind-created users will have as home directories"
-msgstr "el directorio que winbind crea a los usuarios como directorios de inicio"
+msgstr "el directorio que los usuarios creados por winbind tendrán como directorio de inicio"
 
 #: authconfig.c:964
 msgid "the group which winbind-created users will have as their primary group"
-msgstr "el grupo que winbind crea a los usuarios como su grupo primario"
+msgstr "el grupo que los usuarios creados por winbind tendrán como grupo primario"
 
 #: authconfig.c:967
-#, fuzzy
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "la shell que winbind crea a los usuarios que inician sesión en la shell"
+msgstr "la shell que los usuarios creados por winbind tendrán para que inicien sesión"
 
 #: authconfig.c:971
 msgid ""
@@ -498,11 +492,11 @@ msgstr "unir el dominio winbind o entorno ads ahora como administrador\n"
 
 #: authconfig.c:983
 msgid "enable wins for hostname resolution"
-msgstr "habilitar wins para resolver nombres de maquinas"
+msgstr "habilitar wins para resolver el nombre del host"
 
 #: authconfig.c:985
 msgid "disable wins for hostname resolution\n"
-msgstr "inhabilitar wins para resolver nombres de maquinas\n"
+msgstr "inhabilitar wins para resolver el nombre del host\n"
 
 #: authconfig.c:988
 msgid "enable hesiod for user information by default"
@@ -620,7 +614,7 @@ msgstr "%s: error grave al escribir %s/%s"
 msgid "Control how the system verifies users who attempt to log in"
 msgstr ""
 "Controlar el modo en el que el sistema verifica a los usuarios que intentan  "
-"registrarse "
+"registrarse"
 
 #: authinfo.h:68
 #, c-format
@@ -709,7 +703,7 @@ msgstr ""
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
-msgstr "Utilizar contraseñas oculta_s"
+msgstr "Utilizar contraseñas oculta_s (shadow)"
 
 #: glade.strings:27
 msgid "Use _MD5 Passwords"
@@ -788,14 +782,12 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings:62
-#, fuzzy
 msgid "Use DNS to resolve hosts to _realms"
-msgstr "Utilizar DNS para resolver maquinas a dominios"
+msgstr "Utilizar DNS para resolver hosts a ento_rnos"
 
 #: glade.strings:63
-#, fuzzy
 msgid "Use DNS to locate _KDCs for realms"
-msgstr "Utilizar DNS para localizar KDCs para dominios"
+msgstr "Utilizar DNS para localizar KDCs para entornos"
 
 #: glade.strings:66
 msgid "_Domain Controllers"
@@ -834,7 +826,6 @@ msgid "Winbind Domain _Controllers"
 msgstr "Controladores de _dominio Winbind"
 
 #: glade.strings:82
-#, fuzzy
 msgid "Template _Shell"
 msgstr "_Shell Modelo"
 
