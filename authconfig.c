@@ -890,11 +890,14 @@ int main(int argc, const char **argv)
   overrideString(&authInfo->kerberosAdminServer, krb5AdminServer);
 
   if (!kickstart) {
+    char packageVersion[] = "authconfig " VERSION " - ";
     newtInit();
     newtCls();
     
     newtPushHelpLine(i18n(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
-    newtDrawRootText(0, 0, "authconfig " VERSION " - (c) 1999, 2000 Red Hat, Inc.");
+    newtDrawRootText(0, 0, packageVersion);
+    newtDrawRootText(strlen(packageVersion), 0,
+		     "(c) 1999, 2000 Red Hat, Inc.");
     
     if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
       /* cancelled */
