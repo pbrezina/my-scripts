@@ -359,6 +359,7 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   cb = newtCheckbox(-1, -1, i18n("Cache Information"),
 		    authInfo->enableCache ? '*' : ' ',
 		    NULL, &cache);
+  newtComponentAddCallback(cb, cacheToggle, &cache);
   newtGridSetField(mechGrid, 0, 0, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 

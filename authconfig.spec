@@ -40,6 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Wed Aug 21 2001 Nalin Dahyabhai <nalin@redhat.com>
+- warn about nscd the same way we do about nss_ldap and pam_krb5
+- update translations from CVS
+
 * Tue Aug 20 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.15-1
 - set "pam_password md5" instead of "pam_password crypt" in ldap.conf if MD5
   is enabled
