@@ -386,12 +386,17 @@ int rewriteYPConfigFile(char enableNisServer, char *nisServer)
 
 }
 
-int toggleNisService(char enableNis)
+int toggleNisService(char enableNis, int nostart)
 {
-  if (enableNis == '*')
+  if (enableNis == '*') {
+    if (!nostart) 
+      system("/etc/rc.d/init.d/ypbind start");
     system("/sbin/chkconfig --add ypbind");
-  else
+  }  else {
+    if (!nostart)
+      system("/etc/rc.d/init.d/ypbind stop");
     system("/sbin/chkconfig --del ypbind");
+  }
 
   return 0;
 }
@@ -415,10 +420,12 @@ int main(int argc, char **argv) {
   newtComponent form;
   int back = 0; 
   int test = 0;
+  int nostart = 0;
   poptContext optCon;
   struct poptOption options[] = {
     { "back", '\0', 0, &back, 0},
     { "test", '\0', 0, &test, 0},
+    { "nostart", '\0', 0, &nostart, 0},
     { 0, 0, 0, 0 }
   };
   char *nisDomain = NULL, *nisServer = NULL;
@@ -528,7 +535,7 @@ int main(int argc, char **argv) {
     return 2;
   }
 
-  if (toggleNisService(enableNis)) {
+  if (toggleNisService(enableNis, nostart)) {
     fprintf(stderr, i18n("%s: critical error turning on NIS service\n"),
 	    progName);
     return 2;
