@@ -1304,7 +1304,6 @@ static struct {
 	{FALSE, session,	optional,	"krb5afs",	NULL},
 	{FALSE, session,	optional,	"ldap",		NULL},
 	{FALSE, session,	required,	"winbind",	NULL},
-	{TRUE,  session,	required,	"deny",		NULL},
 };
 
 static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
