@@ -40,7 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
-* Tue Aug 28 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.19-1
+* Thu Sep  6 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.19-1
+- translation refresh
+
+* Tue Aug 28 2001 Nalin Dahyabhai <nalin@redhat.com>
 - fix assertion error hitting glib (#51798)
 - allow multiple ldap servers to be specified (#49864)
 
