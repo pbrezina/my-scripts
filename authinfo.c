@@ -1088,7 +1088,7 @@ gboolean authInfoWriteKerberos(struct authInfoType *info)
 /* Write WinBind setup to /etc/smb.conf. */
 gboolean authInfoWriteWinBind(struct authInfoType *info)
 {
-#error WRITE CODE TO WRITE /etc/smb.conf
+#error WRITE SOME CODE TO WRITE /etc/smb.conf
 }
 #endif
 
@@ -1142,9 +1142,9 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 
 	/* Determine what we want in that file. */
 	strcpy(buf, "files");
-	if(info->enableHesiod) strcat(buf, " hesiod");
-	if(info->enableLDAP) strcat(buf, " ldap");
 	if(info->enableNIS) strcat(buf, " nis");
+	if(info->enableLDAP) strcat(buf, " ldap");
+	if(info->enableHesiod) strcat(buf, " hesiod");
 #ifdef WINBIND
 	if(info->enableWinBind) strcat(buf, " winbind");
 #endif

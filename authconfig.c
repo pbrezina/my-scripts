@@ -683,6 +683,7 @@ gboolean fileInaccessible(const char *path, int perms)
 int main(int argc, const char **argv)
 {
   int rc;
+  struct stat st;
   struct authInfoType *authInfo = NULL;
   gboolean nisAvail = FALSE, kerberosAvail = FALSE;
   gboolean ldapAvail = FALSE, winBindAvail = FALSE;
@@ -1029,6 +1030,9 @@ int main(int argc, const char **argv)
     }
     toggleShadow(authInfo);
     toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
+    if(stat(PATH_NSCD_PID, &st) == 0) {
+      system("/sbin/service nscd restart");
+    }
   }
 
   return 0;

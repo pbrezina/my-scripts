@@ -14,6 +14,7 @@
 #define NSS_DEFAULT "files nisplus nis"
 
 #define PATH_PORTMAP "/sbin/portmap"
+#define PATH_NSCD_PID "/var/run/nscd.pid"
 #define PATH_YPBIND "/sbin/ypbind"
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
