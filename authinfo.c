@@ -1174,7 +1174,7 @@ static struct {
 } standard_pam_modules[] = {
 	{TRUE,  auth,		sufficient,	"unix",		argv_unix_auth},
 	{FALSE, auth,		sufficient,	"krb5",		argv_krb5_auth},
-	{FALSE, auth,		sufficient,	"krb5afs",	argv_krb5_afs_auth},
+	{FALSE, auth,		sufficient,	"krb5afs",	argv_krb5afs_auth},
 	{FALSE, auth,		sufficient,	"ldap",		argv_ldap_auth},
 	{TRUE,  auth,		required,	"deny",		NULL},
 
