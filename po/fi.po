@@ -1,21 +1,21 @@
-# translation of authconfig.po to Finnish
+# Finnish translation for authconfig.
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # Lauri Nurmi <lanurmi@iki.fi>, 2004.
-# Mikko Ikola <ikola@iki.fi>, 2004.
+# Mikko Ikola <ikola@iki.fi>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 17:30+0100\n"
-"PO-Revision-Date: 2004-07-10 16:35+0300\n"
+"POT-Creation-Date: 2005-01-25 17:47+0100\n"
+"PO-Revision-Date: 2005-02-23 22:36+0200\n"
 "Last-Translator: Mikko Ikola <ikola@iki.fi>\n"
-"Language-Team: Finnish <kde-i18n-fi-discussion@lists.sourceforge.net>\n"
+"Language-Team:  <kde-i18n-fi-discussion@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.2\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -55,7 +55,7 @@ msgstr "Palvelin:"
 
 #: authconfig.c:303
 msgid "Base DN:"
-msgstr ""
+msgstr "Base DN:"
 
 #: authconfig.c:306 authconfig.glade.h:33
 msgid "LDAP Settings"
@@ -71,7 +71,7 @@ msgstr "NIS-asetukset"
 
 #: authconfig.c:329
 msgid "Realm:"
-msgstr ""
+msgstr "Realm:"
 
 #: authconfig.c:331
 msgid "KDC:"
@@ -83,11 +83,11 @@ msgstr "Pääpalvelin:"
 
 #: authconfig.c:335
 msgid "Use DNS to resolve hosts to realms"
-msgstr ""
+msgstr "Käytä DNS:ää konenimien selvittämisessä realmeiksi"
 
 #: authconfig.c:337
 msgid "Use DNS to locate KDCs for realms"
-msgstr ""
+msgstr "Käytä DNS:ää paikallistaaksesi KDC:t realmeja varten"
 
 #: authconfig.c:340 authconfig.glade.h:29
 msgid "Kerberos Settings"
@@ -103,7 +103,7 @@ msgstr "Palvelimet:"
 
 #: authconfig.c:353
 msgid "Shell:"
-msgstr "Kuori:"
+msgstr "Komentotulkki:"
 
 #: authconfig.c:356 authconfig.glade.h:41
 msgid "SMB Settings"
@@ -161,7 +161,7 @@ msgstr "ADS Realm:"
 
 #: authconfig.c:438
 msgid "Template Shell:"
-msgstr ""
+msgstr "Mallikuori:"
 
 #: authconfig.c:456 authconfig.glade.h:54
 msgid "Winbind Settings"
@@ -183,10 +183,13 @@ msgid ""
 "directory.\n"
 "Then press OK."
 msgstr ""
+"Yhdistääksesi asianmukaisesti LDAP-palvelimelle käyttäen TLS:ää, sinun tulee kopioida "
+"PEM form CA -sertifikaatti (joka allekirjoitti palvelimesi sertifikaatin) hakemistoon \"%s\".\n"
+"Napsauta sitten OK."
 
 #: authconfig.c:511
 msgid "caching"
-msgstr ""
+msgstr "välimuisti"
 
 #: authconfig.c:515 authconfig.glade.h:28
 msgid "Kerberos"
@@ -274,7 +277,7 @@ msgstr "Käytä Winbind-todennusta"
 
 #: authconfig.c:639
 msgid "Local authorization is sufficient"
-msgstr ""
+msgstr "Paikallinen todennus on riittävä"
 
 #: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
 msgid "Authentication Configuration"
@@ -351,11 +354,11 @@ msgstr "oletus LDAP-palvelin"
 
 #: authconfig.c:890
 msgid "default LDAP base DN\n"
-msgstr ""
+msgstr "oletus LDAP base DN\n"
 
 #: authconfig.c:890
 msgid "<dn>"
-msgstr ""
+msgstr "<dn>"
 
 #: authconfig.c:893
 msgid "enable kerberos authentication by default"
@@ -383,19 +386,19 @@ msgstr "<realm>"
 
 #: authconfig.c:904
 msgid "enable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "käytä DNS:ää kerberos KDC:iden etsimiseen"
 
 #: authconfig.c:906
 msgid "disable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "älä käytä DNS:ää kerberos KDC:iden etsimiseen"
 
 #: authconfig.c:908
 msgid "enable use of DNS to find kerberos realms"
-msgstr ""
+msgstr "käytä DNS:ää kerberos realmien etsimiseen"
 
 #: authconfig.c:910
 msgid "disable use of DNS to find kerberos realms\n"
-msgstr ""
+msgstr "älä käytä DNS:ää kerberos realmien etsimiseen\n"
 
 #: authconfig.c:913
 msgid "enable SMB authentication by default"
@@ -418,22 +421,18 @@ msgid "names of servers to authenticate against\n"
 msgstr "todennuspalvelimien nimet\n"
 
 #: authconfig.c:922
-#, fuzzy
 msgid "enable winbind for user information by default"
-msgstr "käytä hesiodia käyttäjätietoihin oletuksena"
+msgstr "käytä winbindiä käyttäjätietoihin oletuksena"
 
 #: authconfig.c:925
-#, fuzzy
 msgid "disable winbind for user information by default"
-msgstr "älä käytä hesiodia käyttäjätietoihin oletuksena"
+msgstr "älä käytä winbindiä käyttäjätietoihin oletuksena"
 
 #: authconfig.c:928
-#, fuzzy
 msgid "enable winbindauth for authentication by default"
 msgstr "käytä LDAP:ia todennukseen oletuksena"
 
 #: authconfig.c:931
-#, fuzzy
 msgid "disable winbindauth for authentication by default"
 msgstr "älä käytä LDAP:ia todennukseen oletuksena"
 
@@ -443,7 +442,7 @@ msgstr "samban ja winbindin käyttämä turvatyyppi"
 
 #: authconfig.c:936
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
+msgstr "oletus-realm samballe ja winbindille kun turvatyyppi=ads"
 
 #: authconfig.c:938
 msgid "uid range winbind will assign to domain or ads users"
@@ -467,8 +466,7 @@ msgstr ""
 
 #: authconfig.c:949
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"hakemisto, joka tulee olemaan kotihakemisto winbindillä luoduille käyttäjille"
+msgstr "hakemisto, joka tulee olemaan kotihakemisto winbindillä luoduille käyttäjille"
 
 #: authconfig.c:953
 msgid "the group which winbind-created users will have as their primary group"
@@ -476,8 +474,7 @@ msgstr "ryhmä, joka tulee olemaan pääryhmä winbindillä luoduille käyttäji
 
 #: authconfig.c:956
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"kuori, joka tulee olemaan kirjautumiskuori winbindillä luoduille käyttäjille"
+msgstr "komentotulkki, joka tulee olemaan kirjautumiskomentotulkki winbindillä luoduille käyttäjille"
 
 #: authconfig.c:960
 msgid ""
@@ -497,7 +494,7 @@ msgstr ""
 
 #: authconfig.c:968
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
+msgstr "liity ylläpitäjänä winbind-toimialueeseen tai ads realmiin nyt\n"
 
 #: authconfig.c:972
 msgid "enable wins for hostname resolution"
@@ -549,23 +546,23 @@ msgstr "älä näytä käyttöliittymää"
 
 #: authconfig.c:999
 msgid "probe network for defaults and print them"
-msgstr ""
+msgstr "Tutki verkosta oletukset ja näytä ne"
 
 #: authconfig.c:1002
 msgid "use locally-defined policies"
-msgstr ""
+msgstr "käytä paikallisesti määriteltyjä käytäntöjä"
 
 #: authconfig.c:1004
 msgid "don't use locally-defined policies"
-msgstr ""
+msgstr "älä käytä paikallisesti määriteltyjä käytäntöjä"
 
 #: authconfig.c:1007
 msgid "local authorization is sufficient for local users"
-msgstr ""
+msgstr "paikallinen todennus on riittävä paikallisille käyttäjille"
 
 #: authconfig.c:1009
 msgid "authorize local users also through remote service"
-msgstr ""
+msgstr "todenna myös paikalliset käyttäjät etäpalvelun kautta"
 
 #: authconfig.c:1019
 #, c-format
@@ -603,8 +600,7 @@ msgstr "%s: välimuistiasetusten lukeminen ei onnistu"
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> siirry   |   <Välilyönti> valitse   |  <F12> seuraava ruutu"
+msgstr " <Tab>/<Alt-Tab> siirry   |   <Välilyönti> valitse   |  <F12> seuraava ruutu"
 
 #: authconfig.c:1240
 #, c-format
@@ -625,7 +621,7 @@ msgstr "%s: kriittinen virhe kirjoitettaessa %s/%s"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
+msgstr "Kontrolloi kuinka järjestelmä vahvistaa sisäänkirjautumista yrittävät käyttäjät"
 
 #: authinfo.h:71
 #, c-format
@@ -746,7 +742,7 @@ msgstr ""
 
 #: authconfig.glade.h:32
 msgid "LDAP Search _Base DN"
-msgstr ""
+msgstr "LDAP etsi _Base DN"
 
 #: authconfig.glade.h:34
 msgid "LDAP _Server"
@@ -786,18 +782,18 @@ msgid ""
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"Lightweight Directory Access Protocol on standardi menetelmä etsiä "
-"hakemistoa, joka sisältää sattumanvaraista dataa rakenteellisessa "
+"Lightweight Directory Access Protocol on standardoitu menetelmä hakemistojen "
+"etsimiseen, jotka sisältävät sattumanvaraista dataa rakenteellisessa "
 "hierarkiassa. LDAP:ia käytetään kasvavassa määrin pienistä suuriin "
 "verkkoihin."
 
 #: authconfig.glade.h:45
 msgid "Use DNS to _locate KDCs for realms"
-msgstr ""
+msgstr "Käytä DNS:ää paika_llistaaksesi KDC:t realmeja varten"
 
 #: authconfig.glade.h:46
 msgid "Use _DNS to resolve hosts to realms"
-msgstr ""
+msgstr "Käytä _DNS:ää konenimien selvittämisessä realmeiksi"
 
 #: authconfig.glade.h:47
 msgid "Use _MD5 Passwords"
@@ -816,9 +812,8 @@ msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS _Realm"
 
 #: authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers"
-msgstr "Winbind-toimialueen _ohjauskoneet"
+msgstr "Winbind-toimialueen ohjauskoneet"
 
 #: authconfig.glade.h:55
 msgid "Winbind _Domain"
@@ -852,7 +847,7 @@ msgstr "_KDCs"
 
 #: authconfig.glade.h:61
 msgid "_Local authorization is sufficient for local users"
-msgstr ""
+msgstr "Paika_llinen todennus on riittävä paikallisille käyttäjille"
 
 #: authconfig.glade.h:62
 msgid "_Password"
@@ -868,7 +863,7 @@ msgstr "_Turvatyyppi"
 
 #: authconfig.glade.h:65
 msgid "_Template Shell"
-msgstr ""
+msgstr "_Mallikuori"
 
 #: authconfig.glade.h:66
 msgid "_Workgroup"
@@ -878,15 +873,3 @@ msgstr "_Työryhmä"
 msgid "Use Local Policies"
 msgstr "Käytä paikallisia käytäntöjä"
 
-#, fuzzy
-#~ msgid "Information"
-#~ msgstr "Käyttäjätiedot"
-
-#~ msgid "(c) 1999-2003 Red Hat, Inc."
-#~ msgstr "(c) 1999-2003 Red Hat, Inc."
-
-#~ msgid "enable winbind for user information and authentication by default"
-#~ msgstr "käytä winbindiä käyttäjätietoihin ja todennukseen oletuksena"
-
-#~ msgid "disable winbind for user information and authentication by default"
-#~ msgstr "älä käytä winbindiä käyttäjätietoihin ja todennukseen oletuksena"
