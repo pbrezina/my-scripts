@@ -39,6 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 - close all files we open
 - bail on errors, even when we can see the file
 - use RPM_OPT_FLAGS
+- support multiple NIS servers
 
 * Mon Jun  5 2000 Nalin Dahyabhai <nalin@redhat.com>
 - fix for false-matching beginnings of realm subsections
