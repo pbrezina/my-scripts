@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.18
+Version: 4.1.19
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -40,6 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Tue Aug 28 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.19-1
+- fix assertion error hitting glib (#51798)
+- allow multiple ldap servers to be specified (#49864)
+
 * Fri Aug 24 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.18-1
 - pam_ldap shouldn't be a mandatory module (#52531)
 - refresh translations

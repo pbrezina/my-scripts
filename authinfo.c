@@ -268,6 +268,18 @@ authInfoReadLDAP(struct authInfoType *info)
 			/* Save the host name or IP. */
 			if(*p != '\0') {
 				info->ldapServer = g_strdup(p);
+				for(p = info->ldapServer; *p != '\0'; p++) {
+					if(isspace(*p)) {
+						if((p > info->ldapServer) &&
+						   (p[-1] == ',')) {
+							memmove(p - 1, p,
+								strlen(p) + 1);
+							p--;
+						} else {
+							*p = ',';
+						}
+					}
+				}
 			}
 
 			memset(buf, '\0', sizeof(buf));
@@ -896,7 +908,11 @@ authInfoWriteSMB(struct authInfoType *info)
 	}
 	write(fd, "\n", 1);
 
-	v = g_strsplit(info->smbServers, ",", 0);
+	if(non_empty(info->smbServers)) {
+		v = g_strsplit(info->smbServers, ",", 0);
+	} else {
+		v = NULL;
+	}
 	if(v && v[0]) {
 		write(fd, v[0], strlen(v[0]));
 	}
@@ -1060,7 +1076,7 @@ authInfoWriteNIS(struct authInfoType *info)
 /* Write LDAP setup to an ldap.conf using host and base as keys. */
 static gboolean
 authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
-		   const char *host, const char *base, gboolean writepadl)
+		   const char *host, const char *base, gboolean writePadl)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
@@ -1106,9 +1122,16 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		if(strncmp(host, p, 4) == 0) {
 			if(!wroteserver)
 			if(non_empty(info->ldapServer)) {
+				size_t l;
 				strcat(obuf, host);
 				strcat(obuf, " ");
+				l = strlen(obuf);
 				strcat(obuf, info->ldapServer);
+				while(strrchr(obuf + l, ',')) {
+					char *p;
+					p = strrchr(obuf + l, ',');
+					*p = ' ';
+				}
 				strcat(obuf, "\n");
 				wroteserver = TRUE;
 			}
@@ -1127,7 +1150,7 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		} else
 
 		/* If it's an 'ssl' line, insert ours instead. */
-		if(writepadl && (strncmp("ssl", p, 3)) == 0) {
+		if(writePadl && (strncmp("ssl", p, 3)) == 0) {
 			if(!wrotessl) {
 				strcat(obuf, "ssl");
 				strcat(obuf, " ");
@@ -1139,7 +1162,7 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		} else
 
 		/* If it's a 'pam_password' line, write the correct setting. */
-		if(writepadl && strncmp("pam_password", p, 12) == 0) {
+		if(writePadl && strncmp("pam_password", p, 12) == 0) {
 			if(!wrotepass) {
 				strcat(obuf, "pam_password");
 				strcat(obuf, " ");
@@ -1157,9 +1180,16 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	/* If we haven't encountered either of the config lines yet... */
 	if(!wroteserver) {
 		if(non_empty(info->ldapServer)) {
+			size_t l;
 			strcat(obuf, host);
 			strcat(obuf, " ");
+			l = strlen(obuf);
 			strcat(obuf, info->ldapServer);
+			while(strrchr(obuf + l, ',')) {
+				char *p;
+				p = strrchr(obuf + l, ',');
+				*p = ' ';
+			}
 			strcat(obuf, "\n");
 		}
 	}
@@ -1171,13 +1201,13 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 			strcat(obuf, "\n");
 		}
 	}
-	if(writepadl && !wrotessl) {
+	if(writePadl && !wrotessl) {
 		strcat(obuf, "ssl");
 		strcat(obuf, " ");
 		strcat(obuf, info->enableLDAPS ? "start_tls" : "no");
 		strcat(obuf, "\n");
 	}
-	if(writepadl && !wrotepass) {
+	if(writePadl && !wrotepass) {
 		strcat(obuf, "pam_password");
 		strcat(obuf, " ");
 		strcat(obuf, info->enableMD5 ? "md5" : "crypt");
