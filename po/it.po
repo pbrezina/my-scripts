@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 1999 Red Hat Partner - Sistemi Srl.
+# Copyright (C) 1999 Red Hat Software Italia.
 # Federico Musto  <federico@redhat.it>, 1999.
 #
 msgid ""
@@ -28,11 +28,11 @@ msgstr "%s: non posso aprire /etc/yp.conf: %s\n"
 #.
 #: ../authconfig.c:215
 msgid "NIS Server:"
-msgstr "Server NIS"
+msgstr "Server NIS:"
 
 #: ../authconfig.c:216
 msgid "Request via broadcast"
-msgstr "Richiesta via broadcast"
+msgstr "Richiesta in broadcast"
 
 #: ../authconfig.c:233
 msgid "Enable NIS"
@@ -40,7 +40,7 @@ msgstr "NIS abilitato"
 
 #: ../authconfig.c:235
 msgid "NIS Domain:"
-msgstr "Dominio NIS"
+msgstr "Dominio NIS:"
 
 #. Shadow Stuff
 #: ../authconfig.c:271
@@ -49,7 +49,7 @@ msgstr "Usa Shadow Password"
 
 #: ../authconfig.c:273
 msgid "Enable MD5 Passwords"
-msgstr "Password MD5 abilitata"
+msgstr "Abilita Password MD5"
 
 #: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
 msgid "Ok"
@@ -73,7 +73,7 @@ msgstr "o usa:"
 
 #: ../authconfig.c:334
 msgid "Authentication Configuration"
-msgstr "Authenticazione della Configurazione"
+msgstr "Autenticazione della Configurazione"
 
 #: ../authconfig.c:347 ../authconfig.c:354
 msgid "Error"
@@ -81,7 +81,7 @@ msgstr "Errore"
 
 #: ../authconfig.c:348
 msgid "You must enter a NIS server or request via broadcast."
-msgstr "Dovete inserire un NIS server od una richiesta via broadcast"
+msgstr "Dovete inserire un NIS server o richiederlo in broadcast"
 
 #: ../authconfig.c:355
 msgid "You must enter a NIS domain."
@@ -95,7 +95,7 @@ msgstr "%s: non posso aprire /etc/sysconfig/network- per scrivere: %s\n"
 #: ../authconfig.c:475
 #, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr "%s: non posso aprire /etc/yp.conf- per scrivere: %s\n"
+msgstr "%s: non posso aprire /etc/yp.conf- in scrittura: %s\n"
 
 #: ../authconfig.c:657
 #, c-format
@@ -118,14 +118,14 @@ msgid ""
 msgstr ""
 "Usage: %s [options]\n"
 "\n"
-"     --nostart            do not start/stop yp\n"
-"     --enablenis          enable nis by default\n"
-"     --nisdomain <domain> default NIS domain\n"
-"     --nisserver <server> default NIS server\n"
-"     --useshadow          use shadow passwords\n"
-"     --enablemd5          enable MD5 passwords\n"
-"     --kickstart          don't display user interface\n"
-"     --help               show this screen\n"
+"     --nostart            non start/stop yp\n"
+"     --enablenis          abilita nis di default\n"
+"     --nisdomain <domain> abilita dominio NIS\n"
+"     --nisserver <server> server NIS di default\n"
+"     --useshadow          usa shadow password\n"
+"     --enablemd5          abilita MD5 password\n"
+"     --kickstart          non mostrare l'interfaccia utente\n"
+"     --help               mostra questo schermo\n"
 
 #: ../authconfig.c:745
 #, c-format
@@ -140,7 +140,7 @@ msgstr "%s: argomento inaspettato\n"
 #: ../authconfig.c:764
 #, c-format
 msgid "%s: can only be run as root\n"
-msgstr "%s: puo' solo esere eseguito come root\n"
+msgstr "%s: puo' essere eseguito solo come root\n"
 
 #: ../authconfig.c:779
 #, c-format
@@ -162,13 +162,14 @@ msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
-" <Tab>/<Alt-Tab> tra gli elementi   |   <Space> seleziona |  <F12> scermo "
+" <Tab>/<Alt-Tab> tra gli elementi   |   <Space> seleziona |  <F12> schermo "
 "successivo "
 
 #: ../authconfig.c:829
 #, c-format
 msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr "%s: il dominio nis era settato per %s, ma il dialogo era cancellato\n"
+msgstr ""
+"%s: il dominio nis era settato per %s, ma il dialogo e' stato cancellato\n"
 
 #: ../authconfig.c:842
 #, c-format
