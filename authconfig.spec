@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.17
+Version: 4.1.18
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -40,6 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Fri Aug 24 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.18-1
+- pam_ldap shouldn't be a mandatory module
+- refresh translations
+
 * Thu Aug 23 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.17-1
 - make pam_ldap required for account management when ldapauth is enabled
   (this requires pam_ldap 114 or later, but simplifies things)
