@@ -66,20 +66,27 @@ int entryFilter(newtComponent entry, void * data, int ch, int cursor)
 gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 {
   char *domainStr;
+  struct stat st;
+
   if (enableNis && (nisDomain != NULL) && (strlen(nisDomain) > 0)) { 
     domainStr = g_strdup_printf("/bin/domainname %s", nisDomain);
     system(domainStr);
     g_free(domainStr);
     if (!nostart) {
-      system("/etc/rc.d/init.d/ypbind restart");
+      system("/sbin/service ypbind restart");
     }
-    system("/sbin/chkconfig ypbind && /sbin/chkconfig --level 345 ypbind on");
+    if(stat(PATH_YPBIND, &st) == 0) {
+      system("/sbin/chkconfig --add ypbind");
+      system("/sbin/chkconfig --level 345 ypbind on");
+    }
   } else {
     system("/bin/domainname \"(none)\"");
     if (!nostart) {
-      system("/etc/rc.d/init.d/ypbind stop");
+      system("/sbin/service ypbind stop");
     }
-    system("/sbin/chkconfig ypbind && /sbin/chkconfig --del ypbind");
+    if(stat(PATH_YPBIND, &st) == 0) {
+      system("/sbin/chkconfig --del ypbind");
+    }
   }
 
   return TRUE;
