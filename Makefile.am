@@ -91,7 +91,7 @@ archive: tag
 	dir=`pwd` ; \
 	root=`cat CVS/Root` ; \
 	cd /tmp ; \
-	cvs export -r $(CVSTAG) -d $(PACKAGE) ; \
+	cvs export -r $(CVSTAG) -d $(PACKAGE) $(PACKAGE) ; \
 	cd $(PACKAGE)-$(VERSION) ; \
 	./autogen.sh ; \
 	./configure ; \
