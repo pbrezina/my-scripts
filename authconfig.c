@@ -279,13 +279,13 @@ int getNSSChoices(int back,
   newtGridSetField(mechGrid, 1, 0, NEWT_GRID_COMPONENT, nis.domainLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 0, NEWT_GRID_COMPONENT, nis.domainEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtGridSetField(mechGrid, 0, 1, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 1, NEWT_GRID_COMPONENT, nis.serverLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 1, NEWT_GRID_COMPONENT, nis.serverEntry,
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* NSS modules: LDAP. */
   ldap.pam_ldap = authInfo->enableLDAPAuth ? '*' : ' ';
@@ -307,13 +307,13 @@ int getNSSChoices(int back,
   newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, ldap.serverLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.serverEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* NSS modules: LDAP. */
   cb = newtCheckbox(-1, -1, i18n("Use Hesiod"),
@@ -336,13 +336,13 @@ int getNSSChoices(int back,
   newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, hesiod.lhsLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, hesiod.lhsEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, hesiod.rhsLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, hesiod.rhsEntry,
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* Create the buttons. */
   buttonGrid = newtCreateGrid(2, 1);
@@ -448,13 +448,13 @@ int getPAMChoices(int back,
   newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, ldap.serverLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.serverEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   cb = newtCheckbox(-1, -1, i18n("Use Kerberos 5"),
 		    authInfo->enableKerberos ? '*' : ' ', NULL, &krb5.pam_krb5);
@@ -480,19 +480,19 @@ int getPAMChoices(int back,
   newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, krb5.realmLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, krb5.realmEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, krb5.kdcLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, krb5.kdcEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtGridSetField(mechGrid, 0, 6, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 6, NEWT_GRID_COMPONENT, krb5.kadminLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
   newtGridSetField(mechGrid, 2, 6, NEWT_GRID_COMPONENT, krb5.kadminEntry,
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
 #ifdef LOCAL_POLICIES
   cb = newtCheckbox(1,  12, LOCAL_POLICY_COMMENT,
