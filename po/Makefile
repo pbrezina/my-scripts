@@ -37,6 +37,19 @@ update-po: Makefile
 		fi \
 	done
 
+refresh-po: Makefile
+	catalogs='$(CATALOGS)'; \
+	for cat in $$catalogs; do \
+		lang=`echo $$cat | sed 's/.mo//'`; \
+		if $(MSGMERGE) $$lang.po $(NLSPACKAGE).pot > $$lang.pot ; then \
+			echo "$(MSGMERGE) of $$lang succeeded" ; \
+			mv -f $$lang.pot $$lang.po ; \
+		else \
+			echo "$(MSGMERGE) of $$lang failed" ; \
+			rm -f $$lang.pot ; \
+		fi \
+	done
+
 clean:
 	rm -f *mo $(NLSPACKAGE).pot
 
