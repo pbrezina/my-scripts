@@ -46,11 +46,13 @@ distclean: clean
 depend:
 
 install:
-	for n in "$(CATALOGS)"; do \
+	if [ "$CATALOGS" != "" ]; then \
+	for n in $(CATALOGS); do \
 		l=`basename $$n .mo`; \
 		mkdir -p $(INSTALLNLSDIR)/$$l/LC_MESSAGES; \
 		$(INSTALL) -m 644 $$n $(INSTALLNLSDIR)/$$l/LC_MESSAGES/$(NLSPACKAGE).mo; \
-	done
+	done; \
+	fi
 
 %.mo: %.po
 	msgfmt -o $@ $<
