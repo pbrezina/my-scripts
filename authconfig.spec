@@ -41,7 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Fri Aug 24 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.18-1
-- pam_ldap shouldn't be a mandatory module
+- pam_ldap shouldn't be a mandatory module (#52531)
 - refresh translations
 
 * Thu Aug 23 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.17-1
