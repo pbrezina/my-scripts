@@ -528,6 +528,42 @@ struct authInfoType *authInfoRead()
 	return ret;
 }
 
+struct authInfoType *authInfoCopy(struct authInfoType *info)
+{
+	struct authInfoType *ret = NULL;
+
+	ret = g_malloc0(sizeof(struct authInfoType));
+
+	*ret = *info;
+
+        ret->hesiodLHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
+        ret->hesiodRHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
+
+        ret->ldapServer = info->ldapServer ? g_strdup(info->ldapServer) : NULL;
+        ret->ldapBaseDN = info->ldapBaseDN? g_strdup(info->ldapBaseDN) : NULL;
+
+        ret->kerberosRealm =
+	info->kerberosRealm ? g_strdup(info->kerberosRealm) : NULL;
+
+        ret->kerberosKDC =
+	info->kerberosKDC ? g_strdup(info->kerberosKDC) : NULL;
+
+        ret->kerberosAdminServer =
+	info->kerberosAdminServer ? g_strdup(info->kerberosAdminServer) : NULL;
+
+        ret->nisServer = info->nisServer ? g_strdup(info->nisServer) : NULL;
+        ret->nisDomain = info->nisDomain ? g_strdup(info->nisDomain) : NULL;
+
+#ifdef WINBIND
+        ret->winBindServer =
+	info->winBindServer ? g_strdup(info->winBindServer) : NULL;
+        ret->winBindDomain =
+	info->winBindDomain ? g_strdup(info->winBindDomain) : NULL;
+#endif
+
+	return ret;
+}
+
 static gboolean non_empty(const char *string)
 {
 	return (string != NULL) && (strlen(string) > 0);

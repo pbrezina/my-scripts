@@ -50,7 +50,7 @@ struct authInfoType {
 	char *nisDomain;
  
 #ifdef WINBIND
-	char *winBindDomain;
+	char *winBindServer;
 	char *winBindDomain;
 #endif
   
@@ -76,7 +76,8 @@ struct authInfoType {
 };
 
 struct authInfoType *authInfoRead();
-gboolean authInfoWrite(struct authInfoType *authInfo);
+struct authInfoType *authInfoCopy(struct authInfoType *info);
+gboolean authInfoWrite(struct authInfoType *info);
 
 gboolean authInfoReadHesiod(struct authInfoType *info);
 gboolean authInfoReadNIS(struct authInfoType *info);
@@ -85,7 +86,7 @@ gboolean authInfoReadKerberos(struct authInfoType *info);
 gboolean authInfoReadWinBind(struct authInfoType *info);
 gboolean authInfoReadNSS(struct authInfoType *info);
 gboolean authInfoReadPAM(struct authInfoType *info);
-gboolean authInfoReadNetwork(struct authInfoType *authInfo);
+gboolean authInfoReadNetwork(struct authInfoType *info);
 
 gboolean authInfoWriteHesiod(struct authInfoType *info);
 gboolean authInfoWriteNIS(struct authInfoType *info);
