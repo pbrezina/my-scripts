@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.6.4
-Release: 4
+Release: 6
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Oct 28 2004 Dan Walsh <dwalsh@redhat.com> 4.6.4-6
+- Add support for setsebool when turning on and off NIS
+
 * Wed Sep 29 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-5
 - fixed all po files to translate correctly messages with modified accelerators (#133742)
 - added translations for Arabic, Bulgarian and other languages (#133716, #133158)
