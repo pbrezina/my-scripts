@@ -681,8 +681,10 @@ int doShadowStuff(char useShadow, char enableMD5)
   /* now, do file manipulation on the password files themselves. */
   if (useShadow == '*') {
     system("/usr/sbin/pwconv");
+    system("/usr/sbin/grpconv");
   } else {
     system("/usr/sbin/pwunconv");
+    system("/usr/sbin/grpunconv");
   }
   return 0;
 }
