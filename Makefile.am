@@ -92,7 +92,7 @@ archive: tag
 	root=`cat CVS/Root` ; \
 	cd /tmp ; \
 	cvs -d "$$root" export -r $(CVSTAG) -d $(PACKAGE) $(PACKAGE) ; \
-	cd $(PACKAGE)-$(VERSION) ; \
+	cd $(PACKAGE) ; \
 	./autogen.sh ; \
 	./configure ; \
 	make dist ; \
