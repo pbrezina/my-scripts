@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.2
-Release: 2
+Version: 4.2.1
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -73,6 +73,10 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
+* Tue Dec 11 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2.1-1
+- fix setting of LDAP TLS option in authconfig-gtk
+- change Apply to Ok, Close to Cancel, because that's how they work
+
 * Tue Dec 11 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2-2
 - add the glade XML file to the -gtk subpackage (fix from katzj)
 

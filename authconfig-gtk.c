@@ -103,6 +103,8 @@ static struct config_map kerberossettings[] = {
 };
 
 static struct config_map ldapsettings[] = {
+	{"tls", boolean,
+	 G_STRUCT_OFFSET(struct authInfoType, enableLDAPS)},
 	{"basedn", string,
 	 G_STRUCT_OFFSET(struct authInfoType, ldapBaseDN)},
 	{"server", string,
