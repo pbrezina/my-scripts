@@ -1540,8 +1540,6 @@ static struct {
 	 "unix",		NULL},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		NULL},
-	{TRUE,  account, 	LOGIC_REQUIRED,
-	 "access",		NULL},
 
 #ifdef LOCAL_POLICIES
 	{FALSE, password,	LOGIC_REQUIRED,

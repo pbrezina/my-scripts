@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.2
+Version: 4.1.3
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -36,6 +36,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Wed Feb  7 2001 Nalin Dahyabhai <nalin@redhat.com>
+- remove pam_access from the default configuration -- swat, pop, imap, etc.
+  don't define a tty and pam_access bails if one isn't set
+
 * Tue Feb  6 2001 Nalin Dahyabhai <nalin@redhat.com>
 - ignore on errors connecting to LDAP servers when doing LDAP account mgmt
   (probably less secure, but it allows root to log in when a wrong server
