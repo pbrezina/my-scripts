@@ -70,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Wed Oct 23 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3.1-1
 - require a version of PAM (0.75-43) which supports $ISA
+- use $ISA in our own PAM config files
 
 * Tue Oct 22 2002 Nalin Dahyabhai <nalin@redhat.com>
 - add $ISA to the name of the directory in which we expect PAMs to be stored
