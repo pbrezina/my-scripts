@@ -188,12 +188,13 @@ int entryFilter(newtComponent entry, void * data, int ch, int cursor)
  * draw the main window for authconfig.  Displays choices about
  * using NIS and shadow passwords.  return results by reference.
  */
-int getChoices(int useBack, char *enableNis, char **nisDomain,  
+int getChoices(int useBack, int configureNis,
+	       char *enableNis, char **nisDomain,  
 	       char *enableNisServer, char **nisServer,
 	       char *useShadow, char *enableMD5)
 {
   newtComponent mainForm;
-  newtGrid mainGrid, subGrid, serverGrid, buttons;
+  newtGrid mainGrid, subGrid, buttons;
   newtComponent nisCheckBox, nisLabel, nisEntry;
   newtComponent bcastCheckBox, nisServerLabel,  nisServerEntry;
   newtComponent shadowCheckBox, MD5CheckBox;
@@ -211,54 +212,55 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   /*
    * NIS stuff.
    */
-  nisServerLabel = newtLabel(-1, -1, i18n("NIS Server:"));
-  bcastCheckBox = newtCheckbox(-1, -1, i18n("Request via broadcast"),
-			       *enableNisServer == '*' ? ' ' : '*',
-			       0, &newEnableBroadCast);
-
-  nisServerEntry = newtEntry(-1, -1, "", 25, &newNisServer,
-			     NEWT_FLAG_SCROLL);
-  newtEntrySetFilter(nisServerEntry, entryFilter, NULL);
-
-  if (*enableNisServer == ' ')
-      newtEntrySetFlags(nisServerEntry, NEWT_ENTRY_DISABLED,
-			NEWT_FLAGS_SET);
-
-  servercb.state = &newEnableBroadCast;
-  servercb.entry = nisServerEntry;
-  newtComponentAddCallback(bcastCheckBox, serverEntryToggle,
-			   &servercb);
-
-  nisCheckBox = newtCheckbox(-1, -1, i18n("Enable NIS"), 0, 0, enableNis);
-
-  nisLabel = newtLabel(-1, -1, i18n("NIS Domain:"));
-  nisEntry = newtEntry(-1, -1, "", 25, &newNisDomain, 
-		       NEWT_FLAG_SCROLL);
-  newtEntrySetFilter(nisEntry, entryFilter, NULL);
+  if (configureNis) {
+      nisServerLabel = newtLabel(-1, -1, i18n("NIS Server:"));
+      bcastCheckBox = newtCheckbox(-1, -1, i18n("Request via broadcast"),
+				   *enableNisServer == '*' ? ' ' : '*',
+				   0, &newEnableBroadCast);
+      
+      nisServerEntry = newtEntry(-1, -1, "", 25, &newNisServer,
+				 NEWT_FLAG_SCROLL);
+      newtEntrySetFilter(nisServerEntry, entryFilter, NULL);
+      
+      if (*enableNisServer == ' ')
+	  newtEntrySetFlags(nisServerEntry, NEWT_ENTRY_DISABLED,
+			    NEWT_FLAGS_SET);
+      
+      servercb.state = &newEnableBroadCast;
+      servercb.entry = nisServerEntry;
+      newtComponentAddCallback(bcastCheckBox, serverEntryToggle,
+			       &servercb);
+      
+      nisCheckBox = newtCheckbox(-1, -1, i18n("Enable NIS"), 0, 0, enableNis);
+      
+      nisLabel = newtLabel(-1, -1, i18n("NIS Domain:"));
+      nisEntry = newtEntry(-1, -1, "", 25, &newNisDomain, 
+			   NEWT_FLAG_SCROLL);
+      newtEntrySetFilter(nisEntry, entryFilter, NULL);
   
-  niscb.state = enableNis;
-  niscb.bcastState = &newEnableBroadCast;
-  niscb.domEntry = nisEntry;
-  niscb.bcast = bcastCheckBox;
-  niscb.serverEntry = nisServerEntry;
-
-  newtComponentAddCallback(nisCheckBox, nisEntryToggle,
-			   &niscb);
+      niscb.state = enableNis;
+      niscb.bcastState = &newEnableBroadCast;
+      niscb.domEntry = nisEntry;
+      niscb.bcast = bcastCheckBox;
+      niscb.serverEntry = nisServerEntry;
+      
+      newtComponentAddCallback(nisCheckBox, nisEntryToggle,
+			       &niscb);
   
-  /* if NIS is already enabled, show that. */
-  if (strcmp(*nisDomain,"")) {
-    newtCheckboxSetValue(nisCheckBox, '*');
-    newtEntrySet(nisEntry,*nisDomain, 1);
+      /* if NIS is already enabled, show that. */
+      if (strcmp(*nisDomain,"")) {
+	  newtCheckboxSetValue(nisCheckBox, '*');
+	  newtEntrySet(nisEntry,*nisDomain, 1);
+      }
+      
+      /* likewise for a nisserver. */
+      if (strcmp(*nisServer,"") && *enableNis == '*') {
+	  newtEntrySet(nisServerEntry, *nisServer, 1);
+      }
+
+      serverEntryToggle(bcastCheckBox, &servercb);
+      nisEntryToggle(nisCheckBox, &niscb);
   }
-
-  /* likewise for a nisserver. */
-  if (strcmp(*nisServer,"") && *enableNis == '*') {
-    newtEntrySet(nisServerEntry, *nisServer, 1);
-  }
-
-  serverEntryToggle(bcastCheckBox, &servercb);
-  nisEntryToggle(nisCheckBox, &niscb);
-  
   /* Shadow Stuff */
   shadowCheckBox = newtCheckbox(-1, -1, i18n("Use Shadow Passwords"),
 				0, 0, &newUseShadow);
@@ -276,40 +278,38 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
 
   mainGrid = newtCreateGrid(1, 6);
 
-  /* Begin row 1 of main grid */
-  newtGridSetField(mainGrid, 0, 0, NEWT_GRID_COMPONENT, nisCheckBox,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  if (configureNis) {
 
-  /* Row 2 of main grid */
-  subGrid = newtCreateGrid(2, 2);
-
-  /* Create the subgrid for nis info */
-  newtGridSetField(subGrid, 0, 0, NEWT_GRID_COMPONENT, nisLabel,
-		   1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(subGrid, 1, 0, NEWT_GRID_COMPONENT, nisEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(subGrid, 0, 1, NEWT_GRID_COMPONENT, nisServerLabel,
-		   1, 0, 1, 0, NEWT_ANCHOR_RIGHT | NEWT_ANCHOR_TOP, 0);
-
-  /* and the sub subgrid for the nis server info */
-  serverGrid = newtCreateGrid(1, 3);
-
-  newtGridSetField(serverGrid, 0, 0, NEWT_GRID_COMPONENT, bcastCheckBox,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(serverGrid, 0, 1, NEWT_GRID_COMPONENT, 
-		   newtLabel(-1, -1, i18n("or use:")),
-		   0, 0, 0, 0, 0, 0);
-  newtGridSetField(serverGrid, 0, 2, NEWT_GRID_COMPONENT, nisServerEntry,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  /* add the sub subgrid to the subgrid */
-  newtGridSetField(subGrid, 1, 1, NEWT_GRID_SUBGRID, serverGrid,
-		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-
-  /* and the subgrid to the main grid */
-  newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, subGrid, 
-		   0, 1, 0, 1, 0, NEWT_GRID_FLAG_GROWX);
-
+      /* Begin row 1 of main grid */
+      newtGridSetField(mainGrid, 0, 0, NEWT_GRID_COMPONENT, nisCheckBox,
+		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+      
+      /* Row 2 of main grid */
+      
+      /* Create the subgrid for nis info */
+      subGrid = newtCreateGrid(2, 3);
+      
+      newtGridSetField(subGrid, 0, 0, NEWT_GRID_COMPONENT, nisLabel,
+		       1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+      newtGridSetField(subGrid, 1, 0, NEWT_GRID_COMPONENT, nisEntry,
+		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+      newtGridSetField(subGrid, 0, 1, NEWT_GRID_COMPONENT, nisServerLabel,
+		       1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+      
+      newtGridSetField(subGrid, 1, 1, NEWT_GRID_COMPONENT, bcastCheckBox,
+		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+      newtGridSetField(subGrid, 0, 2, NEWT_GRID_COMPONENT, 
+		       newtLabel(-1, -1, i18n("or use:")),
+		       0, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+      newtGridSetField(subGrid, 1, 2, NEWT_GRID_COMPONENT, nisServerEntry,
+		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+      
+      /* and the subgrid to the main grid */
+      newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, subGrid, 
+		       0, 1, 0, 1, 0, NEWT_GRID_FLAG_GROWX);
+  }	  
   /* Row 3... and so on */
+
   
   newtGridSetField(mainGrid, 0, 2, NEWT_GRID_COMPONENT, shadowCheckBox, 
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
@@ -690,6 +690,7 @@ int main(int argc, char **argv) {
   int kickstart = 0;
   int enablenis = 0, useshadow = 0, enablemd5 = 0;
   int help = 0;
+  int configureNis = 0;
   poptContext optCon;
   struct poptOption options[] = {
     { "back", '\0', 0, &back, 0},
@@ -761,12 +762,16 @@ int main(int argc, char **argv) {
   else
     enableNis = '*';
 
-  /* read the values from yp.conf */
-  if (readYPConfigFile(&nisServer)) {
-    fprintf(stderr, i18n("%s: critical error reading /etc/yp.conf"),
-	    progName);
-    return 2;
-  }
+  if (!access("/etc/yp.conf", R_OK)) {
+      /* read the values from yp.conf */
+      if (readYPConfigFile(&nisServer)) {
+	  fprintf(stderr, i18n("%s: critical error reading /etc/yp.conf"),
+		  progName);
+	  return 2;
+      }
+      configureNis = 1;
+  } else
+      configureNis = 0;
 
   if (!nisServer)
     nisServer = "";
@@ -789,7 +794,7 @@ int main(int argc, char **argv) {
     newtPushHelpLine(i18n(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
     newtDrawRootText(0, 0, "authconfig " VERSION " - (c) 1999 Red Hat Software");
     
-    if (getChoices(back, &enableNis, &nisDomain, 
+    if (getChoices(back, configureNis, &enableNis, &nisDomain, 
 		   &enableNisServer, &nisServer, 
 		   &useShadow, &enableMD5)) {
       /* cancelled */
