@@ -42,10 +42,14 @@ install:
 	mkdir -p $(DESTDIR)$(PYTHONLIB)
 	mkdir -p $(DESTDIR)$(datadir)/$(PACKAGE)
 	mkdir -p $(DESTDIR)$(datadir)/firstboot/modules
+	mkdir -p $(DESTDIR)/etc/X11/sysconfig
+	mkdir -p $(DESTDIR)/etc/X11/applnk/System
 
 	install -m 755 $(BINARIES) $(DESTDIR)$(sbindir)/
 	install -m 755 $(PYTHONMODULES) $(DESTDIR)$(PYTHONLIB)/
 	install -m 644 $(DATA) $(DESTDIR)$(datadir)/$(PACKAGE)/
+	install -m 644 $(PACKAGE).desktop $(DESTDIR)/etc/X11/sysconfig
+	install -m 644 $(PACKAGE).desktop $(DESTDIR)/etc/X11/applnk/System
 	chmod 755 $(DESTDIR)$(datadir)/$(PACKAGE)/*.py
 	python -c "import compileall; compileall.compile_dir(\""$(DESTDIR)$(datadir)/$(PACKAGE)"\", 2, \""$(datadir)/$(PACKAGE)"\", 1)"
 	cd  $(DESTDIR)$(datadir)/firstboot/modules ; ln -s -f ../../$(PACKAGE)/$(PACKAGE)-gtk.py  authentication.py

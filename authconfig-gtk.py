@@ -176,6 +176,9 @@ if __name__ == '__main__':
 	box = gtk.VBox()
 
 	hbox = gtk.HButtonBox()
+	hbox.set_spacing(30)
+	hbox.set_border_width(8)
+	hbox.set_layout(gtk.BUTTONBOX_END)
 	hbox.show()
 
 	vbox, eventbox = module.launch()
@@ -190,13 +193,10 @@ if __name__ == '__main__':
 	button = gtk.Button(_("Cancel"), stock=gtk.STOCK_CANCEL);
 	button.connect("clicked", gtk.mainquit)
 	button.show()
-	hbox.set_spacing(30)
-	hbox.set_border_width(8)
-	hbox.set_layout(gtk.BUTTONBOX_END)
 	hbox.pack_start_defaults(button)
 
-	box.pack_start_defaults(vbox)
-	box.pack_start_defaults(hbox)
+	box.pack_start(vbox, gtk.TRUE, gtk.TRUE)
+	box.pack_start(hbox, gtk.FALSE, gtk.FALSE)
 	box.show()
 
 	win.add(box)
