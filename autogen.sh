@@ -1,5 +1,5 @@
 set -x
-gettextize --intl -f
+gettextize --intl -f --no-changelog
 autoheader
 automake -a
 libtoolize -f -c
