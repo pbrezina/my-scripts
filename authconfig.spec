@@ -34,7 +34,6 @@ authentication schemes.
 
 %build
 %configure --with-pythonrev=2.2
-aclocal
 make
 
 %install
