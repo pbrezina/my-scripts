@@ -36,7 +36,7 @@ clean:
 	make -C po clean
 
 archive:
-	cvs -d `cat CVS/Root` tag -cF $(CVSTAG) .
+	cvs -d `cat CVS/Root` tag -cFR $(CVSTAG) .
 	@rm -rf /tmp/$(PROGNAME)-$(VERSION) /tmp/$(PROGNAME)
 	@dir=$$PWD; cd /tmp; cvs -d `cat $$dir/CVS/Root` export -r$(CVSTAG) $(PROGNAME)
 	@mv /tmp/$(PROGNAME) /tmp/$(PROGNAME)-$(VERSION)
