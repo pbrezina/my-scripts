@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "POT-Creation-Date: 2000-08-08 11:34-0400\n"
-"PO-Revision-Date: 2000-06-07 17:08+0200\n"
+"PO-Revision-Date: 2000-09-21 20:20+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -15,10 +15,12 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
+"Non se atopou o ficheiro %s, pero é requirido para que o soporte de %s "
+"funcione correctamente.  Instale o paquete %s, que fornece este ficheiro."
 
 #: ../authconfig.c:157
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: ../authconfig.c:157 ../authconfig.c:529 ../authconfig.c:534
 msgid "Ok"
@@ -72,7 +74,7 @@ msgstr "Usar LDAP"
 
 #: ../authconfig.c:346
 msgid "Use WinBind"
-msgstr ""
+msgstr "Usar WinBind"
 
 #: ../authconfig.c:360
 msgid "Use Hesiod"
@@ -110,16 +112,15 @@ msgid "Use LDAP Authentication"
 msgstr "Usar Autentificación LDAP"
 
 #: ../authconfig.c:481
-#, fuzzy
 msgid "Use WinBind Authentication"
-msgstr "Usar Autentificación LDAP"
+msgstr "Usar Autentificación WinBind"
 
 #: ../authconfig.c:496
 msgid "Use Kerberos 5"
 msgstr "Usar Kerberos 5"
 
 #: ../authconfig.c:626
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
@@ -161,30 +162,45 @@ msgid ""
 msgstr ""
 "Uso: %s [opcións]\n"
 "\n"
-"     --nostart                  non iniciar/parar ypbind\n"
-"     --useshadow                usar contrasinais shadow por defecto\n"
+"     --useshadow\n"
+"     --enableshadow             activar contrasinais shadow por defecto\n"
+"     --disableshadow            desactivar contrasinais shadow por defecto\n"
 "     --enablemd5                activar contrasinais MD5 por defecto\n"
+"     --disablemd5               desactivar contrasinais MD5 por defecto\n"
+"\n"
 "     --enablenis                activar NIS\n"
+"     --disablenis               desactivar NIS\n"
 "     --nisdomain <dominio>      dominio NIS por defecto\n"
 "     --nisserver <servidor>     servidor NIS por defecto\n"
-"     --enableldap               activar ldap para información de usuario "
-"por\n"
-"                                defecto\n"
-"     --enableldapauth           activar ldap para autentificación por "
+"\n"
+"     --enableldap               activar ldap para información de usuario\n"
+"                                por defecto\n"
+"     --disableldap              desactivar ldap para información de usuario\n"
+"                                por defecto\n"
+"     --enableldapauth           activar ldap para autenticación por defecto\n"
+"     --disableldapauth          desactivar ldap para autenticación por "
 "defecto\n"
 "     --ldapserver <servidor>    servidor LDAP por defecto\n"
 "     --ldapbasedn <dn>          DN base de LDAP por defecto\n"
-"     --enablekrb5               activar autentificación kerberos por "
+"\n"
+"     --enablekrb5               activar autenticación kerberos por defecto\n"
+"     --disablekrb5              desactivar autenticación kerberos por "
 "defecto\n"
 "     --krb5kdc <servidor>       KDC de kerberos por defecto\n"
 "     --krb5adminserver <servidor> servidor de administración de kerberos "
 "por\n"
 "                                  defecto\n"
 "     --krb5realm <realm>        realm de kerberos por defecto\n"
+"\n"
 "     --enablehesiod             activar hesiod para información de usuario\n"
+"                                por defecto\n"
+"     --disablehesiod            desactivar hesiod para información de "
+"usuario\n"
 "                                por defecto\n"
 "     --hesiodlhs <lhs>          LHS de hesiod por defecto\n"
 "     --hesiodrhs <rhs>          RHS de hesiod por defecto\n"
+"\n"
+"     --nostart                  non iniciar/parar ypbind\n"
 "     --kickstart                non amosa-la interface de usuario\n"
 "     --help                     amosar esta pantalla\n"
 
@@ -193,6 +209,8 @@ msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
 msgstr ""
+"\n"
+"     --enablelocal              usar política definida localmente "
 
 #: ../authconfig.c:777
 #, c-format
@@ -212,9 +230,9 @@ msgstr "%s: só se pode executar como root\n"
 #: ../authconfig.c:807 ../authconfig.c:815 ../authconfig.c:823
 #: ../authconfig.c:832 ../authconfig.c:841 ../authconfig.c:849
 #: ../authconfig.c:857 ../authconfig.c:865
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error reading %s/%s"
-msgstr "%s: erro crítico lendo %s/pam.d/%s"
+msgstr "%s: erro crítico lendo %s/%s"
 
 #: ../authconfig.c:923
 msgid ""
@@ -230,53 +248,6 @@ msgstr "o diálogo foi cancelado\n"
 #: ../authconfig.c:999 ../authconfig.c:1005 ../authconfig.c:1011
 #: ../authconfig.c:1017 ../authconfig.c:1024 ../authconfig.c:1031
 #: ../authconfig.c:1036 ../authconfig.c:1042
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing %s/%s"
-msgstr "%s: erro crítico escribindo %s/pam.d/%s"
-
-#~ msgid "%s: critical error reading %s/hesiod.conf"
-#~ msgstr "%s: erro crítico lendo %s/hesiod.conf"
-
-#~ msgid "%s: critical error reading %s/krb5.conf"
-#~ msgstr "%s: erro crítico lendo %s/krb5.conf"
-
-#~ msgid "%s: critical error reading %s/ldap.conf"
-#~ msgstr "%s: erro crítico lendo %s/ldap.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/smb.conf"
-#~ msgstr "%s: erro crítico lendo %s/krb5.conf"
-
-#~ msgid "%s: critical error reading %s/yp.conf"
-#~ msgstr "%s: erro crítico lendo %s/yp.conf"
-
-#~ msgid "%s: critical error reading %s/nsswitch.conf"
-#~ msgstr "%s: erro crítico lendo %s/nsswitch.conf"
-
-#~ msgid "%s: critical error reading %s/sysconfig/network"
-#~ msgstr "%s: erro crítico lendo %s/sysconfig/network"
-
-#~ msgid "%s: critical error writing %s/hesiod.conf"
-#~ msgstr "%s: erro crítico escribindo %s/hesiod.conf"
-
-#~ msgid "%s: critical error writing %s/krb5.conf"
-#~ msgstr "%s: erro crítico escribindo %s/krb5.conf"
-
-#~ msgid "%s: critical error writing %s/ldap.conf"
-#~ msgstr "%s: erro crítico escribindo %s/ldap.conf"
-
-#~ msgid "%s: critical error writing %s/yp.conf"
-#~ msgstr "%s: erro crítico escribindo %s/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/smb.conf"
-#~ msgstr "%s: erro crítico escribindo %s/krb5.conf"
-
-#~ msgid "%s: critical error writing %s/nsswitch.conf"
-#~ msgstr "%s: erro crítico escribindo %s/nsswitch.conf"
-
-#~ msgid "%s: critical error writing %s/sysconfig/network"
-#~ msgstr "%s: erro crítico escribindo %s/sysconfig/network"
-
-#~ msgid "Use /etc/passwd"
-#~ msgstr "Usar /etc/passwd"
+msgstr "%s: erro crítico escribindo %s/%s"
