@@ -897,6 +897,13 @@ main(int argc, const char **argv)
 	_("enable use of TLS with LDAP"), NULL},
       { "disableldaptls", '\0', POPT_ARG_NONE, &disableLDAPS, 0,
 	_("disable use of TLS with LDAP"), NULL},
+
+      /* Blech.  Implemented one way, documented the other way (#115107). */
+      { "enableldapssl", '\0', POPT_ARGFLAG_DOC_HIDDEN | POPT_ARG_NONE,
+        &enableLDAPS, 0, _("enable use of TLS with LDAP"), NULL},
+      { "disableldapssl", '\0', POPT_ARGFLAG_DOC_HIDDEN | POPT_ARG_NONE,
+        &disableLDAPS, 0, _("disable use of TLS with LDAP"), NULL},
+
       { "enableldapauth", '\0', POPT_ARG_NONE, &enableLDAPAuth, 0,
 	_("enable LDAP for authentication by default"), NULL},
       { "disableldapauth", '\0', POPT_ARG_NONE, &disableLDAPAuth, 0,
