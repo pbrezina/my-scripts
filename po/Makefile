@@ -15,7 +15,7 @@ all: $(NLSPACKAGE).pot $(CATALOGS)
 
 $(NLSPACKAGE).pot: $(POTFILES)
 	xgettext --default-domain=$(NLSPACKAGE) \
-		--add-comments --keyword=_ --keyword=N_ $(POTFILES)
+		--add-comments --keyword=i18n --keyword=N_ $(POTFILES)
 	if cmp -s $(NLSPACKAGE).po $(NLSPACKAGE).pot; then \
 	    rm -f $(NLSPACKAGE).po; \
 	else \

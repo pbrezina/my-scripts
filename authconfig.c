@@ -18,7 +18,7 @@ static char *progName;
 
 /*
  * reads /etc/sysconfig/network, and determines the value of NISDOMAIN.
- * Double quotes are stripped, #'s denote comments. 
+ * #'s denote comments. 
  */
 static int readNetworkConfigFile(char **nisDomain)
 {
@@ -77,19 +77,81 @@ static int readNetworkConfigFile(char **nisDomain)
 }
 
 /*
+ * reads /etc/yp.conf, and determines the value of ypserver (if any).
+ * #'s denote comments. 
+ */
+static int readYPConfigFile(char **nisServer)
+{
+  FILE *f;
+  char *s, *s1;
+  char buf[250];
+  int line = 0;
+  
+  f = fopen("/etc/yp.conf", "r");
+  if (!f) {
+    if (errno = ENOENT) {
+      return 0;
+    }
+    
+    fprintf(stderr, i18n("%s: cannot open /etc/yp.conf: %s\n"),
+	    progName, strerror(errno));
+    return 1;
+  }
+  
+  while ((s = fgets(buf, sizeof(buf) - 1, f)) != NULL) {
+    line++;
+    
+    /* first, skip over any leading whitespace and blank lines */
+    while (*s && isspace(*s)) 
+      s++;
+    if (!*s)
+      continue;
+    
+    /* next, skip any lines that are comments */
+    if (*s == '#')
+      continue;
+    
+    /* cut trailing whitespace and \n from line */
+    s1 = s + strlen(s) - 1;
+    *s1 = '\0'; s1--;
+    while (isspace(*s1))
+      s1--;
+    /* terminate the line */
+    s1++;
+    *s1 = '\0';
+    s1--;
+    
+    /* look for the line we want */
+    if (!strncmp("ypserver ", s, 9)) {
+      s += 9;
+      *nisServer = strdup(s);
+    } else
+      s = NULL;
+  }
+  
+  /* 
+   * don't return an error if we don't find the line -- it may not
+   * be there the first time they run the tool.
+   */
+  return 0;
+}
+
+/*
  * draw the main window for authconfig.  Displays choices about
  * using NIS and shadow passwords.  return results by reference.
  */
-int getChoices(int useBack, char *enableNis, char **nisDomain, 
+int getChoices(int useBack, char *enableNis, char **nisDomain,  
+	       char *enableNisServer, char **nisServer,
 	       char *enableShadow, char *useMD5)
 {
   newtComponent mainForm;
   /*  newtGrid mainGrid;*/
   newtComponent nisCheckBox, nisLabel, nisEntry;
+  newtComponent serverRadios[2], nisServerLabel,  nisServerEntry;
   newtComponent shadowCheckBox, MD5CheckBox;
   newtComponent okButton, cancelButton;
   newtComponent hLine;
-  char *newNisDomain;
+  char *newNisDomain, *newNisServer;
   int rc;
 
 
@@ -97,7 +159,17 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   mainForm = newtForm(NULL, NULL, 0);
   newtCenteredWindow(60, 16, i18n("Authentication Configuration"));
 
-  /* NIS stuff */
+  /*
+   * NIS stuff.
+  */
+  nisServerLabel = newtLabel(10, 4, i18n("NIS Server:"));
+  serverRadios[0] = newtRadiobutton(15, 5, i18n("Request via broadcast"), 
+				    (*enableNisServer == ' ' || *enableNis == ' ' ? 1 : 0), NULL);
+  serverRadios[1] = newtRadiobutton(15, 6, i18n("Specified:"), 
+				    (*enableNisServer == ' ' || *enableNis == ' ' ? 0 : 1), serverRadios[0]);
+  
+  nisServerEntry = newtEntry(30, 6, "", 25, &newNisServer,
+			     NEWT_FLAG_SCROLL);
   nisCheckBox = newtCheckbox(5, 1, i18n("Enable NIS"), 0, 0, enableNis);
   nisLabel = newtLabel(10, 3, i18n("NIS Domain:"));
   nisEntry = newtEntry(30, 3, "", 20, &newNisDomain, 
@@ -108,9 +180,14 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
     newtCheckboxSetValue(nisCheckBox, '*');
     newtEntrySet(nisEntry,*nisDomain, 1);
   }
-  
+
+  /* likewise for a nisserver. */
+  if (strcmp(*nisServer,"") && *enableNis == '*') {
+    newtEntrySet(nisServerEntry, *nisServer, 1);
+  }
+
   /* horizontal line */
-  hLine = newtLabel(2, 6,
+  hLine = newtLabel(2, 7,
 		    "--------------------------------------------------------");
 
   /* Shadow Stuff */
@@ -125,6 +202,8 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   /* add the components to the form */
   newtFormAddComponents(mainForm, 
 			nisCheckBox, nisLabel, nisEntry,
+			nisServerLabel, serverRadios[0], serverRadios[1],
+			nisServerEntry,
 			hLine,
 			shadowCheckBox, MD5CheckBox,
 			okButton, cancelButton,
@@ -133,7 +212,14 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   if (newtRunForm(mainForm) == cancelButton)
     return 1;
   else {
+    /* process form values */
+    if (newtRadioGetCurrent(serverRadios[0]) == serverRadios[0])
+      *enableNisServer = ' ';
+    else
+      *enableNisServer = '*';
+
     *nisDomain = newNisDomain;
+    *nisServer = newNisServer;
     return 0;
   }
 }
@@ -219,6 +305,87 @@ int rewriteNetworkConfigFile(char enableNis, char *nisDomain)
 
 }
 
+/*
+ * this function will rewrite /etc/sysconfig/yp.conf to have the new
+ * value for ypserver.  If enableNisServer == ' ', removes this field.
+ */
+int rewriteYPConfigFile(char enableNisServer, char *nisServer)
+{
+  FILE *f, *f1;
+  char *s, *s2;
+  char buf[250];
+  int line = 0;
+  int found = 0;
+
+  f = fopen("/etc/yp.conf", "r");
+  if (!f) {
+    fprintf(stderr, i18n("%s: cannot open /etc/yp.conf: %s\n"),
+	    progName, strerror(errno));
+    return 1;
+  }
+
+  f1 = fopen("/etc/yp.conf-", "w");
+  if (!f) {
+    fprintf(stderr, i18n("%s: cannot open /etc/yp.conf- for writing: %s\n"),
+	    progName, strerror(errno));
+    return 1;
+  }
+
+  while ((s2 = fgets(buf, sizeof(buf) - 1, f)) != NULL) {
+    s = s2;
+    line++;
+
+    /* first, skip over any leading whitespace and blank lines */
+    while (*s && isspace(*s)) 
+      s++;
+    if (!*s) {
+      fprintf(f1, s2);
+      continue;
+    }
+
+    /* next, skip any lines that are comments */
+    if (*s == '#') {
+      fprintf(f1, s2);
+      continue;
+    }
+
+    /* look for the line we want */
+    if (!strncmp("ypserver ", s, 9)) {
+      /*
+       * OK, now instead of this line we want to write the new line,
+       * if enableNisServer is '*'. 
+       */
+      if (enableNisServer == '*') {
+	fprintf(f1,"ypserver %s\n",nisServer);
+	found = 1;
+      }
+    } else {
+      fprintf(f1, "%s",s2);
+    }
+  }
+
+  /* 
+   * here, we write the value if we haven't done so already (it is a new
+   * value for the config file...)
+   */
+  if (!found && enableNisServer == '*')
+    fprintf(f1, "ypserver %s\n",nisServer);
+
+  fclose(f);
+  fclose(f1);
+
+  /* rename the temporary file */
+  unlink("/etc/yp.conf");
+  rename("/etc/yp.conf-", "/etc/yp.conf");
+
+  /* 
+   * don't return an error if we don't find the line -- it may not
+   * be there the first time they run the tool.
+   */
+  return 0;
+
+}
+
 int toggleNisService(char enableNis)
 {
   if (enableNis == '*')
@@ -254,8 +421,9 @@ int main(int argc, char **argv) {
     { "test", '\0', 0, &test, 0},
     { 0, 0, 0, 0 }
   };
-  char *nisDomain = NULL;
-  char enableNis = ' ', enableShadow = ' ', useMD5 = ' ';
+  char *nisDomain = NULL, *nisServer = NULL;
+  char enableNis = ' ', enableNisServer = ' ';
+  char enableShadow = ' ', useMD5 = ' ';
 
 
   progName = basename(argv[0]);
@@ -270,7 +438,7 @@ int main(int argc, char **argv) {
   poptReadDefaultConfig(optCon, 1);
   
   if ((rc = poptGetNextOpt(optCon)) < -1) {
-    fprintf(stderr, i18n("%s: bad argume %s: %s\n"),
+    fprintf(stderr, i18n("%s: bad argument %s: %s\n"),
 	    progName, poptBadOption(optCon, POPT_BADOPTION_NOALIAS),
 	    poptStrerror(rc));
     return 2;
@@ -300,6 +468,20 @@ int main(int argc, char **argv) {
 
   if (!nisDomain)
     nisDomain = "";
+  else
+    enableNis = '*';
+
+  /* read the values from yp.conf */
+  if (readYPConfigFile(&nisServer)) {
+    fprintf(stderr, i18n("%s: critical error reading /etc/yp.conf"),
+	    progName);
+    return 2;
+  }
+
+  if (!nisServer)
+    nisServer = "";
+  else
+    enableNisServer = '*';
 
   newtInit();
   newtCls();
@@ -308,6 +490,7 @@ int main(int argc, char **argv) {
   newtDrawRootText(0, 0, "authconfig " VERSION " - (c) 1999 Red Hat Software");
 
   if (getChoices(back, &enableNis, &nisDomain, 
+		 &enableNisServer, &nisServer, 
 		 &enableShadow, &useMD5)) {
     /* cancelled */
     newtFinished();
@@ -335,6 +518,12 @@ int main(int argc, char **argv) {
   /* here, we write the config files / activate changes. */
   if (rewriteNetworkConfigFile(enableNis, nisDomain)) {
     fprintf(stderr, i18n("%s: critical error writing /etc/sysconfig/network\n"),
+	    progName);
+    return 2;
+  }
+
+  if (rewriteYPConfigFile(enableNisServer, nisServer)) {
+    fprintf(stderr, i18n("%s: critical error writing /etc/yp.conf\n"),
 	    progName);
     return 2;
   }
