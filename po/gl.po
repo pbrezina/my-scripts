@@ -1,8 +1,18 @@
+# Galician translation of RedHat's authconfig.
+# Copyright (C) 2000, 2001 Red Hat, Inc.
+# Copyright (C) 2000, 2001 Jesús Bravo Álvarez.
+# Jesús Bravo Álvarez <jba@pobox.com>, 2000, 2001.
+#
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://www.trasno.net
+#
+# First Version: 2000-06-07 16:57+0200
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2001-08-22 18:57-0400\n"
-"PO-Revision-Date: 2001-01-14 17:12+0100\n"
+"POT-Creation-Date: 2001-08-22 19:18-0400\n"
+"PO-Revision-Date: 2001-08-27 23:07+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +25,7 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
-"Non se atopou o ficheiro %s, pero é requirido para que o soporte de %s "
+"Non se atopou o ficheiro %s, pero é necesario para que o soporte de %s "
 "funcione correctamente.  Instale o paquete %s, que fornece este ficheiro."
 
 #: ../authconfig.c:199
@@ -60,17 +70,16 @@ msgstr "Servidor Admin:"
 
 #: ../authconfig.c:318
 msgid "Workgroup:"
-msgstr ""
+msgstr "Grupo Trab:"
 
 #: ../authconfig.c:319
-#, fuzzy
 msgid "Servers:"
-msgstr "Servidor:"
+msgstr "Servidores:"
 
 #. NSCD
 #: ../authconfig.c:359
 msgid "Cache Information"
-msgstr ""
+msgstr "Información da caché"
 
 #. NSS modules: NIS.
 #: ../authconfig.c:367
@@ -104,32 +113,31 @@ msgstr "Cancelar"
 
 #: ../authconfig.c:487
 msgid "User Information Configuration"
-msgstr "Configuración da Información de Usuario"
+msgstr "Configuración da información de usuario"
 
 #: ../authconfig.c:548
 msgid "Use Shadow Passwords"
-msgstr "Usar Contrasinais Shadow"
+msgstr "Usar contrasinais shadow"
 
 #: ../authconfig.c:553
 msgid "Use MD5 Passwords"
-msgstr "Usar Contrasinais MD5"
+msgstr "Usar contrasinais MD5"
 
 #: ../authconfig.c:560
 msgid "Use LDAP Authentication"
-msgstr "Usar Autentificación LDAP"
+msgstr "Usar autenticación LDAP"
 
 #: ../authconfig.c:598
 msgid "Use Kerberos 5"
 msgstr "Usar Kerberos 5"
 
 #: ../authconfig.c:636
-#, fuzzy
 msgid "Use SMB Authentication"
-msgstr "Usar Autentificación LDAP"
+msgstr "Usar autenticación SMB"
 
 #: ../authconfig.c:706
 msgid "Authentication Configuration"
-msgstr "Configuración da Autentificación"
+msgstr "Configuración da autenticación"
 
 #: ../authconfig.c:849
 msgid "enable shadowed passwords by default"
@@ -233,26 +241,24 @@ msgid "<realm>"
 msgstr "<realm>"
 
 #: ../authconfig.c:897
-#, fuzzy
 msgid "enable SMB authentication by default"
-msgstr "activar por defecto a autenticación kerberos"
+msgstr "activar por defecto a autenticación SMB"
 
 #: ../authconfig.c:899
-#, fuzzy
 msgid "disable SMB authentication by default"
-msgstr "desactivar por defecto LDAP para autenticación"
+msgstr "desactivar por defecto a autenticación SMB"
 
 #: ../authconfig.c:901
 msgid "workgroup authentication servers are in"
-msgstr ""
+msgstr "os servidores de autenticación de grupo de traballo están en"
 
 #: ../authconfig.c:901
 msgid "<workgroup>"
-msgstr ""
+msgstr "<grupo de traballo>"
 
 #: ../authconfig.c:903
 msgid "names of servers to authenticate against\n"
-msgstr ""
+msgstr "nomes dos servidores contra os que autenticar\n"
 
 #: ../authconfig.c:906
 msgid "enable hesiod for user information by default"
@@ -279,14 +285,12 @@ msgid "<rhs>"
 msgstr "<rhs>"
 
 #: ../authconfig.c:915
-#, fuzzy
 msgid "enable caching of user information by default"
-msgstr "activar por defecto hesiod para información de usuario"
+msgstr "activar por defecto a caché para información de usuario"
 
 #: ../authconfig.c:917
-#, fuzzy
 msgid "disable caching of user information by default\n"
-msgstr "desactivar por defecto hesiod para información de usuario"
+msgstr "desactivar por defecto a caché para información de usuario\n"
 
 #: ../authconfig.c:924
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -298,7 +302,7 @@ msgstr "non amosar a interface de usuario"
 
 #: ../authconfig.c:928
 msgid "probe network for defaults and print them"
-msgstr ""
+msgstr "analizar a rede para os predeterminados e escribilos"
 
 #: ../authconfig.c:931
 msgid "use locally-defined policies"
@@ -316,7 +320,7 @@ msgstr "%s: argumento %s erróneo: %s\n"
 #: ../authconfig.c:953
 #, c-format
 msgid "%s: attempting to continue\n"
-msgstr ""
+msgstr "%s: tentando continuar\n"
 
 #: ../authconfig.c:957
 #, c-format
@@ -336,9 +340,9 @@ msgid "%s: critical error reading %s/%s"
 msgstr "%s: erro crítico lendo %s/%s"
 
 #: ../authconfig.c:1042
-#, fuzzy, c-format
+#, c-format
 msgid "%s: unable to read caching configuration"
-msgstr "Configuración da Información de Usuario"
+msgstr "%s: non se pode ler a configuración da caché"
 
 #: ../authconfig.c:1118
 msgid ""
@@ -356,9 +360,9 @@ msgid "dialog was cancelled\n"
 msgstr "o diálogo foi cancelado\n"
 
 #: ../authconfig.c:1195
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error recording caching setting"
-msgstr "%s: erro crítico lendo %s/%s"
+msgstr "%s: erro crítico gravando a configuración da caché"
 
 #: ../authconfig.c:1201 ../authconfig.c:1207 ../authconfig.c:1213
 #: ../authconfig.c:1219 ../authconfig.c:1225 ../authconfig.c:1230
@@ -368,6 +372,5 @@ msgid "%s: critical error writing %s/%s"
 msgstr "%s: erro crítico escribindo %s/%s"
 
 #: ../localpol.h:9
-#, fuzzy
 msgid "Use Local Policies"
-msgstr "usar as políticas definidas localmente"
+msgstr "Usar políticas locais"
