@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "POT-Creation-Date: 2000-12-08 01:50-0500\n"
-"PO-Revision-Date: 2000-09-21 20:20+0200\n"
+"PO-Revision-Date: 2000-12-12 20:56+0100\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -68,9 +68,8 @@ msgid "Use LDAP"
 msgstr "Usar LDAP"
 
 #: ../authconfig.c:298 ../authconfig.c:453
-#, fuzzy
 msgid "Use TLS"
-msgstr "Usar NIS"
+msgstr "Usar TLS"
 
 #. NSS modules: LDAP.
 #: ../authconfig.c:331
@@ -114,7 +113,7 @@ msgid "Authentication Configuration"
 msgstr "Configuración da Autentificación"
 
 #: ../authconfig.c:642
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
@@ -173,6 +172,8 @@ msgstr ""
 "                                por defecto\n"
 "     --disableldap              desactivar ldap para información de usuario\n"
 "                                por defecto\n"
+"     --enableldaptls            activar o uso de TLS con ldap\n"
+"     --disableldaptls           desactivar o uso de TLS con ldap\n"
 "     --enableldapauth           activar ldap para autenticación por defecto\n"
 "     --disableldapauth          desactivar ldap para autenticación por "
 "defecto\n"
@@ -197,7 +198,7 @@ msgstr ""
 "     --hesiodrhs <rhs>          RHS de hesiod por defecto\n"
 "\n"
 "     --nostart                  non iniciar/parar ypbind\n"
-"     --kickstart                non amosa-la interface de usuario\n"
+"     --kickstart                non amosar a interface de usuario\n"
 "     --help                     amosar esta pantalla\n"
 
 #: ../authconfig.c:683
@@ -247,9 +248,3 @@ msgstr "o diálogo foi cancelado\n"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: erro crítico escribindo %s/%s"
-
-#~ msgid "Use WinBind"
-#~ msgstr "Usar WinBind"
-
-#~ msgid "Use WinBind Authentication"
-#~ msgstr "Usar Autentificación WinBind"
