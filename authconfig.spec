@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-%define version 1.6
+%define version 1.7
 Version: %{version}
 Release: 1
 Copyright: GPL
@@ -33,6 +33,9 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Thu Apr 01 1999 Preston Brown <pbrown@redhat.com>
+- don't report errors about NIS fields not being filled in if not enabled
+
 * Fri Mar 26 1999 Preston Brown <pbrown@redhat.com>
 - fix typo
 - change domainname at nis start and stop

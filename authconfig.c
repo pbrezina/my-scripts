@@ -341,7 +341,7 @@ int getChoices(int useBack, int configureNis,
 	  return 1;
       } else {
 	/* process form values */
-	if (configureNis) {
+	if (configureNis && *enableNis == '*') {
 	  *enableNisServer = newEnableBroadCast == '*' ? ' ' : '*';
 	  if (*enableNisServer == '*' && !strcmp(newNisServer, "")) {
 	    newtWinMessage(i18n("Error"), i18n("Ok"),
@@ -350,7 +350,7 @@ int getChoices(int useBack, int configureNis,
 	    done = 0;
 	    continue;
 	  }
-	  if (*enableNis == '*' && !strcmp(newNisDomain, "")) {
+	  if (!strcmp(newNisDomain, "")) {
 	    newtWinMessage(i18n("Error"), i18n("Ok"),
 			   i18n("You must enter a NIS domain."));
 	    done = 0;
