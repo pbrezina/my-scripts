@@ -38,9 +38,11 @@ struct hesiod_cb {
 	newtComponent lhsEntry, rhsEntry;
 };
 struct ldap_cb {
+	int screen;
 	char nss_ldap;
 	char pam_ldap;
 	char tls;
+	newtComponent tlsCheckbox;
 	newtComponent serverLabel, baseDnLabel;
        	newtComponent serverEntry, baseDnEntry;
 };
@@ -204,11 +206,20 @@ void ldapToggle(newtComponent cb, void *data)
     } else {
       checkWarn(PATH_PAM_LDAP, "LDAP", "nss_ldap");
     }
+  }
+  if(((ldap->nss_ldap == '*') && (ldap->screen == 1)) ||
+     ((ldap->pam_ldap == '*') && (ldap->screen == 2))) {
+    newtCheckboxSetFlags(ldap->tlsCheckbox,
+		         NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+			 NEWT_FLAGS_RESET);
     newtEntrySetFlags(ldap->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
     newtEntrySetFlags(ldap->baseDnEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
   } else {
+    newtCheckboxSetFlags(ldap->tlsCheckbox,
+		         NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+			 NEWT_FLAGS_SET);
     newtEntrySetFlags(ldap->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_SET);
     newtEntrySetFlags(ldap->baseDnEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -246,7 +257,7 @@ int getNSSChoices(int back,
 	          gboolean nisAvail, gboolean ldapAvail,
 		  gboolean kerberosAvail, struct authInfoType *authInfo)
 {
-  newtComponent form, ok, cancel, comp, cb, cbs;
+  newtComponent form, ok, cancel, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid;
   int rc = 0;
 
@@ -289,14 +300,16 @@ int getNSSChoices(int back,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* NSS modules: LDAP. */
+  ldap.screen = 1;
   ldap.pam_ldap = authInfo->enableLDAPAuth ? '*' : ' ';
   cb = newtCheckbox(-1, -1, i18n("Use LDAP"),
 		    authInfo->enableLDAP ? '*' : ' ', NULL, &ldap.nss_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.tls = authInfo->enableLDAPS ? '*' : ' ';
-  cbs = newtCheckbox(-1, -1, i18n("Use TLS"),
-		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.tls);
+  ldap.tlsCheckbox = newtCheckbox(-1, -1, i18n("Use TLS"),
+				  authInfo->enableLDAPS ? '*' : ' ',
+				  NULL, &ldap.tls);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.serverLabel = newtLabel(-1, -1, "");
@@ -312,7 +325,7 @@ int getNSSChoices(int back,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, cbs,
+  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.tlsCheckbox,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
@@ -327,7 +340,7 @@ int getNSSChoices(int back,
   newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
-  /* NSS modules: LDAP. */
+  /* NSS modules: hesiod. */
   cb = newtCheckbox(-1, -1, i18n("Use Hesiod"),
 		    authInfo->enableHesiod ? '*' : ' ', NULL,
 		    &hesiod.nss_hesiod);
@@ -412,7 +425,7 @@ int getPAMChoices(int back,
 	          gboolean nisAvail, gboolean ldapAvail,
 		  gboolean kerberosAvail, struct authInfoType *authInfo)
 {
-  newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb, cbs;
+  newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid;
   int rc = 0;
 
@@ -444,14 +457,16 @@ int getPAMChoices(int back,
   newtGridSetField(mechGrid, 0, 1, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
+  ldap.screen = 2;
   ldap.nss_ldap = authInfo->enableLDAP ? '*' : ' ';
   cb = newtCheckbox(-1, -1, i18n("Use LDAP Authentication"),
 		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.tls = authInfo->enableLDAPS ? '*' : ' ';
-  cbs = newtCheckbox(-1, -1, i18n("Use TLS"),
-		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.tls);
+  ldap.tlsCheckbox = newtCheckbox(-1, -1, i18n("Use TLS"),
+		 		  authInfo->enableLDAPS ? '*' : ' ',
+				  NULL, &ldap.tls);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.serverLabel = newtLabel(-1, -1, "");
@@ -467,7 +482,7 @@ int getPAMChoices(int back,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, cbs,
+  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.tlsCheckbox,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
