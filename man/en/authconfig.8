@@ -1,10 +1,10 @@
-.TH AUTHCONFIG 8 "Thu Feb 02 1999"
+.TH AUTHCONFIG 8 "Tue Mar 23 1999"
 .UC 4
 .SH NAME
 authconfig \- simple interface for configuring system authorization resources
 .SH SYNOPSIS
 \fBauthconfig\fR [--back] [--test] [--nostart] [--enablenis [--nisdomain <domain>]
-[--nisserver <nisserver>] ] [--enableshadow [--usemd5] ] [--kickstart]
+[--nisserver <nisserver>] ] [--useshadow [--enablemd5] ] [--kickstart]
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring 
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and /etc/shadow, the files
@@ -18,7 +18,7 @@ users other then root, and any configuration changes are not saved. If
 will not be started or stopped immediately following program execution, but
 only enabled to start or stop at boot time. if \fB--kickstart\fR is specified, no interactive
 screens will be seen.  The values the program will use will be those specified by the
-other options (\fB--enablenis\fR, \fB--enableshadow\fR, etc.).
+other options (\fB--enablenis\fR, \fB--usehadow\fR, etc.).
 
 .PD
 .SH "RETURN CODES"
@@ -29,14 +29,15 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .PD 0
 .TP 20
 \fI/etc/sysconfig/network\fR - Enables for disables NIS support
+\fI/etc/yp.conf\rR - configuration file for NIS support
 \fl/etc/passwd, /etc/shadow\fR  - Used for shadow password support
 
 .PD
 .SH "SEE ALSO"
-.BR passwd (5), shadow (5), domainname (1), 
-.BR ypbind (8)
+.BR passwd (5), shadow (5), pwconv(1),
+ BR domainname (1), ypbind (8)
 
-.SH AUTHOR
+.SH AUTHORS
 .nf
-Preston Brown <pbrown@redhat.com>
+Preston Brown <pbrown@redhat.com>, Matt Wilson <msw@redhat.com>
 .fi

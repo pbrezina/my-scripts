@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-%define version 1.4
+%define version 1.5
 Version: %{version}
 Release: 1
 Copyright: GPL
@@ -33,6 +33,9 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Mar 23 1999 Preston Brown <pbrown@redhat.com>
+- fixed man page
+
 * Wed Mar 17 1999 Matt Wilson <msw@redhat.com>
 - fixed rewriting /etc/yp.conf
 - restarts ypbind so that new changes take effect
