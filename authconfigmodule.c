@@ -19,8 +19,8 @@
   */
 
 #include "config.h"
-#include <sys/types.h>
 #include <Python.h>
+#include <sys/types.h>
 #include <glib.h>
 #include "authinfo.h"
 

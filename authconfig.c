@@ -5,7 +5,7 @@
   * Authors: Preston Brown <pbrown@redhat.com>
   *          Nalin Dahyabhai <nalin@redhat.com>
   *          Matt Wilson <msw@redhat.com>
-  * Current maintainer: Nalin Dahyabhai <nalin@redhat.com>
+  * Current maintainer: Jindrich Novy <jnovy@redhat.com>
   *
   * This is free software; you can redistribute it and/or modify it
   * under the terms of the GNU General Public License as published by

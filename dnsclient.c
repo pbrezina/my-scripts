@@ -252,7 +252,10 @@ dns_parse_text(const unsigned char *rr, const unsigned char *base, size_t max,
 {
 	unsigned char buf[DOMAIN_MAX];
 	if (*rr) {
-		if ((*rr < res->dns_rlength) && (*rr < sizeof(buf)) &&
+		if ((*rr < res->dns_rlength) && 
+#if DOMAIN_MAX < 256
+		    (*rr < sizeof(buf)) &&
+#endif
 		    (rr + *rr <  base + max)) {
 			memset(buf, '\0', sizeof(buf));
 			strncpy(buf, rr + 1, *rr);

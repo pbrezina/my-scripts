@@ -1,17 +1,16 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.6.4
-Release: 1
+Release: 3
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
-Source: %{name}-%{version}-%{release}.tar.gz
+Source: %{name}-%{version}-%{release}.tar.bz2
 Requires: glibc >= 2.1, pam >= 0.73, glib2, pam >= 0.75-43
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 BuildPrereq: pam-devel >= 0.73, newt-devel, glib2-devel, python, python-devel
-BuildPrereq: desktop-file-utils
-Requires: usermode
+BuildPrereq: desktop-file-utils, intltool, gettext, perl-XML-Parser
 
 %description 
 Authconfig is a terminal mode program which can configure a workstation
@@ -27,6 +26,7 @@ Requires: %{name} = %{version}-%{release}, pygtk2-libglade, pam >= 0.75-37, rhpl
 # there, it's much simpler to just have the GUI require anything it might want
 # to use.
 Requires: nss_ldap, pam_krb5, pam_smb, samba-client, samba-common, ypbind
+Requires: usermode
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
@@ -78,6 +78,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Sep 13 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-3
+- corrected package dependencies #132411
+- regenerated glade.strings.h #132369
+
+* Wed Aug 25 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-2
+- modified authconfig-gtk interface to fit lower resolution screens (#127175)
+- modified accelerators in authconfig-gtk (#125797)
+- updated package dependencies (#125306)
+
+* Tue Aug 24 2004 Jindrich Novy <jnovy@redhat.com>
+- updated configure scripts
+- warnfixes and minor hacks
+
 * Mon Jun  7 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.4-1
 - tweak account management to fix #55193 correctly
 - require anything we might want to run in the gui subpackage because it

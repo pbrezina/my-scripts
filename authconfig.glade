@@ -35,17 +35,19 @@
 	  <property name="enable_popup">False</property>
 
 	  <child>
-	    <widget class="GtkVBox" id="vbox4">
-	      <property name="border_width">9</property>
+	    <widget class="GtkTable" id="table20">
 	      <property name="visible">True</property>
+	      <property name="n_rows">2</property>
+	      <property name="n_columns">2</property>
 	      <property name="homogeneous">False</property>
-	      <property name="spacing">9</property>
+	      <property name="row_spacing">0</property>
+	      <property name="column_spacing">0</property>
 
 	      <child>
 		<widget class="GtkCheckButton" id="enablecache">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">_Cache User Information</property>
+		  <property name="label" translatable="yes">Cache User _Information</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -54,459 +56,496 @@
 		  <property name="draw_indicator">True</property>
 		</widget>
 		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">1</property>
+		  <property name="bottom_attach">2</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
 		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkFrame" id="frame14">
+		<widget class="GtkVBox" id="vbox4">
+		  <property name="border_width">9</property>
 		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">9</property>
 
 		  <child>
-		    <widget class="GtkTable" id="table5">
-		      <property name="border_width">4</property>
+		    <widget class="GtkFrame" id="frame14">
 		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		      <child>
-			<widget class="GtkAlignment" id="alignment1">
+			<widget class="GtkTable" id="table5">
+			  <property name="border_width">4</property>
 			  <property name="visible">True</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0</property>
-			  <property name="xscale">1</property>
-			  <property name="yscale">0</property>
-			  <property name="top_padding">0</property>
-			  <property name="bottom_padding">0</property>
-			  <property name="left_padding">0</property>
-			  <property name="right_padding">0</property>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
 
 			  <child>
-			    <widget class="GtkButton" id="confignis">
+			    <widget class="GtkAlignment" id="alignment1">
+			      <property name="visible">True</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0</property>
+			      <property name="xscale">1</property>
+			      <property name="yscale">0</property>
+			      <property name="top_padding">0</property>
+			      <property name="bottom_padding">0</property>
+			      <property name="left_padding">0</property>
+			      <property name="right_padding">0</property>
+
+			      <child>
+				<widget class="GtkButton" id="confignis">
+				  <property name="visible">True</property>
+				  <property name="can_focus">True</property>
+				  <property name="label" translatable="yes">Con_figure NIS...</property>
+				  <property name="use_underline">True</property>
+				  <property name="relief">GTK_RELIEF_NORMAL</property>
+				  <property name="focus_on_click">True</property>
+				</widget>
+			      </child>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options">fill</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkCheckButton" id="enablenis">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Configure NIS...</property>
+			      <property name="label" translatable="yes">Enable _NIS Support</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
 			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label5">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">NIS is the Network Information Service.  It is commonly used on small to medium networks.
+</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
 			  </child>
 			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options">fill</property>
-			</packing>
 		      </child>
 
 		      <child>
-			<widget class="GtkCheckButton" id="enablenis">
+			<widget class="GtkLabel" id="nis_label">
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _NIS Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label5">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">NIS is the Network Information Service.  It is commonly used on small to medium networks.</property>
+			  <property name="label" translatable="yes">NIS</property>
 			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
+			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
+			  <property name="wrap">False</property>
 			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
+			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
+			  <property name="type">label_item</property>
 			</packing>
 		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="nis_label">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">NIS</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">True</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
 		    </widget>
 		    <packing>
-		      <property name="type">label_item</property>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkFrame" id="frame15">
-		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		  <child>
-		    <widget class="GtkTable" id="table6">
-		      <property name="border_width">4</property>
+		    <widget class="GtkFrame" id="frame15">
 		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		      <child>
-			<widget class="GtkCheckButton" id="enableldap">
+			<widget class="GtkTable" id="table6">
+			  <property name="border_width">4</property>
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _LDAP Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
 
-		      <child>
-			<widget class="GtkButton" id="configldap">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Configure LDAP...</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
+			  <child>
+			    <widget class="GtkCheckButton" id="enableldap">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Enable _LDAP Support</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="configldap">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Con_figure LDAP...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label6">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy.  LDAP is increasingly being used in small to large networks.</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
 			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
 		      </child>
 
 		      <child>
 			<widget class="GtkLabel" id="label6">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy.  LDAP is increasingly being used in small to large networks.</property>
+			  <property name="label" translatable="yes">LDAP</property>
 			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
+			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
+			  <property name="wrap">False</property>
 			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
+			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
+			  <property name="type">label_item</property>
 			</packing>
 		      </child>
 		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="label6">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">LDAP</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">True</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
 		    <packing>
-		      <property name="type">label_item</property>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
 		</widget>
 		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
+		  <property name="left_attach">0</property>
+		  <property name="right_attach">1</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
+		  <property name="y_options">fill</property>
 		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkFrame" id="frame16">
+		<widget class="GtkVBox" id="vbox7">
+		  <property name="border_width">9</property>
 		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">9</property>
 
 		  <child>
-		    <widget class="GtkTable" id="table7">
-		      <property name="border_width">4</property>
+		    <widget class="GtkFrame" id="frame16">
 		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		      <child>
-			<widget class="GtkCheckButton" id="enablehesiod">
+			<widget class="GtkTable" id="table7">
+			  <property name="border_width">4</property>
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _Hesiod Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
 
-		      <child>
-			<widget class="GtkButton" id="confighesiod">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Configure Hesiod...</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
+			  <child>
+			    <widget class="GtkCheckButton" id="enablehesiod">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Enable _Hesiod Support</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="confighesiod">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Con_figure Hesiod...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label7">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks.</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
 			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
 		      </child>
 
 		      <child>
 			<widget class="GtkLabel" id="label7">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks.</property>
+			  <property name="label" translatable="yes">Hesiod</property>
 			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
+			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
+			  <property name="wrap">False</property>
 			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
+			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
+			  <property name="type">label_item</property>
 			</packing>
 		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="label7">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Hesiod</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">True</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
 		    </widget>
 		    <packing>
-		      <property name="type">label_item</property>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkFrame" id="frame21">
-		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		  <child>
-		    <widget class="GtkTable" id="table16">
-		      <property name="border_width">4</property>
+		    <widget class="GtkFrame" id="frame21">
 		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		      <child>
-			<widget class="GtkCheckButton" id="enablewinbind">
+			<widget class="GtkTable" id="table16">
+			  <property name="border_width">4</property>
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _Winbind Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
+
+			  <child>
+			    <widget class="GtkCheckButton" id="enablewinbind">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Enable _Winbind Support</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="configwinbind">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Con_figure Winbind...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label23">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.
+</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
 			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="configwinbind">
+			<widget class="GtkLabel" id="label22">
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Configure Winbind...</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label23">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.</property>
+			  <property name="label" translatable="yes">Winbind</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
+			  <property name="wrap">False</property>
 			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
+			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
+			  <property name="type">label_item</property>
 			</packing>
 		      </child>
 		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="label22">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Winbind</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">False</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
 		    <packing>
-		      <property name="type">label_item</property>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
 		</widget>
 		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">True</property>
-		  <property name="fill">True</property>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
+		  <property name="y_options">fill</property>
 		</packing>
 	      </child>
 	    </widget>
@@ -536,11 +575,247 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkVBox" id="vbox5">
-	      <property name="border_width">9</property>
+	    <widget class="GtkTable" id="table21">
 	      <property name="visible">True</property>
+	      <property name="n_rows">2</property>
+	      <property name="n_columns">2</property>
 	      <property name="homogeneous">False</property>
-	      <property name="spacing">9</property>
+	      <property name="row_spacing">0</property>
+	      <property name="column_spacing">0</property>
+
+	      <child>
+		<widget class="GtkVBox" id="vbox5">
+		  <property name="border_width">9</property>
+		  <property name="visible">True</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">9</property>
+
+		  <child>
+		    <widget class="GtkFrame" id="frame18">
+		      <property name="visible">True</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+
+		      <child>
+			<widget class="GtkTable" id="table9">
+			  <property name="border_width">4</property>
+			  <property name="visible">True</property>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
+
+			  <child>
+			    <widget class="GtkCheckButton" id="enablekerberos">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Enable _Kerberos Support</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="configkerberos">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Con_figure Kerberos...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label9">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks.
+</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkLabel" id="kerberos_label">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Kerberos</property>
+			  <property name="use_underline">False</property>
+			  <property name="use_markup">True</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+			<packing>
+			  <property name="type">label_item</property>
+			</packing>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkFrame" id="frame20">
+		      <property name="visible">True</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+
+		      <child>
+			<widget class="GtkTable" id="table8">
+			  <property name="border_width">4</property>
+			  <property name="visible">True</property>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
+
+			  <child>
+			    <widget class="GtkCheckButton" id="enableldapauth">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Enable _LDAP Support</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="configldapauth">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Con_figure LDAP...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label8">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy.  LDAP is increasingly being used in small to large networks.</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkLabel" id="ldap_label">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">LDAP</property>
+			  <property name="use_underline">False</property>
+			  <property name="use_markup">True</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+			<packing>
+			  <property name="type">label_item</property>
+			</packing>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="left_attach">0</property>
+		  <property name="right_attach">1</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
+		</packing>
+	      </child>
 
 	      <child>
 		<widget class="GtkCheckButton" id="enableshadow">
@@ -555,9 +830,12 @@
 		  <property name="draw_indicator">True</property>
 		</widget>
 		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
+		  <property name="left_attach">0</property>
+		  <property name="right_attach">1</property>
+		  <property name="top_attach">1</property>
+		  <property name="bottom_attach">2</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
 		</packing>
 	      </child>
 
@@ -574,445 +852,246 @@
 		  <property name="draw_indicator">True</property>
 		</widget>
 		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">1</property>
+		  <property name="bottom_attach">2</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
 		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkFrame" id="frame20">
+		<widget class="GtkVBox" id="vbox8">
+		  <property name="border_width">9</property>
 		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">9</property>
 
 		  <child>
-		    <widget class="GtkTable" id="table8">
-		      <property name="border_width">4</property>
+		    <widget class="GtkFrame" id="frame19">
 		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		      <child>
-			<widget class="GtkCheckButton" id="enableldapauth">
+			<widget class="GtkTable" id="table10">
+			  <property name="border_width">4</property>
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _LDAP Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
+
+			  <child>
+			    <widget class="GtkCheckButton" id="enablesmb">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Enable SM_B Support</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="configsmb">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Con_figure SMB...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label10">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite.</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
 			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="configldapauth">
+			<widget class="GtkLabel" id="smb_label">
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Configure LDAP...</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label8">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy.  LDAP is increasingly being used in small to large networks.</property>
+			  <property name="label" translatable="yes">SMB</property>
 			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
+			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
+			  <property name="wrap">False</property>
 			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
+			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
+			  <property name="type">label_item</property>
 			</packing>
 		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="ldap_label">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">LDAP</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">True</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
 		    </widget>
 		    <packing>
-		      <property name="type">label_item</property>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkFrame" id="frame18">
-		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		  <child>
-		    <widget class="GtkTable" id="table9">
-		      <property name="border_width">4</property>
+		    <widget class="GtkFrame" id="frame22">
 		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
+		      <property name="label_xalign">0</property>
+		      <property name="label_yalign">0.5</property>
+		      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 		      <child>
-			<widget class="GtkCheckButton" id="enablekerberos">
+			<widget class="GtkTable" id="table17">
+			  <property name="border_width">4</property>
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _Kerberos Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">False</property>
+			  <property name="row_spacing">4</property>
+			  <property name="column_spacing">4</property>
+
+			  <child>
+			    <widget class="GtkCheckButton" id="enablewinbind2">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Enable _Winbind Support</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="configwinbind2">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Con_figure Winbind...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label24">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.
+</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
 			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="configkerberos">
+			<widget class="GtkLabel" id="label25">
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Configure Kerberos...</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label9">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks.</property>
+			  <property name="label" translatable="yes">Winbind</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
+			  <property name="wrap">False</property>
 			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
+			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
+			  <property name="type">label_item</property>
 			</packing>
 		      </child>
 		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="kerberos_label">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Kerberos</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">True</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
 		    <packing>
-		      <property name="type">label_item</property>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
 		</widget>
 		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkFrame" id="frame19">
-		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
-
-		  <child>
-		    <widget class="GtkTable" id="table10">
-		      <property name="border_width">4</property>
-		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
-
-		      <child>
-			<widget class="GtkCheckButton" id="enablesmb">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _SMB Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkButton" id="configsmb">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Configure SMB...</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label10">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite.</property>
-			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
-			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
-			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="smb_label">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">SMB</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">True</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
-		    <packing>
-		      <property name="type">label_item</property>
-		    </packing>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkFrame" id="frame22">
-		  <property name="visible">True</property>
-		  <property name="label_xalign">0</property>
-		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
-
-		  <child>
-		    <widget class="GtkTable" id="table17">
-		      <property name="border_width">4</property>
-		      <property name="visible">True</property>
-		      <property name="n_rows">2</property>
-		      <property name="n_columns">2</property>
-		      <property name="homogeneous">False</property>
-		      <property name="row_spacing">4</property>
-		      <property name="column_spacing">4</property>
-
-		      <child>
-			<widget class="GtkCheckButton" id="enablewinbind2">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable _Winbind Support</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkButton" id="configwinbind2">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Configure Winbind...</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label24">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.</property>
-			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
-			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">True</property>
-			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkLabel" id="label25">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Winbind</property>
-		      <property name="use_underline">False</property>
-		      <property name="use_markup">False</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
-		    <packing>
-		      <property name="type">label_item</property>
-		    </packing>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">True</property>
-		  <property name="fill">True</property>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
 		</packing>
 	      </child>
 	    </widget>
@@ -1607,7 +1686,7 @@
 	    <widget class="GtkCheckButton" id="dnsrealm">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">Use DNS to resolve hosts to _realms</property>
+	      <property name="label" translatable="yes">Use _DNS to resolve hosts to realms</property>
 	      <property name="use_underline">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
@@ -1629,7 +1708,7 @@
 	    <widget class="GtkCheckButton" id="dnskdc">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">Use DNS to locate _KDCs for realms</property>
+	      <property name="label" translatable="yes">Use DNS to _locate KDCs for realms</property>
 	      <property name="use_underline">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
@@ -2180,7 +2259,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label28">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Winbind Domain _Controllers</property>
+	      <property name="label" translatable="yes">Winbind Domain Co_ntrollers</property>
 	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2226,7 +2305,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label29">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Template _Shell</property>
+	      <property name="label" translatable="yes">_Template Shell</property>
 	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
