@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.5
+Version: 4.6
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -75,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Thu Jan  8 2004 Nalin Dahyabhai <nalin@redhat.com> 4.5-1
+* Thu Jan  8 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6-1
 - authconfig-gtk.py: require rhpl, which is required by the script (#104209)
 - both: require usermode (authconfig-gtk transitively), else leave a dangling
   symlink (#104209)
