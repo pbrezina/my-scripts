@@ -23,7 +23,7 @@
 
 #define SYSCONFDIR "/etc"
 #define AUTH_PAM_SERVICE "system-auth"
-#define AUTH_MODULE_DIR "/lib/security"
+#define AUTH_MODULE_DIR "/lib/security/$ISA"
 
 #define PATH_PORTMAP "/sbin/portmap"
 #define PATH_NSCD "/usr/sbin/nscd"
