@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.15
+Version: 4.0.16
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Aug  8 2000 Nalin Dahyabhai <nalin@redhat.com>
+- add better error reporting for when Bill runs this on a read-only filesystem
+
 * Fri Aug  4 2000 Nalin Dahyabhai <nalin@redhat.com>
 - change nss order from (hesiod,ldap,nis) to (nis,ldap,hesiod) in case shadow
   is in use
