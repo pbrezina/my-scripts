@@ -91,7 +91,7 @@ EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd authconfig-gtk.p
 	README.samba3 mkinstalldirs authconfig.glade.h cacertdir_rehash
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update authconfig.desktop
 
-VERSION=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{version}\n' | head -n1)
+VERSION=@PACKAGE_VERSION@
 TAG=$(shell echo r-$(VERSION) | sed 's,\.,-,g')
 distdir=$(PACKAGE)-$(VERSION)
 
