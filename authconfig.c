@@ -43,6 +43,38 @@
 #include "localpol.h"
 #endif
 
+struct warntype {
+  const char *path, *service, *package;
+  struct warntype *next;
+};
+struct callbacktype {
+  void (*callback)(newtComponent, void*);
+  void *data;
+  struct callbacktype *next;
+};
+static struct callbacktype *
+createCallbackListItem(void *callback, void *data, struct callbacktype *next)
+{
+  struct callbacktype *ret;
+  ret = g_malloc(sizeof(struct callbacktype));
+  ret->callback = callback;
+  ret->data = data;
+  ret->next = next;
+  return ret;
+}
+static void
+runCallbackList(newtComponent comp, void *cblist)
+{
+  struct callbacktype *i;
+  i = cblist;
+  while (i != NULL) {
+    if (i->callback) {
+      i->callback(comp, i->data);
+    }
+    i = i->next;
+  }
+}
+
 /*
  * A newt callback to disallow spaces in an entry field.
  */
@@ -429,10 +461,6 @@ getWinbindSettings(struct authInfoType *authInfo, gboolean next)
 			   _("Back"), next ? _("Next") : _("Ok"));
 }
 
-struct warntype {
-  const char *path, *service, *package;
-};
-
 static void
 syncCheckbox(newtComponent comp, void *comp2)
 {
@@ -451,18 +479,18 @@ warnCallback(newtComponent comp, void *warningp)
 
   warning = warningp;
 
-  if (access(warning->path, R_OK) == 0) {
-    return;
+  while (warning != NULL) {
+    if (access(warning->path, R_OK) != 0) {
+      p = g_strdup_printf(AUTHCONFIG_PACKAGE_WARNING,
+		          warning->path,
+		          warning->service,
+		          warning->package);
+      newtWinMessage(_("Warning"), _("Ok"), p, NULL);
+      g_free(p);
+      newtRefresh();
+    }
+    warning = warning->next;
   }
-
-  p = g_strdup_printf(AUTHCONFIG_PACKAGE_WARNING,
-		      warning->path,
-		      warning->service,
-		      warning->package);
-  newtWinMessage(_("Warning"), _("Ok"), p, NULL);
-  g_free(p);
-
-  newtRefresh();
 }
 
 static gboolean
@@ -475,34 +503,44 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   char cache, hesiod, ldap, nis, krb5, ldapa, smb, shadow, md5;
   struct warntype warnCache = {PATH_NSCD,
 			       _("caching"),
-			       "nscd"};
+			       "nscd",
+			       NULL};
   struct warntype warnKerberos = {PATH_PAM_KRB5,
 				  _("Kerberos"),
-				  "pam_krb5"};
+				  "pam_krb5",
+				  NULL};
   struct warntype warnLDAPAuth = {PATH_PAM_LDAP,
 				  _("LDAP authentication"),
-				  "nss_ldap"};
+				  "nss_ldap",
+				  NULL};
   struct warntype warnLDAP = {PATH_LIBNSS_LDAP,
 			      _("LDAP"),
-			      "nss_ldap"};
+			      "nss_ldap",
+			      NULL};
   struct warntype warnNIS = {PATH_YPBIND,
 			     _("NIS"),
-			     "ypbind"};
+			     "ypbind",
+			     NULL};
   struct warntype warnShadow = {PATH_PWCONV,
 			        _("shadow password"),
-				"shadow-utils"};
+				"shadow-utils",
+				NULL};
   struct warntype warnSMB = {PATH_PAM_SMB,
 			     _("SMB authentication"),
-			     "pam_smb"};
-  struct warntype warnWinbindAuth = {PATH_PAM_WINBIND,
-				     _("Winbind authentication"),
-				     "samba-client"};
-  struct warntype warnWinbind = {PATH_LIBNSS_WINBIND,
-				 _("Winbind"),
-				 "samba-client"};
+			     "pam_smb",
+			     NULL};
   struct warntype warnWinbindNet = {PATH_WINBIND_NET,
 				    _("Winbind"),
-				    "samba-client"};
+				    "samba-client",
+				    NULL};
+  struct warntype warnWinbindAuth = {PATH_PAM_WINBIND,
+				     _("Winbind authentication"),
+				     "samba-client",
+				     &warnWinbindNet};
+  struct warntype warnWinbind = {PATH_LIBNSS_WINBIND,
+				 _("Winbind"),
+				 "samba-client",
+				 &warnWinbindNet};
   struct {
     newtComponent a, b;
   } matched[] = {
@@ -547,8 +585,6 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 		    NULL, NULL);
   newtGridSetField(infoGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  newtComponentAddCallback(cb, warnCallback, &warnWinbind);
-  newtComponentAddCallback(cb, warnCallback, &warnWinbindNet);
   matched[0].a = cb;
 
   /* Authentication. */
@@ -597,13 +633,19 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 		    NULL, NULL);
   newtGridSetField(authGrid, 0, 6, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  newtComponentAddCallback(cb, warnCallback, &warnWinbindAuth);
-  newtComponentAddCallback(cb, warnCallback, &warnWinbindNet);
   matched[0].b = cb;
 
   /* Make sure that the checkboxes have the same value. */
-  newtComponentAddCallback(matched[0].a, syncCheckbox, matched[0].b);
-  newtComponentAddCallback(matched[0].b, syncCheckbox, matched[0].a);
+  newtComponentAddCallback(matched[0].a,
+  			   runCallbackList,
+			   createCallbackListItem(syncCheckbox, matched[0].b,
+			   createCallbackListItem(warnCallback, &warnWinbind,
+			   NULL)));
+  newtComponentAddCallback(matched[0].b,
+  			   runCallbackList,
+			   createCallbackListItem(syncCheckbox, matched[0].a,
+			   createCallbackListItem(warnCallback, &warnWinbindAuth,
+			   NULL)));
 
   /* Control grid. */
   mechGrid = newtCreateGrid(2, 1);
