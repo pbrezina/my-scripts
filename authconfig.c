@@ -110,9 +110,10 @@ gboolean toggleShadow(struct authInfoType *authInfo)
   return TRUE;
 }
 
-void overrideBoolean(gboolean *dest, int source)
+void overrideBoolean(gboolean *dest, int switch_on, int switch_off)
 {
-  *dest = (source != 0) ? TRUE : *dest;
+  if (switch_on) *dest = TRUE;
+  if (switch_off) *dest = FALSE;
 }
 
 void setString(char **dest, const char *source)
@@ -598,27 +599,40 @@ int getChoices(int back,
 
 void usage(void) {
     fprintf(stderr, i18n("Usage: %s [options]\n\n"
-			 "     --nostart                  do not start/stop ypbind\n"
-			 "     --useshadow                use shadow passwords by default\n"
+			 "     --useshadow\n"
+			 "     --enableshadow             enable shadow passwords by default\n"
+			 "     --disableshadow            disable shadow passwords by default\n"
 			 "     --enablemd5                enable MD5 passwords by default\n"
+			 "     --disablemd5               disable MD5 passwords by default\n"
+			 "\n"
 			 "     --enablenis                enable NIS\n"
+			 "     --disablenis               disable NIS\n"
 			 "     --nisdomain <domain>       default NIS domain\n"
 			 "     --nisserver <server>       default NIS server\n"
+			 "\n"
 
 			 "     --enableldap               enable ldap for user information by default\n"
+			 "     --disableldap              disable ldap for user information by default\n"
 			 "     --enableldapauth           enable ldap for authentication by default\n"
+			 "     --disableldapauth          disable ldap for authentication by default\n"
 			 "     --ldapserver <server>      default LDAP server\n"
 			 "     --ldapbasedn <dn>          default LDAP base DN\n"
+			 "\n"
 
 			 "     --enablekrb5               enable kerberos authentication by default\n"
+			 "     --disablekrb5              disable kerberos authentication by default\n"
 			 "     --krb5kdc <server>         default kerberos KDC\n"
 			 "     --krb5adminserver <server> default kerberos admin server\n"
 			 "     --krb5realm <realm>        default kerberos realm\n"
+			 "\n"
 
 			 "     --enablehesiod             enable hesiod for user information by default\n"
+			 "     --disablehesiod            disable hesiod for user information by default\n"
 			 "     --hesiodlhs <lhs>          default hesiod LHS\n"
 			 "     --hesiodrhs <rhs>          default hesiod RHS\n"
+			 "\n"
 
+			 "     --nostart                  do not start/stop ypbind\n"
 			 "     --kickstart                don't display user interface\n"
 			 "     --help                     show this screen\n"),
 	    progName);
@@ -645,21 +659,21 @@ int main(int argc, const char **argv)
 
   int back = 0, test = 0, nostart = 0, kickstart = 0, help = 0;
 
-  int useShadow = 0, enableMD5 = 0;
+  int enableShadow = 0, disableShadow = 0, enableMD5 = 0, disableMD5 = 0;
 
-  int enableHesiod = 0;
+  int enableHesiod = 0, disableHesiod = 0;
   char *hesiodLHS = NULL, *hesiodRHS = NULL;
 
-  int enableLDAP = 0, enableLDAPAuth = 0;
+  int enableLDAP = 0, disableLDAP = 0, enableLDAPAuth = 0, disableLDAPAuth = 0;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
 
   int enableWinBind = 0, enableWinBindAuth = 0;
   char *winBindDomain = NULL;
 
-  int enableNIS = 0;
+  int enableNIS = 0, disableNIS = 0;
   char *nisServer = NULL, *nisDomain = NULL;
 
-  int enableKrb5 = 0;
+  int enableKrb5 = 0, disableKrb5 = 0;
   char *krb5Realm = NULL, *krb5KDC = NULL, *krb5AdminServer = NULL;
 
   poptContext optCon;
@@ -669,29 +683,39 @@ int main(int argc, const char **argv)
     { "nostart", '\0', POPT_ARG_NONE, &nostart, 0, NULL, NULL},
     { "kickstart", '\0', POPT_ARG_NONE, &kickstart, 0, NULL, NULL},
 
-    { "useshadow", '\0', POPT_ARG_NONE, &useShadow, 0, NULL, NULL},
+    { "useshadow", '\0', POPT_ARG_NONE, &enableShadow, 0, NULL, NULL},
+    { "enableshadow", '\0', POPT_ARG_NONE, &enableShadow, 0, NULL, NULL},
+    { "disableshadow", '\0', POPT_ARG_NONE, &disableShadow, 0, NULL, NULL},
     { "enablemd5", '\0', POPT_ARG_NONE, &enableMD5, 0, NULL, NULL},
+    { "disablemd5", '\0', POPT_ARG_NONE, &disableMD5, 0, NULL, NULL},
 
     { "enablehesiod", '\0', POPT_ARG_NONE, &enableHesiod, 0, NULL, NULL},
+    { "disablehesiod", '\0', POPT_ARG_NONE, &disableHesiod, 0, NULL, NULL},
     { "hesiodlhs", '\0', POPT_ARG_STRING, &hesiodLHS, 0, NULL, NULL},
     { "hesiodrhs", '\0', POPT_ARG_STRING, &hesiodRHS, 0, NULL, NULL},
 
     { "enableldap", '\0', POPT_ARG_NONE, &enableLDAP, 0, NULL, NULL},
+    { "disableldap", '\0', POPT_ARG_NONE, &disableLDAP, 0, NULL, NULL},
     { "enableldapauth", '\0', POPT_ARG_NONE, &enableLDAPAuth, 0, NULL, NULL},
+    { "disableldapauth", '\0', POPT_ARG_NONE, &disableLDAPAuth, 0, NULL, NULL},
     { "ldapserver", '\0', POPT_ARG_STRING, &ldapServer, 0, NULL, NULL},
     { "ldapbasedn", '\0', POPT_ARG_STRING, &ldapBaseDN, 0, NULL, NULL},
 
     { "enablekrb5", '\0', POPT_ARG_NONE, &enableKrb5, 0, NULL, NULL},
+    { "disablekrb5", '\0', POPT_ARG_NONE, &disableKrb5, 0, NULL, NULL},
     { "krb5realm", '\0', POPT_ARG_STRING, &krb5Realm, 0, NULL, NULL},
     { "krb5kdc", '\0', POPT_ARG_STRING, &krb5KDC, 0, NULL, NULL},
     { "krb5adminserver", '\0', POPT_ARG_STRING, &krb5AdminServer, 0, NULL, NULL},
 
     { "enablenis", '\0', POPT_ARG_NONE, &enableNIS, 0, NULL, NULL},
+    { "disablenis", '\0', POPT_ARG_NONE, &disableNIS, 0, NULL, NULL},
     { "nisserver", '\0', POPT_ARG_STRING, &nisServer, 0, NULL, NULL},
     { "nisdomain", '\0', POPT_ARG_STRING, &nisDomain, 0, NULL, NULL},
 #ifdef WINBIND
     { "enablewinbind", '\0', POPT_ARG_NONE, &enableWinBind, 0, NULL, NULL},
+    { "disablewinbind", '\0', POPT_ARG_NONE, &disableWinBind, 0, NULL, NULL},
     { "enablewinbindauth", '\0', POPT_ARG_NONE, &enableWinBindAuth, 0, NULL, NULL},
+    { "disablewinbindauth", '\0', POPT_ARG_NONE, &disableWinBindAuth, 0, NULL, NULL},
     { "winbinddomain", '\0', POPT_ARG_STRING, &winBindDomain, 0, NULL, NULL},
 #endif
 
@@ -814,30 +838,30 @@ int main(int argc, const char **argv)
     winBindAvail = TRUE;
   }
 
-  overrideBoolean(&authInfo->enableShadow, useShadow);
-  overrideBoolean(&authInfo->enableMD5, enableMD5);
+  overrideBoolean(&authInfo->enableShadow, enableShadow, disableShadow);
+  overrideBoolean(&authInfo->enableMD5, enableMD5, disableMD5);
 
-  overrideBoolean(&authInfo->enableHesiod, enableHesiod);
+  overrideBoolean(&authInfo->enableHesiod, enableHesiod, disableHesiod);
   overrideString(&authInfo->hesiodLHS, hesiodLHS);
   overrideString(&authInfo->hesiodRHS, hesiodRHS);
 
-  overrideBoolean(&authInfo->enableLDAP, enableLDAP);
-  overrideBoolean(&authInfo->enableLDAPAuth, enableLDAPAuth);
+  overrideBoolean(&authInfo->enableLDAP, enableLDAP, disableLDAP);
+  overrideBoolean(&authInfo->enableLDAPAuth, enableLDAPAuth, disableLDAPAuth);
   overrideString(&authInfo->ldapServer, ldapServer);
   overrideString(&authInfo->ldapBaseDN, ldapBaseDN);
 
-  overrideBoolean(&authInfo->enableNIS, enableNIS);
+  overrideBoolean(&authInfo->enableNIS, enableNIS, disableNIS);
   overrideString(&authInfo->nisDomain, nisDomain);
   overrideString(&authInfo->nisServer, nisServer);
 
-  overrideBoolean(&authInfo->enableKerberos, enableKrb5);
+  overrideBoolean(&authInfo->enableKerberos, enableKrb5, disableKrb5);
   overrideString(&authInfo->kerberosRealm, krb5Realm);
   overrideString(&authInfo->kerberosKDC, krb5KDC);
   overrideString(&authInfo->kerberosAdminServer, krb5AdminServer);
 
 #ifdef WINBIND
-  overrideBoolean(&authInfo->enableWinBind, enableWinBind);
-  overrideBoolean(&authInfo->enableWinBindAuth, enableWinBindAuth);
+  overrideBoolean(&authInfo->enableWinBind, enableWinBind, disableWinBind);
+  overrideBoolean(&authInfo->enableWinBindAuth, enableWinBindAuth, disableWinBindAuth);
   overrideString(&authInfo->winBindDomain, winBindDomain);
 #endif
 
