@@ -424,7 +424,7 @@ int toggleShadowPam(int enable, int md5)
     sprintf(curFileName,"/etc/pam.d/%s",filenames[i]);
     f = fopen(curFileName, "r");
     if (!f) {
-      fprintf(stderr,"%s: error opening %s\n",progName, curFileName);
+      fprintf(stderr,i18n("%s: error opening %s\n"),progName, curFileName);
       return 1;
     }
     sprintf(curTmpFileName,"%s-",curFileName);
@@ -493,7 +493,7 @@ int checkUseMD5(char *useMD5)
 
   f = fopen(filename, "r");
   if (!f) {
-    fprintf(stderr,"%s: error opening %s\n",progName, filename);
+    fprintf(stderr,i18n("%s: error opening %s\n"),progName, filename);
     return 1;
   }
    
