@@ -494,7 +494,7 @@ authInfoReadNSS(struct authInfoType *info)
 				break;
 			}
 		}
-		info->enableWinBind = (strstr(nss_config, "winbind") != NULL);
+		info->enableWinbind = (strstr(nss_config, "winbind") != NULL);
 		info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
 	}
 
@@ -591,6 +591,10 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			}
 			if(strstr(module, "pam_smb")) {
 				authInfo->enableSMB = TRUE;
+				continue;
+			}
+			if(strstr(module, "pam_winbind")) {
+				authInfo->enableWinbindAuth = TRUE;
 				continue;
 			}
 #ifdef LOCAL_POLICIES
@@ -733,10 +737,20 @@ authInfoReadPAM(struct authInfoType *authInfo)
 		tmp = svGetValue(sv, "USEWINBIND");
 		if(tmp != NULL) {
 			if(strcmp(tmp, "yes") == 0) {
-				authInfo->enableWinBind = TRUE;
+				authInfo->enableWinbind = TRUE;
 			}
 			if(strcmp(tmp, "no") == 0) {
-				authInfo->enableWinBind = FALSE;
+				authInfo->enableWinbind = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USEWINBINDAUTH");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableWinbindAuth = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableWinbindAuth = FALSE;
 			}
 			free(tmp);
 		}
@@ -1713,7 +1727,7 @@ authInfoWriteNSS(struct authInfoType *info)
 	 * comes files.  Then everything else in reverse alphabetic order. */
 	if(info->enableDB) strcat(normal, " db");
 	strcat(normal, " files");
-	if(info->enableWinBind) strcat(normal, " winbind");
+	if(info->enableWinbind) strcat(normal, " winbind");
 	if(info->enableNIS3) strcat(normal, " nisplus");
 	if(info->enableNIS) strcat(normal, " nis");
 	if(info->enableLDAP) strcat(normal, " ldap");
@@ -2045,8 +2059,6 @@ static struct {
 	 "krb5afs",		NULL},
 	{FALSE, session,	LOGIC_OPTIONAL,
 	 "ldap",		NULL},
-	{FALSE, session,	LOGIC_REQUIRED,
-	 "winbind",		NULL},
 };
 
 static void
@@ -2180,7 +2192,7 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 #endif
 		   (authInfo->enableSMB &&
 		    (strcmp("smb_auth", standard_pam_modules[i].name) == 0)) ||
-		   (authInfo->enableWinBind &&
+		   (authInfo->enableWinbind &&
 		    (strcmp("winbind", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);
 		}
@@ -2218,12 +2230,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 			   authInfo->enableShadow ? "yes" : "no");
 		svSetValue(sv, "USESMBAUTH",
 			   authInfo->enableSMB ? "yes" : "no");
-#ifdef EXPERIMENTAL
-		/* We don't save these settings yet, because we have no
-		 * way to present the user with the option. */
 		svSetValue(sv, "USEWINBIND",
-			   authInfo->enableWinBind ? "yes" : "no");
-#endif
+			   authInfo->enableWinbind ? "yes" : "no");
 		svWriteFile(sv, 0644);
 		svCloseFile(sv);
 	}
@@ -2445,4 +2453,84 @@ authInfoProbe()
 	}
 
 	return ret;
+}
+
+gboolean
+toggleCachingService(gboolean enableCaching, gboolean nostart)
+{
+  struct stat st;
+  if (!nostart) {
+    if (enableCaching) {
+      system("/sbin/service nscd restart");
+    } else {
+      if(stat(PATH_NSCD_PID, &st) == 0) {
+        system("/sbin/service nscd stop");
+      }
+    }
+  }
+  return TRUE;
+}
+
+static gboolean
+toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
+{
+  char *domainStr;
+  struct stat st;
+
+  if (enableNis && (nisDomain != NULL) && (strlen(nisDomain) > 0)) { 
+    domainStr = g_strdup_printf("/bin/domainname %s", nisDomain);
+    system(domainStr);
+    g_free(domainStr);
+    if(stat(PATH_PORTMAP, &st) == 0) {
+      system("/sbin/chkconfig --add portmap");
+      system("/sbin/chkconfig --level 345 portmap on");
+      if (!nostart) {
+        system("/sbin/service portmap restart");
+      }
+    }
+    if(stat(PATH_YPBIND, &st) == 0) {
+      system("/sbin/chkconfig --add ypbind");
+      system("/sbin/chkconfig --level 345 ypbind on");
+      if (!nostart) {
+        if(stat(PATH_YPBIND_PID, &st) == 0) {
+          system("/sbin/service ypbind restart");
+        } else {
+          system("/sbin/service ypbind start");
+        }
+      }
+    }
+  } else {
+    system("/bin/domainname \"(none)\"");
+    if(stat(PATH_YPBIND, &st) == 0) {
+      if (!nostart) {
+        if(stat(PATH_YPBIND_PID, &st) == 0) {
+          system("/sbin/service ypbind stop");
+        }
+      }
+      system("/sbin/chkconfig --del ypbind");
+    }
+  }
+
+  return TRUE;
+}
+
+static gboolean
+toggleShadow(struct authInfoType *authInfo)
+{
+  /* now, do file manipulation on the password files themselves. */
+  if (authInfo->enableShadow) {
+    system("/usr/sbin/pwconv");
+    system("/usr/sbin/grpconv");
+  } else {
+    system("/usr/sbin/pwunconv");
+    system("/usr/sbin/grpunconv");
+  }
+  return TRUE;
+}
+
+void authInfoPost(struct authInfoType *authInfo, int nostart)
+{
+    toggleShadow(authInfo);
+    toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
+    toggleCachingService(authInfo->enableCache, nostart);
 }

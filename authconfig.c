@@ -86,79 +86,6 @@ entryFilter(newtComponent entry, void * data, int ch, int cursor)
     return ch;
 }
 
-gboolean
-toggleCachingService(gboolean enableCaching, gboolean nostart)
-{
-  struct stat st;
-  if (!nostart) {
-    if (enableCaching) {
-      system("/sbin/service nscd restart");
-    } else {
-      if(stat(PATH_NSCD_PID, &st) == 0) {
-        system("/sbin/service nscd stop");
-      }
-    }
-  }
-  return TRUE;
-}
-
-static gboolean
-toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
-{
-  char *domainStr;
-  struct stat st;
-
-  if (enableNis && (nisDomain != NULL) && (strlen(nisDomain) > 0)) { 
-    domainStr = g_strdup_printf("/bin/domainname %s", nisDomain);
-    system(domainStr);
-    g_free(domainStr);
-    if(stat(PATH_PORTMAP, &st) == 0) {
-      system("/sbin/chkconfig --add portmap");
-      system("/sbin/chkconfig --level 345 portmap on");
-      if (!nostart) {
-        system("/sbin/service portmap restart");
-      }
-    }
-    if(stat(PATH_YPBIND, &st) == 0) {
-      system("/sbin/chkconfig --add ypbind");
-      system("/sbin/chkconfig --level 345 ypbind on");
-      if (!nostart) {
-        if(stat(PATH_YPBIND_PID, &st) == 0) {
-          system("/sbin/service ypbind restart");
-        } else {
-          system("/sbin/service ypbind start");
-        }
-      }
-    }
-  } else {
-    system("/bin/domainname \"(none)\"");
-    if(stat(PATH_YPBIND, &st) == 0) {
-      if (!nostart) {
-        if(stat(PATH_YPBIND_PID, &st) == 0) {
-          system("/sbin/service ypbind stop");
-        }
-      }
-      system("/sbin/chkconfig --del ypbind");
-    }
-  }
-
-  return TRUE;
-}
-
-static gboolean
-toggleShadow(struct authInfoType *authInfo)
-{
-  /* now, do file manipulation on the password files themselves. */
-  if (authInfo->enableShadow) {
-    system("/usr/sbin/pwconv");
-    system("/usr/sbin/grpconv");
-  } else {
-    system("/usr/sbin/pwunconv");
-    system("/usr/sbin/grpunconv");
-  }
-  return TRUE;
-}
-
 static void
 overrideBoolean(gboolean *dest, int switch_on, int switch_off)
 {
@@ -192,9 +119,8 @@ checkWarn(const char *path, const char *service, const char *package)
     return;
   }
 
-  snprintf(buf, sizeof(buf), i18n("The %s file was not found, but it is "
-           "required for %s support to work properly.  Install the %s package, "
-           "which provides this file."), path, service, package);
+  snprintf(buf, sizeof(buf), AUTHCONFIG_PACKAGE_WARNING,
+           path, service, package);
  
   newtWinMessage(i18n("Warning"), i18n("Ok"), buf, NULL); 
 
@@ -1243,9 +1169,7 @@ main(int argc, const char **argv)
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
-    toggleShadow(authInfo);
-    toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
-    toggleCachingService(authInfo->enableCache, nostart);
+    authInfoPost(authInfo, nostart);
   }
 
   return 0;

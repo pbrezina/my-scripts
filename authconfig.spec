@@ -40,6 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Tue Nov 27 2001 Nalin Dahyabhai <nalin@redhat.com>
+- remove pam_winbind from the list of session modules, because it doesn't
+  provide a session-management interface
+
 * Mon Sep 24 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.20-1
 - make pam_localuser sufficient after pam_unix in account management, to allow
   local users in even if network connections to the LDAP directory are down (the

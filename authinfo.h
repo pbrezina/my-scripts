@@ -28,16 +28,25 @@
 #define PATH_PORTMAP "/sbin/portmap"
 #define PATH_NSCD "/usr/sbin/nscd"
 #define PATH_NSCD_PID "/var/run/nscd.pid"
+#define PATH_WINBIND "/usr/sbin/winbindd"
+#define PATH_WINBIND_PID "/var/run/winbindd.pid"
 #define PATH_YPBIND "/sbin/ypbind"
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
+
 #define PATH_LIBNSS_DB "/lib/libnss_db.so.2"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
+#define PATH_LIBNSS_WINBIND "/lib/libnss_winbind.so.2"
+
 #define PATH_PAM_KRB5 "/lib/security/pam_krb5.so"
 #define PATH_PAM_LDAP "/lib/security/pam_ldap.so"
 #define PATH_PAM_SMB "/lib/security/pam_smb_auth.so"
+#define PATH_PAM_WINBIND "/lib/security/pam_winbind.so"
 
 #define i18n(String) gettext((String))
+#define AUTHCONFIG_PACKAGE_WARNING i18n("The %s file was not found, but it is "\
+        "required for %s support to work properly.  Install the %s package, "\
+        "which provides this file.")
 
 /*
  * used to hold information regarding different authentication
@@ -73,7 +82,7 @@ struct authInfoType {
 	gboolean enableLDAPS;
 	gboolean enableNIS;
 	gboolean enableNIS3;
-	gboolean enableWinBind;
+	gboolean enableWinbind;
 
 	/* Authentication setup. */
 	gboolean enableAFS;
@@ -84,6 +93,7 @@ struct authInfoType {
 	gboolean enableMD5;
 	gboolean enableSMB;
 	gboolean enableShadow;
+	gboolean enableWinbindAuth;
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;
 #endif
@@ -104,6 +114,7 @@ gboolean authInfoReadKerberos(struct authInfoType *info);
 gboolean authInfoReadNSS(struct authInfoType *info);
 gboolean authInfoReadPAM(struct authInfoType *info);
 gboolean authInfoReadNetwork(struct authInfoType *info);
+gboolean authInfoReadWinbind(struct authInfoType *info);
 
 gboolean authInfoWriteCache(struct authInfoType *info);
 gboolean authInfoWriteHesiod(struct authInfoType *info);
@@ -114,5 +125,8 @@ gboolean authInfoWriteKerberos(struct authInfoType *info);
 gboolean authInfoWriteNSS(struct authInfoType *info);
 gboolean authInfoWritePAM(struct authInfoType *info);
 gboolean authInfoWriteNetwork(struct authInfoType *info);
+gboolean authInfoWriteWinbind(struct authInfoType *info);
+
+void authInfoPost(struct authInfoType *authInfo, int nostart);
 
 #endif
