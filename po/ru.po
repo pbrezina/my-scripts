@@ -1,12 +1,14 @@
-# translation of ru.po to 
+# 
+# translation of ru.po to
 # Leonid Kanter <leon@geon.donetsk.ua>, 2003
+# Leonid Kanter <leon@asplinux.ru>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-11-18 16:17-0500\n"
-"PO-Revision-Date: 2003-08-20 13:36+0300\n"
-"Last-Translator: Leonid Kanter <leon@geon.donetsk.ua>\n"
+"PO-Revision-Date: 2003-11-28 11:41+0200\n"
+"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team:  <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -487,11 +489,11 @@ msgstr ""
 
 #: authconfig.c:958
 msgid "enable wins for hostname resolution"
-msgstr ""
+msgstr "включить wins для разрешения имён узлов"
 
 #: authconfig.c:960
 msgid "disable wins for hostname resolution\n"
-msgstr ""
+msgstr "запретить wins для разрешения имён узлов\n"
 
 #: authconfig.c:963
 msgid "enable hesiod for user information by default"
@@ -581,8 +583,7 @@ msgstr "%s: невозможно прочитать информацию о кэ
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
+msgstr " <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
 #: authconfig.c:1215
 msgid "(c) 1999-2003 Red Hat, Inc."
@@ -606,8 +607,7 @@ msgstr "%s: критическая ошибка записи %s/%s"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Настраивает методы проверки пользователей, которые пытаются войти в систему"
+msgstr "Настраивает методы проверки пользователей, которые пытаются войти в систему"
 
 #: authinfo.h:68
 #, c-format
@@ -653,7 +653,7 @@ msgid ""
 "increasingly being used in small to large networks."
 msgstr ""
 "LDAP (Lightweight Directory Access Protocol) - стандартный способ поиска "
-"каталогов, которые могут содержатьданные в структурированной иерархии. LDAP "
+"каталогов, которые могут содержать данные в структурированной иерархии. LDAP "
 "все более широко используется в средних и больших сетях."
 
 #: glade.strings:17
@@ -677,14 +677,12 @@ msgid "Hesiod"
 msgstr "Hesiod"
 
 #: glade.strings:21 glade.strings:40
-#, fuzzy
 msgid "Enable _Winbind Support"
-msgstr "Включить поддержку _Hesiod"
+msgstr "Включить поддержку _Winbind"
 
 #: glade.strings:22 glade.strings:41
-#, fuzzy
 msgid "_Configure Winbind..."
-msgstr "_Настроить Hesiod..."
+msgstr "_Настроить Winbind..."
 
 #: glade.strings:23 glade.strings:42
 msgid ""
@@ -692,6 +690,9 @@ msgid ""
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
 msgstr ""
+"Winbind позволяет системе получить сведения о пользователях и "
+"аутентифицировать их, используя сведения, сохранённые на сервере "
+"NTDOM или ADS. Используется в средних и больших сетях."
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
@@ -735,14 +736,14 @@ msgstr ""
 
 #: glade.strings:39
 msgid "SMB"
-msgstr ""
+msgstr "SMB"
 
 #: glade.strings:46 glade.strings:49 glade.strings:51 glade.strings:54
 #: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:65
 #: glade.strings:68 glade.strings:70 glade.strings:73 glade.strings:79
 #: glade.strings:81 glade.strings:84 glade.strings:86 glade.strings:90
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: glade.strings:47
 msgid "NIS _Server"
@@ -774,7 +775,7 @@ msgstr "_KDCs"
 
 #: glade.strings:62
 msgid "Use DNS to resolve hosts to _realms"
-msgstr ""
+msgstr "Использовать DNS для преобразования имйн узлов в _realm"
 
 #: glade.strings:63
 msgid "Use DNS to locate _KDCs for realms"
@@ -801,23 +802,20 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Использовать _TLS для шифрования соединений"
 
 #: glade.strings:76
-#, fuzzy
 msgid "_Join Domain"
-msgstr "Домен:"
+msgstr ""
 
 #: glade.strings:77
 msgid "_Security Model"
-msgstr ""
+msgstr "Модель _безопасности"
 
 #: glade.strings:78
-#, fuzzy
 msgid "Winbind _Domain"
-msgstr "_Домен NIS"
+msgstr "_Домен Winbind"
 
 #: glade.strings:80
-#, fuzzy
 msgid "Winbind Domain _Controllers"
-msgstr "Контроллеры _домена"
+msgstr "_Контроллеры домена Winbind"
 
 #: glade.strings:82
 msgid "Template _Shell"
@@ -825,38 +823,35 @@ msgstr ""
 
 #: glade.strings:83
 msgid "Winbind ADS _Realm"
-msgstr ""
+msgstr "Winbind ADS _Realm"
 
 #: glade.strings:85
 msgid "Joining Winbind Domain"
-msgstr ""
+msgstr "Вход в домен Winbind"
 
 #: glade.strings:87
-#, fuzzy
 msgid "Domain _Administrator"
-msgstr "Контроллеры _домена"
+msgstr "_Администратор домена"
 
 #: glade.strings:88
-#, fuzzy
 msgid "Domain"
-msgstr "Домен:"
+msgstr "Домен"
 
 #: glade.strings:89
-#, fuzzy
 msgid "_Password"
-msgstr "Использовать пароли _MD5"
+msgstr "_Пароль"
 
 #: glade.strings:91
 msgid "EXAMPLE.COM"
-msgstr ""
+msgstr "EXAMPLE.COM"
 
 #: glade.strings:92
 msgid "Alert"
-msgstr ""
+msgstr "Тревога"
 
 #: glade.strings:93
 msgid "Do_n't Save"
-msgstr ""
+msgstr "_Не сохранять"
 
 #: localpol.h:9
 msgid "Use Local Policies"
@@ -873,3 +868,4 @@ msgstr "Использовать местные правила"
 
 #~ msgid "authconfig"
 #~ msgstr "authconfig"
+
