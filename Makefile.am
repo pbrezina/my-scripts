@@ -96,6 +96,4 @@ archive: tag
 	./autogen.sh ; \
 	./configure ; \
 	make dist ; \
-	mv $(PACKAGE)-$(VERSION).tar.gz $$dir ; \
-	cd $$dir ; \
-	rm -fr /tmp/$(PACKAGE)
+	mv $(PACKAGE)-$(VERSION).tar.gz $$dir
