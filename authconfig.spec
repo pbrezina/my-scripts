@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.3.8
+Version: 4.4
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -71,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Nov 10 2003 Nalin Dahyabhai <nalin@redhat.com> 4.4-1
+- initial support for configuring winbind
+
 * Tue Oct 28 2003 Nalin Dahyabhai <nalin@redhat.com>
 - make pam_cracklib requisite instead of required in generated PAM configs
 
