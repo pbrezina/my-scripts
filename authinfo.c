@@ -1355,7 +1355,8 @@ authInfoUpdate(struct authInfoType *info)
 					if (info->kerberosRealm != NULL) {
 						g_free(info->kerberosRealm);
 					}
-					info->kerberosRealm = g_strdup(info->smbRealm);
+					info->kerberosRealm =
+						g_strdup(info->smbRealm);
 				}
 			}
 			/* Override smb.conf servers with krb5.conf servers. */

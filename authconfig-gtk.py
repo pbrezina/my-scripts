@@ -266,6 +266,10 @@ class childWindow:
 					button = xml.get_widget(map[entry][4])
 					button.set_sensitive(getattr(self.info,
 								     map[entry][0]))
+			if type(widget) == type(gtk.Label()):
+				if getattr(self.info, map[entry][0]):
+					widget.set_text(getattr(self.info,
+								map[entry][0]))
 		if parent:
 			dialog.set_transient_for(parent)
 			parent.set_sensitive(gtk.FALSE)

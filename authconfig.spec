@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.6.3
+Version: 4.6.4
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -23,6 +23,10 @@ authentication schemes.
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
 Requires: %{name} = %{version}-%{release}, pygtk2-libglade, pam >= 0.75-37, rhpl
+# It occurs that while text-mode authconfig warns about needed files not being
+# there, it's much simpler to just have the GUI require anything it might want
+# to use.
+Requires: nss_ldap, pam_krb5, pam_smb, samba-client, samba-common, ypbind
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
@@ -74,6 +78,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Jun  7 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.4-1
+- tweak account management to fix #55xxx correctly
+- require anything we might want to run in the gui subpackage because it
+  doesn't warn about missing things and you don't have a terminal to see
+  error messages about missing commands
+- properly display the domain in the GUI join dialog
+
 * Tue May 11 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.3-1
 - omit the "ads" or "rpc" when calling "net join", Samba's smarter now (#122802)
 - properly warn about missing "net" (samba-client) and libnss_winbind and
