@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 4.1.4\n"
-"POT-Creation-Date: 2002-04-19 00:57-0400\n"
+"POT-Creation-Date: 2002-05-30 12:35-0400\n"
 "PO-Revision-Date: 2002-05-29 16:04GMT+10:00\n"
 "Last-Translator: Sarah Smith <sarahs@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Warning"
 msgstr "警告"
 
-#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:190
 #: glade.strings:37
 msgid "Ok"
 msgstr "确定"
@@ -63,10 +63,12 @@ msgstr "工作组："
 msgid "Servers:"
 msgstr "服务器："
 
+#. NSCD
 #: authconfig.c:284
 msgid "Cache Information"
 msgstr "缓存信息"
 
+#. NSS modules: NIS.
 #: authconfig.c:292
 msgid "Use NIS"
 msgstr "使用 NIS"
@@ -79,6 +81,7 @@ msgstr "使用 LDAP"
 msgid "Use TLS"
 msgstr "使用 TLS"
 
+#. NSS modules: hesiod.
 #: authconfig.c:361
 msgid "Use Hesiod"
 msgstr "使用 Hesiod"
@@ -91,7 +94,7 @@ msgstr "下一步"
 msgid "Back"
 msgstr "返回"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:196 glade.strings:38
 msgid "Cancel"
 msgstr "取消"
 
@@ -119,8 +122,18 @@ msgstr "使用 Kerberos 5"
 msgid "Use SMB Authentication"
 msgstr "使用 SMB 验证"
 
-#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
-#: glade.strings:7
+#. !/usr/bin/python2.2
+#. Toggle a boolean.
+#. Toggle a string.
+#. Destroy a widget.
+#. Create a vbox or dialog using the file, and return it. */
+#. Create a vbox with the right controls and return the vbox. */
+#. Construct the XML object.
+#. Do setup that's specific to the toplevel.
+#. Set up the pushbuttons to launch new dialogs.
+#. Create a header.
+#: authconfig.c:631 authconfig.desktop.in.h:1 authconfig-gtk.py:126
+#: authconfig-gtk.py:177 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "验证配置"
 
@@ -353,6 +366,10 @@ msgstr "%s：记录缓存设置时出现严重错误"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s：写入 %s/%s 时出现严重错误"
 
+#: authconfig.desktop.in.h:2
+msgid "authconfig"
+msgstr ""
+
 #: authinfo.h:58
 #, c-format
 msgid ""
@@ -402,8 +419,8 @@ msgid ""
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"轻量级目录访问协议（LDAP）是搜索目录的标准方法。这些目录可以用结构化的层次"
-"包括任意数据。LDAP 在小型到大型网络中被越来越广泛地使用。"
+"轻量级目录访问协议（LDAP）是搜索目录的标准方法。这些目录可以用结构化的层次包"
+"括任意数据。LDAP 在小型到大型网络中被越来越广泛地使用。"
 
 #: glade.strings:17
 msgid "Hesiod"
@@ -421,7 +438,8 @@ msgstr "配置 Hesiod (_C)"
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
-msgstr "Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时用在极大的网络中。"
+msgstr ""
+"Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时用在极大的网络中。"
 
 #: glade.strings:21
 msgid "User Information"
@@ -469,7 +487,8 @@ msgstr "配置 SMB (_C)……"
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
-msgstr "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
+msgstr ""
+"SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
 
 #: glade.strings:36
 msgid "Authentication"
@@ -556,4 +575,3 @@ msgstr "使用 TLS 来加密连接 (_T)"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "使用本地策略"
-

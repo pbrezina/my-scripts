@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2002-04-19 00:57-0400\n"
+"POT-Creation-Date: 2002-05-30 12:35-0400\n"
 "PO-Revision-Date: 2002-04-12 23:15EET\n"
 "Last-Translator: Leon Kanter <leon@blackcatlinux.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -14,7 +14,7 @@ msgstr ""
 msgid "Warning"
 msgstr "Внимание"
 
-#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:190
 #: glade.strings:37
 msgid "Ok"
 msgstr "Ok"
@@ -59,10 +59,12 @@ msgstr "Рабочая группа:"
 msgid "Servers:"
 msgstr "Сервер:"
 
+#. NSCD
 #: authconfig.c:284
 msgid "Cache Information"
 msgstr "Кэшировать информацию"
 
+#. NSS modules: NIS.
 #: authconfig.c:292
 msgid "Use NIS"
 msgstr "Использовать NIS"
@@ -75,6 +77,7 @@ msgstr "Использовать LDAP"
 msgid "Use TLS"
 msgstr "Использовать TLS"
 
+#. NSS modules: hesiod.
 #: authconfig.c:361
 msgid "Use Hesiod"
 msgstr "Использовать Hesiod"
@@ -87,7 +90,7 @@ msgstr "Далее"
 msgid "Back"
 msgstr "Назад"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:196 glade.strings:38
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -115,8 +118,18 @@ msgstr "Использовать Kerberos 5"
 msgid "Use SMB Authentication"
 msgstr "Исп. опознавание через SMB"
 
-#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
-#: glade.strings:7
+#. !/usr/bin/python2.2
+#. Toggle a boolean.
+#. Toggle a string.
+#. Destroy a widget.
+#. Create a vbox or dialog using the file, and return it. */
+#. Create a vbox with the right controls and return the vbox. */
+#. Construct the XML object.
+#. Do setup that's specific to the toplevel.
+#. Set up the pushbuttons to launch new dialogs.
+#. Create a header.
+#: authconfig.c:631 authconfig.desktop.in.h:1 authconfig-gtk.py:126
+#: authconfig-gtk.py:177 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Конфигурация опознавания"
 
@@ -349,6 +362,10 @@ msgstr "%s: критическая ошибка записи установок кэша"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: критическая ошибка записи %s/%s"
+
+#: authconfig.desktop.in.h:2
+msgid "authconfig"
+msgstr ""
 
 #: authinfo.h:58
 #, c-format

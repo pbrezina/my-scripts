@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2002-04-19 00:57-0400\n"
+"POT-Creation-Date: 2002-05-30 12:35-0400\n"
 "PO-Revision-Date: 2002-01-31 17:35GMT\n"
 "Last-Translator: Nuria Soriano <nuria@redhat.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Warning"
 msgstr "Aviso"
 
-#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:190
 #: glade.strings:37
 msgid "Ok"
 msgstr "Aceptar"
@@ -64,10 +64,12 @@ msgstr "Grupo de trabajo:"
 msgid "Servers:"
 msgstr "Servidores:"
 
+#. NSCD
 #: authconfig.c:284
 msgid "Cache Information"
 msgstr "Información de la caché"
 
+#. NSS modules: NIS.
 #: authconfig.c:292
 msgid "Use NIS"
 msgstr "Utilizar NIS"
@@ -80,6 +82,7 @@ msgstr "Utilizar LDAP"
 msgid "Use TLS"
 msgstr "Utilizar TLS"
 
+#. NSS modules: hesiod.
 #: authconfig.c:361
 msgid "Use Hesiod"
 msgstr "Utilizar Hesiod"
@@ -92,7 +95,7 @@ msgstr "Siguiente"
 msgid "Back"
 msgstr "Anterior"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:196 glade.strings:38
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -120,8 +123,18 @@ msgstr "Utilizar Kerberos 5"
 msgid "Use SMB Authentication"
 msgstr "Utilizar Autenticación SMB"
 
-#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
-#: glade.strings:7
+#. !/usr/bin/python2.2
+#. Toggle a boolean.
+#. Toggle a string.
+#. Destroy a widget.
+#. Create a vbox or dialog using the file, and return it. */
+#. Create a vbox with the right controls and return the vbox. */
+#. Construct the XML object.
+#. Do setup that's specific to the toplevel.
+#. Set up the pushbuttons to launch new dialogs.
+#. Create a header.
+#: authconfig.c:631 authconfig.desktop.in.h:1 authconfig-gtk.py:126
+#: authconfig-gtk.py:177 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Configuración de la autenticación"
 
@@ -355,6 +368,10 @@ msgstr "%s: error grave"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: error grave al escribir %s/%s"
+
+#: authconfig.desktop.in.h:2
+msgid "authconfig"
+msgstr ""
 
 #: authinfo.h:58
 #, c-format

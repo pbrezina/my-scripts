@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2002-04-19 00:57-0400\n"
+"POT-Creation-Date: 2002-05-30 12:35-0400\n"
 "PO-Revision-Date: 2000-08-04 00:04+0200\n"
 "Last-Translator: László Németh <nemeth@qwertynet.hu>\n"
 "Language-Team: Hungarian\n"
@@ -13,7 +13,7 @@ msgstr ""
 msgid "Warning"
 msgstr "Figyelem"
 
-#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:190
 #: glade.strings:37
 msgid "Ok"
 msgstr "Ok"
@@ -59,10 +59,13 @@ msgstr ""
 msgid "Servers:"
 msgstr "Szerver:"
 
+#. NSCD
 #: authconfig.c:284
+#, fuzzy
 msgid "Cache Information"
-msgstr ""
+msgstr "Felhasználói adatok  beállítása"
 
+#. NSS modules: NIS.
 #: authconfig.c:292
 msgid "Use NIS"
 msgstr "NIS használata"
@@ -76,6 +79,7 @@ msgstr "LDAP használata"
 msgid "Use TLS"
 msgstr "NIS használata"
 
+#. NSS modules: hesiod.
 #: authconfig.c:361
 msgid "Use Hesiod"
 msgstr "Hesiod használata"
@@ -88,7 +92,7 @@ msgstr "Következõ"
 msgid "Back"
 msgstr "Vissza"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:196 glade.strings:38
 msgid "Cancel"
 msgstr "Mégsem"
 
@@ -117,8 +121,18 @@ msgstr "Kerberos 5 használata"
 msgid "Use SMB Authentication"
 msgstr "LDAP azonosítás használata"
 
-#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
-#: glade.strings:7
+#. !/usr/bin/python2.2
+#. Toggle a boolean.
+#. Toggle a string.
+#. Destroy a widget.
+#. Create a vbox or dialog using the file, and return it. */
+#. Create a vbox with the right controls and return the vbox. */
+#. Construct the XML object.
+#. Do setup that's specific to the toplevel.
+#. Set up the pushbuttons to launch new dialogs.
+#. Create a header.
+#: authconfig.c:631 authconfig.desktop.in.h:1 authconfig-gtk.py:126
+#: authconfig-gtk.py:177 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Azonosítás beállítás"
 
@@ -153,8 +167,9 @@ msgid "disable NIS"
 msgstr "NIS használata"
 
 #: authconfig.c:789
+#, fuzzy
 msgid "default NIS domain"
-msgstr ""
+msgstr "Domain:"
 
 #: authconfig.c:789
 #, fuzzy
@@ -200,16 +215,18 @@ msgid "disable LDAP for authentication by default"
 msgstr "LDAP azonosítás használata"
 
 #: authconfig.c:806
+#, fuzzy
 msgid "default LDAP server"
-msgstr ""
+msgstr "Admin szerver:"
 
 #: authconfig.c:808
 msgid "default LDAP base DN\n"
 msgstr ""
 
 #: authconfig.c:808
+#, fuzzy
 msgid "<dn>"
-msgstr ""
+msgstr "Domain:"
 
 #: authconfig.c:811
 #, fuzzy
@@ -373,6 +390,10 @@ msgstr "%s: kritikus hiba %s/%s olvasásakor"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritikus hiba %s/%s írásakor"
+
+#: authconfig.desktop.in.h:2
+msgid "authconfig"
+msgstr ""
 
 #: authinfo.h:58
 #, c-format

@@ -121,7 +121,7 @@ checkWarn(const char *path, const char *service, const char *package)
   snprintf(buf, sizeof(buf), AUTHCONFIG_PACKAGE_WARNING,
            path, service, package);
  
-  newtWinMessage(i18n("Warning"), i18n("Ok"), buf, NULL); 
+  newtWinMessage(_("Warning"), _("Ok"), buf, NULL); 
 
   newtRefresh();
 }
@@ -139,8 +139,8 @@ static void
 nisToggle(newtComponent cb, void *data)
 {
   struct nis_cb *nis = (struct nis_cb*) data;
-  newtLabelSetText(nis->domainLabel, i18n("Domain:"));
-  newtLabelSetText(nis->serverLabel, i18n("Server:"));
+  newtLabelSetText(nis->domainLabel, _("Domain:"));
+  newtLabelSetText(nis->serverLabel, _("Server:"));
   if(nis->nss_nis == '*') {
     checkWarn(PATH_YPBIND, "NIS", "ypbind");
     newtEntrySetFlags(nis->domainEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -160,8 +160,8 @@ static void
 hesiodToggle(newtComponent cb, void *data)
 {
   struct hesiod_cb *hesiod = (struct hesiod_cb*) data;
-  newtLabelSetText(hesiod->lhsLabel, i18n("LHS:"));
-  newtLabelSetText(hesiod->rhsLabel, i18n("RHS:"));
+  newtLabelSetText(hesiod->lhsLabel, _("LHS:"));
+  newtLabelSetText(hesiod->rhsLabel, _("RHS:"));
   if(hesiod->nss_hesiod == '*') {
     newtEntrySetFlags(hesiod->lhsEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
@@ -180,8 +180,8 @@ static void
 ldapToggle(newtComponent cb, void *data)
 {
   struct ldap_cb *ldap = (struct ldap_cb*) data;
-  newtLabelSetText(ldap->serverLabel, i18n("Server:"));
-  newtLabelSetText(ldap->baseDnLabel, i18n("Base DN:"));
+  newtLabelSetText(ldap->serverLabel, _("Server:"));
+  newtLabelSetText(ldap->baseDnLabel, _("Base DN:"));
   if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*')) {
     if(ldap->nss_ldap == '*') {
       checkWarn(PATH_LIBNSS_LDAP, "LDAP", "nss_ldap");
@@ -214,9 +214,9 @@ static void
 krb5Toggle(newtComponent cb, void *data)
 {
   struct krb5_cb *krb5 = (struct krb5_cb*) data;
-  newtLabelSetText(krb5->realmLabel,  i18n("Realm:"));
-  newtLabelSetText(krb5->kdcLabel,    i18n("KDC:"));
-  newtLabelSetText(krb5->kadminLabel, i18n("Admin Server:"));
+  newtLabelSetText(krb5->realmLabel,  _("Realm:"));
+  newtLabelSetText(krb5->kdcLabel,    _("KDC:"));
+  newtLabelSetText(krb5->kadminLabel, _("Admin Server:"));
   if(krb5->pam_krb5 == '*') {
     checkWarn(PATH_PAM_KRB5, "Kerberos", "pam_krb5");
     newtEntrySetFlags(krb5->realmEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -240,8 +240,8 @@ static void
 smbToggle(newtComponent cb, void *data)
 {
   struct smb_cb *smb = (struct smb_cb*) data;
-  newtLabelSetText(smb->workgroupLabel,  i18n("Workgroup:"));
-  newtLabelSetText(smb->serverLabel,     i18n("Servers:"));
+  newtLabelSetText(smb->workgroupLabel,  _("Workgroup:"));
+  newtLabelSetText(smb->serverLabel,     _("Servers:"));
   if(smb->pam_smb_auth == '*') {
     checkWarn(PATH_PAM_SMB, "SMB", "pam_smb");
     newtEntrySetFlags(smb->workgroupEntry,
@@ -281,7 +281,7 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   mechGrid = newtCreateGrid(3, 9);
 
   /* NSCD */
-  cb = newtCheckbox(-1, -1, i18n("Cache Information"),
+  cb = newtCheckbox(-1, -1, _("Cache Information"),
 		    authInfo->enableCache ? '*' : ' ',
 		    NULL, &cache);
   newtComponentAddCallback(cb, cacheToggle, &cache);
@@ -289,7 +289,7 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
   /* NSS modules: NIS. */
-  cb = newtCheckbox(-1, -1, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
+  cb = newtCheckbox(-1, -1, _("Use NIS"), authInfo->enableNIS ? '*' : ' ',
 		    NULL, &nis.nss_nis);
   newtComponentAddCallback(cb, nisToggle, &nis);
 
@@ -319,12 +319,12 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   /* NSS modules: LDAP. */
   ldap.screen = 1;
   ldap.pam_ldap = authInfo->enableLDAPAuth ? '*' : ' ';
-  cb = newtCheckbox(-1, -1, i18n("Use LDAP"),
+  cb = newtCheckbox(-1, -1, _("Use LDAP"),
 		    authInfo->enableLDAP ? '*' : ' ', NULL, &ldap.nss_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.tls = authInfo->enableLDAPS ? '*' : ' ';
-  ldap.tlsCheckbox = newtCheckbox(-1, -1, i18n("Use TLS"),
+  ldap.tlsCheckbox = newtCheckbox(-1, -1, _("Use TLS"),
 				  authInfo->enableLDAPS ? '*' : ' ',
 				  NULL, &ldap.tls);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
@@ -358,7 +358,7 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* NSS modules: hesiod. */
-  cb = newtCheckbox(-1, -1, i18n("Use Hesiod"),
+  cb = newtCheckbox(-1, -1, _("Use Hesiod"),
 		    authInfo->enableHesiod ? '*' : ' ', NULL,
 		    &hesiod.nss_hesiod);
   newtComponentAddCallback(cb, hesiodToggle, &hesiod);
@@ -388,8 +388,8 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   /* Create the buttons. */
   buttonGrid = newtCreateGrid(2, 1);
-  ok = newtButton(-1, -1, i18n("Next"));
-  cancel = newtButton(-1, -1, back ? i18n("Back") : i18n("Cancel"));
+  ok = newtButton(-1, -1, _("Next"));
+  cancel = newtButton(-1, -1, back ? _("Back") : _("Cancel"));
   newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, ok,
 		   0, 0, 0, 0, 0, 0);
   newtGridSetField(buttonGrid, 1, 0, NEWT_GRID_COMPONENT, cancel,
@@ -409,7 +409,7 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 		   0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
 
   form = newtForm(NULL, NULL, 0);
-  newtGridWrappedWindow(mainGrid, i18n("User Information Configuration"));
+  newtGridWrappedWindow(mainGrid, _("User Information Configuration"));
   newtGridAddComponentsToForm(mainGrid, form, 1);
 
   /* Run the form and interpret the results. */
@@ -470,24 +470,24 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   /* PAM setup. */
   mechGrid = newtCreateGrid(3, height);
-  cb = newtCheckbox(-1, -1, i18n("Use Shadow Passwords"),
+  cb = newtCheckbox(-1, -1, _("Use Shadow Passwords"),
 		    authInfo->enableShadow ? '*' : ' ', NULL, &shadow);
   newtGridSetField(mechGrid, 0, 0, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
-  cb = newtCheckbox(-1, -1, i18n("Use MD5 Passwords"),
+  cb = newtCheckbox(-1, -1, _("Use MD5 Passwords"),
 		    authInfo->enableMD5 ? '*' : ' ', NULL, &md5);
   newtGridSetField(mechGrid, 0, 1, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
   ldap.screen = 2;
   ldap.nss_ldap = authInfo->enableLDAP ? '*' : ' ';
-  cb = newtCheckbox(-1, -1, i18n("Use LDAP Authentication"),
+  cb = newtCheckbox(-1, -1, _("Use LDAP Authentication"),
 		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.tls = authInfo->enableLDAPS ? '*' : ' ';
-  ldap.tlsCheckbox = newtCheckbox(-1, -1, i18n("Use TLS"),
+  ldap.tlsCheckbox = newtCheckbox(-1, -1, _("Use TLS"),
 				  authInfo->enableLDAPS ? '*' : ' ',
 				  NULL, &ldap.tls);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
@@ -520,7 +520,7 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
-  cb = newtCheckbox(-1, -1, i18n("Use Kerberos 5"),
+  cb = newtCheckbox(-1, -1, _("Use Kerberos 5"),
 		    authInfo->enableKerberos ? '*' : ' ', NULL, &krb5.pam_krb5);
   newtComponentAddCallback(cb, krb5Toggle, &krb5);
 
@@ -558,7 +558,7 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(mechGrid, 2, 7, NEWT_GRID_COMPONENT, krb5.kadminEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
-  cb = newtCheckbox(-1, -1, i18n("Use SMB Authentication"),
+  cb = newtCheckbox(-1, -1, _("Use SMB Authentication"),
 		    authInfo->enableSMB ? '*' : ' ', NULL, &smb.pam_smb_auth);
   newtComponentAddCallback(cb, smbToggle, &smb);
 
@@ -597,9 +597,9 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   /* Create the buttons. */
   if (back == FALSE) {
-    ok = newtButton(-1, -1, i18n("Ok"));
-    backb = newtButton(-1, -1, i18n("Back"));
-    cancel = newtButton(-1, -1, i18n("Cancel"));
+    ok = newtButton(-1, -1, _("Ok"));
+    backb = newtButton(-1, -1, _("Back"));
+    cancel = newtButton(-1, -1, _("Cancel"));
     buttonGrid = newtCreateGrid(3, 1);
     newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, ok,
 		     0, 0, 0, 0, 0, 0);
@@ -610,8 +610,8 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
     newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, buttonGrid,
 		     0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
   } else {
-    ok = newtButton(-1, -1, i18n("Ok"));
-    backb = newtButton(-1, -1, i18n("Back"));
+    ok = newtButton(-1, -1, _("Ok"));
+    backb = newtButton(-1, -1, _("Back"));
     buttonGrid = newtCreateGrid(2, 1);
     newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, ok,
 		     0, 0, 0, 0, 0, 0);
@@ -628,7 +628,7 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   /* Run the form and interpret the results. */
   form = newtForm(NULL, NULL, 0);
-  newtGridWrappedWindow(mainGrid, i18n("Authentication Configuration"));
+  newtGridWrappedWindow(mainGrid, _("Authentication Configuration"));
   newtGridAddComponentsToForm(mainGrid, form, 1);
   comp = newtRunForm(form);
   if((comp != cancel) && (comp != backb)) {
@@ -771,91 +771,91 @@ main(int argc, const char **argv)
       { "useshadow", '\0', POPT_ARG_NONE, &enableShadow, 0,
 	NULL, NULL},
       { "enableshadow", '\0', POPT_ARG_NONE, &enableShadow, 0,
-	i18n("enable shadowed passwords by default"), NULL},
+	_("enable shadowed passwords by default"), NULL},
       { "disableshadow", '\0', POPT_ARG_NONE, &disableShadow, 0,
-	i18n("disable shadowed passwords by default"), NULL},
+	_("disable shadowed passwords by default"), NULL},
       { "usemd5", '\0', POPT_ARG_NONE, &enableMD5, 0,
 	NULL, NULL},
       { "enablemd5", '\0', POPT_ARG_NONE, &enableMD5, 0,
-	i18n("enable MD5 passwords by default"), NULL},
+	_("enable MD5 passwords by default"), NULL},
       { "disablemd5", '\0', POPT_ARG_NONE, &disableMD5, 0,
-	i18n("disable MD5 passwords by default\n"), NULL},
+	_("disable MD5 passwords by default\n"), NULL},
 
       { "enablenis", '\0', POPT_ARG_NONE, &enableNIS, 0,
-	i18n("enable NIS"), NULL},
+	_("enable NIS"), NULL},
       { "disablenis", '\0', POPT_ARG_NONE, &disableNIS, 0,
-	i18n("disable NIS"), NULL},
+	_("disable NIS"), NULL},
       { "nisdomain", '\0', POPT_ARG_STRING, &nisDomain, 0,
-	i18n("default NIS domain"), i18n("<domain>")},
+	_("default NIS domain"), _("<domain>")},
       { "nisserver", '\0', POPT_ARG_STRING, &nisServer, 0,
-	i18n("default NIS server\n"), i18n("<server>")},
+	_("default NIS server\n"), _("<server>")},
 
       { "enableldap", '\0', POPT_ARG_NONE, &enableLDAP, 0,
-	i18n("enable LDAP for user information by default"), NULL},
+	_("enable LDAP for user information by default"), NULL},
       { "disableldap", '\0', POPT_ARG_NONE, &disableLDAP, 0,
-	i18n("disable LDAP for user information by default"), NULL},
+	_("disable LDAP for user information by default"), NULL},
       { "enableldaptls", '\0', POPT_ARG_NONE, &enableLDAPS, 0,
-	i18n("enable use of TLS with LDAP"), NULL},
+	_("enable use of TLS with LDAP"), NULL},
       { "disableldaptls", '\0', POPT_ARG_NONE, &disableLDAPS, 0,
-	i18n("disable use of TLS with LDAP"), NULL},
+	_("disable use of TLS with LDAP"), NULL},
       { "enableldapauth", '\0', POPT_ARG_NONE, &enableLDAPAuth, 0,
-	i18n("enable LDAP for authentication by default"), NULL},
+	_("enable LDAP for authentication by default"), NULL},
       { "disableldapauth", '\0', POPT_ARG_NONE, &disableLDAPAuth, 0,
-	i18n("disable LDAP for authentication by default"), NULL},
+	_("disable LDAP for authentication by default"), NULL},
       { "ldapserver", '\0', POPT_ARG_STRING, &ldapServer, 0,
-	i18n("default LDAP server"), i18n("<server>")},
+	_("default LDAP server"), _("<server>")},
       { "ldapbasedn", '\0', POPT_ARG_STRING, &ldapBaseDN, 0,
-	i18n("default LDAP base DN\n"), i18n("<dn>")},
+	_("default LDAP base DN\n"), _("<dn>")},
 
       { "enablekrb5", '\0', POPT_ARG_NONE, &enableKrb5, 0,
-	i18n("enable kerberos authentication by default"), NULL},
+	_("enable kerberos authentication by default"), NULL},
       { "disablekrb5", '\0', POPT_ARG_NONE, &disableKrb5, 0,
-	i18n("disable kerberos authentication by default"), NULL},
+	_("disable kerberos authentication by default"), NULL},
       { "krb5kdc", '\0', POPT_ARG_STRING, &krb5KDC, 0,
-	i18n("default kerberos KDC"), i18n("<server>")},
+	_("default kerberos KDC"), _("<server>")},
       { "krb5adminserver", '\0', POPT_ARG_STRING, &krb5AdminServer, 0,
-	i18n("default kerberos admin server"), i18n("<server>")},
+	_("default kerberos admin server"), _("<server>")},
       { "krb5realm", '\0', POPT_ARG_STRING, &krb5Realm, 0,
-	i18n("default kerberos realm\n"), i18n("<realm>")},
+	_("default kerberos realm\n"), _("<realm>")},
 
       { "enablesmbauth", '\0', POPT_ARG_NONE, &enableSmb, 0,
-	i18n("enable SMB authentication by default"), NULL},
+	_("enable SMB authentication by default"), NULL},
       { "disablesmbauth", '\0', POPT_ARG_NONE, &disableSmb, 0,
-	i18n("disable SMB authentication by default"), NULL},
+	_("disable SMB authentication by default"), NULL},
       { "smbworkgroup", '\0', POPT_ARG_STRING, &smbWorkgroup, 0,
-	i18n("workgroup authentication servers are in"), i18n("<workgroup>")},
+	_("workgroup authentication servers are in"), _("<workgroup>")},
       { "smbservers", '\0', POPT_ARG_STRING, &smbServers, 0,
-	i18n("names of servers to authenticate against\n"), i18n("<server>")},
+	_("names of servers to authenticate against\n"), _("<server>")},
 
       { "enablehesiod", '\0', POPT_ARG_NONE, &enableHesiod, 0,
-	i18n("enable hesiod for user information by default"), NULL},
+	_("enable hesiod for user information by default"), NULL},
       { "disablehesiod", '\0', POPT_ARG_NONE, &disableHesiod, 0,
-	i18n("disable hesiod for user information by default"), NULL},
+	_("disable hesiod for user information by default"), NULL},
       { "hesiodlhs", '\0', POPT_ARG_STRING, &hesiodLHS, 0,
-	i18n("default hesiod LHS"), i18n("<lhs>")},
+	_("default hesiod LHS"), _("<lhs>")},
       { "hesiodrhs", '\0', POPT_ARG_STRING, &hesiodRHS, 0,
-	i18n("default hesiod RHS\n"), i18n("<rhs>")},
+	_("default hesiod RHS\n"), _("<rhs>")},
 
       { "enablecache", '\0', POPT_ARG_NONE, &enableCache, 0,
-	i18n("enable caching of user information by default"), NULL},
+	_("enable caching of user information by default"), NULL},
       { "disablecache", '\0', POPT_ARG_NONE, &disableCache, 0,
-	i18n("disable caching of user information by default\n"), NULL},
+	_("disable caching of user information by default\n"), NULL},
 
       { "back", '\0', POPT_ARG_NONE | POPT_ARGFLAG_DOC_HIDDEN, &back, 0,
 	NULL, NULL},
       { "test", '\0', POPT_ARG_NONE | POPT_ARGFLAG_DOC_HIDDEN, &test, 0,
 	NULL, NULL},
       { "nostart", '\0', POPT_ARG_NONE, &nostart, 0,
-	i18n("do not start/stop portmap, ypbind, and nscd"), NULL},
+	_("do not start/stop portmap, ypbind, and nscd"), NULL},
       { "kickstart", '\0', POPT_ARG_NONE, &kickstart, 0,
-	i18n("don't display user interface"), NULL},
+	_("don't display user interface"), NULL},
       { "probe", '\0', POPT_ARG_NONE, &probe, 0,
-	i18n("probe network for defaults and print them"), NULL},
+	_("probe network for defaults and print them"), NULL},
 #ifdef LOCAL_POLICIES
       { "enablelocal", '\0', POPT_ARG_NONE, &enableLocal, 0,
-	i18n("use locally-defined policies"), NULL},
+	_("use locally-defined policies"), NULL},
       { "disablelocal", '\0', POPT_ARG_NONE, &disableLocal, 0,
-	i18n("don't use locally-defined policies"), NULL},
+	_("don't use locally-defined policies"), NULL},
 #endif
       POPT_AUTOHELP { 0, 0, 0, 0, 0, 0 },
     };
@@ -866,7 +866,7 @@ main(int argc, const char **argv)
   }
 
   while ((rc = poptGetNextOpt(optCon)) != -1) {
-    fprintf(stderr, i18n("%s: bad argument %s: %s\n"),
+    fprintf(stderr, _("%s: bad argument %s: %s\n"),
 	    PACKAGE, poptBadOption(optCon, POPT_BADOPTION_NOALIAS),
 	    poptStrerror(rc));
     badOpt = TRUE;
@@ -875,11 +875,11 @@ main(int argc, const char **argv)
     if(!kickstart) {
       return 2;
     }
-    fprintf(stderr, i18n("%s: attempting to continue\n"), PACKAGE);
+    fprintf(stderr, _("%s: attempting to continue\n"), PACKAGE);
   }
 
   if (poptGetArg(optCon)) {
-    fprintf(stderr, i18n("%s: unexpected argument\n"),
+    fprintf(stderr, _("%s: unexpected argument\n"),
 	    PACKAGE);
     return 2;
   }
@@ -906,7 +906,7 @@ main(int argc, const char **argv)
 
   /* if the test parameter wasn't passed, give an error if not root */
   if (!test && getuid()) {
-    fprintf(stderr, i18n("%s: can only be run as root\n"),
+    fprintf(stderr, _("%s: can only be run as root\n"),
 	    PACKAGE);
     return 2;
   }
@@ -917,7 +917,7 @@ main(int argc, const char **argv)
   /* read the values from the configuration files */
   if (authInfoReadHesiod(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/hesiod.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "hesiod.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
@@ -925,7 +925,7 @@ main(int argc, const char **argv)
   }
   if (authInfoReadKerberos(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/krb5.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "krb5.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
@@ -933,7 +933,7 @@ main(int argc, const char **argv)
   }
   if (authInfoReadLDAP(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/ldap.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "ldap.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
@@ -941,7 +941,7 @@ main(int argc, const char **argv)
   }
   if (authInfoReadNIS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/yp.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "yp.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
@@ -949,7 +949,7 @@ main(int argc, const char **argv)
   }
   if (authInfoReadSMB(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/pam_smb.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "pam_smb.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
@@ -957,20 +957,20 @@ main(int argc, const char **argv)
   }
   if (authInfoReadNSS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/nsswitch.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "nsswitch.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
   }
   if (authInfoReadCache(authInfo) == FALSE) {
-    fprintf(stderr, i18n("%s: unable to read caching configuration"), PACKAGE);
+    fprintf(stderr, _("%s: unable to read caching configuration"), PACKAGE);
     fprintf(stderr, ": %s\n", strerror(errno));
     return 2;
   }
   if (authInfoReadNetwork(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/sysconfig/network", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "sysconfig/network");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
@@ -978,7 +978,7 @@ main(int argc, const char **argv)
   }
   if (authInfoReadPAM(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
 	      PACKAGE, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
@@ -1040,17 +1040,17 @@ main(int argc, const char **argv)
     newtInit();
     newtCls();
     
-    newtPushHelpLine(i18n(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
+    newtPushHelpLine(_(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
     newtDrawRootText(0, 0, packageVersion);
     newtDrawRootText(strlen(packageVersion), 0,
-		     i18n("(c) 1999-2001 Red Hat, Inc."));
+		     _("(c) 1999-2001 Red Hat, Inc."));
     
     if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo)) {
       /* cancelled */
       newtFinished();
      
       if (test) {
-	fprintf(stderr, i18n("dialog was cancelled\n"));
+	fprintf(stderr, _("dialog was cancelled\n"));
 	return 2;
       }
       
@@ -1065,53 +1065,53 @@ main(int argc, const char **argv)
     return 0;
   } else {
     if (authInfoWriteCache(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error recording caching setting"),
+      fprintf(stderr, _("%s: critical error recording caching setting"),
 	      PACKAGE);
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteHesiod(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "hesiod.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteKerberos(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "krb5.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteLDAP(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "ldap.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteNIS(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "yp.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteSMB(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "pam_smb.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNSS(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "nsswitch.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNetwork(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "sysconfig/network");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWritePAM(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;

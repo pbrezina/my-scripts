@@ -54,8 +54,8 @@
 #define PATH_PAM_SMB "/lib/security/pam_smb_auth.so"
 #define PATH_PAM_WINBIND "/lib/security/pam_winbind.so"
 
-#define i18n(String) gettext((String))
-#define AUTHCONFIG_PACKAGE_WARNING i18n("The %s file was not found, but it is "\
+#define _(String) gettext((String))
+#define AUTHCONFIG_PACKAGE_WARNING _("The %s file was not found, but it is "\
         "required for %s support to work properly.  Install the %s package, "\
         "which provides this file.")
 

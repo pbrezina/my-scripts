@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2002-04-19 00:57-0400\n"
+"POT-Creation-Date: 2002-05-30 12:35-0400\n"
 "PO-Revision-Date: 2001-06-25 18:55+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian (Nynorsk)\n"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Warning"
 msgstr "Åtvaring"
 
-#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:190
 #: glade.strings:37
 msgid "Ok"
 msgstr "OK"
@@ -70,10 +70,13 @@ msgstr "Arbeidsgruppe:"
 msgid "Servers:"
 msgstr "POP-tenar:"
 
+#. NSCD
 #: authconfig.c:284
+#, fuzzy
 msgid "Cache Information"
-msgstr ""
+msgstr "Brukarinformasjon"
 
+#. NSS modules: NIS.
 #: authconfig.c:292
 #, fuzzy
 msgid "Use NIS"
@@ -89,6 +92,7 @@ msgstr "Brukar-ID"
 msgid "Use TLS"
 msgstr "Bruk SSL"
 
+#. NSS modules: hesiod.
 #: authconfig.c:361
 #, fuzzy
 msgid "Use Hesiod"
@@ -102,7 +106,7 @@ msgstr "Neste"
 msgid "Back"
 msgstr "Tilbake"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:196 glade.strings:38
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -127,16 +131,27 @@ msgid "Use LDAP Authentication"
 msgstr "PAP-autentisering"
 
 #: authconfig.c:523
+#, fuzzy
 msgid "Use Kerberos 5"
-msgstr ""
+msgstr "POP-tenar:"
 
 #: authconfig.c:561
 #, fuzzy
 msgid "Use SMB Authentication"
 msgstr "Autentisering:"
 
-#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
-#: glade.strings:7
+#. !/usr/bin/python2.2
+#. Toggle a boolean.
+#. Toggle a string.
+#. Destroy a widget.
+#. Create a vbox or dialog using the file, and return it. */
+#. Create a vbox with the right controls and return the vbox. */
+#. Construct the XML object.
+#. Do setup that's specific to the toplevel.
+#. Set up the pushbuttons to launch new dialogs.
+#. Create a header.
+#: authconfig.c:631 authconfig.desktop.in.h:1 authconfig-gtk.py:126
+#: authconfig-gtk.py:177 glade.strings:7
 #, fuzzy
 msgid "Authentication Configuration"
 msgstr "Lyd-oppsett"
@@ -403,6 +418,10 @@ msgstr ""
 #: authconfig.c:1098 authconfig.c:1103 authconfig.c:1108 authconfig.c:1114
 #, c-format
 msgid "%s: critical error writing %s/%s"
+msgstr ""
+
+#: authconfig.desktop.in.h:2
+msgid "authconfig"
 msgstr ""
 
 #: authinfo.h:58

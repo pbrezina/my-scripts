@@ -1,6 +1,9 @@
-SUBDIRS = intl m4 po man
+SUBDIRS = po man
+
+@INTLTOOL_DESKTOP_RULE@
 
 PYTHONREV=@PYTHONREV@
+pythonincdir = $(includedir)/python@PYTHONREV@
 pythonsitedir = $(libdir)/python@PYTHONREV@/site-packages
 pamdir = $(sysconfdir)/pam.d
 consoledir = $(sysconfdir)/security/console.apps
@@ -19,7 +22,7 @@ install-exec-local:
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-gtk
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/redhat-config-auth
 
-install-data-local:
+install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(pamdir)
 	mkdir -p $(DESTDIR)/$(consoledir)
 	mkdir -p $(DESTDIR)/$(sysconfigdir)
@@ -57,7 +60,7 @@ uninstall-local:
 	rmdir $(DESTDIR)/$(sysconfigdir)
 
 ACLOCAL_AMFLAGS = -I m4
-CFLAGS = @GLIB_CFLAGS@ @CFLAGS@ -I/usr/include/python@PYTHONREV@
+CFLAGS = @GLIB_CFLAGS@ @CFLAGS@ @PYTHON_CFLAGS@
 
 authconfig_SOURCES = \
 	authconfig.c \
@@ -80,7 +83,7 @@ authconfigmodule_so_SOURCES = \
 	shvar.h
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = config.rpath authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo
+EXTRA_DIST = authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in
 
 CVSTAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}\n' | head -1 | sed 's,\.,-,g')
 tag:

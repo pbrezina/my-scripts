@@ -8,6 +8,9 @@ AM_PROG_LIBTOOL
 AC_PROG_INTLTOOL
 PKG_CHECK_MODULES(GLIB,glib-2.0)
 
+GETTEXT_PACKAGE='$(PACKAGE)'
+AC_SUBST(GETTEXT_PACKAGE)
+
 libs="$LIBS"
 AC_CHECK_FUNC(poptGetContext,,[AC_CHECK_LIB(popt,poptGetContext)])
 if test "$LIBS" != "$libs" ; then
@@ -49,10 +52,24 @@ AC_TRY_COMPILE([#include <resolv.h>],[res_init()],
 
 AC_ARG_WITH(python-rev,
             [  --with-pythonrev=2.2    version of python for which modules should be built],
-            PYTHONREV=$withval,
-            PYTHONREV=2.2)
+            PYTHONREV=$withval,[
+	    AC_MSG_CHECKING(python version)
+	    PYTHONREV=`python -c 'import sys;print "%s.%s" % (sys.version_info[[0]], sys.version_info[[1]])'`
+	    AC_MSG_RESULT($PYTHONREV)
+	    ])
 AC_SUBST(PYTHONREV)
+
+AC_MSG_CHECKING(python includes)
+PYTHONPREFIX=`python -c 'import sys;print sys.prefix'`
+AC_MSG_RESULT($PYTHONPREFIX/include/python$PYTHONREV)
+PYTHON_CFLAGS=-I$PYTHONPREFIX/include/python$PYTHONREV
+AC_SUBST(PYTHON_CFLAGS)
 
 AM_CONFIG_HEADER(config.h)
 
-AC_OUTPUT(Makefile man/Makefile man/en/Makefile po/Makefile.in m4/Makefile intl/Makefile)
+AC_OUTPUT([
+Makefile
+man/Makefile
+man/en/Makefile
+po/Makefile.in
+])

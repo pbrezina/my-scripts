@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig unknown\n"
-"POT-Creation-Date: 2002-04-19 00:57-0400\n"
+"POT-Creation-Date: 2002-05-30 12:35-0400\n"
 "PO-Revision-Date: 2002-04-21 23:51+0100\n"
 "Last-Translator: Milan Kerslager <kerslage@linux.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 msgid "Warning"
 msgstr "Varování"
 
-#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:190
 #: glade.strings:37
 msgid "Ok"
 msgstr "Ok"
@@ -58,10 +58,12 @@ msgstr "Pracovní skupina:"
 msgid "Servers:"
 msgstr "Servery:"
 
+#. NSCD
 #: authconfig.c:284
 msgid "Cache Information"
 msgstr "Informace o cache"
 
+#. NSS modules: NIS.
 #: authconfig.c:292
 msgid "Use NIS"
 msgstr "Pou¾ít NIS"
@@ -74,6 +76,7 @@ msgstr "Pou¾ít LDAP"
 msgid "Use TLS"
 msgstr "Pou¾ít TLS"
 
+#. NSS modules: hesiod.
 #: authconfig.c:361
 msgid "Use Hesiod"
 msgstr "Pou¾ít Hesiod"
@@ -86,7 +89,7 @@ msgstr "Dal¹í"
 msgid "Back"
 msgstr "Zpìt"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:196 glade.strings:38
 msgid "Cancel"
 msgstr "Zru¹it"
 
@@ -114,8 +117,18 @@ msgstr "Pou¾ít Kerberos 5"
 msgid "Use SMB Authentication"
 msgstr "Pou¾ít SMB autentizaci"
 
-#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
-#: glade.strings:7
+#. !/usr/bin/python2.2
+#. Toggle a boolean.
+#. Toggle a string.
+#. Destroy a widget.
+#. Create a vbox or dialog using the file, and return it. */
+#. Create a vbox with the right controls and return the vbox. */
+#. Construct the XML object.
+#. Do setup that's specific to the toplevel.
+#. Set up the pushbuttons to launch new dialogs.
+#. Create a header.
+#: authconfig.c:631 authconfig.desktop.in.h:1 authconfig-gtk.py:126
+#: authconfig-gtk.py:177 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Konfigurace autentizace"
 
@@ -349,6 +362,10 @@ msgstr "%s: kritická chyba pøi ukládání nastavení cache"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritická chyba pøi zápisu %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "authconfig"
+msgstr ""
+
 #: authinfo.h:58
 #, c-format
 msgid ""
@@ -421,8 +438,8 @@ msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
 msgstr ""
-"Hesiod umo¾òuje zveøejnit informace o u¾ivatelích a skupinách v DNS. "
-"Hesiod je nìkdy pou¾íván ve velkých sítích."
+"Hesiod umo¾òuje zveøejnit informace o u¾ivatelích a skupinách v DNS. Hesiod "
+"je nìkdy pou¾íván ve velkých sítích."
 
 #: glade.strings:21
 msgid "User Information"
@@ -473,8 +490,8 @@ msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
 msgstr ""
-"SMB autentizace ovìøuje u¾ivatelská hesla proti serveru, který "
-"pou¾ívá protokol SMB (System Message Block)."
+"SMB autentizace ovìøuje u¾ivatelská hesla proti serveru, který pou¾ívá "
+"protokol SMB (System Message Block)."
 
 #: glade.strings:36
 msgid "Authentication"
