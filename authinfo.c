@@ -94,7 +94,13 @@ gboolean authInfoReadNIS(struct authInfoType *info)
 
 			/* Save the server's name. */
 			if(*p != '\0') {
-				info->nisServer = g_strdup(p);
+				if(info->nisServer != NULL) {
+					char *tmp = info->nisServer;
+					info->nisServer = g_strdup_printf("%s,%s", tmp, p);
+					g_free(tmp);
+				} else {
+					info->nisServer = g_strdup(p);
+				}
 			}
 
 			memset(buf, '\0', sizeof(buf));
@@ -119,7 +125,13 @@ gboolean authInfoReadNIS(struct authInfoType *info)
 			if(strncmp(p, "server", 6) == 0) {
 				for(p += 6; (isspace(*p) && (*p != '\0')); p++);
 				if(*p != '\0') {
-					info->nisServer = g_strdup(p);
+					if(info->nisServer != NULL) {
+						char *tmp = info->nisServer;
+						info->nisServer = g_strdup_printf("%s,%s", p, tmp);
+						g_free(tmp);
+					} else {
+						info->nisServer = g_strdup(p);
+					}
 				}
 			}
 
@@ -565,11 +577,33 @@ gboolean authInfoWriteNIS(struct authInfoType *info)
 				 * want to use broadcast. */
 				if(non_empty(info->nisServer)) {
 					strcat(obuf, " server ");
-					strcat(obuf, info->nisServer);
+					if(strchr(info->nisServer, ',')) {
+						char *q;
+						q = strchr(info->nisServer, ',');
+						strncat(obuf, info->nisServer,
+							q - info->nisServer);
+					} else {
+						strcat(obuf, info->nisServer);
+					}
 				} else {
 					strcat(obuf, " broadcast");
 				}
 				strcat(obuf, "\n");
+
+				if(strchr(info->nisServer, ',')) {
+					p = strchr(info->nisServer, ',') + 1;
+					while(strchr(p, ',')) {
+						char *q;
+						q = strchr(p, ',');
+						strcat(obuf, "ypserver ");
+						strncat(obuf, p, q - p);
+						strcat(obuf, "\n");
+						p = q + 1;
+					}
+					strcat(obuf, "ypserver ");
+					strcat(obuf, p);
+					strcat(obuf, "\n");
+				}
 
 				written = TRUE;
 			}
@@ -580,8 +614,17 @@ gboolean authInfoWriteNIS(struct authInfoType *info)
 			if(!written)
 			if(is_empty(info->nisDomain))
 			if(non_empty(info->nisServer)) {
+				char *p = info->nisServer;
+				while(strchr(p, ',')) {
+					char *q;
+					q = strchr(p, ',');
+					strcat(obuf, "ypserver ");
+					strncat(obuf, p, q - p);
+					strcat(obuf, "\n");
+					p = q + 1;
+				}
 				strcat(obuf, "ypserver ");
-				strcat(obuf, info->nisServer);
+				strcat(obuf, p);
 				strcat(obuf, "\n");
 				written = TRUE;
 			}

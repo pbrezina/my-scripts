@@ -1,13 +1,14 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "Fri 26 May 2000" "Red Hat, Inc."
+.TH AUTHCONFIG 8 "Wed 7 June 2000" "Red Hat, Inc."
 .UC 4
 .SH NAME
 authconfig \- an interface for configuring system authorization resources
 .SH SYNOPSIS
 \fBauthconfig\fR [--back] [--test] [--nostart] [--enablenis [--nisdomain <domain>]
-[--nisserver <nisserver>] ] [--useshadow [--enablemd5] ] [--kickstart]
+[--nisserver <nisserver[,nisserver...]>] ]
+[--useshadow [--enablemd5] ] [--kickstart]
 [--enableldap [ --enableldapauth ]
 [ --ldapserver <ldapserver> ] [ --ldapbasedn <basedn> ]]
 [--enablekrb5 [ --krb5realm <realm> ] [ --krb5kdc <hostname[,hostname,...]> ]
