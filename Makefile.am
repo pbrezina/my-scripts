@@ -97,7 +97,7 @@ distdir=$(PACKAGE)-$(VERSION)-$(RELEASE)
 tag:
 	cvs tag -cR $(TAG)
 
-forcetag:
+force-tag forcetag:
 	cvs tag -cFR $(TAG)
 
 archive:
@@ -111,4 +111,4 @@ archive:
 	./configure ; \
 	aclocal ; \
 	make dist ; \
-	mv $(PACKAGE)-$(VERSION).tar.gz $$dir
+	mv $(distdir).tar.gz $$dir
