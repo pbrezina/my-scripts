@@ -20,7 +20,7 @@ authentication schemes.
 BuildPrereq: gtk2-devel, libglade2-devel
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}-%{release}, pygtk2-libglade
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
