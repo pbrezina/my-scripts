@@ -65,6 +65,9 @@ struct authInfoType {
 	gboolean enableLocal;
 #endif
 	gboolean brokenShadow;
+
+	/* Auxiliary stuff. */
+	gboolean enableCaching;
 };
 
 struct authInfoType *authInfoRead();

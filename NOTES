@@ -18,3 +18,12 @@ PAM configuration only touches /etc/pam.d/system-auth.  We assume pam_unix
 first.  If enabled, pam_krb5 or pam_krb5afs comes next.  Then pam_ldap.
 For passwords, pam_cracklib goes first.  All services use pam_limits.  Not
 all can use pam_access, so we'll have to mod PAM configs as packages churn.
+
+The code is roughly divided into two modules: the back and the front.  The
+back is in authinfo.[ch], and the front is authconfig.c.  They communicate
+by using the authInfoRead() and authInfoWrite() functions.  The rest is
+gravy.
+
+Logic that warns about needed packages and restarts services as needed is
+only in the front-end.  Putting that in the back-end isn't worth it until
+we actually have another back-end.
