@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2002-04-11 16:14-0400\n"
+"POT-Creation-Date: 2002-04-15 11:49-0400\n"
 "PO-Revision-Date: 2001-08-22 11:36:08+0200\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk <dansk@klid.dk>\n"
@@ -11,262 +11,353 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "X-Generator: KTranslator v 0.6.0\n"
 
-#: authconfig-gtk.py:124 authconfig-gtk.py:175
-msgid "Authentication Configuration"
-msgstr "Godkendelseskonfiguration"
+#: authconfig.c:124
+msgid "Warning"
+msgstr "Advarsel"
 
-#: authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
 msgid "Ok"
 msgstr "O.k."
 
-#: authconfig-gtk.py:194
+#: authconfig.c:142
+msgid "Domain:"
+msgstr "Domæne:"
+
+#: authconfig.c:143 authconfig.c:183
+msgid "Server:"
+msgstr "Tjener:"
+
+#: authconfig.c:163
+msgid "LHS:"
+msgstr "LHS:"
+
+#: authconfig.c:164
+msgid "RHS:"
+msgstr "RHS:"
+
+#: authconfig.c:184
+msgid "Base DN:"
+msgstr "Basal DN:"
+
+#: authconfig.c:217
+msgid "Realm:"
+msgstr "Realm:"
+
+#: authconfig.c:218
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:219
+msgid "Admin Server:"
+msgstr "Admin-tjener:"
+
+#: authconfig.c:243
+msgid "Workgroup:"
+msgstr "Arbejdsgruppe:"
+
+#: authconfig.c:244
+msgid "Servers:"
+msgstr "Tjenere:"
+
+#: authconfig.c:284
+msgid "Cache Information"
+msgstr "Mellemlagringsinformation"
+
+#: authconfig.c:292
+msgid "Use NIS"
+msgstr "Benyt NIS"
+
+#: authconfig.c:322
+msgid "Use LDAP"
+msgstr "Benyt LDAP"
+
+#: authconfig.c:327 authconfig.c:490
+msgid "Use TLS"
+msgstr "Benyt TLS"
+
+#: authconfig.c:361
+msgid "Use Hesiod"
+msgstr "Benyt Hesiod"
+
+#: authconfig.c:391
+msgid "Next"
+msgstr "Næste"
+
+#: authconfig.c:392 authconfig.c:601 authconfig.c:614
+msgid "Back"
+msgstr "Tilbage"
+
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
 msgid "Cancel"
 msgstr "Annullér"
 
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.  Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Filen %s blev ikke fundet,men den er krævet for at %s understøttelse "
-#~ "virkerordentligt.  Installer pakken %s som indeholder denne fil."
+#: authconfig.c:412
+msgid "User Information Configuration"
+msgstr "Konfiguration af brugerinfo"
+
+#: authconfig.c:473
+msgid "Use Shadow Passwords"
+msgstr "Benyt skyggeadgangskoder"
+
+#: authconfig.c:478
+msgid "Use MD5 Passwords"
+msgstr "Benyt MD5-adgangskoder"
+
+#: authconfig.c:485
+msgid "Use LDAP Authentication"
+msgstr "Benyt LDAP-godkendelse"
+
+#: authconfig.c:523
+msgid "Use Kerberos 5"
+msgstr "Benyt Kerberos 5"
+
+#: authconfig.c:561
+msgid "Use SMB Authentication"
+msgstr "Benyt SMB-godkendelse"
+
+#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+msgid "Authentication Configuration"
+msgstr "Godkendelseskonfiguration"
+
+#: authconfig.c:774
+msgid "enable shadowed passwords by default"
+msgstr "anvend skyggeadgangskoder som standard"
+
+#: authconfig.c:776
+msgid "disable shadowed passwords by default"
+msgstr "anvend ikke skyggeadgangskoder som standard"
+
+#: authconfig.c:780
+msgid "enable MD5 passwords by default"
+msgstr "anvend MD5-adgangskoder som standard"
+
+#: authconfig.c:782
+msgid "disable MD5 passwords by default\n"
+msgstr "anvend ikke MD5-adgangskoder som standard\n"
+
+#: authconfig.c:785
+msgid "enable NIS"
+msgstr "anvend NIS"
+
+#: authconfig.c:787
+msgid "disable NIS"
+msgstr "anvend ikke NIS"
+
+#: authconfig.c:789
+msgid "default NIS domain"
+msgstr "standard-NIS-domæne"
+
+#: authconfig.c:789
+msgid "<domain>"
+msgstr "<domæne>"
+
+#: authconfig.c:791
+msgid "default NIS server\n"
+msgstr "standard-NIS-tjener\n"
+
+#: authconfig.c:791 authconfig.c:806 authconfig.c:815 authconfig.c:817
+#: authconfig.c:828
+msgid "<server>"
+msgstr "<tjener>"
+
+#: authconfig.c:794
+msgid "enable LDAP for user information by default"
+msgstr "aktivér LDAP til bruger information som standard"
+
+#: authconfig.c:796
+msgid "disable LDAP for user information by default"
+msgstr "deaktivér LDAP til bruger information som standard"
+
+#: authconfig.c:798
+msgid "enable use of TLS with LDAP"
+msgstr "aktivér brug af TLS med LDAP"
+
+#: authconfig.c:800
+msgid "disable use of TLS with LDAP"
+msgstr "deaktivér brug af TLS med LDAP"
+
+#: authconfig.c:802
+msgid "enable LDAP for authentication by default"
+msgstr "aktivér LDAP-godkendelse som standard"
+
+#: authconfig.c:804
+msgid "disable LDAP for authentication by default"
+msgstr "deaktivér LDAP-godkendelse som standard"
+
+#: authconfig.c:806
+msgid "default LDAP server"
+msgstr "standard-LDAP-tjener"
+
+#: authconfig.c:808
+msgid "default LDAP base DN\n"
+msgstr "standard LDAP basal DN\n"
+
+#: authconfig.c:808
+msgid "<dn>"
+msgstr "<dn>"
 
-#~ msgid "Warning"
-#~ msgstr "Advarsel"
+#: authconfig.c:811
+msgid "enable kerberos authentication by default"
+msgstr "aktivér kerberos adgangstilladelse som standard"
 
-#~ msgid "Domain:"
-#~ msgstr "Domæne:"
+#: authconfig.c:813
+msgid "disable kerberos authentication by default"
+msgstr "deaktivér kerberos adgangstilladelse som standard"
 
-#~ msgid "Server:"
-#~ msgstr "Tjener:"
+#: authconfig.c:815
+msgid "default kerberos KDC"
+msgstr "standard kerberos KDC"
 
-#~ msgid "LHS:"
-#~ msgstr "LHS:"
-
-#~ msgid "RHS:"
-#~ msgstr "RHS:"
-
-#~ msgid "Base DN:"
-#~ msgstr "Basal DN:"
-
-#~ msgid "Realm:"
-#~ msgstr "Realm:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Admin-tjener:"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Arbejdsgruppe:"
-
-#~ msgid "Servers:"
-#~ msgstr "Tjenere:"
-
-#~ msgid "Cache Information"
-#~ msgstr "Mellemlagringsinformation"
-
-#~ msgid "Use NIS"
-#~ msgstr "Benyt NIS"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Benyt LDAP"
-
-#~ msgid "Use TLS"
-#~ msgstr "Benyt TLS"
-
-#~ msgid "Use Hesiod"
-#~ msgstr "Benyt Hesiod"
-
-#~ msgid "Next"
-#~ msgstr "Næste"
-
-#~ msgid "Back"
-#~ msgstr "Tilbage"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Konfiguration af brugerinfo"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Benyt skyggeadgangskoder"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Benyt MD5-adgangskoder"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Benyt LDAP-godkendelse"
-
-#~ msgid "Use Kerberos 5"
-#~ msgstr "Benyt Kerberos 5"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "Benyt SMB-godkendelse"
-
-#~ msgid "enable shadowed passwords by default"
-#~ msgstr "anvend skyggeadgangskoder som standard"
-
-#~ msgid "disable shadowed passwords by default"
-#~ msgstr "anvend ikke skyggeadgangskoder som standard"
-
-#~ msgid "enable MD5 passwords by default"
-#~ msgstr "anvend MD5-adgangskoder som standard"
-
-#~ msgid "disable MD5 passwords by default\n"
-#~ msgstr "anvend ikke MD5-adgangskoder som standard\n"
-
-#~ msgid "enable NIS"
-#~ msgstr "anvend NIS"
-
-#~ msgid "disable NIS"
-#~ msgstr "anvend ikke NIS"
-
-#~ msgid "default NIS domain"
-#~ msgstr "standard-NIS-domæne"
-
-#~ msgid "<domain>"
-#~ msgstr "<domæne>"
-
-#~ msgid "default NIS server\n"
-#~ msgstr "standard-NIS-tjener\n"
-
-#~ msgid "<server>"
-#~ msgstr "<tjener>"
-
-#~ msgid "enable LDAP for user information by default"
-#~ msgstr "aktivér LDAP til bruger information som standard"
-
-#~ msgid "disable LDAP for user information by default"
-#~ msgstr "deaktivér LDAP til bruger information som standard"
-
-#~ msgid "enable use of TLS with LDAP"
-#~ msgstr "aktivér brug af TLS med LDAP"
-
-#~ msgid "disable use of TLS with LDAP"
-#~ msgstr "deaktivér brug af TLS med LDAP"
-
-#~ msgid "enable LDAP for authentication by default"
-#~ msgstr "aktivér LDAP-godkendelse som standard"
-
-#~ msgid "disable LDAP for authentication by default"
-#~ msgstr "deaktivér LDAP-godkendelse som standard"
-
-#~ msgid "default LDAP server"
-#~ msgstr "standard-LDAP-tjener"
-
-#~ msgid "default LDAP base DN\n"
-#~ msgstr "standard LDAP basal DN\n"
-
-#~ msgid "<dn>"
-#~ msgstr "<dn>"
-
-#~ msgid "enable kerberos authentication by default"
-#~ msgstr "aktivér kerberos adgangstilladelse som standard"
-
-#~ msgid "disable kerberos authentication by default"
-#~ msgstr "deaktivér kerberos adgangstilladelse som standard"
-
-#~ msgid "default kerberos KDC"
-#~ msgstr "standard kerberos KDC"
-
-#~ msgid "default kerberos admin server"
-#~ msgstr "standard kerberos admin tjener"
-
-#~ msgid "default kerberos realm\n"
-#~ msgstr "standard kerberos realm\n"
-
-#~ msgid "<realm>"
-#~ msgstr "<realm>"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "aktivér SMB adgangstilladelse som standard"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "deaktivér SMB-godkendelse"
-
-#~ msgid "workgroup authentication servers are in"
-#~ msgstr "arbejdsgruppe-godkendelsesservere er i"
-
-#~ msgid "<workgroup>"
-#~ msgstr "<arbejdsgruppe>"
-
-#~ msgid "names of servers to authenticate against\n"
-#~ msgstr "navne på servere at godkende mod\n"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "aktivér Hesiod til brugerinformation som standard"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "deaktivér Hesiod til brugerinformation som standard"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "standard Hesiod LHS"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "default hesiod RHS\n"
-#~ msgstr "standard-Hesiod RHS\n"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "enable caching of user information by default"
-#~ msgstr "aktivér mellemlagring af brugerinformation som standard"
-
-#~ msgid "disable caching of user information by default\n"
-#~ msgstr "deaktivér mellemlagring af brugerinformation som standard\n"
-
-#~ msgid "do not start/stop portmap, ypbind, and nscd"
-#~ msgstr "start/stop ikke portmap, ypbind og nscd"
-
-#~ msgid "don't display user interface"
-#~ msgstr "vis ikke brugerflade"
-
-#~ msgid "probe network for defaults and print them"
-#~ msgstr "Søg netværk for forvalgte værdier og skriv dem"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "brug lokalt definerede retningslinier"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "brug ikke lokalt definerede retningslinier"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: dårligt argument %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: forsøger at fortsætte\n"
-
-#~ msgid "%s: unexpected argument\n"
-#~ msgstr "%s: uventet argument\n"
-
-#~ msgid "%s: can only be run as root\n"
-#~ msgstr "%s: kan kun køres som root\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: kritisk fejl ved læsning af %s/%s"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: kan ikke læse mellemlagrings-information"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> mellem elementer   |  <Mellemrum> vælger | <F12> næste "
-#~ "skærm"
-
-#~ msgid "(c) 1999-2001 Red Hat, Inc."
-#~ msgstr "(c) 1999-2001 Red Hat, Inc."
-
-#~ msgid "dialog was cancelled\n"
-#~ msgstr "dialog blev annulleret\n"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: kritisk fejl ved gemning af mellemlagrings-opsætning"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: kritisk fejl ved skrivning af %s/%s"
-
-#~ msgid "Use Local Policies"
-#~ msgstr "brug lokale retningslinier"
+#: authconfig.c:817
+msgid "default kerberos admin server"
+msgstr "standard kerberos admin tjener"
+
+#: authconfig.c:819
+msgid "default kerberos realm\n"
+msgstr "standard kerberos realm\n"
+
+#: authconfig.c:819
+msgid "<realm>"
+msgstr "<realm>"
+
+#: authconfig.c:822
+msgid "enable SMB authentication by default"
+msgstr "aktivér SMB adgangstilladelse som standard"
+
+#: authconfig.c:824
+msgid "disable SMB authentication by default"
+msgstr "deaktivér SMB-godkendelse"
+
+#: authconfig.c:826
+msgid "workgroup authentication servers are in"
+msgstr "arbejdsgruppe-godkendelsesservere er i"
+
+#: authconfig.c:826
+msgid "<workgroup>"
+msgstr "<arbejdsgruppe>"
+
+#: authconfig.c:828
+msgid "names of servers to authenticate against\n"
+msgstr "navne på servere at godkende mod\n"
+
+#: authconfig.c:831
+msgid "enable hesiod for user information by default"
+msgstr "aktivér Hesiod til brugerinformation som standard"
+
+#: authconfig.c:833
+msgid "disable hesiod for user information by default"
+msgstr "deaktivér Hesiod til brugerinformation som standard"
+
+#: authconfig.c:835
+msgid "default hesiod LHS"
+msgstr "standard Hesiod LHS"
+
+#: authconfig.c:835
+msgid "<lhs>"
+msgstr "<lhs>"
+
+#: authconfig.c:837
+msgid "default hesiod RHS\n"
+msgstr "standard-Hesiod RHS\n"
+
+#: authconfig.c:837
+msgid "<rhs>"
+msgstr "<rhs>"
+
+#: authconfig.c:840
+msgid "enable caching of user information by default"
+msgstr "aktivér mellemlagring af brugerinformation som standard"
+
+#: authconfig.c:842
+msgid "disable caching of user information by default\n"
+msgstr "deaktivér mellemlagring af brugerinformation som standard\n"
+
+#: authconfig.c:849
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "start/stop ikke portmap, ypbind og nscd"
+
+#: authconfig.c:851
+msgid "don't display user interface"
+msgstr "vis ikke brugerflade"
+
+#: authconfig.c:853
+msgid "probe network for defaults and print them"
+msgstr "Søg netværk for forvalgte værdier og skriv dem"
+
+#: authconfig.c:856
+msgid "use locally-defined policies"
+msgstr "brug lokalt definerede retningslinier"
+
+#: authconfig.c:858
+msgid "don't use locally-defined policies"
+msgstr "brug ikke lokalt definerede retningslinier"
+
+#: authconfig.c:869
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: dårligt argument %s: %s\n"
+
+#: authconfig.c:878
+#, c-format
+msgid "%s: attempting to continue\n"
+msgstr "%s: forsøger at fortsætte\n"
+
+#: authconfig.c:882
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: uventet argument\n"
+
+#: authconfig.c:909
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: kan kun køres som root\n"
+
+#: authconfig.c:920 authconfig.c:928 authconfig.c:936 authconfig.c:944
+#: authconfig.c:952 authconfig.c:960 authconfig.c:973 authconfig.c:981
+#, c-format
+msgid "%s: critical error reading %s/%s"
+msgstr "%s: kritisk fejl ved læsning af %s/%s"
+
+#: authconfig.c:967
+#, c-format
+msgid "%s: unable to read caching configuration"
+msgstr "%s: kan ikke læse mellemlagrings-information"
+
+#: authconfig.c:1043
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> mellem elementer   |  <Mellemrum> vælger | <F12> næste skærm"
+
+#: authconfig.c:1046
+msgid "(c) 1999-2001 Red Hat, Inc."
+msgstr "(c) 1999-2001 Red Hat, Inc."
+
+#: authconfig.c:1053
+msgid "dialog was cancelled\n"
+msgstr "dialog blev annulleret\n"
+
+#: authconfig.c:1068
+#, c-format
+msgid "%s: critical error recording caching setting"
+msgstr "%s: kritisk fejl ved gemning af mellemlagrings-opsætning"
+
+#: authconfig.c:1074 authconfig.c:1080 authconfig.c:1086 authconfig.c:1092
+#: authconfig.c:1098 authconfig.c:1103 authconfig.c:1108 authconfig.c:1114
+#, c-format
+msgid "%s: critical error writing %s/%s"
+msgstr "%s: kritisk fejl ved skrivning af %s/%s"
+
+#: authinfo.h:58
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"Filen %s blev ikke fundet,men den er krævet for at %s understøttelse "
+"virkerordentligt.  Installer pakken %s som indeholder denne fil."
+
+#: localpol.h:9
+msgid "Use Local Policies"
+msgstr "brug lokale retningslinier"

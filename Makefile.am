@@ -19,9 +19,6 @@ install-exec-local:
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-gtk
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/redhat-config-auth
 
-install-data-hook:
-	python@PYTHONREV@ -c "import compileall; compileall.compile_dir(\""$(DESTDIR)$(pkgdatadir)"\", 2, \""$(pkgdatadir)"\", 1)"
-
 install-data-local:
 	mkdir -p $(DESTDIR)/$(pamdir)
 	mkdir -p $(DESTDIR)/$(consoledir)
@@ -35,11 +32,32 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/authconfig-gtk
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/redhat-config-auth
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
-	$(INSTALL_DATA) $(srcdir)/authconfig.desktop $(DESTDIR)/$(applnkdir)
-	$(INSTALL_DATA) $(srcdir)/authconfig.desktop $(DESTDIR)/$(startheredir)
+	$(INSTALL_DATA) $(srcdir)/authconfig.desktop $(DESTDIR)/$(applnkdir)/authconfig.desktop
+	$(INSTALL_DATA) $(srcdir)/authconfig.desktop $(DESTDIR)/$(startheredir)/authconfig.desktop
+
+uninstall-local:
+	$(RM) $(DESTDIR)/$(bindir)/authconfig
+	$(RM) $(DESTDIR)/$(bindir)/authconfig-gtk
+	$(RM) $(DESTDIR)/$(bindir)/redhat-config-auth
+	$(RM) $(DESTDIR)/$(pamdir)/authconfig
+	$(RM) $(DESTDIR)/$(pamdir)/authconfig-gtk
+	$(RM) $(DESTDIR)/$(pamdir)/redhat-config-auth
+	$(RM) $(DESTDIR)/$(consoledir)/authconfig
+	$(RM) $(DESTDIR)/$(consoledir)/authconfig-gtk
+	$(RM) $(DESTDIR)/$(consoledir)/redhat-config-auth
+	$(RM) $(DESTDIR)/$(sysconfigdir)/authconfig
+	$(RM) $(DESTDIR)/$(applnkdir)/authconfig.desktop
+	$(RM) $(DESTDIR)/$(startheredir)/authconfig.desktop
+	$(RM) $(DESTDIR)$(pkgdatadir)/*.pyc
+	rmdir $(DESTDIR)/$(applnkdir)
+	rmdir $(DESTDIR)/$(startheredir)
+	rmdir $(DESTDIR)/$(bindir)
+	rmdir $(DESTDIR)/$(pamdir)
+	rmdir $(DESTDIR)/$(consoledir)
+	rmdir $(DESTDIR)/$(sysconfigdir)
 
 ACLOCAL_AMFLAGS = -I m4
-CFLAGS = @GLIB_CFLAGS@ @CFLAGS@ -I$(includedir)/python@PYTHONREV@
+CFLAGS = @GLIB_CFLAGS@ @CFLAGS@ -I/usr/include/python@PYTHONREV@
 
 authconfig_SOURCES = \
 	authconfig.c \
@@ -62,4 +80,4 @@ authconfigmodule_so_SOURCES = \
 	shvar.h
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = config.rpath
+EXTRA_DIST = authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade config.rpath man/en/authconfig.8

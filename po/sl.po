@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 7.1\n"
-"POT-Creation-Date: 2002-04-11 16:14-0400\n"
+"POT-Creation-Date: 2002-04-15 11:49-0400\n"
 "PO-Revision-Date: 2001-09-05 22:28+0200\n"
 "Last-Translator: Roman Maurer <roman.maurer@amis.net>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -16,262 +16,353 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.8\n"
 
-#: authconfig-gtk.py:124 authconfig-gtk.py:175
-msgid "Authentication Configuration"
-msgstr "Nastavitev identifikacije"
+#: authconfig.c:124
+msgid "Warning"
+msgstr "Opozorilo"
 
-#: authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
 msgid "Ok"
 msgstr "V redu"
 
-#: authconfig-gtk.py:194
+#: authconfig.c:142
+msgid "Domain:"
+msgstr "Domena:"
+
+#: authconfig.c:143 authconfig.c:183
+msgid "Server:"
+msgstr "Stre¾nik:"
+
+#: authconfig.c:163
+msgid "LHS:"
+msgstr "leva stran:"
+
+#: authconfig.c:164
+msgid "RHS:"
+msgstr "desna stran:"
+
+#: authconfig.c:184
+msgid "Base DN:"
+msgstr "Osnovni DN:"
+
+#: authconfig.c:217
+msgid "Realm:"
+msgstr "Obmoèje:"
+
+#: authconfig.c:218
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:219
+msgid "Admin Server:"
+msgstr "Skrbni¹ki stre¾nik:"
+
+#: authconfig.c:243
+msgid "Workgroup:"
+msgstr "Delovna skupina:"
+
+#: authconfig.c:244
+msgid "Servers:"
+msgstr "Stre¾niki:"
+
+#: authconfig.c:284
+msgid "Cache Information"
+msgstr "Predpomni podatke"
+
+#: authconfig.c:292
+msgid "Use NIS"
+msgstr "Uporabi NIS"
+
+#: authconfig.c:322
+msgid "Use LDAP"
+msgstr "Uporabi LDAP"
+
+#: authconfig.c:327 authconfig.c:490
+msgid "Use TLS"
+msgstr "Uporabi TLS"
+
+#: authconfig.c:361
+msgid "Use Hesiod"
+msgstr "Uporabi Hesiod"
+
+#: authconfig.c:391
+msgid "Next"
+msgstr "Naprej"
+
+#: authconfig.c:392 authconfig.c:601 authconfig.c:614
+msgid "Back"
+msgstr "Nazaj"
+
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
 msgid "Cancel"
 msgstr "Preklièi"
 
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.  Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Datoteke %s ni moè najti, je pa potrebna za pravilno delovanje podpore za "
-#~ "%s.  Namestite paket %s, ki priskrbi to datoteko."
+#: authconfig.c:412
+msgid "User Information Configuration"
+msgstr "Nastavitev podatkov o uporabnikih"
+
+#: authconfig.c:473
+msgid "Use Shadow Passwords"
+msgstr "Uporabimo senèna gesla"
+
+#: authconfig.c:478
+msgid "Use MD5 Passwords"
+msgstr "Uporabi gesla MD5"
+
+#: authconfig.c:485
+msgid "Use LDAP Authentication"
+msgstr "Nastavitev avtentikacije LDAP"
+
+#: authconfig.c:523
+msgid "Use Kerberos 5"
+msgstr "Uporabi Kerberos 5"
+
+#: authconfig.c:561
+msgid "Use SMB Authentication"
+msgstr "Uporabi avtentikacijo SMB"
+
+#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+msgid "Authentication Configuration"
+msgstr "Nastavitev identifikacije"
+
+#: authconfig.c:774
+msgid "enable shadowed passwords by default"
+msgstr "privzeto omogoèi senèna gesla"
+
+#: authconfig.c:776
+msgid "disable shadowed passwords by default"
+msgstr "privzeto onemogoèi senèna gesla"
+
+#: authconfig.c:780
+msgid "enable MD5 passwords by default"
+msgstr "privzeto omogoèi gesla MD5"
+
+#: authconfig.c:782
+msgid "disable MD5 passwords by default\n"
+msgstr "privzeto onemogoèi gesla MD5\n"
+
+#: authconfig.c:785
+msgid "enable NIS"
+msgstr "omogoèi NIS"
+
+#: authconfig.c:787
+msgid "disable NIS"
+msgstr "onemogoèi NIS"
+
+#: authconfig.c:789
+msgid "default NIS domain"
+msgstr "privzeta domena za NIS"
+
+#: authconfig.c:789
+msgid "<domain>"
+msgstr "<domena>"
+
+#: authconfig.c:791
+msgid "default NIS server\n"
+msgstr "privzeti stre¾nik NIS\n"
+
+#: authconfig.c:791 authconfig.c:806 authconfig.c:815 authconfig.c:817
+#: authconfig.c:828
+msgid "<server>"
+msgstr "<stre¾nik>"
+
+#: authconfig.c:794
+msgid "enable LDAP for user information by default"
+msgstr "privzeto omogoèi uporabni¹ke podatke prek LDAP"
+
+#: authconfig.c:796
+msgid "disable LDAP for user information by default"
+msgstr "privzeto onemogoèi uporabni¹ke podatke prek LDAP"
+
+#: authconfig.c:798
+msgid "enable use of TLS with LDAP"
+msgstr "omogoèi rabo TLS z LDAP"
+
+#: authconfig.c:800
+msgid "disable use of TLS with LDAP"
+msgstr "onemogoèi rabo TLS z LDAP"
+
+#: authconfig.c:802
+msgid "enable LDAP for authentication by default"
+msgstr "privzeto omogoèi LDAP za avtentikacijo"
+
+#: authconfig.c:804
+msgid "disable LDAP for authentication by default"
+msgstr "privzeto onemogoèi LDAP za avtentikacijo"
+
+#: authconfig.c:806
+msgid "default LDAP server"
+msgstr "privzeti stre¾nik LDAP"
+
+#: authconfig.c:808
+msgid "default LDAP base DN\n"
+msgstr "privzeta osnova DN za LDAP\n"
+
+#: authconfig.c:808
+msgid "<dn>"
+msgstr "<dn>"
 
-#~ msgid "Warning"
-#~ msgstr "Opozorilo"
+#: authconfig.c:811
+msgid "enable kerberos authentication by default"
+msgstr "privzeto omogoèi avtentikacijo kerberos"
 
-#~ msgid "Domain:"
-#~ msgstr "Domena:"
+#: authconfig.c:813
+msgid "disable kerberos authentication by default"
+msgstr "privzeto onemogoèi avtentikacijo kerberos"
 
-#~ msgid "Server:"
-#~ msgstr "Stre¾nik:"
+#: authconfig.c:815
+msgid "default kerberos KDC"
+msgstr "privzeto kerberod KDC"
 
-#~ msgid "LHS:"
-#~ msgstr "leva stran:"
-
-#~ msgid "RHS:"
-#~ msgstr "desna stran:"
-
-#~ msgid "Base DN:"
-#~ msgstr "Osnovni DN:"
-
-#~ msgid "Realm:"
-#~ msgstr "Obmoèje:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Skrbni¹ki stre¾nik:"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Delovna skupina:"
-
-#~ msgid "Servers:"
-#~ msgstr "Stre¾niki:"
-
-#~ msgid "Cache Information"
-#~ msgstr "Predpomni podatke"
-
-#~ msgid "Use NIS"
-#~ msgstr "Uporabi NIS"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Uporabi LDAP"
-
-#~ msgid "Use TLS"
-#~ msgstr "Uporabi TLS"
-
-#~ msgid "Use Hesiod"
-#~ msgstr "Uporabi Hesiod"
-
-#~ msgid "Next"
-#~ msgstr "Naprej"
-
-#~ msgid "Back"
-#~ msgstr "Nazaj"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Nastavitev podatkov o uporabnikih"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Uporabimo senèna gesla"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Uporabi gesla MD5"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Nastavitev avtentikacije LDAP"
-
-#~ msgid "Use Kerberos 5"
-#~ msgstr "Uporabi Kerberos 5"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "Uporabi avtentikacijo SMB"
-
-#~ msgid "enable shadowed passwords by default"
-#~ msgstr "privzeto omogoèi senèna gesla"
-
-#~ msgid "disable shadowed passwords by default"
-#~ msgstr "privzeto onemogoèi senèna gesla"
-
-#~ msgid "enable MD5 passwords by default"
-#~ msgstr "privzeto omogoèi gesla MD5"
-
-#~ msgid "disable MD5 passwords by default\n"
-#~ msgstr "privzeto onemogoèi gesla MD5\n"
-
-#~ msgid "enable NIS"
-#~ msgstr "omogoèi NIS"
-
-#~ msgid "disable NIS"
-#~ msgstr "onemogoèi NIS"
-
-#~ msgid "default NIS domain"
-#~ msgstr "privzeta domena za NIS"
-
-#~ msgid "<domain>"
-#~ msgstr "<domena>"
-
-#~ msgid "default NIS server\n"
-#~ msgstr "privzeti stre¾nik NIS\n"
-
-#~ msgid "<server>"
-#~ msgstr "<stre¾nik>"
-
-#~ msgid "enable LDAP for user information by default"
-#~ msgstr "privzeto omogoèi uporabni¹ke podatke prek LDAP"
-
-#~ msgid "disable LDAP for user information by default"
-#~ msgstr "privzeto onemogoèi uporabni¹ke podatke prek LDAP"
-
-#~ msgid "enable use of TLS with LDAP"
-#~ msgstr "omogoèi rabo TLS z LDAP"
-
-#~ msgid "disable use of TLS with LDAP"
-#~ msgstr "onemogoèi rabo TLS z LDAP"
-
-#~ msgid "enable LDAP for authentication by default"
-#~ msgstr "privzeto omogoèi LDAP za avtentikacijo"
-
-#~ msgid "disable LDAP for authentication by default"
-#~ msgstr "privzeto onemogoèi LDAP za avtentikacijo"
-
-#~ msgid "default LDAP server"
-#~ msgstr "privzeti stre¾nik LDAP"
-
-#~ msgid "default LDAP base DN\n"
-#~ msgstr "privzeta osnova DN za LDAP\n"
-
-#~ msgid "<dn>"
-#~ msgstr "<dn>"
-
-#~ msgid "enable kerberos authentication by default"
-#~ msgstr "privzeto omogoèi avtentikacijo kerberos"
-
-#~ msgid "disable kerberos authentication by default"
-#~ msgstr "privzeto onemogoèi avtentikacijo kerberos"
-
-#~ msgid "default kerberos KDC"
-#~ msgstr "privzeto kerberod KDC"
-
-#~ msgid "default kerberos admin server"
-#~ msgstr "privzeti skrbni¹ki stre¾nik kerberos"
-
-#~ msgid "default kerberos realm\n"
-#~ msgstr "privzeto kerberos realm\n"
-
-#~ msgid "<realm>"
-#~ msgstr "<realm>"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "privzeto omogoèi avtentikacijo SMB"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "privzeto onemogoèi avtentikacijo SMB"
-
-#~ msgid "workgroup authentication servers are in"
-#~ msgstr "avtentikacijski stre¾niki delovne skupine so v"
-
-#~ msgid "<workgroup>"
-#~ msgstr "<delovna skupina>"
-
-#~ msgid "names of servers to authenticate against\n"
-#~ msgstr "imena stre¾nikov, ki jih je treba avtenticirati\n"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "privzeto omogoèi hesiod za uporabni¹ke podatke"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "privzeto onemogoèi hesiod za uporabni¹ke podatke"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "privzeti hesiod LHS"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "default hesiod RHS\n"
-#~ msgstr "privzeti hesiod RHS\n"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "enable caching of user information by default"
-#~ msgstr "privzeto omogoèi predpomnjenje uporabni¹kih podatkov"
-
-#~ msgid "disable caching of user information by default\n"
-#~ msgstr "privzeto onemogoèi predpomnjenje uporabni¹kih podatkov\n"
-
-#~ msgid "do not start/stop portmap, ypbind, and nscd"
-#~ msgstr "ne za¾eni/ugasni programov portmap, ypbind, in nscd"
-
-#~ msgid "don't display user interface"
-#~ msgstr "ne prika¾i uporabni¹kega vmesnika"
-
-#~ msgid "probe network for defaults and print them"
-#~ msgstr "preskusi mre¾o za privzete vrednosti in jih izpi¹i"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "uporabi krajevno doloèene politike"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "ne uporabi krajevno doloèenih politik"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: slab argument %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: posku¹a nadaljevati\n"
-
-#~ msgid "%s: unexpected argument\n"
-#~ msgstr "%s: neprièakovan argument\n"
-
-#~ msgid "%s: can only be run as root\n"
-#~ msgstr "%s: lahko po¾enete le kot root\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: kritièna napaka pri branju %s/%s"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: ni moè brati nastavitve predpomnjenja"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ "<Tab>/<Alt-Tab> med elementi  |  <presl.> izbere   |  <F12> naslednji "
-#~ "zaslon"
-
-#~ msgid "(c) 1999-2001 Red Hat, Inc."
-#~ msgstr "(c) 1999-2001 Red Hat, Inc."
-
-#~ msgid "dialog was cancelled\n"
-#~ msgstr "pogovor je bil preklican\n"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: kritièna napaka pri pisanju nastavitve predpomnjenja"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: kritièna napaka pri pisanju %s/%s"
-
-#~ msgid "Use Local Policies"
-#~ msgstr "Uporabi krajevne politike"
+#: authconfig.c:817
+msgid "default kerberos admin server"
+msgstr "privzeti skrbni¹ki stre¾nik kerberos"
+
+#: authconfig.c:819
+msgid "default kerberos realm\n"
+msgstr "privzeto kerberos realm\n"
+
+#: authconfig.c:819
+msgid "<realm>"
+msgstr "<realm>"
+
+#: authconfig.c:822
+msgid "enable SMB authentication by default"
+msgstr "privzeto omogoèi avtentikacijo SMB"
+
+#: authconfig.c:824
+msgid "disable SMB authentication by default"
+msgstr "privzeto onemogoèi avtentikacijo SMB"
+
+#: authconfig.c:826
+msgid "workgroup authentication servers are in"
+msgstr "avtentikacijski stre¾niki delovne skupine so v"
+
+#: authconfig.c:826
+msgid "<workgroup>"
+msgstr "<delovna skupina>"
+
+#: authconfig.c:828
+msgid "names of servers to authenticate against\n"
+msgstr "imena stre¾nikov, ki jih je treba avtenticirati\n"
+
+#: authconfig.c:831
+msgid "enable hesiod for user information by default"
+msgstr "privzeto omogoèi hesiod za uporabni¹ke podatke"
+
+#: authconfig.c:833
+msgid "disable hesiod for user information by default"
+msgstr "privzeto onemogoèi hesiod za uporabni¹ke podatke"
+
+#: authconfig.c:835
+msgid "default hesiod LHS"
+msgstr "privzeti hesiod LHS"
+
+#: authconfig.c:835
+msgid "<lhs>"
+msgstr "<lhs>"
+
+#: authconfig.c:837
+msgid "default hesiod RHS\n"
+msgstr "privzeti hesiod RHS\n"
+
+#: authconfig.c:837
+msgid "<rhs>"
+msgstr "<rhs>"
+
+#: authconfig.c:840
+msgid "enable caching of user information by default"
+msgstr "privzeto omogoèi predpomnjenje uporabni¹kih podatkov"
+
+#: authconfig.c:842
+msgid "disable caching of user information by default\n"
+msgstr "privzeto onemogoèi predpomnjenje uporabni¹kih podatkov\n"
+
+#: authconfig.c:849
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "ne za¾eni/ugasni programov portmap, ypbind, in nscd"
+
+#: authconfig.c:851
+msgid "don't display user interface"
+msgstr "ne prika¾i uporabni¹kega vmesnika"
+
+#: authconfig.c:853
+msgid "probe network for defaults and print them"
+msgstr "preskusi mre¾o za privzete vrednosti in jih izpi¹i"
+
+#: authconfig.c:856
+msgid "use locally-defined policies"
+msgstr "uporabi krajevno doloèene politike"
+
+#: authconfig.c:858
+msgid "don't use locally-defined policies"
+msgstr "ne uporabi krajevno doloèenih politik"
+
+#: authconfig.c:869
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: slab argument %s: %s\n"
+
+#: authconfig.c:878
+#, c-format
+msgid "%s: attempting to continue\n"
+msgstr "%s: posku¹a nadaljevati\n"
+
+#: authconfig.c:882
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: neprièakovan argument\n"
+
+#: authconfig.c:909
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: lahko po¾enete le kot root\n"
+
+#: authconfig.c:920 authconfig.c:928 authconfig.c:936 authconfig.c:944
+#: authconfig.c:952 authconfig.c:960 authconfig.c:973 authconfig.c:981
+#, c-format
+msgid "%s: critical error reading %s/%s"
+msgstr "%s: kritièna napaka pri branju %s/%s"
+
+#: authconfig.c:967
+#, c-format
+msgid "%s: unable to read caching configuration"
+msgstr "%s: ni moè brati nastavitve predpomnjenja"
+
+#: authconfig.c:1043
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+"<Tab>/<Alt-Tab> med elementi  |  <presl.> izbere   |  <F12> naslednji zaslon"
+
+#: authconfig.c:1046
+msgid "(c) 1999-2001 Red Hat, Inc."
+msgstr "(c) 1999-2001 Red Hat, Inc."
+
+#: authconfig.c:1053
+msgid "dialog was cancelled\n"
+msgstr "pogovor je bil preklican\n"
+
+#: authconfig.c:1068
+#, c-format
+msgid "%s: critical error recording caching setting"
+msgstr "%s: kritièna napaka pri pisanju nastavitve predpomnjenja"
+
+#: authconfig.c:1074 authconfig.c:1080 authconfig.c:1086 authconfig.c:1092
+#: authconfig.c:1098 authconfig.c:1103 authconfig.c:1108 authconfig.c:1114
+#, c-format
+msgid "%s: critical error writing %s/%s"
+msgstr "%s: kritièna napaka pri pisanju %s/%s"
+
+#: authinfo.h:58
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"Datoteke %s ni moè najti, je pa potrebna za pravilno delovanje podpore za %"
+"s.  Namestite paket %s, ki priskrbi to datoteko."
+
+#: localpol.h:9
+msgid "Use Local Policies"
+msgstr "Uporabi krajevne politike"

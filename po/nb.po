@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 4.0.16\n"
-"POT-Creation-Date: 2002-04-11 16:14-0400\n"
+"POT-Creation-Date: 2002-04-15 11:49-0400\n"
 "PO-Revision-Date: 2002-03-06 22:42+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnu.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -9,265 +9,357 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: authconfig-gtk.py:124 authconfig-gtk.py:175
-msgid "Authentication Configuration"
-msgstr "Autentiseringskonfigurasjon"
+#: authconfig.c:124
+msgid "Warning"
+msgstr "Advarsel"
 
-#: authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
 msgid "Ok"
 msgstr "Ok"
 
-#: authconfig-gtk.py:194
+#: authconfig.c:142
+msgid "Domain:"
+msgstr "Domene:"
+
+#: authconfig.c:143 authconfig.c:183
+msgid "Server:"
+msgstr "Tjener:"
+
+#: authconfig.c:163
+msgid "LHS:"
+msgstr "LHS:"
+
+#: authconfig.c:164
+msgid "RHS:"
+msgstr "RHS:"
+
+#: authconfig.c:184
+msgid "Base DN:"
+msgstr "Basis DN:"
+
+#: authconfig.c:217
+msgid "Realm:"
+msgstr "Område:"
+
+#: authconfig.c:218
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:219
+msgid "Admin Server:"
+msgstr "Admin-tjener:"
+
+#: authconfig.c:243
+msgid "Workgroup:"
+msgstr "Arbeidsgruppe:"
+
+#: authconfig.c:244
+msgid "Servers:"
+msgstr "Tjenere:"
+
+#: authconfig.c:284
+msgid "Cache Information"
+msgstr "Informasjon om buffer"
+
+#: authconfig.c:292
+msgid "Use NIS"
+msgstr "Bruk NIS"
+
+#: authconfig.c:322
+msgid "Use LDAP"
+msgstr "Bruk LDAP"
+
+#: authconfig.c:327 authconfig.c:490
+msgid "Use TLS"
+msgstr "Bruk TLS"
+
+#: authconfig.c:361
+msgid "Use Hesiod"
+msgstr "Bruk Hesiod"
+
+#: authconfig.c:391
+msgid "Next"
+msgstr "Neste"
+
+#: authconfig.c:392 authconfig.c:601 authconfig.c:614
+msgid "Back"
+msgstr "Tilbake"
+
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
 msgid "Cancel"
 msgstr "Avbryt"
 
-#~ msgid "Warning"
-#~ msgstr "Advarsel"
+#: authconfig.c:412
+msgid "User Information Configuration"
+msgstr "Konfigurasjon av brukerinformasjon"
+
+#: authconfig.c:473
+msgid "Use Shadow Passwords"
+msgstr "Bruk skyggepassord"
+
+#: authconfig.c:478
+msgid "Use MD5 Passwords"
+msgstr "Bruk MD5-passord"
+
+#: authconfig.c:485
+msgid "Use LDAP Authentication"
+msgstr "Bruk LDAP-autentisering"
+
+#: authconfig.c:523
+msgid "Use Kerberos 5"
+msgstr "Bruk Kerberos 5"
+
+#: authconfig.c:561
+msgid "Use SMB Authentication"
+msgstr "Bruk SMB-autentisering"
+
+#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+msgid "Authentication Configuration"
+msgstr "Autentiseringskonfigurasjon"
+
+#: authconfig.c:774
+msgid "enable shadowed passwords by default"
+msgstr "bruk skyggepassord som standard"
+
+#: authconfig.c:776
+msgid "disable shadowed passwords by default"
+msgstr "ikke bruk skyggepassord som standard"
+
+#: authconfig.c:780
+msgid "enable MD5 passwords by default"
+msgstr "bruk MD5-passord som standard"
+
+#: authconfig.c:782
+msgid "disable MD5 passwords by default\n"
+msgstr "slå av bruk av MD5-passord som standard\n"
+
+#: authconfig.c:785
+msgid "enable NIS"
+msgstr "bruk NIS"
+
+#: authconfig.c:787
+msgid "disable NIS"
+msgstr "ikke bruk NIS"
+
+#: authconfig.c:789
+msgid "default NIS domain"
+msgstr "standard NIS-domene"
+
+#: authconfig.c:789
+msgid "<domain>"
+msgstr "<domene>"
+
+#: authconfig.c:791
+msgid "default NIS server\n"
+msgstr "standard NIS-tjener\n"
+
+#: authconfig.c:791 authconfig.c:806 authconfig.c:815 authconfig.c:817
+#: authconfig.c:828
+msgid "<server>"
+msgstr "<tjener>"
+
+#: authconfig.c:794
+msgid "enable LDAP for user information by default"
+msgstr "bruk LDAP som standard for brukerinformasjon"
+
+#: authconfig.c:796
+msgid "disable LDAP for user information by default"
+msgstr "ikke bruk LDAP som standard for brukerinformasjon"
+
+#: authconfig.c:798
+msgid "enable use of TLS with LDAP"
+msgstr "bruk TLS med LDAP"
+
+#: authconfig.c:800
+msgid "disable use of TLS with LDAP"
+msgstr "ikke bruk TLS med LDAP"
+
+#: authconfig.c:802
+msgid "enable LDAP for authentication by default"
+msgstr "bruk LDAP som standard for autentisering"
+
+#: authconfig.c:804
+msgid "disable LDAP for authentication by default"
+msgstr "ikke bruk LDAP som standard for autentisering"
+
+#: authconfig.c:806
+msgid "default LDAP server"
+msgstr "standard LDAP-tjener"
+
+#: authconfig.c:808
+msgid "default LDAP base DN\n"
+msgstr "standard LDAP basis DN\n"
+
+#: authconfig.c:808
+msgid "<dn>"
+msgstr "<dn>"
 
-#~ msgid "Domain:"
-#~ msgstr "Domene:"
+#: authconfig.c:811
+msgid "enable kerberos authentication by default"
+msgstr "bruk kerberos autentisering som standard"
 
-#~ msgid "Server:"
-#~ msgstr "Tjener:"
+#: authconfig.c:813
+msgid "disable kerberos authentication by default"
+msgstr "ikke bruk kerberos autentisering som standard"
 
-#~ msgid "LHS:"
-#~ msgstr "LHS:"
+#: authconfig.c:815
+msgid "default kerberos KDC"
+msgstr "standard kerberos KDC"
 
-#~ msgid "RHS:"
-#~ msgstr "RHS:"
-
-#~ msgid "Base DN:"
-#~ msgstr "Basis DN:"
-
-#~ msgid "Realm:"
-#~ msgstr "Område:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Admin-tjener:"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Arbeidsgruppe:"
-
-#~ msgid "Servers:"
-#~ msgstr "Tjenere:"
-
-#~ msgid "Cache Information"
-#~ msgstr "Informasjon om buffer"
-
-#~ msgid "Use NIS"
-#~ msgstr "Bruk NIS"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Bruk LDAP"
-
-#~ msgid "Use TLS"
-#~ msgstr "Bruk TLS"
-
-#~ msgid "Use Hesiod"
-#~ msgstr "Bruk Hesiod"
-
-#~ msgid "Next"
-#~ msgstr "Neste"
-
-#~ msgid "Back"
-#~ msgstr "Tilbake"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Konfigurasjon av brukerinformasjon"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Bruk skyggepassord"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Bruk MD5-passord"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Bruk LDAP-autentisering"
-
-#~ msgid "Use Kerberos 5"
-#~ msgstr "Bruk Kerberos 5"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "Bruk SMB-autentisering"
-
-#~ msgid "enable shadowed passwords by default"
-#~ msgstr "bruk skyggepassord som standard"
-
-#~ msgid "disable shadowed passwords by default"
-#~ msgstr "ikke bruk skyggepassord som standard"
-
-#~ msgid "enable MD5 passwords by default"
-#~ msgstr "bruk MD5-passord som standard"
-
-#~ msgid "disable MD5 passwords by default\n"
-#~ msgstr "slå av bruk av MD5-passord som standard\n"
-
-#~ msgid "enable NIS"
-#~ msgstr "bruk NIS"
-
-#~ msgid "disable NIS"
-#~ msgstr "ikke bruk NIS"
-
-#~ msgid "default NIS domain"
-#~ msgstr "standard NIS-domene"
-
-#~ msgid "<domain>"
-#~ msgstr "<domene>"
-
-#~ msgid "default NIS server\n"
-#~ msgstr "standard NIS-tjener\n"
-
-#~ msgid "<server>"
-#~ msgstr "<tjener>"
-
-#~ msgid "enable LDAP for user information by default"
-#~ msgstr "bruk LDAP som standard for brukerinformasjon"
-
-#~ msgid "disable LDAP for user information by default"
-#~ msgstr "ikke bruk LDAP som standard for brukerinformasjon"
-
-#~ msgid "enable use of TLS with LDAP"
-#~ msgstr "bruk TLS med LDAP"
-
-#~ msgid "disable use of TLS with LDAP"
-#~ msgstr "ikke bruk TLS med LDAP"
-
-#~ msgid "enable LDAP for authentication by default"
-#~ msgstr "bruk LDAP som standard for autentisering"
-
-#~ msgid "disable LDAP for authentication by default"
-#~ msgstr "ikke bruk LDAP som standard for autentisering"
-
-#~ msgid "default LDAP server"
-#~ msgstr "standard LDAP-tjener"
-
-#~ msgid "default LDAP base DN\n"
-#~ msgstr "standard LDAP basis DN\n"
-
-#~ msgid "<dn>"
-#~ msgstr "<dn>"
-
-#~ msgid "enable kerberos authentication by default"
-#~ msgstr "bruk kerberos autentisering som standard"
-
-#~ msgid "disable kerberos authentication by default"
-#~ msgstr "ikke bruk kerberos autentisering som standard"
-
-#~ msgid "default kerberos KDC"
-#~ msgstr "standard kerberos KDC"
-
-#~ msgid "default kerberos admin server"
-#~ msgstr "standard kerberos admin-tjener"
-
-#~ msgid "default kerberos realm\n"
-#~ msgstr "standard kerberos område\n"
-
-#~ msgid "<realm>"
-#~ msgstr "<område>"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "bruk SMB-autentisering som standard"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "ikke bruk SMB-autentisering som standard"
-
-#~ msgid "workgroup authentication servers are in"
-#~ msgstr "arbeidsgruppe for autentiseringstjenere"
-
-#~ msgid "<workgroup>"
-#~ msgstr "<arbeidsgruppe>"
-
-#~ msgid "names of servers to authenticate against\n"
-#~ msgstr "navn på tjenere som det skal gjøres autentisering mot\n"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "bruk hesiod som standard for brukerinformasjon"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "ikke bruk hesiod som standard for brukerinformasjon"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "standard LHS for hesiod"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "default hesiod RHS\n"
-#~ msgstr "standard RHS for hesiod\n"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "enable caching of user information by default"
-#~ msgstr "bruk mellomlagring av brukerinformasjon som standard"
-
-#~ msgid "disable caching of user information by default\n"
-#~ msgstr "ikke bruk mellomlagring av brukerinformasjon som standard\n"
-
-#~ msgid "do not start/stop portmap, ypbind, and nscd"
-#~ msgstr "ikke start/stopp portmap, ypbind og nscd"
-
-#~ msgid "don't display user interface"
-#~ msgstr "ikke vis brukergrensesnitt"
-
-#~ msgid "probe network for defaults and print them"
-#~ msgstr "søk nettverk etter standardverdier og skriv dem ut"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "bruk lokalt definerte regler"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "ikke bruk lokalt definerte regler"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: ugyldig argument %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: forsøker å fortsette\n"
-
-#~ msgid "%s: unexpected argument\n"
-#~ msgstr "%s: uventet argument\n"
-
-#~ msgid "%s: can only be run as root\n"
-#~ msgstr "%s: kan bare kjøres av root\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: kritisk feil under lesing av %s/%s"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: kunne ikke lese konfigurasjon for mellomlagring"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> mellom elementer   |   <Mellomrom> velger |  <F12> neste "
-#~ "skjerm"
-
-#~ msgid "(c) 1999-2001 Red Hat, Inc."
-#~ msgstr "© 1999-2001 Red Hat, Inc."
-
-#~ msgid "dialog was cancelled\n"
-#~ msgstr "dialogen ble avbrutt\n"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: kritisk feil under setting av innstillingene for mellomlagring"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: kritisk feil under skriving til %s/%s"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.  Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Filen %s ble ikke funnet, men er nødvendig for at støtte for %s skal "
-#~ "fungere riktig. Installer pakken %s, som gir deg denne filen."
-
-#~ msgid "Use Local Policies"
-#~ msgstr "Bruk lokale regler"
+#: authconfig.c:817
+msgid "default kerberos admin server"
+msgstr "standard kerberos admin-tjener"
+
+#: authconfig.c:819
+msgid "default kerberos realm\n"
+msgstr "standard kerberos område\n"
+
+#: authconfig.c:819
+msgid "<realm>"
+msgstr "<område>"
+
+#: authconfig.c:822
+msgid "enable SMB authentication by default"
+msgstr "bruk SMB-autentisering som standard"
+
+#: authconfig.c:824
+msgid "disable SMB authentication by default"
+msgstr "ikke bruk SMB-autentisering som standard"
+
+#: authconfig.c:826
+msgid "workgroup authentication servers are in"
+msgstr "arbeidsgruppe for autentiseringstjenere"
+
+#: authconfig.c:826
+msgid "<workgroup>"
+msgstr "<arbeidsgruppe>"
+
+#: authconfig.c:828
+msgid "names of servers to authenticate against\n"
+msgstr "navn på tjenere som det skal gjøres autentisering mot\n"
+
+#: authconfig.c:831
+msgid "enable hesiod for user information by default"
+msgstr "bruk hesiod som standard for brukerinformasjon"
+
+#: authconfig.c:833
+msgid "disable hesiod for user information by default"
+msgstr "ikke bruk hesiod som standard for brukerinformasjon"
+
+#: authconfig.c:835
+msgid "default hesiod LHS"
+msgstr "standard LHS for hesiod"
+
+#: authconfig.c:835
+msgid "<lhs>"
+msgstr "<lhs>"
+
+#: authconfig.c:837
+msgid "default hesiod RHS\n"
+msgstr "standard RHS for hesiod\n"
+
+#: authconfig.c:837
+msgid "<rhs>"
+msgstr "<rhs>"
+
+#: authconfig.c:840
+msgid "enable caching of user information by default"
+msgstr "bruk mellomlagring av brukerinformasjon som standard"
+
+#: authconfig.c:842
+msgid "disable caching of user information by default\n"
+msgstr "ikke bruk mellomlagring av brukerinformasjon som standard\n"
+
+#: authconfig.c:849
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "ikke start/stopp portmap, ypbind og nscd"
+
+#: authconfig.c:851
+msgid "don't display user interface"
+msgstr "ikke vis brukergrensesnitt"
+
+#: authconfig.c:853
+msgid "probe network for defaults and print them"
+msgstr "søk nettverk etter standardverdier og skriv dem ut"
+
+#: authconfig.c:856
+msgid "use locally-defined policies"
+msgstr "bruk lokalt definerte regler"
+
+#: authconfig.c:858
+msgid "don't use locally-defined policies"
+msgstr "ikke bruk lokalt definerte regler"
+
+#: authconfig.c:869
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: ugyldig argument %s: %s\n"
+
+#: authconfig.c:878
+#, c-format
+msgid "%s: attempting to continue\n"
+msgstr "%s: forsøker å fortsette\n"
+
+#: authconfig.c:882
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: uventet argument\n"
+
+#: authconfig.c:909
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: kan bare kjøres av root\n"
+
+#: authconfig.c:920 authconfig.c:928 authconfig.c:936 authconfig.c:944
+#: authconfig.c:952 authconfig.c:960 authconfig.c:973 authconfig.c:981
+#, c-format
+msgid "%s: critical error reading %s/%s"
+msgstr "%s: kritisk feil under lesing av %s/%s"
+
+#: authconfig.c:967
+#, c-format
+msgid "%s: unable to read caching configuration"
+msgstr "%s: kunne ikke lese konfigurasjon for mellomlagring"
+
+#: authconfig.c:1043
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> mellom elementer   |   <Mellomrom> velger |  <F12> neste "
+"skjerm"
+
+#: authconfig.c:1046
+msgid "(c) 1999-2001 Red Hat, Inc."
+msgstr "© 1999-2001 Red Hat, Inc."
+
+#: authconfig.c:1053
+msgid "dialog was cancelled\n"
+msgstr "dialogen ble avbrutt\n"
+
+#: authconfig.c:1068
+#, c-format
+msgid "%s: critical error recording caching setting"
+msgstr "%s: kritisk feil under setting av innstillingene for mellomlagring"
+
+#: authconfig.c:1074 authconfig.c:1080 authconfig.c:1086 authconfig.c:1092
+#: authconfig.c:1098 authconfig.c:1103 authconfig.c:1108 authconfig.c:1114
+#, c-format
+msgid "%s: critical error writing %s/%s"
+msgstr "%s: kritisk feil under skriving til %s/%s"
+
+#: authinfo.h:58
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"Filen %s ble ikke funnet, men er nødvendig for at støtte for %s skal fungere "
+"riktig. Installer pakken %s, som gir deg denne filen."
+
+#: localpol.h:9
+msgid "Use Local Policies"
+msgstr "Bruk lokale regler"
 
 #~ msgid "_Cache User Information"
 #~ msgstr "_Bufre informasjon om bruker"

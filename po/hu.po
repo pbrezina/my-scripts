@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2002-04-11 16:14-0400\n"
+"POT-Creation-Date: 2002-04-15 11:49-0400\n"
 "PO-Revision-Date: 2000-08-04 00:04+0200\n"
 "Last-Translator: László Németh <nemeth@qwertynet.hu>\n"
 "Language-Team: Hungarian\n"
@@ -9,158 +9,381 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: authconfig-gtk.py:124 authconfig-gtk.py:175
-msgid "Authentication Configuration"
-msgstr "Azonosítás beállítás"
+#: authconfig.c:124
+msgid "Warning"
+msgstr "Figyelem"
 
-#: authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
 msgid "Ok"
 msgstr "Ok"
 
-#: authconfig-gtk.py:194
+#: authconfig.c:142
+msgid "Domain:"
+msgstr "Domain:"
+
+#: authconfig.c:143 authconfig.c:183
+msgid "Server:"
+msgstr "Szerver:"
+
+#: authconfig.c:163
+msgid "LHS:"
+msgstr "LHS:"
+
+#: authconfig.c:164
+msgid "RHS:"
+msgstr "RHS:"
+
+#: authconfig.c:184
+msgid "Base DN:"
+msgstr "Base DN:"
+
+#: authconfig.c:217
+msgid "Realm:"
+msgstr "Realm:"
+
+#: authconfig.c:218
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:219
+msgid "Admin Server:"
+msgstr "Admin szerver:"
+
+#: authconfig.c:243
+msgid "Workgroup:"
+msgstr ""
+
+#: authconfig.c:244
+#, fuzzy
+msgid "Servers:"
+msgstr "Szerver:"
+
+#: authconfig.c:284
+msgid "Cache Information"
+msgstr ""
+
+#: authconfig.c:292
+msgid "Use NIS"
+msgstr "NIS használata"
+
+#: authconfig.c:322
+msgid "Use LDAP"
+msgstr "LDAP használata"
+
+#: authconfig.c:327 authconfig.c:490
+#, fuzzy
+msgid "Use TLS"
+msgstr "NIS használata"
+
+#: authconfig.c:361
+msgid "Use Hesiod"
+msgstr "Hesiod használata"
+
+#: authconfig.c:391
+msgid "Next"
+msgstr "Következõ"
+
+#: authconfig.c:392 authconfig.c:601 authconfig.c:614
+msgid "Back"
+msgstr "Vissza"
+
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
 msgid "Cancel"
 msgstr "Mégsem"
 
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.  Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "A %s file nem található, de szükség van rá a %s támogatás mûködéséhez. "
-#~ "Telepítse a %s csomagot, amely tartalmazza ezt a file-t."
+#: authconfig.c:412
+msgid "User Information Configuration"
+msgstr "Felhasználói adatok  beállítása"
 
-#~ msgid "Warning"
-#~ msgstr "Figyelem"
+#: authconfig.c:473
+msgid "Use Shadow Passwords"
+msgstr "Shadow jelszók használata"
 
-#~ msgid "Domain:"
-#~ msgstr "Domain:"
+#: authconfig.c:478
+msgid "Use MD5 Passwords"
+msgstr "MD5 jelszók használata"
 
-#~ msgid "Server:"
-#~ msgstr "Szerver:"
+#: authconfig.c:485
+msgid "Use LDAP Authentication"
+msgstr "LDAP azonosítás használata"
 
-#~ msgid "LHS:"
-#~ msgstr "LHS:"
+#: authconfig.c:523
+msgid "Use Kerberos 5"
+msgstr "Kerberos 5 használata"
 
-#~ msgid "RHS:"
-#~ msgstr "RHS:"
-
-#~ msgid "Base DN:"
-#~ msgstr "Base DN:"
-
-#~ msgid "Realm:"
-#~ msgstr "Realm:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Admin szerver:"
-
+#: authconfig.c:561
 #, fuzzy
-#~ msgid "Servers:"
-#~ msgstr "Szerver:"
+msgid "Use SMB Authentication"
+msgstr "LDAP azonosítás használata"
 
-#~ msgid "Use NIS"
-#~ msgstr "NIS használata"
+#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+msgid "Authentication Configuration"
+msgstr "Azonosítás beállítás"
 
-#~ msgid "Use LDAP"
-#~ msgstr "LDAP használata"
-
+#: authconfig.c:774
 #, fuzzy
-#~ msgid "Use TLS"
-#~ msgstr "NIS használata"
+msgid "enable shadowed passwords by default"
+msgstr "MD5 jelszók használata"
 
-#~ msgid "Use Hesiod"
-#~ msgstr "Hesiod használata"
-
-#~ msgid "Next"
-#~ msgstr "Következõ"
-
-#~ msgid "Back"
-#~ msgstr "Vissza"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Felhasználói adatok  beállítása"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Shadow jelszók használata"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "MD5 jelszók használata"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "LDAP azonosítás használata"
-
-#~ msgid "Use Kerberos 5"
-#~ msgstr "Kerberos 5 használata"
-
+#: authconfig.c:776
 #, fuzzy
-#~ msgid "Use SMB Authentication"
-#~ msgstr "LDAP azonosítás használata"
+msgid "disable shadowed passwords by default"
+msgstr "MD5 jelszók használata"
 
+#: authconfig.c:780
 #, fuzzy
-#~ msgid "disable MD5 passwords by default\n"
-#~ msgstr "MD5 jelszók használata"
+msgid "enable MD5 passwords by default"
+msgstr "MD5 jelszók használata"
 
+#: authconfig.c:782
 #, fuzzy
-#~ msgid "disable NIS"
-#~ msgstr "NIS használata"
+msgid "disable MD5 passwords by default\n"
+msgstr "MD5 jelszók használata"
 
+#: authconfig.c:785
 #, fuzzy
-#~ msgid "enable LDAP for authentication by default"
-#~ msgstr "LDAP azonosítás használata"
+msgid "enable NIS"
+msgstr "NIS használata"
 
+#: authconfig.c:787
 #, fuzzy
-#~ msgid "disable LDAP for authentication by default"
-#~ msgstr "LDAP azonosítás használata"
+msgid "disable NIS"
+msgstr "NIS használata"
 
+#: authconfig.c:789
+msgid "default NIS domain"
+msgstr ""
+
+#: authconfig.c:789
 #, fuzzy
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "LDAP azonosítás használata"
+msgid "<domain>"
+msgstr "Domain:"
 
+#: authconfig.c:791
+msgid "default NIS server\n"
+msgstr ""
+
+#: authconfig.c:791 authconfig.c:806 authconfig.c:815 authconfig.c:817
+#: authconfig.c:828
 #, fuzzy
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "LDAP azonosítás használata"
+msgid "<server>"
+msgstr "Szerver:"
 
+#: authconfig.c:794
 #, fuzzy
-#~ msgid "enable caching of user information by default"
-#~ msgstr "LDAP azonosítás használata"
+msgid "enable LDAP for user information by default"
+msgstr "LDAP azonosítás használata"
 
+#: authconfig.c:796
 #, fuzzy
-#~ msgid "disable caching of user information by default\n"
-#~ msgstr "LDAP azonosítás használata"
+msgid "disable LDAP for user information by default"
+msgstr "LDAP azonosítás használata"
 
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: hibás argumentum %s: %s\n"
+#: authconfig.c:798
+msgid "enable use of TLS with LDAP"
+msgstr ""
 
-#~ msgid "%s: unexpected argument\n"
-#~ msgstr "%s: váratlan argumentum\n"
+#: authconfig.c:800
+msgid "disable use of TLS with LDAP"
+msgstr ""
 
-#~ msgid "%s: can only be run as root\n"
-#~ msgstr "%s: csak root-ként futtatható\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: kritikus hiba %s/%s olvasásakor"
-
+#: authconfig.c:802
 #, fuzzy
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "Felhasználói adatok  beállítása"
+msgid "enable LDAP for authentication by default"
+msgstr "LDAP azonosítás használata"
 
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> elemek között    |   <Space> kiválaszt   |    <F12> "
-#~ "következõ"
-
-#~ msgid "dialog was cancelled\n"
-#~ msgstr "párbeszéd leállítva\n"
-
+#: authconfig.c:804
 #, fuzzy
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: kritikus hiba %s/%s olvasásakor"
+msgid "disable LDAP for authentication by default"
+msgstr "LDAP azonosítás használata"
 
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: kritikus hiba %s/%s írásakor"
+#: authconfig.c:806
+msgid "default LDAP server"
+msgstr ""
+
+#: authconfig.c:808
+msgid "default LDAP base DN\n"
+msgstr ""
+
+#: authconfig.c:808
+msgid "<dn>"
+msgstr ""
+
+#: authconfig.c:811
+#, fuzzy
+msgid "enable kerberos authentication by default"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:813
+#, fuzzy
+msgid "disable kerberos authentication by default"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:815
+msgid "default kerberos KDC"
+msgstr ""
+
+#: authconfig.c:817
+msgid "default kerberos admin server"
+msgstr ""
+
+#: authconfig.c:819
+msgid "default kerberos realm\n"
+msgstr ""
+
+#: authconfig.c:819
+#, fuzzy
+msgid "<realm>"
+msgstr "Realm:"
+
+#: authconfig.c:822
+#, fuzzy
+msgid "enable SMB authentication by default"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:824
+#, fuzzy
+msgid "disable SMB authentication by default"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:826
+msgid "workgroup authentication servers are in"
+msgstr ""
+
+#: authconfig.c:826
+msgid "<workgroup>"
+msgstr ""
+
+#: authconfig.c:828
+msgid "names of servers to authenticate against\n"
+msgstr ""
+
+#: authconfig.c:831
+#, fuzzy
+msgid "enable hesiod for user information by default"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:833
+#, fuzzy
+msgid "disable hesiod for user information by default"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:835
+msgid "default hesiod LHS"
+msgstr ""
+
+#: authconfig.c:835
+msgid "<lhs>"
+msgstr ""
+
+#: authconfig.c:837
+msgid "default hesiod RHS\n"
+msgstr ""
+
+#: authconfig.c:837
+msgid "<rhs>"
+msgstr ""
+
+#: authconfig.c:840
+#, fuzzy
+msgid "enable caching of user information by default"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:842
+#, fuzzy
+msgid "disable caching of user information by default\n"
+msgstr "LDAP azonosítás használata"
+
+#: authconfig.c:849
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr ""
+
+#: authconfig.c:851
+msgid "don't display user interface"
+msgstr ""
+
+#: authconfig.c:853
+msgid "probe network for defaults and print them"
+msgstr ""
+
+#: authconfig.c:856
+msgid "use locally-defined policies"
+msgstr ""
+
+#: authconfig.c:858
+msgid "don't use locally-defined policies"
+msgstr ""
+
+#: authconfig.c:869
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: hibás argumentum %s: %s\n"
+
+#: authconfig.c:878
+#, c-format
+msgid "%s: attempting to continue\n"
+msgstr ""
+
+#: authconfig.c:882
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: váratlan argumentum\n"
+
+#: authconfig.c:909
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: csak root-ként futtatható\n"
+
+#: authconfig.c:920 authconfig.c:928 authconfig.c:936 authconfig.c:944
+#: authconfig.c:952 authconfig.c:960 authconfig.c:973 authconfig.c:981
+#, c-format
+msgid "%s: critical error reading %s/%s"
+msgstr "%s: kritikus hiba %s/%s olvasásakor"
+
+#: authconfig.c:967
+#, fuzzy, c-format
+msgid "%s: unable to read caching configuration"
+msgstr "Felhasználói adatok  beállítása"
+
+#: authconfig.c:1043
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> elemek között    |   <Space> kiválaszt   |    <F12> "
+"következõ"
+
+#: authconfig.c:1046
+msgid "(c) 1999-2001 Red Hat, Inc."
+msgstr ""
+
+#: authconfig.c:1053
+msgid "dialog was cancelled\n"
+msgstr "párbeszéd leállítva\n"
+
+#: authconfig.c:1068
+#, fuzzy, c-format
+msgid "%s: critical error recording caching setting"
+msgstr "%s: kritikus hiba %s/%s olvasásakor"
+
+#: authconfig.c:1074 authconfig.c:1080 authconfig.c:1086 authconfig.c:1092
+#: authconfig.c:1098 authconfig.c:1103 authconfig.c:1108 authconfig.c:1114
+#, c-format
+msgid "%s: critical error writing %s/%s"
+msgstr "%s: kritikus hiba %s/%s írásakor"
+
+#: authinfo.h:58
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"A %s file nem található, de szükség van rá a %s támogatás mûködéséhez. "
+"Telepítse a %s csomagot, amely tartalmazza ezt a file-t."
+
+#: localpol.h:9
+msgid "Use Local Policies"
+msgstr ""
 
 #, fuzzy
 #~ msgid ""

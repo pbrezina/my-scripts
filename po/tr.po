@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig \n"
-"POT-Creation-Date: 2002-04-11 16:14-0400\n"
+"POT-Creation-Date: 2002-04-15 11:49-0400\n"
 "PO-Revision-Date: 2002-04-04 06:49+0300\n"
 "Last-Translator: Nilgün Belma Bugüner <nilgun@fide.org>\n"
 "Language-Team: Turkish <gnu-tr-u12a@lists.sourceforge.net>\n"
@@ -11,265 +11,356 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: authconfig-gtk.py:124 authconfig-gtk.py:175
-msgid "Authentication Configuration"
-msgstr "Kimlik Bilgisi Yapılandırması"
+#: authconfig.c:124
+msgid "Warning"
+msgstr "Uyarı"
 
-#: authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
 msgid "Ok"
 msgstr "Tamam"
 
-#: authconfig-gtk.py:194
+#: authconfig.c:142
+msgid "Domain:"
+msgstr "Alan:"
+
+#: authconfig.c:143 authconfig.c:183
+msgid "Server:"
+msgstr "Sunucu:"
+
+#: authconfig.c:163
+msgid "LHS:"
+msgstr "LHS:"
+
+#: authconfig.c:164
+msgid "RHS:"
+msgstr "RHS:"
+
+#: authconfig.c:184
+msgid "Base DN:"
+msgstr "Taban DN:"
+
+#: authconfig.c:217
+msgid "Realm:"
+msgstr "Alan:"
+
+#: authconfig.c:218
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:219
+msgid "Admin Server:"
+msgstr "Yetkili Sunucu:"
+
+#: authconfig.c:243
+msgid "Workgroup:"
+msgstr "Altgrup:"
+
+#: authconfig.c:244
+msgid "Servers:"
+msgstr "Sunucular:"
+
+#: authconfig.c:284
+msgid "Cache Information"
+msgstr "Önbellek Bilgileri"
+
+#: authconfig.c:292
+msgid "Use NIS"
+msgstr "NIS Kullan"
+
+#: authconfig.c:322
+msgid "Use LDAP"
+msgstr "LDAP Kullan"
+
+#: authconfig.c:327 authconfig.c:490
+msgid "Use TLS"
+msgstr "TLS Kullan"
+
+#: authconfig.c:361
+msgid "Use Hesiod"
+msgstr "Hesiod Kullan"
+
+#: authconfig.c:391
+msgid "Next"
+msgstr "İleri"
+
+#: authconfig.c:392 authconfig.c:601 authconfig.c:614
+msgid "Back"
+msgstr "Geri"
+
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
 msgid "Cancel"
 msgstr "İptal"
 
-#~ msgid "Warning"
-#~ msgstr "Uyarı"
+#: authconfig.c:412
+msgid "User Information Configuration"
+msgstr "Kullanıcı Bilgisi Yapılandırması"
+
+#: authconfig.c:473
+msgid "Use Shadow Passwords"
+msgstr "Shadow Parolaları Kullan"
+
+#: authconfig.c:478
+msgid "Use MD5 Passwords"
+msgstr "MD5 Parolaları kullan"
+
+#: authconfig.c:485
+msgid "Use LDAP Authentication"
+msgstr "LDAP Kimlik Sınaması Kullan"
+
+#: authconfig.c:523
+msgid "Use Kerberos 5"
+msgstr "Kerberos 5 Kullan"
+
+#: authconfig.c:561
+msgid "Use SMB Authentication"
+msgstr "SMP Kimlik Sınaması Kullan"
+
+#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+msgid "Authentication Configuration"
+msgstr "Kimlik Bilgisi Yapılandırması"
+
+#: authconfig.c:774
+msgid "enable shadowed passwords by default"
+msgstr "gölge parolaları öntanımlı kullan"
+
+#: authconfig.c:776
+msgid "disable shadowed passwords by default"
+msgstr "gölge parolaları kullanma"
+
+#: authconfig.c:780
+msgid "enable MD5 passwords by default"
+msgstr "MD5 parolaları öntanımlı kullan"
+
+#: authconfig.c:782
+msgid "disable MD5 passwords by default\n"
+msgstr "MD5 parolalarını kullanma\n"
+
+#: authconfig.c:785
+msgid "enable NIS"
+msgstr "NIS'i etkinleştir"
+
+#: authconfig.c:787
+msgid "disable NIS"
+msgstr "NIS'i kapat"
+
+#: authconfig.c:789
+msgid "default NIS domain"
+msgstr "öntanımlı NIS alanı"
+
+#: authconfig.c:789
+msgid "<domain>"
+msgstr "<alan>"
+
+#: authconfig.c:791
+msgid "default NIS server\n"
+msgstr "öntanımlı NIS sunucusu\n"
+
+#: authconfig.c:791 authconfig.c:806 authconfig.c:815 authconfig.c:817
+#: authconfig.c:828
+msgid "<server>"
+msgstr "<sunucu>"
+
+#: authconfig.c:794
+msgid "enable LDAP for user information by default"
+msgstr "kullanıcı bilgisi için LDAP kullanılsın"
+
+#: authconfig.c:796
+msgid "disable LDAP for user information by default"
+msgstr "kullanıcı bilgisi için LDAP'ı kullanılmasın"
+
+#: authconfig.c:798
+msgid "enable use of TLS with LDAP"
+msgstr "LDAP ile birlikte TLS kullanılsın"
+
+#: authconfig.c:800
+msgid "disable use of TLS with LDAP"
+msgstr "LDAP ile TLS kullanılmasın"
+
+#: authconfig.c:802
+msgid "enable LDAP for authentication by default"
+msgstr "öntanımlı kimlik denetimi için LDAP kullanılsın"
+
+#: authconfig.c:804
+msgid "disable LDAP for authentication by default"
+msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
+
+#: authconfig.c:806
+msgid "default LDAP server"
+msgstr "öntanımlı LDAP sunucusu"
+
+#: authconfig.c:808
+msgid "default LDAP base DN\n"
+msgstr "öntanımlı LDAP taban DN\n"
+
+#: authconfig.c:808
+msgid "<dn>"
+msgstr "<dn>"
 
-#~ msgid "Domain:"
-#~ msgstr "Alan:"
+#: authconfig.c:811
+msgid "enable kerberos authentication by default"
+msgstr "öntanımlı olarak kerberos kimlik denetimi kullanılsın"
 
-#~ msgid "Server:"
-#~ msgstr "Sunucu:"
+#: authconfig.c:813
+msgid "disable kerberos authentication by default"
+msgstr "kerberos kimlik denetimi kullanılmasın"
 
-#~ msgid "LHS:"
-#~ msgstr "LHS:"
+#: authconfig.c:815
+msgid "default kerberos KDC"
+msgstr "öntanımlı kerberos KDC"
 
-#~ msgid "RHS:"
-#~ msgstr "RHS:"
-
-#~ msgid "Base DN:"
-#~ msgstr "Taban DN:"
-
-#~ msgid "Realm:"
-#~ msgstr "Alan:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Yetkili Sunucu:"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Altgrup:"
-
-#~ msgid "Servers:"
-#~ msgstr "Sunucular:"
-
-#~ msgid "Cache Information"
-#~ msgstr "Önbellek Bilgileri"
-
-#~ msgid "Use NIS"
-#~ msgstr "NIS Kullan"
-
-#~ msgid "Use LDAP"
-#~ msgstr "LDAP Kullan"
-
-#~ msgid "Use TLS"
-#~ msgstr "TLS Kullan"
-
-#~ msgid "Use Hesiod"
-#~ msgstr "Hesiod Kullan"
-
-#~ msgid "Next"
-#~ msgstr "İleri"
-
-#~ msgid "Back"
-#~ msgstr "Geri"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Kullanıcı Bilgisi Yapılandırması"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Shadow Parolaları Kullan"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "MD5 Parolaları kullan"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "LDAP Kimlik Sınaması Kullan"
-
-#~ msgid "Use Kerberos 5"
-#~ msgstr "Kerberos 5 Kullan"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "SMP Kimlik Sınaması Kullan"
-
-#~ msgid "enable shadowed passwords by default"
-#~ msgstr "gölge parolaları öntanımlı kullan"
-
-#~ msgid "disable shadowed passwords by default"
-#~ msgstr "gölge parolaları kullanma"
-
-#~ msgid "enable MD5 passwords by default"
-#~ msgstr "MD5 parolaları öntanımlı kullan"
-
-#~ msgid "disable MD5 passwords by default\n"
-#~ msgstr "MD5 parolalarını kullanma\n"
-
-#~ msgid "enable NIS"
-#~ msgstr "NIS'i etkinleştir"
-
-#~ msgid "disable NIS"
-#~ msgstr "NIS'i kapat"
-
-#~ msgid "default NIS domain"
-#~ msgstr "öntanımlı NIS alanı"
-
-#~ msgid "<domain>"
-#~ msgstr "<alan>"
-
-#~ msgid "default NIS server\n"
-#~ msgstr "öntanımlı NIS sunucusu\n"
-
-#~ msgid "<server>"
-#~ msgstr "<sunucu>"
-
-#~ msgid "enable LDAP for user information by default"
-#~ msgstr "kullanıcı bilgisi için LDAP kullanılsın"
-
-#~ msgid "disable LDAP for user information by default"
-#~ msgstr "kullanıcı bilgisi için LDAP'ı kullanılmasın"
-
-#~ msgid "enable use of TLS with LDAP"
-#~ msgstr "LDAP ile birlikte TLS kullanılsın"
-
-#~ msgid "disable use of TLS with LDAP"
-#~ msgstr "LDAP ile TLS kullanılmasın"
-
-#~ msgid "enable LDAP for authentication by default"
-#~ msgstr "öntanımlı kimlik denetimi için LDAP kullanılsın"
-
-#~ msgid "disable LDAP for authentication by default"
-#~ msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
-
-#~ msgid "default LDAP server"
-#~ msgstr "öntanımlı LDAP sunucusu"
-
-#~ msgid "default LDAP base DN\n"
-#~ msgstr "öntanımlı LDAP taban DN\n"
-
-#~ msgid "<dn>"
-#~ msgstr "<dn>"
-
-#~ msgid "enable kerberos authentication by default"
-#~ msgstr "öntanımlı olarak kerberos kimlik denetimi kullanılsın"
-
-#~ msgid "disable kerberos authentication by default"
-#~ msgstr "kerberos kimlik denetimi kullanılmasın"
-
-#~ msgid "default kerberos KDC"
-#~ msgstr "öntanımlı kerberos KDC"
-
-#~ msgid "default kerberos admin server"
-#~ msgstr "öntanımlı kerberos yönetim sunucusu"
-
-#~ msgid "default kerberos realm\n"
-#~ msgstr "öntanımlı kerberos bölgesi\n"
-
-#~ msgid "<realm>"
-#~ msgstr "<bölge>"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "öntanımlı olarak kerberos kimlik denetimi kullanılsın"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
-
-#~ msgid "workgroup authentication servers are in"
-#~ msgstr "altgrup kimlik denetimi sunucularının yeri"
-
-#~ msgid "<workgroup>"
-#~ msgstr "<altgrup>"
-
-#~ msgid "names of servers to authenticate against\n"
-#~ msgstr "Kullanıcıların kimlik denetimi için sunucuların isimleri\n"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "kullanıcı bilgisi için hesiod kullanılsın"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "kullanıcı bilgisi için hesiod kullanılmasın"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "öntanımlı hesiod LHS"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "default hesiod RHS\n"
-#~ msgstr "öntanımlı hesiod RHS\n"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "enable caching of user information by default"
-#~ msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılsın"
-
-#~ msgid "disable caching of user information by default\n"
-#~ msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılmasın\n"
-
-#~ msgid "do not start/stop portmap, ypbind, and nscd"
-#~ msgstr "portmap, ypbind, ncsd'yi çalıştırMa/durdurMa"
-
-#~ msgid "don't display user interface"
-#~ msgstr "kullanıcı arayüzünü gösterMe"
-
-#~ msgid "probe network for defaults and print them"
-#~ msgstr "öntanımlılar için ağı tara ve onları göster"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "yerel olarak atanmış önlemler kullanılsın"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "yerel olarak atanmış önlemler kullanılmasın"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: hatalı argüman %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: devam edilmeye çalışılıyor\n"
-
-#~ msgid "%s: unexpected argument\n"
-#~ msgstr "%s: beklenmeyen argüman\n"
-
-#~ msgid "%s: can only be run as root\n"
-#~ msgstr "%s: sadece yetkili kullanıcı (root) tarafından çalıştırılabilir\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: %s/%s dosyasının okunmasında önemli hata"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: önbellekleme yapılandırması okunamıyor"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ "  <Tab>/<Alt-Tab> ileri/geri   |   <Boşluk> seçer   |   <F12> sonraki "
-#~ "ekran"
-
-#~ msgid "(c) 1999-2001 Red Hat, Inc."
-#~ msgstr "(c) 1999-2002 Red Hat, Inc."
-
-#~ msgid "dialog was cancelled\n"
-#~ msgstr "diyalog iptal edildi\n"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: önbellekleme ayarları kaydedilirken önemli hata"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: %s/%s dosyasının yazılmasında önemli hata"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.  Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "%s dosyası bulundu, ancak çalışması için %s desteğine ihtiyacı var. "
-#~ "Lütfen %s paketini de kurun."
-
-#~ msgid "Use Local Policies"
-#~ msgstr "Yerel Önlemler Kullanılsın"
+#: authconfig.c:817
+msgid "default kerberos admin server"
+msgstr "öntanımlı kerberos yönetim sunucusu"
+
+#: authconfig.c:819
+msgid "default kerberos realm\n"
+msgstr "öntanımlı kerberos bölgesi\n"
+
+#: authconfig.c:819
+msgid "<realm>"
+msgstr "<bölge>"
+
+#: authconfig.c:822
+msgid "enable SMB authentication by default"
+msgstr "öntanımlı olarak kerberos kimlik denetimi kullanılsın"
+
+#: authconfig.c:824
+msgid "disable SMB authentication by default"
+msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
+
+#: authconfig.c:826
+msgid "workgroup authentication servers are in"
+msgstr "altgrup kimlik denetimi sunucularının yeri"
+
+#: authconfig.c:826
+msgid "<workgroup>"
+msgstr "<altgrup>"
+
+#: authconfig.c:828
+msgid "names of servers to authenticate against\n"
+msgstr "Kullanıcıların kimlik denetimi için sunucuların isimleri\n"
+
+#: authconfig.c:831
+msgid "enable hesiod for user information by default"
+msgstr "kullanıcı bilgisi için hesiod kullanılsın"
+
+#: authconfig.c:833
+msgid "disable hesiod for user information by default"
+msgstr "kullanıcı bilgisi için hesiod kullanılmasın"
+
+#: authconfig.c:835
+msgid "default hesiod LHS"
+msgstr "öntanımlı hesiod LHS"
+
+#: authconfig.c:835
+msgid "<lhs>"
+msgstr "<lhs>"
+
+#: authconfig.c:837
+msgid "default hesiod RHS\n"
+msgstr "öntanımlı hesiod RHS\n"
+
+#: authconfig.c:837
+msgid "<rhs>"
+msgstr "<rhs>"
+
+#: authconfig.c:840
+msgid "enable caching of user information by default"
+msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılsın"
+
+#: authconfig.c:842
+msgid "disable caching of user information by default\n"
+msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılmasın\n"
+
+#: authconfig.c:849
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "portmap, ypbind, ncsd'yi çalıştırMa/durdurMa"
+
+#: authconfig.c:851
+msgid "don't display user interface"
+msgstr "kullanıcı arayüzünü gösterMe"
+
+#: authconfig.c:853
+msgid "probe network for defaults and print them"
+msgstr "öntanımlılar için ağı tara ve onları göster"
+
+#: authconfig.c:856
+msgid "use locally-defined policies"
+msgstr "yerel olarak atanmış önlemler kullanılsın"
+
+#: authconfig.c:858
+msgid "don't use locally-defined policies"
+msgstr "yerel olarak atanmış önlemler kullanılmasın"
+
+#: authconfig.c:869
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: hatalı argüman %s: %s\n"
+
+#: authconfig.c:878
+#, c-format
+msgid "%s: attempting to continue\n"
+msgstr "%s: devam edilmeye çalışılıyor\n"
+
+#: authconfig.c:882
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: beklenmeyen argüman\n"
+
+#: authconfig.c:909
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: sadece yetkili kullanıcı (root) tarafından çalıştırılabilir\n"
+
+#: authconfig.c:920 authconfig.c:928 authconfig.c:936 authconfig.c:944
+#: authconfig.c:952 authconfig.c:960 authconfig.c:973 authconfig.c:981
+#, c-format
+msgid "%s: critical error reading %s/%s"
+msgstr "%s: %s/%s dosyasının okunmasında önemli hata"
+
+#: authconfig.c:967
+#, c-format
+msgid "%s: unable to read caching configuration"
+msgstr "%s: önbellekleme yapılandırması okunamıyor"
+
+#: authconfig.c:1043
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+"  <Tab>/<Alt-Tab> ileri/geri   |   <Boşluk> seçer   |   <F12> sonraki ekran"
+
+#: authconfig.c:1046
+msgid "(c) 1999-2001 Red Hat, Inc."
+msgstr "(c) 1999-2002 Red Hat, Inc."
+
+#: authconfig.c:1053
+msgid "dialog was cancelled\n"
+msgstr "diyalog iptal edildi\n"
+
+#: authconfig.c:1068
+#, c-format
+msgid "%s: critical error recording caching setting"
+msgstr "%s: önbellekleme ayarları kaydedilirken önemli hata"
+
+#: authconfig.c:1074 authconfig.c:1080 authconfig.c:1086 authconfig.c:1092
+#: authconfig.c:1098 authconfig.c:1103 authconfig.c:1108 authconfig.c:1114
+#, c-format
+msgid "%s: critical error writing %s/%s"
+msgstr "%s: %s/%s dosyasının yazılmasında önemli hata"
+
+#: authinfo.h:58
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"%s dosyası bulundu, ancak çalışması için %s desteğine ihtiyacı var. Lütfen %"
+"s paketini de kurun."
+
+#: localpol.h:9
+msgid "Use Local Policies"
+msgstr "Yerel Önlemler Kullanılsın"
 
 #~ msgid "_Cache User Information"
 #~ msgstr "Kullanıcı Bilgisini _Sakla"

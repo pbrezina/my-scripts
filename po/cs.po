@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig unknown\n"
-"POT-Creation-Date: 2002-04-11 16:14-0400\n"
+"POT-Creation-Date: 2002-04-15 11:49-0400\n"
 "PO-Revision-Date: 2001-04-02 02:48+0100\n"
 "Last-Translator: Milan Kerslager <kerslage@linux.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -9,262 +9,353 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: authconfig-gtk.py:124 authconfig-gtk.py:175
-msgid "Authentication Configuration"
-msgstr "Konfigurace autentizace"
+#: authconfig.c:124
+msgid "Warning"
+msgstr "Varování"
 
-#: authconfig-gtk.py:188
+#: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
 msgid "Ok"
 msgstr "Ok"
 
-#: authconfig-gtk.py:194
+#: authconfig.c:142
+msgid "Domain:"
+msgstr "Doména:"
+
+#: authconfig.c:143 authconfig.c:183
+msgid "Server:"
+msgstr "Server:"
+
+#: authconfig.c:163
+msgid "LHS:"
+msgstr "LHS:"
+
+#: authconfig.c:164
+msgid "RHS:"
+msgstr "RHS:"
+
+#: authconfig.c:184
+msgid "Base DN:"
+msgstr "Base DN:"
+
+#: authconfig.c:217
+msgid "Realm:"
+msgstr "Realm:"
+
+#: authconfig.c:218
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:219
+msgid "Admin Server:"
+msgstr "Admin server:"
+
+#: authconfig.c:243
+msgid "Workgroup:"
+msgstr "Pracovní skupina:"
+
+#: authconfig.c:244
+msgid "Servers:"
+msgstr "Servery:"
+
+#: authconfig.c:284
+msgid "Cache Information"
+msgstr "Informace o cache"
+
+#: authconfig.c:292
+msgid "Use NIS"
+msgstr "Pou¾ít NIS"
+
+#: authconfig.c:322
+msgid "Use LDAP"
+msgstr "Pou¾ít LDAP"
+
+#: authconfig.c:327 authconfig.c:490
+msgid "Use TLS"
+msgstr "Pou¾ít TLS"
+
+#: authconfig.c:361
+msgid "Use Hesiod"
+msgstr "Pou¾ít Hesiod"
+
+#: authconfig.c:391
+msgid "Next"
+msgstr "Dal¹í"
+
+#: authconfig.c:392 authconfig.c:601 authconfig.c:614
+msgid "Back"
+msgstr "Zpìt"
+
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
 msgid "Cancel"
 msgstr "Zru¹it"
 
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.  Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Soubor %s nebyl nalezen, av¹ak je potøeba pro správnou funkci %s. "
-#~ "Nainstalujte správnì balíèek %s, který poskytuje tento soubor."
+#: authconfig.c:412
+msgid "User Information Configuration"
+msgstr "Konfigurace informací o u¾ivateli"
+
+#: authconfig.c:473
+msgid "Use Shadow Passwords"
+msgstr "Pou¾ívat stínová hesla"
+
+#: authconfig.c:478
+msgid "Use MD5 Passwords"
+msgstr "Povolit MD5 hesla"
+
+#: authconfig.c:485
+msgid "Use LDAP Authentication"
+msgstr "Pou¾ít LDAP autentizaci"
+
+#: authconfig.c:523
+msgid "Use Kerberos 5"
+msgstr "Pou¾ít Kerberos 5"
+
+#: authconfig.c:561
+msgid "Use SMB Authentication"
+msgstr "Pou¾ít SMB autentizaci"
+
+#: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+msgid "Authentication Configuration"
+msgstr "Konfigurace autentizace"
+
+#: authconfig.c:774
+msgid "enable shadowed passwords by default"
+msgstr "povolit stínová hesla"
+
+#: authconfig.c:776
+msgid "disable shadowed passwords by default"
+msgstr "zakázat stínová hesla"
+
+#: authconfig.c:780
+msgid "enable MD5 passwords by default"
+msgstr "povolit MD5 hesla"
+
+#: authconfig.c:782
+msgid "disable MD5 passwords by default\n"
+msgstr "zakázat MD5 hesla\n"
+
+#: authconfig.c:785
+msgid "enable NIS"
+msgstr "povolit NIS"
+
+#: authconfig.c:787
+msgid "disable NIS"
+msgstr "zakázat NIS"
+
+#: authconfig.c:789
+msgid "default NIS domain"
+msgstr "implicitní NIS doména"
+
+#: authconfig.c:789
+msgid "<domain>"
+msgstr "<doména>"
+
+#: authconfig.c:791
+msgid "default NIS server\n"
+msgstr "implicitní NIS server\n"
+
+#: authconfig.c:791 authconfig.c:806 authconfig.c:815 authconfig.c:817
+#: authconfig.c:828
+msgid "<server>"
+msgstr "<server>"
+
+#: authconfig.c:794
+msgid "enable LDAP for user information by default"
+msgstr "povolit LDAP pro informace o u¾ivatelích"
+
+#: authconfig.c:796
+msgid "disable LDAP for user information by default"
+msgstr "zakázat LDAP pro informace o u¾ivatelích"
+
+#: authconfig.c:798
+msgid "enable use of TLS with LDAP"
+msgstr "povolit pou¾ití TLS s LDAP"
+
+#: authconfig.c:800
+msgid "disable use of TLS with LDAP"
+msgstr "zakázat pou¾ití TLS s LDAP"
+
+#: authconfig.c:802
+msgid "enable LDAP for authentication by default"
+msgstr "Povolit LDAP pro autentizaci"
+
+#: authconfig.c:804
+msgid "disable LDAP for authentication by default"
+msgstr "zakázat LDAP pro autentizaci"
+
+#: authconfig.c:806
+msgid "default LDAP server"
+msgstr "implicitní LDAP server"
+
+#: authconfig.c:808
+msgid "default LDAP base DN\n"
+msgstr "implicitní DN báze pro LDAP\n"
+
+#: authconfig.c:808
+msgid "<dn>"
+msgstr "<dn>"
 
-#~ msgid "Warning"
-#~ msgstr "Varování"
+#: authconfig.c:811
+msgid "enable kerberos authentication by default"
+msgstr "povolit autentizaci Kerberosem"
 
-#~ msgid "Domain:"
-#~ msgstr "Doména:"
+#: authconfig.c:813
+msgid "disable kerberos authentication by default"
+msgstr "zakázat autentizaci Kerberosem"
 
-#~ msgid "Server:"
-#~ msgstr "Server:"
+#: authconfig.c:815
+msgid "default kerberos KDC"
+msgstr "implicitní KDC pro Kerberos"
 
-#~ msgid "LHS:"
-#~ msgstr "LHS:"
-
-#~ msgid "RHS:"
-#~ msgstr "RHS:"
-
-#~ msgid "Base DN:"
-#~ msgstr "Base DN:"
-
-#~ msgid "Realm:"
-#~ msgstr "Realm:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Admin server:"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Pracovní skupina:"
-
-#~ msgid "Servers:"
-#~ msgstr "Servery:"
-
-#~ msgid "Cache Information"
-#~ msgstr "Informace o cache"
-
-#~ msgid "Use NIS"
-#~ msgstr "Pou¾ít NIS"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Pou¾ít LDAP"
-
-#~ msgid "Use TLS"
-#~ msgstr "Pou¾ít TLS"
-
-#~ msgid "Use Hesiod"
-#~ msgstr "Pou¾ít Hesiod"
-
-#~ msgid "Next"
-#~ msgstr "Dal¹í"
-
-#~ msgid "Back"
-#~ msgstr "Zpìt"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Konfigurace informací o u¾ivateli"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Pou¾ívat stínová hesla"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Povolit MD5 hesla"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Pou¾ít LDAP autentizaci"
-
-#~ msgid "Use Kerberos 5"
-#~ msgstr "Pou¾ít Kerberos 5"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "Pou¾ít SMB autentizaci"
-
-#~ msgid "enable shadowed passwords by default"
-#~ msgstr "povolit stínová hesla"
-
-#~ msgid "disable shadowed passwords by default"
-#~ msgstr "zakázat stínová hesla"
-
-#~ msgid "enable MD5 passwords by default"
-#~ msgstr "povolit MD5 hesla"
-
-#~ msgid "disable MD5 passwords by default\n"
-#~ msgstr "zakázat MD5 hesla\n"
-
-#~ msgid "enable NIS"
-#~ msgstr "povolit NIS"
-
-#~ msgid "disable NIS"
-#~ msgstr "zakázat NIS"
-
-#~ msgid "default NIS domain"
-#~ msgstr "implicitní NIS doména"
-
-#~ msgid "<domain>"
-#~ msgstr "<doména>"
-
-#~ msgid "default NIS server\n"
-#~ msgstr "implicitní NIS server\n"
-
-#~ msgid "<server>"
-#~ msgstr "<server>"
-
-#~ msgid "enable LDAP for user information by default"
-#~ msgstr "povolit LDAP pro informace o u¾ivatelích"
-
-#~ msgid "disable LDAP for user information by default"
-#~ msgstr "zakázat LDAP pro informace o u¾ivatelích"
-
-#~ msgid "enable use of TLS with LDAP"
-#~ msgstr "povolit pou¾ití TLS s LDAP"
-
-#~ msgid "disable use of TLS with LDAP"
-#~ msgstr "zakázat pou¾ití TLS s LDAP"
-
-#~ msgid "enable LDAP for authentication by default"
-#~ msgstr "Povolit LDAP pro autentizaci"
-
-#~ msgid "disable LDAP for authentication by default"
-#~ msgstr "zakázat LDAP pro autentizaci"
-
-#~ msgid "default LDAP server"
-#~ msgstr "implicitní LDAP server"
-
-#~ msgid "default LDAP base DN\n"
-#~ msgstr "implicitní DN báze pro LDAP\n"
-
-#~ msgid "<dn>"
-#~ msgstr "<dn>"
-
-#~ msgid "enable kerberos authentication by default"
-#~ msgstr "povolit autentizaci Kerberosem"
-
-#~ msgid "disable kerberos authentication by default"
-#~ msgstr "zakázat autentizaci Kerberosem"
-
-#~ msgid "default kerberos KDC"
-#~ msgstr "implicitní KDC pro Kerberos"
-
-#~ msgid "default kerberos admin server"
-#~ msgstr "implicitní admin server pro Kerberos"
-
-#~ msgid "default kerberos realm\n"
-#~ msgstr "implicitní realm pro Kerberos\n"
-
-#~ msgid "<realm>"
-#~ msgstr "<realm>"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "povolit implicitnì SMB autentizaci"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "zakázat implicitní SMB autentizaci"
-
-#~ msgid "workgroup authentication servers are in"
-#~ msgstr "autentizaèní servery pro pracovní skupinu jsou v"
-
-#~ msgid "<workgroup>"
-#~ msgstr "<pracovní_skupina>"
-
-#~ msgid "names of servers to authenticate against\n"
-#~ msgstr "jména serverù, proti kterým se autentizovat\n"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "povolit Hesiod pro informace o u¾ivatelích"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "zakázat Hesiod pro informace o u¾ivatelích"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "implicitní LHS pro Hesiod"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "default hesiod RHS\n"
-#~ msgstr "implicitní RHS pro Hesiod\n"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "enable caching of user information by default"
-#~ msgstr "povolit implicitní cachování informací o u¾ivatelích"
-
-#~ msgid "disable caching of user information by default\n"
-#~ msgstr "zakázat implicitní cachování informací o u¾ivatelích\n"
-
-#~ msgid "do not start/stop portmap, ypbind, and nscd"
-#~ msgstr "nestartovat/nevypínat portmap, ypbind a nscd"
-
-#~ msgid "don't display user interface"
-#~ msgstr "nezobrazovat u¾ivatelský interface"
-
-#~ msgid "probe network for defaults and print them"
-#~ msgstr "získat ze sítì implicitní hodnoty a vypsat je"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "pou¾ít lokálnì definované politiky"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "nepou¾ívat lokálnì definované politiky"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: chybný argument %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: pokou¹ím se pokraèovat\n"
-
-#~ msgid "%s: unexpected argument\n"
-#~ msgstr "%s: neoèekávaný argument\n"
-
-#~ msgid "%s: can only be run as root\n"
-#~ msgstr "%s: mù¾e být spu¹tìn pouze u¾ivatelem root\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: kritická chyba pøi ètení %s/%s"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: nemohu naèíst informace z cache"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> pøepíná mezi polo¾kami | <Mezera> výbìr | <F12> "
-#~ "pokraèovat "
-
-#~ msgid "(c) 1999-2001 Red Hat, Inc."
-#~ msgstr "(c) 1999-2001 Red Hat, Inc."
-
-#~ msgid "dialog was cancelled\n"
-#~ msgstr "dialog byl stornován\n"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: kritická chyba pøi ukládání nastavení cache"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: kritická chyba pøi zápisu %s/%s"
-
-#~ msgid "Use Local Policies"
-#~ msgstr "Pou¾ít lokální politiky"
+#: authconfig.c:817
+msgid "default kerberos admin server"
+msgstr "implicitní admin server pro Kerberos"
+
+#: authconfig.c:819
+msgid "default kerberos realm\n"
+msgstr "implicitní realm pro Kerberos\n"
+
+#: authconfig.c:819
+msgid "<realm>"
+msgstr "<realm>"
+
+#: authconfig.c:822
+msgid "enable SMB authentication by default"
+msgstr "povolit implicitnì SMB autentizaci"
+
+#: authconfig.c:824
+msgid "disable SMB authentication by default"
+msgstr "zakázat implicitní SMB autentizaci"
+
+#: authconfig.c:826
+msgid "workgroup authentication servers are in"
+msgstr "autentizaèní servery pro pracovní skupinu jsou v"
+
+#: authconfig.c:826
+msgid "<workgroup>"
+msgstr "<pracovní_skupina>"
+
+#: authconfig.c:828
+msgid "names of servers to authenticate against\n"
+msgstr "jména serverù, proti kterým se autentizovat\n"
+
+#: authconfig.c:831
+msgid "enable hesiod for user information by default"
+msgstr "povolit Hesiod pro informace o u¾ivatelích"
+
+#: authconfig.c:833
+msgid "disable hesiod for user information by default"
+msgstr "zakázat Hesiod pro informace o u¾ivatelích"
+
+#: authconfig.c:835
+msgid "default hesiod LHS"
+msgstr "implicitní LHS pro Hesiod"
+
+#: authconfig.c:835
+msgid "<lhs>"
+msgstr "<lhs>"
+
+#: authconfig.c:837
+msgid "default hesiod RHS\n"
+msgstr "implicitní RHS pro Hesiod\n"
+
+#: authconfig.c:837
+msgid "<rhs>"
+msgstr "<rhs>"
+
+#: authconfig.c:840
+msgid "enable caching of user information by default"
+msgstr "povolit implicitní cachování informací o u¾ivatelích"
+
+#: authconfig.c:842
+msgid "disable caching of user information by default\n"
+msgstr "zakázat implicitní cachování informací o u¾ivatelích\n"
+
+#: authconfig.c:849
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "nestartovat/nevypínat portmap, ypbind a nscd"
+
+#: authconfig.c:851
+msgid "don't display user interface"
+msgstr "nezobrazovat u¾ivatelský interface"
+
+#: authconfig.c:853
+msgid "probe network for defaults and print them"
+msgstr "získat ze sítì implicitní hodnoty a vypsat je"
+
+#: authconfig.c:856
+msgid "use locally-defined policies"
+msgstr "pou¾ít lokálnì definované politiky"
+
+#: authconfig.c:858
+msgid "don't use locally-defined policies"
+msgstr "nepou¾ívat lokálnì definované politiky"
+
+#: authconfig.c:869
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: chybný argument %s: %s\n"
+
+#: authconfig.c:878
+#, c-format
+msgid "%s: attempting to continue\n"
+msgstr "%s: pokou¹ím se pokraèovat\n"
+
+#: authconfig.c:882
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: neoèekávaný argument\n"
+
+#: authconfig.c:909
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: mù¾e být spu¹tìn pouze u¾ivatelem root\n"
+
+#: authconfig.c:920 authconfig.c:928 authconfig.c:936 authconfig.c:944
+#: authconfig.c:952 authconfig.c:960 authconfig.c:973 authconfig.c:981
+#, c-format
+msgid "%s: critical error reading %s/%s"
+msgstr "%s: kritická chyba pøi ètení %s/%s"
+
+#: authconfig.c:967
+#, c-format
+msgid "%s: unable to read caching configuration"
+msgstr "%s: nemohu naèíst informace z cache"
+
+#: authconfig.c:1043
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> pøepíná mezi polo¾kami | <Mezera> výbìr | <F12> pokraèovat "
+
+#: authconfig.c:1046
+msgid "(c) 1999-2001 Red Hat, Inc."
+msgstr "(c) 1999-2001 Red Hat, Inc."
+
+#: authconfig.c:1053
+msgid "dialog was cancelled\n"
+msgstr "dialog byl stornován\n"
+
+#: authconfig.c:1068
+#, c-format
+msgid "%s: critical error recording caching setting"
+msgstr "%s: kritická chyba pøi ukládání nastavení cache"
+
+#: authconfig.c:1074 authconfig.c:1080 authconfig.c:1086 authconfig.c:1092
+#: authconfig.c:1098 authconfig.c:1103 authconfig.c:1108 authconfig.c:1114
+#, c-format
+msgid "%s: critical error writing %s/%s"
+msgstr "%s: kritická chyba pøi zápisu %s/%s"
+
+#: authinfo.h:58
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"Soubor %s nebyl nalezen, av¹ak je potøeba pro správnou funkci %s. "
+"Nainstalujte správnì balíèek %s, který poskytuje tento soubor."
+
+#: localpol.h:9
+msgid "Use Local Policies"
+msgstr "Pou¾ít lokální politiky"
