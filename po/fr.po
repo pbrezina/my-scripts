@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2003-06-30 18:17-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-12 19:30-0500\n"
 "PO-Revision-Date: 2003-07-21 14:54+1000\n"
 "Last-Translator: Audrey Simons <asimons@redhat.com>\n"
 "Language-Team: french <fr@li.org>\n"
@@ -19,7 +20,7 @@ msgstr ""
 msgid "Warning"
 msgstr "Avertissement"
 
-#: authconfig.c:125 authconfig.c:601 authconfig.c:614 glade.strings:37
+#: authconfig.c:125 authconfig.c:601 authconfig.c:614
 msgid "Ok"
 msgstr "Ok"
 
@@ -94,7 +95,7 @@ msgstr "Suivant"
 msgid "Back"
 msgstr "Précédent"
 
-#: authconfig.c:393 authconfig.c:603 glade.strings:38
+#: authconfig.c:393 authconfig.c:603
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -122,219 +123,302 @@ msgstr "Utiliser Kerberos 5"
 msgid "Use SMB Authentication"
 msgstr "Utiliser l'authentification SMB"
 
-#. !/usr/bin/python2.2
+#. !/usr/bin/python
+#. "checkbox/button name": authInfo field, file, generic name,
+#. package, names of widgets to disable if checkbox not active
+#. entry or label / button / checkbox / option menu :
+#. entry (or label): authInfo field
+#. button: function
+#. checkbox: authInfo field
+#. option menu: authInfo field, list of choices, list of tuples
+#. of value/sensitive widgets
+#. Don't save.
+#. Save.
 #. Toggle a boolean.
 #. Create a vbox or dialog using the file, and return it. */
 #. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:632 authconfig-gtk.py:119 glade.strings:7
+#: authconfig.c:632 authconfig-gtk.py:283 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Configuration de l'authentification"
 
-#: authconfig.c:775
+#: authconfig.c:789
 msgid "enable shadowed passwords by default"
 msgstr "activer les mots de passe masqués par défaut"
 
-#: authconfig.c:777
+#: authconfig.c:791
 msgid "disable shadowed passwords by default"
 msgstr "désactiver les mots de passe masqués par défaut"
 
-#: authconfig.c:781
+#: authconfig.c:795
 msgid "enable MD5 passwords by default"
 msgstr "activer les mots de passe MD5 par défaut"
 
-#: authconfig.c:783
+#: authconfig.c:797
 msgid "disable MD5 passwords by default\n"
 msgstr "désactiver les mots de passe MD5 par défaut\n"
 
-#: authconfig.c:786
+#: authconfig.c:800
 msgid "enable NIS"
 msgstr "activer NIS"
 
-#: authconfig.c:788
+#: authconfig.c:802
 msgid "disable NIS"
 msgstr "désactiver NIS"
 
-#: authconfig.c:790
+#: authconfig.c:804
 msgid "default NIS domain"
 msgstr "domaine NIS par défaut"
 
-#: authconfig.c:790
+#: authconfig.c:804
 msgid "<domain>"
 msgstr "<domaine>"
 
-#: authconfig.c:792
+#: authconfig.c:806
 msgid "default NIS server\n"
 msgstr "serveur NIS par défaut\n"
 
-#: authconfig.c:792 authconfig.c:807 authconfig.c:816 authconfig.c:818
-#: authconfig.c:829
+#: authconfig.c:806 authconfig.c:821 authconfig.c:830 authconfig.c:832
+#: authconfig.c:843
 msgid "<server>"
 msgstr "<serveur>"
 
-#: authconfig.c:795
+#: authconfig.c:809
 msgid "enable LDAP for user information by default"
 msgstr "activer LDAP pour les informations utilisateur par défaut"
 
-#: authconfig.c:797
+#: authconfig.c:811
 msgid "disable LDAP for user information by default"
 msgstr "désactiver LDAP pour les informations utilisateur par défaut"
 
-#: authconfig.c:799
+#: authconfig.c:813
 msgid "enable use of TLS with LDAP"
 msgstr "activer l'utilisation de TLS avec LDAP"
 
-#: authconfig.c:801
+#: authconfig.c:815
 msgid "disable use of TLS with LDAP"
 msgstr "désactiver l'utilisation de TLS avec LDAP"
 
-#: authconfig.c:803
+#: authconfig.c:817
 msgid "enable LDAP for authentication by default"
 msgstr "activer LDAP pour l'authentification par défaut"
 
-#: authconfig.c:805
+#: authconfig.c:819
 msgid "disable LDAP for authentication by default"
 msgstr "désactiver LDAP pour l'authentification par défaut"
 
-#: authconfig.c:807
+#: authconfig.c:821
 msgid "default LDAP server"
 msgstr "serveur LDAP par défaut"
 
-#: authconfig.c:809
+#: authconfig.c:823
 msgid "default LDAP base DN\n"
 msgstr "DN de base LDAP par défaut\n"
 
-#: authconfig.c:809
+#: authconfig.c:823
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:812
+#: authconfig.c:826
 msgid "enable kerberos authentication by default"
 msgstr "activer l'authentification via kerberos par défaut"
 
-#: authconfig.c:814
+#: authconfig.c:828
 msgid "disable kerberos authentication by default"
 msgstr "désactiver l'authentification via kerberos par défaut"
 
-#: authconfig.c:816
+#: authconfig.c:830
 msgid "default kerberos KDC"
 msgstr "KDC kerberos par défaut"
 
-#: authconfig.c:818
+#: authconfig.c:832
 msgid "default kerberos admin server"
 msgstr "serveur admin kerberos par défaut"
 
-#: authconfig.c:820
+#: authconfig.c:834
 msgid "default kerberos realm\n"
 msgstr "zone kerberos par défaut\n"
 
-#: authconfig.c:820
+#: authconfig.c:834
 msgid "<realm>"
 msgstr "<zone>"
 
-#: authconfig.c:823
+#: authconfig.c:837
 msgid "enable SMB authentication by default"
 msgstr "activer l'authentification SMB par défaut"
 
-#: authconfig.c:825
+#: authconfig.c:839
 msgid "disable SMB authentication by default"
 msgstr "désactiver l'authentification SMB par défaut"
 
-#: authconfig.c:827
+#: authconfig.c:841
 msgid "workgroup authentication servers are in"
 msgstr "les serveurs d'authentification de groupe de travail sont enclenchés"
 
-#: authconfig.c:827
+#: authconfig.c:841
 msgid "<workgroup>"
 msgstr "<groupe de travail>"
 
-#: authconfig.c:829
+#: authconfig.c:843
 msgid "names of servers to authenticate against\n"
 msgstr "noms des serveurs à authentifier contre\n"
 
-#: authconfig.c:832
+#: authconfig.c:846
+#, fuzzy
+msgid "enable winbind for user information and authentication by default"
+msgstr "activer hesiod pour les informations utilisateur par défaut"
+
+#: authconfig.c:849
+#, fuzzy
+msgid "disable winbind for user information and authentication by default"
+msgstr "désactiver hesiod pour les informations utilisateur par défaut"
+
+#: authconfig.c:852
+msgid "security mode to use for samba and winbind"
+msgstr ""
+
+#: authconfig.c:854
+msgid "default realm for samba and winbind when security=ads"
+msgstr ""
+
+#: authconfig.c:856
+msgid "uid range winbind will assign to domain or ads users"
+msgstr ""
+
+#: authconfig.c:857 authconfig.c:860
+msgid "<lowest-highest>"
+msgstr ""
+
+#: authconfig.c:859
+msgid "gid range winbind will assign to domain or ads users"
+msgstr ""
+
+#: authconfig.c:863
+msgid ""
+"the character which will be used to separate the domain and user part of "
+"winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr ""
+
+#: authconfig.c:867
+msgid "the directory which winbind-created users will have as home directories"
+msgstr ""
+
+#: authconfig.c:871
+msgid "the group which winbind-created users will have as their primary group"
+msgstr ""
+
+#: authconfig.c:874
+msgid "the shell which winbind-created users will have as their login shell"
+msgstr ""
+
+#: authconfig.c:878
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are domain users"
+msgstr ""
+
+#: authconfig.c:882
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are not domain users"
+msgstr ""
+
+#: authconfig.c:886
+msgid "join the winbind domain or ads realm now as this administrator\n"
+msgstr ""
+
+#: authconfig.c:890
+msgid "enable wins for hostname resolution"
+msgstr ""
+
+#: authconfig.c:892
+msgid "disable wins for hostname resolution\n"
+msgstr ""
+
+#: authconfig.c:895
 msgid "enable hesiod for user information by default"
 msgstr "activer hesiod pour les informations utilisateur par défaut"
 
-#: authconfig.c:834
+#: authconfig.c:897
 msgid "disable hesiod for user information by default"
 msgstr "désactiver hesiod pour les informations utilisateur par défaut"
 
-#: authconfig.c:836
+#: authconfig.c:899
 msgid "default hesiod LHS"
 msgstr "LHS hesiod par défaut"
 
-#: authconfig.c:836
+#: authconfig.c:899
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:838
+#: authconfig.c:901
 msgid "default hesiod RHS\n"
 msgstr "RHS hesiod par défaut\n"
 
-#: authconfig.c:838
+#: authconfig.c:901
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:841
+#: authconfig.c:904
 msgid "enable caching of user information by default"
 msgstr "activer les informations utilisateur en cache par défaut"
 
-#: authconfig.c:843
+#: authconfig.c:906
 msgid "disable caching of user information by default\n"
 msgstr "désactiver les informations utilisateur en cache par défaut\n"
 
-#: authconfig.c:850
+#: authconfig.c:913
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "ne pas lancer/arrêter portmap, ypbind et nscd"
 
-#: authconfig.c:852
+#: authconfig.c:915
 msgid "don't display user interface"
 msgstr "ne pas afficher l'interface utilisateur"
 
-#: authconfig.c:854
+#: authconfig.c:917
 msgid "probe network for defaults and print them"
 msgstr "analyser le réseau pour chercher les défauts et les imprimer"
 
-#: authconfig.c:857
+#: authconfig.c:920
 msgid "use locally-defined policies"
 msgstr "utiliser les politiques définies localement"
 
-#: authconfig.c:859
+#: authconfig.c:922
 msgid "don't use locally-defined policies"
 msgstr "ne pas utiliser les politiques définies localement"
 
-#: authconfig.c:870
+#: authconfig.c:933
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s : argument incorrect %s : %s\n"
 
-#: authconfig.c:879
+#: authconfig.c:942
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s : essayant de continuer\n"
 
-#: authconfig.c:883
+#: authconfig.c:946
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s : argument imprévu\n"
 
-#: authconfig.c:915
+#: authconfig.c:978
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s : ne peut être lancé qu'en tant que root\n"
 
-#: authconfig.c:926 authconfig.c:934 authconfig.c:942 authconfig.c:950
-#: authconfig.c:958 authconfig.c:966 authconfig.c:979 authconfig.c:987
+#: authconfig.c:989 authconfig.c:997 authconfig.c:1005 authconfig.c:1013
+#: authconfig.c:1021 authconfig.c:1029 authconfig.c:1037 authconfig.c:1050
+#: authconfig.c:1058
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s : erreur critique lors de la lecture de %s/%s"
 
-#: authconfig.c:973
+#: authconfig.c:1044
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s : impossible de lire la configuration de cache"
 
-#: authconfig.c:1049
+#: authconfig.c:1140
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -342,27 +426,27 @@ msgstr ""
 "<Tab>/<Alt-Tab> Changer d'élément  |  <Espace> Sélectionner  |  <F12> Écran "
 "suivant"
 
-#: authconfig.c:1052
+#: authconfig.c:1143
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 Red Hat, Inc."
 
-#: authconfig.c:1059
+#: authconfig.c:1150
 msgid "dialog was cancelled\n"
 msgstr "dialogue annulé\n"
 
-#: authconfig.c:1074
+#: authconfig.c:1165
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s : erreur critique lors de la lecture"
 
-#: authconfig.c:1080 authconfig.c:1086 authconfig.c:1092 authconfig.c:1098
-#: authconfig.c:1103 authconfig.c:1109 authconfig.c:1114 authconfig.c:1119
-#: authconfig.c:1125
+#: authconfig.c:1171 authconfig.c:1177 authconfig.c:1183 authconfig.c:1189
+#: authconfig.c:1194 authconfig.c:1200 authconfig.c:1205 authconfig.c:1210
+#: authconfig.c:1215 authconfig.c:1221
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s : erreur critique lors de l'écriture de %s/%s"
 
-#: authconfig.desktop.in.h:1 glade.strings:36
+#: authconfig.desktop.in.h:1 glade.strings:44
 msgid "Authentication"
 msgstr "Authentification"
 
@@ -372,7 +456,7 @@ msgstr ""
 "Contrôler comment le système vérifie les utilisateurs qui veulent se "
 "connecter"
 
-#: authinfo.h:75
+#: authinfo.h:65
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -387,38 +471,34 @@ msgid "_Cache User Information"
 msgstr "Informations utilisateur _cache"
 
 #: glade.strings:9
-msgid "NIS"
-msgstr "NIS"
-
-#: glade.strings:10
 msgid "_Configure NIS..."
 msgstr "_Configurer NIS..."
 
-#: glade.strings:11
+#: glade.strings:10
 msgid "Enable _NIS Support"
 msgstr "Activer le support _NIS"
 
-#: glade.strings:12
+#: glade.strings:11
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr ""
-"NIS est le service d'informations sur le réseau. Il est habituellement utilisé par "
-"les réseaux de petite et moyenne taille."
+"NIS est le service d'informations sur le réseau. Il est habituellement "
+"utilisé par les réseaux de petite et moyenne taille."
 
-#: glade.strings:13 glade.strings:24
-msgid "LDAP"
-msgstr "LDAP"
+#: glade.strings:12
+msgid "NIS"
+msgstr "NIS"
 
-#: glade.strings:14 glade.strings:25
+#: glade.strings:13 glade.strings:28
 msgid "Enable _LDAP Support"
 msgstr "Activer le support _LDAP"
 
-#: glade.strings:15 glade.strings:26
+#: glade.strings:14 glade.strings:29
 msgid "_Configure LDAP..."
 msgstr "_Configurer LDAP..."
 
-#: glade.strings:16 glade.strings:27
+#: glade.strings:15 glade.strings:30
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -429,19 +509,19 @@ msgstr ""
 "arbitraires dans une hiérarchie structurée. LDAP est aussi bien utilisé par "
 "les petits que par les grands réseaux."
 
-#: glade.strings:17
-msgid "Hesiod"
-msgstr "Hesiod"
+#: glade.strings:16 glade.strings:31
+msgid "LDAP"
+msgstr "LDAP"
 
-#: glade.strings:18
+#: glade.strings:17
 msgid "Enable _Hesiod Support"
 msgstr "Activer le support _Hesiod"
 
-#: glade.strings:19
+#: glade.strings:18
 msgid "_Configure Hesiod..."
 msgstr "_Configurer Hesiod..."
 
-#: glade.strings:20
+#: glade.strings:19
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -450,31 +530,52 @@ msgstr ""
 "des utilisateurs ou des groupes en DNS. Il est parfois utilisé par les "
 "réseaux de très grande taille."
 
-#: glade.strings:21
+#: glade.strings:20
+msgid "Hesiod"
+msgstr "Hesiod"
+
+#: glade.strings:21 glade.strings:40
+#, fuzzy
+msgid "Enable _Winbind Support"
+msgstr "Activer le support _Hesiod"
+
+#: glade.strings:22 glade.strings:41
+#, fuzzy
+msgid "_Configure Winbind..."
+msgstr "_Configurer Hesiod..."
+
+#: glade.strings:23 glade.strings:42
+msgid ""
+"Winbind allows a system to retrieve information about users and to "
+"authenticate users by using information stored in an NTDOM or ADS server.  "
+"It is used in small to large networks."
+msgstr ""
+
+#: glade.strings:24 glade.strings:43
+msgid "Winbind"
+msgstr ""
+
+#: glade.strings:25
 msgid "User Information"
 msgstr "Informations utilisateur"
 
-#: glade.strings:22
+#: glade.strings:26
 msgid "Use _Shadow Passwords"
 msgstr "Utiliser des mots de passe ma_squés"
 
-#: glade.strings:23
+#: glade.strings:27
 msgid "Use _MD5 Passwords"
 msgstr "Utiliser des mots de passe _MD5"
 
-#: glade.strings:28
-msgid "Kerberos"
-msgstr "Kerberos"
-
-#: glade.strings:29
+#: glade.strings:32
 msgid "Enable _Kerberos Support"
 msgstr "Activer le support _Kerberos"
 
-#: glade.strings:30
+#: glade.strings:33
 msgid "_Configure Kerberos..."
 msgstr "_Configurer Kerberos..."
 
-#: glade.strings:31
+#: glade.strings:34
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -482,19 +583,19 @@ msgstr ""
 "Kerberos est un système sécurisé d'authentification qui est habituellement "
 "utilisé par les réseaux de moyenne à grande taille."
 
-#: glade.strings:32
-msgid "SMB Authentication"
-msgstr "Authentification SMB"
+#: glade.strings:35
+msgid "Kerberos"
+msgstr "Kerberos"
 
-#: glade.strings:33
+#: glade.strings:36
 msgid "Enable _SMB Support"
 msgstr "Activer le support _SMB"
 
-#: glade.strings:34
+#: glade.strings:37
 msgid "_Configure SMB..."
 msgstr "_Configurer SMB..."
 
-#: glade.strings:35
+#: glade.strings:38
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -504,87 +605,170 @@ msgstr ""
 "Message Block)"
 
 #: glade.strings:39
+msgid "SMB"
+msgstr ""
+
+#: glade.strings:45
 msgid "NIS Settings"
 msgstr "Paramètres NIS"
 
-#: glade.strings:40
+#: glade.strings:46 glade.strings:49 glade.strings:51 glade.strings:54
+#: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:63
+#: glade.strings:66 glade.strings:68 glade.strings:71 glade.strings:77
+#: glade.strings:79 glade.strings:82 glade.strings:85 glade.strings:89
+msgid "*"
+msgstr ""
+
+#: glade.strings:47
 msgid "NIS _Server"
 msgstr "_Serveur NIS :"
 
-#: glade.strings:41
+#: glade.strings:48
 msgid "NIS _Domain"
 msgstr "_Domaine NIS :"
 
-#: glade.strings:42 glade.strings:47 glade.strings:53 glade.strings:58
-#: glade.strings:64
-msgid "Apply"
-msgstr "Appliquer"
-
-#: glade.strings:43 glade.strings:48 glade.strings:54 glade.strings:59
-#: glade.strings:65
-msgid "Close"
-msgstr "Fermer"
-
-#: glade.strings:44
+#: glade.strings:50
 msgid "Hesiod Settings"
 msgstr "Paramètres Hesiod"
 
-#: glade.strings:45
+#: glade.strings:52
 msgid "Hesiod _RHS"
 msgstr "_RHS Hesiod"
 
-#: glade.strings:46
+#: glade.strings:53
 msgid "Hesiod _LHS"
 msgstr "_LHS Hesiod "
 
-#: glade.strings:49
+#: glade.strings:55
 msgid "Kerberos Settings"
 msgstr "Paramètres Kerberos"
 
-#: glade.strings:50
+#: glade.strings:57
 msgid "_Admin Servers"
 msgstr "Serveurs _Admin"
 
-#: glade.strings:51
+#: glade.strings:58
 msgid "_Realm"
 msgstr "_Zone"
 
-#: glade.strings:52
+#: glade.strings:60
 msgid "_KDCs"
 msgstr "_KDC"
 
-#: glade.strings:55
+#: glade.strings:62
 msgid "SMB Settings"
 msgstr "Paramètres SMB"
 
-#: glade.strings:56
+#: glade.strings:64
 msgid "_Domain Controllers"
 msgstr "Contrôleurs de _domaine"
 
-#: glade.strings:57
+#: glade.strings:65
 msgid "_Workgroup"
 msgstr "_Groupe de travail"
 
-#: glade.strings:60
+#: glade.strings:67
 msgid "LDAP Settings"
 msgstr "Paramètres LDAP"
 
-#: glade.strings:61
+#: glade.strings:69
 msgid "LDAP _Server"
 msgstr "_Serveur LDAP"
 
-#: glade.strings:62
+#: glade.strings:70
 msgid "LDAP Search _Base DN"
 msgstr "DN de la _base de recherche de LDAP"
 
-#: glade.strings:63
+#: glade.strings:72
 msgid "Use _TLS to encrypt connections"
 msgstr "Utiliser _TLS pour crypter les connexions"
+
+#: glade.strings:73
+#, fuzzy
+msgid "Winbind Settings"
+msgstr "Paramètres Hesiod"
+
+#: glade.strings:74
+#, fuzzy
+msgid "_Join Domain"
+msgstr "Domaine :"
+
+#: glade.strings:75
+msgid "_Security Model"
+msgstr ""
+
+#: glade.strings:76
+#, fuzzy
+msgid "Winbind _Domain"
+msgstr "_Domaine NIS :"
+
+#: glade.strings:78
+#, fuzzy
+msgid "Winbind Domain _Controllers"
+msgstr "Contrôleurs de _domaine"
+
+#: glade.strings:80
+msgid "Template _Shell"
+msgstr ""
+
+#: glade.strings:81
+msgid "Winbind ADS _Realm"
+msgstr ""
+
+#: glade.strings:83
+msgid "Joining Winbind Domain"
+msgstr ""
+
+#: glade.strings:84
+msgid "Administrator"
+msgstr ""
+
+#: glade.strings:86
+#, fuzzy
+msgid "Domain _Administrator"
+msgstr "Contrôleurs de _domaine"
+
+#: glade.strings:87
+#, fuzzy
+msgid "Domain"
+msgstr "Domaine :"
+
+#: glade.strings:88
+#, fuzzy
+msgid "_Password"
+msgstr "Utiliser des mots de passe _MD5"
+
+#: glade.strings:90
+msgid "EXAMPLE.COM"
+msgstr ""
+
+#: glade.strings:91
+msgid "Alert"
+msgstr ""
+
+#: glade.strings:92
+msgid "Do_n't Save"
+msgstr ""
+
+#: glade.strings:93
+msgid ""
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
+"may fail.  Save changes?"
+msgstr ""
 
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Utiliser les politiques locales"
 
+#~ msgid "SMB Authentication"
+#~ msgstr "Authentification SMB"
+
+#~ msgid "Apply"
+#~ msgstr "Appliquer"
+
+#~ msgid "Close"
+#~ msgstr "Fermer"
+
 #~ msgid "authconfig"
 #~ msgstr "authconfig"
-
