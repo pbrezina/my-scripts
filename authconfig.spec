@@ -1,12 +1,13 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 3.0.5
+Version: 4.0
 Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
-BuildRoot: /var/tmp/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
+Requires: glibc >= 2.1, pam >= 0.72, glib
 
 %description 
 Authconfig is a terminal mode program for setting up Network
@@ -31,10 +32,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)/usr/man/man8/*
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
-%define date    %(echo `LC_ALL="C" date +"%a %b %d %Y"`)
-
 %changelog
-* %{date} Cristian Gafton <gafton@redhat.com>
+* Tue May 30 2000 Nalin Dahyabhai <nalin@redhat.com>
+- finish LDAP support
+- add Kerberos 5 support
+- add Hesiod support
+- migrate PAM config file logic to new method
+
+* Wed 08 Mar 2000 Cristian Gafton <gafton@redhat.com>
 - rebuild for release
 
 * Wed Feb 16 2000 Preston Brown <pbrown@redhat.com>

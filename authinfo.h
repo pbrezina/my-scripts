@@ -8,7 +8,7 @@
 #ifndef authinfo_h
 #define authinfo_h
 
-#define SYSCONFDIR "."
+#define SYSCONFDIR "/etc"
 #define AUTH_PAM_SERVICE "system-auth"
 #define AUTH_MODULE_DIR "/lib/security"
 #define NSS_DEFAULT "files nisplus nis"
