@@ -1,15 +1,19 @@
+# translation of tr.po to Turkish
+# Copyright (C) 1999-2002,2003 Free Software Foundation, Inc.
+# $Id$
+# Erçin EKER <erc.caldera@gmx.net>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig \n"
+"Project-Id-Version: tr\n"
 "POT-Creation-Date: 2003-06-30 18:17-0400\n"
-"PO-Revision-Date: 2002-07-25 09:53+0300\n"
-"Last-Translator: Nilgün Belma Bugüner <nilgun@superonline.com>\n"
-"Language-Team: Turkish <gnu-tr-u12a@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2003-07-04 23:00+0300\n"
+"Last-Translator: Erçin EKER <erc.caldera@gmx.net>\n"
+"Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.2\n"
 
 #: authconfig.c:125
 msgid "Warning"
@@ -53,7 +57,7 @@ msgstr "Yetkili Sunucu:"
 
 #: authconfig.c:244
 msgid "Workgroup:"
-msgstr "Altgrup:"
+msgstr "Çalışmagrubu:"
 
 #: authconfig.c:245
 msgid "Servers:"
@@ -62,7 +66,7 @@ msgstr "Sunucular:"
 #. NSCD
 #: authconfig.c:285
 msgid "Cache Information"
-msgstr "Önbellek Bilgileri"
+msgstr "Önbellek Bilgisi"
 
 #. NSS modules: NIS.
 #: authconfig.c:293
@@ -116,7 +120,7 @@ msgstr "Kerberos 5 Kullan"
 
 #: authconfig.c:562
 msgid "Use SMB Authentication"
-msgstr "SMP Kimlik Sınaması Kullan"
+msgstr "SMB Kimlik Sınaması Kullan"
 
 #. !/usr/bin/python2.2
 #. Toggle a boolean.
@@ -229,23 +233,23 @@ msgstr "<bölge>"
 
 #: authconfig.c:823
 msgid "enable SMB authentication by default"
-msgstr "öntanımlı olarak kerberos kimlik denetimi kullanılsın"
+msgstr "öntanımlı olarak SMB kimlik denetimi kullanılsın"
 
 #: authconfig.c:825
 msgid "disable SMB authentication by default"
-msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
+msgstr "öntanımlı kimlik denetimi için SMB kullanılmasın"
 
 #: authconfig.c:827
 msgid "workgroup authentication servers are in"
-msgstr "altgrup kimlik denetimi sunucularının yeri"
+msgstr "çalışmagrubu kimlik denetimi sunucularının yeri"
 
 #: authconfig.c:827
 msgid "<workgroup>"
-msgstr "<altgrup>"
+msgstr "<çalışmagrubu>"
 
 #: authconfig.c:829
 msgid "names of servers to authenticate against\n"
-msgstr "Kullanıcıların kimlik denetimi için sunucuların isimleri\n"
+msgstr "Kullanıcıların kimlik denetimi sunucuların isimleri\n"
 
 #: authconfig.c:832
 msgid "enable hesiod for user information by default"
@@ -285,7 +289,7 @@ msgstr "portmap, ypbind, ncsd'yi çalıştırMa/durdurMa"
 
 #: authconfig.c:852
 msgid "don't display user interface"
-msgstr "kullanıcı arayüzünü gösterMe"
+msgstr "kullanıcı arayüzünü gösterme"
 
 #: authconfig.c:854
 msgid "probe network for defaults and print them"
@@ -310,12 +314,12 @@ msgid "%s: attempting to continue\n"
 msgstr "%s: devam edilmeye çalışılıyor\n"
 
 #: authconfig.c:883
-#, c-format
+
 msgid "%s: unexpected argument\n"
 msgstr "%s: beklenmeyen argüman\n"
 
 #: authconfig.c:915
-#, c-format
+
 msgid "%s: can only be run as root\n"
 msgstr "%s: sadece yetkili kullanıcı (root) tarafından çalıştırılabilir\n"
 
@@ -334,8 +338,7 @@ msgstr "%s: önbellekleme yapılandırması okunamıyor"
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-"  <Tab>/<Alt-Tab> ileri/geri   |   <Boşluk> seçer   |   <F12> sonraki ekran"
+msgstr "  <Tab>/<Alt-Tab> ileri/geri   |   <Boşluk> seçer   |   <F12> sonraki ekran"
 
 #: authconfig.c:1052
 msgid "(c) 1999-2002 Red Hat, Inc."
@@ -363,8 +366,7 @@ msgstr "Kimlik Denetimi"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Sisteme giriş yapmak isteyen kullanıcıların nasıl doğrulanacağını denetler"
+msgstr "Sisteme giriş yapmak isteyen kullanıcıların nasıl doğrulanacağını denetler"
 
 #: authinfo.h:75
 #, c-format
@@ -372,12 +374,12 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
-"%s dosyası bulundu, ancak çalışması için %s desteğine ihtiyacı var. Lütfen %"
-"s paketini de kurun."
+"%s dosyası bulunamadı, %s'in doğru çalışması için gerekiyor. "
+"Lütfen bu dosyayı içeren %s paketini kurun."
 
 #: glade.strings:8
 msgid "_Cache User Information"
-msgstr "Kullanıcı Bilgisini _Sakla"
+msgstr "Kullanıcı Bilgisini _Önbellekle"
 
 #: glade.strings:9
 msgid "NIS"
@@ -392,12 +394,11 @@ msgid "Enable _NIS Support"
 msgstr "_NIS Desteğini Etkinleştir"
 
 #: glade.strings:12
-#, fuzzy
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr ""
-"NIS Alan Adı Bilgilendirme Hizmetidir. Çoğunlukla küçük ve orta büyüklükteki "
+"NIS Alan Adı Bilgilendirme Hizmetidir.  Çoğunlukla küçük ve orta büyüklükteki "
 "ağlarda kullanılmaktadır."
 
 #: glade.strings:13 glade.strings:24
@@ -418,9 +419,9 @@ msgid ""
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"Hafif Dizin Erişim Protokolü, bir yapısal hiyerarşi içinde çeşitli "
-"bilgilerin tutulduğu bir dizini aramak için kullanılır. LDAP, küçük-büyük "
-"her türlü ağ tarafından giderek artan bir yoğunlukta kullanılmaktadır."
+"Hafif Dizin Erişim Protokolü, yapısal bir hiyerarşi içinde çeşitli bilgilerin "
+"tutulduğu bir dizini aramak için kullanılır. LDAP, küçük-büyük her türlü "
+"ağ tarafından giderek artan bir yoğunlukta kullanılmaktadır."
 
 #: glade.strings:17
 msgid "Hesiod"
@@ -448,7 +449,7 @@ msgstr "Kullanıcı Bilgileri"
 
 #: glade.strings:22
 msgid "Use _Shadow Passwords"
-msgstr "_Shadow Parolalar Kullanılsın"
+msgstr "_Gölge Parolalar Kullanılsın"
 
 #: glade.strings:23
 msgid "Use _MD5 Passwords"
@@ -492,7 +493,7 @@ msgid ""
 "server which uses the SMB (system message block) protocol suite."
 msgstr ""
 "SMB Kimlik Sınaması, SMB (sistem ileti bloğu) protokolu kullanan bir "
-"sunucuya bağlanmaya çalışarak kullanıcı parolalarını doğrulatır."
+"sunucuya bağlanmaya çalışarak kullanıcı parolalarını doğrular."
 
 #: glade.strings:39
 msgid "NIS Settings"
@@ -538,7 +539,7 @@ msgstr "_Yönetim Sunucuları"
 
 #: glade.strings:51
 msgid "_Realm"
-msgstr "_Realm"
+msgstr "_Alan"
 
 #: glade.strings:52
 msgid "_KDCs"
@@ -575,3 +576,4 @@ msgstr "Bağlantıları şifrelemede _TLS kullanılsın"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Yerel Önlemler Kullanılsın"
+
