@@ -68,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
-%{_sbindir}/authconfig-gtk
+%{_datadir}/%{name}/*.py*
 %{_datadir}/%{name}/%{name}.glade
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
