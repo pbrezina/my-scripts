@@ -24,7 +24,7 @@ make
 
 %install
 %{makeinstall}
-
+touch %{_sysconfdir}/sysconfig/authconfig
 %find_lang %{name}
 
 %clean
