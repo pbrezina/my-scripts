@@ -4,7 +4,9 @@ from rhpl.translate import _, textdomain
 try:
 	import gtk, gtk.glade
 except RuntimeError, e:
-	if os.isatty(sys.stdin.fileno()):
+	if (os.isatty(sys.stdin.fileno()) and
+	    os.isatty(sys.stdout.fileno()) and
+	    os.isatty(sys.stderr.fileno())):
 		os.execv('/usr/bin/authconfig',('authconfig',))
 	else:
 		raise e
