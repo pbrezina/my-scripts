@@ -28,6 +28,14 @@
 #define PATH_PORTMAP "/sbin/portmap"
 #define PATH_NSCD "/usr/sbin/nscd"
 #define PATH_NSCD_PID "/var/run/nscd.pid"
+#define PATH_DBBIND "/usr/sbin/dbbind"
+#define PATH_DBBIND_PID "/var/run/dbbind.pid"
+#define PATH_DBIBIND "/usr/sbin/dbibind"
+#define PATH_DBIBIND_PID "/var/run/dbibind.pid"
+#define PATH_HESIODBIND "/usr/sbin/hesiodbind"
+#define PATH_HESIODBIND_PID "/var/run/hesiodbind.pid"
+#define PATH_LDAPBIND "/usr/sbin/ldapbind"
+#define PATH_LDAPBIND_PID "/var/run/ldapbind.pid"
 #define PATH_ODBCBIND "/usr/sbin/odbcbind"
 #define PATH_ODBCBIND_PID "/var/run/odbcbind.pid"
 #define PATH_WINBIND "/usr/sbin/winbindd"
@@ -85,6 +93,10 @@ struct authInfoType {
 	gboolean enableLDAPS;
 	gboolean enableNIS;
 	gboolean enableNIS3;
+	gboolean enableDBbind;
+	gboolean enableDBIbind;
+	gboolean enableHesiodbind;
+	gboolean enableLDAPbind;
 	gboolean enableOdbcbind;
 	gboolean enableWinbind;
 

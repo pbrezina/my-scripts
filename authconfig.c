@@ -23,7 +23,7 @@
   *
   */
 
-
+#include <sys/stat.h>
 #include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
@@ -31,12 +31,10 @@
 #include <locale.h>
 #include <newt.h>
 #include <popt.h>
-#include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <libgen.h>
 #include <glib.h>
 #include "authinfo.h"
 #ifdef LOCAL_POLICIES
@@ -76,7 +74,7 @@ struct smb_cb {
 };
 
 /*
- * small callback to disallow spaces in an entry field.
+ * A newt callback to disallow spaces in an entry field.
  */
 static int
 entryFilter(newtComponent entry, void * data, int ch, int cursor)

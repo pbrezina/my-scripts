@@ -48,6 +48,26 @@
 #define LOGIC_OPTIONAL		"optional"
 #define LOGIC_IGNORE_UNKNOWN	"[default=ok user_unknown=ignore service_err=ignore system_err=ignore]"
 
+/* Snip off line terminators and final whitespace from a passed-in string. */
+static void
+snipString(char *string)
+{
+	char *p;
+	p = strchr(string, '\r');
+	if (p != NULL) {
+		*p = '\0';
+	}
+	p = strchr(string, '\n');
+	if (p != NULL) {
+		*p = '\0';
+	}
+	p = string + strlen(string);
+	while ((p > string) && isspace(p[-1])) {
+		*p = '\0';
+		p--;
+	}
+}
+
 /* Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvar
  * can read it just fine. */
 gboolean
@@ -56,36 +76,30 @@ authInfoReadHesiod(struct authInfoType *info)
 	shvarFile *sv = NULL;
 	char *tmp = NULL;
 
+	/* Open the file.  Bail if it's not there. */
 	sv = svNewFile(SYSCONFDIR "/hesiod.conf");
-	if(sv == NULL) {
+	if (sv == NULL) {
 		return FALSE;
 	}
 
+	/* Read the LHS. */
 	tmp = svGetValue(sv, "lhs");
-	if(tmp != NULL) {
+	if (tmp != NULL) {
 		info->hesiodLHS = g_strdup(tmp);
 		free(tmp);
-		tmp = info->hesiodLHS + strlen(info->hesiodLHS);
-		while((tmp > info->hesiodLHS) && isspace(tmp[-1])) {
-			tmp[-1] = '\0';
-			tmp--;
-		}
+		snipString(info->hesiodLHS);
 	}
 
+	/* Read the RHS. */
 	tmp = svGetValue(sv, "rhs");
-	if(tmp != NULL) {
+	if (tmp != NULL) {
 		info->hesiodRHS = g_strdup(tmp);
 		free(tmp);
-		tmp = info->hesiodRHS + strlen(info->hesiodRHS);
-		while((tmp > info->hesiodRHS) && isspace(tmp[-1])) {
-			tmp[-1] = '\0';
-			tmp--;
-		}
+		snipString(info->hesiodRHS);
 	}
 
-	svWriteFile(sv, 0644);
+	/* Close the file, we're done. */
 	svCloseFile(sv);
-	sv = NULL;
 	return TRUE;
 }
 
@@ -96,36 +110,36 @@ authInfoReadSMB(struct authInfoType *info)
 	FILE *fp = NULL;
 	char buf[LINE_MAX], *p;
 
-	/* Read SMB setup. */
+	/* Open the file.  Bail if it's not there or there's some problem
+	 * reading it. */
 	fp = fopen(SYSCONFDIR "/pam_smb.conf", "r");
-	if(fp == NULL) {
+	if (fp == NULL) {
 		return FALSE;
 	}
 
 	/* Read three lines.  The first is the workgroup, and subsequent
 	 * lines are the PDC and BDC, respectively. */
-	if(fgets(buf, sizeof(buf), fp) != NULL) {
-		p = strchr(buf, '\n');
-		if(p != NULL) {
-			*p = '\0';
-		}
+	if (fgets(buf, sizeof(buf), fp) != NULL) {
+		snipString(buf);
 		info->smbWorkgroup = g_strdup(buf);
 	}
-	if(fgets(buf, sizeof(buf), fp) != NULL) {
-		p = strchr(buf, '\n');
-		if(p != NULL) {
-			*p = '\0';
-		}
+	if (fgets(buf, sizeof(buf), fp) != NULL) {
+		snipString(buf);
 		info->smbServers = g_strdup(buf);
 	}
-	while(fgets(buf, sizeof(buf), fp) != NULL) {
-		p = strchr(buf, '\n');
-		if(p != NULL) {
-			*p = '\0';
-		}
-		if(strlen(buf) > 0) {
+
+	/* There are only supposed to be three lines, right?  But there
+	 * might be more, so just go with it. */
+	while (fgets(buf, sizeof(buf), fp) != NULL) {
+		snipString(buf);
+		if (strlen(buf) > 0) {
 			p = info->smbServers;
-			info->smbServers = g_strconcat(p, ",", buf, NULL);
+			if (strlen(p) > 0) {
+				info->smbServers = g_strconcat(p, ",",
+							       buf, NULL);
+			} else {
+				info->smbServers = g_strdup(buf);
+			}
 			g_free(p);
 		}
 	}
@@ -142,78 +156,76 @@ authInfoReadNIS(struct authInfoType *info)
 	FILE *fp = NULL;
 	char buf[LINE_MAX], *p, *q;
 
-	/* Read NIS setup. */
+	/* Open the file.  Bail if it's not there. */
 	fp = fopen(SYSCONFDIR "/yp.conf", "r");
-	if(fp == NULL) {
+	if (fp == NULL) {
 		return FALSE;
 	}
 
-	memset(buf, '\0', sizeof(buf));
-	while(fgets(buf, sizeof(buf) - 1, fp) != NULL) {
-		p = buf + strlen(buf);
-
-		/* Snip off the terminating junk. */
-		while((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
-			p[-1] = '\0';
-			p--;
-		}
+	while (fgets(buf, sizeof(buf) - 1, fp) != NULL) {
+		snipString(buf);
 
 		/* Skip initial whitespace. */
-		for(p = buf; (isspace(*p) && (*p != '\0')); p++);
+		for (p = buf; (isspace(*p) && (*p != '\0')); p++);
 
 		/* Is it a "ypserver" statement?  If so, extract the server. */
-		if(strncmp("ypserver", p, 8) == 0) {
+		if (strncmp("ypserver", p, 8) == 0) {
 			/* Skip intervening whitespace. */
-			for(p += 8; (isspace(*p) && (*p != '\0')); p++);
+			for (p += 8; (isspace(*p) && (*p != '\0')); p++);
 
 			/* Save the server's name. */
-			if(*p != '\0') {
-				if(info->nisServer != NULL) {
+			if (*p != '\0') {
+				if (info->nisServer != NULL) {
+					/* What?  More than one ypserver?  Okay,
+					 * append it to the existing string so
+					 * that the single entry field is enough
+					 * to edit it. */
 					char *tmp = info->nisServer;
 					info->nisServer = g_strdup_printf("%s,%s", tmp, p);
 					g_free(tmp);
 				} else {
+					/* The easy case -- save the string. */
 					info->nisServer = g_strdup(p);
 				}
 			}
 
-			memset(buf, '\0', sizeof(buf));
 			continue;
 		}
 
-		/* It had better be a "domain" statement. */
-		if(strncmp("domain", p, 6) == 0) {
+		/* It had better be a "domain" statement, because the man page
+		 * for this file states that this is all there is. */
+		if (strncmp("domain", p, 6) == 0) {
 			/* Skip intervening whitespace. */
-			for(p += 6; (isspace(*p) && (*p != '\0')); p++);
+			for (p += 6; (isspace(*p) && (*p != '\0')); p++);
 
 			/* Save the domain's name.  To do that, find its end. */
-			for(q = p; (!isspace(*q) && (*q != '\0')); q++);
-			if(*p != '\0') {
+			for (q = p; (!isspace(*q) && (*q != '\0')); q++);
+			if (*p != '\0') {
 				info->nisDomain = g_strndup(p, q - p);
 			}
 
 			/* Skip over some more whitespace. */
-			for(p = q; (isspace(*p) && (*p != '\0')); p++);
+			for (p = q; (isspace(*p) && (*p != '\0')); p++);
 
 			/* Is it "server"?  If not, assume "broadcast". */
-			if(strncmp(p, "server", 6) == 0) {
-				for(p += 6; (isspace(*p) && (*p != '\0')); p++);
-				if(*p != '\0') {
-					if(info->nisServer != NULL) {
+			if (strncmp(p, "server", 6) == 0) {
+				for (p += 6; (isspace(*p) && (*p != '\0')); p++);
+				if (*p != '\0') {
+					if (info->nisServer != NULL) {
+						/* More servers than you can
+						 * shake a stick at! */
 						char *tmp = info->nisServer;
 						info->nisServer = g_strdup_printf("%s,%s", p, tmp);
 						g_free(tmp);
 					} else {
+						/* Save the server name. */
 						info->nisServer = g_strdup(p);
 					}
 				}
 			}
 
-			memset(buf, '\0', sizeof(buf));
 			continue;
 		}
-
-		memset(buf, '\0', sizeof(buf));
 	}
 
 	fclose(fp);
@@ -227,32 +239,32 @@ authInfoReadLDAP(struct authInfoType *info)
 	FILE *fp = NULL;
 	char buf[LINE_MAX], *p;
 
-	/* Read NIS setup. */
+	/* Open the file.  Bail if it's not there. */
 	fp = fopen(SYSCONFDIR "/ldap.conf", "r");
-	if(fp == NULL) {
+	if (fp == NULL) {
 		return FALSE;
 	}
 
 	memset(buf, '\0', sizeof(buf));
-	while(fgets(buf, sizeof(buf) - 1, fp) != NULL) {
+	while (fgets(buf, sizeof(buf) - 1, fp) != NULL) {
 		p = buf + strlen(buf);
 
 		/* Snip off the terminating junk. */
-		while((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
+		while ((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
 			p[-1] = '\0';
 			p--;
 		}
 
 		/* Skip initial whitespace. */
-		for(p = buf; (isspace(*p) && (*p != '\0')); p++);
+		for (p = buf; (isspace(*p) && (*p != '\0')); p++);
 
 		/* Is it a "base" statement? */
-		if(strncmp("base", p, 4) == 0) {
+		if (strncmp("base", p, 4) == 0) {
 			/* Skip intervening whitespace. */
-			for(p += 4; (isspace(*p) && (*p != '\0')); p++);
+			for (p += 4; (isspace(*p) && (*p != '\0')); p++);
 
 			/* Save the base DN. */
-			if(*p != '\0') {
+			if (*p != '\0') {
 				info->ldapBaseDN = g_strdup(p);
 			}
 
@@ -261,16 +273,16 @@ authInfoReadLDAP(struct authInfoType *info)
 		}
 
 		/* Is it a "host" statement? */
-		if(strncmp("host", p, 4) == 0) {
+		if (strncmp("host", p, 4) == 0) {
 			/* Skip intervening whitespace. */
-			for(p += 4; (isspace(*p) && (*p != '\0')); p++);
+			for (p += 4; (isspace(*p) && (*p != '\0')); p++);
 
 			/* Save the host name or IP. */
-			if(*p != '\0') {
+			if (*p != '\0') {
 				info->ldapServer = g_strdup(p);
-				for(p = info->ldapServer; *p != '\0'; p++) {
-					if(isspace(*p)) {
-						if((p > info->ldapServer) &&
+				for (p = info->ldapServer; *p != '\0'; p++) {
+					if (isspace(*p)) {
+						if ((p > info->ldapServer) &&
 						   (p[-1] == ',')) {
 							memmove(p, p + 1,
 								strlen(p));
@@ -287,9 +299,9 @@ authInfoReadLDAP(struct authInfoType *info)
 		}
 
 		/* Is it a "ssl" statement? */
-		if(strncmp("ssl", p, 3) == 0) {
+		if (strncmp("ssl", p, 3) == 0) {
 			/* Skip intervening whitespace. */
-			for(p += 3; (isspace(*p) && (*p != '\0')); p++);
+			for (p += 3; (isspace(*p) && (*p != '\0')); p++);
 
 			info->enableLDAPS = (strncmp(p, "start_tls", 9) == 0);
 
@@ -316,37 +328,37 @@ authInfoReadKerberos(struct authInfoType *info)
 	char *subsection = NULL;
 
 	fp = fopen(SYSCONFDIR "/krb5.conf", "r");
-	if(fp == NULL) {
+	if (fp == NULL) {
 		return FALSE;
 	}
 
 	memset(buf, '\0', sizeof(buf));
 
-	while(fgets(buf, sizeof(buf) - 1, fp) != NULL) {
+	while (fgets(buf, sizeof(buf) - 1, fp) != NULL) {
 		p = buf + strlen(buf);
 
 		/* Snip off the terminating junk. */
-		while((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
+		while ((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
 			p[-1] = '\0';
 			p--;
 		}
 
 		/* Skip initial whitespace. */
-		for(p = buf; (isspace(*p) && (*p != '\0')); p++);
+		for (p = buf; (isspace(*p) && (*p != '\0')); p++);
 
 		/* If it's a new section, note which one we're "in". */
-		if(p[0] == '[') {
+		if (p[0] == '[') {
 			p++;
-			for(q = p; ((*q != ']') && (*q != '\0')); q++);
+			for (q = p; ((*q != ']') && (*q != '\0')); q++);
 
-			if(section != NULL) {
+			if (section != NULL) {
 				g_free(section);
 			}
-			if(subsection != NULL) {
+			if (subsection != NULL) {
 				g_free(subsection);
 				subsection = NULL;
 			}
-			if(q - p > 0)  {
+			if (q - p > 0)  {
 				section = g_strndup(p, q - p);
 			}
 
@@ -355,16 +367,16 @@ authInfoReadKerberos(struct authInfoType *info)
 		}
 
 		/* Check for the default realm setting. */
-		if(section != NULL)
-		if(strcmp(section, "libdefaults") == 0)
-		if(strncmp(p, "default_realm", 13) == 0) {
+		if (section != NULL)
+		if (strcmp(section, "libdefaults") == 0)
+		if (strncmp(p, "default_realm", 13) == 0) {
 			/* Skip intervening whitespace and the equal sign. */
-			for(p += 13;
+			for (p += 13;
 			    ((isspace(*p) || (*p == '=')) && (*p != '\0'));
 			    p++);
 
 			/* Save the default realm. */
-			if(*p != '\0') {
+			if (*p != '\0') {
 				info->kerberosRealm = g_strdup(p);
 			}
 
@@ -373,13 +385,13 @@ authInfoReadKerberos(struct authInfoType *info)
 		}
 
 		/* Check for the section about the current realm. */
-		if(section != NULL)
-		if(strcmp(section, "realms") == 0)
-		if(subsection == NULL) {
+		if (section != NULL)
+		if (strcmp(section, "realms") == 0)
+		if (subsection == NULL) {
 			/* Read the name of the realm. */
-			for(q = p; (!isspace(*q) && (*q != '\0')); q++);
+			for (q = p; (!isspace(*q) && (*q != '\0')); q++);
 
-			if(q - p > 0)  {
+			if (q - p > 0)  {
 				subsection = g_strndup(p, q - p);
 			}
 
@@ -388,11 +400,11 @@ authInfoReadKerberos(struct authInfoType *info)
 		}
 
 		/* Check for the end of a realm section. */
-		if(section != NULL)
-		if(strcmp(section, "realms") == 0)
-		if(subsection != NULL)
-		if(strncmp(p, "}", 1) == 0) {
-			if(subsection != NULL) {
+		if (section != NULL)
+		if (strcmp(section, "realms") == 0)
+		if (subsection != NULL)
+		if (strncmp(p, "}", 1) == 0) {
+			if (subsection != NULL) {
 				g_free(subsection);
 				subsection = NULL;
 			}
@@ -402,38 +414,38 @@ authInfoReadKerberos(struct authInfoType *info)
 		}
 
 		/* Values within the current realm. */
-		if(section != NULL)
-		if(strcmp(section, "realms") == 0)
-		if(subsection != NULL)
-		if(info->kerberosRealm != NULL)
-		if(strcmp(subsection, info->kerberosRealm) == 0) {
+		if (section != NULL)
+		if (strcmp(section, "realms") == 0)
+		if (subsection != NULL)
+		if (info->kerberosRealm != NULL)
+		if (strcmp(subsection, info->kerberosRealm) == 0) {
 			char **target = NULL, *tmp;
 
 			/* See if this is a key we care about. */
-			if(strncmp(p, "kdc", 3) == 0) {
+			if (strncmp(p, "kdc", 3) == 0) {
 				target = &info->kerberosKDC;
 				p += 3;
 			}
-			if(strncmp(p, "admin_server", 12) == 0) {
+			if (strncmp(p, "admin_server", 12) == 0) {
 				target = &info->kerberosAdminServer;
 				p += 12;
 			}
-			if(target == NULL) {
+			if (target == NULL) {
 				memset(buf, '\0', sizeof(buf));
 				continue;
 			}
 
 			/* Skip over the variable and the equal sign. */
-			while((isspace(*p) || (*p == '=')) && (*p != '\0')) p++;
+			while ((isspace(*p) || (*p == '=')) && (*p != '\0')) p++;
 
 			/* Append if we need to, else make a fresh string. */
-			if((*target != NULL) && (*p != '\0')) {
+			if ((*target != NULL) && (*p != '\0')) {
 				tmp = g_malloc0(strlen(p) + strlen(*target) + 2);
 				sprintf(tmp, "%s,%s", *target, p);
 				g_free(*target);
 				*target = tmp;
 			}
-			if((*target == NULL) && (*p != '\0')) {
+			if ((*target == NULL) && (*p != '\0')) {
 				*target = g_strdup(p);
 			}
 			memset(buf, '\0', sizeof(buf));
@@ -457,40 +469,40 @@ authInfoReadNSS(struct authInfoType *info)
 
 	/* Read NIS setup. */
 	fp = fopen(SYSCONFDIR "/nsswitch.conf", "r");
-	if(fp == NULL) {
+	if (fp == NULL) {
 		return FALSE;
 	}
 
-	while(fgets(buf, sizeof(buf) - 1, fp) != NULL) {
+	while (fgets(buf, sizeof(buf) - 1, fp) != NULL) {
 		p = buf + strlen(buf);
 
 		/* Snip off the terminating junk. */
-		while((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
+		while ((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
 			p[-1] = '\0';
 			p--;
 		}
 
 		/* Skip initial whitespace. */
-		for(p = buf; (isspace(*p) && (*p != '\0')); p++);
+		for (p = buf; (isspace(*p) && (*p != '\0')); p++);
 
-		if(strncmp("passwd:", buf, 7) == 0) {
+		if (strncmp("passwd:", buf, 7) == 0) {
 			/* Skip the keyword and whitespace. */
-			for(p += 7; (isspace(*p) && (*p != '\0')); p++);
-			if(*p != '\0') {
+			for (p += 7; (isspace(*p) && (*p != '\0')); p++);
+			if (*p != '\0') {
 				nss_config = g_strdup(p);
 			}
 		}
 	}
 
-	if(nss_config != NULL) {
+	if (nss_config != NULL) {
 		info->enableDB = (strstr(nss_config, "db") != NULL);
 		info->enableHesiod = (strstr(nss_config, "hesiod") != NULL);
 		info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
 		/* Don't be fooled by "nisplus". */
-		for(p = nss_config; strstr(p, "nis") != NULL; p++) {
+		for (p = nss_config; strstr(p, "nis") != NULL; p++) {
 			info->enableNIS = ((strstr(p, "nis") != NULL) &&
 					   ((strstr(p, "nis"))[3] != 'p'));
-			if(info->enableNIS) {
+			if (info->enableNIS) {
 				break;
 			}
 		}
@@ -512,10 +524,10 @@ authInfoReadCache(struct authInfoType *authInfo)
 	pid_t childpid;
 	int status;
 	authInfo->enableCache = FALSE;
-       	childpid = fork();
-	if(childpid != 0) {
+	childpid = fork();
+	if (childpid != 0) {
 		/* parent */
-		if((waitpid(childpid, &status, 0) == childpid) &&
+		if ((waitpid(childpid, &status, 0) == childpid) &&
 		   WIFEXITED(status) &&
 		   (WEXITSTATUS(status) == 0)) {
 			authInfo->enableCache = TRUE;
@@ -547,82 +559,77 @@ authInfoReadPAM(struct authInfoType *authInfo)
 	char *tmp = NULL;
 
 	fp = fopen(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, "r");
-	if(fp == NULL) {
+	if (fp == NULL) {
 		return FALSE;
 	}
 
-	while(fgets(ibuf, sizeof(ibuf), fp) != NULL) {
+	while (fgets(ibuf, sizeof(ibuf), fp) != NULL) {
 		memset(module, '\0', sizeof(module));
 		memset(flags, '\0', sizeof(flags));
-
-		q = ibuf + strlen(ibuf);
-		while((q > ibuf) && ((q[-1] == '\n') || (q[-1] == '\r'))) {
-			q[-1] = '\0';
-			q--;
-		}
+		snipString(ibuf);
 
 		p = ibuf;
-		for(q = p; !isspace(*q) && (*q != '\0'); q++); /* stack */
+		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* stack */
 		stack = p;
-		if((strncmp(stack, "auth", 4) != 0) &&
+		if ((strncmp(stack, "auth", 4) != 0) &&
 		   (strncmp(stack, "account", 7) != 0)) {
 			continue;
 		}
 
-		for(p = q; isspace(*p) && (*p != '\0'); p++);
-		for(q = p; !isspace(*q) && (*q != '\0'); q++); /* control */
+		for (p = q; isspace(*p) && (*p != '\0'); p++);
+		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* control */
 
-		for(p = q; isspace(*p) && (*p != '\0'); p++);
-		for(q = p; !isspace(*q) && (*q != '\0'); q++); /* module */
-		if(q - p < sizeof(module)) {
+		for (p = q; isspace(*p) && (*p != '\0'); p++);
+		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* module */
+		if (q - p < sizeof(module)) {
 			strncpy(module, p, q - p);
 #ifdef EXPERIMENTAL
-			if(strstr(module, "pam_afs")) {
+			if (strstr(module, "pam_afs")) {
 				authInfo->enableAFS = TRUE;
 				continue;
 			}
-			if(strstr(module, "pam_afs.krb")) {
+			if (strstr(module, "pam_afs.krb")) {
 				authInfo->enableAFSKerberos = TRUE;
 				continue;
 			}
 #endif
-			if(strstr(module, "pam_krb5")) {
+			if (strstr(module, "pam_krb5")) {
 				authInfo->enableKerberos = TRUE;
 				continue;
 			}
-			if(strstr(module, "pam_ldap")) {
+			if (strstr(module, "pam_ldap")) {
 				authInfo->enableLDAPAuth = TRUE;
 				continue;
 			}
 #ifdef EXPERIMENTAL
-			if(strstr(module, "pam_otp")) {
+			if (strstr(module, "pam_otp")) {
 				authInfo->enableOTP = TRUE;
 				continue;
 			}
 #endif
-			if(strstr(module, "pam_smb")) {
+			if (strstr(module, "pam_smb")) {
 				authInfo->enableSMB = TRUE;
 				continue;
 			}
 #ifdef EXPERIMENTAL
-			if(strstr(module, "pam_winbind")) {
+			if (strstr(module, "pam_winbind")) {
 				authInfo->enableWinbindAuth = TRUE;
 				continue;
 			}
 #endif
 #ifdef LOCAL_POLICIES
-			if(strstr(module, "pam_stack")) {
+			if (strstr(module, "pam_stack")) {
 				authInfo->enableLocal = TRUE;
 				continue;
 			}
 #endif
 		}
 
-		for(p = q; isspace(*p) && (*p != '\0'); p++);
-		for(q = p; !isspace(*q) && (*q != '\0'); q++); /* flags */
-		if(q - p < sizeof(module)) {
-			if(strncmp(stack, "auth", 4) == 0)
-			if(strstr(module, "pam_unix") ||
+		for (p = q; isspace(*p) && (*p != '\0'); p++);
+		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* flags */
+		if (q - p < sizeof(module)) {
+			if (strncmp(stack, "auth", 4) == 0)
+			if (strstr(module, "pam_unix") ||
 			   strstr(module, "pam_pwdb")) {
 				authInfo->enableMD5 =
 					(strstr(p, "md5") != NULL);
@@ -631,8 +638,8 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				authInfo->enableBigCrypt =
 					(strstr(p, "bigcrypt") != NULL);
 			}
-			if(strncmp(stack, "account", 7) == 0)
-			if(strstr(module, "pam_unix")) {
+			if (strncmp(stack, "account", 7) == 0)
+			if (strstr(module, "pam_unix")) {
 				authInfo->brokenShadow =
 					(strstr(p, "broken_shadow") != NULL);
 			}
@@ -643,176 +650,216 @@ authInfoReadPAM(struct authInfoType *authInfo)
 
 	/* Read settings from our config file, which override anything we
 	 * figure out by examination. */
-	if(stat(SYSCONFDIR "/sysconfig/authconfig", &st) == 0) {
+	if (stat(SYSCONFDIR "/sysconfig/authconfig", &st) == 0) {
 		sv = svNewFile(SYSCONFDIR "/sysconfig/authconfig");
 	}
-	if(sv != NULL) {
+	if (sv != NULL) {
 		tmp = svGetValue(sv, "USEAFS");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableAFS = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableAFS = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USEAFSKERBEROS");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableAFSKerberos = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableAFSKerberos = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USEDB");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableDB = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableDB = FALSE;
 			}
 			free(tmp);
 		}
+		tmp = svGetValue(sv, "USEDBBIND");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableDBbind = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableDBbind = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USEDBIBIND");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableDBIbind = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableDBIbind = FALSE;
+			}
+			free(tmp);
+		}
 		tmp = svGetValue(sv, "USEEPS");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableEPS = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableEPS = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USEHESIOD");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableHesiod = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableHesiod = FALSE;
 			}
 			free(tmp);
 		}
+		tmp = svGetValue(sv, "USEHESIODBIND");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableHesiodbind = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableHesiodbind = FALSE;
+			}
+			free(tmp);
+		}
 		tmp = svGetValue(sv, "USEKERBEROS");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableKerberos = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableKerberos = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USELDAP");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableLDAP = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableLDAP = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USELDAPAUTH");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableLDAPAuth = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableLDAPAuth = FALSE;
 			}
 			free(tmp);
 		}
+		tmp = svGetValue(sv, "USELDAPBIND");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableLDAPbind = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableLDAPbind = FALSE;
+			}
+			free(tmp);
+		}
 		tmp = svGetValue(sv, "USEMD5");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableMD5 = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableMD5 = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USENIS");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableNIS = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableNIS = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USENISPLUS");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableNIS3 = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableNIS3 = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USEODBCBIND");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableOdbcbind = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableOdbcbind = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USEOTP");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableOTP = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableOTP = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USESHADOW");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableShadow = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableShadow = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USESMBAUTH");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableSMB = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableSMB = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USEWINBIND");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableWinbind = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableWinbind = FALSE;
 			}
 			free(tmp);
 		}
 		tmp = svGetValue(sv, "USEWINBINDAUTH");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
 				authInfo->enableWinbindAuth = TRUE;
 			}
-			if(strcmp(tmp, "no") == 0) {
+			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableWinbindAuth = FALSE;
 			}
 			free(tmp);
@@ -832,12 +879,12 @@ authInfoReadNetwork(struct authInfoType *authInfo)
 	char *tmp = NULL;
 
 	sv = svNewFile(SYSCONFDIR "/sysconfig/network");
-	if(sv == NULL) {
+	if (sv == NULL) {
 		return FALSE;
 	}
 
-	if((tmp = svGetValue(sv, "NISDOMAIN")) != NULL) {
-		if(authInfo->nisDomain) g_free(authInfo->nisDomain);
+	if ((tmp = svGetValue(sv, "NISDOMAIN")) != NULL) {
+		if (authInfo->nisDomain) g_free(authInfo->nisDomain);
 		authInfo->nisDomain = g_strdup(tmp);
 		free(tmp);
 	}
@@ -876,27 +923,27 @@ authInfoCopy(struct authInfoType *info)
 
 	*ret = *info;
 
-        ret->hesiodLHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
-        ret->hesiodRHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
+	ret->hesiodLHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
+	ret->hesiodRHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
 
-        ret->ldapServer = info->ldapServer ? g_strdup(info->ldapServer) : NULL;
-        ret->ldapBaseDN = info->ldapBaseDN? g_strdup(info->ldapBaseDN) : NULL;
+	ret->ldapServer = info->ldapServer ? g_strdup(info->ldapServer) : NULL;
+	ret->ldapBaseDN = info->ldapBaseDN? g_strdup(info->ldapBaseDN) : NULL;
 
-        ret->kerberosRealm =
+	ret->kerberosRealm =
 	info->kerberosRealm ? g_strdup(info->kerberosRealm) : NULL;
 
-        ret->kerberosKDC =
+	ret->kerberosKDC =
 	info->kerberosKDC ? g_strdup(info->kerberosKDC) : NULL;
 
-        ret->kerberosAdminServer =
+	ret->kerberosAdminServer =
 	info->kerberosAdminServer ? g_strdup(info->kerberosAdminServer) : NULL;
 
-        ret->nisServer = info->nisServer ? g_strdup(info->nisServer) : NULL;
-        ret->nisDomain = info->nisDomain ? g_strdup(info->nisDomain) : NULL;
+	ret->nisServer = info->nisServer ? g_strdup(info->nisServer) : NULL;
+	ret->nisDomain = info->nisDomain ? g_strdup(info->nisDomain) : NULL;
 
-        ret->smbWorkgroup = info->smbWorkgroup ?
+	ret->smbWorkgroup = info->smbWorkgroup ?
 			    g_strdup(info->smbWorkgroup) : NULL;
-        ret->smbServers = info->smbServers ? g_strdup(info->smbServers) : NULL;
+	ret->smbServers = info->smbServers ? g_strdup(info->smbServers) : NULL;
 
 	return ret;
 }
@@ -904,13 +951,13 @@ authInfoCopy(struct authInfoType *info)
 gboolean
 authInfoWriteCache(struct authInfoType *authInfo)
 {
-  if (authInfo->enableCache) {
-    system("/sbin/chkconfig --add nscd");
-    system("/sbin/chkconfig --level 345 nscd on");
-  } else {
-    system("/sbin/chkconfig --del nscd");
-  }
-  return TRUE;
+	if (authInfo->enableCache) {
+		system("/sbin/chkconfig --add nscd");
+		system("/sbin/chkconfig --level 345 nscd on");
+	} else {
+		system("/sbin/chkconfig --del nscd");
+	}
+	return TRUE;
 }
 
 static gboolean
@@ -929,23 +976,23 @@ authInfoWriteHesiod(struct authInfoType *info)
 {
 	shvarFile *sv = NULL;
 
-	if((sv = svNewFile(SYSCONFDIR "/hesiod.conf")) == NULL) {
+	if ((sv = svNewFile(SYSCONFDIR "/hesiod.conf")) == NULL) {
 		sv = svCreateFile(SYSCONFDIR "/hesiod.conf");
 	}
 
-	if(sv == NULL) {
+	if (sv == NULL) {
 		return FALSE;
 	}
 
-	if(info->hesiodLHS != NULL) {
-		if(strlen(info->hesiodLHS) == 0) {
+	if (info->hesiodLHS != NULL) {
+		if (strlen(info->hesiodLHS) == 0) {
 			g_free(info->hesiodLHS);
 			info->hesiodLHS = NULL;
 		}
 	}
 	svSetValue(sv, "lhs", info->hesiodLHS);
-	if(info->hesiodRHS != NULL) {
-		if(strlen(info->hesiodRHS) == 0) {
+	if (info->hesiodRHS != NULL) {
+		if (strlen(info->hesiodRHS) == 0) {
 			g_free(info->hesiodRHS);
 			info->hesiodRHS = NULL;
 		}
@@ -967,39 +1014,39 @@ authInfoWriteSMB(struct authInfoType *info)
 	char **v;
 
 	fd = open(SYSCONFDIR "/pam_smb.conf", O_RDWR | O_CREAT, 0644);
-	if(fd == -1) {
+	if (fd == -1) {
 		return FALSE;
 	}
 
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
-	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
 		return FALSE;
 	}
 
-	if(ftruncate(fd, 0) == -1) {
+	if (ftruncate(fd, 0) == -1) {
 		return FALSE;
 	}
 
-	if(info->smbWorkgroup != NULL) {
+	if (info->smbWorkgroup != NULL) {
 		write(fd, info->smbWorkgroup, strlen(info->smbWorkgroup));
 	}
 	write(fd, "\n", 1);
 
-	if(non_empty(info->smbServers)) {
+	if (non_empty(info->smbServers)) {
 		v = g_strsplit(info->smbServers, ",", 0);
 	} else {
 		v = NULL;
 	}
-	if(v && v[0]) {
+	if (v && v[0]) {
 		write(fd, v[0], strlen(v[0]));
 	}
 	write(fd, "\n", 1);
-	if(v && v[0] && v[1]) {
+	if (v && v[0] && v[1]) {
 		write(fd, v[1], strlen(v[1]));
 	}
 	write(fd, "\n", 1);
-	if(v) {
+	if (v) {
 		g_strfreev(v);
 	}
 
@@ -1019,17 +1066,17 @@ authInfoWriteNIS(struct authInfoType *info)
 	gboolean written = FALSE;
 
 	fd = open(SYSCONFDIR "/yp.conf", O_RDWR | O_CREAT, 0644);
-	if(fd == -1) {
+	if (fd == -1) {
 		return FALSE;
 	}
 
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
-	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
 		return FALSE;
 	}
 
-	if(fstat(fd, &st) == -1) {
+	if (fstat(fd, &st) == -1) {
 		return FALSE;
 	}
 
@@ -1044,22 +1091,22 @@ authInfoWriteNIS(struct authInfoType *info)
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	p = ibuf;
-	while(*p != '\0') {
+	while (*p != '\0') {
 		/* Isolate a single line. */
-		for(q = p; (*q != '\0') && (*q != '\n'); q++);
-		if(*q != '\0') q++;
+		for (q = p; (*q != '\0') && (*q != '\n'); q++);
+		if (*q != '\0') q++;
 
 		/* If it's a 'domain' line, insert ours instead. */
-		if(strncmp("domain", p, 6) == 0) {
-			if(!written)
-			if(non_empty(info->nisDomain)) {
+		if (strncmp("domain", p, 6) == 0) {
+			if (!written)
+			if (non_empty(info->nisDomain)) {
 				strcat(obuf, "domain ");
 				strcat(obuf, info->nisDomain);
 				/* Take an empty server name to mean that we
 				 * want to use broadcast. */
-				if(non_empty(info->nisServer)) {
+				if (non_empty(info->nisServer)) {
 					strcat(obuf, " server ");
-					if(strchr(info->nisServer, ',')) {
+					if (strchr(info->nisServer, ',')) {
 						char *q;
 						q = strchr(info->nisServer, ',');
 						strncat(obuf, info->nisServer,
@@ -1072,10 +1119,10 @@ authInfoWriteNIS(struct authInfoType *info)
 				}
 				strcat(obuf, "\n");
 
-				if(non_empty(info->nisServer))
-				if(strchr(info->nisServer, ',')) {
+				if (non_empty(info->nisServer))
+				if (strchr(info->nisServer, ',')) {
 					p = strchr(info->nisServer, ',') + 1;
-					while(strchr(p, ',')) {
+					while (strchr(p, ',')) {
 						char *q;
 						q = strchr(p, ',');
 						strcat(obuf, "ypserver ");
@@ -1093,12 +1140,12 @@ authInfoWriteNIS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'ypserver' line, insert ours instead. */
-		if(strncmp("ypserver", p, 8) == 0) {
-			if(!written)
-			if(is_empty(info->nisDomain))
-			if(non_empty(info->nisServer)) {
+		if (strncmp("ypserver", p, 8) == 0) {
+			if (!written)
+			if (is_empty(info->nisDomain))
+			if (non_empty(info->nisServer)) {
 				char *p = info->nisServer;
-				while(strchr(p, ',')) {
+				while (strchr(p, ',')) {
 					char *q;
 					q = strchr(p, ',');
 					strcat(obuf, "ypserver ");
@@ -1119,11 +1166,11 @@ authInfoWriteNIS(struct authInfoType *info)
 	}
 
 	/* If we haven't encountered a domain line yet... */
-	if(!written) {
-		if(non_empty(info->nisDomain)) {
+	if (!written) {
+		if (non_empty(info->nisDomain)) {
 			strcat(obuf, "domain ");
 			strcat(obuf, info->nisDomain);
-			if(non_empty(info->nisServer)) {
+			if (non_empty(info->nisServer)) {
 				strcat(obuf, " server ");
 				strcat(obuf, info->nisServer);
 			} else {
@@ -1131,7 +1178,7 @@ authInfoWriteNIS(struct authInfoType *info)
 			}
 			strcat(obuf, "\n");
 		} else {
-			if(non_empty(info->nisServer)) {
+			if (non_empty(info->nisServer)) {
 				strcat(obuf, "ypserver ");
 				strcat(obuf, info->nisServer);
 				strcat(obuf, "\n");
@@ -1164,17 +1211,17 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		 wrotepass = FALSE;
 
 	fd = open(filename, O_RDWR | O_CREAT, 0644);
-	if(fd == -1) {
+	if (fd == -1) {
 		return FALSE;
 	}
 
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
-	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
 		return FALSE;
 	}
 
-	if(fstat(fd, &st) == -1) {
+	if (fstat(fd, &st) == -1) {
 		return FALSE;
 	}
 
@@ -1191,21 +1238,21 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	obuf = g_malloc0((st.st_size + 1 + l) * 2);
 
 	p = ibuf;
-	while(*p != '\0') {
+	while (*p != '\0') {
 		/* Isolate a single line. */
-		for(q = p; (*q != '\0') && (*q != '\n'); q++);
-		if(*q != '\0') q++;
+		for (q = p; (*q != '\0') && (*q != '\n'); q++);
+		if (*q != '\0') q++;
 
 		/* If it's a 'host' line, insert ours instead. */
-		if(strncmp(host, p, 4) == 0) {
-			if(!wroteserver)
-			if(non_empty(info->ldapServer)) {
+		if (strncmp(host, p, 4) == 0) {
+			if (!wroteserver)
+			if (non_empty(info->ldapServer)) {
 				size_t l;
 				strcat(obuf, host);
 				strcat(obuf, " ");
 				l = strlen(obuf);
 				strcat(obuf, info->ldapServer);
-				while(strrchr(obuf + l, ',')) {
+				while (strrchr(obuf + l, ',')) {
 					char *p;
 					p = strrchr(obuf + l, ',');
 					*p = ' ';
@@ -1216,9 +1263,9 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		} else
 
 		/* If it's a 'base' line, insert ours instead. */
-		if(strncmp(base, p, 4) == 0) {
-			if(!wrotebasedn)
-			if(non_empty(info->ldapBaseDN)) {
+		if (strncmp(base, p, 4) == 0) {
+			if (!wrotebasedn)
+			if (non_empty(info->ldapBaseDN)) {
 				strcat(obuf, base);
 				strcat(obuf, " ");
 				strcat(obuf, info->ldapBaseDN);
@@ -1228,8 +1275,8 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		} else
 
 		/* If it's an 'ssl' line, insert ours instead. */
-		if(writePadl && (strncmp("ssl", p, 3)) == 0) {
-			if(!wrotessl) {
+		if (writePadl && (strncmp("ssl", p, 3)) == 0) {
+			if (!wrotessl) {
 				strcat(obuf, "ssl");
 				strcat(obuf, " ");
 				strcat(obuf,
@@ -1240,8 +1287,8 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		} else
 
 		/* If it's a 'pam_password' line, write the correct setting. */
-		if(writePadl && strncmp("pam_password", p, 12) == 0) {
-			if(!wrotepass) {
+		if (writePadl && strncmp("pam_password", p, 12) == 0) {
+			if (!wrotepass) {
 				strcat(obuf, "pam_password");
 				strcat(obuf, " ");
 				strcat(obuf, info->enableMD5 ? "md5" : "crypt");
@@ -1256,14 +1303,14 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	}
 
 	/* If we haven't encountered either of the config lines yet... */
-	if(!wroteserver) {
-		if(non_empty(info->ldapServer)) {
+	if (!wroteserver) {
+		if (non_empty(info->ldapServer)) {
 			size_t l;
 			strcat(obuf, host);
 			strcat(obuf, " ");
 			l = strlen(obuf);
 			strcat(obuf, info->ldapServer);
-			while(strrchr(obuf + l, ',')) {
+			while (strrchr(obuf + l, ',')) {
 				char *p;
 				p = strrchr(obuf + l, ',');
 				*p = ' ';
@@ -1271,21 +1318,21 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 			strcat(obuf, "\n");
 		}
 	}
-	if(!wrotebasedn) {
-		if(non_empty(info->ldapBaseDN)) {
+	if (!wrotebasedn) {
+		if (non_empty(info->ldapBaseDN)) {
 			strcat(obuf, base);
 			strcat(obuf, " ");
 			strcat(obuf, info->ldapBaseDN);
 			strcat(obuf, "\n");
 		}
 	}
-	if(writePadl && !wrotessl) {
+	if (writePadl && !wrotessl) {
 		strcat(obuf, "ssl");
 		strcat(obuf, " ");
 		strcat(obuf, info->enableLDAPS ? "start_tls" : "no");
 		strcat(obuf, "\n");
 	}
-	if(writePadl && !wrotepass) {
+	if (writePadl && !wrotepass) {
 		strcat(obuf, "pam_password");
 		strcat(obuf, " ");
 		strcat(obuf, info->enableMD5 ? "md5" : "crypt");
@@ -1309,11 +1356,11 @@ gboolean
 authInfoWriteLDAP(struct authInfoType *info)
 {
 	gboolean ret = TRUE;
-	if(ret) {
+	if (ret) {
 		ret = authInfoWriteLDAP2(info, SYSCONFDIR "/ldap.conf",
 					 "host", "base", TRUE);
 	}
-	if(ret) {
+	if (ret) {
 		/* Ignore errors here. */
 		authInfoWriteLDAP2(info, SYSCONFDIR "/openldap/ldap.conf",
 				   "HOST", "BASE", FALSE);
@@ -1325,9 +1372,9 @@ static void
 write_kdc(char *obuf, struct authInfoType *info)
 {
 	char *p = info->kerberosKDC;
-	if(is_empty(p))
+	if (is_empty(p))
 		return;
-	while(strchr(p, ',')) {
+	while (strchr(p, ',')) {
 		strcat(obuf, "  kdc = ");
 		strncat(obuf, p, strchr(p, ',') - p);
 		p = strchr(p, ',') + 1;
@@ -1342,9 +1389,9 @@ static void
 write_admin_server(char *obuf, struct authInfoType *info)
 {
 	char *p = info->kerberosAdminServer;
-	if(is_empty(p))
+	if (is_empty(p))
 		return;
-	while(strchr(p, ',')) {
+	while (strchr(p, ',')) {
 		strcat(obuf, "  admin_server = ");
 		strncat(obuf, p, strchr(p, ',') - p);
 		p = strchr(p, ',') + 1;
@@ -1371,8 +1418,8 @@ static int
 comma_count(const char *string)
 {
 	int ret = 0;
-	for(;string && (*string != '\0'); string++) {
-		if(*string == ',') {
+	for (;string && (*string != '\0'); string++) {
+		if (*string == ',') {
 			ret++;
 		}
 	}
@@ -1393,17 +1440,17 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	char *section = NULL, *subsection = NULL;
 
 	fd = open(SYSCONFDIR "/krb5.conf", O_RDWR | O_CREAT, 0644);
-	if(fd == -1) {
+	if (fd == -1) {
 		return FALSE;
 	}
 
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
-	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
 		return FALSE;
 	}
 
-	if(fstat(fd, &st) == -1) {
+	if (fstat(fd, &st) == -1) {
 		return FALSE;
 	}
 
@@ -1423,25 +1470,25 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	p = ibuf;
-	while(*p != '\0') {
+	while (*p != '\0') {
 		/* Isolate a single line. */
 		char *l = p;
-		for(q = p; (*q != '\0') && (*q != '\n'); q++);
-		if(*q != '\0') q++;
+		for (q = p; (*q != '\0') && (*q != '\n'); q++);
+		if (*q != '\0') q++;
 
 		/* Skip over any whitespace. */
-		for(;isspace(*p) && (*p != '\0') && (*p != '\n'); p++);
+		for (;isspace(*p) && (*p != '\0') && (*p != '\n'); p++);
 
 		/* If this is the "kdc" in our realm, replace it with
 		 * the values we now have. */
-		if((section != NULL) &&
+		if ((section != NULL) &&
 		   (strcmp(section, "realms") == 0) &&
 		   (subsection != NULL) &&
 		   (non_empty(info->kerberosRealm)) &&
 		   (strcmp(subsection, info->kerberosRealm) == 0) &&
 		   (strncmp(p, "kdc", 3) == 0)) {
-			if(!wrotekdc)
-			if(info->kerberosKDC) {
+			if (!wrotekdc)
+			if (info->kerberosKDC) {
 				write_kdc(obuf, info);
 				wrotekdc = TRUE;
 			}
@@ -1451,14 +1498,14 @@ authInfoWriteKerberos5(struct authInfoType *info)
 
 		/* If this is the "admin_server" in our realm, replace it with
 		 * the values we now have. */
-		if((section != NULL) &&
+		if ((section != NULL) &&
 		   (strcmp(section, "realms") == 0) &&
 		   (subsection != NULL) &&
 		   (non_empty(info->kerberosRealm)) &&
 		   (strcmp(subsection, info->kerberosRealm) == 0) &&
 		   (strncmp(p, "admin_server", 3) == 0)) {
-			if(!wroteadmin)
-			if(info->kerberosAdminServer) {
+			if (!wroteadmin)
+			if (info->kerberosAdminServer) {
 				write_admin_server(obuf, info);
 				wroteadmin = TRUE;
 			}
@@ -1468,44 +1515,44 @@ authInfoWriteKerberos5(struct authInfoType *info)
 
 		/* If we're in the realms section, but not in a realm, we'd
 		 * better be looking at the beginning of one. */
-		if((section != NULL) &&
+		if ((section != NULL) &&
 		   (strcmp(section, "realms") == 0) &&
 		   (subsection == NULL)) {
 			char *q;
-			for(q = p; !isspace(*q) && (*q != '\0'); q++);
-			if(subsection) {
+			for (q = p; !isspace(*q) && (*q != '\0'); q++);
+			if (subsection) {
 				g_free(subsection);
 			}
 			subsection = g_strndup(p, q - p);
-			if(is_empty(subsection)) {
+			if (is_empty(subsection)) {
 				g_free(subsection);
 				subsection = NULL;
 			} else {
 				/* If this is the section for our realm, mark
 				 * that. */
-				if(strcmp(subsection,info->kerberosRealm) == 0){
+				if (strcmp(subsection,info->kerberosRealm) == 0){
 					wroterealm = TRUE;
 				}
 			}
 		}
 
 		/* If it's the end of a subsection, mark that. */
-		if((section != NULL) &&
+		if ((section != NULL) &&
 		   (strcmp(section, "realms") == 0) &&
 	   	   (subsection != NULL) &&
 		   (strncmp(p, "}", 1) == 0)) {
 			/* If it's the right section of realms, write out
 			 * info we haven't already written. */
-	   	   	if(non_empty(info->kerberosRealm) &&
+	   	   	if (non_empty(info->kerberosRealm) &&
 	   	   	   (strcmp(subsection, info->kerberosRealm) == 0)) {
-				if(!wrotekdc) {
+				if (!wrotekdc) {
 					write_kdc(obuf, info);
 				}
-				if(!wroteadmin) {
+				if (!wroteadmin) {
 					write_admin_server(obuf, info);
 				}
 			}
-			if(subsection) {
+			if (subsection) {
 				g_free(subsection);
 			}
 			subsection = NULL;
@@ -1513,10 +1560,10 @@ authInfoWriteKerberos5(struct authInfoType *info)
 
 		/* If we're in the libdefaults section, and this is the
 		 * default_realm keyword, replace it with ours. */
-		if((section != NULL) &&
+		if ((section != NULL) &&
 		   (strcmp(section, "libdefaults") == 0) &&
 		   (strncmp(p, "default_realm", 13) == 0)) {
-			if(non_empty(info->kerberosRealm) &&
+			if (non_empty(info->kerberosRealm) &&
 			   !wrotedefaultrealm) {
 				strcat(obuf, " default_realm = ");
 				strcat(obuf, info->kerberosRealm);
@@ -1528,12 +1575,12 @@ authInfoWriteKerberos5(struct authInfoType *info)
 		}
 
 		/* If it's the beginning of a section, record its name. */
-		if(strncmp("[", p, 1) == 0) {
+		if (strncmp("[", p, 1) == 0) {
 			char *q;
 			p++;
 			/* If the previous section was "realms", and we didn't
 			 * see ours, write our realm out. */
-			if((section != NULL) &&
+			if ((section != NULL) &&
 			   (strcmp(section, "realms") == 0) &&
 			   (non_empty(info->kerberosRealm)) &&
 			   !wroterealm) {
@@ -1542,7 +1589,7 @@ authInfoWriteKerberos5(struct authInfoType *info)
 			}
 			/* If the previous section was "libdefaults", and we
 			 * didn't see a "default_realm", write it out. */
-			if((section != NULL) &&
+			if ((section != NULL) &&
 			   (strcmp(section, "libdefaults") == 0) &&
 			   (non_empty(info->kerberosRealm)) &&
 			   !wrotedefaultrealm) {
@@ -1551,15 +1598,15 @@ authInfoWriteKerberos5(struct authInfoType *info)
 				strcat(obuf, "\n");
 				wrotedefaultrealm = TRUE;
 			}
-			for(q = p; ((*q != ']') && (*q != '\0')); q++);
-			if(section) {
+			for (q = p; ((*q != ']') && (*q != '\0')); q++);
+			if (section) {
 				g_free(section);
 			}
 			section = g_strndup(p, q - p);
-			if(strcmp(section, "realms") == 0) {
+			if (strcmp(section, "realms") == 0) {
 				wroterealms = TRUE;
 			}
-			if(strcmp(section, "libdefaults") == 0) {
+			if (strcmp(section, "libdefaults") == 0) {
 				wrotelibdefaults = TRUE;
 			}
 		}
@@ -1570,7 +1617,7 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	}
 
 	/* If we haven't encountered a libdefaults section yet... */
-	if(!wrotelibdefaults && non_empty(info->kerberosRealm)) {
+	if (!wrotelibdefaults && non_empty(info->kerberosRealm)) {
 		strcat(obuf, "[libdefaults]\n");
 		strcat(obuf, " default_realm = ");
 		strcat(obuf, info->kerberosRealm);
@@ -1578,7 +1625,7 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	}
 
 	/* If we haven't encountered a realms section yet... */
-	if(!wroterealms && non_empty(info->kerberosRealm)) {
+	if (!wroterealms && non_empty(info->kerberosRealm)) {
 		strcat(obuf, "[realms]\n");
 		write_realm(obuf, info);
 	}
@@ -1590,16 +1637,16 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	close(fd);
 
 	/* Clean up. */
-	if(ibuf) {
+	if (ibuf) {
 		g_free(ibuf);
 	}
-	if(obuf) {
+	if (obuf) {
 		g_free(obuf);
 	}
-	if(section) {
+	if (section) {
 		g_free(section);
 	}
-	if(subsection) {
+	if (subsection) {
 		g_free(subsection);
 	}
 
@@ -1616,26 +1663,26 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	struct flock lock;
 	struct stat st;
 
-	if((info->kerberosRealm == NULL) || (strlen(info->kerberosRealm) == 0)) {
+	if ((info->kerberosRealm == NULL) || (strlen(info->kerberosRealm) == 0)) {
 		return FALSE;
 	}
 
 	fd = open(SYSCONFDIR "/krb.conf", O_RDWR | O_CREAT, 0644);
-	if(fd == -1) {
+	if (fd == -1) {
 		return FALSE;
 	}
 
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
-	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
 		return FALSE;
 	}
-	if(fstat(fd, &st) == -1) {
+	if (fstat(fd, &st) == -1) {
 		return FALSE;
 	}
 
 	ibuf = g_malloc0(st.st_size + 1);
-	if(read(fd, ibuf, st.st_size) != st.st_size) {
+	if (read(fd, ibuf, st.st_size) != st.st_size) {
 		g_free(ibuf);
 		return FALSE;
 	}
@@ -1659,8 +1706,8 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	sprintf(obuf, "%s\n", info->kerberosRealm ?: "");
 
 	p = info->kerberosKDC;
-	if(!is_empty(p)) {
-		while(strchr(p, ',')) {
+	if (!is_empty(p)) {
+		while (strchr(p, ',')) {
 			strcat(obuf, info->kerberosRealm ?: "");
 			strcat(obuf, "\t");
 			strncat(obuf, p, strchr(p, ',') - p);
@@ -1674,8 +1721,8 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	strcat(obuf, "\n");
 
 	p = info->kerberosAdminServer;
-	if(!is_empty(p)) {
-		while(strchr(p, ',')) {
+	if (!is_empty(p)) {
+		while (strchr(p, ',')) {
 			strcat(obuf, info->kerberosRealm ?: "");
 			strcat(obuf, "\t");
 			strncat(obuf, p, strchr(p, ',') - p);
@@ -1691,11 +1738,11 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	/* Now append lines from the original file which have nothing to do
 	 * with our realm. */
 	p = strchr(ibuf, '\n');
-	if(p != NULL) {
+	if (p != NULL) {
 		p++;
-		while(strchr(p, '\n')) {
+		while (strchr(p, '\n')) {
 			q = strchr(p, '\n') + 1;
-			if(strncmp(info->kerberosRealm ?: "",
+			if (strncmp(info->kerberosRealm ?: "",
 				   p,
 				   strlen(info->kerberosRealm ?: "")) != 0) {
 				strncat(obuf, p, q - p);
@@ -1711,10 +1758,10 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	close(fd);
 
 	/* Clean up. */
-	if(ibuf) {
+	if (ibuf) {
 		g_free(ibuf);
 	}
-	if(obuf) {
+	if (obuf) {
 		g_free(obuf);
 	}
 
@@ -1727,7 +1774,7 @@ authInfoWriteKerberos(struct authInfoType *info)
 {
 	gboolean ret;
 	ret = authInfoWriteKerberos5(info);
-	if(ret == TRUE) {
+	if (ret == TRUE) {
 		authInfoWriteKerberos4(info);
 	}
 	return ret;
@@ -1748,17 +1795,17 @@ authInfoWriteNSS(struct authInfoType *info)
 		 wrotehosts = FALSE;
 
 	fd = open(SYSCONFDIR "/nsswitch.conf", O_RDWR|O_CREAT, 0644);
-	if(fd == -1) {
+	if (fd == -1) {
 		return FALSE;
 	}
 
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
-	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
 		return FALSE;
 	}
 
-	if(fstat(fd, &st) == -1) {
+	if (fstat(fd, &st) == -1) {
 		return FALSE;
 	}
 
@@ -1784,36 +1831,44 @@ authInfoWriteNSS(struct authInfoType *info)
 	l += strlen(" nisplus") * 8;
 	l += strlen(" dns");
 	l += strlen(" winbind") * 8;
+	l += strlen(" dbbind") * 8;
+	l += strlen(" dbibind") * 8;
+	l += strlen(" hesiodbind") * 8;
+	l += strlen(" ldapbind") * 8;
 	l += strlen(" odbcbind") * 8;
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	/* Determine what we want in that file for most of the databases.  If
 	 * we're using DB, we're doing it for speed, so put it in first.  Then
 	 * comes files.  Then everything else in reverse alphabetic order. */
-	if(info->enableDB) strcat(normal, " db");
+	if (info->enableDB) strcat(normal, " db");
 	strcat(normal, " files");
-	if(info->enableWinbind) strcat(normal, " winbind");
-	if(info->enableOdbcbind) strcat(normal, " odbcbind");
-	if(info->enableNIS3) strcat(normal, " nisplus");
-	if(info->enableNIS) strcat(normal, " nis");
-	if(info->enableLDAP) strcat(normal, " ldap");
-	if(info->enableHesiod) strcat(normal, " hesiod");
+	if (info->enableWinbind) strcat(normal, " winbind");
+	if (info->enableOdbcbind) strcat(normal, " odbcbind");
+	if (info->enableNIS3) strcat(normal, " nisplus");
+	if (info->enableNIS) strcat(normal, " nis");
+	if (info->enableLDAPbind) strcat(normal, " ldapbind");
+	if (info->enableLDAP) strcat(normal, " ldap");
+	if (info->enableHesiodbind) strcat(normal, " hesiodbind");
+	if (info->enableHesiod) strcat(normal, " hesiod");
+	if (info->enableDBIbind) strcat(normal, " dbibind");
+	if (info->enableDBbind) strcat(normal, " dbbind");
 	
 	/* Hostnames we treat specially. */
 	strcat(hosts, " files");
-	if(info->enableNIS3) strcat(hosts, " nisplus");
-	if(info->enableNIS) strcat(hosts, " nis");
+	if (info->enableNIS3) strcat(hosts, " nisplus");
+	if (info->enableNIS) strcat(hosts, " nis");
 	strcat(hosts, " dns");
 
 	p = ibuf;
-	while(*p != '\0') {
+	while (*p != '\0') {
 		/* Isolate a single line. */
-		for(q = p; (*q != '\0') && (*q != '\n'); q++);
-		if(*q != '\0') q++;
+		for (q = p; (*q != '\0') && (*q != '\n'); q++);
+		if (*q != '\0') q++;
 
 		/* If it's a 'passwd' line, insert ours instead. */
-		if(strncmp("passwd:", p, 7) == 0) {
-			if(!wrotepasswd) {
+		if (strncmp("passwd:", p, 7) == 0) {
+			if (!wrotepasswd) {
 				strcat(obuf, "passwd:    ");
 				strcat(obuf, normal);
 				strcat(obuf, "\n");
@@ -1822,8 +1877,8 @@ authInfoWriteNSS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'shadow' line, insert ours instead. */
-		if(strncmp("shadow:", p, 7) == 0) {
-			if(!wroteshadow) {
+		if (strncmp("shadow:", p, 7) == 0) {
+			if (!wroteshadow) {
 				strcat(obuf, "shadow:    ");
 				strcat(obuf, normal);
 				strcat(obuf, "\n");
@@ -1832,8 +1887,8 @@ authInfoWriteNSS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'group' line, insert ours instead. */
-		if(strncmp("group:", p, 6) == 0) {
-			if(!wrotegroup) {
+		if (strncmp("group:", p, 6) == 0) {
+			if (!wrotegroup) {
 				strcat(obuf, "group:     ");
 				strcat(obuf, normal);
 				strcat(obuf, "\n");
@@ -1842,8 +1897,8 @@ authInfoWriteNSS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'services' line, insert ours instead. */
-		if(strncmp("services:", p, 9) == 0) {
-			if(!wroteservices) {
+		if (strncmp("services:", p, 9) == 0) {
+			if (!wroteservices) {
 				strcat(obuf, "services:  ");
 				strcat(obuf, normal);
 				strcat(obuf, "\n");
@@ -1852,8 +1907,8 @@ authInfoWriteNSS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'protocols' line, insert ours instead. */
-		if(strncmp("protocols:", p, 10) == 0) {
-			if(!wroteprotocols) {
+		if (strncmp("protocols:", p, 10) == 0) {
+			if (!wroteprotocols) {
 				strcat(obuf, "protocols: ");
 				strcat(obuf, normal);
 				strcat(obuf, "\n");
@@ -1862,8 +1917,8 @@ authInfoWriteNSS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'netgroup' line, insert ours instead. */
-		if(strncmp("netgroup:", p, 9) == 0) {
-			if(!wrotenetgroup) {
+		if (strncmp("netgroup:", p, 9) == 0) {
+			if (!wrotenetgroup) {
 				strcat(obuf, "netgroup:  ");
 				strcat(obuf, normal);
 				strcat(obuf, "\n");
@@ -1872,8 +1927,8 @@ authInfoWriteNSS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'automount' line, insert ours instead. */
-		if(strncmp("automount:", p, 10) == 0) {
-			if(!wroteautomount) {
+		if (strncmp("automount:", p, 10) == 0) {
+			if (!wroteautomount) {
 				strcat(obuf, "automount: ");
 				strcat(obuf, normal);
 				strcat(obuf, "\n");
@@ -1882,8 +1937,8 @@ authInfoWriteNSS(struct authInfoType *info)
 		} else
 
 		/* If it's a 'hosts' line, insert ours instead. */
-		if(strncmp("hosts:", p, 6) == 0) {
-			if(!wrotehosts) {
+		if (strncmp("hosts:", p, 6) == 0) {
+			if (!wrotehosts) {
 				strcat(obuf, "hosts:     ");
 				strcat(obuf, hosts);
 				strcat(obuf, "\n");
@@ -1897,42 +1952,42 @@ authInfoWriteNSS(struct authInfoType *info)
 	}
 
 	/* If we haven't encountered any of the config lines yet... */
-	if(!wrotepasswd) {
+	if (!wrotepasswd) {
 		strcat(obuf, "passwd:    ");
 		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
-	if(!wroteshadow) {
+	if (!wroteshadow) {
 		strcat(obuf, "shadow:    ");
 		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
-	if(!wrotegroup) {
+	if (!wrotegroup) {
 		strcat(obuf, "group:     ");
 		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
-	if(!wroteprotocols) {
+	if (!wroteprotocols) {
 		strcat(obuf, "protocols: ");
 		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
-	if(!wroteservices) {
+	if (!wroteservices) {
 		strcat(obuf, "services:  ");
 		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
-	if(!wrotenetgroup) {
+	if (!wrotenetgroup) {
 		strcat(obuf, "netgroup:  ");
 		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
-	if(!wroteautomount) {
+	if (!wroteautomount) {
 		strcat(obuf, "automount: ");
 		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
-	if(!wrotehosts) {
+	if (!wrotehosts) {
 		strcat(obuf, "hosts:     ");
 		strcat(obuf, hosts);
 		strcat(obuf, "\n");
@@ -2173,16 +2228,16 @@ fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 			break;
 	}
 	logic = standard_pam_modules[i].logic;
-	if(non_empty(stack) && non_empty(logic)) {
-		if(strlen(logic) > 0) {
+	if (non_empty(stack) && non_empty(logic)) {
+		if (strlen(logic) > 0) {
 			int j;
 			char buf[LINE_MAX];
 			memset(buf, '\0', sizeof(buf));
 			snprintf(buf, sizeof(buf) - 1,
 				 "%-12s%-13s %s/pam_%s.so", stack, logic,
 				 AUTH_MODULE_DIR, standard_pam_modules[i].name);
-			if(standard_pam_modules[i].argv != NULL) {
-				for(j = 0;
+			if (standard_pam_modules[i].argv != NULL) {
+				for (j = 0;
 				    non_empty(standard_pam_modules[i].argv[j]);
 				    j++) {
 					strncat(buf, " ",
@@ -2192,28 +2247,28 @@ fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 						sizeof(buf) - 1 - strlen(buf));
 				}
 			}
-			if(strcmp(standard_pam_modules[i].name, "unix") == 0)
-			if(stack != NULL) {
-				if(strcmp(stack, "password") == 0) {
-					if(info->enableMD5) {
+			if (strcmp(standard_pam_modules[i].name, "unix") == 0)
+			if (stack != NULL) {
+				if (strcmp(stack, "password") == 0) {
+					if (info->enableMD5) {
 						strncat(buf, " md5",
 						sizeof(buf) - 1 - strlen(buf));
 					}
-					if(info->enableShadow) {
+					if (info->enableShadow) {
 						strncat(buf, " shadow",
 						sizeof(buf) - 1 - strlen(buf));
 					}
-					if(info->enableNIS) {
+					if (info->enableNIS) {
 						strncat(buf, " nis",
 						sizeof(buf) - 1 - strlen(buf));
 					}
-					if(info->enableBigCrypt) {
+					if (info->enableBigCrypt) {
 						strncat(buf, " bigcrypt",
 						sizeof(buf) - 1 - strlen(buf));
 					}
 				}
-				if((strcmp(stack, "account") == 0)) {
-					if(info->brokenShadow) {
+				if ((strcmp(stack, "account") == 0)) {
+					if (info->brokenShadow) {
 						strncat(buf, " broken_shadow",
 						sizeof(buf) - 1 - strlen(buf));
 					}
@@ -2236,13 +2291,13 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	shvarFile *sv = NULL;
 
 	fd = open(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, O_RDWR|O_CREAT, 0644);
-	if(fd == -1) {
+	if (fd == -1) {
 		return FALSE;
 	}
 
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
-	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
 		return FALSE;
 	}
 
@@ -2251,20 +2306,20 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		       	  sizeof(standard_pam_modules[0])));
 	strcpy(obuf, "#%PAM-1.0\n");
 	strcat(obuf, "# This file is auto-generated.\n");
-      	strcat(obuf, "# User changes will be destroyed the next time "
+	strcat(obuf, "# User changes will be destroyed the next time "
 		     "authconfig is run.\n");
 
 	have_afs = (access("/afs", R_OK | X_OK) != -1);
 
-	for(i = 0;
+	for (i = 0;
 	    i < sizeof(standard_pam_modules) / sizeof(standard_pam_modules[0]);
 	    i++) {
-		if((i > 0) &&
+		if ((i > 0) &&
 		   (standard_pam_modules[i].stack !=
 		    standard_pam_modules[i - 1].stack)) {
 			strcat(obuf, "\n");
 		}
-		if(standard_pam_modules[i].mandatory ||
+		if (standard_pam_modules[i].mandatory ||
 		   (authInfo->enableAFS &&
 		    (strcmp("afs", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableAFSKerberos &&
@@ -2298,7 +2353,7 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	close(fd);
 
 	sv = svCreateFile(SYSCONFDIR "/sysconfig/authconfig");
-	if(sv != NULL) {
+	if (sv != NULL) {
 		svSetValue(sv, "USEDB",
 			   authInfo->enableDB ? "yes" : "no");
 		svSetValue(sv, "USEHESIOD",
@@ -2356,15 +2411,15 @@ authInfoWriteNetwork(struct authInfoType *info)
 {
 	shvarFile *sv = NULL;
 
-	if((sv = svNewFile(SYSCONFDIR "/sysconfig/network")) == NULL) {
+	if ((sv = svNewFile(SYSCONFDIR "/sysconfig/network")) == NULL) {
 		sv = svCreateFile(SYSCONFDIR "/sysconfig/network");
 	};
-	if(sv == NULL) {
+	if (sv == NULL) {
 		return FALSE;
 	}
 
-	if(info->nisDomain != NULL) {
-		if(strlen(info->nisDomain) == 0) {
+	if (info->nisDomain != NULL) {
+		if (strlen(info->nisDomain) == 0) {
 			g_free(info->nisDomain);
 			info->nisDomain = NULL;
 		}
@@ -2380,15 +2435,15 @@ authInfoWrite(struct authInfoType *authInfo)
 {
 	gboolean ret;
 	ret = authInfoWriteCache(authInfo);
-	if(authInfo->enableHesiod)
+	if (authInfo->enableHesiod)
 		ret = ret && authInfoWriteHesiod(authInfo);
-	if(authInfo->enableLDAP)
+	if (authInfo->enableLDAP)
 		ret = ret && authInfoWriteLDAP(authInfo);
-	if(authInfo->enableKerberos)
+	if (authInfo->enableKerberos)
 		ret = ret && authInfoWriteKerberos(authInfo);
-	if(authInfo->enableNIS)
+	if (authInfo->enableNIS)
 		ret = ret && authInfoWriteNIS(authInfo);
-	if(authInfo->enableSMB)
+	if (authInfo->enableSMB)
 		ret = ret && authInfoWriteSMB(authInfo);
 	ret = ret && authInfoWriteNSS(authInfo);
 	ret = ret && authInfoWritePAM(authInfo);
@@ -2402,8 +2457,8 @@ domain2dn(const char *domain)
 	char buf[LINE_MAX];
 	int i;
 	strcpy(buf, "DC=");
-	for(i = 0; (domain[i] != '\0') && (strlen(buf) < sizeof(buf) - 1); i++){
-		if(domain[i] == '.') {
+	for (i = 0; (domain[i] != '\0') && (strlen(buf) < sizeof(buf) - 1); i++){
+		if (domain[i] == '.') {
 			strcat(buf, ",DC=");
 		} else {
 			strncat(buf, domain + i, 1);
@@ -2415,7 +2470,7 @@ domain2dn(const char *domain)
 static void
 terminate_hostname(char *hostname)
 {
-	if(hostname[strlen(hostname) - 1] == '.'){
+	if (hostname[strlen(hostname) - 1] == '.'){
 		hostname[strlen(hostname) - 1] = '\0';
 	}
 }
@@ -2437,7 +2492,7 @@ authInfoProbe()
 	gethostname(hostname, sizeof(hostname) - 1);
 	hostname[sizeof(hostname) - 1] = '\0';
 
-	if(strlen(hostname) == 0) {
+	if (strlen(hostname) == 0) {
 		return ret;
 	}
 
@@ -2445,21 +2500,21 @@ authInfoProbe()
 
 	/* first, check for an LDAP server for the local domain */
 	results = NULL;
-	if((p = strchr(hostname, '.')) != NULL) {
+	if ((p = strchr(hostname, '.')) != NULL) {
 		snprintf(buf, sizeof(buf), "_ldap._tcp%s", p);
 		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
 					  query, sizeof(query));
-		if(length > 0) {
+		if (length > 0) {
 			int ret;
 			ret = res_send(query, length, buf, sizeof(buf));
-			if(ret != -1) {
+			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
 		}
 	}
 
-	if(results && (p != NULL)) {
-		if((results->dns_type == DNS_T_SRV) &&
+	if (results && (p != NULL)) {
+		if ((results->dns_type == DNS_T_SRV) &&
 		   (results->dns_rdata.srv.server)) {
 			ret->ldapServer = strdup(results->dns_rdata.srv.server);
 			terminate_hostname(ret->ldapServer);
@@ -2472,27 +2527,27 @@ authInfoProbe()
 	snprintf(buf, sizeof(buf), "_kerberos.%s", hostname);
 	length = dns_format_query(buf, DNS_C_IN, DNS_T_TXT,
 				  query, sizeof(query));
-	if(length > 0) {
+	if (length > 0) {
 		int ret;
 		ret = res_send(query, length, buf, sizeof(buf));
-		if(ret != -1) {
+		if (ret != -1) {
 			results = dns_parse_results(buf, ret);
 		}
 	}
-	if((results == NULL) && ((p = strchr(hostname, '.')) != NULL)) {
+	if ((results == NULL) && ((p = strchr(hostname, '.')) != NULL)) {
 		snprintf(buf, sizeof(buf), "_kerberos%s", p);
 		length = dns_format_query(buf, DNS_C_IN, DNS_T_TXT,
 					  query, sizeof(query));
-		if(length > 0) {
+		if (length > 0) {
 			int ret;
 			ret = res_send(query, length, buf, sizeof(buf));
-			if(ret != -1) {
+			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
 		}
 	}
-	if(results != NULL) {
-		if((results->dns_type == DNS_T_TXT) &&
+	if (results != NULL) {
+		if ((results->dns_type == DNS_T_TXT) &&
 		   (results->dns_rdata.txt.data)) {
 			ret->kerberosRealm = strdup(results->dns_rdata.txt.data);
 		}
@@ -2500,28 +2555,28 @@ authInfoProbe()
 
 	/* now fetch server information for the realm */
 	results = NULL;
-	if(ret->kerberosRealm) {
+	if (ret->kerberosRealm) {
 		snprintf(buf, sizeof(buf), "_kerberos._udp.%s",
 			 ret->kerberosRealm);
 		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
 					  query, sizeof(query));
-		if(length > 0) {
+		if (length > 0) {
 			int ret;
 			ret = res_send(query, length, buf, sizeof(buf));
-			if(ret != -1) {
+			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
 		}
 	}
 
 	memset(buf, '\0', sizeof(buf));
-	if(results != NULL) {
-		if((results->dns_type == DNS_T_SRV) &&
+	if (results != NULL) {
+		if ((results->dns_type == DNS_T_SRV) &&
 		   (results->dns_rdata.srv.server != NULL)) {
 			snprintf(buf, sizeof(buf), "%s",
 				 results->dns_rdata.srv.server);
 			terminate_hostname(buf);
-			if(results->dns_rdata.srv.port != 0) {
+			if (results->dns_rdata.srv.port != 0) {
 				snprintf(buf + strlen(buf),
 					 sizeof(buf) - strlen(buf),
 					 ":%d",
@@ -2533,15 +2588,15 @@ authInfoProbe()
 
 	/* now fetch admin server information for the realm */
 	results = NULL;
-	if(ret->kerberosRealm) {
+	if (ret->kerberosRealm) {
 		snprintf(buf, sizeof(buf), "_kerberos-adm._udp.%s",
 			 ret->kerberosRealm);
 		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
 					  query, sizeof(query));
-		if(length > 0) {
+		if (length > 0) {
 			int ret;
 			ret = res_send(query, length, buf, sizeof(buf));
-			if(ret != -1) {
+			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
 		}
@@ -2549,13 +2604,13 @@ authInfoProbe()
 
 	/* use all values */
 	memset(buf, '\0', sizeof(buf));
-	if(results != NULL) {
-		if((results->dns_type == DNS_T_SRV) &&
+	if (results != NULL) {
+		if ((results->dns_type == DNS_T_SRV) &&
 		   (results->dns_rdata.srv.server != NULL)) {
 			snprintf(buf, sizeof(buf), "%s",
 				 results->dns_rdata.srv.server);
 			terminate_hostname(buf);
-			if(results->dns_rdata.srv.port != 0) {
+			if (results->dns_rdata.srv.port != 0) {
 				snprintf(buf + strlen(buf),
 					 sizeof(buf) - strlen(buf),
 					 ":%d",
@@ -2571,62 +2626,65 @@ authInfoProbe()
 gboolean
 toggleCachingService(gboolean enableCaching, gboolean nostart)
 {
-  struct stat st;
-  if (!nostart) {
-    if (enableCaching) {
-      system("/sbin/service nscd restart");
-    } else {
-      if(stat(PATH_NSCD_PID, &st) == 0) {
-        system("/sbin/service nscd stop");
-      }
-    }
-  }
-  return TRUE;
+	struct stat st;
+	if (!nostart) {
+		if (enableCaching) {
+			system("/sbin/service nscd restart");
+		} else {
+			if (stat(PATH_NSCD_PID, &st) == 0) {
+				system("/sbin/service nscd stop");
+			}
+		}
+	}
+	return TRUE;
 }
 
 static gboolean
 toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 {
-  char *domainStr;
-  struct stat st;
+	char *domainStr;
+	struct stat st;
 
-  if (enableNis && (nisDomain != NULL) && (strlen(nisDomain) > 0)) { 
-    domainStr = g_strdup_printf("/bin/domainname %s", nisDomain);
-    system(domainStr);
-    g_free(domainStr);
-    if(stat(PATH_PORTMAP, &st) == 0) {
-      system("/sbin/chkconfig --add portmap");
-      system("/sbin/chkconfig --level 345 portmap on");
-      if (!nostart) {
-        system("/sbin/service portmap restart");
-      }
-    }
-    if(stat(PATH_YPBIND, &st) == 0) {
-      system("/sbin/chkconfig --add ypbind");
-      system("/sbin/chkconfig --level 345 ypbind on");
-      if (!nostart) {
-        if(stat(PATH_YPBIND_PID, &st) == 0) {
-          system("/sbin/service ypbind restart");
-        } else {
-          system("/sbin/service ypbind start");
-        }
-      }
-    }
-  } else {
-    system("/bin/domainname \"(none)\"");
-    if(stat(PATH_YPBIND, &st) == 0) {
-      if (!nostart) {
-        if(stat(PATH_YPBIND_PID, &st) == 0) {
-          system("/sbin/service ypbind stop");
-        }
-      }
-      system("/sbin/chkconfig --del ypbind");
-    }
-  }
+	if (enableNis && (nisDomain != NULL) && (strlen(nisDomain) > 0)) {
+		domainStr =
+		    g_strdup_printf("/bin/domainname %s", nisDomain);
+		system(domainStr);
+		g_free(domainStr);
+		if (stat(PATH_PORTMAP, &st) == 0) {
+			system("/sbin/chkconfig --add portmap");
+			system("/sbin/chkconfig --level 345 portmap on");
+			if (!nostart) {
+				system("/sbin/service portmap restart");
+			}
+		}
+		if (stat(PATH_YPBIND, &st) == 0) {
+			system("/sbin/chkconfig --add ypbind");
+			system("/sbin/chkconfig --level 345 ypbind on");
+			if (!nostart) {
+				if (stat(PATH_YPBIND_PID, &st) == 0) {
+					system
+					    ("/sbin/service ypbind restart");
+				} else {
+					system
+					    ("/sbin/service ypbind start");
+				}
+			}
+		}
+	} else {
+		system("/bin/domainname \"(none)\"");
+		if (stat(PATH_YPBIND, &st) == 0) {
+			if (!nostart) {
+				if (stat(PATH_YPBIND_PID, &st) == 0) {
+					system
+					    ("/sbin/service ypbind stop");
+				}
+			}
+			system("/sbin/chkconfig --del ypbind");
+		}
+	}
 
-  return TRUE;
+	return TRUE;
 }
-
 static gboolean
 toggleShadow(struct authInfoType *authInfo)
 {

@@ -32,8 +32,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <libgen.h>
 #include <glib.h>
+#include <glib-object.h>
 #include <gtk/gtk.h>
 #include <glade/glade-xml.h>
 #include "authinfo.h"
@@ -45,9 +45,15 @@
 #define AUTHINFONAME "AUTHINFO"
 #define GLADEFILE (DATADIR "/" PACKAGE "/" PACKAGE ".glade")
 
-static struct package_needed_warning {
+/* A structure which maps checkbox names (as defined in the GLADE file) to
+ * paths of binaries, the name of what they enable, and the name of the package
+ * which contains the binary.  We use this to warn the user if something she
+ * enabled isn't installed. */
+struct package_needed_warning {
 	const char *name, *path, *service, *package;
-} package_needed_warnings[] = {
+};
+
+static struct package_needed_warning package_needed_warnings[] = {
 	{"enablecache", PATH_NSCD, "caching", "nscd"},
 	{"enablenis", PATH_YPBIND, "NIS", "ypbind"},
 	{"enableldap", PATH_LIBNSS_LDAP, "LDAP", "nss_ldap"},
@@ -56,82 +62,95 @@ static struct package_needed_warning {
 	{"enablesmb", PATH_PAM_SMB, "SMB", "pam_smb"},
 };
 
+/* A structure mapping widget names (as defined in the GLADE file) to GType
+ * values (WARNING: only G_TYPE_BOOLEAN and G_TYPE_STRING are used, so don't
+ * go crazy if you modify this) and offsets in the authInfo structure. */
 struct config_map {
 	const char *name;
-	enum {boolean, string} type;
+	GType type;
 	size_t offset;
 };
 
+/* Config map for the main dialog. */
 static struct config_map mainsettings[] = {
-	{"enablecache", boolean,
+	{"enablecache", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableCache)},
-	{"enablehesiod", boolean,
+	{"enablehesiod", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableHesiod)},
-	{"enablenis", boolean,
+	{"enablenis", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableNIS)},
-	{"enableldap", boolean,
+	{"enableldap", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableLDAP)},
-	{"enableshadow", boolean,
+	{"enableshadow", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableShadow)},
-	{"enablemd5", boolean,
+	{"enablemd5", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableMD5)},
-	{"enablekerberos", boolean,
+	{"enablekerberos", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableKerberos)},
-	{"enableldapauth", boolean,
+	{"enableldapauth", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableLDAPAuth)},
-	{"enablesmb", boolean,
+	{"enablesmb", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableSMB)},
 	{NULL, 0, 0},
 };
 
+/* Config map for the hesiod settings dialog. */
 static struct config_map hesiodsettings[] = {
-	{"lhs", string,
+	{"lhs", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, hesiodLHS)},
-	{"rhs", string,
+	{"rhs", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, hesiodRHS)},
 	{NULL, 0, 0},
 };
 
+/* Config map for the kerberos settings dialog. */
 static struct config_map kerberossettings[] = {
-	{"realm", string,
+	{"realm", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, kerberosRealm)},
-	{"kdc", string,
+	{"kdc", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, kerberosKDC)},
-	{"adminserver", string,
+	{"adminserver", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, kerberosAdminServer)},
 	{NULL, 0, 0},
 };
 
+/* Config map for the LDAP settings dialog. */
 static struct config_map ldapsettings[] = {
-	{"tls", boolean,
+	{"tls", G_TYPE_BOOLEAN,
 	 G_STRUCT_OFFSET(struct authInfoType, enableLDAPS)},
-	{"basedn", string,
+	{"basedn", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, ldapBaseDN)},
-	{"server", string,
+	{"server", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, ldapServer)},
 	{NULL, 0, 0},
 };
 
+/* Config map for the NIS settings dialog. */
 static struct config_map nissettings[] = {
-	{"domain", string,
+	{"domain", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, nisDomain)},
-	{"server", string,
+	{"server", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, nisServer)},
 	{NULL, 0, 0},
 };
 
+/* Config map for the SMB settings dialog. */
 static struct config_map smbsettings[] = {
-	{"workgroup", string,
+	{"workgroup", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, smbWorkgroup)},
-	{"domaincontrollers", string,
+	{"domaincontrollers", G_TYPE_STRING,
 	 G_STRUCT_OFFSET(struct authInfoType, smbServers)},
 	{NULL, 0, 0},
 };
 
-static struct config_dialog {
+/* A structure button names (as defined in the GLADE file) to the names
+ * (again, as defined in the GLADE file) of dialog boxes to pop up if the
+ * user clicks on the button. */
+struct config_dialog {
 	const char *name, *dialog;
 	struct config_map *map;
-} config_dialogs[] = {
+};
+static struct config_dialog config_dialogs[] = {
 	{"confignis", "nissettings", nissettings},
 	{"confighesiod", "hesiodsettings", hesiodsettings},
 	{"configldap", "ldapsettings", ldapsettings},
@@ -140,6 +159,8 @@ static struct config_dialog {
 	{"configsmb", "smbsettings", smbsettings},
 };
 
+/* Pop up a warning box warning the user that the package needed to use the
+ * facility she's just enabled isn't installed. */
 static void
 check_warn(GtkWidget *widget, struct package_needed_warning *warning)
 {
@@ -149,7 +170,7 @@ check_warn(GtkWidget *widget, struct package_needed_warning *warning)
 		return;
 	}
 	if (GTK_IS_CHECK_BUTTON(widget)) {
-		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
+		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
 			dialog = gtk_message_dialog_new(NULL,
 							0,
 							GTK_MESSAGE_WARNING,
@@ -164,6 +185,7 @@ check_warn(GtkWidget *widget, struct package_needed_warning *warning)
 	}
 }
 
+/* Set the contents of a widget using a field from the structure. */
 static void
 set_config(GladeXML *xml, struct authInfoType *authInfo, struct config_map *map)
 {
@@ -172,9 +194,11 @@ set_config(GladeXML *xml, struct authInfoType *authInfo, struct config_map *map)
 	char *sval;
 	GtkWidget *widget;
 	for(i = 0; map[i].name != NULL; i++) {
+		/* Get the widget. */
 		widget = glade_xml_get_widget(xml, map[i].name);
 		switch(map[i].type) {
-			case boolean:
+			/* It's a boolean variable?  Set the checkbox. */
+			case G_TYPE_BOOLEAN:
 				g_assert(GTK_IS_CHECK_BUTTON(widget));
 				bval = G_STRUCT_MEMBER(gboolean,
 						       authInfo,
@@ -183,7 +207,8 @@ set_config(GladeXML *xml, struct authInfoType *authInfo, struct config_map *map)
 							     bval);
 							     
 				break;
-			case string:
+			/* It's a string?  Set the entry field. */
+			case G_TYPE_STRING:
 				g_assert(GTK_IS_ENTRY(widget));
 				sval = G_STRUCT_MEMBER(char *,
 						       authInfo,
@@ -194,6 +219,7 @@ set_config(GladeXML *xml, struct authInfoType *authInfo, struct config_map *map)
 	}
 }
 
+/* Set the state/content of a field of the authInfo structure using a widget. */
 static void
 get_config(GtkWidget *widget, struct config_map *map)
 {
@@ -208,16 +234,19 @@ get_config(GtkWidget *widget, struct config_map *map)
 	xml = g_object_get_data(G_OBJECT(widget), XMLNAME);
 
 	for(i = 0; map[i].name != NULL; i++) {
+		/* Get the address of the widget. */
 		widget = glade_xml_get_widget(xml, map[i].name);
 		switch(map[i].type) {
-			case boolean:
+			case G_TYPE_BOOLEAN:
+				/* Set the boolean using a checkbox. */
 				g_assert(GTK_IS_CHECK_BUTTON(widget));
 				bval = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
 				G_STRUCT_MEMBER(gboolean,
 						authInfo,
 						map[i].offset) = bval;
 				break;
-			case string:
+			case G_TYPE_STRING:
+				/* Set the text using an entry field. */
 				g_assert(GTK_IS_ENTRY(widget));
 				text = gtk_entry_get_text(GTK_ENTRY(widget));
 				sval = text ? g_strdup(text) : NULL;
@@ -232,43 +261,52 @@ get_config(GtkWidget *widget, struct config_map *map)
 	}
 }
 
+/* Construct and show a dialog given its name, using the passed-in widget
+ * to carry the address of the GladeXML object and the authInfo structure. */
 static void
 show_dialog(GtkWidget *widget, struct config_dialog *dialog)
 {
 	GladeXML *xml;
 	GtkWidget *window;
 	struct authInfoType *authInfo;
-	
+
+	/* Construct a new widget tree using the GLADE file and	make
+	 * the window modal. */
 	xml = glade_xml_new(GLADEFILE, dialog->dialog, PACKAGE);
 	g_assert(xml != NULL);
 	window = glade_xml_get_widget(xml, dialog->dialog);
 	g_assert(GTK_IS_WINDOW(window));
+	gtk_window_set_modal(GTK_WINDOW(window), TRUE);
 
+	/* Get the address of the authinfo structure. */
 	authInfo = g_object_get_data(G_OBJECT(widget), AUTHINFONAME);
 	g_assert(authInfo != NULL);
 
+	/* Read the structure, and initialize the dialog using data in it. */
 	set_config(xml, authInfo, dialog->map);
 
-	widget = glade_xml_get_widget(xml, dialog->dialog);
-	g_assert(GTK_IS_WINDOW(widget));
-	gtk_window_set_modal(GTK_WINDOW(widget), TRUE);
-
-	widget = glade_xml_get_widget(xml, "close");
+	/* If the user hits the cancel button, delete the dialog. */
+	widget = glade_xml_get_widget(xml, "cancel");
 	g_signal_connect_swapped(G_OBJECT(widget), "clicked",
 				 GTK_SIGNAL_FUNC(gtk_widget_destroy), window);
 
-	widget = glade_xml_get_widget(xml, "apply");
+	/* If the user hits the okay button, we want to save the settings to
+	 * the structure, and then delete the dialog. */
+	widget = glade_xml_get_widget(xml, "ok");
 	g_object_set_data(G_OBJECT(widget), AUTHINFONAME, authInfo);
 	g_object_set_data(G_OBJECT(widget), XMLNAME, xml);
+
 	g_signal_connect(G_OBJECT(widget), "clicked",
 			 GTK_SIGNAL_FUNC(get_config), dialog->map);
 	g_signal_connect_swapped(G_OBJECT(widget), "clicked",
 				 GTK_SIGNAL_FUNC(gtk_widget_destroy),
 				 window);
 
+	/* All done here. */
 	gtk_widget_show_all(window);
 }
 
+/* Callback to save the information and do the post-save stuff. */
 static void
 save_info(GtkWidget *ignored, struct authInfoType *authInfo)
 {
@@ -280,16 +318,20 @@ save_info(GtkWidget *ignored, struct authInfoType *authInfo)
 	}
 }
 
+/* Create the main dialog for the application. */
 static void
 create_main_window(struct authInfoType *authInfo)
 {
 	GladeXML *xml;
 	GtkWidget *window, *widget;
 	int i;
+
+	/* Tell libglade to construct the main dialog. */
 	xml = glade_xml_new(GLADEFILE, "authconfig", PACKAGE);
 	g_assert(xml != NULL);
 	glade_xml_signal_autoconnect(xml);
 
+	/* Attach warnings to each of the toggle buttons in the main dialogs. */
 	for(i = 0; i < G_N_ELEMENTS(package_needed_warnings); i++) {
 		widget = glade_xml_get_widget(xml,
 					      package_needed_warnings[i].name);
@@ -299,6 +341,8 @@ create_main_window(struct authInfoType *authInfo)
 				 &package_needed_warnings[i]);
 	}
 
+	/* Attach the XML object and authInfo structure to each of the buttons
+	 * which launch dialogs. */
 	for(i = 0; i < G_N_ELEMENTS(config_dialogs); i++) {
 		widget = glade_xml_get_widget(xml,
 					      config_dialogs[i].name);
@@ -310,9 +354,12 @@ create_main_window(struct authInfoType *authInfo)
 				 &config_dialogs[i]);
 	}
 
+	/* Initialize the widgets using the authInfo structure. */
 	set_config(xml, authInfo, mainsettings);
 
-	widget = glade_xml_get_widget(xml, "apply");
+	/* When the user hits "ok", we need to read the settings from the
+	 * dialog, save her settings to disk, and quit. */
+	widget = glade_xml_get_widget(xml, "ok");
 	g_assert(GTK_IS_BUTTON(widget));
 	g_object_set_data(G_OBJECT(widget), AUTHINFONAME, authInfo);
 	g_object_set_data(G_OBJECT(widget), XMLNAME, xml);
@@ -323,12 +370,13 @@ create_main_window(struct authInfoType *authInfo)
 	g_signal_connect_swapped(G_OBJECT(widget), "clicked",
 				 GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
 
-	widget = glade_xml_get_widget(xml, "close");
+	/* When the user hits "cancel", we just need to quit. */
+	widget = glade_xml_get_widget(xml, "cancel");
 	window = glade_xml_get_widget(xml, "authconfig");
-
 	g_signal_connect_swapped(G_OBJECT(widget), "clicked",
 				 GTK_SIGNAL_FUNC(gtk_main_quit), window);
 
+	/* All done here. */
 	gtk_widget_show(window);
 }
 
