@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-08 02:25-0500\n"
+"POT-Creation-Date: 2004-04-21 17:58-0400\n"
 "PO-Revision-Date: 2003-11-08 17:56+0200\n"
 "Last-Translator: Maxim Dzumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "LHS:"
 msgid "RHS:"
 msgstr "RHS:"
 
-#: authconfig.c:317 glade.strings:50
+#: authconfig.c:317 glade.strings.h:50
 msgid "Hesiod Settings"
 msgstr "Настройки Hesiod"
 
@@ -53,7 +53,7 @@ msgstr "Сервер:"
 msgid "Base DN:"
 msgstr "Базовий DN:"
 
-#: authconfig.c:333 glade.strings:69
+#: authconfig.c:333 glade.strings.h:69
 msgid "LDAP Settings"
 msgstr "Настройки LDAP"
 
@@ -61,7 +61,7 @@ msgstr "Настройки LDAP"
 msgid "Domain:"
 msgstr "Домен:"
 
-#: authconfig.c:347 glade.strings:45
+#: authconfig.c:347 glade.strings.h:45
 msgid "NIS Settings"
 msgstr "Настройки NIS"
 
@@ -85,7 +85,7 @@ msgstr "Використовувати DNS для пошуку вузлів та
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Використовувати DNS для пошуку KDC для областей"
 
-#: authconfig.c:367 glade.strings:55
+#: authconfig.c:367 glade.strings.h:55
 msgid "Kerberos Settings"
 msgstr "Настройки Kerberos"
 
@@ -101,7 +101,7 @@ msgstr "Сервери:"
 msgid "Shell:"
 msgstr "Оболонка:"
 
-#: authconfig.c:383 glade.strings:64
+#: authconfig.c:383 glade.strings.h:64
 msgid "SMB Settings"
 msgstr "Настройки SMB"
 
@@ -121,14 +121,15 @@ msgstr "Настройка входу"
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: authconfig.c:421 glade.strings:94
+#: authconfig.c:421 glade.strings.h:94
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
 msgstr ""
-"Перш ніж продовжити необхідно записати на диск деякі зроблені вами зміни у настройках. "
-"Якщо ви їх не збережете, ваша спроба приєднатись до домену не вдасться. Зберегти зміни?"
+"Перш ніж продовжити необхідно записати на диск деякі зроблені вами зміни у "
+"настройках. Якщо ви їх не збережете, ваша спроба приєднатись до домену не "
+"вдасться. Зберегти зміни?"
 
 #: authconfig.c:427
 msgid "Save Settings"
@@ -158,7 +159,7 @@ msgstr "Області ADS:"
 msgid "Template Shell:"
 msgstr "Оболонка шаблону:"
 
-#: authconfig.c:483 glade.strings:75
+#: authconfig.c:483 glade.strings.h:75
 msgid "Winbind Settings"
 msgstr "Настройки Winbind"
 
@@ -174,7 +175,7 @@ msgstr "Попередження"
 msgid "caching"
 msgstr "кешування"
 
-#: authconfig.c:534 glade.strings:35
+#: authconfig.c:534 glade.strings.h:35
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -182,11 +183,11 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP автентифікація"
 
-#: authconfig.c:542 glade.strings:16 glade.strings:31
+#: authconfig.c:542 glade.strings.h:16 glade.strings.h:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:546 glade.strings:12
+#: authconfig.c:546 glade.strings.h:12
 msgid "NIS"
 msgstr "NIS"
 
@@ -198,7 +199,7 @@ msgstr "приховані паролі"
 msgid "SMB authentication"
 msgstr "Автентифікація SMB"
 
-#: authconfig.c:558 authconfig.c:566 glade.strings:24 glade.strings:43
+#: authconfig.c:558 authconfig.c:566 glade.strings.h:24 glade.strings.h:43
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -206,7 +207,7 @@ msgstr "Winbind"
 msgid "Winbind authentication"
 msgstr "Аутентифікація Winbind"
 
-#: authconfig.c:577 glade.strings:25
+#: authconfig.c:577 glade.strings.h:25
 msgid "User Information"
 msgstr "Інформація про користувача"
 
@@ -230,7 +231,7 @@ msgstr "Використовувати NIS"
 msgid "Use Winbind"
 msgstr "Використовувати Winbind"
 
-#: authconfig.c:618 authconfig.desktop.in.h:1 glade.strings:44
+#: authconfig.c:618 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Аутентифікація"
 
@@ -258,21 +259,12 @@ msgstr "Викор. автентифікацію SMB"
 msgid "Use Winbind Authentication"
 msgstr "Викор. автентифікацію Winbind"
 
-#. !/usr/bin/python
-#. "checkbox/button name": authInfo field, file, generic name,
-#. package, names of widgets to disable if checkbox not active
-#. entry or label / button / checkbox / option menu :
-#. entry (or label): authInfo field
-#. button: function
-#. checkbox: authInfo field
-#. option menu: authInfo field, list of choices, list of tuples
-#. of value/sensitive widgets
-#. Don't save.
-#. Save.
-#. Toggle a boolean.
-#. Create a vbox or dialog using the file, and return it. */
-#. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:700 authconfig-gtk.py:287 glade.strings:7
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: authconfig.c:700 authconfig-gtk.py:287 glade.strings.h:7
 msgid "Authentication Configuration"
 msgstr "Налаштовування автентифікації"
 
@@ -312,8 +304,8 @@ msgstr "<домен>"
 msgid "default NIS server\n"
 msgstr "сервер NIS\n"
 
-#: authconfig.c:890 authconfig.c:905 authconfig.c:914 authconfig.c:916
-#: authconfig.c:936
+#: authconfig.c:890 authconfig.c:912 authconfig.c:921 authconfig.c:923
+#: authconfig.c:943
 msgid "<server>"
 msgstr "<сервер>"
 
@@ -325,253 +317,266 @@ msgstr "ввімкнути LDAP для отримання інформацій �
 msgid "disable LDAP for user information by default"
 msgstr "не використовувати LDAP для отримання інформацій про користувачів"
 
-#: authconfig.c:897
+#: authconfig.c:897 authconfig.c:903
 msgid "enable use of TLS with LDAP"
 msgstr "ввімкнути використання TLS з LDAP"
 
-#: authconfig.c:899
+#: authconfig.c:899 authconfig.c:905
 msgid "disable use of TLS with LDAP"
 msgstr "не використовувати TLS з LDAP"
 
-#: authconfig.c:901
+#: authconfig.c:908
 msgid "enable LDAP for authentication by default"
 msgstr "використовувати автентифікацію LDAP"
 
-#: authconfig.c:903
+#: authconfig.c:910
 msgid "disable LDAP for authentication by default"
 msgstr "не використовувати автентифікацію LDAP"
 
-#: authconfig.c:905
+#: authconfig.c:912
 msgid "default LDAP server"
 msgstr "LDAP сервер"
 
-#: authconfig.c:907
+#: authconfig.c:914
 msgid "default LDAP base DN\n"
 msgstr "базова DN сервера LDAP\n"
 
-#: authconfig.c:907
+#: authconfig.c:914
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:910
+#: authconfig.c:917
 msgid "enable kerberos authentication by default"
 msgstr "використовувати автентифікацію kerberos"
 
-#: authconfig.c:912
+#: authconfig.c:919
 msgid "disable kerberos authentication by default"
 msgstr "не використовувати автентифікацію kerberos"
 
-#: authconfig.c:914
+#: authconfig.c:921
 msgid "default kerberos KDC"
 msgstr "kerberos KDC"
 
-#: authconfig.c:916
+#: authconfig.c:923
 msgid "default kerberos admin server"
 msgstr "керуючий сервер kerberos"
 
-#: authconfig.c:918
+#: authconfig.c:925
 msgid "default kerberos realm\n"
 msgstr "область kerberos\n"
 
-#: authconfig.c:918
+#: authconfig.c:925
 msgid "<realm>"
 msgstr "<область>"
 
-#: authconfig.c:921
+#: authconfig.c:928
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "ввімкнути використання DNS для пошуку kerberos KDC"
 
-#: authconfig.c:923
+#: authconfig.c:930
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "вимкнути використання DNS для пошуку kerberos KDC"
 
-#: authconfig.c:925
+#: authconfig.c:932
 msgid "enable use of DNS to find kerberos realms"
 msgstr "ввімкнути використання DNS для пошуку областей kerberos"
 
-#: authconfig.c:927
+#: authconfig.c:934
 msgid "disable use of DNS to find kerberos realms\n"
 msgstr "вимкнути використання DNS для пошуку областей kerberos\n"
 
-#: authconfig.c:930
+#: authconfig.c:937
 msgid "enable SMB authentication by default"
 msgstr "використовувати автентифікацію SMB"
 
-#: authconfig.c:932
+#: authconfig.c:939
 msgid "disable SMB authentication by default"
 msgstr "не використовувати автентифікацію SMB"
 
-#: authconfig.c:934
+#: authconfig.c:941
 msgid "workgroup authentication servers are in"
 msgstr "сервери автентифікації робочої групи у"
 
-#: authconfig.c:934
+#: authconfig.c:941
 msgid "<workgroup>"
 msgstr "<робоча група>"
 
-#: authconfig.c:936
+#: authconfig.c:943
 msgid "names of servers to authenticate against\n"
 msgstr "імена серверів автентифікації\n"
 
-#: authconfig.c:939
+#: authconfig.c:946
 msgid "enable winbind for user information and authentication by default"
-msgstr "ввімкнути використання winbind для інформації про користувачів та автентифікації"
+msgstr ""
+"ввімкнути використання winbind для інформації про користувачів та "
+"автентифікації"
 
-#: authconfig.c:942
+#: authconfig.c:949
 msgid "disable winbind for user information and authentication by default"
-msgstr "вимкнути використання winbind для інформації про користувачів та автентифікації"
+msgstr ""
+"вимкнути використання winbind для інформації про користувачів та "
+"автентифікації"
 
-#: authconfig.c:945
+#: authconfig.c:952
 msgid "security mode to use for samba and winbind"
 msgstr "режим безпеки для samba таі winbind"
 
-#: authconfig.c:947
+#: authconfig.c:954
 msgid "default realm for samba and winbind when security=ads"
 msgstr "типова область (realm) для samba та winbind якщо security=ads"
 
-#: authconfig.c:949
+#: authconfig.c:956
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "діапазон uid який winbind буде призначати домену або ads користувачам"
 
-#: authconfig.c:950 authconfig.c:953
+#: authconfig.c:957 authconfig.c:960
 msgid "<lowest-highest>"
 msgstr "<нижній-верхній>"
 
-#: authconfig.c:952
+#: authconfig.c:959
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "діапазон gid який winbind буде призначати домену або ads користувачам"
 
-#: authconfig.c:956
+#: authconfig.c:963
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
-"символ, який буде використовуватись для відокремлення частин домену та користувача "
-"у створюваних winbind іменах користувачів, якщо winbindusedefaultdomain не ввімкнено"
-
-#: authconfig.c:960
-msgid "the directory which winbind-created users will have as home directories"
-msgstr "каталог, який створені winbind користувачі будуть використовувати для домашніх каталогів"
-
-#: authconfig.c:964
-msgid "the group which winbind-created users will have as their primary group"
-msgstr "група, яку створені winbind користувачі будуть використовувати у якості первинної групи"
+"символ, який буде використовуватись для відокремлення частин домену та "
+"користувача у створюваних winbind іменах користувачів, якщо "
+"winbindusedefaultdomain не ввімкнено"
 
 #: authconfig.c:967
-msgid "the shell which winbind-created users will have as their login shell"
-msgstr "оболонка, яку створені winbind користувачі будуть використовувати у якості оболонки входу"
+msgid "the directory which winbind-created users will have as home directories"
+msgstr ""
+"каталог, який створені winbind користувачі будуть використовувати для "
+"домашніх каталогів"
 
 #: authconfig.c:971
+msgid "the group which winbind-created users will have as their primary group"
+msgstr ""
+"група, яку створені winbind користувачі будуть використовувати у якості "
+"первинної групи"
+
+#: authconfig.c:974
+msgid "the shell which winbind-created users will have as their login shell"
+msgstr ""
+"оболонка, яку створені winbind користувачі будуть використовувати у якості "
+"оболонки входу"
+
+#: authconfig.c:978
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
-"настроює winbind таким чином, що користувачі, які не містять домен у своїй назві вважаються членами домену"
+"настроює winbind таким чином, що користувачі, які не містять домен у своїй "
+"назві вважаються членами домену"
 
-#: authconfig.c:975
+#: authconfig.c:982
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
-"настроює winbind таким чином, що користувачі, які не містять домен у своїй назві не вважаються членами домену"
+"настроює winbind таким чином, що користувачі, які не містять домен у своїй "
+"назві не вважаються членами домену"
 
-#: authconfig.c:979
+#: authconfig.c:986
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr "ввійти у winbind домен або ads область як адміністратор\n"
 
-#: authconfig.c:983
+#: authconfig.c:990
 msgid "enable wins for hostname resolution"
 msgstr "використовувати wins для розв'язання назв вузлів"
 
-#: authconfig.c:985
+#: authconfig.c:992
 msgid "disable wins for hostname resolution\n"
 msgstr "не використовувати wins для розв'язання назв вузлів\n"
 
-#: authconfig.c:988
+#: authconfig.c:995
 msgid "enable hesiod for user information by default"
 msgstr "використовувати hesiod для інформації про користувачів"
 
-#: authconfig.c:990
+#: authconfig.c:997
 msgid "disable hesiod for user information by default"
 msgstr "не використовувати hesiod для інформації про користувачів"
 
-#: authconfig.c:992
+#: authconfig.c:999
 msgid "default hesiod LHS"
 msgstr "hesiod LHS"
 
-#: authconfig.c:992
+#: authconfig.c:999
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:994
+#: authconfig.c:1001
 msgid "default hesiod RHS\n"
 msgstr "hesiod RHS\n"
 
-#: authconfig.c:994
+#: authconfig.c:1001
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:997
+#: authconfig.c:1004
 msgid "enable caching of user information by default"
 msgstr "використовувати кешування інформацій про користувачів"
 
-#: authconfig.c:999
+#: authconfig.c:1006
 msgid "disable caching of user information by default\n"
 msgstr "не використовувати кешування інформацій про користувачів\n"
 
-#: authconfig.c:1006
+#: authconfig.c:1013
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "не запускати/зупиняти portmap, ypbind, та nscd"
 
-#: authconfig.c:1008
+#: authconfig.c:1015
 msgid "don't display user interface"
 msgstr "не відображати інтерфейс користувача"
 
-#: authconfig.c:1010
+#: authconfig.c:1017
 msgid "probe network for defaults and print them"
 msgstr "визначити параметри мережі автоматично"
 
-#: authconfig.c:1013
+#: authconfig.c:1020
 msgid "use locally-defined policies"
 msgstr "використовувати локальні правила"
 
-#: authconfig.c:1015
+#: authconfig.c:1022
 msgid "don't use locally-defined policies"
 msgstr "не використовувати локальні правила"
 
-#: authconfig.c:1026
+#: authconfig.c:1033
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: неправильний аргумент %s: %s\n"
 
-#: authconfig.c:1035
+#: authconfig.c:1042
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s: спроба продовжити виконання\n"
 
-#: authconfig.c:1039
+#: authconfig.c:1046
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: несподіваний аргумент\n"
 
-#: authconfig.c:1071
+#: authconfig.c:1078
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: може виконуватись лише користувачем root\n"
 
-#: authconfig.c:1082 authconfig.c:1090 authconfig.c:1098 authconfig.c:1106
-#: authconfig.c:1114 authconfig.c:1122 authconfig.c:1130 authconfig.c:1143
-#: authconfig.c:1151
+#: authconfig.c:1089 authconfig.c:1097 authconfig.c:1105 authconfig.c:1113
+#: authconfig.c:1121 authconfig.c:1129 authconfig.c:1137 authconfig.c:1150
+#: authconfig.c:1158
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: критична помилка читання %s/%s"
 
-#: authconfig.c:1137
+#: authconfig.c:1144
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s: неможливо прочитати інформацію про кешування"
 
-#: authconfig.c:1237
+#: authconfig.c:1244
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -579,22 +584,23 @@ msgstr ""
 " <Tab>/<Alt-Tab> між елементами   |   <Space> вибір   |  <F12> наступний "
 "екран"
 
-#: authconfig.c:1240
+#: authconfig.c:1247
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 Red Hat, Inc."
 
-#: authconfig.c:1247
+#: authconfig.c:1254
+#, c-format
 msgid "dialog was cancelled\n"
 msgstr "діалог було перервано\n"
 
-#: authconfig.c:1262
+#: authconfig.c:1269
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s: критична помилка запису параметрів кешу"
 
-#: authconfig.c:1268 authconfig.c:1274 authconfig.c:1280 authconfig.c:1286
-#: authconfig.c:1291 authconfig.c:1297 authconfig.c:1302 authconfig.c:1307
-#: authconfig.c:1312 authconfig.c:1318
+#: authconfig.c:1275 authconfig.c:1281 authconfig.c:1287 authconfig.c:1293
+#: authconfig.c:1298 authconfig.c:1304 authconfig.c:1309 authconfig.c:1314
+#: authconfig.c:1319 authconfig.c:1325
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: критична помилка запису %s/%s"
@@ -612,19 +618,19 @@ msgstr ""
 "Не знайдено файл %s, але він потрібен для забезпечення правильної роботи %s. "
 "Встановіть пакет %s."
 
-#: glade.strings:8
+#: glade.strings.h:8
 msgid "_Cache User Information"
 msgstr "_Кешувати інформацію про користувача"
 
-#: glade.strings:9
+#: glade.strings.h:9
 msgid "_Configure NIS..."
 msgstr "_Настроїти NIS..."
 
-#: glade.strings:10
+#: glade.strings.h:10
 msgid "Enable _NIS Support"
 msgstr "Ввімкнути підтримку _NIS"
 
-#: glade.strings:11
+#: glade.strings.h:11
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
@@ -632,15 +638,15 @@ msgstr ""
 "NIS (Network Information Service) часто використовується у невеликих та "
 "середніх мережах."
 
-#: glade.strings:13 glade.strings:28
+#: glade.strings.h:13 glade.strings.h:28
 msgid "Enable _LDAP Support"
 msgstr "Ввімкнути підтримку _LDAP"
 
-#: glade.strings:14 glade.strings:29
+#: glade.strings.h:14 glade.strings.h:29
 msgid "_Configure LDAP..."
 msgstr "_Настроїти LDAP..."
 
-#: glade.strings:15 glade.strings:30
+#: glade.strings.h:15 glade.strings.h:30
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -650,15 +656,15 @@ msgstr ""
 "каталогів, які можуть містити дані у ієрархічній структурі. LDAP набирає "
 "популярність у маленьких, середніх та великих мережах."
 
-#: glade.strings:17
+#: glade.strings.h:17
 msgid "Enable _Hesiod Support"
 msgstr "Ввімкнути підтримку _Hesiod"
 
-#: glade.strings:18
+#: glade.strings.h:18
 msgid "_Configure Hesiod..."
 msgstr "_Настроїти Hesiod..."
 
-#: glade.strings:19
+#: glade.strings.h:19
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -666,45 +672,46 @@ msgstr ""
 "Hesiod дозволяє адміністратору публікувати інформацію про користувачів та "
 "групи у DNS. Іноді використовується у дуже великих мережах."
 
-#: glade.strings:20
+#: glade.strings.h:20
 msgid "Hesiod"
 msgstr "Hesiod"
 
-#: glade.strings:21 glade.strings:40
+#: glade.strings.h:21 glade.strings.h:40
 msgid "Enable _Winbind Support"
 msgstr "Ввімкнути підтримку _Winbind"
 
-#: glade.strings:22 glade.strings:41
+#: glade.strings.h:22 glade.strings.h:41
 msgid "_Configure Winbind..."
 msgstr "_Настроїти Winbind..."
 
-#: glade.strings:23 glade.strings:42
+#: glade.strings.h:23 glade.strings.h:42
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
 msgstr ""
 "Winbind дозволяє системі отримувати інформацію про користувачів та  "
-"виконувати автентифікацію користувачів, використовуючи інформацію, що зберігається "
-"на NTDOM або ADS сервері. Використовується у мережах від великих до малих."
+"виконувати автентифікацію користувачів, використовуючи інформацію, що "
+"зберігається на NTDOM або ADS сервері. Використовується у мережах від "
+"великих до малих."
 
-#: glade.strings:26
+#: glade.strings.h:26
 msgid "Use _Shadow Passwords"
 msgstr "Використовувати _приховані паролі"
 
-#: glade.strings:27
+#: glade.strings.h:27
 msgid "Use _MD5 Passwords"
 msgstr "Використовувати паролі _MD5"
 
-#: glade.strings:32
+#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Ввімкнути підтримку _Kerberos"
 
-#: glade.strings:33
+#: glade.strings.h:33
 msgid "_Configure Kerberos..."
 msgstr "_Настроїти Kerberos..."
 
-#: glade.strings:34
+#: glade.strings.h:34
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -712,15 +719,15 @@ msgstr ""
 "Kerberos - це довірена система автентифікації третьою стороною, яка широко "
 "використовується у середніх та великих мережах."
 
-#: glade.strings:36
+#: glade.strings.h:36
 msgid "Enable _SMB Support"
 msgstr "Ввімкнути підтримку _SMB"
 
-#: glade.strings:37
+#: glade.strings.h:37
 msgid "_Configure SMB..."
 msgstr "_Настроїти SMB..."
 
-#: glade.strings:38
+#: glade.strings.h:38
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -728,122 +735,122 @@ msgstr ""
 "Автентифікація SMB перевіряє пароль користувача з'єднуючись з сервером, який "
 "використовує протокол SMB (system message block)."
 
-#: glade.strings:39
+#: glade.strings.h:39
 msgid "SMB"
 msgstr "SMB"
 
-#: glade.strings:46 glade.strings:49 glade.strings:51 glade.strings:54
-#: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:65
-#: glade.strings:68 glade.strings:70 glade.strings:73 glade.strings:79
-#: glade.strings:81 glade.strings:84 glade.strings:86 glade.strings:90
+#: glade.strings.h:46 glade.strings.h:49 glade.strings.h:51 glade.strings.h:54
+#: glade.strings.h:56 glade.strings.h:59 glade.strings.h:61 glade.strings.h:65
+#: glade.strings.h:68 glade.strings.h:70 glade.strings.h:73 glade.strings.h:79
+#: glade.strings.h:81 glade.strings.h:84 glade.strings.h:86 glade.strings.h:90
 msgid "*"
 msgstr "*"
 
-#: glade.strings:47
+#: glade.strings.h:47
 msgid "NIS _Server"
 msgstr "_Сервер NIS:"
 
-#: glade.strings:48
+#: glade.strings.h:48
 msgid "NIS _Domain"
 msgstr "_Домен NIS:"
 
-#: glade.strings:52
+#: glade.strings.h:52
 msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
-#: glade.strings:53
+#: glade.strings.h:53
 msgid "Hesiod _LHS"
 msgstr "Hesiod _LHS"
 
-#: glade.strings:57
+#: glade.strings.h:57
 msgid "_Admin Servers"
 msgstr "_Керуючі сервери"
 
-#: glade.strings:58
+#: glade.strings.h:58
 msgid "_Realm"
 msgstr "_Realm"
 
-#: glade.strings:60
+#: glade.strings.h:60
 msgid "_KDCs"
 msgstr "_KDC"
 
-#: glade.strings:62
+#: glade.strings.h:62
 msgid "Use DNS to resolve hosts to _realms"
 msgstr "Використовувати DNS для розв'язання вузлів у _області"
 
-#: glade.strings:63
+#: glade.strings.h:63
 msgid "Use DNS to locate _KDCs for realms"
 msgstr "Використовувати DNS для пошуку _KDC для області"
 
-#: glade.strings:66
+#: glade.strings.h:66
 msgid "_Domain Controllers"
 msgstr "Контролери _домену"
 
-#: glade.strings:67
+#: glade.strings.h:67
 msgid "_Workgroup"
 msgstr "_Робочі групи"
 
-#: glade.strings:71
+#: glade.strings.h:71
 msgid "LDAP _Server"
 msgstr "_Сервер LDAP"
 
-#: glade.strings:72
+#: glade.strings.h:72
 msgid "LDAP Search _Base DN"
 msgstr "LDAP Search _Base DN"
 
-#: glade.strings:74
+#: glade.strings.h:74
 msgid "Use _TLS to encrypt connections"
 msgstr "Використовувати _TLS для шифрування з'єднань"
 
-#: glade.strings:76
+#: glade.strings.h:76
 msgid "_Join Domain"
 msgstr "_Увійти в домен"
 
-#: glade.strings:77
+#: glade.strings.h:77
 msgid "_Security Model"
 msgstr "Модель _безпеки"
 
-#: glade.strings:78
+#: glade.strings.h:78
 msgid "Winbind _Domain"
 msgstr "_Домен Winbind"
 
-#: glade.strings:80
+#: glade.strings.h:80
 msgid "Winbind Domain _Controllers"
 msgstr "_Контролери домену Winbind"
 
-#: glade.strings:82
+#: glade.strings.h:82
 msgid "Template _Shell"
 msgstr "_Оболонка шаблону"
 
-#: glade.strings:83
+#: glade.strings.h:83
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS _область"
 
-#: glade.strings:85
+#: glade.strings.h:85
 msgid "Joining Winbind Domain"
 msgstr "Підключення до Winbind домену"
 
-#: glade.strings:87
+#: glade.strings.h:87
 msgid "Domain _Administrator"
 msgstr "_Адміністратор домену"
 
-#: glade.strings:88
+#: glade.strings.h:88
 msgid "Domain"
 msgstr "Домен"
 
-#: glade.strings:89
+#: glade.strings.h:89
 msgid "_Password"
 msgstr "_Пароль"
 
-#: glade.strings:91
+#: glade.strings.h:91
 msgid "EXAMPLE.COM"
 msgstr "EXAMPLE.COM"
 
-#: glade.strings:92
+#: glade.strings.h:92
 msgid "Alert"
 msgstr "Увага"
 
-#: glade.strings:93
+#: glade.strings.h:93
 msgid "Do_n't Save"
 msgstr "_Не зберігати"
 

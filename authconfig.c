@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 1999-2003 Red Hat, Inc.
+  * Copyright (c) 1999-2004 Red Hat, Inc.
   *
   * Authors: Preston Brown <pbrown@redhat.com>
   *          Nalin Dahyabhai <nalin@redhat.com>

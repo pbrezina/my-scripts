@@ -8,4 +8,4 @@ automake -a
 intltoolize -f
 autoconf
 test -x mkinstalldirs || cp /usr/share/gettext/mkinstalldirs .
-./configure $@
+./configure $@ --enable-maintainer-rules

@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 1999-2003 Red Hat, Inc.
+  * Copyright (c) 1999-2004 Red Hat, Inc.
   *
   * This is free software; you can redistribute it and/or modify it
   * under the terms of the GNU General Public License as published by
@@ -110,7 +110,7 @@ struct authInfoType {
 	char *winbindTemplatePrimaryGroup;
 	char *winbindTemplateShell;
 	gboolean winbindUseDefaultDomain;
- 
+
 	/* NSSwitch setup.  Files is always in there. */
 	gboolean enableCache;
 	gboolean enableCompat;
@@ -133,11 +133,13 @@ struct authInfoType {
 	gboolean enableAFS;
 	gboolean enableAFSKerberos;
 	gboolean enableBigCrypt;
+	gboolean enableCracklib;
 	gboolean enableEPS;
 	gboolean enableKerberos;
 	gboolean enableLDAPAuth;
 	gboolean enableMD5;
 	gboolean enableOTP;
+	gboolean enablePasswdQC;
 	gboolean enableShadow;
 	gboolean enableSMB;
 
@@ -148,6 +150,8 @@ struct authInfoType {
 
 	/* Not really options. */
 	char *joinUser, *joinPassword;
+	char *cracklibArgs;
+	char *passwdqcArgs;
 };
 
 struct authInfoType *authInfoRead(void);

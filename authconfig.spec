@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.6.1
+Version: 4.6.2
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -41,6 +41,8 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
+rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/authconfigmodule.a
+rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/authconfigmodule.la
 
 %find_lang %{name}
 find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
@@ -62,19 +64,22 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
-%{_bindir}/redhat-config-authentication
 %{_bindir}/system-config-authentication
 %{_datadir}/%{name}
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
-%config(noreplace) %{_sysconfdir}/pam.d/redhat-config-authentication
 %config(noreplace) %{_sysconfdir}/pam.d/system-config-authentication
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
-%config(noreplace) %{_sysconfdir}/security/console.apps/redhat-config-authentication
 %config(noreplace) %{_sysconfdir}/security/console.apps/system-config-authentication
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Apr 21 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.2-1
+- learn all about pam_passwdqc
+- preserve arguments to pam_cracklib and pam_passwdqc
+- short-circuit PAM authorization checks for users with UID < 100
+- remove redhat-config-authentication as a way to invoke the GUI tool (#115977)
+
 * Fri Feb  6 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.1-1
 - fix man page: --enableldapssl should be --enableldaptls
 - make --enableldapssl an alias for --enableldaptls

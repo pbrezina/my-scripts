@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 2002,2003 Red Hat, Inc.
+  * Copyright (c) 2002-2004 Red Hat, Inc.
   *
   * This is free software; you can redistribute it and/or modify it
   * under the terms of the GNU General Public License as published by
@@ -76,6 +76,7 @@ static struct {
 	TF_FIELD(winbindUseDefaultDomain),
 	TF_FIELD(enableCache),
 	TF_FIELD(enableCompat),
+	TF_FIELD(enableCracklib),
 	TF_FIELD(enableDB),
 	TF_FIELD(enableDirectories),
 	TF_FIELD(enableHesiod),
@@ -88,6 +89,7 @@ static struct {
 	/* TF_FIELD(enableHesiodbind), */
 	/* TF_FIELD(enableLDAPbind), */
 	/* TF_FIELD(enableOdbcbind), */
+	TF_FIELD(enablePasswdQC),
 	TF_FIELD(enableWinbind),
 	TF_FIELD(enableWINS),
 

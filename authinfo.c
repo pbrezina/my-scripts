@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 1999-2003 Red Hat, Inc.
+  * Copyright (c) 1999-2004 Red Hat, Inc.
   *
   * This is free software; you can redistribute it and/or modify it
   * under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@
 #define LOGIC_REQUISITE		"requisite"
 #define LOGIC_SUFFICIENT	"sufficient"
 #define LOGIC_OPTIONAL		"optional"
-#define LOGIC_IGNORE_UNKNOWN	"[default=bad success=ok user_unknown=ignore service_err=ignore system_err=ignore]"
+#define LOGIC_IGNORE_UNKNOWN	"[default=bad success=ok user_unknown=ignore]"
 
 struct authInfoPrivate {
 	char *oldSmbRealm;
@@ -765,6 +765,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 {
 	char ibuf[BUFSIZ];
 	char module[PATH_MAX];
+	char args[PATH_MAX];
 	char flags[PATH_MAX];
 	char *p, *q, *stack;
 	FILE *fp;
@@ -786,17 +787,31 @@ authInfoReadPAM(struct authInfoType *authInfo)
 		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* stack */
 		stack = p;
 		if ((strncmp(stack, "auth", 4) != 0) &&
-		   (strncmp(stack, "account", 7) != 0)) {
+		    (strncmp(stack, "account", 7) != 0) &&
+		    (strncmp(stack, "password", 8) != 0) &&
+		    (strncmp(stack, "session", 7) != 0)) {
 			continue;
 		}
 
 		for (p = q; isspace(*p) && (*p != '\0'); p++);
-		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* control */
+		q = p;
+		if (*p == '[') {
+			while ((*q != '\0') && (*q != ']')) {
+				q++;
+			}
+		}
+		for (; !isspace(*q) && (*q != '\0'); q++); /* control */
 
 		for (p = q; isspace(*p) && (*p != '\0'); p++);
 		for (q = p; !isspace(*q) && (*q != '\0'); q++); /* module */
 		if (q - p < sizeof(module)) {
 			strncpy(module, p, q - p);
+			memset(&args, '\0', sizeof(args));
+			for (p = q; isspace(*p) && (*p != '\0'); p++);
+			for (q = p; (*q != '\n') && (*q != '\0'); q++); /* args */
+			if (q - p < sizeof(args)) {
+				strncpy(args, p, q - p);
+			}
 #ifdef EXPERIMENTAL
 			if (strstr(module, "pam_afs")) {
 				authInfo->enableAFS = TRUE;
@@ -807,6 +822,13 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				continue;
 			}
 #endif
+			if (strstr(module, "pam_cracklib")) {
+				authInfo->enableCracklib = TRUE;
+				if (non_empty(args)) {
+					authInfo->cracklibArgs = g_strdup(args);
+				}
+				continue;
+			}
 			if (strstr(module, "pam_krb5")) {
 				authInfo->enableKerberos = TRUE;
 				continue;
@@ -821,6 +843,13 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				continue;
 			}
 #endif
+			if (strstr(module, "pam_passwdqc")) {
+				authInfo->enablePasswdQC = TRUE;
+				if (non_empty(args)) {
+					authInfo->passwdqcArgs = g_strdup(args);
+				}
+				continue;
+			}
 			if (strstr(module, "pam_smb")) {
 				authInfo->enableSMB = TRUE;
 				continue;
@@ -893,6 +922,16 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			}
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableDB = FALSE;
+			}
+			g_free(tmp);
+		}
+		tmp = svGetValue(sv, "USECRACKLIB");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableCracklib = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableCracklib = FALSE;
 			}
 			g_free(tmp);
 		}
@@ -1046,6 +1085,16 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			}
 			g_free(tmp);
 		}
+		tmp = svGetValue(sv, "USEPASSWDQC");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enablePasswdQC = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enablePasswdQC = FALSE;
+			}
+			g_free(tmp);
+		}
 		tmp = svGetValue(sv, "USESHADOW");
 		if (tmp != NULL) {
 			if (strcmp(tmp, "yes") == 0) {
@@ -1078,6 +1127,15 @@ authInfoReadPAM(struct authInfoType *authInfo)
 		}
 		svCloseFile(sv);
 		sv = NULL;
+	}
+
+	/* Special handling for pam_cracklib and pam_passwdqc: there can be
+	 * only one. */
+	if (authInfo->enableCracklib && authInfo->enablePasswdQC) {
+		authInfo->enablePasswdQC = FALSE;
+	}
+	if (!authInfo->enableCracklib && !authInfo->enablePasswdQC) {
+		authInfo->enableCracklib = TRUE;
 	}
 
 	return TRUE;
@@ -1180,11 +1238,13 @@ authInfoDiffers(struct authInfoType *a, struct authInfoType *b)
 		(a->enableAFS != b->enableAFS) ||
 		(a->enableAFSKerberos != b->enableAFSKerberos) ||
 		(a->enableBigCrypt != b->enableBigCrypt) ||
+		(a->enableCracklib != b->enableCracklib) ||
 		(a->enableEPS != b->enableEPS) ||
 		(a->enableKerberos != b->enableKerberos) ||
 		(a->enableLDAPAuth != b->enableLDAPAuth) ||
 		(a->enableMD5 != b->enableMD5) ||
 		(a->enableOTP != b->enableOTP) ||
+		(a->enablePasswdQC != b->enablePasswdQC) ||
 		(a->enableShadow != b->enableShadow) ||
 		(a->enableSMB != b->enableSMB) ||
 #ifdef LOCAL_POLICIES
@@ -1486,6 +1546,11 @@ authInfoCopy(struct authInfoType *info)
 	ret->pvt = authInfoPrivateCopy(info->pvt);
 	ret->joinUser = NULL;
 	ret->joinPassword = NULL;
+
+	ret->cracklibArgs = info->cracklibArgs ?
+			    g_strdup(info->cracklibArgs) : NULL;
+	ret->passwdqcArgs = info->passwdqcArgs ?
+			    g_strdup(info->passwdqcArgs) : NULL;
 
 	return ret;
 }
@@ -3508,6 +3573,11 @@ static const char *argv_cracklib_password[] = {
 	NULL,
 };
 
+static const char *argv_passwdqc_password[] = {
+	"enforce=users",
+	NULL,
+};
+
 static const char *argv_eps_auth[] = {
 	"use_first_pass",
 	NULL,
@@ -3554,6 +3624,11 @@ static const char *argv_otp_auth[] = {
 static const char *argv_smb_auth[] = {
 	"use_first_pass",
 	"nolocal",
+	NULL,
+};
+
+static const char *argv_succeed_if_account[] = {
+	"uid < 100",
 	NULL,
 };
 
@@ -3617,6 +3692,8 @@ static struct {
 	{FALSE, account,	LOGIC_REQUIRED,
 	 "stack",		argv_local_all},
 #endif
+	{TRUE,  account,	LOGIC_SUFFICIENT,
+	 "succeed_if",		argv_succeed_if_account},
 	{TRUE,  account,	LOGIC_REQUIRED,
 	 "unix",		NULL},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
@@ -3632,8 +3709,10 @@ static struct {
 	{FALSE, password,	LOGIC_REQUIRED,
 	 "stack",		argv_local_all},
 #endif
-	{TRUE,  password,	LOGIC_REQUISITE,
+	{FALSE,  password,	LOGIC_REQUISITE,
 	 "cracklib",		argv_cracklib_password},
+	{FALSE,  password,	LOGIC_REQUISITE,
+	 "passwdqc",		argv_passwdqc_password},
 	{TRUE,  password,	LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_password},
 	{FALSE, password,	LOGIC_SUFFICIENT,
@@ -3678,33 +3757,44 @@ fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 {
 	char *stack;
 	const char *logic = NULL;
-	switch(standard_pam_modules[i].stack) {
-		case auth:
-			stack = "auth";
-			break;
-		case account:
-			stack = "account";
-			break;
-		case session:
-			stack = "session";
-			break;
-		case password:
-			stack = "password";
-			break;
-		default:
-			stack = NULL;
-			break;
+	switch (standard_pam_modules[i].stack) {
+	case auth:
+		stack = "auth";
+		break;
+	case account:
+		stack = "account";
+		break;
+	case session:
+		stack = "session";
+		break;
+	case password:
+		stack = "password";
+		break;
+	default:
+		stack = NULL;
+		break;
 	}
 	logic = standard_pam_modules[i].logic;
 	if (non_empty(stack) && non_empty(logic)) {
 		if (strlen(logic) > 0) {
 			int j;
 			char buf[BUFSIZ];
+			char *args;
 			memset(buf, '\0', sizeof(buf));
 			snprintf(buf, sizeof(buf) - 1,
 				 "%-12s%-13s %s/pam_%s.so", stack, logic,
 				 AUTH_MODULE_DIR, standard_pam_modules[i].name);
-			if (standard_pam_modules[i].argv != NULL) {
+			args = NULL;
+			if (strcmp(standard_pam_modules[i].name,
+				   "cracklib") == 0) {
+				args = info->cracklibArgs;
+			}
+			if (strcmp(standard_pam_modules[i].name,
+				   "passwdqc") == 0) {
+				args = info->passwdqcArgs;
+			}
+			if ((args == NULL) &&
+			    (standard_pam_modules[i].argv != NULL)) {
 				for (j = 0;
 				    non_empty(standard_pam_modules[i].argv[j]);
 				    j++) {
@@ -3743,6 +3833,10 @@ fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 				}
 			}
 			strcat(obuf, buf);
+			if (args != NULL) {
+				strcat(obuf, " ");
+				strcat(obuf, args);
+			}
 		}
 		strcat(obuf, "\n");
 	}
@@ -3792,6 +3886,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		    (strcmp("afs", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableAFSKerberos &&
 		    (strcmp("afs.krb", standard_pam_modules[i].name) == 0)) ||
+		   (authInfo->enableCracklib &&
+		    (strcmp("cracklib", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableEPS &&
 		    (strcmp("eps", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableKerberos && !have_afs &&
@@ -3806,6 +3902,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 #endif
 		   (authInfo->enableOTP &&
 		    (strcmp("otp", standard_pam_modules[i].name) == 0)) ||
+		   (authInfo->enablePasswdQC &&
+		    (strcmp("passwdqc", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableSMB &&
 		    (strcmp("smb_auth", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableWinbind &&
@@ -3822,6 +3920,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 
 	sv = svCreateFile(SYSCONFDIR "/sysconfig/authconfig");
 	if (sv != NULL) {
+		svSetValue(sv, "USECRACKLIB",
+			   authInfo->enableCracklib ? "yes" : "no");
 		svSetValue(sv, "USEDB",
 			   authInfo->enableDB ? "yes" : "no");
 #ifdef EXPERIMENTAL
@@ -3854,6 +3954,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		svSetValue(sv, "USEODBCBIND",
 			   authInfo->enableOdbcbind ? "yes" : "no");
 #endif
+		svSetValue(sv, "USEPASSWDQC",
+			   authInfo->enablePasswdQC ? "yes" : "no");
 		svSetValue(sv, "USEWINBIND",
 			   authInfo->enableWinbind ? "yes" : "no");
 
@@ -4384,6 +4486,12 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->smbIdmapGid ?: "");
     printf(" Winbind template shell = \"%s\"\n",
 	   authInfo->winbindTemplateShell ?: "");
+    printf("pam_cracklib is %s (%s)\n",
+	   authInfo->enableCracklib ? "enabled" : "disabled",
+	   authInfo->cracklibArgs ? authInfo->cracklibArgs : "");
+    printf("pam_passwdqc is %s (%s)\n",
+	   authInfo->enablePasswdQC ? "enabled" : "disabled",
+	   authInfo->passwdqcArgs ? authInfo->passwdqcArgs : "");
 }
 
 static void

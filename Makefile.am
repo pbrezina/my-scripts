@@ -1,4 +1,5 @@
 SUBDIRS = po man
+CONFIGURE_DEPENDENCIES = $(top_srcdir)/authconfig.spec
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -14,7 +15,8 @@ startheredir = $(sysconfdir)/X11/sysconfig
 sbin_PROGRAMS = authconfig
 pkgdata_SCRIPTS = authconfig-gtk.py
 pkgdata_DATA = authconfig.glade
-pythonsite_PROGRAMS = authconfigmodule.so
+pythonsite_LTLIBRARIES = authconfigmodule.la
+noinst_LTLIBRARIES = libauthconfig.la
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = user_auth.png
 
@@ -22,7 +24,6 @@ install-exec-local:
 	mkdir -p $(DESTDIR)/$(bindir)
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-gtk
-	ln -sf consolehelper $(DESTDIR)/$(bindir)/redhat-config-authentication
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/system-config-authentication
 
 install-data-local: authconfig.desktop
@@ -33,11 +34,9 @@ install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(startheredir)
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
-	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/redhat-config-authentication
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/system-config-authentication
 	$(INSTALL_DATA) $(srcdir)/authconfig.console $(DESTDIR)/$(consoledir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/authconfig-gtk
-	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/redhat-config-authentication
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/system-config-authentication
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
 	mkdir -p $(DESTDIR)/$(datadir)/applications
@@ -51,15 +50,12 @@ install-data-local: authconfig.desktop
 uninstall-local:
 	$(RM) $(DESTDIR)/$(bindir)/authconfig
 	$(RM) $(DESTDIR)/$(bindir)/authconfig-gtk
-	$(RM) $(DESTDIR)/$(bindir)/redhat-config-authentication
 	$(RM) $(DESTDIR)/$(bindir)/system-config-authentication
 	$(RM) $(DESTDIR)/$(pamdir)/authconfig
 	$(RM) $(DESTDIR)/$(pamdir)/authconfig-gtk
-	$(RM) $(DESTDIR)/$(pamdir)/redhat-config-authentication
 	$(RM) $(DESTDIR)/$(pamdir)/system-config-authentication
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig-gtk
-	$(RM) $(DESTDIR)/$(consoledir)/redhat-config-authentication
 	$(RM) $(DESTDIR)/$(consoledir)/system-config-authentication
 	$(RM) $(DESTDIR)/$(sysconfigdir)/authconfig
 	$(RM) $(DESTDIR)$(pkgdatadir)/*.pyc
@@ -72,28 +68,23 @@ uninstall-local:
 
 AM_CFLAGS = @GLIB_CFLAGS@ @CFLAGS@ @PYTHON_CFLAGS@ -Wall
 
-authconfig_SOURCES = \
-	authconfig.c \
+libauthconfig_la_SOURCES = \
 	authinfo.c \
 	authinfo.h \
 	dnsclient.c \
 	dnsclient.h \
-	localpol.h \
 	shvar.c \
 	shvar.h
+
+authconfig_SOURCES = authconfig.c localpol.h
+authconfig_LDADD = libauthconfig.la
 authconfig_LDFLAGS = @GLIB_LIBS@ @NEWT_LIBS@ @POPT_LIBS@ @LDFLAGS@
 
-authconfigmodule_so_SOURCES = \
-	authconfigmodule.c \
-	authinfo.c \
-	authinfo.h \
-	dnsclient.c \
-	dnsclient.h \
-	shvar.c \
-	shvar.h
-authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
+authconfigmodule_la_SOURCES = authconfigmodule.c
+authconfigmodule_la_LIBADD = libauthconfig.la
+authconfigmodule_la_LDFLAGS = -module -avoid-version -export-dynamic @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop.in authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png README.samba3 mkinstalldirs
+EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop.in authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png README.samba3 mkinstalldirs glade.strings.h
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update authconfig.desktop
 
 VERSION=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{version}\n' | head -n1)
