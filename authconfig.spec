@@ -37,8 +37,8 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Nov 29 2000 Nalin Dahyabhai <nalin@redhat.com>
 - don't bother with USESHADOW; testing for /etc/shadow is sufficient
 - use newtGrids to make NLS text fit (mostly)
-- also edit "hosts:" to make sure it's there if nsswitch.conf was somehow erased
-- preserve use of "db"
+- also edit "hosts:" to make sure it's there if nsswitch.conf is gone or broken
+- preserve use of "db" and "nisplus" sources, even though we don't set them up
 
 * Mon Nov 27 2000 Nalin Dahyabhai <nalin@redhat.com>
 - add the "nis" flag to pam_unix when NIS is enabled

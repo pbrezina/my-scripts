@@ -393,6 +393,7 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 	info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
 	info->enableNIS = ((strstr(nss_config, "nis") != NULL) &&
 			   ((strstr(nss_config, "nis"))[3] != 'p'));
+	info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
 	g_free(nss_config);
 	fclose(fp);
 	return TRUE;
@@ -1211,6 +1212,7 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	l += strlen(" hesiod") * 8;
 	l += strlen(" ldap") * 8;
 	l += strlen(" nis") * 8;
+	l += strlen(" nisplus") * 8;
 	l += strlen(" dns");
 	l += strlen(" winbind") * 8;
 	obuf = g_malloc0(st.st_size + 1 + l);
@@ -1218,6 +1220,7 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	/* Determine what we want in that file for most of the databases. */
 	if(info->enableDB) strcat(normal, " db");
 	strcat(normal, " files");
+	if(info->enableNIS3) strcat(normal, " nisplus");
 	if(info->enableNIS) strcat(normal, " nis");
 	if(info->enableLDAP) strcat(normal, " ldap");
 	if(info->enableHesiod) strcat(normal, " hesiod");
@@ -1228,6 +1231,7 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	}
 	/* Hostnames we treat specially. */
 	strcat(hosts, " files");
+	if(info->enableNIS3) strcat(hosts, " nisplus");
 	if(info->enableNIS) strcat(hosts, " nis");
 	strcat(hosts, " dns");
 
