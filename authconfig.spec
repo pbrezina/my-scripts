@@ -72,6 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 - look in /lib64 for modules for nsswitch and PAM by default on
   x86_64, ppc64, and s390x (#83049)
 
+* Wed Jan 22 2003 Tim Powers <timp@redhat.com>
+- rebuilt
+ 
 * Mon Nov  4 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3.2-1
 - update translations
 - update copyright strings (only took 10 months!)
