@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.2.12
-Release: 1
+Release: 2
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Aug 29 2002 Trond Eivind Glomsrød <teg@redhat.com> 4.2.12-2
+- Update translations
+
 * Fri Aug 23 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.11-1
 - modify spacing and layout in authconfig-gtk
 
