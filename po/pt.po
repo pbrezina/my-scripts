@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "POT-Creation-Date: 2000-07-31 17:07-0400\n"
-"PO-Revision-Date: 2000-03-25 20:43+00:00\n"
+"PO-Revision-Date: 2000-08-01 22:13+01:00\n"
 "Last-Translator: Pedro Morais <morais@poli.org>\n"
 "Language-Team: pt <morais@poli.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,81 +15,75 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
+"O ficheiro %s não foi encontrado, mas é necessário para que o suporte a %s\n"
+"funcione correctamente. Instale o pacote %s, que contém este ficheiro."
 
 #: ../authconfig.c:157
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: ../authconfig.c:157 ../authconfig.c:529 ../authconfig.c:534
 msgid "Ok"
 msgstr "Ok"
 
 #: ../authconfig.c:167 ../authconfig.c:241
-#, fuzzy
 msgid "  Domain:"
-msgstr "   Domínio NIS:"
+msgstr " Domínio:"
 
 #: ../authconfig.c:168 ../authconfig.c:214
-#, fuzzy
 msgid "  Server:"
-msgstr "Servidor NIS:"
+msgstr "Servidor:"
 
 #: ../authconfig.c:188
 msgid "     LHS:"
-msgstr ""
+msgstr "     LHS:"
 
 #: ../authconfig.c:189
 msgid "     RHS:"
-msgstr ""
+msgstr "     RHS:"
 
 #: ../authconfig.c:215
 msgid " Base DN:"
-msgstr ""
+msgstr " DN Base:"
 
 #: ../authconfig.c:258
-#, fuzzy
 msgid "          Realm:"
-msgstr "    ou utilizar:"
+msgstr "          Reino:"
 
 #: ../authconfig.c:259
-#, fuzzy
 msgid "            KDC:"
-msgstr "    ou utilizar:"
+msgstr "            KDC:"
 
 #: ../authconfig.c:260
-#, fuzzy
 msgid "   Admin Server:"
-msgstr "  Servidor LDAP:"
+msgstr "  Servidor Admin:"
 
 #. Create the window and a form to put into it.
 #: ../authconfig.c:300
-#, fuzzy
 msgid "User Information Configuration"
-msgstr "Configuração da Autênticação"
+msgstr "Configuração da Informações de Utilizadores"
 
 #. NSS modules: NIS.
 #: ../authconfig.c:304
-#, fuzzy
 msgid "Use NIS"
-msgstr "NIS"
+msgstr "Utilizar NIS"
 
 #: ../authconfig.c:327
-#, fuzzy
 msgid "Use LDAP"
-msgstr "LDAP"
+msgstr "Utilizar LDAP"
 
 #: ../authconfig.c:346
 msgid "Use WinBind"
-msgstr ""
+msgstr "Utilizar WinBind"
 
 #: ../authconfig.c:360
 msgid "Use Hesiod"
-msgstr ""
+msgstr "Utilizar Hesiod"
 
 #. Create the buttons.
 #: ../authconfig.c:381
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
 #: ../authconfig.c:382 ../authconfig.c:530 ../authconfig.c:535
 msgid "Back"
@@ -110,24 +104,20 @@ msgid "Use Shadow Passwords"
 msgstr "Utilizar Senhas \"Shadow\""
 
 #: ../authconfig.c:455
-#, fuzzy
 msgid "Use MD5 Passwords"
-msgstr "Activar Senhas MD5"
+msgstr "Utilizar Senhas MD5"
 
 #: ../authconfig.c:460
-#, fuzzy
 msgid "Use LDAP Authentication"
-msgstr "Tipo de Autênticação:"
+msgstr "Utilizar Autênticação LDAP"
 
 #: ../authconfig.c:481
-#, fuzzy
 msgid "Use WinBind Authentication"
-msgstr "Tipo de Autênticação:"
+msgstr "Utilizar Autênticação WinBind"
 
 #: ../authconfig.c:496
-#, fuzzy
 msgid "Use Kerberos 5"
-msgstr "Kerberos"
+msgstr "Utilizar Kerberos 5"
 
 #: ../authconfig.c:626
 #, c-format
@@ -170,12 +160,51 @@ msgid ""
 "     --kickstart                don't display user interface\n"
 "     --help                     show this screen\n"
 msgstr ""
+"Utilização: %s [opções]\n"
+"\n"
+"     --useshadow\n"
+"     --enableshadow          activar senhas shadow por omissão\n"
+"     --disableshadow         desactivar shadow passwords por omissão\n"
+"     --enablemd5             activar senhas MD5 por omissão\n"
+"     --disablemd5            desactivar senhas MD5 por omissão\n"
+"\n"
+"     --enablenis             activar NIS\n"
+"     --disablenis            desactivar NIS\n"
+"     --nisdomain <domain>    domínio NIS por omissão\n"
+"     --nisserver <servidor>  servidor NIS por omissão\n"
+"\n"
+"     --enableldap            activar ldap para info utilizador por omissão\n"
+"     --disableldap           desactivar ldap para info utilizador por "
+"omissão\n"
+"     --enableldapauth        activar ldap para autenticação por omissão\n"
+"     --disableldapauth       desactivar ldap para autenticação por omissão\n"
+"     --ldapserver <servidor> servidor LDAP por omissão\n"
+"     --ldapbasedn <dn>       DN base LDAP por omisão\n"
+"\n"
+"     --enablekrb5            activar autenticação kerberos por omissão\n"
+"     --disablekrb5           desactivar autenticação kerberos por omissão\n"
+"     --krb5kdc <servidor>    KDC kerberos por omissão\n"
+"     --krb5adminserver <srv> servidor administração kerberos por omissão\n"
+"     --krb5realm <realm>     reino kerberos por omissão\n"
+"\n"
+"     --enablehesiod          activar hesiod para info utilizadores por "
+"omissão\n"
+"     --disablehesiod         desactivar hesiod para info utilizador por "
+"omissão\n"
+"     --hesiodlhs <lhs>       LHS hesiod por omissão\n"
+"     --hesiodrhs <rhs>       RHS hesiodpor omissão\n"
+"\n"
+"     --nostart               não iniciar/parar ypbind\n"
+"     --kickstart             não mostrar interface utilizador\n"
+"     --help                  mostrar este ecrã\n"
 
 #: ../authconfig.c:665
 msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
 msgstr ""
+"\n"
+"     --enablelocal              utilizar política local"
 
 #: ../authconfig.c:776
 #, c-format
@@ -197,7 +226,7 @@ msgstr "%s: só pode correr como root\n"
 #: ../authconfig.c:850 ../authconfig.c:857
 #, fuzzy, c-format
 msgid "%s: critical error reading %s/%s"
-msgstr "%s: erro crítico ao ler /etc/pam.d/passwd\n"
+msgstr "%s: erro crítico ao ler %s/pam.d/%s"
 
 #: ../authconfig.c:914
 msgid ""
@@ -215,146 +244,46 @@ msgstr "diálogo foi cancelado\n"
 #: ../authconfig.c:1021 ../authconfig.c:1026
 #, fuzzy, c-format
 msgid "%s: critical error writing %s/%s"
-msgstr "%s: erro crítico ao escrever ficheiros em /etc/pam.d\n"
+msgstr "%s: erro crítico ao escrever %s/pam.d/%s"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/hesiod.conf"
-#~ msgstr "%s: erro crítico ao ler /etc/yp.conf"
+#~ msgstr "%s: erro crítico ao ler %s/hesiod.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/krb5.conf"
-#~ msgstr "%s: erro crítico ao ler /etc/yp.conf"
+#~ msgstr "%s: erro crítico ao ler %s/krb5.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/ldap.conf"
-#~ msgstr "%s: erro crítico ao ler /etc/yp.conf"
+#~ msgstr "%s: erro crítico ao ler %s/ldap.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/smb.conf"
-#~ msgstr "%s: erro crítico ao ler /etc/yp.conf"
+#~ msgstr "%s: erro crítico ao ler %s/smb.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/yp.conf"
-#~ msgstr "%s: erro crítico ao ler /etc/yp.conf"
+#~ msgstr "%s: erro crítico ao ler %s/yp.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/nsswitch.conf"
-#~ msgstr "%s: erro crítico ao escrever /etc/nsswitch.conf\n"
+#~ msgstr "%s: erro crítico ao escrever %s/nsswitch.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error reading %s/sysconfig/network"
-#~ msgstr "%s: erro crítico ao ler /etc/sysconfig/network"
+#~ msgstr "%s: erro crítico ao ler %s/sysconfig/network"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/hesiod.conf"
-#~ msgstr "%s: erro crítico ao escrever /etc/ldap.conf\n"
+#~ msgstr "%s: erro crítico ao escrever %s/hesiod.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/krb5.conf"
-#~ msgstr "%s: erro crítico ao escrever /etc/yp.conf\n"
+#~ msgstr "%s: erro crítico ao escrever %s/krb5.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/ldap.conf"
-#~ msgstr "%s: erro crítico ao escrever /etc/ldap.conf\n"
+#~ msgstr "%s: erro crítico ao escrever %s/ldap.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/yp.conf"
-#~ msgstr "%s: erro crítico ao escrever /etc/yp.conf\n"
+#~ msgstr "%s: erro crítico ao escrever %s/yp.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/smb.conf"
-#~ msgstr "%s: erro crítico ao escrever /etc/yp.conf\n"
+#~ msgstr "%s: erro crítico ao escrever %s/yp.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/nsswitch.conf"
-#~ msgstr "%s: erro crítico ao escrever /etc/nsswitch.conf\n"
+#~ msgstr "%s: erro crítico ao escrever %s/nsswitch.conf"
 
-#, fuzzy
 #~ msgid "%s: critical error writing %s/sysconfig/network"
-#~ msgstr "%s: erro crítico ao escrever /etc/sysconfig/network\n"
-
-#~ msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-#~ msgstr "%s: não consigo abrir /etc/sysconfig/network: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf: %s\n"
-#~ msgstr "%s: não consigo abrir /etc/yp.conf: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf: %s\n"
-#~ msgstr "%s: não consigo abrir /etc/ldap.conf: %s\n"
-
-#~ msgid "   LDAP Domain:"
-#~ msgstr "  Domínio LDAP:"
-
-#~ msgid "Kerberos Realm:"
-#~ msgstr "Reino Kerberos:"
-
-#~ msgid "Kerberos Server:"
-#~ msgstr "Servidor Kerberos:"
-
-#~ msgid "Password File"
-#~ msgstr "Ficheiro com senhas"
-
-#~ msgid "Request via broadcast"
-#~ msgstr "Pedir por \"broadcast\""
-
-#~ msgid "Error"
-#~ msgstr "Erro"
-
-#~ msgid "You must enter a NIS server or request via broadcast."
-#~ msgstr "Tem que inserir uma servidor NIS ou pedir um por \"broadcast\"."
-
-#~ msgid "You must enter an authentication domain."
-#~ msgstr "Tem de inserir um domínio de autenticação"
-
-#~ msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-#~ msgstr "%s não consigo abrir /etc/sysconfig/network- para escrita: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-#~ msgstr "%s não consigo abrir /etc/yp.conf para escrita: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-#~ msgstr "%s não consigo abrir /etc/ldap.conf- para escrita: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-#~ msgstr "%s: não consigo abrir /etc/nsswitch.conf: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-#~ msgstr "%s não consigo abrir /etc/nsswitch.conf-para escrita: %s\n"
-
-#~ msgid "%s: error opening %s\n"
-#~ msgstr "%s: erro ao abrir %s\n"
-
-#~ msgid ""
-#~ "Usage: %s [options]\n"
-#~ "\n"
-#~ "     --nostart            do not start/stop yp\n"
-#~ "     --enablenis          enable nis by default\n"
-#~ "     --nisdomain <domain> default NIS domain\n"
-#~ "     --nisserver <server> default NIS server\n"
-#~ "     --useshadow          use shadow passwords\n"
-#~ "     --enablemd5          enable MD5 passwords\n"
-#~ "     --kickstart          don't display user interface\n"
-#~ "     --help               show this screen\n"
-#~ msgstr ""
-#~ "Utilização: %s [opções]\n"
-#~ "\n"
-#~ "     --nostart              não arrancar/parar yp\n"
-#~ "     --enablenis            activar NIS por omissão\n"
-#~ "     --nisdomain <domínio>  domínio NIS por omissão\n"
-#~ "     --nisserver <servidor> servidor NIS por omissão\n"
-#~ "     --useshadow            utilizar senhas \"shadow\"\n"
-#~ "     --enablemd5            activar senhas MD5\n"
-#~ "     --kickstart            não mostrar inteface\n"
-#~ "     --help                 mostrar esta ajuda\n"
-
-#~ msgid "%s: unknown authorization type %s\n"
-#~ msgstr "%s: tipo de autenticação desconhecido %s\n"
-
-#~ msgid "authentication type selected: "
-#~ msgstr "tipo de autenticação seleccionado: "
-
-#~ msgid "%s: critical error turning on NIS service\n"
-#~ msgstr "%s: erro crítico ao ligar serviço NIS\n"
-
-#~ msgid "%s: critical error with shadow password manipulation\n"
-#~ msgstr "%s: erro crítico ao manipular senhas \"shadow\"\n"
+#~ msgstr "%s: erro crítico ao escrever %s/sysconfig/network"
