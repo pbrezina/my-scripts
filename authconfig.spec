@@ -33,6 +33,7 @@ authentication schemes.
 %setup -q
 
 %build
+%configure --with-pythonrev=2.2
 make
 
 %install
