@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.2.8
-Release: 4
+Release: 5
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -9,7 +9,7 @@ BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
 Requires: glibc >= 2.1, pam >= 0.73, glib2
 Conflicts: pam_krb5 < 1.49
-BuildPrereq: pam-devel >= 0.73, newt-devel, gtk2-devel, libglade2-devel, python
+BuildPrereq: pam-devel >= 0.73, newt-devel, glib2-devel, python, python-devel
 
 %description 
 Authconfig is a terminal mode program which can configure a workstation
@@ -18,7 +18,6 @@ system to be a client for certain networked user information and
 authentication schemes.
 
 %package gtk
-BuildPrereq: gtk2-devel, libglade2-devel
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
 Requires: %{name} = %{version}-%{release}, pygtk2-libglade
@@ -68,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
+* Fri May  3 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.8-5
+- remove bogus buildrequires left over from when authconfig-gtk was C code
+- buildrequires python-devel in addition to python (to build the python module,
+  but we still need python to byte-compile the python script)
+
 * Thu Apr 18 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.8-4
 - add missing translations back in
 - convert .mo files at install-time
