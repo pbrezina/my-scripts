@@ -15,6 +15,7 @@
 
 #define PATH_PORTMAP "/sbin/portmap"
 #define PATH_YPBIND "/sbin/ypbind"
+#define PATH_YPBIND_PID "/var/run/ypbind.pid"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
 #define PATH_LIBNSS_WINBIND "/lib/libnss_winbind.so.2"
@@ -64,11 +65,13 @@ struct authInfoType {
 	/* Authentication setup. */
 	gboolean enableMD5;
 	gboolean enableShadow;
+	gboolean enableBigCrypt;
 	gboolean enableKerberos;
 	gboolean enableLDAPAuth;
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;
 #endif
+	gboolean brokenShadow;
 };
 
 struct authInfoType *authInfoRead();

@@ -414,7 +414,7 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 	char ibuf[LINE_MAX];
 	char module[PATH_MAX];
 	char flags[PATH_MAX];
-	char *p, *q;
+	char *p, *q, *stack;
 	FILE *fp;
 
 	fp = fopen(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, "r");
@@ -434,7 +434,9 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 
 		p = ibuf;
 		for(q = p; !isspace(*q) && (*q != '\0'); q++); /* stack */
-		if(strncmp(p, "auth", 4) != 0) {
+		stack = p;
+		if((strncmp(stack, "auth", 4) != 0) &&
+		   (strncmp(stack, "account", 7) != 0)) {
 			continue;
 		}
 
@@ -464,12 +466,20 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 		for(p = q; isspace(*p) && (*p != '\0'); p++);
 		for(q = p; !isspace(*q) && (*q != '\0'); q++); /* flags */
 		if(q - p < sizeof(module)) {
+			if(strncmp(stack, "auth", 4) == 0)
 			if(strstr(module, "pam_unix") ||
 			   strstr(module, "pam_pwdb")) {
 				authInfo->enableMD5 =
 					(strstr(p, "md5") != NULL);
 				authInfo->enableShadow =
 					(strstr(p, "shadow") != NULL);
+				authInfo->enableBigCrypt =
+					(strstr(p, "bigcrypt") != NULL);
+			}
+			if(strncmp(stack, "account", 7) == 0)
+			if(strstr(module, "pam_unix")) {
+				authInfo->brokenShadow =
+					(strstr(p, "broken_shadow") != NULL);
 			}
 		}
 	}
@@ -1460,16 +1470,27 @@ static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info
 				}
 			}
 			if(strcmp(standard_pam_modules[i].name, "unix") == 0)
-			if(stack != NULL)
-			if((strcmp(stack, "auth") == 0) ||
-			   (strcmp(stack, "password") == 0)) {
-				if(info->enableMD5) {
-					strncat(buf, " md5",
+			if(stack != NULL) {
+				if((strcmp(stack, "auth") == 0) ||
+				   (strcmp(stack, "password") == 0)) {
+					if(info->enableMD5) {
+						strncat(buf, " md5",
 						sizeof(buf) - 1 - strlen(buf));
+					}
+					if(info->enableShadow) {
+						strncat(buf, " shadow",
+						sizeof(buf) - 1 - strlen(buf));
+					}
+					if(info->enableBigCrypt) {
+						strncat(buf, " bigcrypt",
+						sizeof(buf) - 1 - strlen(buf));
+					}
 				}
-				if(info->enableShadow) {
-					strncat(buf, " shadow",
+				if((strcmp(stack, "account") == 0)) {
+					if(info->brokenShadow) {
+						strncat(buf, " broken_shadow",
 						sizeof(buf) - 1 - strlen(buf));
+					}
 				}
 			}
 			strcat(obuf, buf);

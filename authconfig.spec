@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.12
+Version: 4.0.14
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,6 +34,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Mon Jul 31 2000 Nalin Dahyabhai <nalin@redhat.com>
+- silently support the broken_shadow and bigcrypt flags for pam_unix
+- only shut down ypbind if /var/run/ypbind exists
+
 * Thu Jul 27 2000 Nalin Dahyabhai <nalin@redhat.com>
 - break some translations again
 

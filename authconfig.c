@@ -86,14 +86,20 @@ gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
       system("/sbin/chkconfig --add ypbind");
       system("/sbin/chkconfig --level 345 ypbind on");
       if (!nostart) {
-        system("/sbin/service ypbind restart");
+        if(stat(PATH_YPBIND_PID, &st) == 0) {
+          system("/sbin/service ypbind restart");
+	} else {
+          system("/sbin/service ypbind start");
+	}
       }
     }
   } else {
     system("/bin/domainname \"(none)\"");
     if(stat(PATH_YPBIND, &st) == 0) {
       if (!nostart) {
-        system("/sbin/service ypbind stop");
+        if(stat(PATH_YPBIND_PID, &st) == 0) {
+          system("/sbin/service ypbind stop");
+	}
       }
       system("/sbin/chkconfig --del ypbind");
     }
