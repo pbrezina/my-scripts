@@ -2,7 +2,7 @@ Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 %define version	1.2
 Version: %{version}
-Release: 7
+Release: 8
 Copyright: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -19,7 +19,7 @@ automatically turn on NIS at system startup.
 %setup -q
 
 %build
-make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+make
 
 %install
 make INSTROOT=$RPM_BUILD_ROOT install
@@ -33,6 +33,9 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Mar  9 1999 Matt Wilson <msw@redhat.com>
+- removed build opts because of problems on alpha
+
 * Mon Feb  8 1999 Matt Wilson <msw@redhat.com>
 - Don't rewrite ypbind.conf if you're not configuring NIS
 
