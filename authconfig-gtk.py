@@ -1,7 +1,9 @@
 #!/usr/bin/python2.2
-import gettext, gtk, gtk.glade, authconfig;
+import gtk, gtk.glade, authconfig;
 
-class authconf:
+class childWindow:
+	runPriority = 60
+	moduleName = "Authentication Configuration"
 	def __init__(self):
 		self.main_map = {
 			"enablecache" :
@@ -81,7 +83,8 @@ class authconf:
 		return
 
 	def launch(self, top = "vbox", mapname = "main_map"):
-		xml = gtk.glade.XML("authconfig.glade2", top, "authconfig")
+		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
+				    top, "authconfig")
 		box = xml.get_widget(top)
 		# Try to destroy the button box in the top-level window.
 		if ((top == "vbox") and (mapname == "main_map")):
@@ -127,9 +130,10 @@ class authconf:
 
 # Fake the firstboot setup.
 if __name__ == '__main__':
+	import gettext
 	def _(String):
 		return gettext.dgettext("authconfig", String)
-	module = authconf()
+	module = childWindow()
 	win = gtk.Window()
 	win.set_title(_("Authentication Configuration"))
 	box = gtk.VBox()

@@ -36,20 +36,20 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{makeinstall}
+make install DESTDIR=$RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
 touch $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/authconfig
 mkdir -p $RPM_BUILD_ROOT/usr/bin
-%find_lang %{name}
-
 ln -s consolehelper $RPM_BUILD_ROOT/usr/bin/authconfig
 ln -s consolehelper $RPM_BUILD_ROOT/usr/bin/authconfig-gtk
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pam.d
 install -m644 authconfig.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/authconfig
 install -m644 authconfig.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/authconfig-gtk
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps
-install -m644 authconfig.console $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/authconfig
+install -m644 authconfig.console     $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/authconfig
 install -m644 authconfig-gtk.console $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/authconfig-gtk
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,9 +74,10 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
-*            2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.4-1
+* Mon Feb  4 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.4-1
 - add python bindings for the back-end
 - redo the gui so that it exercises the python bindings
+- take a shot at getting authconfig to work in a firstboot container
 
 * Thu Jan 31 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.3-4
 - rebuild again

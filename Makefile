@@ -1,7 +1,8 @@
 VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PACKAGE = authconfig
-BINARIES = authconfig authconfig-gtk.py
+BINARIES = authconfig
+DATA=authconfig.glade authconfig-gtk.py
 PYTHONMODULES = authconfigmodule.so
 PYTHONREV=2.2
 PYTHONINC=/usr/include/python$(PYTHONREV)
@@ -16,6 +17,7 @@ GLIBLIBS = $(shell pkg-config --libs glib-2.0)
 LIBGLADELIBS = $(shell pkg-config --libs libglade-2.0)
 SUBDIRS = po man
 
+DESTDIR=
 datadir=/usr/share
 mandir=/usr/man
 sbindir=/usr/sbin
@@ -37,12 +39,19 @@ authconfigmodule.so: authconfigmodule.o authinfo.o shvar.o dnsclient.o
 	python$(PYTHONREV) -c 'import authconfig'
 
 install:
-	mkdir -p $(sbindir) $(mandir)/man8 $(datadir)/$(PACKAGE)
-	mkdir -p $(INSTROOT)$(sysconfdir)/pam.d
-	mkdir -p $(INSTROOT)$(PYTHONLIB)
-	install -m 755 $(BINARIES) $(sbindir)/
-	install -m 755 $(PYTHONMODULES) $(INSTROOT)$(PYTHONLIB)/
-	install -m 644 $(PACKAGE).glade2 $(datadir)/$(PACKAGE)/$(PACKAGE).glade
+	mkdir -p $(DESTDIR)$(sbindir)
+	mkdir -p $(DESTDIR)$(PYTHONLIB)
+	mkdir -p $(DESTDIR)$(datadir)/$(PACKAGE)
+	mkdir -p $(DESTDIR)$(datadir)/firstboot/modules
+
+	install -m 755 $(BINARIES) $(DESTDIR)$(sbindir)/
+	install -m 755 $(PYTHONMODULES) $(DESTDIR)$(PYTHONLIB)/
+	install -m 644 $(DATA) $(DESTDIR)$(datadir)/$(PACKAGE)/
+	chmod 755 $(DESTDIR)$(datadir)/$(PACKAGE)/*.py
+	python -c "import compileall; compileall.compile_dir(\""$(DESTDIR)$(datadir)/$(PACKAGE)"\", 2, \""$(datadir)/$(PACKAGE)"\", 1)"
+	cd  $(DESTDIR)$(datadir)/firstboot/modules ; ln -s -f ../../$(PACKAGE)/*.py* .
+
+	mkdir -p $(DESTDIR)$(mandir)/man8
 	for d in $(SUBDIRS); do \
 	(cd $$d; $(MAKE) sbindir=$(sbindir) install) \
 	    || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
