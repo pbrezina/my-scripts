@@ -208,7 +208,7 @@ int getNSSChoices(int back,
 {
   newtComponent form, ok, cancel, comp, cb;
   char nss_files;
-  int rc = FALSE;
+  int rc = 0;
 
   struct nis_cb nis;
   struct hesiod_cb hesiod;
@@ -290,8 +290,8 @@ int getNSSChoices(int back,
   newtComponentAddCallback(cb, hesiodToggle, &hesiod);
 
   /* Create the buttons. */
-  ok = newtButton(15, 12, i18n("Ok"));
-  cancel = newtButton(33, 12, back ? i18n("Back") : i18n("Cancel"));
+  ok = newtButton(16, 12, i18n("Next"));
+  cancel = newtButton(35, 12, back ? i18n("Back") : i18n("Cancel"));
   newtFormAddComponents(form, ok, cancel, NULL);
 
   /* Call all of the callbacks to initialize disabled fields. */
@@ -301,7 +301,7 @@ int getNSSChoices(int back,
 
   /* Run the form and interpret the results. */
   comp = newtRunForm(form);
-  if(comp == ok) {
+  if(comp != cancel) {
     authInfo->enableHesiod = (hesiod.nss_hesiod == '*');
     setString(&authInfo->hesiodLHS, hesiodLHS);
     setString(&authInfo->hesiodRHS, hesiodRHS);
@@ -314,7 +314,10 @@ int getNSSChoices(int back,
     setString(&authInfo->nisServer, nisServer);
     setString(&authInfo->nisDomain, nisDomain);
 
-    rc = TRUE;
+    rc = 1;
+  }
+  if(comp == cancel) {
+    rc = 0;
   }
   newtFormDestroy(form);
   newtPopWindow();
@@ -326,8 +329,8 @@ int getPAMChoices(int back,
 	          gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
 	          struct authInfoType *authInfo)
 {
-  newtComponent form, ok, cancel, comp, cb;
-  gboolean rc = FALSE;
+  newtComponent form, ok, backb = NULL, cancel, comp, cb;
+  int rc = 0;
 
   struct ldap_cb ldap;
   struct krb5_cb krb5;
@@ -337,7 +340,7 @@ int getPAMChoices(int back,
   char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
 
   /* Create the window and a form to put into it. */
-  newtCenteredWindow(70, 16, i18n("Authentication Configuration"));
+  newtCenteredWindow(68, 16, i18n("Authentication Configuration"));
   form = newtForm(NULL, NULL, 0);
 
   /* PAM setup. */
@@ -354,12 +357,12 @@ int getPAMChoices(int back,
 		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
 
   newtComponentAddCallback(cb, ldapToggle, &ldap);
-  ldap.serverLabel = newtLabel(28, 5, "");
-  ldap.serverEntry = newtEntry(38, 5, authInfo->ldapServer, 30, &ldapServer,
+  ldap.serverLabel = newtLabel(27, 5, "");
+  ldap.serverEntry = newtEntry(37, 5, authInfo->ldapServer, 30, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
-  ldap.baseDnLabel = newtLabel(28, 6, "");
-  ldap.baseDnEntry = newtEntry(38, 6, authInfo->ldapBaseDN, 30, &ldapBaseDN,
+  ldap.baseDnLabel = newtLabel(27, 6, "");
+  ldap.baseDnEntry = newtEntry(37, 6, authInfo->ldapBaseDN, 30, &ldapBaseDN,
 		  	       NEWT_ENTRY_SCROLL);
   newtFormAddComponents(form,
 		  	cb,
@@ -372,16 +375,16 @@ int getPAMChoices(int back,
 
   cb = newtCheckbox(1, 8, i18n("Use Kerberos 5"),
 		    authInfo->enableKerberos ? '*' : ' ', NULL, &krb5.pam_krb5);
-  krb5.realmLabel = newtLabel(21, 8, "");
-  krb5.realmEntry = newtEntry(38, 8, authInfo->kerberosRealm, 30,
+  krb5.realmLabel = newtLabel(20, 8, "");
+  krb5.realmEntry = newtEntry(37, 8, authInfo->kerberosRealm, 30,
 		  	      &kerberosRealm, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.realmEntry, entryFilter, NULL);
-  krb5.kdcLabel = newtLabel(21, 9, "");
-  krb5.kdcEntry = newtEntry(38, 9, authInfo->kerberosKDC, 30,
+  krb5.kdcLabel = newtLabel(20, 9, "");
+  krb5.kdcEntry = newtEntry(37, 9, authInfo->kerberosKDC, 30,
 		  	    &kerberosKDC, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kdcEntry, entryFilter, NULL);
-  krb5.kadminLabel = newtLabel(21, 10, "");
-  krb5.kadminEntry = newtEntry(38, 10, authInfo->kerberosAdminServer, 30,
+  krb5.kadminLabel = newtLabel(20, 10, "");
+  krb5.kadminEntry = newtEntry(37, 10, authInfo->kerberosAdminServer, 30,
 		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
   newtComponentAddCallback(cb, krb5Toggle, &krb5);
@@ -396,9 +399,16 @@ int getPAMChoices(int back,
 			NULL);
 
   /* Create the buttons. */
-  ok = newtButton(20, 12, i18n("Ok"));
-  cancel = newtButton(38, 12, back ? i18n("Back") : i18n("Cancel"));
-  newtFormAddComponents(form, ok, cancel, NULL);
+  if (back == FALSE) {
+    ok = newtButton(14, 12, i18n("Ok"));
+    backb = newtButton(42, 12, i18n("Back"));
+    cancel = newtButton(26, 12, i18n("Cancel"));
+    newtFormAddComponents(form, ok, cancel, backb, NULL);
+  } else {
+    ok = newtButton(20, 12, i18n("Ok"));
+    backb = newtButton(36, 12, i18n("Back"));
+    newtFormAddComponents(form, ok, backb, NULL);
+  }
 
   /* Call all of the callbacks to initialize disabled fields. */
   ldapToggle(NULL, &ldap);
@@ -406,7 +416,7 @@ int getPAMChoices(int back,
 
   /* Run the form and interpret the results. */
   comp = newtRunForm(form);
-  if(comp == ok) {
+  if((comp != cancel) && (comp != backb)) {
     authInfo->enableMD5 = (md5 == '*');
     authInfo->enableShadow = (shadow == '*');
 
@@ -419,7 +429,13 @@ int getPAMChoices(int back,
     setString(&authInfo->kerberosKDC, kerberosKDC);
     setString(&authInfo->kerberosAdminServer, kerberosAdmin);
 
-    rc = TRUE;
+    rc = 1;
+  }
+  if(comp == cancel) {
+    rc = 0;
+  }
+  if(comp == backb) {
+    rc = 2;
   }
   newtFormDestroy(form);
   newtPopWindow();
@@ -431,7 +447,7 @@ int getChoices(int back,
 	       gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
 	       struct authInfoType *authInfo)
 {
-  int rc = FALSE, next = 1;
+  int rc = FALSE, next = 1, i;
 
   /* State machine (couldn't come up with a cleaner way to express the logic):
    * 1: query for NSS setup.
@@ -440,20 +456,30 @@ int getChoices(int back,
   while (next != 0) {
     switch (next) {
       case 1:
-	if (getNSSChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
-	  next = 2;
-	} else {
-	  next = 0;
+	i = getNSSChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo);
+        switch(i) {
+          case 1:
+	    next = 2;
+	    break;
+          case 0:
+	    next = 0;
+	    break;
 	}
 	break;
       case 2:
-	if (getPAMChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
-	  next = 0;
-	  rc = TRUE;
-	} else {
-	  next = 1;
+	i = getPAMChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo);
+        switch(i) {
+          case 2:
+	    next = 1;
+	    break;
+          case 1:
+	    next = 0;
+	    rc = TRUE;
+	    break;
+          case 0:
+	    next = 0;
+	    break;
 	}
-	break;
     }
   }
 
