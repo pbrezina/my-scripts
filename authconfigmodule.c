@@ -78,7 +78,7 @@ authInfoObject_destroy(struct authInfoObject *self)
 {
 	authInfoFree(self->info);
 	self->info = NULL;
-	PyObject_DEL(self);
+	PyMem_DEL(self);
 }
 
 /* The svalue method.  Thankfully, we don't have to parse this. */
