@@ -68,9 +68,8 @@ msgid "Use LDAP"
 msgstr "Benyt LDAP"
 
 #: ../authconfig.c:310 ../authconfig.c:467
-#, fuzzy
 msgid "Use TLS"
-msgstr "Benyt NIS"
+msgstr "Benyt TLS"
 
 #. NSS modules: hesiod.
 #: ../authconfig.c:344
@@ -115,46 +114,44 @@ msgstr "Godkendelseskonfiguration"
 
 #: ../authconfig.c:708
 msgid "enable shadowed passwords by default"
-msgstr ""
+msgstr "anvend skyggeadgangskoder som standard"
 
 #: ../authconfig.c:710
 msgid "disable shadowed passwords by default"
-msgstr ""
+msgstr "anvend ikke skyggeadgangskoder som standard"
 
 #: ../authconfig.c:714
 msgid "enable MD5 passwords by default"
-msgstr ""
+msgstr "anvend MD5-adgangskoder som standard"
 
 #: ../authconfig.c:716
-#, fuzzy
 msgid "disable MD5 passwords by default\n"
-msgstr "Benyt MD5-adgangskoder"
+msgstr "anvend ikke MD5-adgangskoder som standard\n"
 
 #: ../authconfig.c:719
 msgid "enable NIS"
-msgstr ""
+msgstr "anvend NIS"
 
 #: ../authconfig.c:721
-#, fuzzy
 msgid "disable NIS"
-msgstr "Benyt NIS"
+msgstr "anvend ikke NIS"
 
 #: ../authconfig.c:723
 msgid "default NIS domain"
-msgstr ""
+msgstr "standard-NIS-domæne"
 
 #: ../authconfig.c:723
 msgid "<domain>"
-msgstr ""
+msgstr "<domæne>"
 
 #: ../authconfig.c:725
 msgid "default NIS server\n"
-msgstr ""
+msgstr "standard-NIS-tjener\n"
 
 #: ../authconfig.c:725 ../authconfig.c:740 ../authconfig.c:749
 #: ../authconfig.c:751
 msgid "<server>"
-msgstr ""
+msgstr "<tjener>"
 
 #: ../authconfig.c:728
 msgid "enable LDAP for user information by default"
@@ -173,18 +170,16 @@ msgid "disable use of TLS with LDAP"
 msgstr ""
 
 #: ../authconfig.c:736
-#, fuzzy
 msgid "enable LDAP for authentication by default"
 msgstr "Benyt LDAP-godkendelse"
 
 #: ../authconfig.c:738
-#, fuzzy
 msgid "disable LDAP for authentication by default"
 msgstr "Benyt LDAP-godkendelse"
 
 #: ../authconfig.c:740
 msgid "default LDAP server"
-msgstr ""
+msgstr "standard-LDAP-tjener"
 
 #: ../authconfig.c:742
 msgid "default LDAP base DN\n"
@@ -236,11 +231,11 @@ msgstr ""
 
 #: ../authconfig.c:762
 msgid "default hesiod RHS\n"
-msgstr ""
+msgstr "standard-hesiod RHS\n"
 
 #: ../authconfig.c:762
 msgid "<rhs>"
-msgstr ""
+msgstr "<rhs>"
 
 #: ../authconfig.c:769
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -289,7 +284,7 @@ msgstr ""
 
 #: ../authconfig.c:915
 msgid "(c) 1999-2001 Red Hat, Inc."
-msgstr ""
+msgstr "(c) 1999-2001 Red Hat, Inc."
 
 #: ../authconfig.c:922
 msgid "dialog was cancelled\n"
@@ -301,95 +296,3 @@ msgstr "Dialog blev annulleret\n"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritisk fejl ved skrivning af %s/%s"
-
-#, fuzzy
-#~ msgid ""
-#~ "Usage: %s [options]\n"
-#~ "\n"
-#~ "     --useshadow\n"
-#~ "     --enableshadow             enable shadow passwords by default\n"
-#~ "     --disableshadow            disable shadow passwords by default\n"
-#~ "     --enablemd5                enable MD5 passwords by default\n"
-#~ "     --disablemd5               disable MD5 passwords by default\n"
-#~ "\n"
-#~ "     --enablenis                enable NIS\n"
-#~ "     --disablenis               disable NIS\n"
-#~ "     --nisdomain <domain>       default NIS domain\n"
-#~ "     --nisserver <server>       default NIS server\n"
-#~ "\n"
-#~ "     --enableldap               enable ldap for user information by default\n"
-#~ "     --disableldap              disable ldap for user information by "
-#~ "default\n"
-#~ "     --enableldaptls            enable use of TLS with ldap\n"
-#~ "     --disableldaptls           disable use of TLS with ldap\n"
-#~ "     --enableldapauth           enable ldap for authentication by default\n"
-#~ "     --disableldapauth          disable ldap for authentication by default\n"
-#~ "     --ldapserver <server>      default LDAP server\n"
-#~ "     --ldapbasedn <dn>          default LDAP base DN\n"
-#~ "\n"
-#~ "     --enablekrb5               enable kerberos authentication by default\n"
-#~ "     --disablekrb5              disable kerberos authentication by default\n"
-#~ "     --krb5kdc <server>         default kerberos KDC\n"
-#~ "     --krb5adminserver <server> default kerberos admin server\n"
-#~ "     --krb5realm <realm>        default kerberos realm\n"
-#~ "\n"
-#~ "     --enablehesiod             enable hesiod for user information by "
-#~ "default\n"
-#~ "     --disablehesiod            disable hesiod for user information by "
-#~ "default\n"
-#~ "     --hesiodlhs <lhs>          default hesiod LHS\n"
-#~ "     --hesiodrhs <rhs>          default hesiod RHS\n"
-#~ "\n"
-#~ "     --nostart                  do not start/stop ypbind\n"
-#~ "     --kickstart                don't display user interface\n"
-#~ "     --help                     show this screen\n"
-#~ msgstr ""
-#~ "Brug: %s [tilvalg]\n"
-#~ "\n"
-#~ "     --useshadow\n"
-#~ "     --enableshadow             aktivér skyggeadgangskoder som standard\n"
-#~ "     --disableshadow            deaktivér skyggeadgangskoder som standard\n"
-#~ "     --enablemd5                aktivér MD5-adgangskoder som standard\n"
-#~ "     --disablemd5               deaktivér MD5-adgangskoder som standard\n"
-#~ "\n"
-#~ "     --enablenis                aktivér NIS\n"
-#~ "     --disablenis               deaktivér NIS\n"
-#~ "     --nisdomain <domain>       standard NIS-domæne\n"
-#~ "     --nisserver <server>       standard NIS-tjener\n"
-#~ "\n"
-#~ "     --enableldap               enable ldap for user information by default\n"
-#~ "     --disableldap              disable ldap for user information by "
-#~ "default\n"
-#~ "     --enableldapauth           enable ldap for authentication by default\n"
-#~ "     --disableldapauth          disable ldap for authentication by default\n"
-#~ "     --ldapserver <server>      default LDAP server\n"
-#~ "     --ldapbasedn <dn>          default LDAP base DN\n"
-#~ "\n"
-#~ "     --enablekrb5               aktivér kerberos godkendelse som standard\n"
-#~ "     --disablekrb5              deaktivér kerberos godkendelse som standard\n"
-#~ "     --krb5kdc <server>         standard kerberos KDC\n"
-#~ "     --krb5adminserver <server> standard kerberos admin server\n"
-#~ "     --krb5realm <realm>        standard kerberos realm\n"
-#~ "\n"
-#~ "     --enablehesiod             aktivér hesiod for brugerinfo som standard\n"
-#~ "     --disablehesiod            deaktivér hesiod for brugerinfo som "
-#~ "standard\n"
-#~ "     --hesiodlhs <lhs>          standard hesiod LHS\n"
-#~ "     --hesiodrhs <rhs>          standard hesiod RHS\n"
-#~ "\n"
-#~ "     --nostart                  start/stop ikke ypbind\n"
-#~ "     --kickstart                vis ikke brugerinterface\n"
-#~ "     --help                     vis denne skærm\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "     --enablelocal              use locally-defined policy "
-#~ msgstr ""
-#~ "\n"
-#~ "     --enablelocal              brug lokalt defineret politik "
-
-#~ msgid "Use WinBind"
-#~ msgstr "Benyt WinBind"
-
-#~ msgid "Use WinBind Authentication"
-#~ msgstr "Benyt WinBind-godkendelse"
