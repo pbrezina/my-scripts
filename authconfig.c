@@ -183,7 +183,7 @@ static void nisEntryToggle(newtComponent co, void * arg) {
  */
 int getChoices(int useBack, char *enableNis, char **nisDomain,  
 	       char *enableNisServer, char **nisServer,
-	       char *enableShadow, char *useMD5)
+	       char *useShadow, char *enableMD5)
 {
   newtComponent mainForm;
   newtGrid mainGrid, subGrid, serverGrid, buttons;
@@ -193,7 +193,7 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   newtComponent okButton, cancelButton;
   newtComponent answer;
   char *newNisDomain, *newNisServer;
-  char newEnableShadow, newUseMD5, newEnableBroadCast;
+  char newUseShadow, newEnableMD5, newEnableBroadCast;
   struct servercbInfo servercb;
   struct niscbInfo niscb;
   
@@ -250,13 +250,13 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   
   /* Shadow Stuff */
   shadowCheckBox = newtCheckbox(-1, -1, i18n("Use Shadow Passwords"),
-				0, 0, &newEnableShadow);
+				0, 0, &newUseShadow);
   MD5CheckBox = newtCheckbox(-1, -1, i18n("Enable MD5 Passwords"),
-			     0, 0, &newUseMD5);
+			     0, 0, &newEnableMD5);
 
-  newtCheckboxSetValue(shadowCheckBox, *enableShadow);
+  newtCheckboxSetValue(shadowCheckBox, *useShadow);
 
-  newtCheckboxSetValue(MD5CheckBox, *useMD5);
+  newtCheckboxSetValue(MD5CheckBox, *enableMD5);
 
   buttons =  newtButtonBar(i18n("Okay"), &okButton,
 			   useBack ? i18n("Back") : i18n("Cancel"),
@@ -324,8 +324,8 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
     *nisDomain = newNisDomain;
     *nisServer = newNisServer;
 
-    *enableShadow = newEnableShadow;
-    *useMD5 = newUseMD5;
+    *useShadow = newUseShadow;
+    *enableMD5 = newEnableMD5;
     return 0;
   }
 }
@@ -592,7 +592,7 @@ int toggleShadowPam(int enable, int md5)
   return 0;
 }
 
-int checkUseMD5(char *useMD5)
+int checkEnableMD5(char *enableMD5)
 {
   char *filename = "/etc/pam.d/passwd";
   char buf[250];
@@ -610,7 +610,7 @@ int checkUseMD5(char *useMD5)
     if (!strncmp(s, "password", 8) && (strstr(s, "pam_pwdb.so") != NULL)) {
       /* set these flags to what we find in the string */
       if (strstr(s,"md5") != NULL)
-	*useMD5 = '*';
+	*enableMD5 = '*';
     }
   }
   
@@ -618,20 +618,35 @@ int checkUseMD5(char *useMD5)
   return 0;
 }
 
-int doShadowStuff(char enableShadow, char useMD5)
+int doShadowStuff(char useShadow, char enableMD5)
 {
   /* first, toggle the shadow service for all required pam modules. */
-  if (toggleShadowPam((enableShadow == '*' ? 1 : 0),
-		      (useMD5 == '*' ? 1 : 0)))
+  if (toggleShadowPam((useShadow == '*' ? 1 : 0),
+		      (enableMD5 == '*' ? 1 : 0)))
     return 1;
   
   /* now, do file manipulation on the password files themselves. */
-  if (enableShadow == '*') {
+  if (useShadow == '*') {
     system("/usr/sbin/pwconv");
   } else {
     system("/usr/sbin/pwunconv");
   }
   return 0;
+}
+
+void usage(void) {
+    fprintf(stderr, i18n("Usage: %s [options]\n\n"
+			 "     --nostart            no not start/stop yp\n"
+			 "     --enablenis          enable nis by default\n"
+			 "     --nisdomain <domain> default NIS domain\n"
+			 "     --nisserver <server> default NIS server\n"
+			 "     --useshadow          use shadow passwords\n"
+			 "     --enablemd5          enable MD5 passwords\n"
+			 "     --kickstart          don't display user interface\n"
+			 "     --help               show this screen\n"),
+	    progName);
+
+    exit(0);
 }
 
 int main(int argc, char **argv) {
@@ -640,11 +655,12 @@ int main(int argc, char **argv) {
 
   char *nisDomain = NULL, *nisServer = NULL;
   char enableNis = ' ', enableNisServer = ' ';
-  char enableShadow = ' ', useMD5 = ' ';
+  char useShadow = ' ', enableMD5 = ' ';
 
   int back = 0, test = 0, nostart = 0;
   int kickstart = 0;
-  int enablenis = 0, enableshadow = 0, usemd5 = 0;
+  int enablenis = 0, useshadow = 0, enablemd5 = 0;
+  int help = 0;
   poptContext optCon;
   struct poptOption options[] = {
     { "back", '\0', 0, &back, 0},
@@ -654,13 +670,14 @@ int main(int argc, char **argv) {
     { "enablenis", '\0', 0, &enablenis, 0},
     { "nisdomain", '\0', POPT_ARG_STRING, nisDomain, 0},
     { "nisserver", '\0', POPT_ARG_STRING, nisServer, 0},
-    { "enableshadow", '\0', 0, &enableshadow, 0},
-    { "usemd5", '\0', 0, &usemd5, 0},
+    { "useshadow", '\0', 0, &useshadow, 0},
+    { "enablemd5", '\0', 0, &enablemd5, 0},
+    { "help", 'h', 0, &help, 0},
     { 0, 0, 0, 0 }
   };
 
   progName = basename(argv[0]);
-  
+
   /* first set up our locale info for gettext. */
   setlocale(LC_ALL, "");
   bindtextdomain("authconfig", "/usr/share/locale");
@@ -685,6 +702,9 @@ int main(int argc, char **argv) {
 
   poptFreeContext(optCon);
 
+  if (help)
+      usage();
+  
   /* if the test parameter wasn't passed, give an error if not root */
   if (!test && getuid()) {
     fprintf(stderr, i18n("%s: can only be run as root\n"),
@@ -695,10 +715,10 @@ int main(int argc, char **argv) {
   /* process other arguments */
   if (enablenis)
     enableNis = '*';
-  if (enableshadow)
-    enableShadow = '*';
-  if (usemd5)
-    useMD5 = '*';
+  if (useshadow)
+    useShadow = '*';
+  if (enablemd5)
+    enableMD5 = '*';
 
   /* read the values from the config file */
   if (readNetworkConfigFile(&nisDomain)) {
@@ -725,9 +745,9 @@ int main(int argc, char **argv) {
     enableNisServer = '*';
 
   if (!stat("/etc/shadow", &sb))
-    enableShadow = '*';
+    useShadow = '*';
 
-  if (checkUseMD5(&useMD5)) {
+  if (checkEnableMD5(&enableMD5)) {
     fprintf(stderr, i18n("%s: critical error reading /etc/pam.d/passwd\n"),
 	    progName);
     return 2;
@@ -742,7 +762,7 @@ int main(int argc, char **argv) {
     
     if (getChoices(back, &enableNis, &nisDomain, 
 		   &enableNisServer, &nisServer, 
-		   &enableShadow, &useMD5)) {
+		   &useShadow, &enableMD5)) {
       /* cancelled */
       newtFinished();
       
@@ -763,7 +783,7 @@ int main(int argc, char **argv) {
     fprintf(stderr, 
 	    i18n("return values: nis: %c, nisdomain: %s, "
 		 "shadow: %c, md5: %c\n"),
-	    enableNis, nisDomain, enableShadow, useMD5);
+	    enableNis, nisDomain, useShadow, enableMD5);
     return 0;
   }
 
@@ -786,7 +806,7 @@ int main(int argc, char **argv) {
     return 2;
   }
       
-  if (doShadowStuff(enableShadow, useMD5)) {
+  if (doShadowStuff(useShadow, enableMD5)) {
     fprintf(stderr, i18n("%s: critical error with shadow password manipulation\n"),
 	    progName);
     return 2;
