@@ -259,7 +259,6 @@ int getChoices(int back,
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
   ldap.baseDnEntry = newtEntry(13, 9, authInfo->ldapBaseDN, 20, &ldapBaseDN,
 		  	       NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(ldap.baseDnEntry, entryFilter, NULL);
   newtFormAddComponents(form,
 		  	cb,
 		  	ldap.serverLabel,
