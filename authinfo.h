@@ -28,6 +28,8 @@
 #define PATH_PORTMAP "/sbin/portmap"
 #define PATH_NSCD "/usr/sbin/nscd"
 #define PATH_NSCD_PID "/var/run/nscd.pid"
+#define PATH_ODBCBIND "/usr/sbin/odbcbind"
+#define PATH_ODBCBIND_PID "/var/run/odbcbind.pid"
 #define PATH_WINBIND "/usr/sbin/winbindd"
 #define PATH_WINBIND_PID "/var/run/winbindd.pid"
 #define PATH_YPBIND "/sbin/ypbind"
@@ -36,6 +38,7 @@
 #define PATH_LIBNSS_DB "/lib/libnss_db.so.2"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
+#define PATH_LIBNSS_ODBCBIND "/lib/libnss_odbcbind.so.2"
 #define PATH_LIBNSS_WINBIND "/lib/libnss_winbind.so.2"
 
 #define PATH_PAM_KRB5 "/lib/security/pam_krb5.so"
@@ -82,17 +85,20 @@ struct authInfoType {
 	gboolean enableLDAPS;
 	gboolean enableNIS;
 	gboolean enableNIS3;
+	gboolean enableOdbcbind;
 	gboolean enableWinbind;
 
 	/* Authentication setup. */
 	gboolean enableAFS;
 	gboolean enableAFSKerberos;
 	gboolean enableBigCrypt;
+	gboolean enableEPS;
 	gboolean enableKerberos;
 	gboolean enableLDAPAuth;
 	gboolean enableMD5;
-	gboolean enableSMB;
+	gboolean enableOTP;
 	gboolean enableShadow;
+	gboolean enableSMB;
 	gboolean enableWinbindAuth;
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.2.1
+Version: 4.2.2
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -73,6 +73,11 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
+* Thu Dec 20 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2.2-1
+- make setting of experimental options only possible through
+  /etc/sysconfig/authconfig, to keep accidents from happening
+- add some more support for experimental stuff
+
 * Tue Dec 11 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2.1-1
 - fix setting of LDAP TLS option in authconfig-gtk
 - change Apply to Ok, Close to Cancel, because that's how they work
