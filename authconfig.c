@@ -454,84 +454,93 @@ int rewriteNetworkConfigFile(char enableNis, char *nisDomain)
  * this function will rewrite /etc/sysconfig/yp.conf to have the new
  * value for ypserver.  If enableNisServer == ' ', removes this field.
  */
-int rewriteYPConfigFile(char enableNisServer, char *nisServer, char *nisDomain)
+int rewriteYPConfigFile(char enableNis, char enableNisServer,
+			char *nisServer, char *nisDomain)
 {
   FILE *f, *f1;
   char *s, *s2;
   char buf[250];
   int line = 0;
-  int found = 0;
+  int ypserverFound = 0, serverFound = 0, domainFound = 0;
 
   f = fopen("/etc/yp.conf", "r");
   if (!f) {
-    fprintf(stderr, i18n("%s: cannot open /etc/yp.conf: %s\n"),
-	    progName, strerror(errno));
-    return 1;
+      fprintf(stderr, i18n("%s: cannot open /etc/yp.conf: %s\n"),
+	      progName, strerror(errno));
+      return 1;
   }
-
+  
   f1 = fopen("/etc/yp.conf-", "w");
   if (!f) {
-    fprintf(stderr, i18n("%s: cannot open /etc/yp.conf- for writing: %s\n"),
-	    progName, strerror(errno));
-    return 1;
+      fprintf(stderr, i18n("%s: cannot open /etc/yp.conf- for writing: %s\n"),
+	      progName, strerror(errno));
+      return 1;
   }
-
+  
   while ((s2 = fgets(buf, sizeof(buf) - 1, f)) != NULL) {
-    s = s2;
-    line++;
-
-    /* first, skip over any leading whitespace and blank lines */
-    while (*s && isspace(*s)) 
-      s++;
-    if (!*s) {
-      fprintf(f1, s2);
-      continue;
-    }
-
-    /* next, skip any lines that are comments */
-    if (*s == '#') {
-      fprintf(f1, s2);
-      continue;
-    }
-
-    /* look for the line we want */
-    if (!strncmp("ypserver ", s, 9)) {
-      /*
-       * OK, now instead of this line we want to write the new line,
-       * if enableNisServer is '*'. 
-       */
-      if (enableNisServer == '*') {
-	fprintf(f1,"ypserver %s\n",nisServer);
-	found = 1;
+      s = s2;
+      line++;
+      
+      /* first, skip over any leading whitespace and blank lines */
+      while (*s && isspace(*s)) 
+	  s++;
+      if (!*s) {
+	  fprintf(f1, s2);
+	  continue;
       }
-    } else if (!strncmp("server ", s, 7)) {
-      if (enableNisServer == '*') {
-	fprintf(f1, "server %s\n",nisServer);
-	found = 1;
+      
+      /* next, skip any lines that are comments */
+      if (*s == '#') {
+	  fprintf(f1, s2);
+	  continue;
       }
-    } else if (!strncmp("domain ", s, 7)) {
-      if (enableNisServer == '*') {
-	fprintf(f1, "domain %s\n",nisDomain);
-	found = 1;
+
+      if (enableNis == ' ')
+	  continue;
+      
+      /* look for the line we want */
+      if (!strncmp("ypserver ", s, 9)) {
+	  /*
+	   * OK, now instead of this line we want to write the new line,
+	   * if enableNisServer is '*'. 
+	   */
+	  if (enableNisServer == '*') {
+	      fprintf(f1,"ypserver %s\n",nisServer);
+	      ypserverFound = 1;
+	  }
+      } else if (!strncmp("server ", s, 7)) {
+	  if (enableNisServer == '*') {
+	      fprintf(f1, "server %s\n",nisServer);
+	      serverFound = 1;
+	  }
+      } else if (!strncmp("domain ", s, 7)) {
+	  if (enableNisServer == '*') {
+	      fprintf(f1, "domain %s\n",nisDomain);
+	      domainFound = 1;
+	  }
+      } else {
+	  fprintf(f1, s2);
       }
-    } else {
-      fprintf(f1, "%s",s2);
-    }
   }
-
+  
   /* 
    * here, we write the value if we haven't done so already (it is a new
    * value for the config file...)
    */
-  if (!found && enableNisServer == '*') {
-    fprintf(f1, "domain %s\n",nisDomain);
-    fprintf(f1, "server %s\n",nisServer);
-    fprintf(f1, "ypserver %s\n",nisServer);
-  }
 
+  if (enableNis == '*') {
+      if (!serverFound && enableNisServer == '*')
+	  fprintf(f1, "server %s\n",nisServer);
+      if (!ypserverFound && enableNisServer == '*')
+	  fprintf(f1, "ypserver %s\n",nisServer);
+      if (!domainFound)
+	  fprintf(f1, "domain %s %s\n",nisDomain,
+		  enableNisServer == ' ' ? "broadcast" : "");
+  }
+  
   fclose(f);
   fclose(f1);
-
+  
   /* rename the temporary file */
   unlink("/etc/yp.conf");
   rename("/etc/yp.conf-", "/etc/yp.conf");
@@ -548,7 +557,7 @@ int toggleNisService(char enableNis, int nostart)
 {
   if (enableNis == '*') {
     if (!nostart) 
-      system("/etc/rc.d/init.d/ypbind start");
+      system("/etc/rc.d/init.d/ypbind restart");
     system("/sbin/chkconfig --level 345 ypbind on");
   }  else {
     if (!nostart)
@@ -839,7 +848,8 @@ int main(int argc, char **argv) {
   }
 
   if (configureNis) {
-      if (rewriteYPConfigFile(enableNisServer, nisServer, nisDomain)) {
+      if (rewriteYPConfigFile(enableNis, enableNisServer,
+			      nisServer, nisDomain)) {
 	  fprintf(stderr, i18n("%s: critical error writing /etc/yp.conf\n"),
 		  progName);
 	  return 2;
