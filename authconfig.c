@@ -3,7 +3,8 @@
  * Author: Nalin Dahyabhai <nalin@redhat.com>
  * Copyright (c) 1999, 2000 Red Hat, Inc.
  *
- * This program is licensed under the terms of the GPL.
+ * This program is licensed under the terms of the GNU General Public License,
+ * version 2 or later.
  */
 
 #include <ctype.h>

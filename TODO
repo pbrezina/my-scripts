@@ -1,25 +1,54 @@
-* Per-service configuration, probably using a parallel array for each of the
-  services we care about.  Could get messy UI-wise.
-* Probing for NIS servers and domains using broadcast RPC (servers can be done
-  by calling the NULL function for the ypserv program, and Cristian says one of
-  the RPCs will let me query the domain the server supports).  To be added as a
-  button for one-time use.
-* Probing DNS for Kerberos and LDAP configuration.  To be added as a button
-  for one-time use.
-* Enabling DNS-based configuration at run-time for Kerberos.
-* Make it clear that no server set for NIS forces "use broadcast".  Probably
-  need to reintroduce that checkbox.
-* Make it clear that no server set for LDAP forces "use DNS".  Probably needs
-  a checkbox.
-* Go from hard-coded knowledge of whether or not a module is applicable to
-  a service to checking the module file itself for the appropriate function.
-* Glob /lib/libnss_{libc-version}*.so for a list of possible services, and
-  hide others?
-* Hide LDAP and Kerberos authentication if modules for PAM not already present?
-* An easy-to-parse way to dump what we think the current configuration is (for
-  anaconda to use if we want to add probing at install-time).
-* Add a checkbox to enable/disable nscd.
-* Add a "db" checkbox under nss configuration to improve speed on single
-  lookups, add it first in the list, and run "make -C /var/db" on exit.
+Bite the bullet and do PAM configuration the Hard way.
+  * Per-service configuration, probably using a parallel array for each of the
+    services we care about.  Experimental model in authconfig.conf in this
+    directory.  Needs to be expandible using only configuration data.
+  * Go from hard-coded knowledge of whether or not a module is applicable to
+    a service to checking the module file itself for the appropriate function.
 
-No way this stuff's going to fit onto two screens....
+Probing:
+  * Enabling DNS-based configuration at run-time for Kerberos.
+    - Set "dns_lookup_realm", "dns_lookup_kdc", "dns_fallback" to "true".  We
+      currently don't even look at these settings.
+  * Probing DNS for Kerberos and LDAP configuration.  To be added as a button
+    for one-time use.
+    - Use SRV RRs for LDAP, a la nss_ldap:
+      _ldap._tcp.<DOMAIN> = priority weight port server (see RFC 2782)
+      Convert <DOMAIN> to base DN using DC components in the way just
+      about everything does (example.com -> "dc=example,dc=com")
+    - Use TXT RRs for host-to-realm mapping:
+      _kerberos.localhost
+      _kerberos.FQDN
+      _kerberos.<search-list-entry>
+      I assume these would contain the name of the realm the host belongs to,
+      but I haven't stepped through the code.
+    - Use SRV RRs for Kerberos realms, a la locate_kdc.c:
+      _kerberos._udp.<REALM> = priority weight port server (see RFC 2782)
+      We have the realm, a server name, and the port number.  Use all of them.
+      _kerberos-master._udp.<REALM> = priority weight port server (see RFC 2782)
+      We have the realm, the admin server name, and the port number.
+  * Probing for NIS servers and domains using broadcast RPC (servers can be done
+    by calling the NULL function for the ypserv program, and we've only got
+    YPPROC_DOMAIN for checking if a server supports a given domain).  To be
+    added as a button for one-time use.
+  * An easy-to-parse way to dump what we think the current configuration is (for
+    anaconda to use if we want to add probing for default options at
+    install-time).
+
+UI issues:
+  * Make it clear that no server set for NIS forces "use broadcast".  Probably
+    need to reintroduce that checkbox.
+  * Make it clear that no server set for LDAP forces "use DNS".  Probably needs
+    a checkbox.
+  * Make no settings for Kerberos force "use DNS", as above.
+  * Glob /lib/libnss_{libc-version}*.so for a list of possible services, and
+    hide others?
+  * Hide LDAP and Kerberos authentication if modules for PAM not already
+    present?
+
+New options:
+  * Add a checkbox to enable/disable nscd.
+  * Add a "db" checkbox under nss configuration to improve speed on single
+    lookups, add it first in the lists, and run "make -C /var/db" on exit.
+  * Add SMB authentication and pam_smb.
+
+If all of this gets done, there's no way it's going to fit onto two screens....
