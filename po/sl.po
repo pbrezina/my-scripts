@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig 7.0\n"
-"POT-Creation-Date: 2001-01-23 14:43-0500\n"
-"PO-Revision-Date: 2000-09-05 22:40+0100\n"
+"Project-Id-Version: authconfig 7.1\n"
+"POT-Creation-Date: 2001-01-25 15:48-0500\n"
+"PO-Revision-Date: 2001-02-02 17:45+0200\n"
 "Last-Translator: Roman Maurer <roman.maurer@hermes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,9 +68,8 @@ msgid "Use LDAP"
 msgstr "Uporabi LDAP"
 
 #: ../authconfig.c:310 ../authconfig.c:467
-#, fuzzy
 msgid "Use TLS"
-msgstr "Uporabi NIS"
+msgstr "Uporabi TLS"
 
 #. NSS modules: hesiod.
 #: ../authconfig.c:344
@@ -115,104 +114,100 @@ msgstr "Nastavitev identifikacije"
 
 #: ../authconfig.c:708
 msgid "enable shadowed passwords by default"
-msgstr ""
+msgstr "privzeto omogoèi senèna gesla"
 
 #: ../authconfig.c:710
 msgid "disable shadowed passwords by default"
-msgstr ""
+msgstr "privzeto onemogoèi senèna gesla"
 
 #: ../authconfig.c:714
 msgid "enable MD5 passwords by default"
-msgstr ""
+msgstr "privzeto omogoèi gesla MD5"
 
 #: ../authconfig.c:716
-#, fuzzy
 msgid "disable MD5 passwords by default\n"
-msgstr "Uporabi gesla MD5"
+msgstr "privzeto onemogoèi gesla MD5\n"
 
 #: ../authconfig.c:719
 msgid "enable NIS"
-msgstr ""
+msgstr "omogoèi NIS"
 
 #: ../authconfig.c:721
-#, fuzzy
 msgid "disable NIS"
-msgstr "Uporabi NIS"
+msgstr "onemogoèi NIS"
 
 #: ../authconfig.c:723
 msgid "default NIS domain"
-msgstr ""
+msgstr "privzeta domena za NIS"
 
 #: ../authconfig.c:723
 msgid "<domain>"
-msgstr ""
+msgstr "<domena>"
 
 #: ../authconfig.c:725
 msgid "default NIS server\n"
-msgstr ""
+msgstr "privzeti stre¾nik NIS\n"
 
 #: ../authconfig.c:725 ../authconfig.c:740 ../authconfig.c:749
 #: ../authconfig.c:751
 msgid "<server>"
-msgstr ""
+msgstr "<stre¾nik>"
 
 #: ../authconfig.c:728
 msgid "enable LDAP for user information by default"
-msgstr ""
+msgstr "privzeto omogoèi uporabni¹ke podatke prek LDAP"
 
 #: ../authconfig.c:730
 msgid "disable LDAP for user information by default"
-msgstr ""
+msgstr "privzeto onemogoèi uporabni¹ke podatke prek LDAP"
 
 #: ../authconfig.c:732
 msgid "enable use of TLS with LDAP"
-msgstr ""
+msgstr "omogoèi rabo TLS z LDAP"
 
 #: ../authconfig.c:734
 msgid "disable use of TLS with LDAP"
-msgstr ""
+msgstr "onemogoèi rabo TLS z LDAP"
 
 #: ../authconfig.c:736
-#, fuzzy
 msgid "enable LDAP for authentication by default"
-msgstr "Nastavitev avtentifikacije LDAP"
+msgstr "privzeto omogoèi LDAP za avtentifikacijo"
 
 #: ../authconfig.c:738
-#, fuzzy
 msgid "disable LDAP for authentication by default"
-msgstr "Nastavitev avtentifikacije LDAP"
+msgstr "privzeto onemogoèi LDAP za avtentifikacijo"
 
 #: ../authconfig.c:740
 msgid "default LDAP server"
-msgstr ""
+msgstr "privzeti stre¾nik LDAP"
 
 #: ../authconfig.c:742
 msgid "default LDAP base DN\n"
-msgstr ""
+msgstr "privzeta osnova DN za LDAP\n"
 
 #: ../authconfig.c:742
 msgid "<dn>"
-msgstr ""
+msgstr "<dn>"
 
 #: ../authconfig.c:745
 msgid "enable kerberos authentication by default"
-msgstr ""
+msgstr "privzeto omogoèi avtentifikacijo kerberos"
 
 #: ../authconfig.c:747
 msgid "disable kerberos authentication by default"
-msgstr ""
+msgstr "privzeto onemogoèi avtentifikacijo kerberos"
 
 #: ../authconfig.c:749
 msgid "default kerberos KDC"
-msgstr ""
+msgstr "privzeto kerberod KDC"
 
 #: ../authconfig.c:751
 msgid "default kerberos admin server"
-msgstr ""
+msgstr "privzeto kerberos skrbni¹ki stre¾nik"
 
 #: ../authconfig.c:753
 msgid "default kerberos realm\n"
-msgstr ""
+msgstr "privzeto kerberos realm\n"
 
 #: ../authconfig.c:753
 msgid "<realm>"
@@ -289,7 +284,7 @@ msgstr ""
 
 #: ../authconfig.c:915
 msgid "(c) 1999-2001 Red Hat, Inc."
-msgstr ""
+msgstr "(c) 1999-2001 Red Hat, Inc."
 
 #: ../authconfig.c:922
 msgid "dialog was cancelled\n"
@@ -301,93 +296,3 @@ msgstr "pogovor je bil preklican\n"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritièna napaka pri pisanju %s/%s"
-
-#, fuzzy
-#~ msgid ""
-#~ "Usage: %s [options]\n"
-#~ "\n"
-#~ "     --useshadow\n"
-#~ "     --enableshadow             enable shadow passwords by default\n"
-#~ "     --disableshadow            disable shadow passwords by default\n"
-#~ "     --enablemd5                enable MD5 passwords by default\n"
-#~ "     --disablemd5               disable MD5 passwords by default\n"
-#~ "\n"
-#~ "     --enablenis                enable NIS\n"
-#~ "     --disablenis               disable NIS\n"
-#~ "     --nisdomain <domain>       default NIS domain\n"
-#~ "     --nisserver <server>       default NIS server\n"
-#~ "\n"
-#~ "     --enableldap               enable ldap for user information by default\n"
-#~ "     --disableldap              disable ldap for user information by "
-#~ "default\n"
-#~ "     --enableldaptls            enable use of TLS with ldap\n"
-#~ "     --disableldaptls           disable use of TLS with ldap\n"
-#~ "     --enableldapauth           enable ldap for authentication by default\n"
-#~ "     --disableldapauth          disable ldap for authentication by default\n"
-#~ "     --ldapserver <server>      default LDAP server\n"
-#~ "     --ldapbasedn <dn>          default LDAP base DN\n"
-#~ "\n"
-#~ "     --enablekrb5               enable kerberos authentication by default\n"
-#~ "     --disablekrb5              disable kerberos authentication by default\n"
-#~ "     --krb5kdc <server>         default kerberos KDC\n"
-#~ "     --krb5adminserver <server> default kerberos admin server\n"
-#~ "     --krb5realm <realm>        default kerberos realm\n"
-#~ "\n"
-#~ "     --enablehesiod             enable hesiod for user information by "
-#~ "default\n"
-#~ "     --disablehesiod            disable hesiod for user information by "
-#~ "default\n"
-#~ "     --hesiodlhs <lhs>          default hesiod LHS\n"
-#~ "     --hesiodrhs <rhs>          default hesiod RHS\n"
-#~ "\n"
-#~ "     --nostart                  do not start/stop ypbind\n"
-#~ "     --kickstart                don't display user interface\n"
-#~ "     --help                     show this screen\n"
-#~ msgstr ""
-#~ "Uporaba: %s [izbire]\n"
-#~ "\n"
-#~ "     --useshadow\n"
-#~ "     --enableshadow             privzeto omogoèi senèna gesla\n"
-#~ "     --disableshadow            privzeto onemogoèi senèna gesla\n"
-#~ "     --enablemd5                privzeto omogoèi gesla MD5\n"
-#~ "     --disablemd5               privzeto onemogoèi gesla MD5\n"
-#~ "\n"
-#~ "     --enablenis                omogoèi NIS\n"
-#~ "     --disablenis               onemogoèi NIS\n"
-#~ "     --nisdomain <domena>       privzeta domena NIS\n"
-#~ "     --nisserver <stre¾nik>     privzeti stre¾nik NIS\n"
-#~ "\n"
-#~ "     --enableldap               privzeto omogoèi uporabni¹ki imenik ldap\n"
-#~ "     --disableldap              privzeto onemogoèi uporabni¹ki imenik ldap\n"
-#~ "     --enableldapauth           privzeto omogoèi ldap za avtentifikacijo\n"
-#~ "     --disableldapauth          privzeto onemogoèi ldap za avtentifikacijo\n"
-#~ "     --ldapserver <stre¾nik>    privzeti stre¾nik za LDAP\n"
-#~ "     --ldapbasedn <dn>          privzeti osnovni DN za LDAP\n"
-#~ "\n"
-#~ "     --enablekrb5               privzeto omogoèi avtentifikacijo kerberos\n"
-#~ "     --disablekrb5              privzeto onemogoèi avtentifikacijo kerberos\n"
-#~ "     --krb5kdc <stre¾nik>       privzeti KDC za kerberos\n"
-#~ "     --krb5adminserver <stre¾.> privzeti skrbni¹ki stre¾nik za kerberos\n"
-#~ "     --krb5realm <obmoèje>      privzeto obmoèje za kerberos\n"
-#~ "\n"
-#~ "     --enablehesiod             privzeto omogoèi imenik hesiod\n"
-#~ "     --disablehesiod            privzeto onemogoèi imenik hesiod\n"
-#~ "     --hesiodlhs <leva>         privzeta leva stran za hesiod\n"
-#~ "     --hesiodrhs <desna>        privzeta desna stran za hesiod\n"
-#~ "\n"
-#~ "     --nostart                  ne za¾eni/ustavi ypbind\n"
-#~ "     --kickstart                ne prika¾i uporabni¹kega vmesnika\n"
-#~ "     --help                     prika¾i ta zaslon\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "     --enablelocal              use locally-defined policy "
-#~ msgstr ""
-#~ "\n"
-#~ "     --enablelocal              uporabi lokalno definirano politiko"
-
-#~ msgid "Use WinBind"
-#~ msgstr "Uporabi WinBind"
-
-#~ msgid "Use WinBind Authentication"
-#~ msgstr "Nastavitev avtentifikacije WinBind"
