@@ -2,7 +2,7 @@ AC_INIT(TODO)
 AM_INIT_AUTOMAKE(authconfig,`awk '/Version:/ { print $2 }' ${srcdir}/authconfig.spec`)
 AC_PREFIX_DEFAULT(/usr)
 AC_PROG_CC
-ALL_LINGUAS="bs cs da de el es fi fr gl hr hu id is it ja ko ms nl nn no pl pt_BR pt ro ru sk sl sr sv tr uk vi wa zh_CN zh_TW"
+ALL_LINGUAS="ar bg bn bs ca cs cy da de el es et fa fi fr gl gu hi hr hu id is it ja ko mk ms nb nl nn no pa pl pt_BR pt ro ru sk sl sr sv ta tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 AM_PROG_LIBTOOL
 AC_PROG_INTLTOOL
@@ -93,7 +93,7 @@ x86_64|ppc64|s390x) AC_DEFINE(PREFER_LIB64,1,[Define if your native architecture
 *) : ;;
 esac
 
-AC_CONFIG_HEADER([config.h])
+AM_CONFIG_HEADER(config.h)
 
 AC_OUTPUT([
 Makefile

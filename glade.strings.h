@@ -6,44 +6,40 @@
 
 gchar *s = N_("Authentication Configuration");
 gchar *s = N_("Cache User _Information");
-gchar *s = N_("Con_figure NIS...");
+gchar *s = N_("Configure NI_S...");
 gchar *s = N_("Enable _NIS Support");
-gchar *s = N_("NIS is the Network Information Service.  It is commonly used on small to medium networks.\n"
-              "");
+gchar *s = N_("NIS is the Network Information Service.  It is commonly used on small to medium networks.");
 gchar *s = N_("NIS");
 gchar *s = N_("Enable _LDAP Support");
-gchar *s = N_("Con_figure LDAP...");
+gchar *s = N_("Configure L_DAP...");
 gchar *s = N_("The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy.  LDAP is increasingly being used in small to large networks.");
 gchar *s = N_("LDAP");
 gchar *s = N_("Enable _Hesiod Support");
-gchar *s = N_("Con_figure Hesiod...");
+gchar *s = N_("Configure H_esiod...");
 gchar *s = N_("Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks.");
 gchar *s = N_("Hesiod");
 gchar *s = N_("Enable _Winbind Support");
-gchar *s = N_("Con_figure Winbind...");
-gchar *s = N_("Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.\n"
-              "");
+gchar *s = N_("Configure Win_bind...");
+gchar *s = N_("Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.");
 gchar *s = N_("Winbind");
 gchar *s = N_("User Information");
 gchar *s = N_("Enable _Kerberos Support");
-gchar *s = N_("Con_figure Kerberos...");
-gchar *s = N_("Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks.\n"
-              "");
+gchar *s = N_("Configure K_erberos...");
+gchar *s = N_("Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks.");
 gchar *s = N_("Kerberos");
 gchar *s = N_("Enable _LDAP Support");
-gchar *s = N_("Con_figure LDAP...");
+gchar *s = N_("Configure L_DAP...");
 gchar *s = N_("The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy.  LDAP is increasingly being used in small to large networks.");
 gchar *s = N_("LDAP");
 gchar *s = N_("Use _Shadow Passwords");
 gchar *s = N_("Use _MD5 Passwords");
-gchar *s = N_("Enable SM_B Support");
+gchar *s = N_("Enable SMB S_upport");
 gchar *s = N_("Con_figure SMB...");
 gchar *s = N_("SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite.");
 gchar *s = N_("SMB");
 gchar *s = N_("Enable _Winbind Support");
-gchar *s = N_("Con_figure Winbind...");
-gchar *s = N_("Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.\n"
-              "");
+gchar *s = N_("Configure Win_bind...");
+gchar *s = N_("Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks.");
 gchar *s = N_("Winbind");
 gchar *s = N_("Authentication");
 gchar *s = N_("NIS Settings");

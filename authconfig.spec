@@ -78,6 +78,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Sep 29 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-5
+- fixed all po files to translate correctly messages with modified accelerators (#133742)
+- added translations for Arabic, Bulgarian and other languages (#133716, #133158)
+
 * Wed Sep 22 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-4
 - added "quiet" option to pam_success_if PAM module in sytem-auth (#133179)
 
