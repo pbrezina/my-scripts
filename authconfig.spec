@@ -39,7 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 - add Hesiod support
 - migrate PAM config file logic to new method
 
-* Wed 08 Mar 2000 Cristian Gafton <gafton@redhat.com>
+* Wed Mar 08 2000 Cristian Gafton <gafton@redhat.com>
 - rebuild for release
 
 * Wed Feb 16 2000 Preston Brown <pbrown@redhat.com>

@@ -700,6 +700,8 @@ int main(int argc, const char **argv)
         return 2;
       }
     }
+    toggleShadow(authInfo);
+    toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
   }
 
   return 0;

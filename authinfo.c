@@ -1289,6 +1289,9 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		       	 (sizeof(standard_pam_modules) / 
 		       	  sizeof(standard_pam_modules[0])));
 	strcpy(obuf, "#%PAM-1.0\n");
+	strcat(obuf, "# This file is auto-generated.\n");
+      	strcat(obuf, "User changes will be blown away the next time authconfig "
+		     "is run.\n");
 
 	for(i = 0;
 	    i < sizeof(standard_pam_modules) / sizeof(standard_pam_modules[0]);
