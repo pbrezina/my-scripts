@@ -2,106 +2,106 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 1.0\n"
 "POT-Creation-Date: 1999-04-01 16:48-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 1999-04-08 21:00+0300\n"
+"Last-Translator: FULL NAME <leon@geon.donetsk.ua>\n"
+"Language-Team: DonLUG <donlug@geon.donetsk.ua>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../authconfig.c:36 ../authconfig.c:386
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr ""
+msgstr "%s: невозможно открыть /etc/sysconfig/network: %s\n"
 
 #: ../authconfig.c:96 ../authconfig.c:468
 #, c-format
 msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr ""
+msgstr "%s: невозможно открыть /etc/yp.conf: %s\n"
 
 #.
 #. * NIS stuff.
 #.
 #: ../authconfig.c:215
 msgid "NIS Server:"
-msgstr ""
+msgstr "Сервер NIS:"
 
 #: ../authconfig.c:216
 msgid "Request via broadcast"
-msgstr ""
+msgstr "Широковещательный запрос"
 
 #: ../authconfig.c:233
 msgid "Enable NIS"
-msgstr ""
+msgstr "Разрешить NIS"
 
 #: ../authconfig.c:235
 msgid "NIS Domain:"
-msgstr ""
+msgstr "Домен NIS:"
 
 #. Shadow Stuff
 #: ../authconfig.c:271
 msgid "Use Shadow Passwords"
-msgstr ""
+msgstr "Использовать скрытые пароли"
 
 #: ../authconfig.c:273
 msgid "Enable MD5 Passwords"
-msgstr ""
+msgstr "Разрешить пароли MD5"
 
 #: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../authconfig.c:281
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: ../authconfig.c:281
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: ../authconfig.c:298
 msgid "(NIS not installed)"
-msgstr ""
+msgstr "(NIS не установлен)"
 
 #: ../authconfig.c:312
 msgid "or use:"
-msgstr ""
+msgstr "либо использовать:"
 
 #: ../authconfig.c:334
 msgid "Authentication Configuration"
-msgstr ""
+msgstr "Конфигурация аутентификации"
 
 #: ../authconfig.c:347 ../authconfig.c:354
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: ../authconfig.c:348
 msgid "You must enter a NIS server or request via broadcast."
 msgstr ""
+"Вы должны соединиться с сервером NIS или послать широковещателный запрос."
 
 #: ../authconfig.c:355
 msgid "You must enter a NIS domain."
-msgstr ""
+msgstr "Вы должны войти в домен NIS."
 
 #: ../authconfig.c:393
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr ""
+msgstr "%s: невозможно открыть /etc/sysconfig/network- для записи: %s\n"
 
 #: ../authconfig.c:475
 #, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr ""
+msgstr "%s: невозможно открыть /etc/yp.conf- для записи: %s\n"
 
 #: ../authconfig.c:657
 #, c-format
 msgid "%s: error opening %s\n"
-msgstr ""
+msgstr "%s: ошибка открытия %s\n"
 
 #: ../authconfig.c:691
 #, c-format
@@ -117,69 +117,80 @@ msgid ""
 "     --kickstart          don't display user interface\n"
 "     --help               show this screen\n"
 msgstr ""
+"Применение: %s [опции]\n"
+"\n"
+"     --nostart            не останавливать/запускать yp\n"
+"     --enablenis          разрешить nis по умолчанию\n"
+"     --nisdomain <domain> домен NIS по умолчанию\n"
+"     --nisserver <server> сервер NIS по умолчанию\n"
+"     --useshadow          использовать скрытые пароли\n"
+"     --enablemd5          использовать пароли MD5\n"
+"     --kickstart          не отображать интерфейс пользователя\n"
+"     --help               показать этот экран\n"
 
 #: ../authconfig.c:745
 #, c-format
 msgid "%s: bad argument %s: %s\n"
-msgstr ""
+msgstr "%s: неверный аргумент %s: %s\n"
 
 #: ../authconfig.c:752
 #, c-format
 msgid "%s: unexpected argument\n"
-msgstr ""
+msgstr "%s: неожиданный аргумент\n"
 
 #: ../authconfig.c:764
 #, c-format
 msgid "%s: can only be run as root\n"
-msgstr ""
+msgstr "%s: может выполняться только пользователем root\n"
 
 #: ../authconfig.c:779
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr ""
+msgstr "%s: критическая ошибка чтения /etc/sysconfig/network"
 
 #: ../authconfig.c:792
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
-msgstr ""
+msgstr "%s: критическая ошибка чтения /etc/yp.conf"
 
 #: ../authconfig.c:809
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
-msgstr ""
+msgstr "%s: критическая ошибка чтения /etc/pam.d/passwd\n"
 
 #: ../authconfig.c:818
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
+" <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
 #: ../authconfig.c:829
 #, c-format
 msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr ""
+msgstr "%s: домен nis был установлен в %s, но диалог был прекращен\n"
 
 #: ../authconfig.c:842
 #, c-format
 msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-msgstr ""
+msgstr "возврат значений: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
 
 #: ../authconfig.c:850
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr ""
+msgstr "%s: критическая ошибка записи /etc/sysconfig/network\n"
 
 #: ../authconfig.c:858
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr ""
+msgstr "%s: критическая ошибка записи /etc/yp.conf\n"
 
 #: ../authconfig.c:866
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
-msgstr ""
+msgstr "%s: критическая ошибка запуска сервиса NIS\n"
 
 #: ../authconfig.c:873
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
-msgstr ""
+msgstr "%s: критическая ошибка манипуляции с теневыми паролями\n"
