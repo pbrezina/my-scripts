@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig VERSION\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2003-07-26 00:45+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -181,7 +181,7 @@ msgstr "Cảnh báo"
 msgid "caching"
 msgstr ""
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -190,7 +190,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "Dùng Xác thực LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -241,7 +241,7 @@ msgstr "Dùng NIS"
 msgid "Use Winbind"
 msgstr ""
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Xác thực"
 
@@ -615,6 +615,10 @@ msgstr ""
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: lỗi nghiêm trong khi ghi %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Điều khiển cách hệ thống kiểm tra người dùng thử đăng nhập"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -645,15 +649,15 @@ msgstr ""
 "NIS là Dịch vụ Thông tin Tên (Name Information Service) - Thường được dùng "
 "trong mạng vừa và nhỏ."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Bật hỗ trợ _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Cấu hình LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -702,28 +706,28 @@ msgid ""
 msgstr ""
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Dùng Mật khẩu _Shadow"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Dùng Mật khẩu _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Bật Hỗ trợ _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "Cấu hình _Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos là hệ thống xác thực dựa vào bên thứ ba-đáng tin cậy, thường được "
 "dùng trong mạng vừa và lớn."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Dùng Mật khẩu _Shadow"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Dùng Mật khẩu _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -781,11 +785,11 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
+msgid "Use _DNS to resolve hosts to realms"
 msgstr ""
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
+msgid "Use DNS to _locate KDCs for realms"
 msgstr ""
 
 #: glade.strings.h:66
@@ -824,11 +828,11 @@ msgstr "_Vùng NIS"
 
 #: glade.strings.h:80
 #, fuzzy
-msgid "Winbind Domain _Controllers"
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Bộ điều khiển _vùng"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
+msgid "_Template Shell"
 msgstr ""
 
 #: glade.strings.h:83
@@ -877,9 +881,6 @@ msgstr "Dùng chính sách cục bộ"
 #, fuzzy
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr "mặc định tắt hesiod for user information"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "Điều khiển cách hệ thống kiểm tra người dùng thử đăng nhập"
 
 #~ msgid "User Information Configuration"
 #~ msgstr "Cấu hình thông tin người dùng"

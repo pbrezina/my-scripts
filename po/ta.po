@@ -8,7 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ta\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-22 13:00+0530\n"
 "Last-Translator: Jayaradha N <jaya@pune.redhat.com>\n"
 "Language-Team: Tamil <zhakanini@yahoogroups.com>\n"
@@ -179,7 +180,7 @@ msgstr "எச்சரிக்கை"
 msgid "caching"
 msgstr "தற்காலிக சேமிப்பு"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "கர்ப்ரோஸ்"
 
@@ -187,7 +188,7 @@ msgstr "கர்ப்ரோஸ்"
 msgid "LDAP authentication"
 msgstr "LDAP அனுமதி சரிபார்த்தல்"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -235,7 +236,7 @@ msgstr "NISஐ பயன்படுத்து"
 msgid "Use Winbind"
 msgstr "Winbind ஐ பயன்படுத்து"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "சரிபார்த்தல்"
 
@@ -606,6 +607,10 @@ msgstr "%s: முக்கிய பிழையை டுு தற்கா�
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: முக்கிய பிழையை எழுதுகிறது %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -635,15 +640,15 @@ msgstr ""
 "NIS என்பது வலைப் பின்னல் தகவல் சேவை. இது பொதுவாக சிறிய மற்றும் நடுநிலை அளவுள்ள "
 "வலைப்பின்னல்களில் பயன்படுகிறது."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "_LDAP ஆதரவை செயல்படுத்து"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_LDAPஐ வடிவமை..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -691,28 +696,28 @@ msgstr ""
 "கொண்டு அனுமதி சரிபார்க்கும். இது சிறிய மற்றும் பெரிய வலைப்பின்னல்களின் பயன்படும்."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "(_S)நிழற் கடவுச்சொல்லை பயன்படுத்தவும்"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "_MD5 கடவுச்சொற்களை பயன்படுத்து"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "(_K)கர்ப்ரோஸின்ரோஸின் ஆதரவை செயல்படுத்து"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "(_C)கர்ப்ரோஸை வடிவமை..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "கர்ப்ரோஸ்பரோஸ் என்பது நம்பிக்கையான மூன்றாவது நபர் சரிபார்க்கும் அமைப்பு ப நடுநிலையான "
 "மற்றும் பெரிய வலைப்பின்னல்களில் இது பயன்படுகிறது.கிறது."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "(_S)நிழற் கடவுச்சொல்லை பயன்படுத்தவும்"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "_MD5 கடவுச்சொற்களை பயன்படுத்து"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -770,12 +775,14 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "(_r)குறிப்பிட்ட வட்டாரத்திலிருந்து புரவலன் பெயர்களை அறிய DNS ஐ பயன்படுத்து"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "எல்லைகள் புரவலனை தீர்மானிக்க DNS ஐ பயன்படுத்து"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "(_K)வட்டாரத்திற்கான KDC களை கண்டுபிடிக்க DNS ஐ பயன்படுத்து."
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "வட்டாரத்திற்கான KDC யை கண்டுபிடிக்க DNS ஐ பயன்படுத்து"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -810,12 +817,14 @@ msgid "Winbind _Domain"
 msgstr "(_D)Winbind களம்"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "(_C)Winbind டொமைன் கட்டுப்படுத்தி"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "(_S)வார்புரு ஷெல்"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "வார்புரு ஷெல்:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -852,3 +861,12 @@ msgstr "(_n)சேமிக்காதே"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "உள் கொள்கைகளை பயன்படுத்து"
+
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "(_r)குறிப்பிட்ட வட்டாரத்திலிருந்து புரவலன் பெயர்களை அறிய DNS ஐ பயன்படுத்து"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "(_K)வட்டாரத்திற்கான KDC களை கண்டுபிடிக்க DNS ஐ பயன்படுத்து."
+
+#~ msgid "Template _Shell"
+#~ msgstr "(_S)வார்புரு ஷெல்"

@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 1.1\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-30 13:18+0200\n"
 "Last-Translator: Maxim Dzumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -175,7 +175,7 @@ msgstr "Попередження"
 msgid "caching"
 msgstr "кешування"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -183,7 +183,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP автентифікація"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -231,7 +231,7 @@ msgstr "Використовувати NIS"
 msgid "Use Winbind"
 msgstr "Використовувати Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Аутентифікація"
 
@@ -609,6 +609,10 @@ msgstr "%s: критична помилка запису параметрів к
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: критична помилка запису %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Визначає методи перевірки користувачів, які намагаються ввійти"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -638,15 +642,15 @@ msgstr ""
 "NIS (Network Information Service) часто використовується у невеликих та "
 "середніх мережах."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Ввімкнути підтримку _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Настроїти LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -696,28 +700,28 @@ msgstr ""
 "великих до малих."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Використовувати _приховані паролі"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Використовувати паролі _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Ввімкнути підтримку _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Настроїти Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos - це довірча система автентифікації третьою стороною, яка широко "
 "використовується у середніх та великих мережах."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Використовувати _приховані паролі"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Використовувати паролі _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -775,12 +779,14 @@ msgid "_KDCs"
 msgstr "_KDC"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Використовувати DNS для розв'язання вузлів у _області"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Використовувати DNS для пошуку вузлів та областей"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Використовувати DNS для пошуку _KDC для області"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Використовувати DNS для пошуку KDC для областей"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -815,12 +821,14 @@ msgid "Winbind _Domain"
 msgstr "_Домен Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "_Контролери домену Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "_Оболонка шаблону"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Оболонка шаблону:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -858,6 +866,15 @@ msgstr "_Не зберігати"
 msgid "Use Local Policies"
 msgstr "Використовувати локальні правила"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Використовувати DNS для розв'язання вузлів у _області"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Використовувати DNS для пошуку _KDC для області"
+
+#~ msgid "Template _Shell"
+#~ msgstr "_Оболонка шаблону"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "увімкнути використання winbind для інформації про користувачів та "
@@ -867,6 +884,3 @@ msgstr "Використовувати локальні правила"
 #~ msgstr ""
 #~ "вимкнути використання winbind для інформації про користувачів та "
 #~ "автентифікації"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "Визначає методи перевірки користувачів, які намагаються ввійти"

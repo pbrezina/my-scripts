@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-03-26 16:02+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0\n"
 
 #: authconfig.c:285
@@ -177,7 +177,7 @@ msgstr "Amaran"
 msgid "caching"
 msgstr "caching"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -185,7 +185,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "Pengesahan LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -233,7 +233,7 @@ msgstr "Guna NIS"
 msgid "Use Winbind"
 msgstr "Guna Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Pengesahan"
 
@@ -613,6 +613,10 @@ msgstr "%s: ralat kritikal membaca tetapan simpanan sementara"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: ralat kritikal menulis %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Kawal bagaimana sistem mengesahkan pengguna yang cuba untuk log masuk"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -642,15 +646,15 @@ msgstr ""
 "NIS adalah Network Information Service.  Ia selalu digunakan pada rangkaian "
 "kecil hingga sederhana."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Hidupkan Sokongan _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "Tentutetap LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -700,28 +704,28 @@ msgstr ""
 "pelayan NTDOM atau ADS.  Ia digunakan dalam rangkaian kecil hingga besar"
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Guna Katalaluan Bayang"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Guna Katalaluan _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Hidupkan Sokongan _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "Tentutetap Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos adalah sistem pengesahan pihak-ketiga yang dipercayai yang sering "
 "digunakan didalam rangkaian sederhana hingga besar."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Guna Katalaluan Bayang"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Guna Katalaluan _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -780,12 +784,14 @@ msgid "_KDCs"
 msgstr "_KDC"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Guna DNS untuk mentafsir hos kepada _realm"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Guna DNS untuk resolve hos kepada realm"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Guna DNS untuk mencari _KDC untuk realms"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Guna DNS untuk mencari KDC untuk realms"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -820,12 +826,14 @@ msgid "Winbind _Domain"
 msgstr "_Domain Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Pengawal Domain Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "Shell Templat"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Shell Template:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -863,6 +871,15 @@ msgstr "Janga_n Simpan"
 msgid "Use Local Policies"
 msgstr "Guna Polisi Tempatan"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Guna DNS untuk mentafsir hos kepada _realm"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Guna DNS untuk mencari _KDC untuk realms"
+
+#~ msgid "Template _Shell"
+#~ msgstr "Shell Templat"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "hidupkan winbind untuk maklumat pengguna dan pengesahan secara default"
@@ -870,7 +887,3 @@ msgstr "Guna Polisi Tempatan"
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "matikan winbind untuk maklumat pengguna dan pengesahan secara default"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Kawal bagaimana sistem mengesahkan pengguna yang cuba untuk log masuk"

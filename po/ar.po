@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-15 19:54+0200\n"
 "Last-Translator: Hicham Amaoui <amaoui@altern.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 #: authconfig.c:285
@@ -176,7 +176,7 @@ msgstr "تحذير"
 msgid "caching"
 msgstr "التّخبئة"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "كربِروس"
 
@@ -184,7 +184,7 @@ msgstr "كربِروس"
 msgid "LDAP authentication"
 msgstr "توثيق البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
@@ -232,7 +232,7 @@ msgstr "استخدم خدمة معلومات الشّبكة (NIS)"
 msgid "Use Winbind"
 msgstr "استخدم Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "التّوثيق"
 
@@ -611,6 +611,10 @@ msgstr "%s: خطأ حرج في تسجيل إعداد التّخبئة"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: خطأ حرج عند كتابة %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "تحكّم بكيفيّة تحقّق النّظام من المستخدمين الذي يحاولون تسجيل الدّخول"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -639,15 +643,15 @@ msgid ""
 msgstr ""
 "NIS هي خدمة معلومات الشّبكة.  تُستخدم هذه عامّة على الشّبكات الصّغيرة والمتوسّطة."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "مكّن د_عم البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_تهيئة البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -696,28 +700,28 @@ msgstr ""
 "(ADS). يُستخدم هذا في الشّبكات الصّغيرة والكبيرة."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "است_خدم كلمات المرور المُظلّلة"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "استخ_دم كلمات مرور MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "مكّن دعم _كِربيروس"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_تهيئة كِربيروس..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "كِربيروس هو نظام توثيق طرف ثالث موثوق يُستخدم بشكل عامّ في الشّبكات المُتوسّطة "
 "وكبيرة الحجم."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "است_خدم كلمات المرور المُظلّلة"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "استخ_دم كلمات مرور MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -775,12 +779,14 @@ msgid "_KDCs"
 msgstr "مراكز توزيع ك_ِربيروس (KDCs)"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "استخدم DNS لتحويل المضيفين إلى _مملكات"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "استخدم DNS لتحويل المضيفين إلى مملكات"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "استخدم DNS لل_عثور على مراكز توزيع كّربيروس (KDC) للمملكات"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "استخدم DNS للعثور على مراكز توزيع كِربيروس (KDC) للملكات"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -816,12 +822,14 @@ msgid "Winbind _Domain"
 msgstr "ن_طاق Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "مُتحكّ_مات نطاق Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "الصّ_دَفة القالب"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "الصّدفة القالب:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -859,11 +867,17 @@ msgstr "لا_ تحفظ"
 msgid "Use Local Policies"
 msgstr "استخدم السّياسات المحليّة"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "استخدم DNS لتحويل المضيفين إلى _مملكات"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "استخدم DNS لل_عثور على مراكز توزيع كّربيروس (KDC) للمملكات"
+
+#~ msgid "Template _Shell"
+#~ msgstr "الصّ_دَفة القالب"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr "مكّن winbind لمعلومات المستخدمين والتّوثيق بشكل افتراضي"
 
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr "مكّن winbind لمعلومات المستخدمين والتّوثيق بشكل افتراضي"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "تحكّم بكيفيّة تحقّق النّظام من المستخدمين الذي يحاولون تسجيل الدّخول"

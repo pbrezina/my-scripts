@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-07-10 16:35+0300\n"
 "Last-Translator: Mikko Ikola <ikola@iki.fi>\n"
 "Language-Team: Finnish <kde-i18n-fi-discussion@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 #: authconfig.c:285
@@ -178,7 +178,7 @@ msgstr "Varoitus"
 msgid "caching"
 msgstr ""
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -186,7 +186,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP-todennus"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -234,7 +234,7 @@ msgstr "Käytä NIS:iä"
 msgid "Use Winbind"
 msgstr "Käytä Winbindiä"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Todennus"
 
@@ -610,6 +610,10 @@ msgstr "%s: krittinen virhe tallennettaessa välimuistiasetuksia"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kriittinen virhe kirjoitettaessa %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -639,15 +643,15 @@ msgstr ""
 "NIS eli Network Information Service. Sitä käytetään yleensä pienistä "
 "keskisuuriin verkkoihin."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Käytä _LDAP-tukea"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "Aseta _LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -697,28 +701,28 @@ msgstr ""
 "Tämä on käytössä pienistä suuriin verkkoihin."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Käytä _varjosalasanoja"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Käytä _MD5-salasanoja"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Käytä _Kerberos-tukea"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Aseta Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos on luotettu kolmannen osapuolen todennusjärjestelmä, jota käytetään "
 "yleensä keskisuurista verkoista suuriin verkkoihin."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Käytä _varjosalasanoja"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Käytä _MD5-salasanoja"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -776,11 +780,11 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
+msgid "Use _DNS to resolve hosts to realms"
 msgstr ""
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
+msgid "Use DNS to _locate KDCs for realms"
 msgstr ""
 
 #: glade.strings.h:66
@@ -816,11 +820,12 @@ msgid "Winbind _Domain"
 msgstr "Winbind-_toimialue"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind-toimialueen _ohjauskoneet"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
+msgid "_Template Shell"
 msgstr ""
 
 #: glade.strings.h:83

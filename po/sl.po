@@ -10,14 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sl\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-03-28 15:11+0200\n"
 "Last-Translator: Rok Papez <rok.papez@lugos.si>\n"
 "Language-Team: slovenščina <translation-team-sl@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0\n"
 
 #: authconfig.c:285
@@ -181,7 +181,7 @@ msgstr "Opozorilo"
 msgid "caching"
 msgstr "predpomnenje"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -189,7 +189,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "overjanje LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -237,7 +237,7 @@ msgstr "Uporabi NIS"
 msgid "Use Winbind"
 msgstr "Uporabi WInbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Avtentikacija"
 
@@ -612,6 +612,10 @@ msgstr "%s: kritična napaka pri pisanju nastavitve predpomnjenja"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritična napaka pri pisanju %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Nadzoruje, kako sistem preverja uporabnike, ki se skušajo prijaviti"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -641,15 +645,15 @@ msgstr ""
 "NIS je omrežna informacijska storitev.  Pogosto se uporablja v majhnih do "
 "srednjih omrežjih."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Omogoči podporo za _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Prikroji LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -698,28 +702,28 @@ msgstr ""
 "NTDOM ali ADS. Uporabljen je v malih do velikih omrežjih."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Uporabi _senčna gesla"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Uporabi gesla _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Omogoči podporo za _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Prikroji Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos je avtentikacijski sistem zaupne tretje osebe, ki se pogosto "
 "uporablja v srednjih in velikih omrežjih."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Uporabi _senčna gesla"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Uporabi gesla _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -777,12 +781,14 @@ msgid "_KDCs"
 msgstr "_KDCji"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Za preslikavo imena v _kraljestvo uporabi DNS"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Preslikava imena v kraljestvo z DNS"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Pri iskanju _KDCja za kraljestvo uporabi DNS"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Lociraj KDC za kraljestvo z DNS"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -817,12 +823,14 @@ msgid "Winbind _Domain"
 msgstr "_Domena Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "_Domenski kontrolerji Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "Lupina _Predloge"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Lupina Predloge:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -860,14 +868,20 @@ msgstr "_Ne shrani"
 msgid "Use Local Policies"
 msgstr "Uporabi krajevne politike"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Za preslikavo imena v _kraljestvo uporabi DNS"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Pri iskanju _KDCja za kraljestvo uporabi DNS"
+
+#~ msgid "Template _Shell"
+#~ msgstr "Lupina _Predloge"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr "privzeto omogoči winbind za overjanje in uporabniške podatke"
 
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr "privzeto onemogoči winbind za overjanje in uporabniške podatke"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "Nadzoruje, kako sistem preverja uporabnike, ki se skušajo prijaviti"
 
 #~ msgid "User Information Configuration"
 #~ msgstr "Nastavitev podatkov o uporabnikih"

@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hi\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-28 17:44+0530\n"
 "Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
 "Language-Team: Hindi <Indlinux-hindi@lists.sourceforge.net>\n"
@@ -176,7 +177,7 @@ msgstr "चेतावनी"
 msgid "caching"
 msgstr "कैशिंग"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "करबरोस"
 
@@ -184,7 +185,7 @@ msgstr "करबरोस"
 msgid "LDAP authentication"
 msgstr "LDAP प्रामाणिकता"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -232,7 +233,7 @@ msgstr "NIS प्रयोग करें"
 msgid "Use Winbind"
 msgstr "विंडवाइंड प्रयोग करें"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "प्रमाणिकता"
 
@@ -601,6 +602,10 @@ msgstr "%s: केश जमावट के अभिलेखन में क
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: %s/%s लिखने में क्रांतिक दोष।"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -626,17 +631,18 @@ msgstr "_NIS सहायता को समर्थ करें"
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
-msgstr "NIS नेटवर्क इनफोरमेशन सर्विस है। यह अधिकतर छोटे से मध्यम जालक्रमों के बीच प्रयोग होता है।"
+msgstr ""
+"NIS नेटवर्क इनफोरमेशन सर्विस है। यह अधिकतर छोटे से मध्यम जालक्रमों के बीच प्रयोग होता है।"
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "LDAP सहायता को समर्थ करें"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "LDAP विन्यास करें..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -685,28 +691,28 @@ msgstr ""
 "प्रयुक्त होता है."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "छाया शब्दकूटों का प्रयोग करें (_S)"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "MD5 शब्दकूटों का प्रयोग करें (_M)"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "करबरोस सहायता को समर्थ करें"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "करबोस का विन्यास करें..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "करबरोस एक अन्य विश्वनीय प्रमाणिक तंञ है जो अधिकतर मध्यम से  बड़े जालक्रमों में प्रयोग किया "
 "जाता है। "
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "छाया शब्दकूटों का प्रयोग करें (_S)"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "MD5 शब्दकूटों का प्रयोग करें (_M)"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -764,12 +770,14 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "रियलम्स में मेजबान के समाधान के लिए DNS का प्रयोग करें"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "रियलम्स में मेजबान हल करने के लिए DNS का प्रयोग करें"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "रियलम्स के लिए KDCs के पता करने के लिए DNS का प्रयोग करें (_K)"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "realms के लिए KDCs को पता करने में DNS का प्रयोग करें"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -804,12 +812,14 @@ msgid "Winbind _Domain"
 msgstr "विंडविंड क्षेञ (_D)"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "विंडविंड क्षेञ नियंञक (_C)"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "टेम्प्लेट शैल (_S)"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "टेम्प्लेट शैल:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -847,3 +857,11 @@ msgstr "संग्रहित नहीं करें (_n)"
 msgid "Use Local Policies"
 msgstr "स्थनीय नीतियों का प्रयोग करें"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "रियलम्स में मेजबान के समाधान के लिए DNS का प्रयोग करें"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "रियलम्स के लिए KDCs के पता करने के लिए DNS का प्रयोग करें (_K)"
+
+#~ msgid "Template _Shell"
+#~ msgstr "टेम्प्लेट शैल (_S)"

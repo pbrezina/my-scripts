@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-02-24 21:38+0100\n"
 "Last-Translator: Xavier Conde Rueda <xaviconde@eremas.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -175,7 +175,7 @@ msgstr "Avís"
 msgid "caching"
 msgstr "memòria cau"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -183,7 +183,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "Autenticació amb LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -231,7 +231,7 @@ msgstr "Usa el NIS"
 msgid "Use Winbind"
 msgstr "Usa el Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Autenticació"
 
@@ -618,6 +618,10 @@ msgstr ""
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: s'ha produït un error greu en escriure %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Controleu com el sistema verifica els usuaris que intenten entrar-hi"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -647,15 +651,15 @@ msgstr ""
 "El NIS és el servei d'informació de xarxa. S'usa habitualment en xarxes de "
 "petites a grans."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Habi_lita el suport per a LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Configura l'LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -705,22 +709,14 @@ msgstr ""
 "S'utilitza en xarxes de petites a grans."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "U_sa contrasenyes shadow"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Usa contrasenyes _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Habilita el suport per a _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Configura el Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -728,6 +724,14 @@ msgstr ""
 "El Kerberos és un sistema d'autenticació de confiança basada en "
 "organitzacions externes, que s'usa habitualment en xarxes de mitjanes a "
 "grans."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "U_sa contrasenyes shadow"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Usa contrasenyes _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -786,12 +790,14 @@ msgid "_KDCs"
 msgstr "_KDC"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Usa el DNS per _relacionar les màquines amb els regnes"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Fes servir el DNS per relacionar les màquines amb els regnes"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Usa el DNS per localitzar els _KDC per als regnes"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Fes servir el DNS per localitzar els KDC per als regnes"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -826,12 +832,14 @@ msgid "Winbind _Domain"
 msgstr "_Domini del Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "_Controladors de domini del Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "Intèrpret d'ordre_s predeterminat"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Intèrpret d'ordres predeterminat:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -869,6 +877,15 @@ msgstr "_No ho desis"
 msgid "Use Local Policies"
 msgstr "Usa polítiques locals"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Usa el DNS per _relacionar les màquines amb els regnes"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Usa el DNS per localitzar els _KDC per als regnes"
+
+#~ msgid "Template _Shell"
+#~ msgstr "Intèrpret d'ordre_s predeterminat"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "habilita el Winbind per a la informació d'usuari i l'autenticació per "
@@ -878,7 +895,3 @@ msgstr "Usa polítiques locals"
 #~ msgstr ""
 #~ "inhabilita el Winbind per a la informació d'usuari i l'autenticació per "
 #~ "defecte"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Controleu com el sistema verifica els usuaris que intenten entrar-hi"

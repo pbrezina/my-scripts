@@ -9,14 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-28 20:46+0400\n"
 "Last-Translator: Andrew Martynov <andrewm@inventa.ru>\n"
 "Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.3.1\n"
 
 #: authconfig.c:285
@@ -180,7 +180,7 @@ msgstr "Внимание"
 msgid "caching"
 msgstr "кэширование"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -188,7 +188,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "Аутентификация LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -236,7 +236,7 @@ msgstr "Использовать NIS"
 msgid "Use Winbind"
 msgstr "Использовать winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Аутентификация"
 
@@ -436,7 +436,8 @@ msgstr "область (realm) по умолчанию для samba и winbind, 
 
 #: authconfig.c:912
 msgid "uid range winbind will assign to domain or ads users"
-msgstr "диапазон uid, которые winbind будет назначать доменам или пользователям ads"
+msgstr ""
+"диапазон uid, которые winbind будет назначать доменам или пользователям ads"
 
 #: authconfig.c:913 authconfig.c:916
 msgid "<lowest-highest>"
@@ -444,7 +445,8 @@ msgstr "<начальный-конечный>"
 
 #: authconfig.c:915
 msgid "gid range winbind will assign to domain or ads users"
-msgstr "диапазон gid, которые winbind будет назначать пользователям домена или ads"
+msgstr ""
+"диапазон gid, которые winbind будет назначать пользователям домена или ads"
 
 #: authconfig.c:919
 msgid ""
@@ -589,7 +591,8 @@ msgstr "%s: невозможно прочитать информацию о кэ
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr " <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
+msgstr ""
+" <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
 #: authconfig.c:1203
 msgid "(c) 1999-2003 Red Hat, Inc."
@@ -611,6 +614,11 @@ msgstr "%s: критическая ошибка записи установок 
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: критическая ошибка записи %s/%s"
+
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+"Настраивает методы проверки пользователей, которые пытаются войти в систему"
 
 #: authinfo.h:68
 #, c-format
@@ -641,15 +649,15 @@ msgstr ""
 "NIS (Network Information Service) широко используется в малых и средних "
 "сетях."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Включить поддержку _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Настроить LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -698,28 +706,28 @@ msgstr ""
 "ADS. Используется в средних и больших сетях."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Использовать _скрытые пароли"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Использовать пароли _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Включить поддержку _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Настроить Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos - это доверенная система аутентификации третьей стороны, которая "
 "широко используется в средних и больших сетях."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Использовать _скрытые пароли"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Использовать пароли _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -777,12 +785,14 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Использовать DNS для преобразования имйн узлов в _realm"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Использовать DNS для поиска узлов и областей"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Использовать DNS для поиска _KDC для областей"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Использовать DNS для поиска KDC для областей"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -817,12 +827,14 @@ msgid "Winbind _Domain"
 msgstr "_Домен Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "_Контроллеры домена Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "_Оболочка шаблона"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Оболочка шаблона:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -860,6 +872,15 @@ msgstr "_Не сохранять"
 msgid "Use Local Policies"
 msgstr "Использовать местные правила"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Использовать DNS для преобразования имйн узлов в _realm"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Использовать DNS для поиска _KDC для областей"
+
+#~ msgid "Template _Shell"
+#~ msgstr "_Оболочка шаблона"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "использовать winbind для информации о пользователях и аутентификации по "
@@ -869,11 +890,6 @@ msgstr "Использовать местные правила"
 #~ msgstr ""
 #~ "не использовать winbind для информации о пользователях и аутентификации "
 #~ "по умолчанию"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Настраивает методы проверки пользователей, которые пытаются войти в "
-#~ "систему"
 
 #~ msgid "User Information Configuration"
 #~ msgstr "Настройка информации о пользователе"
@@ -886,4 +902,3 @@ msgstr "Использовать местные правила"
 
 #~ msgid "authconfig"
 #~ msgstr "authconfig"
-

@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-28 14:49+0200\n"
 "Last-Translator: Tamas Szanto <tszanto@mol.hu>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -178,7 +178,7 @@ msgstr "Figyelem"
 msgid "caching"
 msgstr "gyorstárazás"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -186,7 +186,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP-azonosítás"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -234,7 +234,7 @@ msgstr "NIS használata"
 msgid "Use Winbind"
 msgstr "Winbind használata"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Azonosítás"
 
@@ -414,11 +414,13 @@ msgstr "az azonosítást végző kiszolgálók nevei\n"
 
 #: authconfig.c:896
 msgid "enable winbind for user information by default"
-msgstr "a Winbind engedélyezése felhasználói adatok lekérdezéséhez alapértelmezésben"
+msgstr ""
+"a Winbind engedélyezése felhasználói adatok lekérdezéséhez alapértelmezésben"
 
 #: authconfig.c:899
 msgid "disable winbind for user information by default"
-msgstr "a Winbind letiltása felhasználói adatok lekérdezéséhez alapértelmezésben"
+msgstr ""
+"a Winbind letiltása felhasználói adatok lekérdezéséhez alapértelmezésben"
 
 #: authconfig.c:902
 msgid "enable winbindauth for authentication by default"
@@ -628,6 +630,10 @@ msgstr "%s: kritikus hiba a gyorstárbeállítás rögzítésekor"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritikus hiba %s/%s írásakor"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -657,15 +663,15 @@ msgstr ""
 "NIS: Network Information Service. Kicsi és közepes hálózatokon gyakran "
 "használatos."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "_LDAP-támogatás engedélyezése"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "L_DAP beállítása..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -717,28 +723,28 @@ msgstr ""
 "hálózatokon is használatos."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "_Árnyékjelszók használata"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "MD_5-jelszók használata"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "_Kerberos-támogatás engedélyezése"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "Ke_rberos beállítása..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "A Kerberos egy azonosítási rendszer megbízott külső személyek "
 "azonosításához. Gyakran használatos a közepes és a nagy hálózatokon."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "_Árnyékjelszók használata"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "MD_5-jelszók használata"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -796,12 +802,14 @@ msgid "_KDCs"
 msgstr "_KDC-k"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "DNS használata a gépek ki_rálysághoz való rendelésére"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "DNS használata a gépek királysághoz való rendelésére"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "DNS használata a királyságokhoz való _KDC-k keresésére"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "DNS használata a királyságokhoz való KDC-k keresésére"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -836,12 +844,14 @@ msgid "Winbind _Domain"
 msgstr "Winbind-_tartomány"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind-tartomány_vezérlők"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "_Héjsablon"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Héjsablon:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -879,3 +889,11 @@ msgstr "Me_ntés elhagyása"
 msgid "Use Local Policies"
 msgstr "Helyi szabályok használata"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "DNS használata a gépek ki_rálysághoz való rendelésére"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "DNS használata a királyságokhoz való _KDC-k keresésére"
+
+#~ msgid "Template _Shell"
+#~ msgstr "_Héjsablon"

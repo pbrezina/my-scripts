@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-01-10 16:16+0330\n"
 "Last-Translator: Abbas Izad <abbasizad@hotmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 #: authconfig.c:285
@@ -177,7 +177,7 @@ msgstr "هشدار"
 msgid "caching"
 msgstr "ذخیره به حافظه‌ی نهان"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -185,7 +185,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "تأیید هویت LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -233,7 +233,7 @@ msgstr "استفاده از NIS"
 msgid "Use Winbind"
 msgstr "استفاده از Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "تأیید هویت"
 
@@ -607,6 +607,12 @@ msgstr "%s: خطای بحرانی ضبط تنظیمات حافظه‌ی نهان
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: خطای بحرانی در نوشتن %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+"کنترل کردن اینکه سیستم چگونه کاربرهایی را که اقدام به ثبت‌ورود می‌کنند "
+"اعتبارسنجی ‌کند"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -636,15 +642,15 @@ msgstr ""
 "NIS سرویس اطلاعات شبکه است.  آن معمولا بر شبکه‌های کوچک تا متوسط استفاده "
 "می‌شود."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "به کار انداختن ـپشتیبانی LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "پیکرـبندی LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -693,28 +699,28 @@ msgstr ""
 "هویت کند.  از آن در شبکه‌های کوچک تا بزرگ استفاده می‌گردد."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "استفاده از گذرواژه‌های ـسایه"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "استفاده از ـگذرواژه‌های MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "به کار انداـختن پشتیبانی Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "ـپیکربندی Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos یک سیستم تایید هویت شخص ثالثی مورد اعتماد است که بطور عمومی در "
 "شبکه‌های متوسط تا بزرگ استفاده می‌شود."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "استفاده از گذرواژه‌های ـسایه"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "استفاده از ـگذرواژه‌های MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -772,12 +778,14 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "استفاده از DNS یافتن میزبان‌ها به _realms"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "استفاده از DNS برای بازیافت میزبان‌ها به realms"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "استفاده از DNS برای یافتن مکان _KDCs برای realms"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "استفاده از DNS برای جایابی KDCs برای realms"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -812,12 +820,14 @@ msgid "Winbind _Domain"
 msgstr "ـدامنه‌ی Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "ـکنترل کننده‌های دامنه‌ی Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "پوـسته‌ی الگو"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "الگوی پوسته:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -855,6 +865,15 @@ msgstr "ذخیره ـنشود"
 msgid "Use Local Policies"
 msgstr "استفاده از سیاست‌های محلی"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "استفاده از DNS یافتن میزبان‌ها به _realms"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "استفاده از DNS برای یافتن مکان _KDCs برای realms"
+
+#~ msgid "Template _Shell"
+#~ msgstr "پوـسته‌ی الگو"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "به کار انداختن winbind برای اطلاعات کاربر و تایید هویت بوسیله‌ی پیش‌فرض "
@@ -862,8 +881,3 @@ msgstr "استفاده از سیاست‌های محلی"
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "از کار انداختن winbind برای اطلاعات کاربر و تایید هویت بوسیله‌ی پیش‌فرض "
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "کنترل کردن اینکه سیستم چگونه کاربرهایی را که اقدام به ثبت‌ورود می‌کنند "
-#~ "اعتبارسنجی ‌کند"

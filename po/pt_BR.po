@@ -11,14 +11,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-28 15:22+1000\n"
 "Last-Translator: David Barzilay <barzilay@redhat.com>\n"
 "Language-Team: Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 #: authconfig.c:285
@@ -182,7 +182,7 @@ msgstr "Aviso"
 msgid "caching"
 msgstr "cache"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -190,7 +190,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "Autenticação LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -238,7 +238,7 @@ msgstr "Utilizar NIS"
 msgid "Use Winbind"
 msgstr "Utilizar Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Autenticação"
 
@@ -459,7 +459,8 @@ msgstr ""
 
 #: authconfig.c:923
 msgid "the directory which winbind-created users will have as home directories"
-msgstr "o diretório em que os usuários criados pelo winbind terão como seus 'home'"
+msgstr ""
+"o diretório em que os usuários criados pelo winbind terão como seus 'home'"
 
 #: authconfig.c:927
 msgid "the group which winbind-created users will have as their primary group"
@@ -467,7 +468,8 @@ msgstr "o grupo que os usuários criados pelo winbind terão como grupo primári
 
 #: authconfig.c:930
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "o 'shell' que os usuários criados pelo winbind terão como 'shell' de login"
+msgstr ""
+"o 'shell' que os usuários criados pelo winbind terão como 'shell' de login"
 
 #: authconfig.c:934
 msgid ""
@@ -610,6 +612,11 @@ msgstr "%s: erro crítico ao gravar configuração do cache"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: erro crítico ao escrever %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+"Controla o modo como o sistema verifica os usuários que tentam se logar"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -639,15 +646,15 @@ msgstr ""
 "NIS é o Serviço de Informações da Rede (Network Information Service).  É "
 "comumente utilizado em redes pequenas e médias."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Ativar Suporte _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Configurar LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -696,28 +703,28 @@ msgstr ""
 "servidor ADS.  É utilizado em redes pequenas a grandes."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Utilizar Senhas _Shadow"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Utilizar Senhas _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Ativar Suporte _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Configurar Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos é um sistema de autenticação de confiança fornecido por terceiros "
 "comumente utilizado em redes médias a grandes."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Utilizar Senhas _Shadow"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Utilizar Senhas _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -775,12 +782,14 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Utilizar o DNS para resolver os hosts para os _reinos"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Usar o DNS para determinar os hosts para os reinos"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Utilizar o DNS para localizar _KDCs para os reinos"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Usar o DNS para localizar os KDCs para os reinos"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -815,12 +824,14 @@ msgid "Winbind _Domain"
 msgstr "_Domínio Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "_Controladores de Domínio Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "_Shell Padrão"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Template Shell"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -858,6 +869,15 @@ msgstr "_Não Salvar"
 msgid "Use Local Policies"
 msgstr "Utilizar Políticas Locais"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Utilizar o DNS para resolver os hosts para os _reinos"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Utilizar o DNS para localizar _KDCs para os reinos"
+
+#~ msgid "Template _Shell"
+#~ msgstr "_Shell Padrão"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "ativar o windbind para informações e autenticação do usuário por padrão"
@@ -865,10 +885,6 @@ msgstr "Utilizar Políticas Locais"
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "desativar o windbind para informações e autenticação do usuário por padrão"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Controla o modo como o sistema verifica os usuários que tentam se logar"
 
 #~ msgid "User Information Configuration"
 #~ msgstr "Configuração das Informações do Usuário"
@@ -878,4 +894,3 @@ msgstr "Utilizar Políticas Locais"
 
 #~ msgid "Close"
 #~ msgstr "Fechar"
-

@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: zh_TW\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-28 15:39+1000\n"
 "Last-Translator: Chester Cheng <ccheng@redhat.com>\n"
 "Language-Team: Traditional Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.3.1\n"
 
 #: authconfig.c:285
@@ -178,7 +178,7 @@ msgstr "警告"
 msgid "caching"
 msgstr "快取"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -186,7 +186,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP 認證"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -234,7 +234,7 @@ msgstr "使用 NIS"
 msgid "Use Winbind"
 msgstr "使用 Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "認證"
 
@@ -599,12 +599,17 @@ msgstr "%s 存取緩衝區設定發生嚴重錯誤"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: 嚴重的寫入錯誤 %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+
 #: authinfo.h:68
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
-msgstr "找不到 %s 檔案，不過 %s 需要它才能執行順利，請安裝提供此檔案的 %s 套件。"
+msgstr ""
+"找不到 %s 檔案，不過 %s 需要它才能執行順利，請安裝提供此檔案的 %s 套件。"
 
 #: glade.strings.h:8
 msgid "Cache User _Information"
@@ -624,15 +629,15 @@ msgid ""
 "medium networks."
 msgstr "NIS 代表網路資訊服務，它被普遍使用在小型至中型網路。"
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "啟用 LDAP 支援(_L)"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "設定 LDAP(_C)..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -680,26 +685,26 @@ msgstr ""
 "的資訊來認證使用者， 通常被使用在小型至大型的網路環境中。"
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "使用 Shadow 密碼(_S)"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "使用 MD5 編碼(_M)"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "啟用 Kerberos 支援(_K)"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "設定 Kerberos(_C)..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr "Kerberos 是一個被信任的第三者認證系統, 它被普遍使用在中型至大型網路."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "使用 Shadow 密碼(_S)"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "使用 MD5 編碼(_M)"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -757,12 +762,14 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
 msgstr "使用 DNS 來解析主機到領域中"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "使用 DNS 來領域中的 _KDCs"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "使用 DNS 來找出領域中的 KDCs"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -797,12 +804,14 @@ msgid "Winbind _Domain"
 msgstr "Winbind 網域(_D)"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind 網域控制站（_C)"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "樣板 _Shell"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "樣板 Shell:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -840,3 +849,11 @@ msgstr "不儲存(_N)"
 msgid "Use Local Policies"
 msgstr "使用本機政策"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "使用 DNS 來解析主機到領域中"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "使用 DNS 來領域中的 _KDCs"
+
+#~ msgid "Template _Shell"
+#~ msgstr "樣板 _Shell"

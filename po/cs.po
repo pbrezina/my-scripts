@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig VERSION\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-28 23:31+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -175,7 +175,7 @@ msgstr "Varování"
 msgid "caching"
 msgstr "kešování"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -183,7 +183,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP autentizace"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -231,7 +231,7 @@ msgstr "Použít NIS"
 msgid "Use Winbind"
 msgstr "Používat winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Autentizace"
 
@@ -603,6 +603,10 @@ msgstr "%s: kritická chyba při ukládání nastavení keše"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritická chyba při zápisu %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Nastavit, jak systém ověřuje uživatele, kteří se pokoušejí přihlásit"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -632,15 +636,15 @@ msgstr ""
 "NIS (Network Information Service) je obvykle používán na malých a středních "
 "sítích."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Povolit podporu _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "Nastavit L_DAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -689,28 +693,28 @@ msgstr ""
 "velkých sítích."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Používat stínová _hesla"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Používat _MD5 hesla"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Povolit podporu _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "Nastavit K_erberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos je bezpečný systém autentizace třetích stran, který je obvykle "
 "používán na středních a velkých sítích."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Používat stínová _hesla"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Používat _MD5 hesla"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -768,12 +772,14 @@ msgid "_KDCs"
 msgstr "_KDC"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Používat DNS pro převod počítačů na _realmy"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Používat DNS pro převod počítačů na realmy"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Používat DNS pro nalezení _KDC pro realmy"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Používat DNS pro nalezení KDC pro realmy"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -808,12 +814,14 @@ msgid "Winbind _Domain"
 msgstr "_Doména winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Doménové _kontroléry winbindu"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "Šablona _shellu"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Šablona shellu:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -851,6 +859,11 @@ msgstr "_Neukládat"
 msgid "Use Local Policies"
 msgstr "Použít lokální politiky"
 
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Nastavit, jak systém ověřuje uživatele, kteří se pokoušejí přihlásit"
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Používat DNS pro převod počítačů na _realmy"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Používat DNS pro nalezení _KDC pro realmy"
+
+#~ msgid "Template _Shell"
+#~ msgstr "Šablona _shellu"

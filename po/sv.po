@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-03-07 01:48+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -177,7 +177,7 @@ msgstr "Varning"
 msgid "caching"
 msgstr "cachning"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -185,7 +185,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP-autentisering"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -233,7 +233,7 @@ msgstr "Använd NIS"
 msgid "Use Winbind"
 msgstr "Använd Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Autentisering"
 
@@ -615,6 +615,10 @@ msgstr "%s: kritiskt fel vid registrering av cachningsinställning"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritiskt fel vid skrivning av %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Styr hur systemet verifierar användare som försöker logga in"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -644,15 +648,15 @@ msgstr ""
 "NIS är namninformationstjänsten (Name Information Service). Det används "
 "vanligtvis på små till medelstora nätverk."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Använd stöd för _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Konfigurera LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -701,28 +705,28 @@ msgstr ""
 "server. Det används i små till medelstora nätverk."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Använd _skugglösenord"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Använd _MD5-lösenord"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Använd stöd för _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Konfigurera Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos är autentiseringssystem för pålitliga tredjeparter som vanligen "
 "används i mellanstora till stora nätverk."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Använd _skugglösenord"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Använd _MD5-lösenord"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -780,12 +784,14 @@ msgid "_KDCs"
 msgstr "_KDC:er"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Använd DNS för att slå upp värdar till _realmer"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Använd DNS för att slå upp värdar till realmer"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Använd DNS för att lokalisera _KDC:er för realmer"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Använd DNS för att lokalisera KDC:er för realmer"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -820,12 +826,14 @@ msgid "Winbind _Domain"
 msgstr "Winbind-_domän"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind-domän_kontrollanter"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "Mall_skal"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Mallskal:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -863,6 +871,15 @@ msgstr "Spara i_nte"
 msgid "Use Local Policies"
 msgstr "Använd lokal policy"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Använd DNS för att slå upp värdar till _realmer"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Använd DNS för att lokalisera _KDC:er för realmer"
+
+#~ msgid "Template _Shell"
+#~ msgstr "Mall_skal"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "använd winbind för användarinformation och autentisering som standard"
@@ -870,9 +887,6 @@ msgstr "Använd lokal policy"
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "använd inte winbind för användarinformation och autentisering som standard"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "Styr hur systemet verifierar användare som försöker logga in"
 
 #~ msgid "Shell"
 #~ msgstr "Skal"

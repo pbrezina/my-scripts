@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-08-04 07:05+0900\n"
 "Last-Translator: Hirofumi Saito <hi_saito@yk.rim.or.jp>\n"
 "Language-Team: Fedora Trans Ja <fedora-trans-ja@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 # ../authconfig.c:182
@@ -198,7 +198,7 @@ msgid "caching"
 msgstr "キャッシュ化"
 
 # ../authconfig.c:500
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -208,7 +208,7 @@ msgid "LDAP authentication"
 msgstr "LDAP 認証"
 
 # ../authconfig.c:305
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -264,7 +264,7 @@ msgid "Use Winbind"
 msgstr "Winbind を使用"
 
 # ../authconfig.c:462
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "認証"
 
@@ -701,6 +701,10 @@ msgstr "%s: キャッシュ設定の記録中に重大なエラーです。"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: %s/%s の書き込み中に重大なエラーです。"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "ログインしようとするユーザーをシステムが確証する方法を制御する"
+
 # ../authconfig.c:150
 #: authinfo.h:68
 #, c-format
@@ -732,15 +736,15 @@ msgstr ""
 "NIS とはネットワークインフォメーションサービスのことです。一般的に小から中サ"
 "イズのネットワークで使用されます。"
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "LDAPサポートを有効にする(_L)"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "LDAPの設定(_C)..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -789,31 +793,31 @@ msgstr ""
 "ユーザー情報を取り出しユーザーを承認します。これは小規模から大規模のネット"
 "ワークで使用されます。"
 
-# ../authconfig.c:450
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "シャドウパスワードを使用(_S)"
-
-# ../authconfig.c:455
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "MD5 パスワードを使用(_M)"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Kerberos サポートを有効にする(_K)"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "Kerberos の設定(_C)..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos は一般的に中規模から大規模のネットワークで使用される、信用できるサー"
 "ドパーティ認証システムです。"
+
+# ../authconfig.c:450
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "シャドウパスワードを使用(_S)"
+
+# ../authconfig.c:455
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "MD5 パスワードを使用(_M)"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -878,12 +882,14 @@ msgid "_KDCs"
 msgstr "KDCs(_K)"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "DNS を使用して realms へのホスト解決をする(_R) "
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "DNS を使用してレルムのホストを解決する"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "DNS を使って realms 用の KDCを見付ける(_K) "
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "DNS を使用してレルム用の KDC を見付ける"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -921,12 +927,14 @@ msgid "Winbind _Domain"
 msgstr "Winbind ドメイン(_D)"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind ドメインコントローラ(_C)"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "テンプレートシェル(_S)"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "テンプレートシェル:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -967,6 +975,15 @@ msgstr "保存しない(_N)"
 msgid "Use Local Policies"
 msgstr "ローカルポリシーを使用"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "DNS を使用して realms へのホスト解決をする(_R) "
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "DNS を使って realms 用の KDCを見付ける(_K) "
+
+#~ msgid "Template _Shell"
+#~ msgstr "テンプレートシェル(_S)"
+
 # ../authconfig.c:756
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr "ユーザー情報と認証に関して winbind をデフォルトで有効にする"
@@ -974,9 +991,6 @@ msgstr "ローカルポリシーを使用"
 # ../authconfig.c:758
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr "ユーザー情報と認証に関して winbind をデフォルトで無効にする"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "ログインしようとするユーザーをシステムが確証する方法を制御する"
 
 # ../authconfig.c:394
 #~ msgid "User Information Configuration"

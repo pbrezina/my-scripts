@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 1.0\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 1999-04-13 11:56-04:00\n"
 "Last-Translator: Cristian Gafton <gafton@redhat.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -177,7 +177,7 @@ msgstr "Atenþie"
 msgid "caching"
 msgstr ""
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 #, fuzzy
 msgid "Kerberos"
 msgstr "Activare Autentificare Kerberos 5"
@@ -187,7 +187,7 @@ msgstr "Activare Autentificare Kerberos 5"
 msgid "LDAP authentication"
 msgstr "Activare Autentificare LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 #, fuzzy
 msgid "LDAP"
 msgstr "Activare LDAP"
@@ -244,7 +244,7 @@ msgstr "Activare NIS"
 msgid "Use Winbind"
 msgstr "Activare WinBind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 #, fuzzy
 msgid "Authentication"
 msgstr "Activare Autentificare LDAP"
@@ -641,6 +641,10 @@ msgstr "%s: eroare fatalã la citirea  %s/%s"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: eroare criticã la scrierea %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -670,15 +674,15 @@ msgid ""
 "medium networks."
 msgstr ""
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr ""
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr ""
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -721,28 +725,28 @@ msgid ""
 msgstr ""
 
 #: glade.strings.h:26
-#, fuzzy
-msgid "Use _Shadow Passwords"
-msgstr "Activeazã Shadow Passwords"
-
-#: glade.strings.h:27
-#, fuzzy
-msgid "Use _MD5 Passwords"
-msgstr "Activeazã Parole MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr ""
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr ""
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
+
+#: glade.strings.h:34
+#, fuzzy
+msgid "Use _Shadow Passwords"
+msgstr "Activeazã Shadow Passwords"
+
+#: glade.strings.h:35
+#, fuzzy
+msgid "Use _MD5 Passwords"
+msgstr "Activeazã Parole MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -803,11 +807,11 @@ msgid "_KDCs"
 msgstr "KDC:"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
+msgid "Use _DNS to resolve hosts to realms"
 msgstr ""
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
+msgid "Use DNS to _locate KDCs for realms"
 msgstr ""
 
 #: glade.strings.h:66
@@ -846,11 +850,12 @@ msgid "Winbind _Domain"
 msgstr "Domeniu:"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
-msgstr ""
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
+msgstr "Domeniu:"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
+msgid "_Template Shell"
 msgstr ""
 
 #: glade.strings.h:83

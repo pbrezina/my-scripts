@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cy\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-03-01 17:40+0000\n"
 "Last-Translator: Owain Green <owaing@oceanfree.net>\n"
 "Language-Team: Cymraeg <Cy@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 #: authconfig.c:285
@@ -177,7 +177,7 @@ msgstr "Rhybudd"
 msgid "caching"
 msgstr "celcio"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -185,7 +185,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "dilysiant LDAP"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -233,7 +233,7 @@ msgstr "Defnyddio NIS"
 msgid "Use Winbind"
 msgstr "Defnyddio Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Dilysiant"
 
@@ -609,6 +609,10 @@ msgstr "%s: gwall argyfyngys wrth recordio gosodiad celcio"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: gwall argyfyngus wrth ysgrifennu %s/%s"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "Rheoli sut mae'r system yn dilysu defnyddwyr sy'n ceisio mewngofnodi"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -638,15 +642,15 @@ msgstr ""
 "Y Gwasanaeth Gwybodaeth Rhwydwaith yw NIS.  Fe'i defnyddir yn aml ar "
 "rwydweithiau bach i ganolig."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Galluogi Cynhaliaeth _LDAP"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "_Cyflunio LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -695,28 +699,28 @@ msgstr ""
 "Fe'i defnyddir mewn rhwydweithiau bach i fawr."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Defnyddio Cyfrineiriau _Cysgod"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Defnyddio Cyfrineiriau _MD5"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Galluogi Cynhaliaeth _Kerberos"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Cyflunio Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "System dilysu trydydd-plaid ymddiriedig yw Kerberos a ddefnyddir yn aml mewn "
 "rhwydweithiau canolig i fawr."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Defnyddio Cyfrineiriau _Cysgod"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Defnyddio Cyfrineiriau _MD5"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -774,11 +778,13 @@ msgid "_KDCs"
 msgstr "_KDCau"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Defnyddio DNS i ddatrys gwesteiwyr yn _froydd"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Defnyddio DNS i ddatrys gwesteiwyr yn froydd"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
 msgstr "Defnyddio DNS i leoli KDCau ar gyfer broydd"
 
 #: glade.strings.h:66
@@ -814,12 +820,14 @@ msgid "Winbind _Domain"
 msgstr "_Parth Winbind"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "_Rheolwyr Parthau Winbind"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "_Plisgyn Batrymlun"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Plisgyn Batrymlun:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -857,6 +865,15 @@ msgstr "_Peidio â Chadw"
 msgid "Use Local Policies"
 msgstr "Defnyddio Polisïau Lleol"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Defnyddio DNS i ddatrys gwesteiwyr yn _froydd"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Defnyddio DNS i leoli KDCau ar gyfer broydd"
+
+#~ msgid "Template _Shell"
+#~ msgstr "_Plisgyn Batrymlun"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "galluogi winbind ar gyfer gwybodaeth defnyddiwr a dilysiant fel rhagosodyn"
@@ -865,7 +882,3 @@ msgstr "Defnyddio Polisïau Lleol"
 #~ msgstr ""
 #~ "analluogi winbind ar gyfer gwybodaeth defnyddiwr a dilysiant fel "
 #~ "rhagosodyn"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Rheoli sut mae'r system yn dilysu defnyddwyr sy'n ceisio mewngofnodi"

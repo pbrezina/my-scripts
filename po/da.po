@@ -4,14 +4,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: da\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-09-28 14:47+0200\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Danish <<dansk@klid.dk>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 
 #: authconfig.c:285
@@ -176,7 +176,7 @@ msgstr "Advarsel"
 msgid "caching"
 msgstr "cachning"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -184,7 +184,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP-godkendelse"
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -232,7 +232,7 @@ msgstr "Benyt NIS"
 msgid "Use Winbind"
 msgstr "Brug Winbind"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Godkendelse"
 
@@ -456,11 +456,13 @@ msgstr "det katalog som winbind-oprettede brugere vil have som hjemmekataloger"
 
 #: authconfig.c:927
 msgid "the group which winbind-created users will have as their primary group"
-msgstr "den gruppe som winbind-oprettede brugere vil have som deres primære gruppe"
+msgstr ""
+"den gruppe som winbind-oprettede brugere vil have som deres primære gruppe"
 
 #: authconfig.c:930
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "den skál som winbind-oprettede brugere vil have som deres indlogningsskál"
+msgstr ""
+"den skál som winbind-oprettede brugere vil have som deres indlogningsskál"
 
 #: authconfig.c:934
 msgid ""
@@ -480,7 +482,8 @@ msgstr ""
 
 #: authconfig.c:942
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr "vær med nu i winbind-domænet eller ads-realmen som denne administrator\n"
+msgstr ""
+"vær med nu i winbind-domænet eller ads-realmen som denne administrator\n"
 
 #: authconfig.c:946
 msgid "enable wins for hostname resolution"
@@ -578,7 +581,8 @@ msgstr "%s: kan ikke læse mellemlagrings-information"
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr " <Tab>/<Alt-Tab> mellem elementer   |  <Mellemrum> vælger | <F12> næste skærm"
+msgstr ""
+" <Tab>/<Alt-Tab> mellem elementer   |  <Mellemrum> vælger | <F12> næste skærm"
 
 #: authconfig.c:1203
 msgid "(c) 1999-2003 Red Hat, Inc."
@@ -600,6 +604,10 @@ msgstr "%s: kritisk fejl ved gemning af mellemlagrings-opsætning"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritisk fejl ved skrivning af %s/%s"
+
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr "bestem hvorledes systemet kontrollerer brugere som prøver at logge ind"
 
 #: authinfo.h:68
 #, c-format
@@ -630,15 +638,15 @@ msgstr ""
 "NIS er Name Information Service (navneinformationstjeneste). Det er "
 "almindeligt i brug på små til mellemstore netværk."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "Anvend _LDAP-understøttelse"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "Konfigurér LDAP..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -688,28 +696,28 @@ msgstr ""
 "i små til mellemstore netværk."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "Benyt _skyggeadgangskoder"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "Benyt _MD5-adgangskoder"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "Benyt _Kerberos-understøttelse"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "_Konfigurér Kerberos..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos er et godkendelsessystem, der bruger troværdig tredjepart, og som "
 "almindeligvist bruges på mellemstore til store netværk."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "Benyt _skyggeadgangskoder"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "Benyt _MD5-adgangskoder"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -767,12 +775,14 @@ msgid "_KDCs"
 msgstr "_KDC'er"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Brug DNS for at slå værter til _realmer op"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Brug DNS for at slå værter til realmer op"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Brug DNS for at finde _KDC'er for realmer"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Brug DNS for at finde KDC'er for realmer"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -807,12 +817,14 @@ msgid "Winbind _Domain"
 msgstr "Winbind-_domæne"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind-domæne_kontrollanter"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "Skabelon for _skál"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Skabelon for skál:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -850,14 +862,18 @@ msgstr "Gem i_kke"
 msgid "Use Local Policies"
 msgstr "brug lokale retningslinier"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Brug DNS for at slå værter til _realmer op"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Brug DNS for at finde _KDC'er for realmer"
+
+#~ msgid "Template _Shell"
+#~ msgstr "Skabelon for _skál"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr "aktivér winbind til brugerinformation og -godkendelse som standard"
 
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "deaktivér winbind til brugerinformation og -godkendelse som standard"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "bestem hvorledes systemet kontrollerer brugere som prøver at logge ind"
-

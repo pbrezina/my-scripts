@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tr\n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 10:29+0200\n"
 "PO-Revision-Date: 2004-01-25 03:23-0500\n"
 "Last-Translator: Burçin Dönmez <bdonmez@cisunix.unh.edu>\n"
 "Language-Team: Turkish <fedora-trans-tr@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -176,7 +176,7 @@ msgstr "Uyarı"
 msgid "caching"
 msgstr "önbelleğe alma"
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -184,7 +184,7 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP kimlik sınaması "
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr "LDAP"
 
@@ -232,7 +232,7 @@ msgstr "NIS Kullan"
 msgid "Use Winbind"
 msgstr "Winbind Kullan"
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr "Kimlik Denetimi"
 
@@ -606,6 +606,11 @@ msgstr "%s: önbellekleme ayarları kaydedilirken önemli hata"
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: %s/%s dosyasının yazılmasında önemli hata"
 
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+"Sisteme giriş yapmak isteyen kullanıcıların nasıl doğrulanacağını denetler"
+
 #: authinfo.h:68
 #, c-format
 msgid ""
@@ -635,15 +640,15 @@ msgstr ""
 "NIS Alan Adı Bilgilendirme Hizmetidir.  Çoğunlukla küçük ve orta "
 "büyüklükteki ağlarda kullanılmaktadır."
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr "_LDAP Desteğini Etkinleştir"
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr "LDAP'ı _Yapılandır..."
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -692,28 +697,28 @@ msgstr ""
 "Küçükten büyüğe her ağda kullanılır."
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr "_Gölge Parolalar Kullanılsın"
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr "_MD5 Parolalar Kullanılsın"
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "_Kerberos Desteğini Etkinleştir"
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr "Kerberos'u _Yapılandır..."
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
 "Kerberos, orta ve geniş büyüklükteki ağlarda kullanılan güvenli bir kimlik "
 "sınama sistemidir."
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr "_Gölge Parolalar Kullanılsın"
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
+msgstr "_MD5 Parolalar Kullanılsın"
 
 #: glade.strings.h:36
 msgid "Enable SMB S_upport"
@@ -771,12 +776,14 @@ msgid "_KDCs"
 msgstr "_KDCs"
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
-msgstr "Sunuculardan _alanları bulabilmek için DNS'i kullan"
+#, fuzzy
+msgid "Use _DNS to resolve hosts to realms"
+msgstr "Makinaları alanlardan ayırmak için DNS'i kullan"
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
-msgstr "Alanların _KDC'lerin yerini bulması için DNS'i kullan"
+#, fuzzy
+msgid "Use DNS to _locate KDCs for realms"
+msgstr "Alanlar için KDC'leri bulmak için DNS'i kullan"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -811,12 +818,14 @@ msgid "Winbind _Domain"
 msgstr "Winbind _Sunucusu"
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+#, fuzzy
+msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind Alan _Denetleyicisi"
 
 #: glade.strings.h:82
-msgid "Template _Shell"
-msgstr "Şablon _Kabuğu"
+#, fuzzy
+msgid "_Template Shell"
+msgstr "Şablon Kabuğu:"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
@@ -854,6 +863,15 @@ msgstr "_Saklama"
 msgid "Use Local Policies"
 msgstr "Yerel Önlemler Kullanılsın"
 
+#~ msgid "Use DNS to resolve hosts to _realms"
+#~ msgstr "Sunuculardan _alanları bulabilmek için DNS'i kullan"
+
+#~ msgid "Use DNS to locate _KDCs for realms"
+#~ msgstr "Alanların _KDC'lerin yerini bulması için DNS'i kullan"
+
+#~ msgid "Template _Shell"
+#~ msgstr "Şablon _Kabuğu"
+
 #~ msgid "enable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "Kullanıcı bilgisi için winbind'i ve kimlik denetimini öntanımlı olarak "
@@ -861,10 +879,6 @@ msgstr "Yerel Önlemler Kullanılsın"
 
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr "Kullanıcı·bilgisi·için·winbind'i·ve·kimlik·denetimini·öntanımlı·olarak·seçilmez·kıl."
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Sisteme giriş yapmak isteyen kullanıcıların nasıl doğrulanacağını denetler"
 
 #~ msgid "User Information Configuration"
 #~ msgstr "Kullanıcı Bilgisi Yapılandırması"
