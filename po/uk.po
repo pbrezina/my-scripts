@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: authconfig 1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-01-25 17:47+0100\n"
-"PO-Revision-Date: 2004-09-30 13:18+0200\n"
+"PO-Revision-Date: 2005-01-25 13:18+0200\n"
 "Last-Translator: Maxim Dzumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -180,6 +180,9 @@ msgid ""
 "directory.\n"
 "Then press OK."
 msgstr ""
+"Щоб з'єднатись з сервером LDAP використовуючи TLS, необхідно скопіювати PEM з "
+"CA сертифікату, який підписаний сертифікатом вашого сервера, у каталог '%s'.\n"
+"Потім натисніть OK."
 
 #: authconfig.c:511
 msgid "caching"
@@ -271,7 +274,7 @@ msgstr "Викор. автентифікацію Winbind"
 
 #: authconfig.c:639
 msgid "Local authorization is sufficient"
-msgstr ""
+msgstr "Достатньо локальної авторизації"
 
 #: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
 msgid "Authentication Configuration"
@@ -559,11 +562,11 @@ msgstr "не використовувати локальні правила"
 
 #: authconfig.c:1007
 msgid "local authorization is sufficient for local users"
-msgstr ""
+msgstr "локальної авторизації достатньо для локальних користувачів"
 
 #: authconfig.c:1009
 msgid "authorize local users also through remote service"
-msgstr ""
+msgstr "авторизувати локальних користувачів через зовнішні служби"
 
 #: authconfig.c:1019
 #, c-format
@@ -790,14 +793,12 @@ msgstr ""
 "популярність у маленьких, середніх та великих мережах."
 
 #: authconfig.glade.h:45
-#, fuzzy
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "Використовувати DNS для пошуку KDC для областей"
+msgstr "Використовувати DNS для _пошуку KDC для областей"
 
 #: authconfig.glade.h:46
-#, fuzzy
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "Використовувати DNS для пошуку вузлів та областей"
+msgstr "Використовувати _DNS для пошуку вузлів та областей"
 
 #: authconfig.glade.h:47
 msgid "Use _MD5 Passwords"
@@ -816,7 +817,6 @@ msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS об_ласть"
 
 #: authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers"
 msgstr "_Контролери домену Winbind"
 
@@ -853,7 +853,8 @@ msgstr "_KDC"
 
 #: authconfig.glade.h:61
 msgid "_Local authorization is sufficient for local users"
-msgstr ""
+msgstr "_Локальної перевірки достатньо\n"
+"для локальних користувачів"
 
 #: authconfig.glade.h:62
 msgid "_Password"
@@ -868,9 +869,8 @@ msgid "_Security Model"
 msgstr "Модель _безпеки"
 
 #: authconfig.glade.h:65
-#, fuzzy
 msgid "_Template Shell"
-msgstr "Оболонка шаблону:"
+msgstr "Оболонка _шаблону:"
 
 #: authconfig.glade.h:66
 msgid "_Workgroup"
@@ -879,29 +879,3 @@ msgstr "_Робочі групи"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Використовувати локальні правила"
-
-#, fuzzy
-#~ msgid "Information"
-#~ msgstr "Інформація про користувача"
-
-#~ msgid "(c) 1999-2003 Red Hat, Inc."
-#~ msgstr "(c) 1999-2003 Red Hat, Inc."
-
-#~ msgid "Use DNS to resolve hosts to _realms"
-#~ msgstr "Використовувати DNS для розв'язання вузлів у _області"
-
-#~ msgid "Use DNS to locate _KDCs for realms"
-#~ msgstr "Використовувати DNS для пошуку _KDC для області"
-
-#~ msgid "Template _Shell"
-#~ msgstr "_Оболонка шаблону"
-
-#~ msgid "enable winbind for user information and authentication by default"
-#~ msgstr ""
-#~ "увімкнути використання winbind для інформації про користувачів та "
-#~ "автентифікації"
-
-#~ msgid "disable winbind for user information and authentication by default"
-#~ msgstr ""
-#~ "вимкнути використання winbind для інформації про користувачів та "
-#~ "автентифікації"
