@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: authconfig 4.0.16\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-01-25 17:47+0100\n"
-"PO-Revision-Date: 2004-10-05 14:48+0200\n"
+"PO-Revision-Date: 2005-02-21 15:53+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnu.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -176,6 +176,8 @@ msgid ""
 "directory.\n"
 "Then press OK."
 msgstr ""
+"For å koble til en LDAP-tjener med bruk av TLS må du kopiere CA-sertifikatet som signerte din tjeners sertifikat (i PEM-form) til katalogen «%s».\n"
+"Trykk OK etter å ha gjort dette."
 
 #: authconfig.c:511
 msgid "caching"
@@ -267,7 +269,7 @@ msgstr "Bruk Winbind-autentisering"
 
 #: authconfig.c:639
 msgid "Local authorization is sufficient"
-msgstr ""
+msgstr "Lokal autorisasjon er tilstrekkelig"
 
 #: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
 msgid "Authentication Configuration"
@@ -549,11 +551,11 @@ msgstr "ikke bruk lokalt definerte regler"
 
 #: authconfig.c:1007
 msgid "local authorization is sufficient for local users"
-msgstr ""
+msgstr "lokal autorisasjon er tilstrekkelig for lokale brukere"
 
 #: authconfig.c:1009
 msgid "authorize local users also through remote service"
-msgstr ""
+msgstr "autoriser lokale brukere gjennom ekstern tjeneste også"
 
 #: authconfig.c:1019
 #, c-format
@@ -839,7 +841,7 @@ msgstr "_KDCer"
 
 #: authconfig.glade.h:61
 msgid "_Local authorization is sufficient for local users"
-msgstr ""
+msgstr "_Lokal autorisasjon er tilstrekkelig for lokale brukere"
 
 #: authconfig.glade.h:62
 msgid "_Password"
@@ -864,26 +866,3 @@ msgstr "_Arbeidsgruppe:"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Bruk lokale regler"
-
-#, fuzzy
-#~ msgid "Information"
-#~ msgstr "Informasjon om bruker"
-
-#~ msgid "(c) 1999-2003 Red Hat, Inc."
-#~ msgstr "© 1999-2003 Red Hat, Inc."
-
-#~ msgid "Use DNS to resolve hosts to _realms"
-#~ msgstr "Bruk DNS for oppslag av verter til om_råder"
-
-#~ msgid "Use DNS to locate _KDCs for realms"
-#~ msgstr "Bruk DNS til å lokalisere _KDCer for områder"
-
-#~ msgid "Template _Shell"
-#~ msgstr "Mal-_skall"
-
-#~ msgid "enable winbind for user information and authentication by default"
-#~ msgstr "bruk winbind som forvalg for brukerinformasjon of autentisering"
-
-#~ msgid "disable winbind for user information and authentication by default"
-#~ msgstr ""
-#~ "ikke bruk winbind som forvalg for brukerinformasjon og autentisering"
