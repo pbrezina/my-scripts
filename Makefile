@@ -2,11 +2,16 @@ VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PACKAGE = authconfig
 BINARIES = authconfig authconfig-gtk
+PYTHONMODULES = authconfigmodule.so
+PYTHONREV=2.2
+PYTHONINC=/usr/include/python$(PYTHONREV)
+PYTHONLIB=/usr/lib/python$(PYTHONREV)/site-packages
 
-CFLAGS = -g3 -Wall -DPACKAGE=\"$(PACKAGE)\" -DVERSION=\"$(VERSION)\"
-CFLAGS += $(shell pkg-config --cflags glib-2.0 libglade-2.0)
-CFLAGS += -DG_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED
-LIBS = -lnewt -lpopt -lresolv
+CFLAGS = -g3 -Wall -fPIC -DPACKAGE=\"$(PACKAGE)\" -DVERSION=\"$(VERSION)\"
+CFLAGS += $(shell pkg-config --cflags glib-2.0 libglade-2.0) -I$(PYTHONINC)
+CFLAGS += -DG_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED $(RPM_OPT_FLAGS)
+RESOLVLIBS=-lresolv
+LIBS = -lnewt -lpopt $(RESOLVLIBS)
 GLIBLIBS = $(shell pkg-config --libs glib-2.0)
 LIBGLADELIBS = $(shell pkg-config --libs libglade-2.0)
 SUBDIRS = po man
@@ -16,7 +21,7 @@ mandir=/usr/man
 sbindir=/usr/sbin
 CFLAGS += -DDATADIR=\"$(datadir)\"
 
-all:	subdirs $(BINARIES)
+all:	subdirs $(BINARIES) $(PYTHONMODULES)
 
 subdirs:
 	for d in $(SUBDIRS); do \
@@ -30,10 +35,16 @@ authconfig: authconfig.o authinfo.o shvar.o dnsclient.o
 authconfig-gtk: authconfig-gtk.o authinfo.o shvar.o dnsclient.o
 	$(CC) -o $@ $^ $(LIBGLADELIBS) $(LIBS)
 
+authconfigmodule.so: authconfigmodule.o authinfo.o shvar.o dnsclient.o
+	$(CC) -o $@ -shared -fPIC $^ $(GLIBLIBS) $(RESOLVLIBS)
+	python$(PYTHONREV) -c 'import authconfig'
+
 install:
 	mkdir -p $(sbindir) $(mandir)/man8 $(datadir)/$(PACKAGE)
 	mkdir -p $(INSTROOT)$(sysconfdir)/pam.d
+	mkdir -p $(INSTROOT)$(PYTHONLIB)
 	install -m 755 $(BINARIES) $(sbindir)/
+	install -m 755 $(PYTHONMODULES) $(INSTROOT)$(PYTHONLIB)/
 	install -m 644 $(PACKAGE).glade2 $(datadir)/$(PACKAGE)/$(PACKAGE).glade
 	for d in $(SUBDIRS); do \
 	(cd $$d; $(MAKE) sbindir=$(sbindir) install) \

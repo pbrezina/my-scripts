@@ -119,6 +119,7 @@ struct authInfoType {
 };
 
 struct authInfoType *authInfoRead(void);
+void authInfoFree(struct authInfoType *info);
 struct authInfoType *authInfoProbe(void);
 struct authInfoType *authInfoCopy(struct authInfoType *info);
 gboolean authInfoWrite(struct authInfoType *info);

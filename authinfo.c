@@ -914,6 +914,11 @@ authInfoRead()
 	return ret;
 }
 
+void
+authInfoFree(struct authInfoType *info)
+{
+}
+
 struct authInfoType *
 authInfoCopy(struct authInfoType *info)
 {
@@ -2699,14 +2704,16 @@ toggleShadow(struct authInfoType *authInfo)
   return TRUE;
 }
 
-void authInfoPost(struct authInfoType *authInfo, int nostart)
+void
+authInfoPost(struct authInfoType *authInfo, int nostart)
 {
     toggleShadow(authInfo);
     toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
     toggleCachingService(authInfo->enableCache, nostart);
 }
 
-void authInfoPrint(struct authInfoType *authInfo)
+void
+authInfoPrint(struct authInfoType *authInfo)
 {
     printf("caching is %s\n", authInfo->enableCache ? "enabled" : "disabled");
     printf("nss_files is always enabled\n");
