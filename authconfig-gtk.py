@@ -99,6 +99,8 @@ class childWindow:
 			"realm" : ("kerberosRealm", ""),
 			"kdc" : ("kerberosKDC", ""),
 			"adminserver" : ("kerberosAdminServer", ""),
+			"dnsrealm" : ("kerberosRealmviaDNS", ""),
+			"dnskdc" : ("kerberosKDCviaDNS", ""),
 		}
 		self.ldap_map = {
 			"tls" : ("enableLDAPS", ""),

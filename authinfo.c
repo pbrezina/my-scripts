@@ -536,6 +536,42 @@ authInfoReadKerberos(struct authInfoType *info)
 			continue;
 		}
 
+		/* Check for the DNS settings. */
+		if (section != NULL)
+		if (strcmp(section, "libdefaults") == 0)
+		if (strncmp(p, "dns_lookup_kdc", 14) == 0) {
+			/* Skip intervening whitespace and the equal sign. */
+			for (p += 14;
+			    ((isspace(*p) || (*p == '=')) && (*p != '\0'));
+			    p++);
+
+			/* Save the value. */
+			if (*p != '\0') {
+				info->kerberosKDCviaDNS =
+					(strncmp(p, "true", 4) == 0);
+			}
+
+			memset(buf, '\0', sizeof(buf));
+			continue;
+		}
+		if (section != NULL)
+		if (strcmp(section, "libdefaults") == 0)
+		if (strncmp(p, "dns_lookup_realm", 16) == 0) {
+			/* Skip intervening whitespace and the equal sign. */
+			for (p += 16;
+			    ((isspace(*p) || (*p == '=')) && (*p != '\0'));
+			    p++);
+
+			/* Save the value. */
+			if (*p != '\0') {
+				info->kerberosRealmviaDNS =
+					(strncmp(p, "true", 4) == 0);
+			}
+
+			memset(buf, '\0', sizeof(buf));
+			continue;
+		}
+
 		/* Check for the section about the current realm. */
 		if (section != NULL)
 		if (strcmp(section, "realms") == 0)
@@ -1098,7 +1134,9 @@ authInfoDiffers(struct authInfoType *a, struct authInfoType *b)
 		string_differs(a->ldapBaseDN, b->ldapBaseDN, FALSE) ||
 
 		string_differs(a->kerberosRealm, b->kerberosRealm, TRUE) ||
+		(a->kerberosRealmviaDNS != b->kerberosRealmviaDNS) ||
 		string_differs(a->kerberosKDC, b->kerberosKDC, FALSE) ||
+		(a->kerberosKDCviaDNS != b->kerberosKDCviaDNS) ||
 		string_differs(a->kerberosAdminServer,
 			       b->kerberosAdminServer, FALSE) ||
 		string_differs(a->nisServer, b->nisServer, TRUE) ||
@@ -2070,7 +2108,8 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	gboolean wroterealm = FALSE, wrotekdc = FALSE, wroteadmin = FALSE;
 	gboolean wroterealms = FALSE, wrotelibdefaults = FALSE,
 		 wroterealms2 = FALSE, wrotelibdefaults2 = FALSE;
-	gboolean wrotedefaultrealm = FALSE;
+	gboolean wrotedefaultrealm = FALSE, wrotednsrealm = FALSE,
+		 wrotednskdc = FALSE;
 	char *section = NULL, *subsection = NULL;
 
 	fd = open(SYSCONFDIR "/krb5.conf", O_RDWR | O_CREAT, 0644);
@@ -2096,6 +2135,7 @@ authInfoWriteKerberos5(struct authInfoType *info)
 
 	/* Determine the maximum length of the new file. */
 	l = strlen("[libdefaults]\n default_realm = \n\n[realm]\n  = { \n }\n");
+	l += strlen(" dns_lookup_realm = false\n") * 2;
 	l += info->kerberosRealm ? strlen(info->kerberosRealm) * 2 : 1;
 	l += strlen("  kdc = \n\n") * (comma_count(info->kerberosKDC) + 1);
 	l += info->kerberosKDC ? strlen(info->kerberosKDC) * 2 : 0;
@@ -2199,14 +2239,40 @@ authInfoWriteKerberos5(struct authInfoType *info)
 		/* If we're in the libdefaults section, and this is the
 		 * default_realm keyword, replace it with ours. */
 		if ((section != NULL) &&
-		   (strcmp(section, "libdefaults") == 0) &&
-		   (strncmp(p, "default_realm", 13) == 0)) {
+		    (strcmp(section, "libdefaults") == 0) &&
+		    (strncmp(p, "default_realm", 13) == 0)) {
 			if (non_empty(info->kerberosRealm) &&
-			   !wrotedefaultrealm) {
+			    !wrotedefaultrealm) {
 				strcat(obuf, " default_realm = ");
 				strcat(obuf, info->kerberosRealm);
 				strcat(obuf, "\n");
 				wrotedefaultrealm = TRUE;
+			}
+			p = q;
+			continue;
+		}
+		if ((section != NULL) &&
+		    (strcmp(section, "libdefaults") == 0) &&
+		    (strncmp(p, "dns_lookup_realm", 16) == 0)) {
+			if (!wrotednsrealm) {
+				strcat(obuf, " dns_lookup_realm = ");
+				strcat(obuf, info->kerberosRealmviaDNS ?
+					     "true" : "false");
+				strcat(obuf, "\n");
+				wrotednsrealm = TRUE;
+			}
+			p = q;
+			continue;
+		}
+		if ((section != NULL) &&
+		    (strcmp(section, "libdefaults") == 0) &&
+		    (strncmp(p, "dns_lookup_kdc", 14) == 0)) {
+			if (!wrotednskdc) {
+				strcat(obuf, " dns_lookup_kdc = ");
+				strcat(obuf, info->kerberosKDCviaDNS ?
+					     "true" : "false");
+				strcat(obuf, "\n");
+				wrotednskdc = TRUE;
 			}
 			p = q;
 			continue;
@@ -2236,7 +2302,25 @@ authInfoWriteKerberos5(struct authInfoType *info)
 				strcat(obuf, "\n");
 				wrotedefaultrealm = TRUE;
 			}
-			for (q = p; ((*q != ']') && (*q != '\0')); q++) ;
+			if ((section != NULL) &&
+			    (strcmp(section, "libdefaults") == 0) &&
+			    !wrotednsrealm) {
+				strcat(obuf, " dns_lookup_realm = ");
+				strcat(obuf, info->kerberosRealmviaDNS ?
+					     "true" : "false");
+				strcat(obuf, "\n");
+				wrotednsrealm = TRUE;
+			}
+			if ((section != NULL) &&
+			    (strcmp(section, "libdefaults") == 0) &&
+			    !wrotednskdc) {
+				strcat(obuf, " dns_lookup_kdc = ");
+				strcat(obuf, info->kerberosKDCviaDNS ?
+					     "true" : "false");
+				strcat(obuf, "\n");
+				wrotednskdc = TRUE;
+			}
+			for (q = p; ((*q != ']') && (*q != '\0')); q++) /* */;
 			if (section) {
 				if (strcmp(section, "realms") == 0) {
 					wroterealms2 = TRUE;
@@ -2261,12 +2345,21 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	}
 
 	/* If we haven't encountered a libdefaults section yet... */
-	if (!wrotelibdefaults2 && non_empty(info->kerberosRealm)) {
+	if (!wrotelibdefaults2 &&
+	    (non_empty(info->kerberosRealm) ||
+	     info->kerberosRealmviaDNS ||
+	     info->kerberosKDCviaDNS)) {
 		if (!wrotelibdefaults) {
 			strcat(obuf, "[libdefaults]\n");
 		}
 		strcat(obuf, " default_realm = ");
 		strcat(obuf, info->kerberosRealm);
+		strcat(obuf, "\n");
+		strcat(obuf, " dns_lookup_realm = ");
+		strcat(obuf, info->kerberosRealmviaDNS ?  "true" : "false");
+		strcat(obuf, "\n");
+		strcat(obuf, " dns_lookup_kdc = ");
+		strcat(obuf, info->kerberosKDCviaDNS ?  "true" : "false");
 		strcat(obuf, "\n\n");
 	}
 
@@ -4236,8 +4329,12 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->enableKerberos ? "enabled" : "disabled");
     printf(" krb5 realm = \"%s\"\n",
 	   authInfo->kerberosRealm ?: "");
+    printf(" krb5 realm via dns is %s\n",
+	   authInfo->kerberosRealmviaDNS ? "enabled" : "disabled");
     printf(" krb5 kdc = \"%s\"\n",
 	   authInfo->kerberosKDC ?: "");
+    printf(" krb5 kdc via dns is %s\n",
+	   authInfo->kerberosKDCviaDNS ? "enabled" : "disabled");
     printf(" krb5 admin server = \"%s\"\n",
 	   authInfo->kerberosAdminServer ?: "");
     printf("pam_ldap is %s\n",

@@ -88,7 +88,9 @@ struct authInfoType {
 	char *ldapBaseDN;
 
 	char *kerberosRealm;
+	gboolean kerberosRealmviaDNS;
 	char *kerberosKDC;
+	gboolean kerberosKDCviaDNS;
 	char *kerberosAdminServer;
 
 	char *nisServer;

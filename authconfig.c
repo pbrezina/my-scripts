@@ -124,6 +124,9 @@ getGenericChoices(const char *dialogTitle,
       cb = newtCheckbox(-1, -1, items[i].description,
 		        *b ? '*' : ' ',
 		        NULL, &booleans[i]);
+      newtGridSetField(questionGrid, 0, row, NEWT_GRID_COMPONENT,
+     		       newtLabel(-1, -1, ""),
+                       0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
       newtGridSetField(questionGrid, 1, row, NEWT_GRID_COMPONENT, cb,
                        0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
       row++;
@@ -324,6 +327,10 @@ getKerberosSettings(struct authInfoType *authInfo, gboolean next)
      G_STRUCT_OFFSET(struct authInfoType, kerberosKDC)},
     {svalue, _("Admin Server:"),
      G_STRUCT_OFFSET(struct authInfoType, kerberosAdminServer)},
+    {tfvalue, _("Use DNS to resolve hosts to realms"),
+     G_STRUCT_OFFSET(struct authInfoType, kerberosRealmviaDNS)},
+    {tfvalue, _("Use DNS to locate KDCs for realms"),
+     G_STRUCT_OFFSET(struct authInfoType, kerberosKDCviaDNS)},
   };
   return getGenericChoices(_("Kerberos Settings"),
                            G_N_ELEMENTS(questions), questions, authInfo,
@@ -754,6 +761,8 @@ main(int argc, const char **argv)
 
   int enableKrb5 = 0, disableKrb5 = 0;
   char *krb5Realm = NULL, *krb5KDC = NULL, *krb5AdminServer = NULL;
+  int enableKrb5RealmDNS = 0, enableKrb5KDCDNS = 0;
+  int disableKrb5RealmDNS = 0, disableKrb5KDCDNS = 0;
 
   int enableSmb = 0, disableSmb = 0;
   char *smbWorkgroup = NULL, *smbServers = NULL, *smbRealm = NULL;
@@ -835,6 +844,15 @@ main(int argc, const char **argv)
 	_("default kerberos admin server"), _("<server>")},
       { "krb5realm", '\0', POPT_ARG_STRING, &krb5Realm, 0,
 	_("default kerberos realm\n"), _("<realm>")},
+
+      { "enablekrb5kdcdns", '\0', POPT_ARG_NONE, &enableKrb5KDCDNS, 0,
+	_("enable use of DNS to find kerberos KDCs"), NULL},
+      { "disablekrb5kdcdns", '\0', POPT_ARG_NONE, &disableKrb5KDCDNS, 0,
+	_("disable use of DNS to find kerberos KDCs"), NULL},
+      { "enablekrb5realmdns", '\0', POPT_ARG_NONE, &enableKrb5RealmDNS, 0,
+	_("enable use of DNS to find kerberos realms"), NULL},
+      { "disablekrb5realmdns", '\0', POPT_ARG_NONE, &disableKrb5RealmDNS, 0,
+	_("disable use of DNS to find kerberos realms\n"), NULL},
 
       { "enablesmbauth", '\0', POPT_ARG_NONE, &enableSmb, 0,
 	_("enable SMB authentication by default"), NULL},
@@ -1112,6 +1130,10 @@ main(int argc, const char **argv)
   overrideString(&authInfo->kerberosRealm, krb5Realm);
   overrideString(&authInfo->kerberosKDC, krb5KDC);
   overrideString(&authInfo->kerberosAdminServer, krb5AdminServer);
+  overrideBoolean(&authInfo->kerberosKDCviaDNS,
+ 		  enableKrb5KDCDNS, disableKrb5KDCDNS);
+  overrideBoolean(&authInfo->kerberosRealmviaDNS,
+ 		  enableKrb5RealmDNS, disableKrb5RealmDNS);
 
   overrideBoolean(&authInfo->enableSMB, enableSmb, disableSmb);
   overrideString(&authInfo->smbWorkgroup, smbWorkgroup);

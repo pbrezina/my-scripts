@@ -49,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc NOTES TODO
+%doc NOTES TODO README.samba3
 %ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
 %{_bindir}/authconfig
 %{_sbindir}/authconfig
@@ -71,7 +71,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Thu Nov 13 2003 Nalin Dahyabhai <nalin@redhat.com> 4.4-1
+* Tue Nov 18 2003 Nalin Dahyabhai <nalin@redhat.com> 4.4-1
+- add options for toggling krb5's use of DNS
+
+* Mon Nov 17 2003 Nalin Dahyabhai <nalin@redhat.com>
+- rework tui to include winbind options. there wasn't enough room in the old
+  dialog to include the important options, so the whole thing's been reworked
+
+* Thu Nov 13 2003 Nalin Dahyabhai <nalin@redhat.com>
 - conflict with older versions of samba which expect different configuration
 
 * Mon Nov 10 2003 Nalin Dahyabhai <nalin@redhat.com>
