@@ -178,12 +178,12 @@ if __name__ == '__main__':
 	vbox.show()
 	eventbox.destroy()
 
-	button = gtk.Button(_("Ok"), gtk.STOCK_OK);
+	button = gtk.Button(_("Ok"), stock=gtk.STOCK_OK);
 	button.connect("clicked", module.apply)
 	button.show()
 	hbox.pack_start_defaults(button)
 
-	button = gtk.Button(_("Cancel"), gtk.STOCK_CANCEL);
+	button = gtk.Button(_("Cancel"), stock=gtk.STOCK_CANCEL);
 	button.connect("clicked", gtk.mainquit)
 	button.show()
 	hbox.set_spacing(30)
