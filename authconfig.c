@@ -152,6 +152,7 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   newtComponent okButton, cancelButton;
   newtComponent hLine;
   char *newNisDomain, *newNisServer;
+  char newEnableShadow, newUseMD5;
   int rc;
 
 
@@ -192,9 +193,15 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
 
   /* Shadow Stuff */
   shadowCheckBox = newtCheckbox(5, 8, i18n("Enable Shadow Passwords"),
-				0, 0, enableShadow);
+				0, 0, &newEnableShadow);
   MD5CheckBox = newtCheckbox(10, 10, i18n("Use MD5 Hashes"),
-			     0, 0, useMD5);
+			     0, 0, &newUseMD5);
+
+  if (*enableShadow == '*')
+    newtCheckboxSetValue(shadowCheckBox, '*');
+
+  if (*useMD5 == '*')
+    newtCheckboxSetValue(MD5CheckBox, '*');
 
   okButton = newtButton(18, 12, i18n("  OK  "));
   cancelButton = newtButton(31, 12, useBack ? i18n(" Back ") : i18n("Cancel"));
@@ -220,6 +227,9 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
 
     *nisDomain = newNisDomain;
     *nisServer = newNisServer;
+
+    *enableShadow = newEnableShadow;
+    *useMD5 = newUseMD5;
     return 0;
   }
 }
@@ -401,40 +411,152 @@ int toggleNisService(char enableNis, int nostart)
   return 0;
 }
 
+int toggleShadowPam(int enable, int md5)
+{
+  char *filenames[] = { "login", "rlogin", "passwd", 0 };    
+  FILE *f, *f1;
+  char curFileName[80], curTmpFileName[80], buf[250];
+  char *s, *s1;
+  char *shadowFound, *md5Found;
+  int i;
+  
+  for (i = 0; filenames[i]; i++) {
+    sprintf(curFileName,"/etc/pam.d/%s",filenames[i]);
+    f = fopen(curFileName, "r");
+    if (!f) {
+      fprintf(stderr,"%s: error opening %s\n",progName, curFileName);
+      return 1;
+    }
+    sprintf(curTmpFileName,"%s-",curFileName);
+    f1 = fopen(curTmpFileName, "w");
+    while ((s = fgets(buf, sizeof(buf) - 1, f)) != NULL) {
+      /* chop \n off end of line */
+      if (s[strlen(s)-1] == '\n')
+	s[strlen(s)-1] = '\0';
+      
+      /* look for "password" at the beginning of the line, amd pam_pwdb.so somewhere in line */
+      if (!strncmp(s, "password", 8) && (strstr(s, "pam_pwdb.so") != NULL)) {
+	/* set these flags to what we find in the string */
+	shadowFound = strstr(s,"shadow");
+	
+	s1 = strdup(s);
+	/* chop out shadow and md5.  We'll add it back later if needed */
+	if (shadowFound != NULL) {
+	  shadowFound--;
+	  *shadowFound = '\0';
+	  strcpy(s1, s);
+	  shadowFound += 7; /* one character after "shadow" */
+	  s1 = (char *) realloc(s1, sizeof(char *) * (strlen(s1) + strlen(shadowFound) + 1));
+	  strcat(s1, shadowFound);
+	}
+
+	s = s1;
+	s1 = strdup(s);
+	md5Found = strstr(s,"md5");
+	if (md5Found != NULL) {
+	  md5Found--;
+	  *md5Found = '\0';
+	  strcpy(s1, s);
+	  md5Found += 4; /* one character after "md5" */
+	  s1 = (char *) realloc(s1, sizeof(char *) * (strlen(s1) + strlen(md5Found) + 1));
+	  strcat(s1, md5Found);
+	}
+	s = s1;
+
+	if (enable) {
+	  if (md5) {
+	    s = realloc(s, sizeof(char *) * (strlen(s) + 5));
+	    strcat(s, " md5");
+	  }
+	  s = realloc(s, sizeof(char *) * (strlen(s) + 8));
+	  strcat(s, " shadow");
+	}
+      } 
+      fprintf(f1,"%s\n",s);
+    }
+
+    fclose(f);
+    fclose(f1);
+    unlink(curFileName);
+    rename(curTmpFileName, curFileName);
+  }
+
+  return 0;
+}
+
+int checkUseMD5(char *useMD5)
+{
+  char *filename = "/etc/pam.d/login";    
+  char buf[250];
+  FILE *f;
+  char *s;
+
+  f = fopen(filename, "r");
+  if (!f) {
+    fprintf(stderr,"%s: error opening %s\n",progName, filename);
+    return 1;
+  }
+   
+  while ((s = fgets(buf, sizeof(buf) - 1, f)) != NULL) {
+    /* look for "password" at the beginning of the line, amd pam_pwdb.so somewhere in line */
+    if (!strncmp(s, "password", 8) && (strstr(s, "pam_pwdb.so") != NULL)) {
+      /* set these flags to what we find in the string */
+      if (strstr(s,"md5") != NULL)
+	*useMD5 = '*';
+    }
+  }
+  
+  fclose(f);
+  return 0;
+}
+
 int doShadowStuff(char enableShadow, char useMD5)
 {
+  FILE *f;
+  /* first, toggle the shadow service for all required pam modules. */
+  if (toggleShadowPam((enableShadow == '*' ? 1 : 0),
+		      (useMD5 == '*' ? 1 : 0)))
+    return 1;
+  
+  /* now, do file manipulation on the password files themselves. */
   if (enableShadow == '*') {
     system("/usr/sbin/pwconv");
-    /* rename the files here, and mess with pam. */
   } else {
     system("/usr/sbin/pwunconv");
-    /* etc. etc. */
   }
   return 0;
 }
 
 int main(int argc, char **argv) {
   char buf[1024];
-  int i, rc;
   FILE *f;
+  int i, rc;
+  struct stat sb;
   newtComponent form;
-  int back = 0; 
-  int test = 0;
-  int nostart = 0;
+
+  char *nisDomain = NULL, *nisServer = NULL;
+  char enableNis = ' ', enableNisServer = ' ';
+  char enableShadow = ' ', useMD5 = ' ';
+
+  int back = 0, test = 0, nostart = 0;
+  int kickstart = 0;
+  int enablenis = 0, enableshadow = 0, usemd5 = 0;
   poptContext optCon;
   struct poptOption options[] = {
     { "back", '\0', 0, &back, 0},
     { "test", '\0', 0, &test, 0},
     { "nostart", '\0', 0, &nostart, 0},
+    { "ks", '\0', 0, &kickstart, 0},
+    { "enablenis", '\0', 0, &enablenis, 0},
+    { "nisdomain", '\0', POPT_ARG_STRING, nisDomain, 0},
+    { "nisserver", '\0', POPT_ARG_STRING, nisServer, 0},
+    { "enableshadow", '\0', 0, &enableshadow, 0},
+    { "usemd5", '\0', 0, &usemd5, 0},
     { 0, 0, 0, 0 }
   };
-  char *nisDomain = NULL, *nisServer = NULL;
-  char enableNis = ' ', enableNisServer = ' ';
-  char enableShadow = ' ', useMD5 = ' ';
-
 
   progName = basename(argv[0]);
-
+  
   /* first set up our locale info for gettext. */
   setlocale(LC_ALL, "");
   bindtextdomain("authconfig", "/usr/share/locale");
@@ -465,7 +587,15 @@ int main(int argc, char **argv) {
 	    progName);
     return 2;
   }
-  
+
+  /* process other arguments */
+  if (enablenis)
+    enableNis = '*';
+  if (enableshadow)
+    enableShadow = '*';
+  if (usemd5)
+    useMD5 = '*';
+
   /* read the values from the config file */
   if (readNetworkConfigFile(&nisDomain)) {
     fprintf(stderr, i18n("%s: critical error reading /etc/sysconfig/network"),
@@ -490,29 +620,40 @@ int main(int argc, char **argv) {
   else
     enableNisServer = '*';
 
-  newtInit();
-  newtCls();
+  if (!stat("/etc/shadow", &sb))
+    enableShadow = '*';
 
-  newtPushHelpLine(i18n(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
-  newtDrawRootText(0, 0, "authconfig " VERSION " - (c) 1999 Red Hat Software");
-
-  if (getChoices(back, &enableNis, &nisDomain, 
-		 &enableNisServer, &nisServer, 
-		 &enableShadow, &useMD5)) {
-    /* cancelled */
-    newtFinished();
-
-    if (nisDomain && test) {
-      fprintf(stderr, 
-	      i18n("%s: nis domain was set to %s, but dialog was cancelled\n"),
-	      progName, nisDomain);
-      return 2;
-    }
-
-    return 1;
+  if (checkUseMD5(&useMD5)) {
+    fprintf(stderr, i18n("%s: critical error reading /etc/pam.d/passwd\n"),
+	    progName);
+    return 2;
   }
 
-  newtFinished();
+  if (!kickstart) {
+    newtInit();
+    newtCls();
+    
+    newtPushHelpLine(i18n(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
+    newtDrawRootText(0, 0, "authconfig " VERSION " - (c) 1999 Red Hat Software");
+    
+    if (getChoices(back, &enableNis, &nisDomain, 
+		   &enableNisServer, &nisServer, 
+		   &enableShadow, &useMD5)) {
+      /* cancelled */
+      newtFinished();
+      
+      if (nisDomain && test) {
+	fprintf(stderr, 
+		i18n("%s: nis domain was set to %s, but dialog was cancelled\n"),
+		progName, nisDomain);
+	return 2;
+      }
+      
+      return 1;
+    }
+    
+    newtFinished();
+  } /* kickstart */
   
   if (test) {
     fprintf(stderr, 
