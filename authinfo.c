@@ -1039,7 +1039,7 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	l += info->ldapBaseDN ? strlen(info->ldapBaseDN) : 0;
 	l += info->ldapServer ? strlen(info->ldapServer) : 0;
 	l += strlen("ssl start_tls\n");
-	l += strlen("pam_password crypt\n");
+	l += strlen("pam_password cryptmd5\n");
 	obuf = g_malloc0((st.st_size + 1 + l) * 2);
 
 	p = ibuf;
@@ -1084,10 +1084,15 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 			}
 		} else
 
-		/* If it's a 'pam_password' line, note that it's set. */
+		/* If it's a 'pam_password' line, write the correct setting. */
 		if(writepadl && strncmp("pam_password", p, 12) == 0) {
-			strncat(obuf, p, q - p);
-			wrotepass = TRUE;
+			if(!wrotepass) {
+				strcat(obuf, "pam_password");
+				strcat(obuf, " ");
+				strcat(obuf, info->enableMD5 ? "md5" : "crypt");
+				strcat(obuf, "\n");
+				wrotepass = TRUE;
+			}
 		} else
 
 		/* Otherwise, just copy the current line out. */
@@ -1121,7 +1126,8 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	if(writepadl && !wrotepass) {
 		strcat(obuf, "pam_password");
 		strcat(obuf, " ");
-		strcat(obuf, "crypt");
+		strcat(obuf, info->enableMD5 ? "md5" : "crypt");
+		wrotepass = TRUE;
 		strcat(obuf, "\n");
 	}
 

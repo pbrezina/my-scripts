@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.14
+Version: 4.1.15
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -40,7 +40,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
-* Mon Aug 20 2001 Nalin Dahyabhai <nalin@redhat.com>
+* Tue Aug 20 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.15-1
+- set "pam_password md5" instead of "pam_password crypt" in ldap.conf if MD5
+  is enabled
+
+* Mon Aug 20 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.14-1
 - right justify labels, and remove padding
 
 * Fri Aug 17 2001 Nalin Dahyabhai <nalin@redhat.com>
