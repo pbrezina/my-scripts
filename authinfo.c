@@ -504,6 +504,7 @@ authInfoReadKerberos(struct authInfoType *info)
 
 			if (section != NULL) {
 				g_free(section);
+				section = NULL;
 			}
 			if (subsection != NULL) {
 				g_free(subsection);
@@ -610,6 +611,38 @@ authInfoReadKerberos(struct authInfoType *info)
 	return TRUE;
 }
 
+/* Check for a string in an nss configuration line. */
+static gboolean
+authInfoCheckNSS(const char *configuration, const char *candidate)
+{
+	const char *p;
+	char c;
+	p = configuration;
+	if (strchr(p, ':')) {
+		p = strchr(p, ':') + 1;
+	}
+	while (p != NULL) {
+		p = strstr(p, candidate);
+		if (p != NULL) {
+			c = p[strlen(candidate)];
+			switch (c) {
+			case '\0':
+			case '\r':
+			case '\n':
+			case '[':
+				return TRUE;
+			default:
+				if (!g_ascii_isalnum(c)) {
+					return TRUE;
+				}
+				break;
+			}
+			p++;
+		}
+	}
+	return FALSE;
+}
+
 /* Read NSS setup from /etc/nsswitch.conf. */
 gboolean
 authInfoReadNSS(struct authInfoType *info)
@@ -638,7 +671,7 @@ authInfoReadNSS(struct authInfoType *info)
 
 		if (strncmp("passwd:", buf, 7) == 0) {
 			/* Skip the keyword and whitespace. */
-			for (p += 7; (isspace(*p) && (*p != '\0')); p++);
+			for (p += 7; (isspace(*p) && (*p != '\0')); p++) /* */;
 			if (*p != '\0') {
 				nss_config = g_strdup(p);
 			}
@@ -646,21 +679,15 @@ authInfoReadNSS(struct authInfoType *info)
 	}
 
 	if (nss_config != NULL) {
-		info->enableDB = (strstr(nss_config, "db") != NULL);
-		info->enableDirectories = (strstr(nss_config, "directories") != NULL);
-		info->enableHesiod = (strstr(nss_config, "hesiod") != NULL);
-		info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
-		/* Don't be fooled by "nisplus". */
-		for (p = nss_config; strstr(p, "nis") != NULL; p++) {
-			info->enableNIS = ((strstr(p, "nis") != NULL) &&
-					   ((strstr(p, "nis"))[3] != 'p'));
-			if (info->enableNIS) {
-				break;
-			}
-		}
-		info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
-		info->enableWinbind = (strstr(nss_config, "winbind") != NULL);
-		info->enableWINS = (strstr(nss_config, "wins") != NULL);
+		info->enableDB = authInfoCheckNSS(nss_config, "db");
+		info->enableDirectories = authInfoCheckNSS(nss_config,
+							   "directories");
+		info->enableHesiod = authInfoCheckNSS(nss_config, "hesiod");
+		info->enableLDAP = authInfoCheckNSS(nss_config, "ldap");
+		info->enableNIS = authInfoCheckNSS(p, "nis");
+		info->enableNIS3 = authInfoCheckNSS(nss_config, "nisplus");
+		info->enableWinbind = authInfoCheckNSS(nss_config, "winbind");
+		info->enableWINS = authInfoCheckNSS(nss_config, "wins");
 	}
 
 	fclose(fp);
@@ -1050,6 +1077,7 @@ authInfoReadNetwork(struct authInfoType *authInfo)
  * suggestions we "know".  The second case is when the user has just made a
  * change to one field and we need to update another field to somehow
  * compensate for the change. */
+
 void
 authInfoUpdate(struct authInfoType *info)
 {
@@ -1191,7 +1219,7 @@ authInfoUpdate(struct authInfoType *info)
 }
 
 struct authInfoType *
-authInfoRead()
+authInfoRead(void)
 {
 	struct authInfoType *ret = NULL;
 
@@ -1322,12 +1350,18 @@ authInfoCopy(struct authInfoType *info)
 	ret->smbIdmapUid = info->smbIdmapUid ? g_strdup(info->smbIdmapUid) : NULL;
 	ret->smbIdmapGid = info->smbIdmapGid ? g_strdup(info->smbIdmapGid) : NULL;
 
-	ret->winbindSeparator = info->winbindSeparator ? g_strdup(info->winbindSeparator) : NULL;
-	ret->winbindTemplateHomedir = info->winbindTemplateHomedir ? g_strdup(info->winbindTemplateHomedir) : NULL;
-	ret->winbindTemplatePrimaryGroup = info->winbindTemplatePrimaryGroup ? g_strdup(info->winbindTemplatePrimaryGroup) : NULL;
-	ret->winbindTemplateShell = info->winbindTemplateShell ? g_strdup(info->winbindTemplateShell) : NULL;
+	ret->winbindSeparator = info->winbindSeparator ?
+				g_strdup(info->winbindSeparator) : NULL;
+	ret->winbindTemplateHomedir = info->winbindTemplateHomedir ?
+				g_strdup(info->winbindTemplateHomedir) : NULL;
+	ret->winbindTemplatePrimaryGroup = info->winbindTemplatePrimaryGroup ?
+			g_strdup(info->winbindTemplatePrimaryGroup) : NULL;
+	ret->winbindTemplateShell = info->winbindTemplateShell ?
+				g_strdup(info->winbindTemplateShell) : NULL;
 
 	ret->pvt = authInfoPrivateCopy(info->pvt);
+	ret->joinUser = NULL;
+	ret->joinPassword = NULL;
 
 	return ret;
 }
@@ -2419,6 +2453,7 @@ authInfoReadWinbindGlobal(struct authInfoType *info, const char *key)
 
 			if (section != NULL) {
 				g_free(section);
+				section = NULL;
 			}
 			if (q - p > 0)  {
 				section = g_strndup(p, q - p);
@@ -2677,6 +2712,7 @@ authInfoWriteWinbind(struct authInfoType *info)
 						wroteglobal2 = TRUE;
 					}
 					g_free(section);
+					section = NULL;
 				}
 				if (leaving) {
 					if (!wroteworkgroup &&
@@ -3840,9 +3876,10 @@ authInfoProbe()
 					 result->dns_rdata.srv.port);
 			}
 			if (ret->kerberosKDC != NULL) {
-				p = malloc(strlen(ret->kerberosKDC + 1 +
-					   strlen(qname) + 1));
-				sprintf(p, "%s,%s", ret->kerberosKDC, qname);
+				p = g_strconcat(ret->kerberosKDC,
+				                ",",
+						qname,
+						NULL);
 				g_free(ret->kerberosKDC);
 				ret->kerberosKDC = p;
 			} else {
@@ -3875,10 +3912,10 @@ authInfoProbe()
 					 result->dns_rdata.srv.port);
 			}
 			if (ret->kerberosAdminServer != NULL) {
-				p = malloc(strlen(ret->kerberosAdminServer + 1 +
-					   strlen(qname) + 1));
-				sprintf(p, "%s,%s",
-					ret->kerberosAdminServer, qname);
+				p = g_strconcat(ret->kerberosAdminServer,
+				                ",",
+						qname,
+						NULL);
 				g_free(ret->kerberosAdminServer);
 				ret->kerberosAdminServer = p;
 			} else {
@@ -3900,9 +3937,7 @@ authInfoProbe()
 			while ((result != NULL) && (result->dns_name != NULL)) {
 				if ((result->dns_type == DNS_T_SOA) &&
 				    (strcmp(result->dns_name, qname) == 0)) {
-					ret->hesiodLHS = malloc(strlen(hesiod[i].hdomain) + 1);
-					sprintf(ret->hesiodLHS,
-						".%s", hesiod[i].hdomain);
+					ret->hesiodLHS = g_strdup_printf(".%s", hesiod[i].hdomain);
 					ret->hesiodRHS = g_strdup(p);
 					terminate_hostname(ret->hesiodRHS);
 					break;
@@ -4087,6 +4122,8 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->nisServer ? authInfo->nisServer : "");
     printf(" NIS domain = \"%s\"\n",
 	   authInfo->nisDomain ? authInfo->nisDomain : "");
+    printf("nss_nisplus is %s\n",
+	   authInfo->enableNIS3 ? "enabled" : "disabled");
     printf("nss_wins is %s\n",
 	   authInfo->enableWINS ? "enabled" : "disabled");
 #ifdef EXPERIMENTAL
@@ -4191,7 +4228,8 @@ feedFork(const char *command, gboolean echo,
                 break;
 	    case 0:
                 break;
-	    case 1:
+	    default:
+	        g_assert(child == pid);
 	        close(master);
 		eof = TRUE;
                 continue;
@@ -4277,13 +4315,13 @@ authInfoJoin(struct authInfoType *authInfo, gboolean echo)
                               authInfo->joinUser);
         p = cmd;
 	while ((p = strstr(p, "  ")) != NULL) {
-	   memmove(p, p + 1, strlen(p));
+	    memmove(p, p + 1, strlen(p));
 	}
         if (echo) {
 	    fprintf(stderr, "[%s]\n", cmd);
         }
         if (authInfo->joinPassword != NULL) {
-            feedFork(cmd, echo, " password:", authInfo->joinPassword);
+            feedFork(cmd, echo, "sword:", authInfo->joinPassword);
         } else {
             system(cmd);
         }
