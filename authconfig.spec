@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.2
-Release: 1
+Release: 2
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -68,10 +68,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
 %{_sbindir}/authconfig-gtk
+%{_datadir}/%{name}/%{name}.glade
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
+* Tue Dec 11 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2-2
+- add the glade XML file to the -gtk subpackage (fix from katzj)
+
 * Mon Dec 10 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2-1
 - port to glib2
 - move post code to the back-end
