@@ -500,6 +500,9 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   struct warntype warnWinbind = {PATH_LIBNSS_WINBIND,
 				 _("Winbind"),
 				 "samba-client"};
+  struct warntype warnWinbindNet = {PATH_WINBIND_NET,
+				    _("Winbind"),
+				    "samba-client"};
   struct {
     newtComponent a, b;
   } matched[] = {
@@ -545,6 +548,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(infoGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnWinbind);
+  newtComponentAddCallback(cb, warnCallback, &warnWinbindNet);
   matched[0].a = cb;
 
   /* Authentication. */
@@ -594,6 +598,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(authGrid, 0, 6, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnWinbindAuth);
+  newtComponentAddCallback(cb, warnCallback, &warnWinbindNet);
   matched[0].b = cb;
 
   /* Make sure that the checkboxes have the same value. */
