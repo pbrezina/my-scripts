@@ -2,7 +2,7 @@ VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PROGNAME = authconfig
 
-CFLAGS += -Wall -DVERSION=\"$(VERSION)\" -g `glib-config --cflags`
+CFLAGS += -Wall -DVERSION=\"$(VERSION)\" `glib-config --cflags` $(RPM_OPT_FLAGS)
 LOADLIBES = `glib-config --libs` -lnewt -lpopt
 SUBDIRS = po man
 
@@ -14,7 +14,7 @@ subdirs:
 	|| case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
 	done && test -z "$$fail"
 
-authconfig: $(PROGNAME).c authinfo.c shvar.c
+authconfig: $(PROGNAME).o authinfo.o shvar.o
 
 install:
 	mkdir -p $(INSTROOT)/usr/sbin $(INSTROOT)/usr/man/man8
