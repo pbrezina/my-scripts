@@ -684,7 +684,7 @@ authInfoReadNSS(struct authInfoType *info)
 							   "directories");
 		info->enableHesiod = authInfoCheckNSS(nss_config, "hesiod");
 		info->enableLDAP = authInfoCheckNSS(nss_config, "ldap");
-		info->enableNIS = authInfoCheckNSS(p, "nis");
+		info->enableNIS = authInfoCheckNSS(nss_config, "nis");
 		info->enableNIS3 = authInfoCheckNSS(nss_config, "nisplus");
 		info->enableWinbind = authInfoCheckNSS(nss_config, "winbind");
 		info->enableWINS = authInfoCheckNSS(nss_config, "wins");
