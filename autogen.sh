@@ -3,6 +3,6 @@ gettextize --intl -f
 autoheader
 automake -a
 libtoolize -f -c
-aclocal
+aclocal -I m4
 intltoolize
 autoconf
