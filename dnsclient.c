@@ -505,70 +505,37 @@ dns_parse_results(const unsigned char *results, size_t length)
 		rr = p;
 		switch(res[i].dns_type) {
 			case DNS_T_A:
-				dns_parse_a(rr,
-					    results,
-					    length - (p - results),
-					    &res[i]);
+				dns_parse_a(rr, results, length, &res[i]);
 				break;
 			case DNS_T_NS:
-				dns_parse_ns(rr,
-					     results,
-					     length - (p - results),
-					     &res[i]);
+				dns_parse_ns(rr, results, length, &res[i]);
 				break;
 			case DNS_T_CNAME:
-				dns_parse_cname(rr,
-						results,
-						length - (p - results),
-						&res[i]);
+				dns_parse_cname(rr, results, length, &res[i]);
 				break;
 			case DNS_T_SOA:
-				dns_parse_soa(rr,
-					      results,
-					      length - (p - results),
-					      &res[i]);
+				dns_parse_soa(rr, results, length, &res[i]);
 				break;
 			case DNS_T_NULL:
-				dns_parse_null(rr,
-					       results,
-					       length - (p - results),
-					       &res[i]);
+				dns_parse_null(rr, results, length, &res[i]);
 				break;
 			case DNS_T_WKS:
-				dns_parse_wks(rr,
-					      results,
-					      length - (p - results),
-					      &res[i]);
+				dns_parse_wks(rr, results, length, &res[i]);
 				break;
 			case DNS_T_PTR:
-				dns_parse_ptr(rr,
-					      results,
-					      length - (p - results),
-					      &res[i]);
+				dns_parse_ptr(rr, results, length, &res[i]);
 				break;
 			case DNS_T_HINFO:
-				dns_parse_hinfo(rr,
-						results,
-						length - (p - results),
-						&res[i]);
+				dns_parse_hinfo(rr, results, length, &res[i]);
 				break;
 			case DNS_T_MX:
-				dns_parse_mx(rr,
-					     results,
-					     length - (p - results),
-					     &res[i]);
+				dns_parse_mx(rr, results, length, &res[i]);
 				break;
 			case DNS_T_TXT:
-				dns_parse_txt(rr,
-					      results,
-					      length - (p - results),
-					      &res[i]);
+				dns_parse_txt(rr, results, length, &res[i]);
 				break;
 			case DNS_T_SRV:
-				dns_parse_srv(rr,
-					      results,
-					      length - (p - results),
-					      &res[i]);
+				dns_parse_srv(rr, results, length, &res[i]);
 				break;
 			case DNS_T_ANY:
 			default:

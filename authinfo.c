@@ -2525,8 +2525,8 @@ authInfoProbe()
 	struct authInfoType *ret = NULL;
 	char hostname[LINE_MAX];
 	struct dns_rr *results = NULL;
-	unsigned char query[LINE_MAX], buf[LINE_MAX];
-	size_t length;
+	unsigned char qname[LINE_MAX], query[LINE_MAX], *buf;
+	size_t length, size;
 	char *p;
 
 	ret = g_malloc0(sizeof(struct authInfoType));
@@ -2545,15 +2545,27 @@ authInfoProbe()
 	/* first, check for an LDAP server for the local domain */
 	results = NULL;
 	if ((p = strchr(hostname, '.')) != NULL) {
-		snprintf(buf, sizeof(buf), "_ldap._tcp%s", p);
-		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
+		snprintf(qname, sizeof(qname), "_ldap._tcp%s", p);
+		length = dns_format_query(qname, DNS_C_IN, DNS_T_SRV,
 					  query, sizeof(query));
 		if (length > 0) {
 			int ret;
-			ret = res_send(query, length, buf, sizeof(buf));
+			size = 12;
+			buf = malloc(size);
+			do {
+				ret = res_send(query, length, buf, size);
+				if (ret >= size) {
+					size = ret + 1024;
+					free(buf);
+					buf = malloc(size);
+					continue;
+				}
+				break;
+			} while (1);
 			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
+			free(buf);
 		}
 	}
 
