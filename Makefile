@@ -9,12 +9,11 @@ PYTHONINC=/usr/include/python$(PYTHONREV)
 PYTHONLIB=/usr/lib/python$(PYTHONREV)/site-packages
 
 CFLAGS = -g3 -Wall -fPIC -DPACKAGE=\"$(PACKAGE)\" -DVERSION=\"$(VERSION)\"
-CFLAGS += $(shell pkg-config --cflags glib-2.0 libglade-2.0) -I$(PYTHONINC)
+CFLAGS += $(shell pkg-config --cflags glib-2.0) -I$(PYTHONINC)
 CFLAGS += -DG_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED $(RPM_OPT_FLAGS)
 RESOLVLIBS=-lresolv
 LIBS = -lnewt -lpopt $(RESOLVLIBS)
 GLIBLIBS = $(shell pkg-config --libs glib-2.0)
-LIBGLADELIBS = $(shell pkg-config --libs libglade-2.0)
 SUBDIRS = po man
 
 DESTDIR=
