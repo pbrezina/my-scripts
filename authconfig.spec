@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.15
+Version: 4.1.16
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -40,8 +40,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
-* Wed Aug 21 2001 Nalin Dahyabhai <nalin@redhat.com>
+* Wed Aug 21 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.16-1
 - warn about nscd the same way we do about nss_ldap and pam_krb5
+- reorder some internal code so that it's easier to maintain
+- change help string about the --probe option to make it clearer that using
+  it doesn't actually set any options
 - update translations from CVS
 
 * Tue Aug 20 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.15-1

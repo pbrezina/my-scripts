@@ -73,14 +73,17 @@ struct authInfoType {
 	gboolean enableLDAPS;
 	gboolean enableNIS;
 	gboolean enableNIS3;
+	gboolean enableWinBind;
 
 	/* Authentication setup. */
-	gboolean enableMD5;
-	gboolean enableShadow;
+	gboolean enableAFS;
+	gboolean enableAFSKerberos;
 	gboolean enableBigCrypt;
 	gboolean enableKerberos;
 	gboolean enableLDAPAuth;
+	gboolean enableMD5;
 	gboolean enableSMB;
+	gboolean enableShadow;
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;
 #endif
@@ -98,7 +101,6 @@ gboolean authInfoReadNIS(struct authInfoType *info);
 gboolean authInfoReadSMB(struct authInfoType *info);
 gboolean authInfoReadLDAP(struct authInfoType *info);
 gboolean authInfoReadKerberos(struct authInfoType *info);
-gboolean authInfoReadWinBind(struct authInfoType *info);
 gboolean authInfoReadNSS(struct authInfoType *info);
 gboolean authInfoReadPAM(struct authInfoType *info);
 gboolean authInfoReadNetwork(struct authInfoType *info);

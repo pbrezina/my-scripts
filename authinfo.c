@@ -102,7 +102,8 @@ authInfoReadSMB(struct authInfoType *info)
 		return FALSE;
 	}
 
-	/* Read three lines. */
+	/* Read three lines.  The first is the workgroup, and subsequent
+	 * lines are the PDC and BDC, respectively. */
 	if(fgets(buf, sizeof(buf), fp) != NULL) {
 		p = strchr(buf, '\n');
 		if(p != NULL) {
@@ -160,7 +161,7 @@ authInfoReadNIS(struct authInfoType *info)
 		/* Skip initial whitespace. */
 		for(p = buf; (isspace(*p) && (*p != '\0')); p++);
 
-		/* Is it a "ypserver" statement? */
+		/* Is it a "ypserver" statement?  If so, extract the server. */
 		if(strncmp("ypserver", p, 8) == 0) {
 			/* Skip intervening whitespace. */
 			for(p += 8; (isspace(*p) && (*p != '\0')); p++);
@@ -284,6 +285,8 @@ authInfoReadLDAP(struct authInfoType *info)
 			continue;
 		}
 
+		/* We'll pull MD5/DES crypt ("pam_password") from the config
+		 * file, or from the pam_unix PAM config lines. */
 		memset(buf, '\0', sizeof(buf));
 	}
 
@@ -339,7 +342,7 @@ authInfoReadKerberos(struct authInfoType *info)
 			continue;
 		}
 
-		/* Check for the default realm keyword. */
+		/* Check for the default realm setting. */
 		if(section != NULL)
 		if(strcmp(section, "libdefaults") == 0)
 		if(strncmp(p, "default_realm", 13) == 0) {
@@ -479,6 +482,7 @@ authInfoReadNSS(struct authInfoType *info)
 				break;
 			}
 		}
+		info->enableWinBind = (strstr(nss_config, "winbind") != NULL);
 		info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
 	}
 
@@ -557,6 +561,14 @@ authInfoReadPAM(struct authInfoType *authInfo)
 		for(q = p; !isspace(*q) && (*q != '\0'); q++); /* module */
 		if(q - p < sizeof(module)) {
 			strncpy(module, p, q - p);
+			if(strstr(module, "pam_afs")) {
+				authInfo->enableAFS = TRUE;
+				continue;
+			}
+			if(strstr(module, "pam_afs.krb")) {
+				authInfo->enableAFSKerberos = TRUE;
+				continue;
+			}
 			if(strstr(module, "pam_krb5")) {
 				authInfo->enableKerberos = TRUE;
 				continue;
@@ -600,10 +612,32 @@ authInfoReadPAM(struct authInfoType *authInfo)
 
 	fclose(fp);
 
+	/* Read settings from our config file, which override anything we
+	 * figure out by examination. */
 	if(stat(SYSCONFDIR "/sysconfig/authconfig", &st) == 0) {
 		sv = svNewFile(SYSCONFDIR "/sysconfig/authconfig");
 	}
 	if(sv != NULL) {
+		tmp = svGetValue(sv, "USEAFS");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableAFS = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableAFS = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USEAFSKERBEROS");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableAFSKerberos = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableAFSKerberos = FALSE;
+			}
+			free(tmp);
+		}
 		tmp = svGetValue(sv, "USEHESIOD");
 		if(tmp != NULL) {
 			if(strcmp(tmp, "yes") == 0) {
@@ -611,6 +645,46 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			}
 			if(strcmp(tmp, "no") == 0) {
 				authInfo->enableHesiod = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USEKERBEROS");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableKerberos = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableKerberos = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USELDAP");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableLDAP = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableLDAP = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USELDAPAUTH");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableLDAPAuth = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableLDAPAuth = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USEMD5");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableMD5 = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableMD5 = FALSE;
 			}
 			free(tmp);
 		}
@@ -644,33 +718,13 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			}
 			free(tmp);
 		}
-		tmp = svGetValue(sv, "USEMD5");
+		tmp = svGetValue(sv, "USEWINBIND");
 		if(tmp != NULL) {
 			if(strcmp(tmp, "yes") == 0) {
-				authInfo->enableMD5 = TRUE;
+				authInfo->enableWinBind = TRUE;
 			}
 			if(strcmp(tmp, "no") == 0) {
-				authInfo->enableMD5 = FALSE;
-			}
-			free(tmp);
-		}
-		tmp = svGetValue(sv, "USEKERBEROS");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
-				authInfo->enableKerberos = TRUE;
-			}
-			if(strcmp(tmp, "no") == 0) {
-				authInfo->enableKerberos = FALSE;
-			}
-			free(tmp);
-		}
-		tmp = svGetValue(sv, "USELDAPAUTH");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
-				authInfo->enableLDAPAuth = TRUE;
-			}
-			if(strcmp(tmp, "no") == 0) {
-				authInfo->enableLDAPAuth = FALSE;
+				authInfo->enableWinBind = FALSE;
 			}
 			free(tmp);
 		}
@@ -1624,9 +1678,12 @@ authInfoWriteNSS(struct authInfoType *info)
 	l += strlen(" winbind") * 8;
 	obuf = g_malloc0(st.st_size + 1 + l);
 
-	/* Determine what we want in that file for most of the databases. */
+	/* Determine what we want in that file for most of the databases.  If
+	 * we're using DB, we're doing it for speed, so put it in first.  Then
+	 * comes files.  Then everything else in reverse alphabetic order. */
 	if(info->enableDB) strcat(normal, " db");
 	strcat(normal, " files");
+	if(info->enableWinBind) strcat(normal, " winbind");
 	if(info->enableNIS3) strcat(normal, " nisplus");
 	if(info->enableNIS) strcat(normal, " nis");
 	if(info->enableLDAP) strcat(normal, " ldap");
@@ -1807,19 +1864,24 @@ static const char *argv_krb5_auth[] = {
 	NULL,
 };
 
+static const char *argv_krb5_password[] = {
+	"use_authtok",
+	NULL,
+};
+
 static const char *argv_krb5afs_auth[] = {
 	"use_first_pass",
 	"tokens",
 	NULL,
 };
 
-static const char *argv_krb5_password[] = {
-	"use_authtok",
+static const char *argv_ldap_auth[] = {
+	"use_first_pass",
 	NULL,
 };
 
-static const char *argv_ldap_auth[] = {
-	"use_first_pass",
+static const char *argv_ldap_password[] = {
+	"use_authtok",
 	NULL,
 };
 
@@ -1839,14 +1901,23 @@ static const char *argv_winbind_password[] = {
 	NULL,
 };
 
-static const char *argv_ldap_password[] = {
-	"use_authtok",
-	NULL,
-};
-
 static const char *argv_cracklib_password[] = {
 	"retry=3",
 	"type=",
+	NULL,
+};
+
+static const char *argv_afs_auth[] = {
+	"use_first_pass",
+	NULL,
+};
+
+static const char *argv_afs_password[] = {
+	/* It looks like current pam_afs (from OpenAFS 1.1.1) doesn't support
+	 * "use_authtok", so it'll probably interact badly with pam_cracklib,
+	 * but thanks to stack-traversal changes in Linux-PAM 0.75 and higher,
+	 * the password-changing should work anyway. */
+	"use_first_pass",
 	NULL,
 };
 
@@ -1858,7 +1929,8 @@ enum pam_function_type {
 	password,
 };
 
-/* The list of stacks, module flags, and arguments, if there are any. */
+/* The list of stacks, module flags, and arguments, if there are any.  Here
+ * we put pam_unix first, and the rest in alphabetic order. */
 static struct {
 	gboolean mandatory;
 	enum pam_function_type stack;
@@ -1866,14 +1938,18 @@ static struct {
 	const char *name;
 	const char **argv;
 } standard_pam_modules[] = {
+	{TRUE,  auth,		LOGIC_REQUIRED,
+	 "env",			NULL},
 #ifdef LOCAL_POLICIES
 	{FALSE, auth,		LOGIC_REQUIRED,
 	 "stack",		argv_local_all},
 #endif
-	{TRUE,  auth,		LOGIC_REQUIRED,
-	 "env",			NULL},
 	{TRUE,  auth,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth},
+	{FALSE, auth,		LOGIC_SUFFICIENT,
+	 "afs",			argv_afs_auth},
+	{FALSE, auth,		LOGIC_SUFFICIENT,
+	 "afs.krb",		argv_afs_auth},
 	{FALSE, auth,		LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_auth},
 	{FALSE, auth,		LOGIC_SUFFICIENT,
@@ -1905,6 +1981,10 @@ static struct {
 	{TRUE,  password,	LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_password},
 	{FALSE, password,	LOGIC_SUFFICIENT,
+	 "afs",			argv_afs_password},
+	{FALSE, password,	LOGIC_SUFFICIENT,
+	 "afs.krb",		argv_afs_password},
+	{FALSE, password,	LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_password},
 	{FALSE, password,	LOGIC_SUFFICIENT,
 	 "krb5afs",		argv_krb5_password},
@@ -1923,6 +2003,10 @@ static struct {
 	 "limits",		NULL},
 	{TRUE,  session,	LOGIC_REQUIRED,
 	 "unix",		NULL},
+	{FALSE, session,	LOGIC_OPTIONAL,
+	 "afs",			NULL},
+	{FALSE, session,	LOGIC_OPTIONAL,
+	 "afs.krb",		NULL},
 	{FALSE, session,	LOGIC_OPTIONAL,
 	 "krb5",		NULL},
 	{FALSE, session,	LOGIC_OPTIONAL,
@@ -2048,18 +2132,24 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 			strcat(obuf, "\n");
 		}
 		if(standard_pam_modules[i].mandatory ||
+		   (authInfo->enableAFS &&
+		    (strcmp("afs", standard_pam_modules[i].name) == 0)) ||
+		   (authInfo->enableAFSKerberos &&
+		    (strcmp("afs.krb", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableKerberos && !have_afs &&
 		    (strcmp("krb5", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableKerberos && have_afs &&
 		    (strcmp("krb5afs", standard_pam_modules[i].name) == 0)) ||
+		   (authInfo->enableLDAPAuth &&
+		    (strcmp("ldap", standard_pam_modules[i].name) == 0)) ||
 #ifdef LOCAL_POLICIES
 		   (authInfo->enableLocal &&
 		    (strcmp("stack", standard_pam_modules[i].name) == 0)) ||
 #endif
 		   (authInfo->enableSMB &&
 		    (strcmp("smb_auth", standard_pam_modules[i].name) == 0)) ||
-		   (authInfo->enableLDAPAuth &&
-		    (strcmp("ldap", standard_pam_modules[i].name) == 0))) {
+		   (authInfo->enableWinBind &&
+		    (strcmp("winbind", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);
 		}
 	}
@@ -2072,20 +2162,36 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 
 	sv = svCreateFile(SYSCONFDIR "/sysconfig/authconfig");
 	if(sv != NULL) {
+#ifdef EXPERIMENTAL
+		/* We don't save these settings yet, because we have no
+		 * way to present the user with the option. */
+		svSetValue(sv, "USEAFS",
+			   authInfo->enableAFS ? "yes" : "no");
+		svSetValue(sv, "USEAFSKERBEROS",
+			   authInfo->enableAFSKerberos ? "yes" : "no");
+#endif
 		svSetValue(sv, "USEHESIOD",
 			   authInfo->enableHesiod ? "yes" : "no");
-		svSetValue(sv, "USENIS",
-			   authInfo->enableNIS ? "yes" : "no");
+		svSetValue(sv, "USELDAP",
+			   authInfo->enableLDAP ? "yes" : "no");
 		svSetValue(sv, "USEMD5",
 			   authInfo->enableMD5 ? "yes" : "no");
-		svSetValue(sv, "USESHADOW",
-			   authInfo->enableShadow ? "yes" : "no");
+		svSetValue(sv, "USENIS",
+			   authInfo->enableNIS ? "yes" : "no");
 		svSetValue(sv, "USEKERBEROS",
 			   authInfo->enableKerberos ? "yes" : "no");
 		svSetValue(sv, "USELDAPAUTH",
 			   authInfo->enableLDAPAuth ? "yes" : "no");
+		svSetValue(sv, "USESHADOW",
+			   authInfo->enableShadow ? "yes" : "no");
 		svSetValue(sv, "USESMBAUTH",
 			   authInfo->enableSMB ? "yes" : "no");
+#ifdef EXPERIMENTAL
+		/* We don't save these settings yet, because we have no
+		 * way to present the user with the option. */
+		svSetValue(sv, "USEWINBIND",
+			   authInfo->enableWinBind ? "yes" : "no");
+#endif
 		svWriteFile(sv, 0644);
 		svCloseFile(sv);
 	}

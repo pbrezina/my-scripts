@@ -925,7 +925,7 @@ main(int argc, const char **argv)
       { "kickstart", '\0', POPT_ARG_NONE, &kickstart, 0,
 	i18n("don't display user interface"), NULL},
       { "probe", '\0', POPT_ARG_NONE, &probe, 0,
-	i18n("probe network for defaults"), NULL},
+	i18n("probe network for defaults and print them"), NULL},
 #ifdef LOCAL_POLICIES
       { "enablelocal", '\0', POPT_ARG_NONE, &enableLocal, 0,
 	i18n("use locally-defined policies"), NULL},
