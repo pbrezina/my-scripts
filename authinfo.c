@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 1999-2001 Red Hat, Inc.
+  * Copyright (c) 1999-2003 Red Hat, Inc.
   *
   * This is free software; you can redistribute it and/or modify it
   * under the terms of the GNU General Public License as published by
@@ -20,7 +20,9 @@
 
 #include "config.h"
 #include <sys/types.h>
+#include <sys/select.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 #include <sys/wait.h>
 #include <arpa/nameser.h>
 #include <netinet/in.h>
@@ -33,11 +35,13 @@
 #include <libintl.h>
 #include <limits.h>
 #include <locale.h>
+#include <pty.h>
 #include <resolv.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <utmp.h>
 #include "shvar.h"
 #include "authinfo.h"
 #include "dnsclient.h"
@@ -52,24 +56,167 @@
 #define LOGIC_OPTIONAL		"optional"
 #define LOGIC_IGNORE_UNKNOWN	"[default=bad success=ok user_unknown=ignore service_err=ignore system_err=ignore]"
 
+struct authInfoPrivate {
+	char *oldSmbRealm;
+	char *oldSmbServers;
+	char *oldKerberosRealm;
+	char *oldKerberosKDC;
+	char *oldKerberosAdminServer;
+};
+
 /* Snip off line terminators and final whitespace from a passed-in string. */
 static void
 snipString(char *string)
 {
 	char *p;
-	p = strchr(string, '\r');
-	if (p != NULL) {
-		*p = '\0';
-	}
-	p = strchr(string, '\n');
-	if (p != NULL) {
-		*p = '\0';
-	}
+        p = strpbrk(string, "\r\n");
+        if (p != NULL) {
+            *p = '\0';
+        }
 	p = string + strlen(string);
 	while ((p > string) && isspace(p[-1])) {
 		*p = '\0';
 		p--;
 	}
+}
+
+/* Check if a string is "empty" or "not empty". */
+static gboolean
+non_empty(const char *string)
+{
+	return (string != NULL) && (strlen(string) > 0);
+}
+static gboolean
+is_empty(const char *string)
+{
+	return (string == NULL) || (strlen(string) == 0);
+}
+static gboolean
+changed(const char *old_value, const char *new_value, gboolean case_sensitive)
+{
+	if (is_empty(old_value) && non_empty(new_value)) {
+		return TRUE;
+	}
+	if (non_empty(old_value) && is_empty(new_value)) {
+		return TRUE;
+	}
+	if (is_empty(old_value) && is_empty(new_value)) {
+		return FALSE;
+	}
+	if (case_sensitive) {
+		return (strcmp(old_value, new_value) != 0);
+	} else {
+		return (g_ascii_strcasecmp(old_value, new_value) != 0);
+	}
+}
+
+/* Make a list presentable. */
+static void
+cleanList(char *list)
+{
+	char *t, *p;
+	if (non_empty(list)) {
+		while ((t = strpbrk(list, " \t")) != NULL) {
+			*t = ',';
+		}
+		while ((t = strstr(list, ",,")) != NULL) {
+			memmove(t, t + 1, strlen(t));
+		}
+		p = list + strlen(list);
+		while ((p > list) && (p[-1] == ',')) {
+			*p = '\0';
+			p--;
+		}
+	}
+}
+
+static struct authInfoPrivate *
+authInfoPrivateNew(void)
+{
+	struct authInfoPrivate *ret;
+	ret = g_malloc0(sizeof(struct authInfoPrivate));
+	ret->oldSmbRealm = NULL;
+	ret->oldSmbServers = NULL;
+	ret->oldKerberosRealm = NULL;
+	ret->oldKerberosKDC = NULL;
+	ret->oldKerberosAdminServer = NULL;
+	return ret;
+}
+
+static struct authInfoPrivate *
+authInfoPrivateCopy(struct authInfoPrivate *pvt)
+{
+	struct authInfoPrivate *ret;
+	ret = authInfoPrivateNew();
+	if (pvt != NULL) {
+		if (non_empty(pvt->oldSmbRealm)) {
+			ret->oldSmbRealm = g_strdup(pvt->oldSmbRealm);
+		}
+		if (non_empty(pvt->oldSmbServers)) {
+			ret->oldSmbServers = g_strdup(pvt->oldSmbServers);
+		}
+		if (non_empty(pvt->oldKerberosRealm)) {
+			ret->oldKerberosRealm = g_strdup(pvt->oldKerberosRealm);
+		}
+		if (non_empty(pvt->oldKerberosKDC)) {
+			ret->oldKerberosKDC = g_strdup(pvt->oldKerberosKDC);
+		}
+		if (non_empty(pvt->oldKerberosAdminServer)) {
+			ret->oldKerberosAdminServer =
+				g_strdup(pvt->oldKerberosAdminServer);
+		}
+	}
+	return ret;
+}
+
+static void
+authInfoPrivateFree(struct authInfoPrivate *pvt)
+{
+	if (pvt != NULL) {
+		if (pvt->oldSmbRealm != NULL) {
+			g_free(pvt->oldSmbRealm);
+		}
+		if (pvt->oldSmbServers != NULL) {
+			g_free(pvt->oldSmbServers);
+		}
+		if (pvt->oldKerberosRealm!= NULL) {
+			g_free(pvt->oldKerberosRealm);
+		}
+		if (pvt->oldKerberosKDC != NULL) {
+			g_free(pvt->oldKerberosKDC);
+		}
+		if (pvt->oldKerberosAdminServer != NULL) {
+			g_free(pvt->oldKerberosAdminServer);
+		}
+		g_free(pvt);
+	}
+}
+
+static void
+authInfoPrivateReset(struct authInfoType *info)
+{
+	struct authInfoPrivate *pvt;
+	if (info->pvt != NULL) {
+		authInfoPrivateFree(info->pvt);
+	}
+	pvt = authInfoPrivateNew();
+	if (non_empty(info->smbRealm)) {
+		pvt->oldSmbRealm = g_strdup(info->smbRealm);
+	}
+	if (non_empty(info->smbServers)) {
+		pvt->oldSmbServers = g_strdup(info->smbServers);
+	}
+	if (non_empty(info->kerberosRealm)) {
+		pvt->oldKerberosRealm = g_strdup(info->kerberosRealm);
+	}
+	if (non_empty(info->kerberosKDC)) {
+		pvt->oldKerberosKDC = g_strdup(info->kerberosKDC);
+	}
+	if (non_empty(info->kerberosAdminServer)) {
+		pvt->oldKerberosAdminServer =
+			g_strdup(info->kerberosAdminServer);
+	}
+	info->pvt = pvt;
 }
 
 /* Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvar
@@ -90,7 +237,7 @@ authInfoReadHesiod(struct authInfoType *info)
 	tmp = svGetValue(sv, "lhs");
 	if (tmp != NULL) {
 		info->hesiodLHS = g_strdup(tmp);
-		free(tmp);
+		g_free(tmp);
 		snipString(info->hesiodLHS);
 	}
 
@@ -98,7 +245,7 @@ authInfoReadHesiod(struct authInfoType *info)
 	tmp = svGetValue(sv, "rhs");
 	if (tmp != NULL) {
 		info->hesiodRHS = g_strdup(tmp);
-		free(tmp);
+		g_free(tmp);
 		snipString(info->hesiodRHS);
 	}
 
@@ -500,6 +647,7 @@ authInfoReadNSS(struct authInfoType *info)
 
 	if (nss_config != NULL) {
 		info->enableDB = (strstr(nss_config, "db") != NULL);
+		info->enableDirectories = (strstr(nss_config, "directories") != NULL);
 		info->enableHesiod = (strstr(nss_config, "hesiod") != NULL);
 		info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
 		/* Don't be fooled by "nisplus". */
@@ -511,10 +659,8 @@ authInfoReadNSS(struct authInfoType *info)
 			}
 		}
 		info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
-#ifdef EXPERIMENTAL
-		info->enableOdbcbind = (strstr(nss_config, "odbcbind") != NULL);
 		info->enableWinbind = (strstr(nss_config, "winbind") != NULL);
-#endif
+		info->enableWINS = (strstr(nss_config, "wins") != NULL);
 	}
 
 	fclose(fp);
@@ -615,12 +761,10 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				authInfo->enableSMB = TRUE;
 				continue;
 			}
-#ifdef EXPERIMENTAL
 			if (strstr(module, "pam_winbind")) {
-				authInfo->enableWinbindAuth = TRUE;
+				authInfo->enableWinbind = TRUE;
 				continue;
 			}
-#endif
 #ifdef LOCAL_POLICIES
 			if (strstr(module, "pam_stack")) {
 				authInfo->enableLocal = TRUE;
@@ -666,7 +810,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableAFS = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEAFSKERBEROS");
 		if (tmp != NULL) {
@@ -676,7 +820,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableAFSKerberos = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEDB");
 		if (tmp != NULL) {
@@ -686,7 +830,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableDB = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEDBBIND");
 		if (tmp != NULL) {
@@ -696,7 +840,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableDBbind = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEDBIBIND");
 		if (tmp != NULL) {
@@ -706,7 +850,17 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableDBIbind = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
+		}
+		tmp = svGetValue(sv, "USEDIRECTORIES");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableDirectories = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableDirectories = FALSE;
+			}
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEEPS");
 		if (tmp != NULL) {
@@ -716,7 +870,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableEPS = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEHESIOD");
 		if (tmp != NULL) {
@@ -726,7 +880,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableHesiod = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEHESIODBIND");
 		if (tmp != NULL) {
@@ -736,7 +890,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableHesiodbind = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEKERBEROS");
 		if (tmp != NULL) {
@@ -746,7 +900,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableKerberos = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USELDAP");
 		if (tmp != NULL) {
@@ -756,7 +910,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableLDAP = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USELDAPAUTH");
 		if (tmp != NULL) {
@@ -766,7 +920,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableLDAPAuth = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USELDAPBIND");
 		if (tmp != NULL) {
@@ -776,7 +930,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableLDAPbind = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEMD5");
 		if (tmp != NULL) {
@@ -786,7 +940,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableMD5 = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USENIS");
 		if (tmp != NULL) {
@@ -796,7 +950,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableNIS = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USENISPLUS");
 		if (tmp != NULL) {
@@ -806,7 +960,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableNIS3 = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEODBCBIND");
 		if (tmp != NULL) {
@@ -816,7 +970,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableOdbcbind = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEOTP");
 		if (tmp != NULL) {
@@ -826,7 +980,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableOTP = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USESHADOW");
 		if (tmp != NULL) {
@@ -836,7 +990,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableShadow = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USESMBAUTH");
 		if (tmp != NULL) {
@@ -846,7 +1000,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableSMB = FALSE;
 			}
-			free(tmp);
+			g_free(tmp);
 		}
 		tmp = svGetValue(sv, "USEWINBIND");
 		if (tmp != NULL) {
@@ -856,17 +1010,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			if (strcmp(tmp, "no") == 0) {
 				authInfo->enableWinbind = FALSE;
 			}
-			free(tmp);
-		}
-		tmp = svGetValue(sv, "USEWINBINDAUTH");
-		if (tmp != NULL) {
-			if (strcmp(tmp, "yes") == 0) {
-				authInfo->enableWinbindAuth = TRUE;
-			}
-			if (strcmp(tmp, "no") == 0) {
-				authInfo->enableWinbindAuth = FALSE;
-			}
-			free(tmp);
+			g_free(tmp);
 		}
 		svCloseFile(sv);
 		sv = NULL;
@@ -888,14 +1032,162 @@ authInfoReadNetwork(struct authInfoType *authInfo)
 	}
 
 	if ((tmp = svGetValue(sv, "NISDOMAIN")) != NULL) {
-		if (authInfo->nisDomain) g_free(authInfo->nisDomain);
+		if (authInfo->nisDomain) {
+			g_free(authInfo->nisDomain);
+		}
 		authInfo->nisDomain = g_strdup(tmp);
-		free(tmp);
+		g_free(tmp);
 	}
 
 	svCloseFile(sv);
 
 	return TRUE;
+}
+
+/* There's some serious strangeness in here, because we get called in two
+ * different-but-closely-related scenarios.  The first case is when we're
+ * initializing the authInfo structure and we want to fill in defaults with
+ * suggestions we "know".  The second case is when the user has just made a
+ * change to one field and we need to update another field to somehow
+ * compensate for the change. */
+void
+authInfoUpdate(struct authInfoType *info)
+{
+	const char *p;
+	cleanList(info->smbServers);
+	cleanList(info->kerberosKDC);
+	cleanList(info->kerberosAdminServer);
+	if (non_empty(info->smbSecurity)) {
+		if (strcmp(info->smbSecurity, "ads") == 0) {
+			/* As of this writing, an ADS implementation always
+			 * upper-cases the realm name, even if only internally,
+			 * and we need to reflect that in the krb5.conf file. */
+			if (non_empty(info->smbRealm)) {
+				int i;
+				for (i = 0; info->smbRealm[i] != '\0'; i++) {
+					info->smbRealm[i] =
+						g_ascii_toupper(info->smbRealm[i]);
+				}
+			}
+			/* If we have changed a value, make the related setting
+			 * reflect the change. */
+			if (info->pvt != NULL) {
+				if (changed(info->pvt->oldKerberosRealm,
+					    info->kerberosRealm,
+					    TRUE)) {
+					if (info->smbRealm != NULL) {
+						g_free(info->smbRealm);
+					}
+					info->smbRealm =
+						g_strdup(info->kerberosRealm);
+				} else
+				if (changed(info->pvt->oldSmbRealm,
+					    info->smbRealm,
+					    FALSE)) {
+					if (info->kerberosRealm != NULL) {
+						g_free(info->kerberosRealm);
+					}
+					info->kerberosRealm =
+						g_strdup(info->smbRealm);
+				}
+				if (changed(info->pvt->oldKerberosAdminServer,
+					    info->kerberosAdminServer,
+					    TRUE) ||
+				    changed(info->pvt->oldKerberosKDC,
+					    info->kerberosKDC,
+					    TRUE)) {
+					if (info->smbServers != NULL) {
+						g_free(info->smbServers);
+					}
+					info->smbServers =
+						g_strdup_printf("%s,%s",
+						info->kerberosAdminServer ?
+						info->kerberosAdminServer : "",
+						info->kerberosKDC ?
+						info->kerberosKDC : "");
+				} else
+				if (changed(info->pvt->oldSmbServers,
+					    info->smbServers,
+					    TRUE)) {
+					if (info->kerberosKDC != NULL) {
+						g_free(info->kerberosKDC);
+					}
+					if (info->kerberosAdminServer != NULL) {
+						g_free(info->kerberosAdminServer);
+					}
+					p = strchr(info->smbServers, ',');
+					if (p != NULL) {
+						info->kerberosAdminServer =
+							g_strndup(info->smbServers,
+								  p - info->smbServers);
+						info->kerberosKDC =
+							g_strdup(p + 1);
+					} else {
+						info->kerberosAdminServer =
+							g_strdup(info->smbServers);
+						info->kerberosKDC =
+							g_strdup(info->smbServers);
+					}
+				}
+			}
+			/* Override smb.conf realm with krb5.conf realm. */
+			if (non_empty(info->kerberosRealm)) {
+				if (info->smbRealm != NULL) {
+					g_free(info->smbRealm);
+				}
+				info->smbRealm = g_strdup(info->kerberosRealm);
+			}
+			/* Default krb5.conf realm to smb.conf realm. */
+			if (is_empty(info->kerberosRealm)) {
+				if (non_empty(info->smbRealm)) {
+					if (info->kerberosRealm != NULL) {
+						g_free(info->kerberosRealm);
+					}
+					info->kerberosRealm = g_strdup(info->smbRealm);
+				}
+			}
+			/* Override smb.conf servers with krb5.conf servers. */
+			if (non_empty(info->kerberosAdminServer) ||
+			    non_empty(info->kerberosKDC)) {
+				if (info->smbServers != NULL) {
+					g_free(info->smbServers);
+				}
+				info->smbServers = g_strdup_printf("%s,%s",
+					info->kerberosAdminServer ?
+					info->kerberosAdminServer : "",
+					info->kerberosKDC ?
+					info->kerberosKDC : "");
+			}
+			/* Default krb5.conf servers with smb.conf servers. */
+			if (is_empty(info->kerberosKDC)) {
+				if (non_empty(info->smbServers)) {
+					if (info->kerberosKDC != NULL) {
+						g_free(info->kerberosKDC);
+					}
+					if (info->kerberosAdminServer != NULL) {
+						g_free(info->kerberosAdminServer);
+					}
+					p = strchr(info->smbServers, ',');
+					if (p != NULL) {
+						info->kerberosAdminServer =
+							g_strndup(info->smbServers,
+								  p - info->smbServers);
+						info->kerberosKDC =
+							g_strdup(p + 1);
+					} else {
+						info->kerberosAdminServer =
+							g_strdup(info->smbServers);
+						info->kerberosKDC =
+							g_strdup(info->smbServers);
+					}
+				}
+			}
+		}
+	}
+	cleanList(info->smbServers);
+	cleanList(info->kerberosKDC);
+	cleanList(info->kerberosAdminServer);
+	authInfoPrivateReset(info);
 }
 
 struct authInfoType *
@@ -907,6 +1199,7 @@ authInfoRead()
 
 	authInfoReadHesiod(ret);
 	authInfoReadSMB(ret);
+	authInfoReadWinbind(ret);
 	authInfoReadNIS(ret);
 	authInfoReadLDAP(ret);
 	authInfoReadKerberos(ret);
@@ -915,6 +1208,8 @@ authInfoRead()
 	authInfoReadPAM(ret);
 	authInfoReadNetwork(ret);
 
+	authInfoUpdate(ret);
+
 	return ret;
 }
 
@@ -922,40 +1217,73 @@ void
 authInfoFree(struct authInfoType *info)
 {
 	if (info) {
+		if (info->pvt) {
+			authInfoPrivateFree(info->pvt);
+		}
 		if (info->hesiodLHS) {
-			free(info->hesiodLHS);
+			g_free(info->hesiodLHS);
 		}
 		if (info->hesiodRHS) {
-			free(info->hesiodRHS);
+			g_free(info->hesiodRHS);
 		}
 		if (info->ldapServer) {
-			free(info->ldapServer);
+			g_free(info->ldapServer);
 		}
 		if (info->ldapBaseDN) {
-			free(info->ldapBaseDN);
+			g_free(info->ldapBaseDN);
 		}
 		if (info->kerberosRealm) {
-			free(info->kerberosRealm);
+			g_free(info->kerberosRealm);
 		}
 		if (info->kerberosKDC) {
-			free(info->kerberosKDC);
+			g_free(info->kerberosKDC);
 		}
 		if (info->kerberosAdminServer) {
-			free(info->kerberosAdminServer);
+			g_free(info->kerberosAdminServer);
 		}
 		if (info->nisServer) {
-			free(info->nisServer);
+			g_free(info->nisServer);
 		}
 		if (info->nisDomain) {
-			free(info->nisDomain);
+			g_free(info->nisDomain);
 		}
 		if (info->smbWorkgroup) {
-			free(info->smbWorkgroup);
+			g_free(info->smbWorkgroup);
+		}
+		if (info->smbRealm) {
+			g_free(info->smbRealm);
 		}
 		if (info->smbServers) {
-			free(info->smbServers);
+			g_free(info->smbServers);
 		}
-		free(info);
+		if (info->smbSecurity) {
+			g_free(info->smbSecurity);
+		}
+		if (info->smbIdmapUid) {
+			g_free(info->smbIdmapUid);
+		}
+		if (info->smbIdmapGid) {
+			g_free(info->smbIdmapGid);
+		}
+		if (info->winbindSeparator) {
+			g_free(info->winbindSeparator);
+		}
+		if (info->winbindTemplateHomedir) {
+			g_free(info->winbindTemplateHomedir);
+		}
+		if (info->winbindTemplatePrimaryGroup) {
+			g_free(info->winbindTemplatePrimaryGroup);
+		}
+		if (info->winbindTemplateShell) {
+			g_free(info->winbindTemplateShell);
+		}
+		if (info->joinUser) {
+			g_free(info->joinUser);
+		}
+		if (info->joinPassword) {
+			g_free(info->joinPassword);
+		}
+		g_free(info);
 	}
 }
 
@@ -988,7 +1316,18 @@ authInfoCopy(struct authInfoType *info)
 
 	ret->smbWorkgroup = info->smbWorkgroup ?
 			    g_strdup(info->smbWorkgroup) : NULL;
+	ret->smbRealm = info->smbRealm ? g_strdup(info->smbRealm) : NULL;
 	ret->smbServers = info->smbServers ? g_strdup(info->smbServers) : NULL;
+	ret->smbSecurity = info->smbSecurity ? g_strdup(info->smbSecurity) : NULL;
+	ret->smbIdmapUid = info->smbIdmapUid ? g_strdup(info->smbIdmapUid) : NULL;
+	ret->smbIdmapGid = info->smbIdmapGid ? g_strdup(info->smbIdmapGid) : NULL;
+
+	ret->winbindSeparator = info->winbindSeparator ? g_strdup(info->winbindSeparator) : NULL;
+	ret->winbindTemplateHomedir = info->winbindTemplateHomedir ? g_strdup(info->winbindTemplateHomedir) : NULL;
+	ret->winbindTemplatePrimaryGroup = info->winbindTemplatePrimaryGroup ? g_strdup(info->winbindTemplatePrimaryGroup) : NULL;
+	ret->winbindTemplateShell = info->winbindTemplateShell ? g_strdup(info->winbindTemplateShell) : NULL;
+
+	ret->pvt = authInfoPrivateCopy(info->pvt);
 
 	return ret;
 }
@@ -1003,17 +1342,6 @@ authInfoWriteCache(struct authInfoType *authInfo)
 		system("/sbin/chkconfig --del nscd");
 	}
 	return TRUE;
-}
-
-static gboolean
-non_empty(const char *string)
-{
-	return (string != NULL) && (strlen(string) > 0);
-}
-static gboolean
-is_empty(const char *string)
-{
-	return (string == NULL) || (strlen(string) == 0);
 }
 
 gboolean
@@ -1081,7 +1409,17 @@ authInfoWriteSMB(struct authInfoType *info)
 	write(fd, "\n", 1);
 
 	if (non_empty(info->smbServers)) {
-		v = g_strsplit(info->smbServers, ",", 0);
+		/* Convert any spaces in the list to commas for splitting. */
+		char *tmp, *p;
+		tmp = g_strdup(info->smbServers);
+		while ((p = strpbrk(tmp, " \t")) != NULL) {
+			*p = ',';
+		}
+		while ((p = strstr(tmp, ",,")) != NULL) {
+			memmove(p, p + 1, strlen(p));
+		}
+		v = g_strsplit(tmp, ",", 0);
+		g_free(tmp);
 	} else {
 		v = NULL;
 	}
@@ -1611,7 +1949,8 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	struct stat st;
 	struct flock lock;
 	gboolean wroterealm = FALSE, wrotekdc = FALSE, wroteadmin = FALSE;
-	gboolean wroterealms = FALSE, wrotelibdefaults = FALSE;
+	gboolean wroterealms = FALSE, wrotelibdefaults = FALSE,
+		 wroterealms2 = FALSE, wrotelibdefaults2 = FALSE;
 	gboolean wrotedefaultrealm = FALSE;
 	char *section = NULL, *subsection = NULL;
 
@@ -1694,8 +2033,8 @@ authInfoWriteKerberos5(struct authInfoType *info)
 		/* If we're in the realms section, but not in a realm, we'd
 		 * better be looking at the beginning of one. */
 		if ((section != NULL) &&
-		   (strcmp(section, "realms") == 0) &&
-		   (subsection == NULL)) {
+		    (strcmp(section, "realms") == 0) &&
+		    (subsection == NULL)) {
 			char *q;
 			for (q = p; !isspace(*q) && (*q != '\0'); q++);
 			if (subsection) {
@@ -1717,17 +2056,19 @@ authInfoWriteKerberos5(struct authInfoType *info)
 		/* If it's the end of a subsection, mark that. */
 		if ((section != NULL) &&
 		   (strcmp(section, "realms") == 0) &&
-	   	   (subsection != NULL) &&
+		   (subsection != NULL) &&
 		   (strncmp(p, "}", 1) == 0)) {
 			/* If it's the right section of realms, write out
 			 * info we haven't already written. */
-	   	   	if (non_empty(info->kerberosRealm) &&
-	   	   	   (strcmp(subsection, info->kerberosRealm) == 0)) {
+			if (non_empty(info->kerberosRealm) &&
+			    (strcmp(subsection, info->kerberosRealm) == 0)) {
 				if (!wrotekdc) {
 					write_kdc(obuf, info);
+					wrotekdc = TRUE;
 				}
 				if (!wroteadmin) {
 					write_admin_server(obuf, info);
+					wroteadmin = TRUE;
 				}
 			}
 			if (subsection) {
@@ -1759,18 +2100,18 @@ authInfoWriteKerberos5(struct authInfoType *info)
 			/* If the previous section was "realms", and we didn't
 			 * see ours, write our realm out. */
 			if ((section != NULL) &&
-			   (strcmp(section, "realms") == 0) &&
-			   (non_empty(info->kerberosRealm)) &&
-			   !wroterealm) {
+			    (strcmp(section, "realms") == 0) &&
+			    (non_empty(info->kerberosRealm)) &&
+			    !wroterealm) {
 				write_realm(obuf, info);
 				wroterealm = TRUE;
 			}
 			/* If the previous section was "libdefaults", and we
 			 * didn't see a "default_realm", write it out. */
 			if ((section != NULL) &&
-			   (strcmp(section, "libdefaults") == 0) &&
-			   (non_empty(info->kerberosRealm)) &&
-			   !wrotedefaultrealm) {
+			    (strcmp(section, "libdefaults") == 0) &&
+			    (non_empty(info->kerberosRealm)) &&
+			    !wrotedefaultrealm) {
 				strcat(obuf, " default_realm = ");
 				strcat(obuf, info->kerberosRealm);
 				strcat(obuf, "\n");
@@ -1778,6 +2119,12 @@ authInfoWriteKerberos5(struct authInfoType *info)
 			}
 			for (q = p; ((*q != ']') && (*q != '\0')); q++) ;
 			if (section) {
+				if (strcmp(section, "realms") == 0) {
+					wroterealms2 = TRUE;
+				}
+				if (strcmp(section, "libdefaults") == 0) {
+					wrotelibdefaults2 = TRUE;
+				}
 				g_free(section);
 			}
 			section = g_strndup(p, q - p);
@@ -1795,16 +2142,20 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	}
 
 	/* If we haven't encountered a libdefaults section yet... */
-	if (!wrotelibdefaults && non_empty(info->kerberosRealm)) {
-		strcat(obuf, "[libdefaults]\n");
+	if (!wrotelibdefaults2 && non_empty(info->kerberosRealm)) {
+		if (!wrotelibdefaults) {
+			strcat(obuf, "[libdefaults]\n");
+		}
 		strcat(obuf, " default_realm = ");
 		strcat(obuf, info->kerberosRealm);
 		strcat(obuf, "\n\n");
 	}
 
 	/* If we haven't encountered a realms section yet... */
-	if (!wroterealms && non_empty(info->kerberosRealm)) {
-		strcat(obuf, "[realms]\n");
+	if (!wroterealms2 && non_empty(info->kerberosRealm)) {
+		if (!wroterealms) {
+			strcat(obuf, "[realms]\n");
+		}
 		write_realm(obuf, info);
 	}
 
@@ -1841,7 +2192,7 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	struct flock lock;
 	struct stat st;
 
-	if ((info->kerberosRealm == NULL) || (strlen(info->kerberosRealm) == 0)) {
+	if (is_empty(info->kerberosRealm)) {
 		return FALSE;
 	}
 
@@ -1887,7 +2238,7 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	sprintf(obuf, "%s\n", info->kerberosRealm ?: "");
 
 	p = info->kerberosKDC;
-	if (!is_empty(p)) {
+	if (non_empty(p)) {
 		while (strchr(p, ',')) {
 			strcat(obuf, info->kerberosRealm ?: "");
 			strcat(obuf, "\t");
@@ -1902,7 +2253,7 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	strcat(obuf, "\n");
 
 	p = info->kerberosAdminServer;
-	if (!is_empty(p)) {
+	if (non_empty(p)) {
 		while (strchr(p, ',')) {
 			strcat(obuf, info->kerberosRealm ?: "");
 			strcat(obuf, "\t");
@@ -1911,10 +2262,12 @@ authInfoWriteKerberos4(struct authInfoType *info)
 			p = strchr(p, ',') + 1;
 		}
 	}
-	strcat(obuf, info->kerberosRealm ?: "");
-	strcat(obuf, "\t");
-	strcat(obuf, p);
-	strcat(obuf, " admin server\n");
+	if (non_empty(p)) {
+		strcat(obuf, info->kerberosRealm ?: "");
+		strcat(obuf, "\t");
+		strcat(obuf, p);
+		strcat(obuf, " admin server\n");
+	}
 
 	/* Now append lines from the original file which have nothing to do
 	 * with our realm. */
@@ -1959,6 +2312,697 @@ authInfoWriteKerberos(struct authInfoType *info)
 		authInfoWriteKerberos4(info);
 	}
 	return ret;
+}
+
+/* Compare two strings, one a possible data line, the other a Samba-style key
+ * name.  Returns -1 on non-match, offset into candidate if matched. */
+static int
+authInfoReadWinbindCheck(const char *candidate, const char *key)
+{
+	const char *words, *worde, *p, *q;
+	int ret;
+
+	/* Check for a match with the requested setting name. */
+	p = candidate;
+	words = key;
+	ret = -1;
+
+	while ((*words != '\0') && (*p != '\0')) {
+		/* Find the end of this portion of the key name. */
+		worde = words;
+		while ((*worde != '\0') && !isspace(*worde)) {
+			worde++;
+		}
+		/* Find the end of the word on the line. */
+		q = p;
+		while ((*q != '\0') && (*q != '=') && !isspace(*q)) {
+			q++;
+		}
+		/* If the two words don't match, we're done here. */
+		if (q - p != worde - words) {
+			break;
+		}
+		if (strncasecmp(p, words, q - p) != 0) {
+			break;
+		}
+		/* If worde points to a NUL (end of keyword) and the
+		 * next token is an equal sign (end of keyword in
+		 * file), then we have a match. */
+		while ((*q != '\0') && isspace(*q)) {
+			q++;
+		}
+		while ((*worde != '\0') && isspace(*worde)) {
+			worde++;
+		}
+		if ((*q == '=') && (*worde == '\0')) {
+			while ((*q == '=') || isspace(*q)) {
+				q++;
+			}
+			if (*q != '\0') {
+				ret = q - candidate;
+				break;
+			}
+		}
+		/* Check the next word. */
+		words = worde;
+		while ((*words != '\0') && isspace(*words)) {
+			words++;
+		}
+		p = q;
+		while ((*p != '\0') && isspace(*p)) {
+			p++;
+		}
+	}
+	return ret;
+}
+
+/* Read Samba setup from /etc/samba/smb.conf. */
+static char *
+authInfoReadWinbindGlobal(struct authInfoType *info, const char *key)
+{
+	FILE *fp = NULL;
+	char buf[BUFSIZ], *p, *q;
+	char *section = NULL, *result = NULL;
+	int i;
+
+	fp = fopen(SYSCONFDIR "/samba/smb.conf", "r");
+	if (fp == NULL) {
+		return NULL;
+	}
+
+	memset(buf, '\0', sizeof(buf));
+
+	while ((fgets(buf, sizeof(buf) - 1, fp) != NULL) && (result == NULL)) {
+		p = buf + strlen(buf);
+
+		/* Snip off the terminating junk. */
+		while ((p > buf) && (isspace(p[-1]) || (p[-1] == '\n'))) {
+			p[-1] = '\0';
+			p--;
+		}
+
+		/* Skip initial whitespace. */
+		for (p = buf; (isspace(*p) && (*p != '\0')); p++);
+
+		/* Skip comments. */
+		if (*p == '#') {
+			continue;
+		}
+		if (*p == ';') {
+			continue;
+		}
+
+		/* If it's a new section, note which one we're "in". */
+		if (p[0] == '[') {
+			p++;
+			for (q = p; ((*q != ']') && (*q != '\0')); q++);
+
+			if (section != NULL) {
+				g_free(section);
+			}
+			if (q - p > 0)  {
+				section = g_strndup(p, q - p);
+			}
+
+			memset(buf, '\0', sizeof(buf));
+			continue;
+		}
+
+		/* Check for global settings.  Anything else we can skip. */
+		if (section == NULL) {
+			continue;
+		}
+		if (strcasecmp(section, "global") != 0) {
+			continue;
+		}
+
+		/* Check for a match with the requested setting name. */
+		i = authInfoReadWinbindCheck(p, key);
+		if (i >= 0) {
+			result = g_strdup(p + i);
+		}
+	}
+
+	if (section != NULL) {
+		g_free(section);
+	}
+
+	fclose(fp);
+	return result;
+}
+
+/* Read winbind settings from /etc/smb/samba.conf. */
+gboolean
+authInfoReadWinbind(struct authInfoType *info)
+{
+	char *tmp;
+
+	tmp = authInfoReadWinbindGlobal(info, "workgroup");
+	if (tmp != NULL) {
+		if (info->smbWorkgroup != NULL) {
+			g_free(info->smbWorkgroup);
+		}
+		info->smbWorkgroup = tmp;
+	}
+
+	tmp = authInfoReadWinbindGlobal(info, "password server");
+	if (tmp != NULL) {
+		if (info->smbServers != NULL) {
+			g_free(info->smbServers);
+		}
+		info->smbServers = tmp;
+	}
+
+	tmp = authInfoReadWinbindGlobal(info, "realm");
+	if (tmp != NULL) {
+		if (info->smbRealm != NULL) {
+			g_free(info->smbRealm);
+		}
+		info->smbRealm = tmp;
+	}
+
+	tmp = authInfoReadWinbindGlobal(info, "security");
+	if (tmp != NULL) {
+		if (info->smbSecurity != NULL) {
+			g_free(info->smbSecurity);
+		}
+		info->smbSecurity = tmp;
+	}
+	if (is_empty(info->smbSecurity)) {
+		info->smbSecurity = g_strdup("user");
+	}
+
+	tmp = authInfoReadWinbindGlobal(info, "idmap uid");
+	if (tmp != NULL) {
+		if (info->smbIdmapUid != NULL) {
+			g_free(info->smbIdmapUid);
+		}
+		info->smbIdmapUid = tmp;
+	}
+	if (info->smbIdmapUid == NULL) {
+		/* 2^24 to 2^25 - 1 should be safe */
+		info->smbIdmapUid = g_strdup("16777216-33554431");
+	}
+
+	tmp = authInfoReadWinbindGlobal(info, "idmap gid");
+	if (tmp != NULL) {
+		if (info->smbIdmapGid != NULL) {
+			g_free(info->smbIdmapGid);
+		}
+		info->smbIdmapGid = tmp;
+	}
+	if (info->smbIdmapGid == NULL) {
+		/* 2^24 to 2^25 - 1 should be safe */
+		info->smbIdmapGid = g_strdup("16777216-33554431");
+	}
+
+	tmp = authInfoReadWinbindGlobal(info, "winbind separator");
+	if (tmp != NULL) {
+		if (info->winbindSeparator != NULL) {
+			g_free(info->winbindSeparator);
+		}
+		info->winbindSeparator = tmp;
+	}
+	tmp = authInfoReadWinbindGlobal(info, "template homedir");
+	if (tmp != NULL) {
+		if (info->winbindTemplateHomedir!= NULL) {
+			g_free(info->winbindTemplateHomedir);
+		}
+		info->winbindTemplateHomedir = tmp;
+	}
+	tmp = authInfoReadWinbindGlobal(info, "template primary group");
+	if (tmp != NULL) {
+		if (info->winbindTemplatePrimaryGroup != NULL) {
+			g_free(info->winbindTemplatePrimaryGroup);
+		}
+		info->winbindTemplatePrimaryGroup = tmp;
+	}
+	tmp = authInfoReadWinbindGlobal(info, "template shell");
+	if (tmp != NULL) {
+		if (info->winbindTemplateShell != NULL) {
+			g_free(info->winbindTemplateShell);
+		}
+		info->winbindTemplateShell = tmp;
+	}
+	tmp = authInfoReadWinbindGlobal(info, "winbind use default domain");
+	if (tmp != NULL) {
+		if (strcasecmp(tmp, "yes") == 0) {
+			info->winbindUseDefaultDomain = TRUE;
+		} else {
+			info->winbindUseDefaultDomain = FALSE;
+		}
+		g_free(tmp);
+	}
+
+	return TRUE;
+}
+
+/* Write winbind settings to /etc/smb/samba.conf. */
+gboolean
+authInfoWriteWinbind(struct authInfoType *info)
+{
+	int fd, len;
+	struct flock lock;
+	struct stat st;
+	char *section, *p, *q, *ibuf, *obuf;
+	gboolean wroteglobal, wroteglobal2, wroteworkgroup, wroteservers,
+		 wroterealm, wrotesecurity, wroteidmapuid, wroteidmapgid,
+		 wroteseparator, wrotetemplateh, wrotetemplatep,
+		 wrotetemplates, wroteusedefaultdomain;
+
+	fd = open(SYSCONFDIR "/samba/smb.conf", O_RDWR | O_CREAT, 0644);
+	if (fd == -1) {
+		return FALSE;
+	}
+
+	memset(&lock, 0, sizeof(lock));
+	lock.l_type = F_WRLCK;
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
+		return FALSE;
+	}
+	if (fstat(fd, &st) == -1) {
+		close(fd);
+		return FALSE;
+	}
+
+	ibuf = g_malloc0(st.st_size + 1);
+	if (read(fd, ibuf, st.st_size) != st.st_size) {
+		g_free(ibuf);
+		close(fd);
+		return FALSE;
+	}
+
+	/* Determine the maximum length of the new file. */
+	len = st.st_size + 1;
+	len += strlen("\n[global]\n");
+
+	len += strlen("   workgroup = \n");
+	len += strlen(info->smbWorkgroup ?: " ");
+
+	len += strlen("   password server = \n");
+	len += strlen(info->smbServers ?: " ");
+
+	len += strlen("   realm = \n");
+	len += strlen(info->smbRealm ?: " ");
+
+	len += strlen("   security = \n");
+	len += strlen(info->smbSecurity ?: " ");
+
+	len += strlen("   idmap uid = \n");
+	len += strlen(info->smbIdmapUid ?: " ");
+
+	len += strlen("   idmap gid = \n");
+	len += strlen(info->smbIdmapGid ?: " ");
+
+	len += strlen("   winbind separator = \n");
+	len += strlen(info->winbindSeparator ?: " ");
+
+	len += strlen("   template homedir = \n");
+	len += strlen(info->winbindTemplateHomedir ?: " ");
+
+	len += strlen("   template primary group = \n");
+	len += strlen(info->winbindTemplatePrimaryGroup ?: " ");
+
+	len += strlen("   template shell = \n");
+	len += strlen(info->winbindTemplateShell ?: " ");
+
+	len += strlen("   winbind use default domain = no \n");
+
+	obuf = g_malloc0(len * 2);
+
+	/* Iterate over all of the lines in the current contents. */
+	p = ibuf;
+	wroteglobal = FALSE;
+	wroteglobal2 = FALSE;
+	wroteworkgroup = FALSE;
+	wroteservers = FALSE;
+	wroterealm = FALSE;
+	wrotesecurity = FALSE;
+	wroteidmapuid = FALSE;
+	wroteidmapgid = FALSE;
+	wroteseparator = FALSE;
+	wrotetemplateh = FALSE;
+	wrotetemplatep = FALSE;
+	wrotetemplates = FALSE;
+	wroteusedefaultdomain = FALSE;
+	section = NULL;
+	while (*p != '\0') {
+		/* Isolate a single line. */
+		char *l = p;
+		for (q = p; (*q != '\0') && (*q != '\n'); q++);
+		if (*q != '\0') q++;
+
+		/* Skip over any whitespace. */
+		for (;isspace(*p) && (*p != '\0') && (*p != '\n'); p++);
+
+		/* If it's a comment, just pass it through. */
+		if ((*p == ';') || (*p == '#')) {
+			strncat(obuf, l, q - l);
+			p = q;
+			continue;
+		}
+
+		/* If it's a section start, note the section name. */
+		if (*p == '[') {
+			char *c;
+			gboolean leaving;
+			p++;
+			c = strchr(p, ']');
+			if (c != NULL) {
+				leaving = FALSE;
+				if (section != NULL) {
+					if (strcmp(section, "global") == 0) {
+						leaving = TRUE;
+						wroteglobal2 = TRUE;
+					}
+					g_free(section);
+				}
+				if (leaving) {
+					if (!wroteworkgroup &&
+					    non_empty(info->smbWorkgroup)) {
+						strcat(obuf, "   workgroup = ");
+						strcat(obuf, info->smbWorkgroup);
+						strcat(obuf, "\n");
+						wroteworkgroup = TRUE;
+					}
+					if (!wroteservers &&
+					    non_empty(info->smbServers)) {
+						char *tmp, *t;
+						tmp = g_strdup(info->smbServers);
+						while ((t = strchr(tmp, ',')) != NULL) {
+							*t = ' ';
+						}
+						strcat(obuf, "   password server = ");
+						strcat(obuf, tmp);
+						strcat(obuf, "\n");
+						g_free(tmp);
+						wroteservers = TRUE;
+					}
+					if (!wroterealm &&
+					    non_empty(info->smbRealm)) {
+						strcat(obuf, "   realm = ");
+						strcat(obuf, info->smbRealm);
+						strcat(obuf, "\n");
+						wroterealm = TRUE;
+					}
+					if (!wrotesecurity &&
+					    non_empty(info->smbSecurity)) {
+						strcat(obuf, "   security = ");
+						strcat(obuf, info->smbSecurity);
+						strcat(obuf, "\n");
+						wrotesecurity = TRUE;
+					}
+					if (!wroteidmapuid &&
+					    non_empty(info->smbIdmapUid)) {
+						strcat(obuf, "   idmap uid = ");
+						strcat(obuf, info->smbIdmapUid);
+						strcat(obuf, "\n");
+						wroteidmapuid = TRUE;
+					}
+					if (!wroteidmapgid &&
+					    non_empty(info->smbIdmapGid)) {
+						strcat(obuf, "   idmap gid = ");
+						strcat(obuf, info->smbIdmapGid);
+						strcat(obuf, "\n");
+						wroteidmapgid = TRUE;
+					}
+					if (!wroteseparator &&
+					    non_empty(info->winbindSeparator)) {
+						strcat(obuf, "   winbind separator = ");
+						strcat(obuf, info->winbindSeparator);
+						strcat(obuf, "\n");
+						wroteseparator = TRUE;
+					}
+					if (!wrotetemplateh &&
+					    non_empty(info->winbindTemplateHomedir)) {
+						strcat(obuf, "   template homedir = ");
+						strcat(obuf, info->winbindTemplateHomedir);
+						strcat(obuf, "\n");
+						wrotetemplateh = TRUE;
+					}
+					if (!wrotetemplatep &&
+					    non_empty(info->winbindTemplatePrimaryGroup)) {
+						strcat(obuf, "   template primary group = ");
+						strcat(obuf, info->winbindTemplatePrimaryGroup);
+						strcat(obuf, "\n");
+						wrotetemplatep = TRUE;
+					}
+					if (!wrotetemplates &&
+					    non_empty(info->winbindTemplateShell)) {
+						strcat(obuf, "   template shell = ");
+						strcat(obuf, info->winbindTemplateShell);
+						strcat(obuf, "\n");
+						wrotetemplates = TRUE;
+					}
+					if (!wroteusedefaultdomain) {
+						strcat(obuf, "   winbind use default domain = ");
+						strcat(obuf, info->winbindUseDefaultDomain ? "yes" : "no");
+						strcat(obuf, "\n");
+						wroteusedefaultdomain = TRUE;
+					}
+				}
+				section = g_strndup(p, c - p);
+				if (strcmp(section, "global") == 0) {
+					wroteglobal = TRUE;
+				}
+			}
+			strncat(obuf, l, q - l);
+			p = q;
+			continue;
+		}
+
+		/* If it's the wrong section, pass it through. */
+		if ((section == NULL) || (strcmp(section, "global") != 0)) {
+			strncat(obuf, l, q - l);
+			p = q;
+			continue;
+		}
+
+		/* Check if this is a setting we care about. */
+		if (authInfoReadWinbindCheck(p, "workgroup") >= 0) {
+			if (non_empty(info->smbWorkgroup)) {
+				strcat(obuf, "   workgroup = ");
+				strcat(obuf, info->smbWorkgroup);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wroteworkgroup = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "password server") >= 0) {
+			if (non_empty(info->smbServers)) {
+				char *tmp, *t;
+				tmp = g_strdup(info->smbServers);
+				while ((t = strchr(tmp, ',')) != NULL) {
+					*t = ' ';
+				}
+				strcat(obuf, "   password server = ");
+				strcat(obuf, tmp);
+				strcat(obuf, "\n");
+				g_free(tmp);
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wroteservers = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "realm") >= 0) {
+			if (non_empty(info->smbRealm)) {
+				strcat(obuf, "   realm = ");
+				strcat(obuf, info->smbRealm);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wroterealm = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "security") >= 0) {
+			if (non_empty(info->smbSecurity)) {
+				strcat(obuf, "   security = ");
+				strcat(obuf, info->smbSecurity);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wrotesecurity = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "idmap uid") >= 0) {
+			if (non_empty(info->smbIdmapUid)) {
+				strcat(obuf, "   idmap uid = ");
+				strcat(obuf, info->smbIdmapUid);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wroteidmapuid = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "idmap gid") >= 0) {
+			if (non_empty(info->smbIdmapGid)) {
+				strcat(obuf, "   idmap gid = ");
+				strcat(obuf, info->smbIdmapGid);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wroteidmapgid = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "winbind separator") >= 0) {
+			if (non_empty(info->winbindSeparator)) {
+				strcat(obuf, "   winbind separator = ");
+				strcat(obuf, info->winbindSeparator);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wroteseparator = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "template homedir") >= 0) {
+			if (non_empty(info->winbindTemplateHomedir)) {
+				strcat(obuf, "   template homedir = ");
+				strcat(obuf, info->winbindTemplateHomedir);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wrotetemplateh = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "template primary group") >= 0) {
+			if (non_empty(info->winbindTemplatePrimaryGroup)) {
+				strcat(obuf, "   template primary group = ");
+				strcat(obuf, info->winbindTemplatePrimaryGroup);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wrotetemplatep = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "template shell") >= 0) {
+			if (non_empty(info->winbindTemplateShell)) {
+				strcat(obuf, "   template shell = ");
+				strcat(obuf, info->winbindTemplateShell);
+				strcat(obuf, "\n");
+			} else {
+				strncat(obuf, l, q - l);
+			}
+			wrotetemplates = TRUE;
+			p = q;
+			continue;
+		}
+		if (authInfoReadWinbindCheck(p, "winbind use default domain") >= 0) {
+			strcat(obuf, "   winbind use default domain = ");
+			strcat(obuf, info->winbindUseDefaultDomain ? "yes" : "no");
+			strcat(obuf, "\n");
+			wroteusedefaultdomain = TRUE;
+			p = q;
+			continue;
+		}
+
+		/* It's not a setting we care about, so pass it through. */
+		strncat(obuf, l, q - l);
+		p = q;
+	}
+
+	/* If we didn't finish writing a [global] section, add one. */
+	if (!wroteglobal) {
+		strcat(obuf, "\n[global]\n");
+	}
+	if (!wroteglobal2) {
+		if (!wroteworkgroup && non_empty(info->smbWorkgroup)) {
+			strcat(obuf, "   workgroup = ");
+			strcat(obuf, info->smbWorkgroup);
+			strcat(obuf, "\n");
+		}
+		if (!wroteservers && non_empty(info->smbServers)) {
+			char *tmp, *t;
+			tmp = g_strdup(info->smbServers);
+			while ((t = strchr(tmp, ',')) != NULL) {
+				*t = ' ';
+			}
+			strcat(obuf, "   password server = ");
+			strcat(obuf, tmp);
+			strcat(obuf, "\n");
+			g_free(tmp);
+		}
+		if (!wroterealm && non_empty(info->smbRealm)) {
+			strcat(obuf, "   realm = ");
+			strcat(obuf, info->smbRealm);
+			strcat(obuf, "\n");
+		}
+		if (!wrotesecurity && non_empty(info->smbSecurity)) {
+			strcat(obuf, "   security = ");
+			strcat(obuf, info->smbSecurity);
+			strcat(obuf, "\n");
+		}
+		if (!wroteidmapuid && non_empty(info->smbIdmapUid)) {
+			strcat(obuf, "   idmap uid = ");
+			strcat(obuf, info->smbIdmapUid);
+			strcat(obuf, "\n");
+		}
+		if (!wroteidmapgid && non_empty(info->smbIdmapGid)) {
+			strcat(obuf, "   idmap gid = ");
+			strcat(obuf, info->smbIdmapGid);
+			strcat(obuf, "\n");
+		}
+		if (!wroteseparator && non_empty(info->winbindSeparator)) {
+			strcat(obuf, "   winbind separator = ");
+			strcat(obuf, info->winbindSeparator);
+			strcat(obuf, "\n");
+		}
+		if (!wrotetemplateh && non_empty(info->winbindTemplateHomedir)) {
+			strcat(obuf, "   template homedir = ");
+			strcat(obuf, info->winbindTemplateHomedir);
+			strcat(obuf, "\n");
+		}
+		if (!wrotetemplatep && non_empty(info->winbindTemplatePrimaryGroup)) {
+			strcat(obuf, "   template primary group = ");
+			strcat(obuf, info->winbindTemplatePrimaryGroup);
+			strcat(obuf, "\n");
+		}
+		if (!wrotetemplates && non_empty(info->winbindTemplateShell)) {
+			strcat(obuf, "   template shell = ");
+			strcat(obuf, info->winbindTemplateShell);
+			strcat(obuf, "\n");
+		}
+		if (!wroteusedefaultdomain && non_empty(info->winbindTemplateShell)) {
+			strcat(obuf, "   winbind use default domain = ");
+			strcat(obuf, info->winbindUseDefaultDomain ? "yes" : "no");
+			strcat(obuf, "\n");
+		}
+	}
+
+	/* Write it out and close it. */
+	ftruncate(fd, 0);
+	lseek(fd, 0, SEEK_SET);
+	write(fd, obuf, strlen(obuf));
+	close(fd);
+
+	/* Clean up. */
+	if (ibuf) {
+		g_free(ibuf);
+	}
+	if (obuf) {
+		g_free(obuf);
+	}
+
+	return TRUE;
 }
 
 /* Write NSS setup to /etc/nsswitch.conf. */
@@ -2008,17 +3052,19 @@ authInfoWriteNSS(struct authInfoType *info)
 	l += strlen(" files nisplus nis") * 8;
 	l += strlen(" db") * 8;
 	l += strlen(" files") * 8;
-	l += strlen(" hesiod") * 8;
-	l += strlen(" ldap") * 8;
-	l += strlen(" nis") * 8;
-	l += strlen(" nisplus") * 8;
-	l += strlen(" dns");
+	l += strlen(" directories") * 8;
+	l += strlen(" wins") * 8;
 	l += strlen(" winbind") * 8;
-	l += strlen(" dbbind") * 8;
-	l += strlen(" dbibind") * 8;
-	l += strlen(" hesiodbind") * 8;
-	l += strlen(" ldapbind") * 8;
 	l += strlen(" odbcbind") * 8;
+	l += strlen(" nisplus") * 8;
+	l += strlen(" nis") * 8;
+	l += strlen(" hesiodbind") * 8;
+	l += strlen(" hesiod") * 8;
+	l += strlen(" ldapbind") * 8;
+	l += strlen(" ldap") * 8;
+	l += strlen(" dns");
+	l += strlen(" dbibind") * 8;
+	l += strlen(" dbbind") * 8;
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	/* Determine what we want in that file for most of the databases.  If
@@ -2026,6 +3072,7 @@ authInfoWriteNSS(struct authInfoType *info)
 	 * comes files.  Then everything else in reverse alphabetic order. */
 	if (info->enableDB) strcat(normal, " db");
 	strcat(normal, " files");
+	if (info->enableDirectories) strcat(normal, " directories");
 	if (info->enableWinbind) strcat(normal, " winbind");
 	if (info->enableOdbcbind) strcat(normal, " odbcbind");
 	if (info->enableNIS3) strcat(normal, " nisplus");
@@ -2036,9 +3083,10 @@ authInfoWriteNSS(struct authInfoType *info)
 	if (info->enableHesiod) strcat(normal, " hesiod");
 	if (info->enableDBIbind) strcat(normal, " dbibind");
 	if (info->enableDBbind) strcat(normal, " dbbind");
-	
+
 	/* Hostnames we treat specially. */
 	strcat(hosts, " files");
+	if (info->enableWINS) strcat(hosts, " wins");
 	if (info->enableNIS3) strcat(hosts, " nisplus");
 	if (info->enableNIS) strcat(hosts, " nis");
 	strcat(hosts, " dns");
@@ -2127,10 +3175,12 @@ authInfoWriteNSS(struct authInfoType *info)
 				strcat(obuf, "\n");
 				wrotehosts = TRUE;
 			}
-		} else
+		} else {
+			/* Otherwise, just copy the current line out. */
+			strncat(obuf, p, q - p);
+		}
 
-		/* Otherwise, just copy the current line out. */
-		strncat(obuf, p, q - p);
+		/* Advance to the next line. */
 		p = q;
 	}
 
@@ -2329,14 +3379,14 @@ static struct {
 	 "smb_auth",		argv_smb_auth},
 	{FALSE, auth,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth},
-	{TRUE,  auth,		LOGIC_REQUIRED,	
+	{TRUE,  auth,		LOGIC_REQUIRED,
 	 "deny",		NULL},
 
 #ifdef LOCAL_POLICIES
-	{FALSE, account,	LOGIC_REQUIRED,	
+	{FALSE, account,	LOGIC_REQUIRED,
 	 "stack",		argv_local_all},
 #endif
-	{TRUE,  account, 	LOGIC_REQUIRED,
+	{TRUE,  account,	LOGIC_REQUIRED,
 	 "unix",		NULL},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		NULL},
@@ -2344,6 +3394,8 @@ static struct {
 	 "krb5",		NULL},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5afs",		NULL},
+	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
+	 "winbind",		NULL},
 
 #ifdef LOCAL_POLICIES
 	{FALSE, password,	LOGIC_REQUIRED,
@@ -2487,8 +3539,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	}
 
 	obuf = g_malloc0(BUFSIZ *
-		       	 (sizeof(standard_pam_modules) / 
-		       	  sizeof(standard_pam_modules[0])));
+			 (sizeof(standard_pam_modules) /
+			  sizeof(standard_pam_modules[0])));
 	strcpy(obuf, "#%PAM-1.0\n");
 	strcat(obuf, "# This file is auto-generated.\n");
 	strcat(obuf, "# User changes will be destroyed the next time "
@@ -2525,7 +3577,7 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		    (strcmp("otp", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableSMB &&
 		    (strcmp("smb_auth", standard_pam_modules[i].name) == 0)) ||
-		   (authInfo->enableWinbindAuth &&
+		   (authInfo->enableWinbind &&
 		    (strcmp("winbind", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);
 		}
@@ -2541,22 +3593,38 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	if (sv != NULL) {
 		svSetValue(sv, "USEDB",
 			   authInfo->enableDB ? "yes" : "no");
-		svSetValue(sv, "USEHESIOD",
-			   authInfo->enableHesiod ? "yes" : "no");
-		svSetValue(sv, "USELDAP",
-			   authInfo->enableLDAP ? "yes" : "no");
-		svSetValue(sv, "USENIS",
-			   authInfo->enableNIS ? "yes" : "no");
 #ifdef EXPERIMENTAL
 		/* We don't save these settings yet, because we have no
 		 * way to present the user with the option. */
+		svSetValue(sv, "USEDBBIND",
+			   authInfo->enableDBbind ? "yes" : "no");
+		svSetValue(sv, "USEDBIBIND",
+			   authInfo->enableDBIbind ? "yes" : "no");
+		svSetValue(sv, "USEDIRECTORIES",
+			   authInfo->enableDirectories ? "yes" : "no");
+#endif
+		svSetValue(sv, "USEHESIOD",
+			   authInfo->enableHesiod ? "yes" : "no");
+#ifdef EXPERIMENTAL
+		svSetValue(sv, "USEHESIODBIND",
+			   authInfo->enableHesiodbind ? "yes" : "no");
+#endif
+		svSetValue(sv, "USELDAP",
+			   authInfo->enableLDAP ? "yes" : "no");
+#ifdef EXPERIMENTAL
+		svSetValue(sv, "USELDAPBIND",
+			   authInfo->enableLDAPbind ? "yes" : "no");
+#endif
+		svSetValue(sv, "USENIS",
+			   authInfo->enableNIS ? "yes" : "no");
+#ifdef EXPERIMENTAL
 		svSetValue(sv, "USENISPLUS",
 			   authInfo->enableNIS3 ? "yes" : "no");
 		svSetValue(sv, "USEODBCBIND",
 			   authInfo->enableOdbcbind ? "yes" : "no");
+#endif
 		svSetValue(sv, "USEWINBIND",
 			   authInfo->enableWinbind ? "yes" : "no");
-#endif
 
 #ifdef EXPERIMENTAL
 		svSetValue(sv, "USEAFS",
@@ -2580,10 +3648,6 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 			   authInfo->enableShadow ? "yes" : "no");
 		svSetValue(sv, "USESMBAUTH",
 			   authInfo->enableSMB ? "yes" : "no");
-#ifdef EXPERIMENTAL
-		svSetValue(sv, "USEWINBINDAUTH",
-			   authInfo->enableWinbindAuth ? "yes" : "no");
-#endif
 		svWriteFile(sv, 0644);
 		svCloseFile(sv);
 	}
@@ -2619,18 +3683,26 @@ gboolean
 authInfoWrite(struct authInfoType *authInfo)
 {
 	gboolean ret;
+
+	authInfoUpdate(authInfo);
+
 	ret = authInfoWriteLibuser(authInfo);
 	ret = authInfoWriteCache(authInfo);
 	if (authInfo->enableHesiod)
 		ret = ret && authInfoWriteHesiod(authInfo);
 	if (authInfo->enableLDAP)
 		ret = ret && authInfoWriteLDAP(authInfo);
-	if (authInfo->enableKerberos)
+	if (authInfo->enableKerberos ||
+	    (authInfo->enableWinbind &&
+	     non_empty(authInfo->smbSecurity) &&
+	     (strcmp(authInfo->smbSecurity, "ads") == 0)))
 		ret = ret && authInfoWriteKerberos(authInfo);
 	if (authInfo->enableNIS)
 		ret = ret && authInfoWriteNIS(authInfo);
 	if (authInfo->enableSMB)
 		ret = ret && authInfoWriteSMB(authInfo);
+	if (authInfo->enableWinbind)
+		ret = ret && authInfoWriteWinbind(authInfo);
 	ret = ret && authInfoWriteNSS(authInfo);
 	ret = ret && authInfoWritePAM(authInfo);
 	ret = ret && authInfoWriteNetwork(authInfo);
@@ -2661,7 +3733,7 @@ domain2dn(const char *domain)
 			strncat(buf, dbuf + i, 1);
 		}
 	}
-	return strdup(buf);
+	return g_strdup(buf);
 }
 
 #define DEFAULT_DNS_QUERY_SIZE 1024
@@ -2719,7 +3791,7 @@ authInfoProbe()
 	while ((result != NULL) && (result->dns_name != NULL)) {
 		if ((result->dns_type == DNS_T_SRV) &&
 		    (result->dns_rdata.srv.server != NULL)) {
-			ret->ldapServer = strdup(result->dns_rdata.srv.server);
+			ret->ldapServer = g_strdup(result->dns_rdata.srv.server);
 			terminate_hostname(ret->ldapServer);
 			if (p != NULL) {
 				ret->ldapBaseDN = domain2dn(++p);
@@ -2741,7 +3813,7 @@ authInfoProbe()
 	while ((result != NULL) && (result->dns_name != NULL)) {
 		if ((result->dns_type == DNS_T_TXT) &&
 		    (result->dns_rdata.txt.data != NULL)) {
-			ret->kerberosRealm = strdup(result->dns_rdata.txt.data);
+			ret->kerberosRealm = g_strdup(result->dns_rdata.txt.data);
 			break;
 		}
 		result++;
@@ -2771,10 +3843,10 @@ authInfoProbe()
 				p = malloc(strlen(ret->kerberosKDC + 1 +
 					   strlen(qname) + 1));
 				sprintf(p, "%s,%s", ret->kerberosKDC, qname);
-				free(ret->kerberosKDC);
+				g_free(ret->kerberosKDC);
 				ret->kerberosKDC = p;
 			} else {
-				ret->kerberosKDC = strdup(qname);
+				ret->kerberosKDC = g_strdup(qname);
 			}
 		}
 		result++;
@@ -2807,10 +3879,10 @@ authInfoProbe()
 					   strlen(qname) + 1));
 				sprintf(p, "%s,%s",
 					ret->kerberosAdminServer, qname);
-				free(ret->kerberosAdminServer);
+				g_free(ret->kerberosAdminServer);
 				ret->kerberosAdminServer = p;
 			} else {
-				ret->kerberosAdminServer = strdup(qname);
+				ret->kerberosAdminServer = g_strdup(qname);
 			}
 		}
 		result++;
@@ -2831,7 +3903,7 @@ authInfoProbe()
 					ret->hesiodLHS = malloc(strlen(hesiod[i].hdomain) + 1);
 					sprintf(ret->hesiodLHS,
 						".%s", hesiod[i].hdomain);
-					ret->hesiodRHS = strdup(p);
+					ret->hesiodRHS = g_strdup(p);
 					terminate_hostname(ret->hesiodRHS);
 					break;
 				}
@@ -2868,8 +3940,7 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 	struct stat st;
 
 	if (enableNis && (nisDomain != NULL) && (strlen(nisDomain) > 0)) {
-		domainStr =
-		    g_strdup_printf("/bin/domainname %s", nisDomain);
+		domainStr = g_strdup_printf("/bin/domainname %s", nisDomain);
 		system(domainStr);
 		g_free(domainStr);
 		if (stat(PATH_PORTMAP, &st) == 0) {
@@ -2884,11 +3955,9 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 			system("/sbin/chkconfig --level 345 ypbind on");
 			if (!nostart) {
 				if (stat(PATH_YPBIND_PID, &st) == 0) {
-					system
-					    ("/sbin/service ypbind restart");
+					system("/sbin/service ypbind restart");
 				} else {
-					system
-					    ("/sbin/service ypbind start");
+					system("/sbin/service ypbind start");
 				}
 			}
 		}
@@ -2897,8 +3966,7 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 		if (stat(PATH_YPBIND, &st) == 0) {
 			if (!nostart) {
 				if (stat(PATH_YPBIND_PID, &st) == 0) {
-					system
-					    ("/sbin/service ypbind stop");
+					system("/sbin/service ypbind stop");
 				}
 			}
 			system("/sbin/chkconfig --del ypbind");
@@ -2907,6 +3975,7 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 
 	return TRUE;
 }
+
 static gboolean
 toggleShadow(struct authInfoType *authInfo)
 {
@@ -2921,11 +3990,83 @@ toggleShadow(struct authInfoType *authInfo)
   return TRUE;
 }
 
+static gboolean
+toggleWinbindService(gboolean enableWinbind, gboolean nostart)
+{
+	struct stat st;
+
+	if (enableWinbind) {
+		if (stat(PATH_WINBIND, &st) == 0) {
+			system("/sbin/chkconfig --add winbind");
+			system("/sbin/chkconfig --level 345 winbind on");
+			if (!nostart) {
+				system("/sbin/service winbind restart");
+			}
+		}
+	} else {
+		if (stat(PATH_WINBIND, &st) == 0) {
+			if (!nostart) {
+				if (stat(PATH_WINBIND_PID, &st) == 0) {
+					system("/sbin/service winbind stop");
+				}
+			}
+			system("/sbin/chkconfig --del winbind");
+		}
+	}
+
+	return TRUE;
+}
+
+static gboolean
+toggleSplatbindService(gboolean enable, const char *path, const char *pidfile,
+		       const char *name, gboolean nostart)
+{
+	struct stat st;
+	char buf[LINE_MAX];
+
+	if (enable) {
+		if (stat(path, &st) == 0) {
+			snprintf(buf, sizeof(buf),
+				 "/sbin/chkconfig --add %s", name);
+			system(buf);
+			snprintf(buf, sizeof(buf),
+				 "/sbin/chkconfig --level 345 %s on", name);
+			system(buf);
+			if (!nostart) {
+				snprintf(buf, sizeof(buf),
+					 "/sbin/service %s restart", name);
+				system(buf);
+			}
+		}
+	} else {
+		if (stat(path, &st) == 0) {
+			if (!nostart) {
+				if (stat(pidfile, &st) == 0) {
+					snprintf(buf, sizeof(buf),
+						 "/sbin/service %s stop", name);
+					system(buf);
+				}
+			}
+			snprintf(buf, sizeof(buf),
+				 "/sbin/chkconfig --del %s", name);
+			system(buf);
+		}
+	}
+
+	return TRUE;
+}
+
 void
 authInfoPrint(struct authInfoType *authInfo)
 {
     printf("caching is %s\n", authInfo->enableCache ? "enabled" : "disabled");
     printf("nss_files is always enabled\n");
+    printf("nss_db is %s\n",
+	   authInfo->enableDB ? "enabled" : "disabled");
+#ifdef EXPERIMENTAL
+    printf("nss_directories is %s\n",
+	   authInfo->enableDirectories ? "enabled" : "disabled");
+#endif
     printf("nss_hesiod is %s\n",
 	   authInfo->enableHesiod ? "enabled" : "disabled");
     printf(" hesiod LHS = \"%s\"\n",
@@ -2946,6 +4087,20 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->nisServer ? authInfo->nisServer : "");
     printf(" NIS domain = \"%s\"\n",
 	   authInfo->nisDomain ? authInfo->nisDomain : "");
+    printf("nss_wins is %s\n",
+	   authInfo->enableWINS ? "enabled" : "disabled");
+#ifdef EXPERIMENTAL
+    printf("nss_dbbind is %s\n",
+	   authInfo->enableDBbind ? "enabled" : "disabled");
+    printf("nss_dbibind is %s\n",
+	   authInfo->enableDBIbind ? "enabled" : "disabled");
+    printf("nss_hesiodbind is %s\n",
+	   authInfo->enableHesiodbind ? "enabled" : "disabled");
+    printf("nss_ldapbind is %s\n",
+	   authInfo->enableLDAPbind ? "enabled" : "disabled");
+    printf("nss_odbcbind is %s\n",
+	   authInfo->enableOdbcbind ? "enabled" : "disabled");
+#endif
 #ifdef LOCAL_POLICIES
     printf("local policies are %s\n",
 	   authInfo->enableLocal ? "enabled" : "disabled");
@@ -2975,8 +4130,165 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->enableSMB ? "enabled" : "disabled");
     printf(" SMB workgroup = \"%s\"\n",
 	   authInfo->smbWorkgroup ?: "");
+    printf(" SMB realm = \"%s\"\n",
+	   authInfo->smbRealm ?: "");
     printf(" SMB servers = \"%s\"\n",
 	   authInfo->smbServers ?: "");
+    printf(" SMB security = \"%s\"\n",
+	   authInfo->smbSecurity ?: "");
+    printf(" SMB idmap uid = \"%s\"\n",
+	   authInfo->smbIdmapUid ?: "");
+    printf(" SMB idmap gid = \"%s\"\n",
+	   authInfo->smbIdmapGid ?: "");
+}
+
+static void
+feedFork(const char *command, gboolean echo,
+         const char *query, const char *response)
+{
+    pid_t pid, child;
+    int master, status, i;
+    struct timeval tv;
+    GString *str;
+    fd_set fds;
+    char c;
+    gboolean eof;
+
+    master = -1;
+    pid = forkpty(&master, NULL, NULL, NULL);
+    switch (pid) {
+    case -1:
+        /* uh, hide */
+        break;
+    case 0:
+        /* child */
+	system(command);
+	_exit(0);
+	break;
+    default:
+        str = g_string_new("");
+	i = fcntl(master, F_GETFL);
+	if (i != -1) {
+	    fcntl(master, F_SETFL, i & ~O_NONBLOCK);
+	}
+	eof = FALSE;
+	while (!eof) {
+	    FD_ZERO(&fds);
+	    FD_SET(master, &fds);
+	    tv.tv_sec = 600;
+	    tv.tv_usec = 0;
+	    if ((i = select(master + 1, &fds, NULL, &fds, &tv)) != 1) {
+	        if (i == -1) {
+	            perror("select");
+		}
+	        kill(pid, SIGINT);
+	        break;
+	    }
+	    child = waitpid(pid, &status, WNOHANG);
+            switch (child) {
+	    case -1:
+                perror("waitpid");
+                break;
+	    case 0:
+                break;
+	    case 1:
+	        close(master);
+		eof = TRUE;
+                continue;
+                break;
+            }
+	    switch (read(master, &c, sizeof(c))) {
+	    case -1:
+	        switch (errno) {
+		case EINTR:
+		case EAGAIN:
+		    break;
+                case EIO:
+	            close(master);
+		    eof = TRUE;
+		    break;
+		default:
+		    perror("read");
+	            close(master);
+		    eof = TRUE;
+		    break;
+		}
+		break;
+	    case 0:
+	        close(master);
+		eof = TRUE;
+		break;
+	    case 1:
+	        g_string_append_c(str, c);
+	        if (echo) {
+		    fprintf(stderr, "%c", c);
+	        }
+	        if (strstr(str->str, query) != NULL) {
+	            write(master, response, strlen(response));
+	            write(master, "\r\n", 2);
+		    fsync(master);
+		    g_string_truncate(str, 0);
+		    fprintf(stderr, "<...>\n");
+	        }
+	        break;
+            default:
+	        break;
+	    }
+	}
+        g_string_free(str, TRUE);
+    }
+}
+
+void
+authInfoJoin(struct authInfoType *authInfo, gboolean echo)
+{
+    if (authInfo->enableWinbind && (authInfo->joinUser != NULL)) {
+        const char *domain, *server, *protocol;
+        char *cmd, *p;
+        protocol = "ads";
+        server = NULL;
+        domain = NULL;
+        if (non_empty(authInfo->smbWorkgroup)) {
+            domain = authInfo->smbWorkgroup;
+        }
+        if (non_empty(authInfo->smbSecurity)) {
+            protocol = authInfo->smbSecurity;
+        }
+        if (non_empty(authInfo->smbServers)) {
+            server = g_strdup(authInfo->smbServers);
+            p = strpbrk(server, ", \t");
+            if (p != NULL) {
+                *p = '\0';
+            }
+        }
+        if (is_empty(protocol)) {
+	    return;
+	}
+	if ((strcmp(protocol, "ads") != 0) &&
+	    (strcmp(protocol, "domain") != 0)) {
+	    /* Not needed. */
+	    return;
+	}
+        cmd = g_strdup_printf("/usr/bin/net %s %s %s %s %s %s -U %s",
+                              protocol,
+                              "join",
+                              domain ? "-w" : "", domain ? domain : "",
+                              server ? "-S" : "", server ? server : "",
+                              authInfo->joinUser);
+        p = cmd;
+	while ((p = strstr(p, "  ")) != NULL) {
+	   memmove(p, p + 1, strlen(p));
+	}
+        if (echo) {
+	    fprintf(stderr, "[%s]\n", cmd);
+        }
+        if (authInfo->joinPassword != NULL) {
+            feedFork(cmd, echo, " password:", authInfo->joinPassword);
+        } else {
+            system(cmd);
+        }
+        g_free(cmd);
+    }
 }
 
 void
@@ -2984,5 +4296,21 @@ authInfoPost(struct authInfoType *authInfo, int nostart)
 {
     toggleShadow(authInfo);
     toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
+    toggleWinbindService(authInfo->enableWinbind, nostart);
+    toggleSplatbindService(authInfo->enableDBbind,
+			   PATH_DBBIND, PATH_DBBIND_PID,
+			   "dbbind", nostart);
+    toggleSplatbindService(authInfo->enableDBIbind,
+			   PATH_DBIBIND, PATH_DBIBIND_PID,
+			   "dbibind", nostart);
+    toggleSplatbindService(authInfo->enableHesiodbind,
+			   PATH_HESIODBIND, PATH_HESIODBIND_PID,
+			   "hesiodbind", nostart);
+    toggleSplatbindService(authInfo->enableLDAPbind,
+			   PATH_LDAPBIND, PATH_LDAPBIND_PID,
+			   "ldapbind", nostart);
+    toggleSplatbindService(authInfo->enableOdbcbind,
+			   PATH_ODBCBIND, PATH_ODBCBIND_PID,
+			   "odbcbind", nostart);
     toggleCachingService(authInfo->enableCache, nostart);
 }

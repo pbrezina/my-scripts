@@ -16,10 +16,17 @@ authconfig \- an interface for configuring system authentication resources
 [--ldapserver <ldapserver>] [--ldapbasedn <basedn>] ]
 [--disableldap] [--disableldapauth]
 [--enablekrb5 [ --krb5realm <realm> ] [--krb5kdc <hostname[,hostname,...]>]
-[--disablekrb5]
 [--krb5adminserver <hostname[,hostname,...]>] ]
+[--disablekrb5]
 [--enablehesiod [--hesiodlhs <lhs>] [--hesiodrhs <rhs>] ] [--disablehesiod]
-[--enablesmb [--smbworkgroup <workgroup>] [--smbservers <server[,server]>]]
+[--enablesmb [--smbworkgroup <workgroup>] [--smbservers <server[,server]>] ]
+[--enablewinbind [--smbsecurity <user|server|domain|ads>] [--smbrealm <realm>]
+[--smbidmapuid=<range>] [--smbidmapgid=<range>]
+[--winbindseparator=<\\>] [--winbindtemplateprimarygroup=<group>]
+[--winbindtemplatehomedir=<directory>] [--winbindtemplateshell=<path>] ]
+[--disablewinbind]
+[--enablewinbindusedefaultdomain]
+[--disablewinbindusedefaultdomain]
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and
@@ -66,7 +73,7 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .FN /etc/sysconfig/authconfig
 Used to track whether or not particular authentication mechanisms are enabled.
 Currently includes variables named USESHADOW, USEMD5, USEKERBEROS, USELDAPAUTH,
-USESMBAUTH, USEHESIOD, USENIS, USELDAP.
+USESMBAUTH, USEWINBIND, USEHESIOD, USENIS, USELDAP.
 .TP
 .FN /etc/passwd, /etc/shadow
 Used for shadow password support.
@@ -93,6 +100,8 @@ Used to configure Hesiod.
 .FN /etc/pam_smb.conf
 Used to configure SMB authentication.
 .TP
+.FN /etc/samba/smb.conf
+Used to configure winbind authentication.
 .TP
 .FN /etc/nsswitch.conf
 Used to configure user information services.
@@ -102,7 +111,7 @@ Used to configure PAM for system services via pam_stack(8).
 
 .PD
 .SH "SEE ALSO"
-passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8), nsswitch.conf(5)
+passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8), nsswitch.conf(5), smb.conf(5)
 
 .SH AUTHORS
 .nf

@@ -121,8 +121,8 @@ checkWarn(const char *path, const char *service, const char *package)
 
   snprintf(buf, sizeof(buf), AUTHCONFIG_PACKAGE_WARNING,
            path, service, package);
- 
-  newtWinMessage(_("Warning"), _("Ok"), buf, NULL); 
+
+  newtWinMessage(_("Warning"), _("Ok"), buf, NULL);
 
   newtRefresh();
 }
@@ -706,7 +706,11 @@ getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 	    next = 0;
 	    break;
 	}
+	break;
+      default:
+        g_assert_not_reached();
     }
+    authInfoUpdate(authInfo);
   }
 
   return rc;
@@ -729,7 +733,7 @@ main(int argc, const char **argv)
   int rc;
   struct authInfoType *authInfo = NULL;
   gboolean nisAvail = FALSE, kerberosAvail = FALSE, ldapAvail = FALSE,
-  	   smbAvail = FALSE, cacheAvail = FALSE;
+	   smbAvail = FALSE, cacheAvail = FALSE;
 
   int back = 0, test = 0, nostart = 0, kickstart = 0;
 
@@ -749,7 +753,17 @@ main(int argc, const char **argv)
   char *krb5Realm = NULL, *krb5KDC = NULL, *krb5AdminServer = NULL;
 
   int enableSmb = 0, disableSmb = 0;
-  char *smbWorkgroup = NULL, *smbServers = NULL;
+  char *smbWorkgroup = NULL, *smbServers = NULL, *smbRealm = NULL;
+
+  int enableWinbind = 0, disableWinbind = 0;
+  char *smbSecurity = NULL, *smbIdmapUid = NULL, *smbIdmapGid = NULL;
+
+  int enableWinbindUseDefaultDomain = 0, disableWinbindUseDefaultDomain = 0;
+  char *winbindSeparator = NULL, *winbindTemplateHomedir = NULL,
+       *winbindTemplatePrimaryGroup = NULL, *winbindTemplateShell = NULL;
+  char *winbindJoiner = NULL;
+
+  int enableWINS = 0, disableWINS = 0;
 
   int enableCache = 0, disableCache = 0;
 
@@ -828,6 +842,55 @@ main(int argc, const char **argv)
       { "smbservers", '\0', POPT_ARG_STRING, &smbServers, 0,
 	_("names of servers to authenticate against\n"), _("<server>")},
 
+      { "enablewinbind", '\0', POPT_ARG_NONE, &enableWinbind, 0,
+	_("enable winbind for user information and authentication by default"),
+	NULL},
+      { "disablewinbind", '\0', POPT_ARG_NONE, &disableWinbind, 0,
+	_("disable winbind for user information and authentication by default"),
+	NULL},
+      { "smbsecurity", '\0', POPT_ARG_STRING, &smbSecurity, 0,
+	_("security mode to use for samba and winbind"), "<user|server|domain|ads>"},
+      { "smbrealm", '\0', POPT_ARG_STRING, &smbRealm, 0,
+	_("default realm for samba and winbind when security=ads"), NULL},
+      { "smbidmapuid", '\0', POPT_ARG_STRING, &smbIdmapUid, 0,
+	_("uid range winbind will assign to domain or ads users"),
+	_("<lowest-highest>")},
+      { "smbidmapgid", '\0', POPT_ARG_STRING, &smbIdmapGid, 0,
+	_("gid range winbind will assign to domain or ads users"),
+	_("<lowest-highest>")},
+
+      { "winbindseparator", '\0', POPT_ARG_STRING, &winbindSeparator, 0,
+	_("the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"),
+	"<\\>"},
+      { "winbindtemplatehomedir", '\0', POPT_ARG_STRING,
+        &winbindTemplateHomedir, 0,
+	_("the directory which winbind-created users will have as home directories"),
+	"</home/%D/%U>"},
+      { "winbindtemplateprimarygroup", '\0', POPT_ARG_STRING,
+        &winbindTemplatePrimaryGroup, 0,
+	_("the group which winbind-created users will have as their primary group"),
+	"<nobody>"},
+      { "winbindtemplateshell", '\0', POPT_ARG_STRING, &winbindTemplateShell, 0,
+	_("the shell which winbind-created users will have as their login shell"),
+	"</bin/false>"},
+      { "enablewinbindusedefaultdomain", '\0', POPT_ARG_NONE,
+        &enableWinbindUseDefaultDomain, 0,
+	_("configures winbind to assume that users with no domain in their user names are domain users"),
+	NULL},
+      { "disablewinbindusedefaultdomain", '\0', POPT_ARG_NONE,
+        &disableWinbindUseDefaultDomain, 0,
+	_("configures winbind to assume that users with no domain in their user names are not domain users"),
+	NULL},
+      { "winbindjoin", '\0', POPT_ARG_STRING,
+        &winbindJoiner, 0,
+	_("join the winbind domain or ads realm now as this administrator\n"),
+	"<Administrator>"},
+
+      { "enablewins", '\0', POPT_ARG_NONE,
+        &enableWINS, 0, _("enable wins for hostname resolution"), NULL},
+      { "disablewins", '\0', POPT_ARG_NONE,
+        &disableWINS, 0, _("disable wins for hostname resolution\n"), NULL},
+
       { "enablehesiod", '\0', POPT_ARG_NONE, &enableHesiod, 0,
 	_("enable hesiod for user information by default"), NULL},
       { "disablehesiod", '\0', POPT_ARG_NONE, &disableHesiod, 0,
@@ -860,7 +923,7 @@ main(int argc, const char **argv)
 #endif
       POPT_AUTOHELP { 0, 0, 0, 0, 0, 0 },
     };
-  
+
     /* next, process cmd. line options */
     optCon = poptGetContext(PACKAGE, argc, argv, options, 0);
     poptReadDefaultConfig(optCon, 1);
@@ -924,7 +987,7 @@ main(int argc, const char **argv)
   if (authInfoReadHesiod(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/hesiod.conf", R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "hesiod.conf");
+	      PACKAGE, SYSCONFDIR, "/hesiod.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -932,7 +995,7 @@ main(int argc, const char **argv)
   if (authInfoReadKerberos(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/krb5.conf", R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "krb5.conf");
+	      PACKAGE, SYSCONFDIR, "/krb5.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -940,7 +1003,7 @@ main(int argc, const char **argv)
   if (authInfoReadLDAP(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/ldap.conf", R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "ldap.conf");
+	      PACKAGE, SYSCONFDIR, "/ldap.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -948,7 +1011,7 @@ main(int argc, const char **argv)
   if (authInfoReadNIS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/yp.conf", R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "yp.conf");
+	      PACKAGE, SYSCONFDIR, "/yp.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -956,7 +1019,15 @@ main(int argc, const char **argv)
   if (authInfoReadSMB(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/pam_smb.conf", R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "pam_smb.conf");
+	      PACKAGE, SYSCONFDIR, "/pam_smb.conf");
+      fprintf(stderr, ": %s\n", strerror(errno));
+      return 2;
+    }
+  }
+  if (authInfoReadWinbind(authInfo) == FALSE) {
+    if (fileInaccessible(SYSCONFDIR "/samba/smb.conf", R_OK)) {
+      fprintf(stderr, _("%s: critical error reading %s/%s"),
+	      PACKAGE, SYSCONFDIR, "/samba/smb.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -964,7 +1035,7 @@ main(int argc, const char **argv)
   if (authInfoReadNSS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/nsswitch.conf", R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "nsswitch.conf");
+	      PACKAGE, SYSCONFDIR, "/nsswitch.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -977,7 +1048,7 @@ main(int argc, const char **argv)
   if (authInfoReadNetwork(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/sysconfig/network", R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "sysconfig/network");
+	      PACKAGE, SYSCONFDIR, "/sysconfig/network");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -985,11 +1056,13 @@ main(int argc, const char **argv)
   if (authInfoReadPAM(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, R_OK)) {
       fprintf(stderr, _("%s: critical error reading %s/%s"),
-	      PACKAGE, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
+	      PACKAGE, SYSCONFDIR, "/pam.d/" AUTH_PAM_SERVICE);
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
   }
+
+  authInfoUpdate(authInfo);
 
   if ((access(PATH_YPBIND, X_OK) == 0) &&
       (access(PATH_LIBNSS_NIS, X_OK) == 0)) {
@@ -1041,28 +1114,46 @@ main(int argc, const char **argv)
   overrideString(&authInfo->smbWorkgroup, smbWorkgroup);
   overrideString(&authInfo->smbServers, smbServers);
 
+  overrideBoolean(&authInfo->enableWinbind, enableWinbind, disableWinbind);
+  overrideString(&authInfo->smbSecurity, smbSecurity);
+  overrideString(&authInfo->smbRealm, smbRealm);
+  overrideString(&authInfo->smbIdmapUid, smbIdmapUid);
+  overrideString(&authInfo->smbIdmapGid, smbIdmapGid);
+  overrideString(&authInfo->winbindSeparator, winbindSeparator);
+  overrideString(&authInfo->winbindTemplateHomedir, winbindTemplateHomedir);
+  overrideString(&authInfo->winbindTemplatePrimaryGroup,
+		 winbindTemplatePrimaryGroup);
+  overrideString(&authInfo->winbindTemplateShell, winbindTemplateShell);
+  overrideBoolean(&authInfo->winbindUseDefaultDomain,
+		  enableWinbindUseDefaultDomain,
+		  disableWinbindUseDefaultDomain);
+
+  overrideBoolean(&authInfo->enableWINS, enableWINS, disableWINS);
+
+  authInfoUpdate(authInfo);
+
   if (!kickstart) {
     char packageVersion[] = PACKAGE " " VERSION " - ";
     newtInit();
     newtCls();
-    
+
     newtPushHelpLine(_(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
     newtDrawRootText(0, 0, packageVersion);
     newtDrawRootText(strlen(packageVersion), 0,
-		     _("(c) 1999-2002 Red Hat, Inc."));
-    
+		     _("(c) 1999-2003 Red Hat, Inc."));
+
     if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo)) {
       /* cancelled */
       newtFinished();
-     
+
       if (test) {
 	fprintf(stderr, _("dialog was cancelled\n"));
 	return 2;
       }
-      
+
       return 1;
     }
-    
+
     newtFinished();
   } /* kickstart */
 
@@ -1078,54 +1169,70 @@ main(int argc, const char **argv)
     }
     if (authInfoWriteHesiod(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "hesiod.conf");
+	      PACKAGE, SYSCONFDIR, "/hesiod.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteKerberos(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "krb5.conf");
+	      PACKAGE, SYSCONFDIR, "/krb5.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteLDAP(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "ldap.conf");
+	      PACKAGE, SYSCONFDIR, "/ldap.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteLibuser(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "libuser.conf");
+	      PACKAGE, SYSCONFDIR, "/libuser.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNIS(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "yp.conf");
+	      PACKAGE, SYSCONFDIR, "/yp.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteSMB(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "pam_smb.conf");
+	      PACKAGE, SYSCONFDIR, "/pam_smb.conf");
+      fprintf(stderr, ": %s\n", strerror(errno));
+    }
+    if (authInfoWriteWinbind(authInfo) == FALSE) {
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
+	      PACKAGE, SYSCONFDIR, "/samba/smb.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNSS(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "nsswitch.conf");
+	      PACKAGE, SYSCONFDIR, "/nsswitch.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNetwork(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "sysconfig/network");
+	      PACKAGE, SYSCONFDIR, "/sysconfig/network");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWritePAM(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
-	      PACKAGE, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
+	      PACKAGE, SYSCONFDIR, "/pam.d/" AUTH_PAM_SERVICE);
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
+    }
+    if (winbindJoiner != NULL) {
+      if (strchr(winbindJoiner, '%')) {
+         const char *p;
+         p = strchr(winbindJoiner, '%');
+	 authInfo->joinUser = g_strndup(winbindJoiner, p - winbindJoiner);
+	 authInfo->joinPassword = g_strdup(p + 1);
+      } else {
+	 authInfo->joinUser = g_strdup(winbindJoiner);
+      }
+      authInfoJoin(authInfo, TRUE);
     }
     authInfoPost(authInfo, nostart);
   }

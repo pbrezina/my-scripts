@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 2002 Red Hat, Inc.
+  * Copyright (c) 2002,2003 Red Hat, Inc.
   *
   * This is free software; you can redistribute it and/or modify it
   * under the terms of the GNU General Public License as published by
@@ -32,7 +32,11 @@ static PyObject *authconfig_write(PyObject *self, PyObject *args,
 				  PyObject *kwargs);
 static PyObject *authconfig_post(PyObject *self, PyObject *args,
 				 PyObject *kwargs);
-
+static PyObject *authconfig_join(PyObject *self, PyObject *args,
+				 PyObject *kwargs);
+static struct authInfoObject *authconfig_copy(PyObject *self, PyObject *args,
+					      PyObject *kwargs);
+static PyObject *authconfig_update(PyObject *self);
 
 /* Define a mapping for the fields in the authInfo structure we want to
  * expose through python. */
@@ -56,7 +60,16 @@ static struct {
 	S_FIELD(nisServer),
 	S_FIELD(nisDomain),
 	S_FIELD(smbWorkgroup),
+	S_FIELD(smbRealm),
 	S_FIELD(smbServers),
+	S_FIELD(smbSecurity),
+	S_FIELD(smbIdmapUid),
+	S_FIELD(smbIdmapGid),
+	S_FIELD(winbindSeparator),
+	S_FIELD(winbindTemplateHomedir),
+	S_FIELD(winbindTemplatePrimaryGroup),
+	S_FIELD(winbindTemplateShell),
+	TF_FIELD(winbindUseDefaultDomain),
 	TF_FIELD(enableCache),
 	TF_FIELD(enableDB),
 	TF_FIELD(enableHesiod),
@@ -68,6 +81,15 @@ static struct {
 	TF_FIELD(enableMD5),
 	TF_FIELD(enableShadow),
 	TF_FIELD(enableSMB),
+	TF_FIELD(enableWinbind),
+	TF_FIELD(enableWINS),
+	TF_FIELD(enableDBbind),
+	TF_FIELD(enableDBIbind),
+	TF_FIELD(enableHesiodbind),
+	TF_FIELD(enableLDAPbind),
+	TF_FIELD(enableOdbcbind),
+	S_FIELD(joinUser),
+	S_FIELD(joinPassword),
 };
 
 struct authInfoObject {
@@ -115,10 +137,16 @@ authInfoObject_print(PyObject *self, PyObject *args)
 			case svalue:
 				p = G_STRUCT_MEMBER_P(info->info,
 						      map[i].offset);
-				tmp = g_strdup_printf("%s  %s = '%s'\n",
-						      ret_string,
-						      map[i].name,
-						      *p);
+				if (*p) {
+					tmp = g_strdup_printf("%s  %s = '%s'\n",
+							      ret_string,
+							      map[i].name,
+							      *p);
+				} else {
+					tmp = g_strdup_printf("%s  %s = (null)\n",
+							      ret_string,
+							      map[i].name);
+				}
 				break;
 			default:
 				tmp = g_strconcat(ret_string,
@@ -158,6 +186,7 @@ authInfoObject_setattr(PyObject *self, const char *attribute, PyObject *args)
 							      map[i].offset);
 					*b = (args != NULL) &&
 					     PyObject_IsTrue(args);
+					authInfoUpdate(info->info);
 					return 0;
 					break;
 				case svalue:
@@ -169,12 +198,15 @@ authInfoObject_setattr(PyObject *self, const char *attribute, PyObject *args)
 					}
 					if (PyString_Check(args)) {
 						*p = g_strdup(PyString_AsString(args));
+						authInfoUpdate(info->info);
 						return 0;
 					} else
 					if (PyNumber_Check(args)) {
 						*p = g_strdup_printf("%ld", PyLong_AsLong(PyNumber_Long((args))));
+						authInfoUpdate(info->info);
 						return 0;
 					} else {
+						authInfoUpdate(info->info);
 						return 0;
 					}
 					break;
@@ -188,7 +220,13 @@ authInfoObject_setattr(PyObject *self, const char *attribute, PyObject *args)
 static PyMethodDef authconfig_methods[] = {
 	{"write", (PyCFunction)authconfig_write,
 	 METH_VARARGS | METH_KEYWORDS},
+	{"copy", (PyCFunction)authconfig_copy,
+	 METH_VARARGS | METH_KEYWORDS},
 	{"post", (PyCFunction)authconfig_post,
+	 METH_VARARGS | METH_KEYWORDS},
+	{"update", (PyCFunction)authconfig_update,
+	 METH_NOARGS},
+	{"join", (PyCFunction)authconfig_join,
 	 METH_VARARGS | METH_KEYWORDS},
 	{NULL, NULL, 0},
 };
@@ -251,6 +289,20 @@ static PyTypeObject authInfoObjectType = {
 	(reprfunc) NULL,			/* Object-as-svalue method. */
 };
 
+static PyObject *
+authconfig_getusershells(PyObject *self)
+{
+	const char *p;
+	PyObject *ret;
+	ret = PyList_New(0);
+	setusershell();
+	while ((p = getusershell()) != NULL) {
+		PyList_Append(ret, PyString_FromString(p));
+	}
+	endusershell();
+	return ret;
+}
+
 static struct authInfoObject *
 authconfig_read(PyObject *self)
 {
@@ -263,6 +315,32 @@ authconfig_read(PyObject *self)
 		return NULL;
 	}
 	ret->info = info;
+	return ret;
+}
+
+static struct authInfoObject *
+authconfig_copy(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+	struct authInfoObject *ret = NULL, *info;
+	char *keywords[] = {"info", NULL};
+	if (authInfoObject_Check(self)) {
+		info = (struct authInfoObject *)self;
+	} else
+	if (PyTuple_Check(args)) {
+		if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!", keywords,
+						 &authInfoObjectType, &info)) {
+			return NULL;
+		}
+	} else {
+		PyErr_SetString(PyExc_TypeError, "expected authInfoObject");
+		return NULL;
+	}
+	ret = PyObject_New(struct authInfoObject, &authInfoObjectType);
+	if (ret == NULL) {
+		PyErr_SetString(PyExc_TypeError, "error creating object");
+		return NULL;
+	}
+	ret->info = authInfoCopy(info->info);
 	return ret;
 }
 
@@ -320,11 +398,50 @@ authconfig_post(PyObject *self, PyObject *args, PyObject *kwargs)
 	return Py_BuildValue("");
 }
 
+static PyObject *
+authconfig_join(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+	struct authInfoObject *info;
+	char *keywords[] = {"info", NULL};
+	if (authInfoObject_Check(self)) {
+		info = (struct authInfoObject *)self;
+	} else
+	if (PyTuple_Check(args)) {
+		if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O",
+						 keywords,
+						 &authInfoObjectType, &info)) {
+			return NULL;
+		}
+	} else {
+		PyErr_SetString(PyExc_TypeError, "expected authInfoObject");
+		return NULL;
+	}
+	authInfoJoin(info->info, TRUE);
+	return Py_BuildValue("");
+}
+
+static PyObject *
+authconfig_update(PyObject *self)
+{
+	struct authInfoObject *info;
+	if (authInfoObject_Check(self)) {
+		info = (struct authInfoObject *)self;
+	} else {
+		return NULL;
+	}
+	authInfoUpdate(info->info);
+	return Py_BuildValue("");
+}
+
 /* Method table mapping functions to wrappers. */
 static PyMethodDef module_methods[] = {
 	{"read", (PyCFunction)authconfig_read, METH_NOARGS},
 	{"write", (PyCFunction)authconfig_write, METH_VARARGS | METH_KEYWORDS},
 	{"post", (PyCFunction)authconfig_post, METH_VARARGS | METH_KEYWORDS},
+	{"update", (PyCFunction)authconfig_update, METH_NOARGS},
+	{"join", (PyCFunction)authconfig_join, METH_VARARGS | METH_KEYWORDS},
+	{"copy", (PyCFunction)authconfig_copy, METH_VARARGS | METH_KEYWORDS},
+	{"getusershells", (PyCFunction)authconfig_getusershells, METH_NOARGS},
 	{NULL, NULL, 0},
 };
 

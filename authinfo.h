@@ -44,37 +44,29 @@
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
 
 #ifdef PREFER_LIB64
-
-#define PATH_LIBNSS_DB "/lib64/libnss_db.so.2"
-#define PATH_LIBNSS_LDAP "/lib64/libnss_ldap.so.2"
-#define PATH_LIBNSS_NIS "/lib64/libnss_nis.so.2"
-#define PATH_LIBNSS_ODBCBIND "/lib64/libnss_odbcbind.so.2"
-#define PATH_LIBNSS_WINBIND "/lib64/libnss_winbind.so.2"
-
-#define PATH_PAM_KRB5 "/lib64/security/pam_krb5.so"
-#define PATH_PAM_LDAP "/lib64/security/pam_ldap.so"
-#define PATH_PAM_SMB "/lib64/security/pam_smb_auth.so"
-#define PATH_PAM_WINBIND "/lib64/security/pam_winbind.so"
-
+#define LIBDIR "/lib64"
 #else
-
-#define PATH_LIBNSS_DB "/lib/libnss_db.so.2"
-#define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
-#define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
-#define PATH_LIBNSS_ODBCBIND "/lib/libnss_odbcbind.so.2"
-#define PATH_LIBNSS_WINBIND "/lib/libnss_winbind.so.2"
-
-#define PATH_PAM_KRB5 "/lib/security/pam_krb5.so"
-#define PATH_PAM_LDAP "/lib/security/pam_ldap.so"
-#define PATH_PAM_SMB "/lib/security/pam_smb_auth.so"
-#define PATH_PAM_WINBIND "/lib/security/pam_winbind.so"
-
+#define LIBDIR "/lib"
 #endif
+
+#define PATH_LIBNSS_DB LIBDIR "/libnss_db.so.2"
+#define PATH_LIBNSS_LDAP LIBDIR "/libnss_ldap.so.2"
+#define PATH_LIBNSS_NIS LIBDIR "/libnss_nis.so.2"
+#define PATH_LIBNSS_ODBCBIND LIBDIR "/libnss_odbcbind.so.2"
+#define PATH_LIBNSS_WINBIND LIBDIR "/libnss_winbind.so.2"
+#define PATH_LIBNSS_WINS LIBDIR "/libnss_wins.so.2"
+
+#define PATH_PAM_KRB5 LIBDIR "/security/pam_krb5.so"
+#define PATH_PAM_LDAP LIBDIR "/security/pam_ldap.so"
+#define PATH_PAM_SMB LIBDIR "/security/pam_smb_auth.so"
+#define PATH_PAM_WINBIND LIBDIR "/security/pam_winbind.so"
 
 #define _(String) gettext((String))
 #define AUTHCONFIG_PACKAGE_WARNING _("The %s file was not found, but it is "\
         "required for %s support to work properly.  Install the %s package, "\
         "which provides this file.")
+
+struct authInfoPrivate;
 
 /*
  * used to hold information regarding different authentication
@@ -85,6 +77,8 @@
  * information read from system configuration files.
  */
 struct authInfoType {
+	struct authInfoPrivate *pvt;
+
 	/* Service-specific settings. */
 	char *hesiodLHS;
 	char *hesiodRHS;
@@ -100,11 +94,22 @@ struct authInfoType {
 	char *nisDomain;
 
 	char *smbWorkgroup;
+	char *smbRealm;
 	char *smbServers;
+	char *smbSecurity;
+	char *smbIdmapUid;
+	char *smbIdmapGid;
+
+	char *winbindSeparator;
+	char *winbindTemplateHomedir;
+	char *winbindTemplatePrimaryGroup;
+	char *winbindTemplateShell;
+	gboolean winbindUseDefaultDomain;
  
 	/* NSSwitch setup.  Files is always in there. */
 	gboolean enableCache;
 	gboolean enableDB;
+	gboolean enableDirectories;
 	gboolean enableHesiod;
 	gboolean enableLDAP;
 	gboolean enableLDAPS;
@@ -116,6 +121,7 @@ struct authInfoType {
 	gboolean enableLDAPbind;
 	gboolean enableOdbcbind;
 	gboolean enableWinbind;
+	gboolean enableWINS;
 
 	/* Authentication setup. */
 	gboolean enableAFS;
@@ -128,11 +134,14 @@ struct authInfoType {
 	gboolean enableOTP;
 	gboolean enableShadow;
 	gboolean enableSMB;
-	gboolean enableWinbindAuth;
+
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;
 #endif
 	gboolean brokenShadow;
+
+	/* Not really options. */
+	char *joinUser, *joinPassword;
 };
 
 struct authInfoType *authInfoRead(void);
@@ -152,6 +161,8 @@ gboolean authInfoReadPAM(struct authInfoType *info);
 gboolean authInfoReadNetwork(struct authInfoType *info);
 gboolean authInfoReadWinbind(struct authInfoType *info);
 
+void authInfoUpdate(struct authInfoType *info);
+
 gboolean authInfoWriteCache(struct authInfoType *info);
 gboolean authInfoWriteHesiod(struct authInfoType *info);
 gboolean authInfoWriteLibuser(struct authInfoType *info);
@@ -166,5 +177,6 @@ gboolean authInfoWriteWinbind(struct authInfoType *info);
 
 void authInfoPost(struct authInfoType *authInfo, int nostart);
 void authInfoPrint(struct authInfoType *authInfo);
+void authInfoJoin(struct authInfoType *authInfo, gboolean echo);
 
 #endif

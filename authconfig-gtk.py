@@ -43,33 +43,52 @@ class childWindow:
 		self.runPriority = 45
 		self.moduleName = "Authentication"
 		self.moduleClass = "reconfig"
+		self.lib = "/lib"
+		for item in sys.path:
+			for element in item.split("/"):
+				if element.startswith("lib"):
+					self.lib = "/" + element
+		# "checkbox/button name": authInfo field, file, generic name,
+		# package, names of widgets to disable if checkbox not active
 		self.main_map = {
 			"enablecache" :
 			("enableCache", "/usr/sbin/nscd",
-			 "caching", "nscd"),
+			 "caching", "nscd", []),
 			"enablenis" :
 			("enableNIS", "/usr/sbin/ypbind",
-			 "NIS", "ypbind"),
+			 "NIS", "ypbind", ["confignis"]),
 			"enablehesiod" :
-			("enableHesiod", "/lib/libnss_hesiod.so.2",
-			 "Hesiod", "glibc"),
+			("enableHesiod", self.lib + "/libnss_hesiod.so.2",
+			 "Hesiod", "glibc", ["confighesiod"]),
 			"enableldap" :
-			("enableLDAP", "/lib/libnss_ldap.so.2",
-			 "LDAP", "nss_ldap"),
+			("enableLDAP", self.lib + "/libnss_ldap.so.2",
+			 "LDAP", "nss_ldap", ["configldap"]),
 			"enableldapauth" :
-			("enableLDAPAuth", "/lib/security/pam_ldap.so",
-			 "LDAP", "nss_ldap"),
+			("enableLDAPAuth", self.lib + "/security/pam_ldap.so",
+			 "LDAP", "nss_ldap", ["configldapauth"]),
 			"enablekerberos" :
-			("enableKerberos", "/lib/security/pam_krb5.so",
-			 "Kerberos", "pam_krb5"),
+			("enableKerberos", self.lib + "/security/pam_krb5.so",
+			 "Kerberos", "pam_krb5", ["configkerberos"]),
 			"enablesmb" :
-			("enableSMB", "/lib/security/pam_smb_auth.so",
-			 "SMB", "pam_smb"),
+			("enableSMB", self.lib + "/security/pam_smb_auth.so",
+			 "SMB", "pam_smb", ["configsmb"]),
 			"enableshadow" :
-			("enableShadow", "", "", ""),
+			("enableShadow", "", "", "", []),
 			"enablemd5" :
-			("enableMD5", "", "", ""),
+			("enableMD5", "", "", "", []),
+			"enablewinbind" :
+			("enableWinbind", self.lib + "/nss_winbind.so.2",
+			 "winbind", "samba-client", ["configwinbind"]),
+			"enablewinbind2" :
+			("enableWinbind", self.lib + "/security/pam_winbind.so",
+			 "winbind", "samba-client", ["configwinbind2"]),
 		}
+		# entry or label / button / checkbox / option menu :
+		# entry (or label): authInfo field
+		# button: function
+		# checkbox: authInfo field
+		# option menu: authInfo field, list of choices, list of tuples
+		#              of value/sensitive widgets
 		self.nis_map = {
 			"domain" : ("nisDomain", ""),
 			"server" : ("nisServer", ""),
@@ -92,6 +111,19 @@ class childWindow:
 			"workgroup" : ("smbWorkgroup", ""),
 			"domaincontrollers" : ("smbServers", ""),
 		}
+		self.winbindjoin_map = {
+			"domain" : ("smbWorkgroup", ""),
+			"joinuser" : ("joinUser", ""),
+			"joinpassword" : ("joinPassword", ""),
+		}
+		self.winbind_map = {
+			"domain" : ("smbWorkgroup", ""),
+			"security" : ("smbSecurity", ("ads", "domain", "server", "user"), (("realm", ("ads",)), ("shell", ("domain", "ads")), ("join", ("domain", "ads")))),
+			"realm" : ("smbRealm", ""),
+			"servers" : ("smbServers", ""),
+			"shell" : ("winbindTemplateShell", ["/bin/false"] + authconfig.getusershells(), ()),
+			"join" : ("winbindjoin_launch", "")
+		}
 		self.launch_map = {
 			"confignis": ("nissettings", "nis_map"),
 			"configldap": ("ldapsettings", "ldap_map"),
@@ -99,62 +131,145 @@ class childWindow:
 			"confighesiod": ("hesiodsettings", "hesiod_map"),
 			"configsmb": ("smbsettings", "smb_map"),
 			"configkerberos": ("kerberossettings", "kerberos_map"),
+			"configwinbind": ("winbindsettings", "winbind_map"),
+			"configwinbind2": ("winbindsettings", "winbind_map"),
 		}
 		self.info = authconfig.read()
+		return
 
 	def destroy_widget(self, button, widget):
 		widget.destroy()
+		return
+
+	def winbindjoin_launch(self, button, map, xml, parent):
+		backup = self.info.copy()
+		self.info_apply(map, xml)
+		response = self.run_on_button(self, "winbindjoin",
+					      "winbindjoin_map", parent)
+		if (response == gtk.RESPONSE_OK):
+			self.info.join()
+		self.info = backup
+
+	def info_apply(self, map, xml):
+		for entry in map.keys():
+			widget = xml.get_widget(entry)
+			if hasattr(widget, "get_history"):
+				history = widget.get_history()
+				setattr(self.info, map[entry][0],
+					widget.get_data('option_list')[history])
+			elif hasattr(widget, "get_text"):
+				setattr(self.info, map[entry][0],
+					widget.get_text())
+			elif hasattr(widget, "get_active"):
+				setattr(self.info, map[entry][0],
+					widget.get_active())
+		self.info.update()
 
 	# Toggle a boolean.
-	def toggleboolean(self, button, name):
-		setattr(self.info, name, button.get_active())
+	def toggleboolean(self, checkbox, name, aliases, dependents):
+		setattr(self.info, name, checkbox.get_active())
+		for widget in aliases:
+			widget.set_active(checkbox.get_active())
+		for widget in dependents:
+			widget.set_sensitive(checkbox.get_active())
 		return
+
+	def changeoption(self, optionmenu, entry, xml):
+		history = optionmenu.get_history()
+		options = optionmenu.get_data("option_list")
+		for candidate in entry[2]:
+			dependent = xml.get_widget(candidate[0])
+			if options[history] in candidate[1]:
+				dependent.set_sensitive(gtk.TRUE)
+			else:
+				dependent.set_sensitive(gtk.FALSE)
 
 	# Create a vbox or dialog using the file, and return it. */
 	def run_on_button(self, button, top, mapname, parent=None):
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
 				    top, "authconfig")
 		map = getattr(self, mapname)
-		assert (map)
+		dialog = xml.get_widget(top)
+		self.info.update()
 		for entry in map.keys():
 			widget = xml.get_widget(entry)
-			if hasattr(widget, "get_text"):
+			if hasattr(widget, "set_history"):
+				widget = xml.get_widget(entry)
+				menu = gtk.Menu()
+				options = []
+				history = 0
+				offset = 0
+				for option in tuple(map[entry][1]):
+					if option == '':
+						continue
+					item = gtk.MenuItem(option)
+					item.show()
+					menu.append(item)
+					options.append(option)
+					if option == getattr(self.info, map[entry][0]):
+						history = offset
+					offset = offset + 1
+				widget.set_menu(menu)
+				option = getattr(self.info, map[entry][0])
+				if option not in options:
+					if option != '':
+						item = gtk.MenuItem(option)
+						item.show()
+						menu.prepend(item)
+						options.insert(0, option)
+						history = 0
+				widget.set_history(history)
+				widget.set_data('option_list', options)
+				widget.connect("changed", self.changeoption,
+					       map[entry], xml)
+				self.changeoption(widget, map[entry], xml)
+			elif hasattr(widget, "clicked"):
+				widget.connect("clicked",
+					       getattr(self, map[entry][0]),
+					       map,
+					       xml,
+					       dialog)
+			elif hasattr(widget, "set_text"):
 				if getattr(self.info, map[entry][0]):
 					widget.set_text(getattr(self.info,
 								map[entry][0]))
 
-			elif hasattr(widget, "get_active"):
+			elif hasattr(widget, "set_active"):
 				widget.set_active(getattr(self.info,
 							  map[entry][0]))
-		dialog = xml.get_widget(top)
+				if map[entry][4]:
+					button = xml.get_widget(map[entry][4])
+					button.set_sensitive(getattr(self.info,
+								     map[entry][0]))
 		if parent:
-			dialog.set_transient_for (parent)
-		dialog.set_resizable (gtk.FALSE)
-		if dialog.run () == gtk.RESPONSE_OK:
-			for entry in map.keys():
-				widget = xml.get_widget(entry)
-				if hasattr(widget, "get_text"):
-					setattr(self.info, map[entry][0], widget.get_text())
-
-				elif hasattr(widget, "get_active"):
-					setattr(self.info, map[entry][0], widget.get_active())
+			dialog.set_transient_for(parent)
+			parent.set_sensitive(gtk.FALSE)
+		dialog.set_resizable(gtk.FALSE)
+		response = None
+		while ((response != gtk.RESPONSE_OK) and
+		       (response != gtk.RESPONSE_CANCEL)):
+			response = dialog.run()
+		if (response == gtk.RESPONSE_OK):
+			self.info_apply(map, xml)
 		dialog.destroy()
-		return
+		if parent:
+			parent.set_sensitive(gtk.TRUE)
+		return response
 
 	# Create a vbox with the right controls and return the vbox. */
 	def get_main_widget(self):
-		dialog = gtk.Dialog (_("Authentication Configuration"),
-				     None,
-				     gtk.DIALOG_NO_SEPARATOR,
-				     (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-				      gtk.STOCK_OK, gtk.RESPONSE_OK))
-		dialog.set_resizable (gtk.FALSE)
+		dialog = gtk.Dialog(_("Authentication Configuration"),
+				    None,
+				    gtk.DIALOG_NO_SEPARATOR,
+				    (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+				     gtk.STOCK_OK, gtk.RESPONSE_OK))
+		dialog.set_resizable(gtk.FALSE)
 		# Construct the XML object.
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
 				    'vbox', "authconfig")
 		box = xml.get_widget('vbox')
 		box.show_all
-		dialog.vbox.pack_start (box)
+		dialog.vbox.pack_start(box)
 
 		# Set up the pushbuttons to launch new dialogs.
 		for entry in self.launch_map.keys():
@@ -167,12 +282,24 @@ class childWindow:
 		# Hook up checkboxes and entry fields.
 		for entry in self.main_map.keys():
 			widget = xml.get_widget(entry)
+			widget.set_active(getattr(self.info,
+						  self.main_map[entry][0]))
 			if hasattr(widget, "get_active"):
-				widget.set_active(getattr(self.info,
-							  self.main_map[entry][0]))
+				aliases = []
+				dependents = []
+				for candidate in self.main_map.keys():
+					if entry != candidate:
+						if self.main_map[entry][0] == self.main_map[candidate][0]:
+							aliases = aliases + [xml.get_widget(candidate)]
+				for candidate in self.main_map[entry][4]:
+					dependents = dependents + [xml.get_widget(candidate)]
 				widget.connect("toggled", self.toggleboolean,
-					       self.main_map[entry][0])
-
+					       self.main_map[entry][0], aliases,
+					       dependents)
+				self.toggleboolean(widget,
+						   self.main_map[entry][0],
+						   aliases,
+						   dependents)
 		return dialog
 
 	# Save changes.
@@ -187,11 +314,11 @@ class childWindow:
 
 # Fake the firstboot setup.
 if __name__ == '__main__':
-	signal.signal (signal.SIGINT, signal.SIG_DFL)
+	signal.signal(signal.SIGINT, signal.SIG_DFL)
 	textdomain("authconfig")
 	gtk.glade.bindtextdomain("authconfig", "/usr/share/locale")
 	module = childWindow()
 	dialog = module.get_main_widget()
-	if dialog.run () == gtk.RESPONSE_OK:
-		module.apply ()
-	sys.exit (0)
+	if dialog.run() == gtk.RESPONSE_OK:
+		module.apply()
+	sys.exit(0)

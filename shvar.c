@@ -10,7 +10,7 @@
  * Furthermore, they are only intended for one level of inheritance;
  * the value setting algorithm assumes this.
  *
- * Copyright 1999,2000 Red Hat, Inc.
+ * Copyright 1999,2000,2003 Red Hat, Inc.
  *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by
@@ -154,7 +154,7 @@ escape(const char *s) {
 	if (strchr(escapees, s[i])) mangle++;
 	if (strchr(spaces, s[i])) space++;
     }
-    if (!mangle && !space) return strdup(s);
+    if (!mangle && !space) return g_strdup(s);
 
     newlen = slen + mangle + 3;	/* 3 is extra ""\0 */
     new = g_malloc0(newlen);
@@ -330,13 +330,13 @@ svSetValue(shvarFile *s, const char *key, const char *value)
     }
 
 end:
-    if (newval) free(newval);
-    if (val1) free(val1);
-    if (val2) free(val2);
+    if (newval) g_free(newval);
+    if (val1) g_free(val1);
+    if (val2) g_free(val2);
     return;
 
 bail:
-    if (keyValue) free (keyValue);
+    if (keyValue) g_free (keyValue);
     goto end;
 }
 
