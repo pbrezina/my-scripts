@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 4.0.24\n"
-"POT-Creation-Date: 2002-04-15 11:49-0400\n"
+"POT-Creation-Date: 2002-04-19 00:57-0400\n"
 "PO-Revision-Date: 2002-03-21 14:22GMT+10:00\n"
 "Last-Translator: James Hashida <khashida@redhat.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -20,6 +20,7 @@ msgstr "警告"
 
 # ../authconfig.c:154 ../authconfig.c:550 ../authconfig.c:563
 #: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: glade.strings:37
 msgid "Ok"
 msgstr "OK"
 
@@ -107,7 +108,7 @@ msgid "Back"
 msgstr "戻る"
 
 # ../authconfig.c:375 ../authconfig.c:552
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
 msgid "Cancel"
 msgstr "取り消し"
 
@@ -143,6 +144,7 @@ msgstr "SMB認証を使用"
 
 # ../authconfig.c:580
 #: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+#: glade.strings:7
 msgid "Authentication Configuration"
 msgstr "認証の設定"
 
@@ -440,178 +442,224 @@ msgstr ""
 "%s ファイルが見つかりません。このファイルは %s サポートを正しく機能させるため"
 "に必要です。  このファイルを含む %s パッケージをインストールしてください。"
 
+#: glade.strings:8
+msgid "_Cache User Information"
+msgstr "キャッシュユーザー情報"
+
+# ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
+#: glade.strings:9
+msgid "NIS"
+msgstr "NIS "
+
+#: glade.strings:10
+msgid "_Configure NIS..."
+msgstr "NISの設定"
+
+# ../authconfig.c:719
+#: glade.strings:11
+msgid "Enable _NIS Support"
+msgstr "NIS サポートを有効にする"
+
+#: glade.strings:12
+msgid ""
+"NIS is the Name Information Service.  It is commonly used on small to medium "
+"networks."
+msgstr ""
+"NISとはネームインフォメーションサービスのことです。一般的に小から中サイズの "
+"ネットワークで使用されます。"
+
+# ../authconfig.c:305
+#: glade.strings:13 glade.strings:24
+msgid "LDAP"
+msgstr "LDAP "
+
+#: glade.strings:14 glade.strings:25
+msgid "Enable _LDAP Support"
+msgstr "LDAPサポートを有効にする"
+
+#: glade.strings:15 glade.strings:26
+msgid "_Configure LDAP..."
+msgstr "LDAPの設定"
+
+#: glade.strings:16 glade.strings:27
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"Lightweight Directory Access Protocol とは階級構成の中の随意のデータを保持す"
+"る ディレクトリを検索する標準的な手段です。LDAPは小から大サイズまでの ネット"
+"ワークでの使用が増加しています。"
+
+# ../authconfig.c:344
+#: glade.strings:17
+msgid "Hesiod"
+msgstr "Hesiod "
+
+#: glade.strings:18
+msgid "Enable _Hesiod Support"
+msgstr "Hesiodサポートを有効にする"
+
+#: glade.strings:19
+msgid "_Configure Hesiod..."
+msgstr "Hesiod.の設定"
+
+#: glade.strings:20
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiodはシステム管理者がDNSでユーザーとグループ情報を発行できるようにしま"
+"す。 これは時として大規模なネットワークで使用されます。"
+
+#: glade.strings:21
+msgid "User Information"
+msgstr "ユーザー情報"
+
+# ../authconfig.c:450
+#: glade.strings:22
+msgid "Use _Shadow Passwords"
+msgstr "シャドウパスワードを使用"
+
+# ../authconfig.c:455
+#: glade.strings:23
+msgid "Use _MD5 Passwords"
+msgstr "MD5 パスワードを使用"
+
+# ../authconfig.c:500
+#: glade.strings:28
+msgid "Kerberos"
+msgstr "Kerberos "
+
+#: glade.strings:29
+msgid "Enable _Kerberos Support"
+msgstr "Kerberos サポートを有効にする"
+
+#: glade.strings:30
+msgid "_Configure Kerberos..."
+msgstr "Kerberosの設定"
+
+#: glade.strings:31
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberosは一般的に中から大サイズのネットワークで使用される信用できる サード"
+"パーティ認証システムです。"
+
+# ../authconfig.c:462
+#: glade.strings:32
+msgid "SMB Authentication"
+msgstr "SMB認証"
+
+#: glade.strings:33
+msgid "Enable _SMB Support"
+msgstr "SMBサポートを有効にする"
+
+#: glade.strings:34
+msgid "_Configure SMB..."
+msgstr "SMBの設定"
+
+#: glade.strings:35
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"SMB認証はSMB (system message block)プロトコル系を使用するサーバに接続して "
+"ユーザーパスワードを確証します。"
+
+# ../authconfig.c:462
+#: glade.strings:36
+msgid "Authentication"
+msgstr "認証"
+
+#: glade.strings:39
+msgid "NIS Settings"
+msgstr "NIS設定"
+
+# ../authconfig.c:163 ../authconfig.c:201
+#: glade.strings:40
+msgid "NIS _Server"
+msgstr "NISサーバ:"
+
+# ../authconfig.c:162
+#: glade.strings:41
+msgid "NIS _Domain"
+msgstr "NISドメイン:"
+
+#: glade.strings:42 glade.strings:47 glade.strings:53 glade.strings:58
+#: glade.strings:64
+msgid "Apply"
+msgstr "適用"
+
+#: glade.strings:43 glade.strings:48 glade.strings:54 glade.strings:59
+#: glade.strings:65
+msgid "Close"
+msgstr "閉じる"
+
+#: glade.strings:44
+msgid "Hesiod Settings"
+msgstr "Hesiod設定"
+
+# ../authconfig.c:762
+#: glade.strings:45
+msgid "Hesiod _RHS"
+msgstr " Hesiod  RHS"
+
+# ../authconfig.c:760
+#: glade.strings:46
+msgid "Hesiod _LHS"
+msgstr " Hesiod  LHS"
+
+#: glade.strings:49
+msgid "Kerberos Settings"
+msgstr "Kerberos設定"
+
+# ../authconfig.c:236
+#: glade.strings:50
+msgid "_Admin Servers"
+msgstr "管理 サーバ:"
+
+# ../authconfig.c:234
+#: glade.strings:51
+msgid "_Realm"
+msgstr "_Realm"
+
+# ../authconfig.c:235
+#: glade.strings:52
+msgid "_KDCs"
+msgstr "KDCs"
+
+#: glade.strings:55
+msgid "SMB Settings"
+msgstr "SMB設定"
+
+#: glade.strings:56
+msgid "_Domain Controllers"
+msgstr "ドメインコントローラ"
+
+#: glade.strings:57
+msgid "_Workgroup"
+msgstr "ワークグループ"
+
+#: glade.strings:60
+msgid "LDAP Settings"
+msgstr "LDAP設定"
+
+# ../authconfig.c:740
+#: glade.strings:61
+msgid "LDAP _Server"
+msgstr " LDAP サーバ"
+
+#: glade.strings:62
+msgid "LDAP Search _Base DN"
+msgstr "LDAP検索  基本DN"
+
+#: glade.strings:63
+msgid "Use _TLS to encrypt connections"
+msgstr "接続を暗号化するためにTLSを使用"
+
 # ../authconfig.c:774
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "ローカルポリシーを使用"
-
-#~ msgid "_Cache User Information"
-#~ msgstr "キャッシュユーザー情報"
-
-# ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
-#~ msgid "NIS"
-#~ msgstr "NIS "
-
-#~ msgid "_Configure NIS..."
-#~ msgstr "NISの設定"
-
-# ../authconfig.c:719
-#~ msgid "Enable _NIS Support"
-#~ msgstr "NIS サポートを有効にする"
-
-#~ msgid ""
-#~ "NIS is the Name Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NISとはネームインフォメーションサービスのことです。一般的に小から中サイズ"
-#~ "の ネットワークで使用されます。"
-
-# ../authconfig.c:305
-#~ msgid "LDAP"
-#~ msgstr "LDAP "
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "LDAPサポートを有効にする"
-
-#~ msgid "_Configure LDAP..."
-#~ msgstr "LDAPの設定"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy.  "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Lightweight Directory Access Protocol とは階級構成の中の随意のデータを保持"
-#~ "する ディレクトリを検索する標準的な手段です。LDAPは小から大サイズまでの "
-#~ "ネットワークでの使用が増加しています。"
-
-# ../authconfig.c:344
-#~ msgid "Hesiod"
-#~ msgstr "Hesiod "
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Hesiodサポートを有効にする"
-
-#~ msgid "_Configure Hesiod..."
-#~ msgstr "Hesiod.の設定"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiodはシステム管理者がDNSでユーザーとグループ情報を発行できるようにしま"
-#~ "す。 これは時として大規模なネットワークで使用されます。"
-
-#~ msgid "User Information"
-#~ msgstr "ユーザー情報"
-
-# ../authconfig.c:450
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "シャドウパスワードを使用"
-
-# ../authconfig.c:455
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "MD5 パスワードを使用"
-
-# ../authconfig.c:500
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos "
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Kerberos サポートを有効にする"
-
-#~ msgid "_Configure Kerberos..."
-#~ msgstr "Kerberosの設定"
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberosは一般的に中から大サイズのネットワークで使用される信用できる サー"
-#~ "ドパーティ認証システムです。"
-
-# ../authconfig.c:462
-#~ msgid "SMB Authentication"
-#~ msgstr "SMB認証"
-
-#~ msgid "Enable _SMB Support"
-#~ msgstr "SMBサポートを有効にする"
-
-#~ msgid "_Configure SMB..."
-#~ msgstr "SMBの設定"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB認証はSMB (system message block)プロトコル系を使用するサーバに接続して "
-#~ "ユーザーパスワードを確証します。"
-
-# ../authconfig.c:462
-#~ msgid "Authentication"
-#~ msgstr "認証"
-
-#~ msgid "NIS Settings"
-#~ msgstr "NIS設定"
-
-# ../authconfig.c:163 ../authconfig.c:201
-#~ msgid "NIS _Server"
-#~ msgstr "NISサーバ:"
-
-# ../authconfig.c:162
-#~ msgid "NIS _Domain"
-#~ msgstr "NISドメイン:"
-
-#~ msgid "Apply"
-#~ msgstr "適用"
-
-#~ msgid "Close"
-#~ msgstr "閉じる"
-
-#~ msgid "Hesiod Settings"
-#~ msgstr "Hesiod設定"
-
-# ../authconfig.c:762
-#~ msgid "Hesiod _RHS"
-#~ msgstr " Hesiod  RHS"
-
-# ../authconfig.c:760
-#~ msgid "Hesiod _LHS"
-#~ msgstr " Hesiod  LHS"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Kerberos設定"
-
-# ../authconfig.c:236
-#~ msgid "_Admin Servers"
-#~ msgstr "管理 サーバ:"
-
-# ../authconfig.c:234
-#~ msgid "_Realm"
-#~ msgstr "_Realm"
-
-# ../authconfig.c:235
-#~ msgid "_KDCs"
-#~ msgstr "KDCs"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB設定"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "ドメインコントローラ"
-
-#~ msgid "_Workgroup"
-#~ msgstr "ワークグループ"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "LDAP設定"
-
-# ../authconfig.c:740
-#~ msgid "LDAP _Server"
-#~ msgstr " LDAP サーバ"
-
-#~ msgid "LDAP Search _Base DN"
-#~ msgstr "LDAP検索  基本DN"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "接続を暗号化するためにTLSを使用"

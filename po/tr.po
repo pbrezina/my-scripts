@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig \n"
-"POT-Creation-Date: 2002-04-15 11:49-0400\n"
+"POT-Creation-Date: 2002-04-19 00:57-0400\n"
 "PO-Revision-Date: 2002-04-04 06:49+0300\n"
 "Last-Translator: Nilgün Belma Bugüner <nilgun@fide.org>\n"
 "Language-Team: Turkish <gnu-tr-u12a@lists.sourceforge.net>\n"
@@ -16,6 +16,7 @@ msgid "Warning"
 msgstr "Uyarı"
 
 #: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: glade.strings:37
 msgid "Ok"
 msgstr "Tamam"
 
@@ -87,7 +88,7 @@ msgstr "İleri"
 msgid "Back"
 msgstr "Geri"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
 msgid "Cancel"
 msgstr "İptal"
 
@@ -116,6 +117,7 @@ msgid "Use SMB Authentication"
 msgstr "SMP Kimlik Sınaması Kullan"
 
 #: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+#: glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Kimlik Bilgisi Yapılandırması"
 
@@ -358,160 +360,206 @@ msgstr ""
 "%s dosyası bulundu, ancak çalışması için %s desteğine ihtiyacı var. Lütfen %"
 "s paketini de kurun."
 
+#: glade.strings:8
+msgid "_Cache User Information"
+msgstr "Kullanıcı Bilgisini _Sakla"
+
+#: glade.strings:9
+msgid "NIS"
+msgstr "NIS"
+
+#: glade.strings:10
+msgid "_Configure NIS..."
+msgstr "NIS'i _Yapılandır..."
+
+#: glade.strings:11
+msgid "Enable _NIS Support"
+msgstr "_NIS Desteğini Etkinleştir"
+
+#: glade.strings:12
+msgid ""
+"NIS is the Name Information Service.  It is commonly used on small to medium "
+"networks."
+msgstr ""
+"NIS Alan Adı Bilgilendirme Hizmetidir. Çoğunlukla küçük ve orta büyüklükteki "
+"ağlarda kullanılmaktadır."
+
+#: glade.strings:13 glade.strings:24
+msgid "LDAP"
+msgstr "LDAP"
+
+#: glade.strings:14 glade.strings:25
+msgid "Enable _LDAP Support"
+msgstr "_LDAP Desteğini Etkinleştir"
+
+#: glade.strings:15 glade.strings:26
+msgid "_Configure LDAP..."
+msgstr "LDAP'ı _Yapılandır..."
+
+#: glade.strings:16 glade.strings:27
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"Hafif Dizin Erişim Protokolü, bir yapısal hiyerarşi içinde çeşitli "
+"bilgilerin tutulduğu bir dizini aramak için kullanılır. LDAP, küçük-büyük "
+"her türlü ağ tarafından giderek artan bir yoğunlukta kullanılmaktadır."
+
+#: glade.strings:17
+msgid "Hesiod"
+msgstr "Hesiod"
+
+#: glade.strings:18
+msgid "Enable _Hesiod Support"
+msgstr "_Hesiod Desteğini Etkinleştir"
+
+#: glade.strings:19
+msgid "_Configure Hesiod..."
+msgstr "Hesiod'u _Yapılandır..."
+
+#: glade.strings:20
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiod, DNS'deki kullanıcı ve grup bilgilerini yayınlamakta kullanılır. "
+"Bazan çok büyük ağlarda da kullanılabilmektedir."
+
+#: glade.strings:21
+msgid "User Information"
+msgstr "Kullanıcı Bilgileri"
+
+#: glade.strings:22
+msgid "Use _Shadow Passwords"
+msgstr "_Shadow Parolalar Kullanılsın"
+
+#: glade.strings:23
+msgid "Use _MD5 Passwords"
+msgstr "_MD5 Parolalar Kullanılsın"
+
+#: glade.strings:28
+msgid "Kerberos"
+msgstr "Kerberos"
+
+#: glade.strings:29
+msgid "Enable _Kerberos Support"
+msgstr "_Kerberos Desteğini Etkinleştir"
+
+#: glade.strings:30
+msgid "_Configure Kerberos..."
+msgstr "Kerberos'u _Yapılandır..."
+
+#: glade.strings:31
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberos, orta ve geniş büyüklükteki ağlarda kullanılan güvenli bir kimlik "
+"sınama sistemidir."
+
+#: glade.strings:32
+msgid "SMB Authentication"
+msgstr "SMB Kimlik Sınaması"
+
+#: glade.strings:33
+msgid "Enable _SMB Support"
+msgstr "_SMB Desteği Etkinleştirilsin"
+
+#: glade.strings:34
+msgid "_Configure SMB..."
+msgstr "SMB'yi _Yapılandır"
+
+#: glade.strings:35
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"SMB Kimlik Sınaması, SMB (sistem ileti bloğu) protokolu kullanan bir "
+"sunucuya bağlanmaya çalışarak kullanıcı parolalarını doğrulatır."
+
+#: glade.strings:36
+msgid "Authentication"
+msgstr "Kimlik Denetimi"
+
+#: glade.strings:39
+msgid "NIS Settings"
+msgstr "NIS Ayarları"
+
+#: glade.strings:40
+msgid "NIS _Server"
+msgstr "NIS _Sunucu"
+
+#: glade.strings:41
+msgid "NIS _Domain"
+msgstr "NIS _Alanı"
+
+#: glade.strings:42 glade.strings:47 glade.strings:53 glade.strings:58
+#: glade.strings:64
+msgid "Apply"
+msgstr "Uygula"
+
+#: glade.strings:43 glade.strings:48 glade.strings:54 glade.strings:59
+#: glade.strings:65
+msgid "Close"
+msgstr "Kapat"
+
+#: glade.strings:44
+msgid "Hesiod Settings"
+msgstr "Hesiod Ayarları"
+
+#: glade.strings:45
+msgid "Hesiod _RHS"
+msgstr "Hesiod _RHS"
+
+#: glade.strings:46
+msgid "Hesiod _LHS"
+msgstr "Hesiod _LHS"
+
+#: glade.strings:49
+msgid "Kerberos Settings"
+msgstr "Kerberos Ayarları"
+
+#: glade.strings:50
+msgid "_Admin Servers"
+msgstr "_Yönetim Sunucuları"
+
+#: glade.strings:51
+msgid "_Realm"
+msgstr "_Realm"
+
+#: glade.strings:52
+msgid "_KDCs"
+msgstr "_KDCs"
+
+#: glade.strings:55
+msgid "SMB Settings"
+msgstr "SMB Ayarları"
+
+#: glade.strings:56
+msgid "_Domain Controllers"
+msgstr "Alan Adı _Denetçileri"
+
+#: glade.strings:57
+msgid "_Workgroup"
+msgstr "Çalışma _Grubu"
+
+#: glade.strings:60
+msgid "LDAP Settings"
+msgstr "LDAP Ayarları"
+
+#: glade.strings:61
+msgid "LDAP _Server"
+msgstr "LDAP _Sunucu"
+
+#: glade.strings:62
+msgid "LDAP Search _Base DN"
+msgstr "LDAP Arama _Tabanı DN"
+
+#: glade.strings:63
+msgid "Use _TLS to encrypt connections"
+msgstr "Bağlantıları şifrelemede _TLS kullanılsın"
+
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Yerel Önlemler Kullanılsın"
-
-#~ msgid "_Cache User Information"
-#~ msgstr "Kullanıcı Bilgisini _Sakla"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "_Configure NIS..."
-#~ msgstr "NIS'i _Yapılandır..."
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "_NIS Desteğini Etkinleştir"
-
-#~ msgid ""
-#~ "NIS is the Name Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS Alan Adı Bilgilendirme Hizmetidir. Çoğunlukla küçük ve orta "
-#~ "büyüklükteki ağlarda kullanılmaktadır."
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "_LDAP Desteğini Etkinleştir"
-
-#~ msgid "_Configure LDAP..."
-#~ msgstr "LDAP'ı _Yapılandır..."
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy.  "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Hafif Dizin Erişim Protokolü, bir yapısal hiyerarşi içinde çeşitli "
-#~ "bilgilerin tutulduğu bir dizini aramak için kullanılır. LDAP, küçük-büyük "
-#~ "her türlü ağ tarafından giderek artan bir yoğunlukta kullanılmaktadır."
-
-#~ msgid "Hesiod"
-#~ msgstr "Hesiod"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "_Hesiod Desteğini Etkinleştir"
-
-#~ msgid "_Configure Hesiod..."
-#~ msgstr "Hesiod'u _Yapılandır..."
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod, DNS'deki kullanıcı ve grup bilgilerini yayınlamakta kullanılır. "
-#~ "Bazan çok büyük ağlarda da kullanılabilmektedir."
-
-#~ msgid "User Information"
-#~ msgstr "Kullanıcı Bilgileri"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "_Shadow Parolalar Kullanılsın"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "_MD5 Parolalar Kullanılsın"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "_Kerberos Desteğini Etkinleştir"
-
-#~ msgid "_Configure Kerberos..."
-#~ msgstr "Kerberos'u _Yapılandır..."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos, orta ve geniş büyüklükteki ağlarda kullanılan güvenli bir "
-#~ "kimlik sınama sistemidir."
-
-#~ msgid "SMB Authentication"
-#~ msgstr "SMB Kimlik Sınaması"
-
-#~ msgid "Enable _SMB Support"
-#~ msgstr "_SMB Desteği Etkinleştirilsin"
-
-#~ msgid "_Configure SMB..."
-#~ msgstr "SMB'yi _Yapılandır"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB Kimlik Sınaması, SMB (sistem ileti bloğu) protokolu kullanan bir "
-#~ "sunucuya bağlanmaya çalışarak kullanıcı parolalarını doğrulatır."
-
-#~ msgid "Authentication"
-#~ msgstr "Kimlik Denetimi"
-
-#~ msgid "NIS Settings"
-#~ msgstr "NIS Ayarları"
-
-#~ msgid "NIS _Server"
-#~ msgstr "NIS _Sunucu"
-
-#~ msgid "NIS _Domain"
-#~ msgstr "NIS _Alanı"
-
-#~ msgid "Apply"
-#~ msgstr "Uygula"
-
-#~ msgid "Close"
-#~ msgstr "Kapat"
-
-#~ msgid "Hesiod Settings"
-#~ msgstr "Hesiod Ayarları"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod _RHS"
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod _LHS"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Kerberos Ayarları"
-
-#~ msgid "_Admin Servers"
-#~ msgstr "_Yönetim Sunucuları"
-
-#~ msgid "_Realm"
-#~ msgstr "_Realm"
-
-#~ msgid "_KDCs"
-#~ msgstr "_KDCs"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB Ayarları"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "Alan Adı _Denetçileri"
-
-#~ msgid "_Workgroup"
-#~ msgstr "Çalışma _Grubu"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "LDAP Ayarları"
-
-#~ msgid "LDAP _Server"
-#~ msgstr "LDAP _Sunucu"
-
-#~ msgid "LDAP Search _Base DN"
-#~ msgstr "LDAP Arama _Tabanı DN"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Bağlantıları şifrelemede _TLS kullanılsın"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Installer 7.0\n"
-"POT-Creation-Date: 2002-04-15 11:49-0400\n"
+"POT-Creation-Date: 2002-04-19 00:57-0400\n"
 "PO-Revision-Date: 2002-04-04 16:54GMT\n"
 "Last-Translator: Bettina De Monti <bettina@redhat.it>\n"
 "Language-Team:  <fr@li.org>\n"
@@ -19,6 +19,7 @@ msgid "Warning"
 msgstr "Avertissement"
 
 #: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: glade.strings:37
 msgid "Ok"
 msgstr "Ok"
 
@@ -90,7 +91,7 @@ msgstr "Suivant"
 msgid "Back"
 msgstr "Retour"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -119,6 +120,7 @@ msgid "Use SMB Authentication"
 msgstr "Utiliser l'authentification SMB"
 
 #: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+#: glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Configuration de l'authentification"
 
@@ -363,163 +365,209 @@ msgstr ""
 "puisse fonctionner correctement. Installer le paquetage %s qui comprend ce "
 "fichier."
 
+#: glade.strings:8
+msgid "_Cache User Information"
+msgstr "Informations utilisateur _cache "
+
+#: glade.strings:9
+msgid "NIS"
+msgstr "NIS"
+
+#: glade.strings:10
+msgid "_Configure NIS..."
+msgstr "_Configurer NIS..."
+
+#: glade.strings:11
+msgid "Enable _NIS Support"
+msgstr "Activer support _NIS"
+
+#: glade.strings:12
+msgid ""
+"NIS is the Name Information Service.  It is commonly used on small to medium "
+"networks."
+msgstr ""
+"NIS est le service d'information du nom. Il est habituellement utilisé par "
+"les réseaux de petite et moyenne taille."
+
+#: glade.strings:13 glade.strings:24
+msgid "LDAP"
+msgstr "LDAP"
+
+#: glade.strings:14 glade.strings:25
+msgid "Enable _LDAP Support"
+msgstr "Activer le support _LDAP"
+
+#: glade.strings:15 glade.strings:26
+msgid "_Configure LDAP..."
+msgstr "_Configurer LDAP..."
+
+#: glade.strings:16 glade.strings:27
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"LDAP (Lightweight Directory Access Protocol) représente une technique "
+"standard de recherche des répertoires et peut contenir des données "
+"arbitraires dans une hiérarchie structurée. LDAP est aussi bien utilisé par "
+"les petits que par les grands réseaux."
+
+#: glade.strings:17
+msgid "Hesiod"
+msgstr "Hesiod"
+
+#: glade.strings:18
+msgid "Enable _Hesiod Support"
+msgstr "Activer le support _Hesiod"
+
+#: glade.strings:19
+msgid "_Configure Hesiod..."
+msgstr "_Configurer Hesiod..."
+
+#: glade.strings:20
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Helios permet aux administrateurs système de publier des informations sur "
+"des utilisateurs ou des groupes en DNS. Il est parfois utilisé par les "
+"réseaux de très grande taille."
+
+#: glade.strings:21
+msgid "User Information"
+msgstr "Informations sur l'utilisateur"
+
+#: glade.strings:22
+msgid "Use _Shadow Passwords"
+msgstr "Utiliser des mots de passe _masqués"
+
+#: glade.strings:23
+msgid "Use _MD5 Passwords"
+msgstr "Utiliser des mots de passe _MD5"
+
+#: glade.strings:28
+msgid "Kerberos"
+msgstr "Kerberos "
+
+#: glade.strings:29
+msgid "Enable _Kerberos Support"
+msgstr "Activer le support _Kerberos"
+
+#: glade.strings:30
+msgid "_Configure Kerberos..."
+msgstr "_Configurer Kerberos..."
+
+#: glade.strings:31
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberos est un système sécurisé d'authentification qui est habituellement "
+"utilisé par les réseaux de moyenne à grande taille."
+
+#: glade.strings:32
+msgid "SMB Authentication"
+msgstr "Authentification SMB"
+
+#: glade.strings:33
+msgid "Enable _SMB Support"
+msgstr "Activer le support _SMB"
+
+#: glade.strings:34
+msgid "_Configure SMB..."
+msgstr "_Configurer SMB..."
+
+#: glade.strings:35
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"L'authentification SMB vérifie les mots de passe des utilisateurs en se "
+"connectant à un serveur qui utilise la série de protocoles SMB (System "
+"Message Block)"
+
+#: glade.strings:36
+msgid "Authentication"
+msgstr "Authentification"
+
+#: glade.strings:39
+msgid "NIS Settings"
+msgstr "Paramètres NIS"
+
+#: glade.strings:40
+msgid "NIS _Server"
+msgstr "_Serveur NIS :"
+
+#: glade.strings:41
+msgid "NIS _Domain"
+msgstr "_Domaine NIS :"
+
+#: glade.strings:42 glade.strings:47 glade.strings:53 glade.strings:58
+#: glade.strings:64
+msgid "Apply"
+msgstr "Appliquer"
+
+#: glade.strings:43 glade.strings:48 glade.strings:54 glade.strings:59
+#: glade.strings:65
+msgid "Close"
+msgstr "Fermer"
+
+#: glade.strings:44
+msgid "Hesiod Settings"
+msgstr "Paramètres Hesiod"
+
+#: glade.strings:45
+msgid "Hesiod _RHS"
+msgstr "_RHS Hesiod"
+
+#: glade.strings:46
+msgid "Hesiod _LHS"
+msgstr "_LHS Hesiod "
+
+#: glade.strings:49
+msgid "Kerberos Settings"
+msgstr "Paramètres Kerberos"
+
+#: glade.strings:50
+msgid "_Admin Servers"
+msgstr "Serveurs _Admin"
+
+#: glade.strings:51
+msgid "_Realm"
+msgstr "_Zone"
+
+#: glade.strings:52
+msgid "_KDCs"
+msgstr "_KDC "
+
+#: glade.strings:55
+msgid "SMB Settings"
+msgstr "Paramètres SMB"
+
+#: glade.strings:56
+msgid "_Domain Controllers"
+msgstr "Contrôleurs _domaine"
+
+#: glade.strings:57
+msgid "_Workgroup"
+msgstr "_Groupe de travail"
+
+#: glade.strings:60
+msgid "LDAP Settings"
+msgstr "Paramètres LDAP"
+
+#: glade.strings:61
+msgid "LDAP _Server"
+msgstr "_Serveur LDAP "
+
+#: glade.strings:62
+msgid "LDAP Search _Base DN"
+msgstr "LDAP Search _Base DN"
+
+#: glade.strings:63
+msgid "Use _TLS to encrypt connections"
+msgstr "Utiliser _TLS pour chiffrer les connexions"
+
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Utiliser les politiques locales"
-
-#~ msgid "_Cache User Information"
-#~ msgstr "Informations utilisateur _cache "
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "_Configure NIS..."
-#~ msgstr "_Configurer NIS..."
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "Activer support _NIS"
-
-#~ msgid ""
-#~ "NIS is the Name Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS est le service d'information du nom. Il est habituellement utilisé "
-#~ "par les réseaux de petite et moyenne taille."
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "Activer le support _LDAP"
-
-#~ msgid "_Configure LDAP..."
-#~ msgstr "_Configurer LDAP..."
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy.  "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "LDAP (Lightweight Directory Access Protocol) représente une technique "
-#~ "standard de recherche des répertoires et peut contenir des données "
-#~ "arbitraires dans une hiérarchie structurée. LDAP est aussi bien utilisé "
-#~ "par les petits que par les grands réseaux."
-
-#~ msgid "Hesiod"
-#~ msgstr "Hesiod"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Activer le support _Hesiod"
-
-#~ msgid "_Configure Hesiod..."
-#~ msgstr "_Configurer Hesiod..."
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Helios permet aux administrateurs système de publier des informations sur "
-#~ "des utilisateurs ou des groupes en DNS. Il est parfois utilisé par les "
-#~ "réseaux de très grande taille."
-
-#~ msgid "User Information"
-#~ msgstr "Informations sur l'utilisateur"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "Utiliser des mots de passe _masqués"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Utiliser des mots de passe _MD5"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos "
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Activer le support _Kerberos"
-
-#~ msgid "_Configure Kerberos..."
-#~ msgstr "_Configurer Kerberos..."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos est un système sécurisé d'authentification qui est "
-#~ "habituellement utilisé par les réseaux de moyenne à grande taille."
-
-#~ msgid "SMB Authentication"
-#~ msgstr "Authentification SMB"
-
-#~ msgid "Enable _SMB Support"
-#~ msgstr "Activer le support _SMB"
-
-#~ msgid "_Configure SMB..."
-#~ msgstr "_Configurer SMB..."
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "L'authentification SMB vérifie les mots de passe des utilisateurs en se "
-#~ "connectant à un serveur qui utilise la série de protocoles SMB (System "
-#~ "Message Block)"
-
-#~ msgid "Authentication"
-#~ msgstr "Authentification"
-
-#~ msgid "NIS Settings"
-#~ msgstr "Paramètres NIS"
-
-#~ msgid "NIS _Server"
-#~ msgstr "_Serveur NIS :"
-
-#~ msgid "NIS _Domain"
-#~ msgstr "_Domaine NIS :"
-
-#~ msgid "Apply"
-#~ msgstr "Appliquer"
-
-#~ msgid "Close"
-#~ msgstr "Fermer"
-
-#~ msgid "Hesiod Settings"
-#~ msgstr "Paramètres Hesiod"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "_RHS Hesiod"
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "_LHS Hesiod "
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Paramètres Kerberos"
-
-#~ msgid "_Admin Servers"
-#~ msgstr "Serveurs _Admin"
-
-#~ msgid "_Realm"
-#~ msgstr "_Zone"
-
-#~ msgid "_KDCs"
-#~ msgstr "_KDC "
-
-#~ msgid "SMB Settings"
-#~ msgstr "Paramètres SMB"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "Contrôleurs _domaine"
-
-#~ msgid "_Workgroup"
-#~ msgstr "_Groupe de travail"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "Paramètres LDAP"
-
-#~ msgid "LDAP _Server"
-#~ msgstr "_Serveur LDAP "
-
-#~ msgid "LDAP Search _Base DN"
-#~ msgstr "LDAP Search _Base DN"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Utiliser _TLS pour chiffrer les connexions"

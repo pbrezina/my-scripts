@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 4.1.4\n"
-"POT-Creation-Date: 2002-04-15 11:49-0400\n"
+"POT-Creation-Date: 2002-04-19 00:57-0400\n"
 "PO-Revision-Date: 2002-04-02 16:42GMT+10:00\n"
 "Last-Translator: Sarah Smith <sarahs@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -19,6 +19,7 @@ msgid "Warning"
 msgstr "警告"
 
 #: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: glade.strings:37
 msgid "Ok"
 msgstr "确定"
 
@@ -90,7 +91,7 @@ msgstr "下一个"
 msgid "Back"
 msgstr "上一个"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
 msgid "Cancel"
 msgstr "取消"
 
@@ -119,6 +120,7 @@ msgid "Use SMB Authentication"
 msgstr "使用 SMB 验证"
 
 #: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+#: glade.strings:7
 msgid "Authentication Configuration"
 msgstr "验证配置"
 
@@ -360,153 +362,199 @@ msgstr ""
 "没有发现 %s 文件。 %s 支持需要此文件才能正常工作，请安装提供此文件 的 %s 软件"
 "包。"
 
+#: glade.strings:8
+msgid "_Cache User Information"
+msgstr "缓存信息 (_C)"
+
+#: glade.strings:9
+msgid "NIS"
+msgstr "NIS"
+
+#: glade.strings:10
+msgid "_Configure NIS..."
+msgstr "配置 NIS (_C)……"
+
+#: glade.strings:11
+msgid "Enable _NIS Support"
+msgstr "启用 NIS (_N)"
+
+#: glade.strings:12
+msgid ""
+"NIS is the Name Information Service.  It is commonly used on small to medium "
+"networks."
+msgstr "名称信息服务 (NIS) 在小型到中型网络系统上使用普遍。"
+
+#: glade.strings:13 glade.strings:24
+msgid "LDAP"
+msgstr "LDAP"
+
+#: glade.strings:14 glade.strings:25
+msgid "Enable _LDAP Support"
+msgstr "启用 LDAP 支持 (_L)"
+
+#: glade.strings:15 glade.strings:26
+msgid "_Configure LDAP..."
+msgstr "配置 LDAP (_C)……"
+
+#: glade.strings:16 glade.strings:27
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"轻量级目录访问协议（LDAP）是搜寻目录的标准方法。这些目录可以在结构化的层次中"
+"包括任意数据。LDAP 在小型到大型网络中被越来越广泛地使用。"
+
+#: glade.strings:17
+msgid "Hesiod"
+msgstr "Hesiod"
+
+#: glade.strings:18
+msgid "Enable _Hesiod Support"
+msgstr "启用 Hesiod 支持 (_H)"
+
+#: glade.strings:19
+msgid "_Configure Hesiod..."
+msgstr "配置 Hesiod (_C)"
+
+#: glade.strings:20
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时用在极大的网络中。"
+
+#: glade.strings:21
+msgid "User Information"
+msgstr "用户信息"
+
+#: glade.strings:22
+msgid "Use _Shadow Passwords"
+msgstr "使用屏蔽口令(_S)"
+
+#: glade.strings:23
+msgid "Use _MD5 Passwords"
+msgstr "使用 MD5 口令(_M)"
+
+#: glade.strings:28
+msgid "Kerberos"
+msgstr "Kerberos"
+
+#: glade.strings:29
+msgid "Enable _Kerberos Support"
+msgstr "启用 Kerberos 支持 (_K)"
+
+#: glade.strings:30
+msgid "_Configure Kerberos..."
+msgstr "配置 Kerberos (_C)"
+
+#: glade.strings:31
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr "Kerberos 是被信任的第三方验证系统。它在中型和大型网络中使用普遍。"
+
+#: glade.strings:32
+msgid "SMB Authentication"
+msgstr "SMB 验证"
+
+#: glade.strings:33
+msgid "Enable _SMB Support"
+msgstr "启用 SMB 支持 (_S)"
+
+#: glade.strings:34
+msgid "_Configure SMB..."
+msgstr "配置 SMB (_C)"
+
+#: glade.strings:35
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
+
+#: glade.strings:36
+msgid "Authentication"
+msgstr "验证"
+
+#: glade.strings:39
+msgid "NIS Settings"
+msgstr "NIS 设置"
+
+#: glade.strings:40
+msgid "NIS _Server"
+msgstr "NIS 服务器(_S)"
+
+#: glade.strings:41
+msgid "NIS _Domain"
+msgstr "NIS 域 (_D)"
+
+#: glade.strings:42 glade.strings:47 glade.strings:53 glade.strings:58
+#: glade.strings:64
+msgid "Apply"
+msgstr "应用"
+
+#: glade.strings:43 glade.strings:48 glade.strings:54 glade.strings:59
+#: glade.strings:65
+msgid "Close"
+msgstr "关闭"
+
+#: glade.strings:44
+msgid "Hesiod Settings"
+msgstr "Hesiod 设置"
+
+#: glade.strings:45
+msgid "Hesiod _RHS"
+msgstr "Hesiod RHS (_R)"
+
+#: glade.strings:46
+msgid "Hesiod _LHS"
+msgstr "Hesiod LHS (_L)"
+
+#: glade.strings:49
+msgid "Kerberos Settings"
+msgstr "Kerberos 设置"
+
+#: glade.strings:50
+msgid "_Admin Servers"
+msgstr "管理服务器(_A)"
+
+#: glade.strings:51
+msgid "_Realm"
+msgstr "领域(_R)"
+
+#: glade.strings:52
+msgid "_KDCs"
+msgstr "KDC(_K)"
+
+#: glade.strings:55
+msgid "SMB Settings"
+msgstr "SMB 设置"
+
+#: glade.strings:56
+msgid "_Domain Controllers"
+msgstr "域控制器 (_D)"
+
+#: glade.strings:57
+msgid "_Workgroup"
+msgstr "工作组 (_W)"
+
+#: glade.strings:60
+msgid "LDAP Settings"
+msgstr "LDAP 设置"
+
+#: glade.strings:61
+msgid "LDAP _Server"
+msgstr "LDAP 服务器 (_S)"
+
+#: glade.strings:62
+msgid "LDAP Search _Base DN"
+msgstr "LDAP 搜寻基础 DN (_B)"
+
+#: glade.strings:63
+msgid "Use _TLS to encrypt connections"
+msgstr "使用 TLS 来加密连接 (_T)"
+
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "使用本地策略"
-
-#~ msgid "_Cache User Information"
-#~ msgstr "缓存信息 (_C)"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "_Configure NIS..."
-#~ msgstr "配置 NIS (_C)……"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "启用 NIS (_N)"
-
-#~ msgid ""
-#~ "NIS is the Name Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr "名称信息服务 (NIS) 在小型到中型网络系统上使用普遍。"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "启用 LDAP 支持 (_L)"
-
-#~ msgid "_Configure LDAP..."
-#~ msgstr "配置 LDAP (_C)……"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy.  "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "轻量级目录访问协议（LDAP）是搜寻目录的标准方法。这些目录可以在结构化的层次"
-#~ "中包括任意数据。LDAP 在小型到大型网络中被越来越广泛地使用。"
-
-#~ msgid "Hesiod"
-#~ msgstr "Hesiod"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "启用 Hesiod 支持 (_H)"
-
-#~ msgid "_Configure Hesiod..."
-#~ msgstr "配置 Hesiod (_C)"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时用在极大的网络中。"
-
-#~ msgid "User Information"
-#~ msgstr "用户信息"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "使用屏蔽口令(_S)"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "使用 MD5 口令(_M)"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "启用 Kerberos 支持 (_K)"
-
-#~ msgid "_Configure Kerberos..."
-#~ msgstr "配置 Kerberos (_C)"
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr "Kerberos 是被信任的第三方验证系统。它在中型和大型网络中使用普遍。"
-
-#~ msgid "SMB Authentication"
-#~ msgstr "SMB 验证"
-
-#~ msgid "Enable _SMB Support"
-#~ msgstr "启用 SMB 支持 (_S)"
-
-#~ msgid "_Configure SMB..."
-#~ msgstr "配置 SMB (_C)"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
-
-#~ msgid "Authentication"
-#~ msgstr "验证"
-
-#~ msgid "NIS Settings"
-#~ msgstr "NIS 设置"
-
-#~ msgid "NIS _Server"
-#~ msgstr "NIS 服务器(_S)"
-
-#~ msgid "NIS _Domain"
-#~ msgstr "NIS 域 (_D)"
-
-#~ msgid "Apply"
-#~ msgstr "应用"
-
-#~ msgid "Close"
-#~ msgstr "关闭"
-
-#~ msgid "Hesiod Settings"
-#~ msgstr "Hesiod 设置"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod RHS (_R)"
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod LHS (_L)"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Kerberos 设置"
-
-#~ msgid "_Admin Servers"
-#~ msgstr "管理服务器(_A)"
-
-#~ msgid "_Realm"
-#~ msgstr "领域(_R)"
-
-#~ msgid "_KDCs"
-#~ msgstr "KDC(_K)"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB 设置"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "域控制器 (_D)"
-
-#~ msgid "_Workgroup"
-#~ msgstr "工作组 (_W)"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "LDAP 设置"
-
-#~ msgid "LDAP _Server"
-#~ msgstr "LDAP 服务器 (_S)"
-
-#~ msgid "LDAP Search _Base DN"
-#~ msgstr "LDAP 搜寻基础 DN (_B)"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "使用 TLS 来加密连接 (_T)"

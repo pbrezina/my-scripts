@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2002-04-15 11:49-0400\n"
+"POT-Creation-Date: 2002-04-19 00:57-0400\n"
 "PO-Revision-Date: 2002-03-21 11:56GMT+10.00\n"
 "Last-Translator: Michelle Kim <mkim@brisbane.redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -18,6 +18,7 @@ msgid "Warning"
 msgstr "경고"
 
 #: authconfig.c:124 authconfig.c:600 authconfig.c:613 authconfig-gtk.py:188
+#: glade.strings:37
 msgid "Ok"
 msgstr "확인"
 
@@ -89,7 +90,7 @@ msgstr "다음"
 msgid "Back"
 msgstr "뒤로"
 
-#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194
+#: authconfig.c:392 authconfig.c:602 authconfig-gtk.py:194 glade.strings:38
 msgid "Cancel"
 msgstr "취소"
 
@@ -118,6 +119,7 @@ msgid "Use SMB Authentication"
 msgstr "SMB 인증 사용"
 
 #: authconfig.c:631 authconfig-gtk.py:124 authconfig-gtk.py:175
+#: glade.strings:7
 msgid "Authentication Configuration"
 msgstr "인증 설정"
 
@@ -360,160 +362,206 @@ msgstr ""
 "%s 파일을 찾을 수 없습니다. 이 파일은 %s (을)를 제대로 작동하도록 하기 위해서"
 "는 반드시 필요합니다.  이 파일이 포함되어 있는 %s 패키지를 설치해 주십시요."
 
+#: glade.strings:8
+msgid "_Cache User Information"
+msgstr "캐시(Cache) 사용자 정보(_C)"
+
+#: glade.strings:9
+msgid "NIS"
+msgstr "NIS"
+
+#: glade.strings:10
+msgid "_Configure NIS..."
+msgstr "NIS 설정.(_C)"
+
+#: glade.strings:11
+msgid "Enable _NIS Support"
+msgstr "NIS를 지원 활성화(_N)"
+
+#: glade.strings:12
+msgid ""
+"NIS is the Name Information Service.  It is commonly used on small to medium "
+"networks."
+msgstr ""
+"NIS는 이름 정보 서비스(Name Information Service)입니다.  이것은 보통 작거나 "
+"중간 규모의 네트워크 상에서 흔히 사용됩니다."
+
+#: glade.strings:13 glade.strings:24
+msgid "LDAP"
+msgstr "LDAP"
+
+#: glade.strings:14 glade.strings:25
+msgid "Enable _LDAP Support"
+msgstr "_LDAP 지원 활성화(_L)"
+
+#: glade.strings:15 glade.strings:26
+msgid "_Configure LDAP..."
+msgstr "LDAP 설정(_C)"
+
+#: glade.strings:16 glade.strings:27
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"Lightweight Directory Access Protocol는 임의 자료들을 체계화된 계층으로 담고 "
+"있는 디렉토리를 찾는 전형적인 방법입니다. LDAP는 작고 큰 네트워크에서 급격히 "
+"사용량이 늘고 있습니다."
+
+#: glade.strings:17
+msgid "Hesiod"
+msgstr "Hesiod"
+
+#: glade.strings:18
+msgid "Enable _Hesiod Support"
+msgstr "_Hesiod 지원 활성화(_H)"
+
+#: glade.strings:19
+msgid "_Configure Hesiod..."
+msgstr "Hesiod 설정(_H)"
+
+#: glade.strings:20
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiod는 시스템 관리자로 하여금 DNS에서 사용자와 그룹 정보를 출판하게 합니"
+"다. 이것은 때때로 매우 큰 네트위크 상에서도 사용됩니다."
+
+#: glade.strings:21
+msgid "User Information"
+msgstr "사용자 정보"
+
+#: glade.strings:22
+msgid "Use _Shadow Passwords"
+msgstr "섀도우 패스워드 사용(_S)"
+
+#: glade.strings:23
+msgid "Use _MD5 Passwords"
+msgstr "MD5 패스워드 사용(_M)"
+
+#: glade.strings:28
+msgid "Kerberos"
+msgstr "Kerberos"
+
+#: glade.strings:29
+msgid "Enable _Kerberos Support"
+msgstr "Kerberos 지원 활성화(_K)"
+
+#: glade.strings:30
+msgid "_Configure Kerberos..."
+msgstr "Kerberos 설정(_C)"
+
+#: glade.strings:31
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberos는 신뢰되는 제삼자 인증 체제이며 보통 중간 규모나  큰 네트워크에서 사"
+"용됩니다."
+
+#: glade.strings:32
+msgid "SMB Authentication"
+msgstr "SMB 인증"
+
+#: glade.strings:33
+msgid "Enable _SMB Support"
+msgstr "SMB 지원 활성화(_S)"
+
+#: glade.strings:34
+msgid "_Configure SMB..."
+msgstr "SMB 구성(_C)"
+
+#: glade.strings:35
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"SMB 인증은 SMB (system message block) 프로토콜 수트를 사용하는 서버에 접속하"
+"려 시도하는 사용자의 암호를 확인합니다."
+
+#: glade.strings:36
+msgid "Authentication"
+msgstr "인증"
+
+#: glade.strings:39
+msgid "NIS Settings"
+msgstr "NIS 설정"
+
+#: glade.strings:40
+msgid "NIS _Server"
+msgstr "NIS 서버(_S)"
+
+#: glade.strings:41
+msgid "NIS _Domain"
+msgstr "NIS 도메인(_D)"
+
+#: glade.strings:42 glade.strings:47 glade.strings:53 glade.strings:58
+#: glade.strings:64
+msgid "Apply"
+msgstr "적용"
+
+#: glade.strings:43 glade.strings:48 glade.strings:54 glade.strings:59
+#: glade.strings:65
+msgid "Close"
+msgstr "닫기"
+
+#: glade.strings:44
+msgid "Hesiod Settings"
+msgstr "Hesiod 설정"
+
+#: glade.strings:45
+msgid "Hesiod _RHS"
+msgstr "Hesiod RHS(_R)"
+
+#: glade.strings:46
+msgid "Hesiod _LHS"
+msgstr "hesiod LHS(_L)"
+
+#: glade.strings:49
+msgid "Kerberos Settings"
+msgstr "Kerberos 설정"
+
+#: glade.strings:50
+msgid "_Admin Servers"
+msgstr "관리 서버(_A)"
+
+#: glade.strings:51
+msgid "_Realm"
+msgstr "Realm(_R)"
+
+#: glade.strings:52
+msgid "_KDCs"
+msgstr "KDC(_K)"
+
+#: glade.strings:55
+msgid "SMB Settings"
+msgstr "SMB 설정"
+
+#: glade.strings:56
+msgid "_Domain Controllers"
+msgstr "도메인 제어기(_D)"
+
+#: glade.strings:57
+msgid "_Workgroup"
+msgstr "작업그룹(_W)"
+
+#: glade.strings:60
+msgid "LDAP Settings"
+msgstr "LDAP 설정"
+
+#: glade.strings:61
+msgid "LDAP _Server"
+msgstr "LDAP 서버(_S)"
+
+#: glade.strings:62
+msgid "LDAP Search _Base DN"
+msgstr "LDAP Search _Base DN"
+
+#: glade.strings:63
+msgid "Use _TLS to encrypt connections"
+msgstr "TLS를 이용하여 접속을 암호화함(_T)"
+
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "지역 정의 정책을 사용함"
-
-#~ msgid "_Cache User Information"
-#~ msgstr "캐시(Cache) 사용자 정보(_C)"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "_Configure NIS..."
-#~ msgstr "NIS 설정.(_C)"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "NIS를 지원 활성화(_N)"
-
-#~ msgid ""
-#~ "NIS is the Name Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS는 이름 정보 서비스(Name Information Service)입니다.  이것은 보통 작거"
-#~ "나 중간 규모의 네트워크 상에서 흔히 사용됩니다."
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "_LDAP 지원 활성화(_L)"
-
-#~ msgid "_Configure LDAP..."
-#~ msgstr "LDAP 설정(_C)"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy.  "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Lightweight Directory Access Protocol는 임의 자료들을 체계화된 계층으로 담"
-#~ "고 있는 디렉토리를 찾는 전형적인 방법입니다. LDAP는 작고 큰 네트워크에서 "
-#~ "급격히 사용량이 늘고 있습니다."
-
-#~ msgid "Hesiod"
-#~ msgstr "Hesiod"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "_Hesiod 지원 활성화(_H)"
-
-#~ msgid "_Configure Hesiod..."
-#~ msgstr "Hesiod 설정(_H)"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod는 시스템 관리자로 하여금 DNS에서 사용자와 그룹 정보를 출판하게 합니"
-#~ "다. 이것은 때때로 매우 큰 네트위크 상에서도 사용됩니다."
-
-#~ msgid "User Information"
-#~ msgstr "사용자 정보"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "섀도우 패스워드 사용(_S)"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "MD5 패스워드 사용(_M)"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Kerberos 지원 활성화(_K)"
-
-#~ msgid "_Configure Kerberos..."
-#~ msgstr "Kerberos 설정(_C)"
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos는 신뢰되는 제삼자 인증 체제이며 보통 중간 규모나  큰 네트워크에"
-#~ "서 사용됩니다."
-
-#~ msgid "SMB Authentication"
-#~ msgstr "SMB 인증"
-
-#~ msgid "Enable _SMB Support"
-#~ msgstr "SMB 지원 활성화(_S)"
-
-#~ msgid "_Configure SMB..."
-#~ msgstr "SMB 구성(_C)"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB 인증은 SMB (system message block) 프로토콜 수트를 사용하는 서버에 접속"
-#~ "하려 시도하는 사용자의 암호를 확인합니다."
-
-#~ msgid "Authentication"
-#~ msgstr "인증"
-
-#~ msgid "NIS Settings"
-#~ msgstr "NIS 설정"
-
-#~ msgid "NIS _Server"
-#~ msgstr "NIS 서버(_S)"
-
-#~ msgid "NIS _Domain"
-#~ msgstr "NIS 도메인(_D)"
-
-#~ msgid "Apply"
-#~ msgstr "적용"
-
-#~ msgid "Close"
-#~ msgstr "닫기"
-
-#~ msgid "Hesiod Settings"
-#~ msgstr "Hesiod 설정"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod RHS(_R)"
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "hesiod LHS(_L)"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Kerberos 설정"
-
-#~ msgid "_Admin Servers"
-#~ msgstr "관리 서버(_A)"
-
-#~ msgid "_Realm"
-#~ msgstr "Realm(_R)"
-
-#~ msgid "_KDCs"
-#~ msgstr "KDC(_K)"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB 설정"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "도메인 제어기(_D)"
-
-#~ msgid "_Workgroup"
-#~ msgstr "작업그룹(_W)"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "LDAP 설정"
-
-#~ msgid "LDAP _Server"
-#~ msgstr "LDAP 서버(_S)"
-
-#~ msgid "LDAP Search _Base DN"
-#~ msgstr "LDAP Search _Base DN"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "TLS를 이용하여 접속을 암호화함(_T)"
