@@ -26,9 +26,16 @@
 #include "localpol.h"
 #endif
 
+#define LOGIC_REQUIRED		"required"
+#define LOGIC_REQUISITE		"requisite"
+#define LOGIC_SUFFICIENT	"sufficient"
+#define LOGIC_OPTIONAL		"optional"
+#define LOGIC_IGNORE_UNKNOWN	"[default=ok user_unknown=ignore]"
+
 /* Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvar
  * can read it just fine. */
-gboolean authInfoReadHesiod(struct authInfoType *info)
+gboolean
+authInfoReadHesiod(struct authInfoType *info)
 {
 	shvarFile *sv = NULL;
 	char *tmp = NULL;
@@ -67,7 +74,8 @@ gboolean authInfoReadHesiod(struct authInfoType *info)
 }
 
 /* Read NIS setup from /etc/yp.conf. */
-gboolean authInfoReadNIS(struct authInfoType *info)
+gboolean
+authInfoReadNIS(struct authInfoType *info)
 {
 	FILE *fp = NULL;
 	char buf[LINE_MAX], *p, *q;
@@ -151,7 +159,8 @@ gboolean authInfoReadNIS(struct authInfoType *info)
 }
 
 /* Read LDAP setup from /etc/ldap.conf. */
-gboolean authInfoReadLDAP(struct authInfoType *info)
+gboolean
+authInfoReadLDAP(struct authInfoType *info)
 {
 	FILE *fp = NULL;
 	char buf[LINE_MAX], *p;
@@ -222,7 +231,8 @@ gboolean authInfoReadLDAP(struct authInfoType *info)
 }
 
 /* Read Kerberos setup from /etc/krb5.conf. */
-gboolean authInfoReadKerberos(struct authInfoType *info)
+gboolean
+authInfoReadKerberos(struct authInfoType *info)
 {
 	FILE *fp = NULL;
 	char buf[LINE_MAX], *p, *q;
@@ -362,7 +372,8 @@ gboolean authInfoReadKerberos(struct authInfoType *info)
 }
 
 /* Read NSS setup from /etc/nsswitch.conf. */
-gboolean authInfoReadNSS(struct authInfoType *info)
+gboolean
+authInfoReadNSS(struct authInfoType *info)
 {
 	FILE *fp = NULL;
 	char buf[LINE_MAX], *p;
@@ -415,7 +426,8 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 }
 
 /* Read hints from the PAM control file. */
-gboolean authInfoReadPAM(struct authInfoType *authInfo)
+gboolean
+authInfoReadPAM(struct authInfoType *authInfo)
 {
 	char ibuf[LINE_MAX];
 	char module[PATH_MAX];
@@ -537,7 +549,8 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 }
 
 /* Read hints from the PAM control file. */
-gboolean authInfoReadNetwork(struct authInfoType *authInfo)
+gboolean
+authInfoReadNetwork(struct authInfoType *authInfo)
 {
 	shvarFile *sv = NULL;
 	char *tmp = NULL;
@@ -558,7 +571,8 @@ gboolean authInfoReadNetwork(struct authInfoType *authInfo)
 	return TRUE;
 }
 
-struct authInfoType *authInfoRead()
+struct authInfoType *
+authInfoRead()
 {
 	struct authInfoType *ret = NULL;
 
@@ -575,7 +589,8 @@ struct authInfoType *authInfoRead()
 	return ret;
 }
 
-struct authInfoType *authInfoCopy(struct authInfoType *info)
+struct authInfoType *
+authInfoCopy(struct authInfoType *info)
 {
 	struct authInfoType *ret = NULL;
 
@@ -604,16 +619,19 @@ struct authInfoType *authInfoCopy(struct authInfoType *info)
 	return ret;
 }
 
-static gboolean non_empty(const char *string)
+static gboolean
+non_empty(const char *string)
 {
 	return (string != NULL) && (strlen(string) > 0);
 }
-static gboolean is_empty(const char *string)
+static gboolean
+is_empty(const char *string)
 {
 	return (string == NULL) || (strlen(string) == 0);
 }
 
-gboolean authInfoWriteHesiod(struct authInfoType *info)
+gboolean
+authInfoWriteHesiod(struct authInfoType *info)
 {
 	shvarFile *sv = NULL;
 
@@ -647,7 +665,8 @@ gboolean authInfoWriteHesiod(struct authInfoType *info)
 }
 
 /* Write NIS setup to /etc/yp.conf. */
-gboolean authInfoWriteNIS(struct authInfoType *info)
+gboolean
+authInfoWriteNIS(struct authInfoType *info)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
@@ -788,10 +807,10 @@ gboolean authInfoWriteNIS(struct authInfoType *info)
 	return TRUE;
 }
 
-/* Write LDAP setup to /etc/ldap.conf. */
-gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
-			    const char *host, const char *base,
-			    gboolean writessl)
+/* Write LDAP setup to an ldap.conf using host and base as keys. */
+static gboolean
+authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
+		   const char *host, const char *base, gboolean writessl)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
@@ -908,7 +927,8 @@ gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	return TRUE;
 }
 
-gboolean authInfoWriteLDAP(struct authInfoType *info)
+gboolean
+authInfoWriteLDAP(struct authInfoType *info)
 {
 	gboolean ret = TRUE;
 	if(ret) {
@@ -923,7 +943,8 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 	return ret;
 }
 
-static void write_kdc(char *obuf, struct authInfoType *info)
+static void
+write_kdc(char *obuf, struct authInfoType *info)
 {
 	char *p = info->kerberosKDC;
 	if(is_empty(p))
@@ -939,7 +960,8 @@ static void write_kdc(char *obuf, struct authInfoType *info)
 	strcat(obuf, "\n");
 }
 
-static void write_admin_server(char *obuf, struct authInfoType *info)
+static void
+write_admin_server(char *obuf, struct authInfoType *info)
 {
 	char *p = info->kerberosAdminServer;
 	if(is_empty(p))
@@ -955,7 +977,8 @@ static void write_admin_server(char *obuf, struct authInfoType *info)
 	strcat(obuf, "\n");
 }
 
-static void write_realm(char *obuf, struct authInfoType *info)
+static void
+write_realm(char *obuf, struct authInfoType *info)
 {
 	strcat(obuf, " ");
 	strcat(obuf, info->kerberosRealm);
@@ -966,7 +989,8 @@ static void write_realm(char *obuf, struct authInfoType *info)
 	strcat(obuf, "\n");
 }
 
-static int comma_count(const char *string)
+static int
+comma_count(const char *string)
 {
 	int ret = 0;
 	for(;string && (*string != '\0'); string++) {
@@ -978,7 +1002,8 @@ static int comma_count(const char *string)
 }
 
 /* Write Kerberos 5 setup to /etc/krb5.conf. */
-gboolean authInfoWriteKerberos(struct authInfoType *info)
+gboolean
+authInfoWriteKerberos(struct authInfoType *info)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
@@ -1201,7 +1226,8 @@ gboolean authInfoWriteKerberos(struct authInfoType *info)
 }
 
 /* Write NSS setup to /etc/nsswitch.conf. */
-gboolean authInfoWriteNSS(struct authInfoType *info)
+gboolean
+authInfoWriteNSS(struct authInfoType *info)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
@@ -1478,68 +1504,87 @@ enum pam_function_type {
 	session,
 	password,
 };
-enum pam_logic_type {
-	skip,
-	sufficient,
-	required,
-	optional,
-};
 
 /* The list of stacks, module flags, and arguments, if there are any. */
 static struct {
 	gboolean mandatory;
 	enum pam_function_type stack;
-	enum pam_logic_type logic;
+	const char *logic;
 	const char *name;
 	const char **argv;
 } standard_pam_modules[] = {
 #ifdef LOCAL_POLICIES
-	{FALSE, auth,		required,	"stack",	argv_local_all},
+	{FALSE, auth,		LOGIC_REQUIRED,
+	 "stack",		argv_local_all},
 #endif
-	{TRUE,  auth,		sufficient,	"unix",		argv_unix_auth},
-	{FALSE, auth,		sufficient,	"krb5",		argv_krb5_auth},
-	{FALSE, auth,		sufficient,	"krb5afs",	argv_krb5afs_auth},
-	{FALSE, auth,		sufficient,	"ldap",		argv_ldap_auth},
-	{FALSE, auth,		sufficient,	"winbind",	argv_winbind_auth},
-	{TRUE,  auth,		required,	"deny",		NULL},
+	{TRUE,  auth,		LOGIC_REQUIRED,
+	 "env",			NULL},
+	{TRUE,  auth,		LOGIC_SUFFICIENT,
+	 "unix",		argv_unix_auth},
+	{FALSE, auth,		LOGIC_SUFFICIENT,
+	 "krb5",		argv_krb5_auth},
+	{FALSE, auth,		LOGIC_SUFFICIENT,
+	 "krb5afs",		argv_krb5afs_auth},
+	{FALSE, auth,		LOGIC_SUFFICIENT,
+	 "ldap",		argv_ldap_auth},
+	{FALSE, auth,		LOGIC_SUFFICIENT,
+	 "winbind",		argv_winbind_auth},
+	{TRUE,  auth,		LOGIC_REQUIRED,	
+	 "deny",		NULL},
 
 #ifdef LOCAL_POLICIES
-	{FALSE, account,	required,	"stack",	argv_local_all},
+	{FALSE, account,	LOGIC_REQUIRED,	
+	 "stack",		argv_local_all},
 #endif
-	{TRUE,  account,	sufficient,	"unix",		NULL},
-	{FALSE, account,	sufficient,	"ldap",		NULL},
-	{TRUE,  account,	required,	"deny",		NULL},
+	{TRUE,  account, 	LOGIC_REQUIRED,
+	 "unix",		NULL},
+	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
+	 "ldap",		NULL},
+	{TRUE,  account, 	LOGIC_REQUIRED,
+	 "access",		NULL},
 
 #ifdef LOCAL_POLICIES
-	{FALSE, password,	required,	"stack",	argv_local_all},
+	{FALSE, password,	LOGIC_REQUIRED,
+	 "stack",		argv_local_all},
 #endif
-	{TRUE,  password,	required,	"cracklib",
-	 argv_cracklib_password},
-	{TRUE,  password,	sufficient,	"unix",
-	 argv_unix_password},
-	{FALSE, password,	sufficient,	"krb5",
-	 argv_krb5_password},
-	{FALSE, password,	sufficient,	"krb5afs",
-	 argv_krb5_password},
-	{FALSE, password,	sufficient,	"ldap",
-	 argv_ldap_password},
-	{FALSE, password,	sufficient,	"winbind",	argv_winbind_password},
-	{TRUE,  password,	required,	"deny",		NULL},
+	{TRUE,  password,	LOGIC_REQUIRED,
+	 "cracklib",		argv_cracklib_password},
+	{TRUE,  password,	LOGIC_SUFFICIENT,
+	 "unix",		argv_unix_password},
+	{FALSE, password,	LOGIC_SUFFICIENT,
+	 "krb5",		argv_krb5_password},
+	{FALSE, password,	LOGIC_SUFFICIENT,
+	 "krb5afs",		argv_krb5_password},
+	{FALSE, password,	LOGIC_SUFFICIENT,
+	 "ldap",		argv_ldap_password},
+	{FALSE, password,	LOGIC_SUFFICIENT,
+	 "winbind",		argv_winbind_password},
+	{TRUE,  password,	LOGIC_REQUIRED,
+	 "deny",		NULL},
 
 #ifdef LOCAL_POLICIES
-	{FALSE, session,	required,	"stack",	argv_local_all},
+	{FALSE, session,	LOGIC_REQUIRED,
+	 "stack",		argv_local_all},
 #endif
-	{TRUE,  session,	required,	"limits",	NULL},
-	{TRUE,  session,	required,	"unix",		NULL},
-	{FALSE, session,	optional,	"krb5",		NULL},
-	{FALSE, session,	optional,	"krb5afs",	NULL},
-	{FALSE, session,	optional,	"ldap",		NULL},
-	{FALSE, session,	required,	"winbind",	NULL},
+	{TRUE,  session,	LOGIC_REQUIRED,
+	 "limits",		NULL},
+	{TRUE,  session,	LOGIC_REQUIRED,
+	 "unix",		NULL},
+	{FALSE, session,	LOGIC_OPTIONAL,
+	 "krb5",		NULL},
+	{FALSE, session,	LOGIC_OPTIONAL,
+	 "krb5afs",		NULL},
+	{FALSE, session,	LOGIC_OPTIONAL,
+	 "ldap",		NULL},
+	{FALSE, session,	LOGIC_REQUIRED,
+	 "winbind",		NULL},
 };
 
-static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
+static void
+fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 {
-	char *stack, *logic;
+	char *stack;
+	const char *logic = NULL;
 	switch(standard_pam_modules[i].stack) {
 		case auth:
 			stack = "auth";
@@ -1557,31 +1602,15 @@ static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info
 			stack = NULL;
 			break;
 	}
-	switch(standard_pam_modules[i].logic) {
-		case skip:
-			logic = "";
-			break;
-		case required:
-			logic = "required";
-			break;
-		case sufficient:
-			logic = "sufficient";
-			break;
-		case optional:
-			logic = "optional";
-			break;
-		default:
-			logic = NULL;
-			break;
-	}
+	logic = standard_pam_modules[i].logic;
 	if(non_empty(stack) && non_empty(logic)) {
 		if(strlen(logic) > 0) {
 			int j;
 			char buf[LINE_MAX];
 			memset(buf, '\0', sizeof(buf));
-			snprintf(buf, sizeof(buf) - 1, "%-12s%-14s%s/pam_%s.so",
-				 stack, logic, AUTH_MODULE_DIR,
-				 standard_pam_modules[i].name);
+			snprintf(buf, sizeof(buf) - 1,
+				 "%-12s%-13s %s/pam_%s.so", stack, logic,
+				 AUTH_MODULE_DIR, standard_pam_modules[i].name);
 			if(standard_pam_modules[i].argv != NULL) {
 				for(j = 0;
 				    non_empty(standard_pam_modules[i].argv[j]);
@@ -1660,6 +1689,11 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	for(i = 0;
 	    i < sizeof(standard_pam_modules) / sizeof(standard_pam_modules[0]);
 	    i++) {
+		if((i > 0) &&
+		   (standard_pam_modules[i].stack !=
+		    standard_pam_modules[i - 1].stack)) {
+			strcat(obuf, "\n");
+		}
 		if(standard_pam_modules[i].mandatory ||
 		   (authInfo->enableKerberos && !have_afs &&
 		    (strcmp("krb5", standard_pam_modules[i].name) == 0)) ||
@@ -1696,7 +1730,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	return TRUE;
 }
 
-gboolean authInfoWriteNetwork(struct authInfoType *info)
+gboolean
+authInfoWriteNetwork(struct authInfoType *info)
 {
 	shvarFile *sv = NULL;
 
@@ -1719,7 +1754,8 @@ gboolean authInfoWriteNetwork(struct authInfoType *info)
 	return TRUE;
 }
 
-gboolean authInfoWrite(struct authInfoType *authInfo)
+gboolean
+authInfoWrite(struct authInfoType *authInfo)
 {
 	gboolean ret = TRUE;
 	if(authInfo->enableKerberos)

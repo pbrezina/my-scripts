@@ -56,14 +56,16 @@ struct krb5_cb {
 /*
  * small callback to disallow spaces in an entry field.
  */
-int entryFilter(newtComponent entry, void * data, int ch, int cursor)
+static int
+entryFilter(newtComponent entry, void * data, int ch, int cursor)
 {
     if ((ch == ' ') || (ch == '\t'))
 	return 0;
     return ch;
 }
 
-gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
+static gboolean
+toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 {
   char *domainStr;
   struct stat st;
@@ -105,7 +107,8 @@ gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
   return TRUE;
 }
 
-gboolean toggleShadow(struct authInfoType *authInfo)
+static gboolean
+toggleShadow(struct authInfoType *authInfo)
 {
   /* now, do file manipulation on the password files themselves. */
   if (authInfo->enableShadow) {
@@ -118,13 +121,15 @@ gboolean toggleShadow(struct authInfoType *authInfo)
   return TRUE;
 }
 
-void overrideBoolean(gboolean *dest, int switch_on, int switch_off)
+static void
+overrideBoolean(gboolean *dest, int switch_on, int switch_off)
 {
   if (switch_on) *dest = TRUE;
   if (switch_off) *dest = FALSE;
 }
 
-void setString(char **dest, const char *source)
+static void
+setString(char **dest, const char *source)
 {
   if (*dest != NULL) {
     g_free(*dest);
@@ -132,14 +137,16 @@ void setString(char **dest, const char *source)
   *dest = g_strdup(source);
 }
 
-void overrideString(char **dest, const char *source)
+static void
+overrideString(char **dest, const char *source)
 {
   if (source != NULL) {
     setString(dest, source);
   }
 }
 
-void checkWarn(const char *path, const char *service, const char *package)
+static void
+checkWarn(const char *path, const char *service, const char *package)
 {
   char buf[LINE_MAX];
 
@@ -156,7 +163,8 @@ void checkWarn(const char *path, const char *service, const char *package)
   newtRefresh();
 }
 
-void nisToggle(newtComponent cb, void *data)
+static void
+nisToggle(newtComponent cb, void *data)
 {
   struct nis_cb *nis = (struct nis_cb*) data;
   newtLabelSetText(nis->domainLabel, i18n("  Domain:"));
@@ -176,7 +184,8 @@ void nisToggle(newtComponent cb, void *data)
   newtRefresh();
 }
 
-void hesiodToggle(newtComponent cb, void *data)
+static void
+hesiodToggle(newtComponent cb, void *data)
 {
   struct hesiod_cb *hesiod = (struct hesiod_cb*) data;
   newtLabelSetText(hesiod->lhsLabel, i18n("     LHS:"));
@@ -195,7 +204,8 @@ void hesiodToggle(newtComponent cb, void *data)
   newtRefresh();
 }
 
-void ldapToggle(newtComponent cb, void *data)
+static void
+ldapToggle(newtComponent cb, void *data)
 {
   struct ldap_cb *ldap = (struct ldap_cb*) data;
   newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
@@ -228,7 +238,8 @@ void ldapToggle(newtComponent cb, void *data)
   newtRefresh();
 }
 
-void krb5Toggle(newtComponent cb, void *data)
+static void
+krb5Toggle(newtComponent cb, void *data)
 {
   struct krb5_cb *krb5 = (struct krb5_cb*) data;
   newtLabelSetText(krb5->realmLabel,  i18n("          Realm:"));
@@ -253,9 +264,9 @@ void krb5Toggle(newtComponent cb, void *data)
   newtRefresh();
 }
 
-int getNSSChoices(int back,
-	          gboolean nisAvail, gboolean ldapAvail,
-		  gboolean kerberosAvail, struct authInfoType *authInfo)
+static int
+getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
+	      gboolean kerberosAvail, struct authInfoType *authInfo)
 {
   newtComponent form, ok, cancel, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid;
@@ -421,9 +432,9 @@ int getNSSChoices(int back,
   return rc;
 }
 
-int getPAMChoices(int back,
-	          gboolean nisAvail, gboolean ldapAvail,
-		  gboolean kerberosAvail, struct authInfoType *authInfo)
+static int
+getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
+	      gboolean kerberosAvail, struct authInfoType *authInfo)
 {
   newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid;
@@ -610,9 +621,9 @@ int getPAMChoices(int back,
   return rc;
 }
 
-int getChoices(int back,
-	       gboolean nisAvail, gboolean ldapAvail,
-	       gboolean kerberosAvail, struct authInfoType *authInfo)
+static int
+getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
+	   gboolean kerberosAvail, struct authInfoType *authInfo)
 {
   int rc = FALSE, next = 1, i;
 
@@ -653,7 +664,8 @@ int getChoices(int back,
   return rc;
 }
 
-gboolean fileInaccessible(const char *path, int perms)
+static gboolean
+fileInaccessible(const char *path, int perms)
 {
   struct stat st;
   if(stat(path, &st) == 0) {
@@ -663,7 +675,8 @@ gboolean fileInaccessible(const char *path, int perms)
   }
 }
 
-int main(int argc, const char **argv)
+int
+main(int argc, const char **argv)
 {
   int rc;
   struct stat st;
