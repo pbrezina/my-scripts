@@ -1969,7 +1969,7 @@ static struct {
 #endif
 	{TRUE,  account, 	LOGIC_REQUIRED,
 	 "unix",		NULL},
-	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
+	{TRUE, account,		LOGIC_REQUIRED,
 	 "ldap",		NULL},
 
 #ifdef LOCAL_POLICIES

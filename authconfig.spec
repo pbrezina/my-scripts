@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.16
+Version: 4.1.17
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -40,14 +40,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
-* Wed Aug 21 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.16-1
+* Thu Aug 21 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.17-1
+- make pam_ldap required for account management when ldapauth is enabled
+  (this requires pam_ldap 114 or later, but simplifies things)
+- more translation updates
+
+* Wed Aug 22 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.16-1
 - warn about nscd the same way we do about nss_ldap and pam_krb5
 - reorder some internal code so that it's easier to maintain
 - change help string about the --probe option to make it clearer that using
   it doesn't actually set any options
 - update translations from CVS
 
-* Tue Aug 20 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.15-1
+* Tue Aug 21 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.15-1
 - set "pam_password md5" instead of "pam_password crypt" in ldap.conf if MD5
   is enabled
 
