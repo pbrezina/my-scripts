@@ -208,7 +208,7 @@ gboolean authInfoReadLDAP(struct authInfoType *info)
 			/* Skip intervening whitespace. */
 			for(p += 3; (isspace(*p) && (*p != '\0')); p++);
 
-			info->enableLDAPS = (strncmp(p, "start_tls", 9) == 0) ||
+			info->enableLDAPS = (strncmp(p, "start_tls", 9) == 0);
 
 			memset(buf, '\0', sizeof(buf));
 			continue;
