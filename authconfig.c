@@ -861,8 +861,7 @@ int rewriteYPConfigFile(int enableNis, char enableNisServer,
       if (!ypserverFound && enableNisServer == '*')
 	  fprintf(f1, "ypserver %s\n",nisServer);
       if (!domainFound)
-	  fprintf(f1, "domain %s %s\n",nisDomain,
-		  enableNisServer == ' ' ? "broadcast" : "");
+	  fprintf(f1, "domain %s broadcast\n",nisDomain);
   }
   
   fclose(f);
@@ -968,6 +967,16 @@ int rewriteLdapConfigFile(int enableLdap, char *ldapServer,
   return 0;
 
 }
+
+/*
+ * Iterate over the files in /etc/pam.d, and add the authorization type
+ * listed to those files.  Possibly remove other types.
+ */
+int rewritePamFiles(int authType)
+{
+  return 0;
+}
+
 
 /*
  * edit /etc/nsswitch.conf
@@ -1292,7 +1301,7 @@ int main(int argc, const char **argv) {
     { "nostart", '\0', 0, &nostart, 0, NULL, NULL},
     { "kickstart", '\0', 0, &kickstart, 0, NULL, NULL},
     { "authtype", '\0', 1, &authArg, 0, "authorization type", 
-      "password, nis, ldap, or kerberos" },
+      "password, nis, or ldap" },
     { "enablenis", '\0', 0, &enablenis, 0, NULL, NULL},
     { "nisdomain", '\0', POPT_ARG_STRING, &authInfo.nisDomain, 0, NULL, NULL},
     { "nisserver", '\0', POPT_ARG_STRING, &authInfo.nisServer, 0, NULL, NULL},
@@ -1499,6 +1508,11 @@ int main(int argc, const char **argv) {
     if (rewriteLdapConfigFile((authType == AUTH_LDAP), authInfo.ldapServer,
 			      authInfo.ldapDomain, authInfo.enableMD5)) {
       fprintf(stderr, i18n("%s: critical error writing /etc/ldap.conf\n"),
+	      progName);
+      return 2;
+    }
+    if (rewritePamFiles(authType)) {
+      fprintf(stderr, i18n("%s: critical error writing files in /etc/pam.d\n"),
 	      progName);
       return 2;
     }

@@ -1,27 +1,37 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "Tue 23 September 1999" "Red Hat, Inc."
+.TH AUTHCONFIG 8 "Thu 03 February 2000" "Red Hat, Inc."
 .UC 4
 .SH NAME
 authconfig \- simple interface for configuring system authorization resources
 .SH SYNOPSIS
-\fBauthconfig\fR [--back] [--test] [--nostart] [--enablenis [--nisdomain <domain>]
+\fBauthconfig\fR [--back] [--test] [--nostart] [--authtype=<type>] [--enablenis [--nisdomain <domain>]
 [--nisserver <nisserver>] ] [--useshadow [--enablemd5] ] [--kickstart]
 .SH DESCRIPTION
-\fBauthconfig\fR provides a simple method of configuring 
-/etc/sysconfig/network to handle NIS, as well as /etc/passwd and /etc/shadow, the files
-used for shadow password support. 
+\fBauthconfig\fR provides a simple method of configuring
+/etc/sysconfig/network to handle NIS, as well as /etc/passwd and
+/etc/shadow, the files used for shadow password support.
 
-The authconfig window contains a \fBCancel\fR button by default. If 
+The authconfig window contains a \fBCancel\fR button by default. If
 \fB--back\fR is specified at run time, a \fBBack\fR button is presented
 instead. If \fB--test\fR is specified, \fBauthconfig\fR can be run by
 users other then root, and any configuration changes are not saved. If
-\fB--nostart\fR is specified (which is what the install program does), ypbind
-will not be started or stopped immediately following program execution, but
-only enabled to start or stop at boot time. if \fB--kickstart\fR is specified, no interactive
-screens will be seen.  The values the program will use will be those specified by the
-other options (\fB--enablenis\fR, \fB--usehadow\fR, etc.).
+\fB--nostart\fR is specified (which is what the install program does),
+ypbind will not be started or stopped immediately following program
+execution, but only enabled to start or stop at boot time. if
+\fB--kickstart\fR is specified, no interactive screens will be seen.
+The values the program will use will be those specified by the other
+options (\fB--enablemd5\fR, \fB--usehadow\fR, etc.).
+
+The default in kickstart mode (i.e. without any additional options) will
+be normal (non-shadow) UNIX password style authentication with
+traditional crypted (not MD5-hashed) passwords.
+
+The primary option of interest for kickstart users is \fBauthtype\fR.
+The valid authorization types are currently \fBpassword\fR, \fBnis\fR,
+and \fBldap\fR. \fB--enablenis\fR is deprecated and you should use
+\fB--authtype=nis\fR instead.
 
 .PD
 .SH "RETURN CODES"
@@ -35,15 +45,18 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .FN /etc/sysconfig/network
 Enables or disables NIS support
 .TP
+.FN /etc/passwd, /etc/shadow
+Used for shadow password support
+.TP
 .FN /etc/yp.conf
 configuration file for NIS support
 .TP
-.FN /etc/passwd, /etc/shadow
-Used for shadow password support
+.FN /etc/ldap.conf, /etc/nsswitch.conf, /etc/pam.d/*
+used to configure LDAP and other services.
 
 .PD
 .SH "SEE ALSO"
-passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8)
+passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8), nsswitch.conf(5)
 
 .SH AUTHORS
 .nf
