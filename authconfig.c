@@ -1206,6 +1206,8 @@ main(int argc, const char **argv)
   overrideString(&authInfo->smbServers, smbServers);
 
   overrideBoolean(&authInfo->enableWinbind, enableWinbind, disableWinbind);
+  overrideBoolean(&authInfo->enableWinbindAuth,
+		  enableWinbindAuth, disableWinbindAuth);
   overrideString(&authInfo->smbSecurity, smbSecurity);
   overrideString(&authInfo->smbRealm, smbRealm);
   overrideString(&authInfo->smbIdmapUid, smbIdmapUid);
