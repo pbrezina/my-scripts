@@ -2,7 +2,7 @@ Summary: Text-mode tool for setting up NIS and shadow passwords
 Name: authconfig
 %define version	1.2
 Version: %{version}
-Release: 5
+Release: 6
 Copyright: GPL
 ExclusiveOS: Linux
 Group: Utilities/System
