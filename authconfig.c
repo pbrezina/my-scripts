@@ -470,12 +470,12 @@ int getPAMChoices(int back,
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.serverLabel = newtLabel(-1, -1, "");
-  ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 30, &ldapServer,
+  ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 28, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
 
   ldap.baseDnLabel = newtLabel(-1, -1, "");
-  ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 30, &ldapBaseDN,
+  ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 28, &ldapBaseDN,
 		  	       NEWT_ENTRY_SCROLL);
 
   newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
@@ -502,17 +502,17 @@ int getPAMChoices(int back,
   newtComponentAddCallback(cb, krb5Toggle, &krb5);
 
   krb5.realmLabel = newtLabel(-1, -1, "");
-  krb5.realmEntry = newtEntry(-1, -1, authInfo->kerberosRealm, 30,
+  krb5.realmEntry = newtEntry(-1, -1, authInfo->kerberosRealm, 28,
 		  	      &kerberosRealm, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.realmEntry, entryFilter, NULL);
 
   krb5.kdcLabel = newtLabel(-1, -1, "");
-  krb5.kdcEntry = newtEntry(-1, -1, authInfo->kerberosKDC, 30,
+  krb5.kdcEntry = newtEntry(-1, -1, authInfo->kerberosKDC, 28,
 		  	    &kerberosKDC, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kdcEntry, entryFilter, NULL);
 
   krb5.kadminLabel = newtLabel(-1, -1, "");
-  krb5.kadminEntry = newtEntry(-1, -1, authInfo->kerberosAdminServer, 30,
+  krb5.kadminEntry = newtEntry(-1, -1, authInfo->kerberosAdminServer, 28,
 		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
 
