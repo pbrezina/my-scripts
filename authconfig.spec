@@ -35,6 +35,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Fri Mar 26 1999 Preston Brown <pbrown@redhat.com>
 - fix typo
+- change domainname at nis start and stop
 
 * Tue Mar 23 1999 Preston Brown <pbrown@redhat.com>
 - fixed man page

@@ -553,13 +553,18 @@ int rewriteYPConfigFile(char enableNis, char enableNisServer,
 
 }
 
-int toggleNisService(char enableNis, int nostart)
+int toggleNisService(char enableNis, char *nisDomain, int nostart)
 {
-  if (enableNis == '*') {
+  char domainStr[200];
+  if (enableNis == '*') { 
+      sprintf(domainStr,"/bin/domainname %s",(enableNis == '*') ?
+	      nisDomain : "\"(none)\"");
+      system(domainStr);
     if (!nostart) 
       system("/etc/rc.d/init.d/ypbind restart");
     system("/sbin/chkconfig --level 345 ypbind on");
   }  else {
+    system("/bin/domainname \"(none)\"");
     if (!nostart)
       system("/etc/rc.d/init.d/ypbind stop");
     system("/sbin/chkconfig --del ypbind");
@@ -857,7 +862,7 @@ int main(int argc, char **argv) {
   }
 
   if (configureNis) {
-    if (toggleNisService(enableNis, nostart)) {
+    if (toggleNisService(enableNis, nisDomain, nostart)) {
       fprintf(stderr, i18n("%s: critical error turning on NIS service\n"),
 	      progName);
       return 2;
