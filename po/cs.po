@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig unknown\n"
-"POT-Creation-Date: 1999-09-20 00:07-0400\n"
+"POT-Creation-Date: 2000-01-20 17:40-0500\n"
 "PO-Revision-Date: 1999-04-09 14:56+0200\n"
 "Last-Translator: Petr Kolar <Petr.Kolar@vslib.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -13,96 +13,167 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ../authconfig.c:36 ../authconfig.c:386
+#: ../authconfig.c:76 ../authconfig.c:700
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network: %s\n"
 msgstr "%s: nelze otevøít /etc/sysconfig/network: %s\n"
 
-#: ../authconfig.c:96 ../authconfig.c:468
+#: ../authconfig.c:140 ../authconfig.c:795
 #, c-format
 msgid "%s: cannot open /etc/yp.conf: %s\n"
 msgstr "%s: nelze otevøít /etc/yp.conf: %s\n"
 
+#: ../authconfig.c:202 ../authconfig.c:899
+#, fuzzy, c-format
+msgid "%s: cannot open /etc/ldap.conf: %s\n"
+msgstr "%s: nelze otevøít /etc/yp.conf: %s\n"
+
 #.
-#. * NIS stuff.
+#. * find length of longest string. Looks useless when strings
+#. * are right-padded as below, but will be necessary for xlations
+#. * if they don't pad.
 #.
-#: ../authconfig.c:215
+#: ../authconfig.c:318 ../authconfig.c:486
+#, fuzzy
+msgid "    NIS Domain:"
+msgstr "NIS doména:"
+
+#: ../authconfig.c:319 ../authconfig.c:461
 msgid "NIS Server:"
 msgstr "NIS server:"
 
-#: ../authconfig.c:216
+#.
+#. * authentication server stuff.
+#.
+#.
+#. * find length of longest string. Looks useless when strings
+#. * are right-padded as below, but will be necessary for xlations
+#. * if they don't pad.
+#.
+#: ../authconfig.c:320 ../authconfig.c:449
+#, fuzzy
+msgid "         or use:"
+msgstr "nebo pou¾ijte:"
+
+#: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
+#, fuzzy
+msgid "   LDAP Domain:"
+msgstr "NIS doména:"
+
+#: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
+msgid "    LDAP Server:"
+msgstr ""
+
+#: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
+msgid "Kerberos Realm:"
+msgstr ""
+
+#: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
+msgid "Kerberos Server:"
+msgstr ""
+
+#.
+#. * what kind of authentication?
+#.
+#: ../authconfig.c:416
+#, fuzzy
+msgid "Authentication Type:"
+msgstr "Konfigurování autentizace"
+
+#: ../authconfig.c:417
+msgid "Password File"
+msgstr ""
+
+#: ../authconfig.c:422
+msgid "NIS"
+msgstr ""
+
+#: ../authconfig.c:428
+msgid "LDAP"
+msgstr ""
+
+#: ../authconfig.c:434
+msgid "Kerberos"
+msgstr ""
+
+#: ../authconfig.c:462
 msgid "Request via broadcast"
 msgstr "Po¾adavek vyslat v¹esmìrovì"
 
-#: ../authconfig.c:233
-msgid "Enable NIS"
-msgstr "Povolit NIS"
-
-#: ../authconfig.c:235
-msgid "NIS Domain:"
-msgstr "NIS doména:"
-
+#. if (!nisAvail) {
+#. newtEntrySetFlags(authServerEntry, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
+#. newtCheckboxSetFlags(bcastCheckBox, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
+#. newtEntrySetFlags(authDomainEntry, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
+#. }
 #. Shadow Stuff
-#: ../authconfig.c:271
+#: ../authconfig.c:535
 msgid "Use Shadow Passwords"
 msgstr "Pou¾ívat stínová hesla"
 
-#: ../authconfig.c:273
+#: ../authconfig.c:537
 msgid "Enable MD5 Passwords"
 msgstr "Povolit MD5 hesla"
 
-#: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
+#: ../authconfig.c:544 ../authconfig.c:640 ../authconfig.c:649
 msgid "Ok"
 msgstr "OK"
 
-#: ../authconfig.c:281
+#: ../authconfig.c:545
 msgid "Back"
 msgstr "Zpìt"
 
-#: ../authconfig.c:281
+#: ../authconfig.c:545
 msgid "Cancel"
 msgstr "Zru¹it"
 
-#: ../authconfig.c:298
-msgid "(NIS not installed)"
-msgstr "(NIS není nainstalováno)"
-
-#: ../authconfig.c:312
-msgid "or use:"
-msgstr "nebo pou¾ijte:"
-
-#: ../authconfig.c:334
+#: ../authconfig.c:612
 msgid "Authentication Configuration"
 msgstr "Konfigurování autentizace"
 
-#: ../authconfig.c:347 ../authconfig.c:354
+#: ../authconfig.c:640 ../authconfig.c:649
 msgid "Error"
 msgstr "Chyba"
 
-#: ../authconfig.c:348
+#: ../authconfig.c:641
 msgid "You must enter a NIS server or request via broadcast."
 msgstr "Musíte zadat jméno NIS serveru nebo pou¾ít v¹esmìrové vysílání dotazu."
 
-#: ../authconfig.c:355
-msgid "You must enter a NIS domain."
+#: ../authconfig.c:650
+#, fuzzy
+msgid "You must enter an authentication domain."
 msgstr "Musíte zadat NIS doménu."
 
-#: ../authconfig.c:393
+#: ../authconfig.c:707
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
 msgstr "%s: nelze otevøít /etc/sysconfig/network- pro zápis: %s\n"
 
-#: ../authconfig.c:475
+#: ../authconfig.c:802
 #, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s: nelze otevøít /etc/yp.conf- pro zápis: %s\n"
 
-#: ../authconfig.c:657
+#: ../authconfig.c:906
+#, fuzzy, c-format
+msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
+msgstr "%s: nelze otevøít /etc/yp.conf- pro zápis: %s\n"
+
+#: ../authconfig.c:985
+#, fuzzy, c-format
+msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
+msgstr "%s: nelze otevøít /etc/yp.conf: %s\n"
+
+#: ../authconfig.c:992
+#, fuzzy, c-format
+msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
+msgstr "%s: nelze otevøít /etc/yp.conf- pro zápis: %s\n"
+
+#: ../authconfig.c:1200
 #, c-format
 msgid "%s: error opening %s\n"
 msgstr "%s: chyba pøi otvírání %s\n"
 
-#: ../authconfig.c:693
+#: ../authconfig.c:1236
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -127,69 +198,100 @@ msgstr ""
 "     --kickstart          nezobrazovat u¾ivatelské rozhraní\n"
 "     --help               vypsat tuto nápovìdu\n"
 
-#: ../authconfig.c:747
+#: ../authconfig.c:1302
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: chybný argument %s: %s\n"
 
-#: ../authconfig.c:754
+#: ../authconfig.c:1309
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: neoèekávaný argument\n"
 
-#: ../authconfig.c:766
+#: ../authconfig.c:1321
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: mù¾e být spu¹tìn pouze u¾ivatelem root\n"
 
-#: ../authconfig.c:781
+#: ../authconfig.c:1337
+#, c-format
+msgid "%s: unknown authorization type %s\n"
+msgstr ""
+
+#: ../authconfig.c:1353
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
 msgstr "%s: kritická chyba pøi ètení /etc/sysconfig/network"
 
-#: ../authconfig.c:794
+#: ../authconfig.c:1362
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
 msgstr "%s: kritická chyba pøi ètení /etc/yp.conf"
 
-#: ../authconfig.c:811
+#: ../authconfig.c:1381
+#, fuzzy, c-format
+msgid "%s: critical error reading /etc/ldap.conf"
+msgstr "%s: kritická chyba pøi ètení /etc/yp.conf"
+
+#: ../authconfig.c:1393
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
 msgstr "%s: kritická chyba pøi ètení /etc/pam.d/passwd\n"
 
-#: ../authconfig.c:820
+#: ../authconfig.c:1402
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 " <Tab>/<Alt-Tab> pøepíná mezi polo¾kami | <Mezera> výbìr | <F12> pokraèovat "
 
-#: ../authconfig.c:831
-#, c-format
-msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr "%s: nis doména byla nastavena na %s, ale dialog byl stornován\n"
+#: ../authconfig.c:1412
+msgid "dialog was cancelled\n"
+msgstr ""
 
-#: ../authconfig.c:844
-#, c-format
-msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-msgstr "návratové hodnoty: nis: %c, nis doména: %s, stín.hesla: %c, md5: %c\n"
+#: ../authconfig.c:1423
+msgid "authentication type selected: "
+msgstr ""
 
-#: ../authconfig.c:852
+#: ../authconfig.c:1453
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
 msgstr "%s: kritická chyba pøi zápisu /etc/sysconfig/network\n"
 
-#: ../authconfig.c:860
+#: ../authconfig.c:1461
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
 msgstr "%s: kritická chyba pøi zápisu /etc/yp.conf\n"
 
-#: ../authconfig.c:868
+#: ../authconfig.c:1468
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
 msgstr "%s: kritická chyba pøi zapínání slu¾by NIS\n"
 
-#: ../authconfig.c:875
+#: ../authconfig.c:1480
+#, fuzzy, c-format
+msgid "%s: critical error writing /etc/ldap.conf\n"
+msgstr "%s: kritická chyba pøi zápisu /etc/yp.conf\n"
+
+#: ../authconfig.c:1490
+#, fuzzy, c-format
+msgid "%s: critical error writing /etc/nsswitch.conf\n"
+msgstr "%s: kritická chyba pøi zápisu /etc/yp.conf\n"
+
+#: ../authconfig.c:1499
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
 msgstr "%s: kritická chyba pøi manipulaci se stínovými hesly\n"
+
+#~ msgid "Enable NIS"
+#~ msgstr "Povolit NIS"
+
+#~ msgid "(NIS not installed)"
+#~ msgstr "(NIS není nainstalováno)"
+
+#~ msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
+#~ msgstr "%s: nis doména byla nastavena na %s, ale dialog byl stornován\n"
+
+#~ msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
+#~ msgstr ""
+#~ "návratové hodnoty: nis: %c, nis doména: %s, stín.hesla: %c, md5: %c\n"
