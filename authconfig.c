@@ -29,7 +29,7 @@ static int readNetworkConfigFile(char **nisDomain)
   
   f = fopen("/etc/sysconfig/network", "r");
   if (!f) {
-    if (errno = ENOENT) {
+    if (errno == ENOENT) {
       return 0;
     }
     
@@ -89,7 +89,7 @@ static int readYPConfigFile(char **nisServer)
   
   f = fopen("/etc/yp.conf", "r");
   if (!f) {
-    if (errno = ENOENT) {
+    if (errno == ENOENT) {
       return 0;
     }
     
@@ -125,6 +125,9 @@ static int readYPConfigFile(char **nisServer)
     if (!strncmp("ypserver ", s, 9)) {
       s += 9;
       *nisServer = strdup(s);
+    } else if (!strncmp("server ", s, 7)) {
+      s += 7;
+      *nisServer = strdup(s);
     } else
       s = NULL;
   }
@@ -153,8 +156,6 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   newtComponent hLine;
   char *newNisDomain, *newNisServer;
   char newEnableShadow, newUseMD5;
-  int rc;
-
 
   /* create the main form and window */
   mainForm = newtForm(NULL, NULL, 0);
@@ -319,7 +320,7 @@ int rewriteNetworkConfigFile(char enableNis, char *nisDomain)
  * this function will rewrite /etc/sysconfig/yp.conf to have the new
  * value for ypserver.  If enableNisServer == ' ', removes this field.
  */
-int rewriteYPConfigFile(char enableNisServer, char *nisServer)
+int rewriteYPConfigFile(char enableNisServer, char *nisServer, char *nisDomain)
 {
   FILE *f, *f1;
   char *s, *s2;
@@ -369,6 +370,16 @@ int rewriteYPConfigFile(char enableNisServer, char *nisServer)
 	fprintf(f1,"ypserver %s\n",nisServer);
 	found = 1;
       }
+    } else if (!strncmp("server ", s, 7)) {
+      if (enableNisServer == '*') {
+	fprintf(f1, "server %s\n",nisServer);
+	found = 1;
+      }
+    } else if (!strncmp("domain ", s, 7)) {
+      if (enableNisServer == '*') {
+	fprintf(f1, "domain %s\n",nisDomain);
+	found = 1;
+      }
     } else {
       fprintf(f1, "%s",s2);
     }
@@ -378,8 +389,12 @@ int rewriteYPConfigFile(char enableNisServer, char *nisServer)
    * here, we write the value if we haven't done so already (it is a new
    * value for the config file...)
    */
-  if (!found && enableNisServer == '*')
+  if (!found && enableNisServer == '*') {
+    fprintf(f1, "domain %s\n",nisDomain);
+    fprintf(f1, "server %s\n",nisServer);
+    fprintf(f1,"# the following line is for backwards compatibility with libc5-based programs\n");
     fprintf(f1, "ypserver %s\n",nisServer);
+  }
 
   fclose(f);
   fclose(f1);
@@ -423,10 +438,9 @@ int toggleShadowPam(int enable, int md5)
   for (i = 0; filenames[i]; i++) {
     sprintf(curFileName,"/etc/pam.d/%s",filenames[i]);
     f = fopen(curFileName, "r");
-    if (!f) {
-      fprintf(stderr,i18n("%s: error opening %s\n"),progName, curFileName);
-      return 1;
-    }
+    if (!f)
+      continue;
+
     sprintf(curTmpFileName,"%s-",curFileName);
     f1 = fopen(curTmpFileName, "w");
     while ((s = fgets(buf, sizeof(buf) - 1, f)) != NULL) {
@@ -486,7 +500,7 @@ int toggleShadowPam(int enable, int md5)
 
 int checkUseMD5(char *useMD5)
 {
-  char *filename = "/etc/pam.d/login";    
+  char *filename = "/etc/pam.d/passwd";
   char buf[250];
   FILE *f;
   char *s;
@@ -512,7 +526,6 @@ int checkUseMD5(char *useMD5)
 
 int doShadowStuff(char enableShadow, char useMD5)
 {
-  FILE *f;
   /* first, toggle the shadow service for all required pam modules. */
   if (toggleShadowPam((enableShadow == '*' ? 1 : 0),
 		      (useMD5 == '*' ? 1 : 0)))
@@ -528,11 +541,8 @@ int doShadowStuff(char enableShadow, char useMD5)
 }
 
 int main(int argc, char **argv) {
-  char buf[1024];
-  FILE *f;
-  int i, rc;
+  int rc;
   struct stat sb;
-  newtComponent form;
 
   char *nisDomain = NULL, *nisServer = NULL;
   char enableNis = ' ', enableNisServer = ' ';
@@ -670,7 +680,7 @@ int main(int argc, char **argv) {
     return 2;
   }
 
-  if (rewriteYPConfigFile(enableNisServer, nisServer)) {
+  if (rewriteYPConfigFile(enableNisServer, nisServer, nisDomain)) {
     fprintf(stderr, i18n("%s: critical error writing /etc/yp.conf\n"),
 	    progName);
     return 2;
