@@ -89,7 +89,7 @@ CVSTAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}\n' 
 tag:
 	cvs tag -cFR $(CVSTAG)
 
-archive: tag
+archive:
 	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.gz
 	dir=`pwd` ; \
 	root=`cat CVS/Root` ; \
