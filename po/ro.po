@@ -24,9 +24,9 @@ msgid "%s: cannot open /etc/yp.conf: %s\n"
 msgstr "%s: nu se poate accesa /etc/yp.conf: %s\n"
 
 #: ../authconfig.c:202 ../authconfig.c:899
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s: nu se poate accesa /etc/yp.conf: %s\n"
+msgstr "%s: nu se poate deschide /etc/ldap.conf: %s\n"
 
 #.
 #. * find length of longest string. Looks useless when strings
@@ -34,9 +34,8 @@ msgstr "%s: nu se poate accesa /etc/yp.conf: %s\n"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:318 ../authconfig.c:486
-#, fuzzy
 msgid "    NIS Domain:"
-msgstr "Domeniu NIS:"
+msgstr "   Domeniu NIS:"
 
 #: ../authconfig.c:319 ../authconfig.c:461
 msgid "NIS Server:"
@@ -51,50 +50,47 @@ msgstr "Server NIS:"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:320 ../authconfig.c:449
-#, fuzzy
 msgid "         or use:"
-msgstr "sau folosiþi:"
+msgstr "   sau folosiþi:"
 
 #: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-#, fuzzy
 msgid "   LDAP Domain:"
-msgstr "Domeniu NIS:"
+msgstr "  Domeniu LDAP:"
 
 #: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
 msgid "    LDAP Server:"
-msgstr ""
+msgstr "    Server LDAP:"
 
 #: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
 msgid "Kerberos Realm:"
-msgstr ""
+msgstr "Kerberos Realm:"
 
 #: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
 msgid "Kerberos Server:"
-msgstr ""
+msgstr "Server Kerberos:"
 
 #.
 #. * what kind of authentication?
 #.
 #: ../authconfig.c:416
-#, fuzzy
 msgid "Authentication Type:"
-msgstr "Configurare Metode de Autetificare"
+msgstr "Tip Autentificare:"
 
 #: ../authconfig.c:417
 msgid "Password File"
-msgstr ""
+msgstr "Fiºier passwd standard"
 
 #: ../authconfig.c:422
 msgid "NIS"
-msgstr ""
+msgstr "NIS"
 
 #: ../authconfig.c:428
 msgid "LDAP"
-msgstr ""
+msgstr "LDAP"
 
 #: ../authconfig.c:434
 msgid "Kerberos"
-msgstr ""
+msgstr "Kerberos"
 
 #: ../authconfig.c:462
 msgid "Request via broadcast"
@@ -128,7 +124,7 @@ msgstr "Abandon"
 
 #: ../authconfig.c:612
 msgid "Authentication Configuration"
-msgstr "Configurare Metode de Autetificare"
+msgstr "Configurare Metode de Autentificare"
 
 #: ../authconfig.c:640 ../authconfig.c:649
 msgid "Error"
@@ -140,9 +136,8 @@ msgstr ""
 "Trebuie introdus numele serverului NIS sau activatã opþiunea de broadcast"
 
 #: ../authconfig.c:650
-#, fuzzy
 msgid "You must enter an authentication domain."
-msgstr "Trebuie introdus un domeniu NIS"
+msgstr "Trebuie introdus un domeniu de autentificare"
 
 #: ../authconfig.c:707
 #, c-format
@@ -155,19 +150,19 @@ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s: nu se poate accesa /etc/yp.conf- pentru scriere: %s\n"
 
 #: ../authconfig.c:906
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s: nu se poate accesa /etc/yp.conf- pentru scriere: %s\n"
+msgstr "%s: nu se poate deschide /etc/ldap.conf- pentru scriere: %s\n"
 
 #: ../authconfig.c:985
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s: nu se poate accesa /etc/yp.conf: %s\n"
+msgstr "%s: nu se poate deschide /etc/nsswitch.conf: %s\n"
 
 #: ../authconfig.c:992
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s: nu se poate accesa /etc/yp.conf- pentru scriere: %s\n"
+msgstr "%s: nu se poate accesa /etc/nsswitch.conf- pentru scriere: %s\n"
 
 #: ../authconfig.c:1200
 #, c-format
@@ -217,7 +212,7 @@ msgstr "%s: poate fi rulat numai de cãtre root\n"
 #: ../authconfig.c:1337
 #, c-format
 msgid "%s: unknown authorization type %s\n"
-msgstr ""
+msgstr "%s: autorizaþie necunoscutã de tip %s\n"
 
 #: ../authconfig.c:1353
 #, c-format
@@ -230,9 +225,9 @@ msgid "%s: critical error reading /etc/yp.conf"
 msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
 
 #: ../authconfig.c:1381
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error reading /etc/ldap.conf"
-msgstr "%s: eroare fatalã la citirea /etc/yp.conf"
+msgstr "%s: eroare fatalã la citirea /etc/ldap.conf"
 
 #: ../authconfig.c:1393
 #, c-format
@@ -249,11 +244,11 @@ msgstr ""
 
 #: ../authconfig.c:1412
 msgid "dialog was cancelled\n"
-msgstr ""
+msgstr "interacþiunea a fost opritã\n"
 
 #: ../authconfig.c:1423
 msgid "authentication type selected: "
-msgstr ""
+msgstr "tipul de autentificare selectatã:"
 
 #: ../authconfig.c:1453
 #, c-format
@@ -271,14 +266,14 @@ msgid "%s: critical error turning on NIS service\n"
 msgstr "%s: nu se poate activa serviciul NIS\n"
 
 #: ../authconfig.c:1480
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing /etc/ldap.conf\n"
-msgstr "%s: nu se poate scrie /etc/yp.conf\n"
+msgstr "%s: nu se poate scrie /etc/ldap.conf\n"
 
 #: ../authconfig.c:1490
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing /etc/nsswitch.conf\n"
-msgstr "%s: nu se poate scrie /etc/yp.conf\n"
+msgstr "%s: nu se poate scrie /etc/nsswitch.conf\n"
 
 #: ../authconfig.c:1499
 #, c-format
