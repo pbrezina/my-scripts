@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.1\n"
 "POT-Creation-Date: 2000-08-08 11:34-0400\n"
-"PO-Revision-Date: 1999-04-09 10:00+0500\n"
-"Last-Translator: Alex Lobas <soft@cw.comizdat.com>\n"
-"Language-Team: Comizdat <soft@cw.comizdat.com>\n"
+"PO-Revision-Date: 2000-08-10 00:29+09:00\n"
+"Last-Translator: Dmytro Koval'ov <kov@tokyo.email.ne.jp>\n"
+"Language-Team: linux@linux.org.ua\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-u\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,81 +15,75 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
+"Не знайдено файл %s, але в╕н потр╕бен для забезпечення  в╕рно╖ роботи %s. "
+"Встанов╕ть пакет %s, який забезпечу╓ цей файл."
 
 #: ../authconfig.c:157
 msgid "Warning"
-msgstr ""
+msgstr "Попередження"
 
 #: ../authconfig.c:157 ../authconfig.c:529 ../authconfig.c:534
 msgid "Ok"
 msgstr "Так"
 
 #: ../authconfig.c:167 ../authconfig.c:241
-#, fuzzy
 msgid "  Domain:"
-msgstr "     Домен NIS:"
+msgstr "   Домен :"
 
 #: ../authconfig.c:168 ../authconfig.c:214
-#, fuzzy
 msgid "  Server:"
-msgstr "NIS сервер:"
+msgstr "   Сервер:"
 
 #: ../authconfig.c:188
 msgid "     LHS:"
-msgstr ""
+msgstr "     LHS:"
 
 #: ../authconfig.c:189
 msgid "     RHS:"
-msgstr ""
+msgstr "     RHS:"
 
 #: ../authconfig.c:215
 msgid " Base DN:"
-msgstr ""
+msgstr "Основна DN:"
 
 #: ../authconfig.c:258
-#, fuzzy
 msgid "          Realm:"
-msgstr "або використайте:"
+msgstr "          Realm:"
 
 #: ../authconfig.c:259
-#, fuzzy
 msgid "            KDC:"
-msgstr "або використайте:"
+msgstr "            KDC:"
 
 #: ../authconfig.c:260
-#, fuzzy
 msgid "   Admin Server:"
-msgstr "     Сервер LDAP"
+msgstr "     Адм╕н╕стративний сервер: "
 
 #. Create the window and a form to put into it.
 #: ../authconfig.c:300
-#, fuzzy
 msgid "User Information Configuration"
-msgstr "Конф╕гурац╕я аутентиф╕кац╕╖"
+msgstr "Конф╕гурац╕я ╕нформац╕╖ про користувача"
 
 #. NSS modules: NIS.
 #: ../authconfig.c:304
-#, fuzzy
 msgid "Use NIS"
-msgstr "NIS"
+msgstr "Використовувати NIS"
 
 #: ../authconfig.c:327
-#, fuzzy
 msgid "Use LDAP"
-msgstr "LDAP"
+msgstr "Використовувати LDAP"
 
 #: ../authconfig.c:346
 msgid "Use WinBind"
-msgstr ""
+msgstr "Використовувати WinBind"
 
 #: ../authconfig.c:360
 msgid "Use Hesiod"
-msgstr ""
+msgstr "Користуватися Hesiod"
 
 #. Create the buttons.
 #: ../authconfig.c:381
 msgid "Next"
-msgstr ""
+msgstr "Наступний"
 
 #: ../authconfig.c:382 ../authconfig.c:530 ../authconfig.c:535
 msgid "Back"
@@ -102,32 +96,28 @@ msgstr "Скасувати"
 #. Create the window and a form to put into it.
 #: ../authconfig.c:447
 msgid "Authentication Configuration"
-msgstr "Конф╕гурац╕я аутентиф╕кац╕╖"
+msgstr "Конф╕гурац╕я аутентикац╕╖"
 
 #. PAM setup.
 #: ../authconfig.c:451
 msgid "Use Shadow Passwords"
-msgstr "Використати прихован╕ парол╕"
+msgstr "Використовувати прихован╕ парол╕"
 
 #: ../authconfig.c:455
-#, fuzzy
 msgid "Use MD5 Passwords"
-msgstr "Дозволити парол╕ MD5"
+msgstr "Використовувати парол╕ MD5"
 
 #: ../authconfig.c:460
-#, fuzzy
 msgid "Use LDAP Authentication"
-msgstr "Конф╕гурац╕я аутентиф╕кац╕╖"
+msgstr "Використовувати аутентикац╕ю LDAP"
 
 #: ../authconfig.c:481
-#, fuzzy
 msgid "Use WinBind Authentication"
-msgstr "Конф╕гурац╕я аутентиф╕кац╕╖"
+msgstr "Використовувати аутентикац╕ю WinBind"
 
 #: ../authconfig.c:496
-#, fuzzy
 msgid "Use Kerberos 5"
-msgstr "Kerberos"
+msgstr "Використовувати Kerberos 5"
 
 #: ../authconfig.c:626
 #, c-format
@@ -170,12 +160,69 @@ msgid ""
 "     --kickstart                don't display user interface\n"
 "     --help                     show this screen\n"
 msgstr ""
+"Вживання: %s [параметри]\n"
+"\n"
+"     --useshadow\n"
+"     --enableshadow             дозволити стандартне використання \n"
+"                                т╕ньових парол╕в\n"
+"     --disableshadow            заборонити стандартне використання \n"
+"                                т╕ньових парол╕в\n"
+"     --enablemd5                дозволити стандартне використання парол╕в  "
+"MD5\n"
+"     --disablemd5               заборонити стандартне використання парол╕в  "
+"MD5\n"
+"\n"
+"     --enablenis                дозволити NIS\n"
+"     --disablenis               заборонити NIS\n"
+"     --nisdomain <domain>       стандартний домен NIS \n"
+"     --nisserver <server>       стандартний сервер NIS\n"
+"\n"
+"     --enableldap               дозволити стандартне використання ╕нформац╕╖ "
+"\n"
+"                                про користувача з LDAP\n"
+"     --disableldap              заборонити стандартне використання "
+"╕нформац╕╖ \n"
+"                                про користувача з LDAP\n"
+"     --enableldapauth           дозволити стандартне використання LDAP для \n"
+"                                аутентикац╕╖\n"
+"     --disableldapauth          заборонити  стандартне використання LDAP для "
+"\n"
+"                                аутентикац╕╖\n"
+"     --ldapserver <server>      стандартний сервер LDAP \n"
+"     --ldapbasedn <dn>          стандартна LDAP основна DN\n"
+"\n"
+"     --enablekrb5               дозволити стандартне використання "
+"аутентикац╕╖ \n"
+"                                за допомогою kerberos\n"
+"     --disablekrb5              заборонити стандартне використання "
+"аутентикац╕╖\n"
+"                                за допомогою kerberos \n"
+"     --krb5kdc <server>         стандартни kerberos KDC\n"
+"     --krb5adminserver <server> стандартний адм╕н╕стративний сервер "
+"kerberos\n"
+"     --krb5realm <realm>        стандартний realm kerberos\n"
+"\n"
+"     --enablehesiod             дозволити стандартне використання  hesiod "
+"для \n"
+"                                ╕нформац╕╖ про користувача\n"
+"     --disablehesiod            заборонити  стандартне використання  hesiod "
+"\n"
+"                                для ╕нформац╕╖ про користувача\n"
+"     --hesiodlhs <lhs>          стандартний hesiod LHS\n"
+"     --hesiodrhs <rhs>          стандартний hesiod RHS\n"
+"\n"
+"     --nostart                  не зупиняти/стартувати ypbind\n"
+"     --kickstart                не показувати ╕нтерфейс користувача\n"
+"     --help                     показати цей екран\n"
 
 #: ../authconfig.c:665
 msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
 msgstr ""
+"\n"
+"     --enablelocal              користуватися пол╕тикою, що визнача╓ться "
+"локально "
 
 #: ../authconfig.c:777
 #, c-format
@@ -195,9 +242,9 @@ msgstr "%s: приступно лише користувачев╕ root\n"
 #: ../authconfig.c:807 ../authconfig.c:815 ../authconfig.c:823
 #: ../authconfig.c:832 ../authconfig.c:841 ../authconfig.c:849
 #: ../authconfig.c:857 ../authconfig.c:865
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error reading %s/%s"
-msgstr "%s:  критична помилка читання /etc/pam.d/passwd\n"
+msgstr "%s:  критична помилка читання %s/%s"
 
 #: ../authconfig.c:923
 msgid ""
@@ -214,148 +261,6 @@ msgstr "диалог було прервано\n"
 #: ../authconfig.c:999 ../authconfig.c:1005 ../authconfig.c:1011
 #: ../authconfig.c:1017 ../authconfig.c:1024 ../authconfig.c:1031
 #: ../authconfig.c:1036 ../authconfig.c:1042
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing %s/%s"
-msgstr "%s: критична помилка запису /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/hesiod.conf"
-#~ msgstr "%s: критична помилка читання /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/krb5.conf"
-#~ msgstr "%s: критична помилка читання /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/ldap.conf"
-#~ msgstr "%s: критична помилка читання /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/smb.conf"
-#~ msgstr "%s: критична помилка читання /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/yp.conf"
-#~ msgstr "%s: критична помилка читання /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/nsswitch.conf"
-#~ msgstr "%s: критична помилка запису /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/sysconfig/network"
-#~ msgstr "%s: критична помилка читання /etc/sysconfig/network"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/hesiod.conf"
-#~ msgstr "%s: критична помилка запису /etc/ldap.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/krb5.conf"
-#~ msgstr "%s: критична помилка запису /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/ldap.conf"
-#~ msgstr "%s: критична помилка запису /etc/ldap.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/yp.conf"
-#~ msgstr "%s: критична помилка запису /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/smb.conf"
-#~ msgstr "%s: критична помилка запису /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/nsswitch.conf"
-#~ msgstr "%s: критична помилка запису /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/sysconfig/network"
-#~ msgstr "%s: критична помилка запису /etc/sysconfig/network\n"
-
-#~ msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/sysconfig/network: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/yp.conf: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/ldap.conf: %s\n"
-
-#~ msgid "   LDAP Domain:"
-#~ msgstr "      Домен NIS"
-
-#~ msgid "Kerberos Realm:"
-#~ msgstr "Kerberos Realm:"
-
-#~ msgid "Kerberos Server:"
-#~ msgstr "Сервер Kerberos"
-
-#~ msgid "Password File"
-#~ msgstr "Файл парол╕в"
-
-#~ msgid "Request via broadcast"
-#~ msgstr "Запит до вс╕х"
-
-#~ msgid "Error"
-#~ msgstr "Помилка"
-
-#~ msgid "You must enter a NIS server or request via broadcast."
-#~ msgstr "Ви ма╓те вказати сервер NIS або запит до вс╕х."
-
-#~ msgid "You must enter an authentication domain."
-#~ msgstr "Ви ма╓те в╕йти в домен аутентиф╕кац╕╖."
-
-#~ msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/sysconfig/network- для запису: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/yp.conf- для запису: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/ldap.conf- для запису: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/nsswitch.conf: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-#~ msgstr "%s: неможливо в╕дкрити /etc/nsswitch.conf- для запису: %s\n"
-
-#~ msgid "%s: error opening %s\n"
-#~ msgstr "%s: помилка в╕дкриття %s\n"
-
-#~ msgid ""
-#~ "Usage: %s [options]\n"
-#~ "\n"
-#~ "     --nostart            do not start/stop yp\n"
-#~ "     --enablenis          enable nis by default\n"
-#~ "     --nisdomain <domain> default NIS domain\n"
-#~ "     --nisserver <server> default NIS server\n"
-#~ "     --useshadow          use shadow passwords\n"
-#~ "     --enablemd5          enable MD5 passwords\n"
-#~ "     --kickstart          don't display user interface\n"
-#~ "     --help               show this screen\n"
-#~ msgstr ""
-#~ "Використання: %s [опц╕╖]\n"
-#~ "\n"
-#~ "     --nostart            не запускати/зупинити yp\n"
-#~ "     --enablenis          дозволити nis за замовчуванням\n"
-#~ "     --nisdomain <домен>  домен NIS за замовчуванням\n"
-#~ "     --nisserver <сервер> сервер NIS за замовчуванням\n"
-#~ "     --useshadow          використати прихован╕ парол╕\n"
-#~ "     --enablemd5          дозволити парол╕ MD5\n"
-#~ "     --kickstart          не в╕дображати ╕нтерфейс користувача\n"
-#~ "     --help               показати цей екран\n"
-
-#~ msgid "%s: unknown authorization type %s\n"
-#~ msgstr "%s: нев╕домий тип авторизац╕╖ %s\n"
-
-#~ msgid "authentication type selected: "
-#~ msgstr "обрано тип аутентиф╕кац╕╖:"
-
-#~ msgid "%s: critical error turning on NIS service\n"
-#~ msgstr "%s: критична помилка ув╕мкнення служби NIS\n"
-
-#~ msgid "%s: critical error with shadow password manipulation\n"
-#~ msgstr "%s: критична помилка опрацювання пароля\n"
+msgstr "%s: критична помилка запису %s/%s"
