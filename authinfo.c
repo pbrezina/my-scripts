@@ -402,8 +402,14 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 	info->enableDB = (strstr(nss_config, "db") != NULL);
 	info->enableHesiod = (strstr(nss_config, "hesiod") != NULL);
 	info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
-	info->enableNIS = ((strstr(nss_config, "nis") != NULL) &&
-			   ((strstr(nss_config, "nis"))[3] != 'p'));
+	/* Cover for the "nisplus nis" case, which would otherwise fail. */
+	for(p = nss_config; strstr(p, "nis") != NULL; p++) {
+		info->enableNIS = ((strstr(p, "nis") != NULL) &&
+				   ((strstr(p, "nis"))[3] != 'p'));
+		if(info->enableNIS) {
+			break;
+		}
+	}
 	info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
 	g_free(nss_config);
 	fclose(fp);
@@ -1720,10 +1726,14 @@ gboolean authInfoWriteNetwork(struct authInfoType *info)
 gboolean authInfoWrite(struct authInfoType *authInfo)
 {
 	gboolean ret = TRUE;
-	ret = ret && authInfoWriteKerberos(authInfo);
-	ret = ret && authInfoWriteHesiod(authInfo);
-	ret = ret && authInfoWriteNIS(authInfo);
-	ret = ret && authInfoWriteLDAP(authInfo);
+	if(authInfo->enableKerberos)
+		ret = ret && authInfoWriteKerberos(authInfo);
+	if(authInfo->enableHesiod)
+		ret = ret && authInfoWriteHesiod(authInfo);
+	if(authInfo->enableNIS)
+		ret = ret && authInfoWriteNIS(authInfo);
+	if(authInfo->enableLDAP)
+		ret = ret && authInfoWriteLDAP(authInfo);
 	ret = ret && authInfoWriteNSS(authInfo);
 	ret = ret && authInfoWritePAM(authInfo);
 	ret = ret && authInfoWriteNetwork(authInfo);
