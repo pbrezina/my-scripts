@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.3.4
+Version: 4.3.5
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -68,6 +68,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon May  5 2003 Nalin Dahyabhai <nalin@redhat.com> 4.3.5-1
+- translation updates
+- close unusable file descriptors if locking fails
+
 * Tue Feb 18 2003 Nalin Dahyabhai <nalin@redhat.com> 4.3.4-1
 - learn how to toggle defaults/crypt_style in /etc/libuser.conf (#79337)
 

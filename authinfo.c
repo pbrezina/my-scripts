@@ -1066,10 +1066,12 @@ authInfoWriteSMB(struct authInfoType *info)
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
 	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
 	if (ftruncate(fd, 0) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
@@ -1118,10 +1120,12 @@ authInfoWriteNIS(struct authInfoType *info)
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
 	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
 	if (fstat(fd, &st) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
@@ -1203,10 +1207,10 @@ authInfoWriteNIS(struct authInfoType *info)
 				strcat(obuf, "\n");
 				written = TRUE;
 			}
-		} else
-
-		/* Otherwise, just copy the current line out. */
-		strncat(obuf, p, q - p);
+		} else {
+			/* Otherwise, just copy the current line out. */
+			strncat(obuf, p, q - p);
+		}
 		p = q;
 	}
 
@@ -1263,10 +1267,12 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
 	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
 	if (fstat(fd, &st) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
@@ -1340,10 +1346,10 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 				strcat(obuf, "\n");
 				wrotepass = TRUE;
 			}
-		} else
-
-		/* Otherwise, just copy the current line out. */
-		strncat(obuf, p, q - p);
+		} else {
+			/* Otherwise, just copy the current line out. */
+			strncat(obuf, p, q - p);
+		}
 		p = q;
 	}
 
@@ -1445,10 +1451,12 @@ authInfoWriteLibuser(struct authInfoType *info)
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
 	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
 	if (fstat(fd, &st) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
@@ -1615,10 +1623,12 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
 	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
 	if (fstat(fd, &st) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
@@ -1843,15 +1853,18 @@ authInfoWriteKerberos4(struct authInfoType *info)
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
 	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
 		return FALSE;
 	}
 	if (fstat(fd, &st) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
 	ibuf = g_malloc0(st.st_size + 1);
 	if (read(fd, ibuf, st.st_size) != st.st_size) {
 		g_free(ibuf);
+		close(fd);
 		return FALSE;
 	}
 
@@ -1970,10 +1983,12 @@ authInfoWriteNSS(struct authInfoType *info)
 	memset(&lock, 0, sizeof(lock));
 	lock.l_type = F_WRLCK;
 	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
 	if (fstat(fd, &st) == -1) {
+		close(fd);
 		return FALSE;
 	}
 
