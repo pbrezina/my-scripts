@@ -46,7 +46,7 @@
 #define LOGIC_REQUISITE		"requisite"
 #define LOGIC_SUFFICIENT	"sufficient"
 #define LOGIC_OPTIONAL		"optional"
-#define LOGIC_IGNORE_UNKNOWN	"[default=ok user_unknown=ignore service_err=ignore system_err=ignore]"
+#define LOGIC_IGNORE_UNKNOWN	"[default=bad success=ok user_unknown=ignore service_err=ignore system_err=ignore]"
 
 /* Snip off line terminators and final whitespace from a passed-in string. */
 static void
@@ -2196,16 +2196,12 @@ static struct {
 #endif
 	{TRUE,  account, 	LOGIC_REQUIRED,
 	 "unix",		NULL},
-	{TRUE,  account, 	LOGIC_SUFFICIENT,
-	 "localuser",		NULL},
-	{FALSE, account,	LOGIC_SUFFICIENT,
+	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		NULL},
-	{FALSE, account,	LOGIC_SUFFICIENT,
+	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5",		NULL},
-	{FALSE, account,	LOGIC_SUFFICIENT,
+	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5afs",		NULL},
-	{TRUE,  account, 	LOGIC_REQUIRED,
-	 "deny",		NULL},
 
 #ifdef LOCAL_POLICIES
 	{FALSE, password,	LOGIC_REQUIRED,
