@@ -1,4 +1,4 @@
-SUBDIRS = intl m4 po man
+SUBDIRS = intl m4  intl m4 po man
 
 PYTHONREV=@PYTHONREV@
 pythonsitedir = $(libdir)/python@PYTHONREV@/site-packages
@@ -80,4 +80,4 @@ authconfigmodule_so_SOURCES = \
 	shvar.h
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade config.rpath man/en/authconfig.8
+EXTRA_DIST = config.rpath  authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade config.rpath man/en/authconfig.8
