@@ -37,6 +37,8 @@
 #define WHITESPACE	" \t\r\n"
 #define PORT		53
 #define TIMEOUT		5
+#define DEFAULT_QSIZE	1024
+#define MAX_QSIZE	65536
 
 typedef struct dns_query_header {
 	u_int16_t dns_id;
@@ -112,6 +114,14 @@ dns_format_query(const char *query, u_int16_t qclass, u_int16_t qtype,
 
 	memset(&header, 0, sizeof(header));
 	header.dns_id = 0; /* FIXME: id = 0 */
+	switch (qtype) {
+	case DNS_T_SOA:
+		header.dns_rd = 1;
+		break;
+	default:
+		header.dns_rd = 0;
+		break;
+	}
 	header.dns_qr = 0; /* query */
 	header.dns_opcode = 0; /* standard query */
 	header.dns_qdcount = 1; /* single query */
@@ -160,7 +170,6 @@ dns_parse_label(const unsigned char *label,
 	}
 
 	p = label;
-	update = 1;
 	while (p && (p < base + length) && *p) {
 		if (*p & 0xc0) {
 			p = base + ((p[0] & 0x3f) << 8) + p[1];
@@ -184,10 +193,10 @@ dns_parse_label(const unsigned char *label,
 	while (p && *p) {
 		if (*p & 0xc0) {
 			p = base + ((p[0] & 0x3f) << 8) + p[1];
-			ret += 2;
 			if (update) {
-				update = 0;
+				ret += 2;
 			}
+			update = 0;
 			continue;
 		}
 		if (update) {
@@ -218,7 +227,7 @@ dns_parse_a(const unsigned char *rr, const unsigned char *base, size_t max,
 				   (rr[2] <<  8) |
 				   (rr[3] <<  0);
 #ifdef DEBUG_DNSCLIENT
-	printf("A = %d.%d.%d.%d.\n", rr[0], rr[1], rr[2], rr[3]);
+	fprintf(stderr, "A = %d.%d.%d.%d.\n", rr[0], rr[1], rr[2], rr[3]);
 #endif
 	return 4;
 }
@@ -228,9 +237,11 @@ dns_parse_domain(const unsigned char *rr, const unsigned char *base, size_t max,
 		 struct dns_rr *res, const char **ret)
 {
 	unsigned char buf[DOMAIN_MAX];
-	if (dns_parse_label(rr, base, max, buf, sizeof(buf), NULL)) {
+	int len;
+	len = dns_parse_label(rr, base, max, buf, sizeof(buf), NULL);
+	if (len != 0) {
 		*ret = strdup(buf);
-		return strlen(*ret);
+		return len;
 	}
 	return 0;
 }
@@ -259,7 +270,7 @@ dns_parse_ns(const unsigned char *rr, const unsigned char *base, size_t max,
 	int ret;
 	ret = dns_parse_domain(rr, base, max, res, &res->dns_rdata.ns.nsdname);
 #ifdef DEBUG_DNSCLIENT
-	printf("NS DNAME = \"%s\".\n", res->dns_rdata.ns.nsdname);
+	fprintf(stderr, "NS DNAME = \"%s\".\n", res->dns_rdata.ns.nsdname);
 #endif
 	return ret;
 }
@@ -271,7 +282,7 @@ dns_parse_cname(const unsigned char *rr, const unsigned char *base, size_t max,
 	int ret;
 	ret = dns_parse_domain(rr, base, max, res, &res->dns_rdata.cname.cname);
 #ifdef DEBUG_DNSCLIENT
-	printf("CNAME = \"%s\".\n", res->dns_rdata.cname.cname);
+	fprintf(stderr, "CNAME = \"%s\".\n", res->dns_rdata.cname.cname);
 #endif
 	return ret;
 }
@@ -281,7 +292,7 @@ dns_parse_soa(const unsigned char *rr, const unsigned char *base, size_t max,
 	      struct dns_rr *res)
 {
 	char buf[2048];
-	int ret;
+	const unsigned char *start = rr;
 
 	if (rr + 20 > base + max) {
 		return 0;
@@ -304,14 +315,15 @@ dns_parse_soa(const unsigned char *rr, const unsigned char *base, size_t max,
 		res->dns_rdata.soa.minimum = (rr[16] << 24) + (rr[17] << 16) + (rr[18] << 8) + rr[19];
 	}
 #ifdef DEBUG_DNSCLIENT
-	printf("SOA(mname) = \"%s\".\n", res->dns_rdata.soa.mname);
-	printf("SOA(rname) = \"%s\".\n", res->dns_rdata.soa.rname);
-	printf("SOA(serial) = %d.\n", res->dns_rdata.soa.serial);
-	printf("SOA(refresh) = %d.\n", res->dns_rdata.soa.refresh);
-	printf("SOA(retry) = %d.\n", res->dns_rdata.soa.retry);
-	printf("SOA(expire) = %d.\n", res->dns_rdata.soa.expire);
-	printf("SOA(minimum) = %d.\n", res->dns_rdata.soa.minimum);
+	fprintf(stderr, "SOA(mname) = \"%s\".\n", res->dns_rdata.soa.mname);
+	fprintf(stderr, "SOA(rname) = \"%s\".\n", res->dns_rdata.soa.rname);
+	fprintf(stderr, "SOA(serial) = %d.\n", res->dns_rdata.soa.serial);
+	fprintf(stderr, "SOA(refresh) = %d.\n", res->dns_rdata.soa.refresh);
+	fprintf(stderr, "SOA(retry) = %d.\n", res->dns_rdata.soa.retry);
+	fprintf(stderr, "SOA(expire) = %d.\n", res->dns_rdata.soa.expire);
+	fprintf(stderr, "SOA(minimum) = %d.\n", res->dns_rdata.soa.minimum);
 #endif
+	return rr - start + 20;
 }
 
 static void
@@ -332,30 +344,35 @@ static int
 dns_parse_hinfo(const unsigned char *rr, const unsigned char *base, size_t max,
 		struct dns_rr *res)
 {
+	const unsigned char *start = rr;
 	rr = dns_parse_text(rr, base, max, res, &res->dns_rdata.hinfo.cpu);
 	if (rr) {
 		dns_parse_text(rr, base, max, res, &res->dns_rdata.hinfo.os);
 	}
 #ifdef DEBUG_DNSCLIENT
-	printf("HINFO(cpu) = \"%s\".\n", res->dns_rdata.hinfo.cpu);
-	printf("HINFO(os) = \"%s\".\n", res->dns_rdata.hinfo.os);
+	fprintf(stderr, "HINFO(cpu) = \"%s\".\n", res->dns_rdata.hinfo.cpu);
+	fprintf(stderr, "HINFO(os) = \"%s\".\n", res->dns_rdata.hinfo.os);
 #endif
+	return rr - start;
 }
 
 static int
 dns_parse_mx(const unsigned char *rr, const unsigned char *base, size_t max,
 	     struct dns_rr *res)
 {
+	int ret;
 	if (rr + 2 > base + max) {
 		return 0;
 	}
 	res->dns_rdata.mx.preference = (rr[0] << 8) | rr[1];
-	dns_parse_domain(rr + 2, base, max, res, &res->dns_rdata.mx.exchange);
+	ret = dns_parse_domain(rr + 2, base, max, res,
+			       &res->dns_rdata.mx.exchange);
 #ifdef DEBUG_DNSCLIENT
-	printf("MX(exchanger) = \"%s\".\n", res->dns_rdata.mx.exchange);
-	printf("MX(preference) = %d.\n", res->dns_rdata.mx.preference);
+	fprintf(stderr, "MX(exchanger) = \"%s\".\n",
+		res->dns_rdata.mx.exchange);
+	fprintf(stderr, "MX(preference) = %d.\n", res->dns_rdata.mx.preference);
 #endif
-	return 2;
+	return ret + 2;
 }
 
 static void
@@ -364,7 +381,7 @@ dns_parse_txt(const unsigned char *rr, const unsigned char *base, size_t max,
 {
 	dns_parse_text(rr, base, max, res, &res->dns_rdata.txt.data);
 #ifdef DEBUG_DNSCLIENT
-	printf("TXT = \"%s\".\n", res->dns_rdata.txt.data);
+	fprintf(stderr, "TXT = \"%s\".\n", res->dns_rdata.txt.data);
 #endif
 }
 
@@ -374,7 +391,7 @@ dns_parse_ptr(const unsigned char *rr, const unsigned char *base, size_t max,
 {
 	dns_parse_domain(rr, base, max, res, &res->dns_rdata.ptr.ptrdname);
 #ifdef DEBUG_DNSCLIENT
-	printf("PTR = \"%s\".\n", res->dns_rdata.ptr.ptrdname);
+	fprintf(stderr, "PTR = \"%s\".\n", res->dns_rdata.ptr.ptrdname);
 #endif
 }
 
@@ -382,19 +399,22 @@ static int
 dns_parse_srv(const unsigned char *rr, const unsigned char *base, size_t max,
 	      struct dns_rr *res)
 {
+	int ret;
 	if (rr + 6 > base + max) {
 		return 0;
 	}
 	res->dns_rdata.srv.priority = (rr[0] << 8) + rr[1];
 	res->dns_rdata.srv.weight = (rr[2] << 8) + rr[3];
 	res->dns_rdata.srv.port = (rr[4] << 8) + rr[5];
-	dns_parse_domain(rr + 6, base, max, res, &res->dns_rdata.srv.server);
+	ret = dns_parse_domain(rr + 6, base, max, res,
+			       &res->dns_rdata.srv.server);
 #ifdef DEBUG_DNSCLIENT
-	printf("SRV(server) = \"%s\".\n", res->dns_rdata.srv.server);
-	printf("SRV(weight) = %d.\n", res->dns_rdata.srv.weight);
-	printf("SRV(priority) = %d.\n", res->dns_rdata.srv.priority);
-	printf("SRV(port) = %d.\n", res->dns_rdata.srv.port);
+	fprintf(stderr, "SRV(server) = \"%s\".\n", res->dns_rdata.srv.server);
+	fprintf(stderr, "SRV(weight) = %d.\n", res->dns_rdata.srv.weight);
+	fprintf(stderr, "SRV(priority) = %d.\n", res->dns_rdata.srv.priority);
+	fprintf(stderr, "SRV(port) = %d.\n", res->dns_rdata.srv.port);
 #endif
+	return ret + 6;
 }
 
 struct dns_rr *
@@ -425,11 +445,12 @@ dns_parse_results(const unsigned char *results, size_t length)
 		return NULL;
 	}
 
-	res = malloc(sizeof(struct dns_rr) * (header.dns_ancount + 1));
+	res = calloc((header.dns_ancount + header.dns_nscount +
+		      header.dns_arcount + 1),
+		     sizeof(struct dns_rr));
 	if (res == NULL) {
 		return NULL;
 	}
-	memset(res, 0, sizeof(struct dns_rr) * (header.dns_ancount + 1));
 
 	p = results + sizeof(header);
 
@@ -466,12 +487,13 @@ dns_parse_results(const unsigned char *results, size_t length)
 			tmp, res[0].dns_class, res[0].dns_type);
 #endif
 
-		memset(&res[0], 0, sizeof(res[0]));
 		free(tmp);
 	}
 
-	for (i = 0; i < header.dns_ancount; i++) {
-		skip = dns_parse_label(p, results, length - (p - results),
+	for (i = 0;
+	     i < header.dns_ancount + header.dns_nscount + header.dns_arcount;
+	     i++) {
+		skip = dns_parse_label(p, results, length,
 				       buf, sizeof(buf), NULL);
 		if (skip == 0) {
 			free(res);
@@ -504,7 +526,7 @@ dns_parse_results(const unsigned char *results, size_t length)
 #endif
 
 		rr = p;
-		switch(res[i].dns_type) {
+		switch (res[i].dns_type) {
 			case DNS_T_A:
 				dns_parse_a(rr, results, length, &res[i]);
 				break;
@@ -541,8 +563,9 @@ dns_parse_results(const unsigned char *results, size_t length)
 			case DNS_T_ANY:
 			default:
 #ifdef DEBUG_DNSCLIENT
-				printf("Don't know how to parse RR type %d!\n",
-				       res[i].dns_type);
+				fprintf(stderr,
+					"Don't know how to parse RR type %d!\n",
+					res[i].dns_type);
 #endif
 				break;
 		}
@@ -558,19 +581,19 @@ dns_parse_results(const unsigned char *results, size_t length)
 	return res;
 }
 
-struct dns_client_context *
-dns_client_init(void)
+struct dns_client *
+dns_client_new(void)
 {
-	struct dns_client_context *ret = NULL;
+	struct dns_client *ret = NULL;
 	char buf[BUFSIZ], *p, *q;
 	FILE *fp;
 	int tokens, ns;
 
-	ret = malloc(sizeof(struct dns_client_context));
+	ret = malloc(sizeof(struct dns_client));
 	if (ret == NULL) {
 		return NULL;
 	}
-	memset(ret, 0, sizeof(struct dns_client_context));
+	memset(ret, 0, sizeof(struct dns_client));
 
 	ret->nameservers = malloc(sizeof(struct sockaddr_in*) * (SERVER_MAX + 1));
 	if (ret->nameservers == NULL) {
@@ -653,40 +676,91 @@ dns_client_init(void)
 
 	return ret;
 }
+void
+dns_client_free(struct dns_client *context)
+{
+	int i;
+	if (context->domain) {
+		free(context->domain);
+	}
+	if (context->search) {
+		for (i = 0; context->search[i] != NULL; i++) {
+			free(context->search[i]);
+		}
+		free(context->search);
+	}
+	if (context->nameservers) {
+		for (i = 0; context->nameservers[i] != NULL; i++) {
+			free(context->nameservers[i]);
+		}
+		free(context->nameservers);
+	}
+	memset(context, 0, sizeof(*context));
+	free(context);
+}
+
+struct dns_rr *
+dns_client_query(struct dns_client *context, const char *query,
+		 u_int16_t qclass, u_int16_t qtype)
+{
+	char *qbuf, *abuf;
+	struct dns_rr *results = NULL;
+	ssize_t qsize, asize, ret = 0;
+
+	qsize = DEFAULT_QSIZE;
+	qbuf = malloc(qsize);
+	if (qbuf == NULL) {
+		return NULL;
+	}
+	do {
+		ret = dns_format_query(query, qclass, qtype, qbuf, qsize);
+		if (ret > 0) {
+			qsize = ret;
+			break;
+		}
+		free(qbuf);
+		qsize += DEFAULT_QSIZE;
+		qbuf = malloc(qsize);
+		if (qbuf == NULL) {
+			return NULL;
+		}
+	} while (qsize <= MAX_QSIZE);
+	if ((ret > 0) && (qsize > 0)) {
+		asize = qsize;
+		abuf = malloc(asize);
+		do {
+			ret = res_send(qbuf, qsize, abuf, asize);
+			if (ret >= asize) {
+				asize = ret + 1024;
+				free(abuf);
+				abuf = malloc(asize);
+				continue;
+			}
+			break;
+		} while (1);
+		if (ret > 0) {
+			results = dns_parse_results(abuf, ret);
+		}
+		free(abuf);
+	}
+	return results;
+}
 
 #ifdef DNSCLIENT_IS_MAIN
 int
 main(int argc, char **argv)
 {
-	unsigned char buf[2048];
-	unsigned char *answer;
 	struct dns_rr *rr;
-	int ret = 2048, len = 2048;
+	struct dns_client *client;
 
-	memset(&buf, 0, sizeof(buf));
-	ret = dns_format_query(argc > 1 ? argv[1] : "devserv.devel.redhat.com.",
-			       DNS_C_ANY, DNS_T_ANY, buf, sizeof(buf));
+	printf("Initializing DNS.\n");
+	client = dns_client_new();
 	printf("Sending query.\n");
-	answer = malloc(len);
-	do {
-		ret = res_send(buf, sizeof(buf), answer, len);
-		if (ret > len) {
-			free(answer);
-			len = ret + 1024;
-			answer = malloc(len);
-		} else {
-			break;
-		}
-	} while (1);
-	printf("Response was %d bytes long.\n", ret);
-	if (ret == -1) {
-		return 1;
-	}
-
-	rr = dns_parse_results(answer, ret);
-
-	free(answer);
-
+	rr = dns_client_query(client,
+			      argc > 1 ? argv[1] : "devserv.devel.redhat.com.",
+			      DNS_C_ANY, DNS_T_ANY);
+	printf("Shutting down.\n");
+	dns_client_free(client);
 	return 0;
 }
 #endif

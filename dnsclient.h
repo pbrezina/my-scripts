@@ -97,8 +97,8 @@ typedef struct dns_rr_srv {
 
 typedef struct dns_rr {
 	const char *dns_name;
-	u_int16_t dns_type;
-	u_int16_t dns_class;
+	enum dns_type dns_type;
+	enum dns_class dns_class;
 	int32_t dns_ttl;
 	u_int16_t dns_rlength;
 	union {
@@ -115,15 +115,19 @@ typedef struct dns_rr {
 	} dns_rdata;
 } dns_rr_t;
 
-typedef struct dns_client_context {
-	const char *domain;
-	const char **search;
+typedef struct dns_client {
+	char *domain;
+	char **search;
 	struct sockaddr_in **nameservers;
 } dns_client_context_t;
 
 size_t dns_format_query(const char *query, u_int16_t qclass, u_int16_t qtype,
 			unsigned char *qbuf, size_t qbuf_len);
 struct dns_rr *dns_parse_results(const unsigned char *results, size_t length);
-struct dns_client_context *dns_client_init(void);
+
+struct dns_client *dns_client_new(void);
+void dns_client_free(struct dns_client *context);
+struct dns_rr *dns_client_query(struct dns_client *context, const char *query,
+				u_int16_t qclass, u_int16_t qtype);
 
 #endif

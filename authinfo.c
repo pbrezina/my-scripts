@@ -1643,7 +1643,7 @@ authInfoWriteKerberos5(struct authInfoType *info)
 				strcat(obuf, "\n");
 				wrotedefaultrealm = TRUE;
 			}
-			for (q = p; ((*q != ']') && (*q != '\0')); q++);
+			for (q = p; ((*q != ']') && (*q != '\0')); q++) ;
 			if (section) {
 				g_free(section);
 			}
@@ -2498,22 +2498,6 @@ authInfoWrite(struct authInfoType *authInfo)
 	return ret;
 }
 
-static char *
-domain2dn(const char *domain)
-{
-	char buf[BUFSIZ];
-	int i;
-	strcpy(buf, "DC=");
-	for (i = 0; (domain[i] != '\0') && (strlen(buf) < sizeof(buf) - 1); i++){
-		if (domain[i] == '.') {
-			strcat(buf, ",DC=");
-		} else {
-			strncat(buf, domain + i, 1);
-		}
-	}
-	return strdup(buf);
-}
-
 static void
 terminate_hostname(char *hostname)
 {
@@ -2522,17 +2506,48 @@ terminate_hostname(char *hostname)
 	}
 }
 
+static char *
+domain2dn(const char *domain)
+{
+	char buf[BUFSIZ], dbuf[BUFSIZ];
+	int i;
+	strcpy(buf, "DC=");
+	strncpy(dbuf, domain, sizeof(dbuf) - 1);
+	dbuf[sizeof(dbuf) - 1] = '\0';
+	terminate_hostname(dbuf);
+	for (i = 0; (dbuf[i] != '\0') && (strlen(buf) < sizeof(buf) - 5); i++){
+		if (dbuf[i] == '.') {
+			strcat(buf, ",DC=");
+		} else {
+			strncat(buf, dbuf + i, 1);
+		}
+	}
+	return strdup(buf);
+}
+
+#define DEFAULT_DNS_QUERY_SIZE 1024
+
 struct authInfoType *
 authInfoProbe()
 {
 	struct authInfoType *ret = NULL;
-	char hostname[BUFSIZ];
-	struct dns_rr *results = NULL;
-	unsigned char qname[BUFSIZ], query[BUFSIZ], *buf;
-	size_t length, size;
+	char hostname[BUFSIZ], qname[BUFSIZ];
+	struct dns_client *client = NULL;
+	struct dns_rr *results = NULL, *result = NULL;
+	struct {
+		int hclass;
+		char *hdomain;
+	} hesiod[] = {
+		{DNS_C_IN, "hs"},
+		{DNS_C_IN, "ns"},
+		{DNS_C_HS, "hs"},
+		{DNS_C_HS, "ns"},
+	};
+	int i;
 	char *p;
 
 	ret = g_malloc0(sizeof(struct authInfoType));
+	client = dns_client_new();
 
 	/* get the local host name */
 	memset(hostname, '\0', sizeof(hostname));
@@ -2543,97 +2558,54 @@ authInfoProbe()
 		return ret;
 	}
 
-	dns_client_init();
+	/* terminate the host name */
+	p = strrchr(hostname, '.');
+	if (p != NULL) {
+		if (p - hostname != (strlen(hostname) - 1)) {
+			strncat(hostname, ".",
+				sizeof(hostname) - strlen(hostname) - 1);
+		}
+	} else {
+		strncat(hostname, ".", sizeof(hostname) - strlen(hostname) - 1);
+	}
 
 	/* first, check for an LDAP server for the local domain */
 	results = NULL;
 	if ((p = strchr(hostname, '.')) != NULL) {
 		snprintf(qname, sizeof(qname), "_ldap._tcp%s", p);
-		length = dns_format_query(qname, DNS_C_IN, DNS_T_SRV,
-					  query, sizeof(query));
-		if (length > 0) {
-			int ret;
-			size = 12;
-			buf = malloc(size);
-			do {
-				ret = res_send(query, length, buf, size);
-				if (ret >= size) {
-					size = ret + 1024;
-					free(buf);
-					buf = malloc(size);
-					continue;
-				}
-				break;
-			} while (1);
-			if (ret != -1) {
-				results = dns_parse_results(buf, ret);
-			}
-			free(buf);
-		}
+		results = dns_client_query(client, qname, DNS_C_IN, DNS_T_SRV);
 	}
 
-	if ((results != NULL) && (p != NULL)) {
-		if ((results->dns_type == DNS_T_SRV) &&
-		    (results->dns_rdata.srv.server != NULL)) {
-			ret->ldapServer = strdup(results->dns_rdata.srv.server);
+	result = results;
+	while ((result != NULL) && (result->dns_name != NULL)) {
+		if ((result->dns_type == DNS_T_SRV) &&
+		    (result->dns_rdata.srv.server != NULL)) {
+			ret->ldapServer = strdup(result->dns_rdata.srv.server);
 			terminate_hostname(ret->ldapServer);
-			ret->ldapBaseDN = domain2dn(++p);
+			if (p != NULL) {
+				ret->ldapBaseDN = domain2dn(++p);
+				p = NULL;
+			}
 		}
+		result++;
 	}
 
 	/* now, check for a Kerberos realm the local host or domain is in */
 	results = NULL;
 	snprintf(qname, sizeof(qname), "_kerberos.%s", hostname);
-	length = dns_format_query(qname, DNS_C_IN, DNS_T_TXT,
-				  query, sizeof(query));
-	if (length > 0) {
-		int ret;
-		size = 12;
-		buf = malloc(size);
-		do {
-			ret = res_send(query, length, buf, size);
-			if (ret >= size) {
-				size = ret + 1024;
-				free(buf);
-				buf = malloc(size);
-				continue;
-			}
-			break;
-		} while (1);
-		if (ret != -1) {
-			results = dns_parse_results(buf, ret);
-		}
-		free(buf);
-	}
+	results = dns_client_query(client, qname, DNS_C_IN, DNS_T_TXT);
 	if ((results == NULL) && ((p = strchr(hostname, '.')) != NULL)) {
 		snprintf(qname, sizeof(qname), "_kerberos%s", p);
-		length = dns_format_query(qname, DNS_C_IN, DNS_T_TXT,
-					  query, sizeof(query));
-		if (length > 0) {
-			int ret;
-			size = 12;
-			buf = malloc(size);
-			do {
-				ret = res_send(query, length, buf, size);
-				if (ret >= size) {
-					size = ret + 1024;
-					free(buf);
-					buf = malloc(size);
-					continue;
-				}
-				break;
-			} while (1);
-			if (ret != -1) {
-				results = dns_parse_results(buf, ret);
-			}
-			free(buf);
-		}
+		results = dns_client_query(client, qname, DNS_C_IN, DNS_T_TXT);
 	}
-	if (results != NULL) {
-		if ((results->dns_type == DNS_T_TXT) &&
-		    (results->dns_rdata.txt.data != NULL)) {
-			ret->kerberosRealm = strdup(results->dns_rdata.txt.data);
+	result = results;
+	while ((result != NULL) && (result->dns_name != NULL)) {
+		if ((result->dns_type == DNS_T_TXT) &&
+		    (result->dns_rdata.txt.data != NULL)) {
+			ret->kerberosRealm = strdup(result->dns_rdata.txt.data);
+			break;
 		}
+		result++;
 	}
 
 	/* now fetch server information for the realm */
@@ -2641,43 +2613,32 @@ authInfoProbe()
 	if (ret->kerberosRealm) {
 		snprintf(qname, sizeof(qname), "_kerberos._udp.%s",
 			 ret->kerberosRealm);
-		length = dns_format_query(qname, DNS_C_IN, DNS_T_SRV,
-					  query, sizeof(query));
-		if (length > 0) {
-			int ret;
-			size = 12;
-			buf = malloc(size);
-			do {
-				ret = res_send(query, length, buf, size);
-				if (ret >= size) {
-					size = ret + 1024;
-					free(buf);
-					buf = malloc(size);
-					continue;
-				}
-				break;
-			} while (1);
-			if (ret != -1) {
-				results = dns_parse_results(buf, ret);
-			}
-			free(buf);
-		}
+		results = dns_client_query(client, qname, DNS_C_IN, DNS_T_SRV);
 	}
 
-	if (results != NULL) {
-		if ((results->dns_type == DNS_T_SRV) &&
-		    (results->dns_rdata.srv.server != NULL)) {
+	result = results;
+	while ((result != NULL) && (result->dns_name != NULL)) {
+		if ((result->dns_type == DNS_T_SRV) &&
+		    (result->dns_rdata.srv.server != NULL)) {
 			snprintf(qname, sizeof(qname), "%s",
-				 results->dns_rdata.srv.server);
-			terminate_hostname(qname);
-			if (results->dns_rdata.srv.port != 0) {
+				 result->dns_rdata.srv.server);
+			if (result->dns_rdata.srv.port != 0) {
 				snprintf(qname + strlen(qname),
 					 sizeof(qname) - strlen(qname),
 					 ":%d",
-					 results->dns_rdata.srv.port);
+					 result->dns_rdata.srv.port);
 			}
-			ret->kerberosKDC = strdup(qname);
+			if (ret->kerberosKDC != NULL) {
+				p = malloc(strlen(ret->kerberosKDC + 1 +
+					   strlen(qname) + 1));
+				sprintf(p, "%s,%s", ret->kerberosKDC, qname);
+				free(ret->kerberosKDC);
+				ret->kerberosKDC = p;
+			} else {
+				ret->kerberosKDC = strdup(qname);
+			}
 		}
+		result++;
 	}
 
 	/* now fetch admin server information for the realm */
@@ -2685,46 +2646,62 @@ authInfoProbe()
 	if (ret->kerberosRealm) {
 		snprintf(qname, sizeof(qname), "_kerberos-adm._udp.%s",
 			 ret->kerberosRealm);
-		length = dns_format_query(qname, DNS_C_IN, DNS_T_SRV,
-					  query, sizeof(query));
-		if (length > 0) {
-			int ret;
-			size = 12;
-			buf = malloc(size);
-			do {
-				ret = res_send(query, length, buf, size);
-				if (ret >= size) {
-					size = ret + 1024;
-					free(buf);
-					buf = malloc(size);
-					continue;
-				}
-				break;
-			} while (1);
-			if (ret != -1) {
-				results = dns_parse_results(buf, ret);
-			}
-			free(buf);
-		}
+		results = dns_client_query(client, qname, DNS_C_IN, DNS_T_SRV);
 	}
 
 	/* use all values */
 	memset(qname, '\0', sizeof(qname));
-	if (results != NULL) {
-		if ((results->dns_type == DNS_T_SRV) &&
-		    (results->dns_rdata.srv.server != NULL)) {
+	result = results;
+	while ((result != NULL) && (result->dns_name != NULL)) {
+		if ((result->dns_type == DNS_T_SRV) &&
+		    (result->dns_rdata.srv.server != NULL)) {
 			snprintf(qname, sizeof(qname), "%s",
-				 results->dns_rdata.srv.server);
-			terminate_hostname(qname);
-			if (results->dns_rdata.srv.port != 0) {
+				 result->dns_rdata.srv.server);
+			if (result->dns_rdata.srv.port != 0) {
 				snprintf(qname + strlen(qname),
 					 sizeof(qname) - strlen(qname),
 					 ":%d",
-					 results->dns_rdata.srv.port);
+					 result->dns_rdata.srv.port);
 			}
-			ret->kerberosAdminServer = strdup(qname);
+			if (ret->kerberosAdminServer != NULL) {
+				p = malloc(strlen(ret->kerberosAdminServer + 1 +
+					   strlen(qname) + 1));
+				sprintf(p, "%s,%s",
+					ret->kerberosAdminServer, qname);
+				free(ret->kerberosAdminServer);
+				ret->kerberosAdminServer = p;
+			} else {
+				ret->kerberosAdminServer = strdup(qname);
+			}
+		}
+		result++;
+	}
+
+	/* now check for SOA records for hesiod-style domains under .hs.DOMAIN
+	 * and .ns.DOMAIN */
+	if ((p = strchr(hostname, '.')) != NULL) {
+		for (i = 0; i < G_N_ELEMENTS(hesiod); i++) {
+			snprintf(qname, sizeof(qname), "%s%s",
+				 hesiod[i].hdomain, p);
+			results = dns_client_query(client, qname,
+						   hesiod[i].hclass, DNS_T_SOA);
+			result = results;
+			while ((result != NULL) && (result->dns_name != NULL)) {
+				if ((result->dns_type == DNS_T_SOA) &&
+				    (strcmp(result->dns_name, qname) == 0)) {
+					ret->hesiodLHS = malloc(strlen(hesiod[i].hdomain) + 1);
+					sprintf(ret->hesiodLHS,
+						".%s", hesiod[i].hdomain);
+					ret->hesiodRHS = strdup(p);
+					terminate_hostname(ret->hesiodRHS);
+					break;
+				}
+				result++;
+			}
 		}
 	}
+
+	dns_client_free(client);
 
 	return ret;
 }

@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.2.12
-Release: 3
+Version: 4.3
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -33,6 +33,7 @@ authentication schemes.
 %setup -q
 
 %build
+CFLAGS="$RPM_OPT_FLAGS -fPIC"; export CFLAGS
 %configure
 make
 
@@ -67,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Sep 20 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3
+- build with -fPIC, necessary on some arches
+
 * Tue Sep  3 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.11-3
 - update translations
 

@@ -76,6 +76,7 @@ PYTHON_CFLAGS=-I$PYTHONPREFIX/include/python$PYTHONREV
 AC_SUBST(PYTHON_CFLAGS)
 
 if test x$GCC = xyes ; then
+	CFLAGS="${CFLAGS} -Wall"
 	CFLAGS="${CFLAGS} -Wunused"
 	CFLAGS="${CFLAGS} -Wuninitialized"
 	CFLAGS="${CFLAGS} -Wimplicit"

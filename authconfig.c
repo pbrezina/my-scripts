@@ -891,22 +891,27 @@ main(int argc, const char **argv)
    * figure out using DNS or other means */
   if (probe) {
     authInfo = authInfoProbe();
+    if (authInfo->hesiodLHS && authInfo->hesiodRHS) {
+      printf("hesiod %s/%s\n",
+	     authInfo->hesiodLHS,
+             authInfo->hesiodRHS);
+    }
     if (authInfo->ldapServer && authInfo->ldapBaseDN) {
       printf("ldap %s/%s\n",
 	     authInfo->ldapServer,
 	     authInfo->ldapBaseDN);
     }
-    if (authInfo->kerberosRealm && authInfo->kerberosKDC) {
+    if (authInfo->kerberosRealm) {
       printf("krb5 %s/%s/%s\n",
 	     authInfo->kerberosRealm,
-	     authInfo->kerberosKDC,
+	     authInfo->kerberosKDC ?: "",
              authInfo->kerberosAdminServer ?: "");
     }
     return 0;
   }
 
   /* if the test parameter wasn't passed, give an error if not root */
-  if (!test && getuid()) {
+  if (!test && !probe && getuid()) {
     fprintf(stderr, _("%s: can only be run as root\n"),
 	    PACKAGE);
     return 2;
