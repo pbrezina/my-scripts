@@ -11,15 +11,22 @@ Requires: glibc >= 2.1, pam >= 0.73, glib
 BuildPrereq: pam-devel >= 0.73, newt-devel, gtk2-devel, libglade2-devel
 
 %description 
-Authconfig is a terminal mode program for setting up Network
-Information Service (NIS) and shadow (more secure) passwords
-on your system. Authconfig also configures the system to
-automatically turn on NIS at system startup.
+Authconfig is a terminal mode program which can configure a workstation
+to use shadow (more secure) passwords.  Authconfig can also configure a
+system to be a client for certain networked user information and
+authentication schemes.
 
 %package gtk
 BuildPrereq: gtk2-devel, libglade2-devel
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
+Requires: %{name} = %{version}-%{release}
+
+%description
+Authconfig-gtk is a GUI program which can configure a workstation
+to use shadow (more secure) passwords.  Authconfig-gtk can also configure
+a system to be a client for certain networked user information and
+authentication schemes.
 
 %prep
 %setup -q
@@ -32,7 +39,17 @@ rm -rf $RPM_BUILD_ROOT
 %{makeinstall}
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
 touch $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/authconfig
+mkdir -p $RPM_BUILD_ROOT/usr/bin
 %find_lang %{name}
+
+ln -s consolehelper $RPM_BUILD_ROOT/usr/bin/authconfig
+ln -s consolehelper $RPM_BUILD_ROOT/usr/bin/authconfig-gtk
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pam.d
+install -m644 authconfig.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/authconfig
+install -m644 authconfig.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/authconfig-gtk
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps
+install -m644 authconfig.console $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/authconfig
+install -m644 authconfig-gtk.console $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -41,8 +58,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc NOTES TODO
 %ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
+%{_bindir}/authconfig
 %{_sbindir}/authconfig
 %{_mandir}/man8/*
+%config(noreplace) %{_sysconfdir}/pam.d/authconfig
+%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
+
+%files gtk
+%defattr(-,root,root)
+%{_bindir}/authconfig-gtk
+%{_sbindir}/authconfig-gtk
+%config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
+%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
 * Mon Dec 10 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2-1
