@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-10-04 10:29+0200\n"
-"PO-Revision-Date: 2004-09-28 14:49+0200\n"
+"PO-Revision-Date: 2004-10-05 14:49+0200\n"
 "Last-Translator: Tamas Szanto <tszanto@mol.hu>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "NIS-beállítás"
 
 #: authconfig.c:329
 msgid "Realm:"
-msgstr "Királyság:"
+msgstr "Realm:"
 
 # Key Distribution Center
 #: authconfig.c:331
@@ -82,11 +82,11 @@ msgstr "Rendszergazda-kiszolgáló:"
 
 #: authconfig.c:335
 msgid "Use DNS to resolve hosts to realms"
-msgstr "DNS használata a gépek királysághoz való rendelésére"
+msgstr "DNS használata a gépek realmhez való rendelésére"
 
 #: authconfig.c:337
 msgid "Use DNS to locate KDCs for realms"
-msgstr "DNS használata a királyságokhoz való KDC-k keresésére"
+msgstr "DNS használata a realm-KDC-k keresésére"
 
 #: authconfig.c:340 glade.strings.h:55
 msgid "Kerberos Settings"
@@ -156,7 +156,7 @@ msgstr "Tartományvezérlők:"
 
 #: authconfig.c:436
 msgid "ADS Realm:"
-msgstr "ADS-királyság:"
+msgstr "ADS-realm:"
 
 #: authconfig.c:438
 msgid "Template Shell:"
@@ -370,11 +370,11 @@ msgstr "alapértelmezett Kerberos-rendszergazda-kiszolgáló"
 
 #: authconfig.c:875
 msgid "default kerberos realm\n"
-msgstr "alapértelmezett Kerberos-királyság\n"
+msgstr "alapértelmezett Kerberos-realm\n"
 
 #: authconfig.c:875
 msgid "<realm>"
-msgstr "<királyság>"
+msgstr "<realm>"
 
 #: authconfig.c:878
 msgid "enable use of DNS to find kerberos KDCs"
@@ -386,11 +386,11 @@ msgstr "DNS nem használható Kerberos-KDC-k keresésére"
 
 #: authconfig.c:882
 msgid "enable use of DNS to find kerberos realms"
-msgstr "DNS használható Kerberos-királyságok keresésére"
+msgstr "DNS használható Kerberos-realmek keresésére"
 
 #: authconfig.c:884
 msgid "disable use of DNS to find kerberos realms\n"
-msgstr "DNS nem használható Kerberos-királyságok keresésére\n"
+msgstr "DNS nem használható Kerberos-realmek keresésére\n"
 
 #: authconfig.c:887
 msgid "enable SMB authentication by default"
@@ -437,7 +437,7 @@ msgstr "biztonsági mód a Samba és a Winbind használatához"
 #: authconfig.c:910
 msgid "default realm for samba and winbind when security=ads"
 msgstr ""
-"alapértelmezett királyság a Sambához és a Winbindhoz security=ads esetén"
+"alapértelmezett realm a Sambához és a Winbindhoz security=ads esetén"
 
 #: authconfig.c:912
 msgid "uid range winbind will assign to domain or ads users"
@@ -501,7 +501,7 @@ msgstr ""
 #: authconfig.c:942
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr ""
-"csatlakozás a Winbind-tartományhoz vagy ADS-királysághoz e "
+"csatlakozás a Winbind-tartományhoz vagy ADS-realmhez e "
 "rendszergazdaként\n"
 
 #: authconfig.c:946
@@ -632,7 +632,7 @@ msgstr "%s: kritikus hiba %s/%s írásakor"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
+msgstr "Ez határozza meg a bejelentkező felhasználók azonosítási módját"
 
 #: authinfo.h:68
 #, c-format
@@ -795,21 +795,19 @@ msgstr "_Rendszergazda-kiszolgálók"
 
 #: glade.strings.h:58
 msgid "_Realm"
-msgstr "K_irályság"
+msgstr "_Realm"
 
 #: glade.strings.h:60
 msgid "_KDCs"
 msgstr "_KDC-k"
 
 #: glade.strings.h:62
-#, fuzzy
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "DNS használata a gépek királysághoz való rendelésére"
+msgstr "DNS _használata a gépek realmhez rendelésére"
 
 #: glade.strings.h:63
-#, fuzzy
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "DNS használata a királyságokhoz való KDC-k keresésére"
+msgstr "_DNS használata a realm-KDC-k kereséséhez"
 
 #: glade.strings.h:66
 msgid "_Domain Controllers"
@@ -844,18 +842,16 @@ msgid "Winbind _Domain"
 msgstr "Winbind-_tartomány"
 
 #: glade.strings.h:80
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind-tartomány_vezérlők"
 
 #: glade.strings.h:82
-#, fuzzy
 msgid "_Template Shell"
-msgstr "Héjsablon:"
+msgstr "_Parancsértelmező-sablon"
 
 #: glade.strings.h:83
 msgid "Winbind ADS _Realm"
-msgstr "Winbind-ADS-_királyság"
+msgstr "Winbind-os ADS-_realm"
 
 #: glade.strings.h:85
 msgid "Joining Winbind Domain"
@@ -889,11 +885,3 @@ msgstr "Me_ntés elhagyása"
 msgid "Use Local Policies"
 msgstr "Helyi szabályok használata"
 
-#~ msgid "Use DNS to resolve hosts to _realms"
-#~ msgstr "DNS használata a gépek ki_rálysághoz való rendelésére"
-
-#~ msgid "Use DNS to locate _KDCs for realms"
-#~ msgstr "DNS használata a királyságokhoz való _KDC-k keresésére"
-
-#~ msgid "Template _Shell"
-#~ msgstr "_Héjsablon"
