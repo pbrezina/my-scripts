@@ -34,7 +34,7 @@ clean:
 	make -C po clean
 
 archive:
-	cvs tag -F $(CVSTAG) .
+	cvs tag -cF $(CVSTAG) .
 	@rm -rf /tmp/$(PROGNAME)-$(VERSION) /tmp/$(PROGNAME)
 	@cd /tmp; cvs export -r$(CVSTAG) $(PROGNAME)
 	@mv /tmp/$(PROGNAME) /tmp/$(PROGNAME)-$(VERSION)
