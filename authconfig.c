@@ -43,38 +43,6 @@
 #include "localpol.h"
 #endif
 
-struct nis_cb {
-	char nss_nis;
-	newtComponent serverLabel, domainLabel;
-	newtComponent serverEntry, domainEntry;
-};
-struct hesiod_cb {
-	char nss_hesiod;
-	newtComponent lhsLabel, rhsLabel;
-	newtComponent lhsEntry, rhsEntry;
-};
-struct ldap_cb {
-	int screen;
-	char nss_ldap;
-	char pam_ldap;
-	char tls;
-	newtComponent tlsCheckbox;
-	newtComponent serverLabel, baseDnLabel;
-	newtComponent serverEntry, baseDnEntry;
-};
-struct krb5_cb {
-	char pam_krb5;
-	newtComponent krb5Checkbox;
-	newtComponent realmLabel, kdcLabel, kadminLabel;
-	newtComponent realmEntry, kdcEntry, kadminEntry;
-};
-struct smb_cb {
-	char pam_smb_auth;
-	newtComponent smbCheckbox;
-	newtComponent workgroupLabel, serverLabel;
-	newtComponent workgroupEntry, serverEntry;
-};
-
 /*
  * A newt callback to disallow spaces in an entry field.
  */
@@ -115,7 +83,8 @@ struct formdata {
 	enum datatype type;
 	const char *description;
 	size_t offset;
-	char **valid_values;
+	char **r_valid_values;
+	gboolean s_invisible;
 };
 
 static gboolean
@@ -165,7 +134,8 @@ getGenericChoices(const char *dialogTitle,
       newtGridSetField(questionGrid, 0, row, NEWT_GRID_COMPONENT, comp,
                        0, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
       comp = newtEntry(-1, -1, *s ? *s : "", 40, &(strings[i]),
-                       NEWT_ENTRY_SCROLL);
+                       NEWT_ENTRY_SCROLL |
+		       (items[i].s_invisible ? NEWT_ENTRY_HIDDEN : 0));
       newtEntrySetFilter(comp, entryFilter, NULL);
       newtGridSetField(questionGrid, 1, row, NEWT_GRID_COMPONENT, comp,
                        0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
@@ -176,21 +146,21 @@ getGenericChoices(const char *dialogTitle,
       comp = newtLabel(-1, -1, items[i].description);
       newtGridSetField(questionGrid, 0, row, NEWT_GRID_COMPONENT, comp,
                        0, 0, 1, 0, NEWT_ANCHOR_TOP | NEWT_ANCHOR_RIGHT, 0);
-      for (j = 0; items[i].valid_values[j] != NULL; j++) /* nothing */;
+      for (j = 0; items[i].r_valid_values[j] != NULL; j++) /* nothing */;
       radioGrid = newtCreateGrid(1, j);
       radios[i] = g_ptr_array_new();
       def = 0;
-      for (j = 0; items[i].valid_values[j] != NULL; j++) {
-	if (strcmp(*s, items[i].valid_values[j]) == 0) {
+      for (j = 0; items[i].r_valid_values[j] != NULL; j++) {
+	if (strcmp(*s, items[i].r_valid_values[j]) == 0) {
 	  def = j;
 	}
       }
-      for (j = 0; items[i].valid_values[j] != NULL; j++) {
-        comp = newtRadiobutton(-1, -1, items[i].valid_values[j],
+      for (j = 0; items[i].r_valid_values[j] != NULL; j++) {
+        comp = newtRadiobutton(-1, -1, items[i].r_valid_values[j],
 			       j == def,
 			       j == 0 ? NULL : comp);
 	g_ptr_array_add(radios[i], comp);
-	g_ptr_array_add(radios[i], items[i].valid_values[j]);
+	g_ptr_array_add(radios[i], items[i].r_valid_values[j]);
         newtGridSetField(radioGrid, 0, j, NEWT_GRID_COMPONENT, comp,
                          0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
       }
@@ -381,7 +351,7 @@ getJoinSettings(struct authInfoType *authInfo)
     {svalue, _("Domain Administrator:"),
      G_STRUCT_OFFSET(struct authInfoType, joinUser)},
     {svalue, _("Password:"),
-     G_STRUCT_OFFSET(struct authInfoType, joinPassword)},
+     G_STRUCT_OFFSET(struct authInfoType, joinPassword), NULL, TRUE},
   };
   if (authInfo->joinUser) {
     g_free(authInfo->joinUser);
