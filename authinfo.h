@@ -144,6 +144,7 @@ struct authInfoType {
 	gboolean enableShadow;
 	gboolean enableSMB;
 	gboolean enableWinbindAuth;
+	gboolean enableLocAuthorize;
 
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;
@@ -155,6 +156,7 @@ struct authInfoType {
 	char *joinUser, *joinPassword;
 	char *cracklibArgs;
 	char *passwdqcArgs;
+	char *localuserArgs;
 };
 
 struct authInfoType *authInfoRead(void);

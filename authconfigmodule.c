@@ -104,6 +104,7 @@ static struct {
 	TF_FIELD(enableShadow),
 	TF_FIELD(enableSMB),
 	TF_FIELD(enableWinbindAuth),
+	TF_FIELD(enableLocAuthorize),
 	S_FIELD(joinUser),
 	S_FIELD(joinPassword),
 };

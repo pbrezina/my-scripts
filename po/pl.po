@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-06 12:03+0100\n"
+"POT-Creation-Date: 2004-12-15 23:27+0100\n"
 "PO-Revision-Date: 2004-10-04 13:13+0200\n"
 "Last-Translator: Tom Berner <tom@man.lodz.pl>\n"
 "Language-Team: POLISH <pl@li.org>\n"
@@ -32,17 +32,17 @@ msgid "Hesiod Settings"
 msgstr "Ustawienia Hesiod"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:631
+#: authconfig.c:358 authconfig.c:459 authconfig.c:640
 msgid "Back"
 msgstr "Wstecz"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:632
+#: authconfig.c:358 authconfig.c:459 authconfig.c:641
 msgid "Next"
 msgstr "Dalej"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:476
+#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:479
 msgid "Ok"
 msgstr "OK"
 
@@ -122,7 +122,7 @@ msgstr "Hasło:"
 msgid "Join Settings"
 msgstr "Dodaj Ustawienia"
 
-#: authconfig.c:377 authconfig.c:631
+#: authconfig.c:377 authconfig.c:640
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -172,276 +172,280 @@ msgstr "Ustawienia Winbind"
 msgid "Join Domain"
 msgstr "Dołącz do Domeny"
 
-#: authconfig.c:476
+#: authconfig.c:479
 msgid "Warning"
 msgstr "Ostrzeżenie"
 
-#: authconfig.c:494
+#: authconfig.c:497
 msgid "caching"
 msgstr "cache'owanie"
 
-#: authconfig.c:498 authconfig.glade.h:28
+#: authconfig.c:501 authconfig.glade.h:28
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: authconfig.c:502
+#: authconfig.c:505
 msgid "LDAP authentication"
 msgstr "autentykacja LDAP"
 
-#: authconfig.c:506 authconfig.glade.h:31
+#: authconfig.c:509 authconfig.glade.h:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:510 authconfig.glade.h:35
+#: authconfig.c:513 authconfig.glade.h:35
 msgid "NIS"
 msgstr "NIS"
 
-#: authconfig.c:514
+#: authconfig.c:517
 msgid "shadow password"
 msgstr "plik haseł shadow"
 
-#: authconfig.c:518
+#: authconfig.c:521
 msgid "SMB authentication"
 msgstr "autentykacja SMB"
 
-#: authconfig.c:522 authconfig.c:530 authconfig.glade.h:51
+#: authconfig.c:525 authconfig.c:533 authconfig.glade.h:51
 msgid "Winbind"
 msgstr "Winbind"
 
-#: authconfig.c:526
+#: authconfig.c:529
 msgid "Winbind authentication"
 msgstr "autentykacja Winbind"
 
-#: authconfig.c:536 authconfig.glade.h:50
+#: authconfig.c:539 authconfig.glade.h:50
 msgid "User Information"
 msgstr "Informacje o użytkowniku"
 
-#: authconfig.c:540
+#: authconfig.c:543
 msgid "Cache Information"
 msgstr "Informacja o Cache'u"
 
-#: authconfig.c:547
+#: authconfig.c:550
 msgid "Use Hesiod"
 msgstr "Użyj Hesiod"
 
-#: authconfig.c:553
+#: authconfig.c:556
 msgid "Use LDAP"
 msgstr "Użyj LDAP"
 
-#: authconfig.c:560
+#: authconfig.c:563
 msgid "Use NIS"
 msgstr "Użyj NIS"
 
-#: authconfig.c:567
+#: authconfig.c:570
 msgid "Use Winbind"
 msgstr "Użyj Winbind"
 
-#: authconfig.c:577 authconfig.desktop.in.h:1 authconfig.glade.h:3
+#: authconfig.c:580 authconfig.desktop.in.h:1 authconfig.glade.h:3
 msgid "Authentication"
 msgstr "Autentykacja"
 
-#: authconfig.c:581
+#: authconfig.c:584
 msgid "Use MD5 Passwords"
 msgstr "Użyj haseł MD5"
 
-#: authconfig.c:587
+#: authconfig.c:590
 msgid "Use Shadow Passwords"
 msgstr "Użyj plik haseł shadow"
 
-#: authconfig.c:594
+#: authconfig.c:597
 msgid "Use LDAP Authentication"
 msgstr "Użyj autentykacji LDAP"
 
-#: authconfig.c:601
+#: authconfig.c:604
 msgid "Use Kerberos"
 msgstr "Użyj Kerberos"
 
-#: authconfig.c:608
+#: authconfig.c:611
 msgid "Use SMB Authentication"
 msgstr "Użyj autentykacji SMB"
 
-#: authconfig.c:615
+#: authconfig.c:618
 msgid "Use Winbind Authentication"
 msgstr "Użyj autentykacji Winbind"
 
-#: authconfig.c:647 authconfig-gtk.py:290 authconfig.glade.h:4
+#: authconfig.c:625
+msgid "Local authorization is sufficient"
+msgstr ""
+
+#: authconfig.c:656 authconfig-gtk.py:283 authconfig.glade.h:4
 msgid "Authentication Configuration"
 msgstr "Konfiguracja Autentykacji"
 
-#: authconfig.c:823
+#: authconfig.c:835
 msgid "enable shadowed passwords by default"
 msgstr "domyślnie włącz plik haseł shadow"
 
-#: authconfig.c:825
+#: authconfig.c:837
 msgid "disable shadowed passwords by default"
 msgstr "domyślnie wyłącz plik haseł shadow"
 
-#: authconfig.c:829
+#: authconfig.c:841
 msgid "enable MD5 passwords by default"
 msgstr "domyślnie włącz hasła MD5"
 
-#: authconfig.c:831
+#: authconfig.c:843
 msgid "disable MD5 passwords by default\n"
 msgstr "domyślnie wyłącz hasła MD5\n"
 
-#: authconfig.c:834
+#: authconfig.c:846
 msgid "enable NIS"
 msgstr "włącz NIS"
 
-#: authconfig.c:836
+#: authconfig.c:848
 msgid "disable NIS"
 msgstr "wyłącz NIS"
 
-#: authconfig.c:838
+#: authconfig.c:850
 msgid "default NIS domain"
 msgstr "domyślna domena NIS"
 
-#: authconfig.c:838
+#: authconfig.c:850
 msgid "<domain>"
 msgstr "<domain>"
 
-#: authconfig.c:840
+#: authconfig.c:852
 msgid "default NIS server\n"
 msgstr "domyślny serwer NIS\n"
 
-#: authconfig.c:840 authconfig.c:862 authconfig.c:871 authconfig.c:873
-#: authconfig.c:893
+#: authconfig.c:852 authconfig.c:874 authconfig.c:883 authconfig.c:885
+#: authconfig.c:905
 msgid "<server>"
 msgstr "<server>"
 
-#: authconfig.c:843
+#: authconfig.c:855
 msgid "enable LDAP for user information by default"
 msgstr "domyślnie włącz informacje o użytkowniku z LDAP"
 
-#: authconfig.c:845
+#: authconfig.c:857
 msgid "disable LDAP for user information by default"
 msgstr "domyślnie wyłącz informacje o użytkowniku z LDAP"
 
-#: authconfig.c:847 authconfig.c:853
+#: authconfig.c:859 authconfig.c:865
 msgid "enable use of TLS with LDAP"
 msgstr "włącz użycie TLS z LDAP"
 
-#: authconfig.c:849 authconfig.c:855
+#: authconfig.c:861 authconfig.c:867
 msgid "disable use of TLS with LDAP"
 msgstr "wyłącz użycie TLS z LDAP"
 
-#: authconfig.c:858
+#: authconfig.c:870
 msgid "enable LDAP for authentication by default"
 msgstr "domyślnie włącz autentykacje przez LDAP"
 
-#: authconfig.c:860
+#: authconfig.c:872
 msgid "disable LDAP for authentication by default"
 msgstr "domyślnie wyłącz autentykacje przez LDAP"
 
-#: authconfig.c:862
+#: authconfig.c:874
 msgid "default LDAP server"
 msgstr "domyślny serwer LDAP"
 
-#: authconfig.c:864
+#: authconfig.c:876
 msgid "default LDAP base DN\n"
 msgstr "domyślny bazowy DN LDAP\n"
 
-#: authconfig.c:864
+#: authconfig.c:876
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:867
+#: authconfig.c:879
 msgid "enable kerberos authentication by default"
 msgstr "domyślnie włącz autentykacje kereberos"
 
-#: authconfig.c:869
+#: authconfig.c:881
 msgid "disable kerberos authentication by default"
 msgstr "domyślnie wyłącz autentykacje przez kereberos"
 
-#: authconfig.c:871
+#: authconfig.c:883
 msgid "default kerberos KDC"
 msgstr "domyślne KDC kereberos"
 
-#: authconfig.c:873
+#: authconfig.c:885
 msgid "default kerberos admin server"
 msgstr "domyślny serwer administracyjny kerberosa"
 
-#: authconfig.c:875
+#: authconfig.c:887
 msgid "default kerberos realm\n"
 msgstr "domyślny obszar kerberosa\n"
 
-#: authconfig.c:875
+#: authconfig.c:887
 msgid "<realm>"
 msgstr "<realm>"
 
-#: authconfig.c:878
+#: authconfig.c:890
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "włącz użycie DNS do szukania KDC kerberosa"
 
-#: authconfig.c:880
+#: authconfig.c:892
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "wyłącz użycie DNS do szukania KDC kerberosa"
 
-#: authconfig.c:882
+#: authconfig.c:894
 msgid "enable use of DNS to find kerberos realms"
 msgstr "włącz użycie DNS do szukania obszarów kerberosa"
 
-#: authconfig.c:884
+#: authconfig.c:896
 msgid "disable use of DNS to find kerberos realms\n"
 msgstr "wyłącz użycie DNS do szukania obszarów kerberosa\n"
 
-#: authconfig.c:887
+#: authconfig.c:899
 msgid "enable SMB authentication by default"
 msgstr "domyślnie włącz autentykacje SMB"
 
-#: authconfig.c:889
+#: authconfig.c:901
 msgid "disable SMB authentication by default"
 msgstr "domyślnie wyłącz autentykacje SMB"
 
-#: authconfig.c:891
+#: authconfig.c:903
 msgid "workgroup authentication servers are in"
 msgstr "serwery autentykacji grupy roboczej są w"
 
-#: authconfig.c:891
+#: authconfig.c:903
 msgid "<workgroup>"
 msgstr "<workgroup>"
 
-#: authconfig.c:893
+#: authconfig.c:905
 msgid "names of servers to authenticate against\n"
 msgstr "nazwy serwerów które mają zautentykować\n"
 
-#: authconfig.c:896
+#: authconfig.c:908
 msgid "enable winbind for user information by default"
 msgstr "domyślnie włącz winbind do wyszukiwania informacji o użytkowniku"
 
-#: authconfig.c:899
+#: authconfig.c:911
 msgid "disable winbind for user information by default"
 msgstr "domyślnie wyłącz winbind do wyszukiwania informacji o użytkowniku"
 
-#: authconfig.c:902
+#: authconfig.c:914
 msgid "enable winbindauth for authentication by default"
 msgstr "domyślnie włącz autentykacje przez winbindauth "
 
-#: authconfig.c:905
+#: authconfig.c:917
 msgid "disable winbindauth for authentication by default"
 msgstr "domyślnie wyłącz autentykacje przez winbindauth "
 
-#: authconfig.c:908
+#: authconfig.c:920
 msgid "security mode to use for samba and winbind"
 msgstr "model bezpieczeństwa do użycia przez samba i winbind"
 
-#: authconfig.c:910
+#: authconfig.c:922
 msgid "default realm for samba and winbind when security=ads"
 msgstr "domyślny obszar dla samba i winbind gdy model bezpieczeństwa=ads"
 
-#: authconfig.c:912
+#: authconfig.c:924
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "zakres uid przypisywany przez winbind dla domeny lub użytkowników ads"
 
-#: authconfig.c:913 authconfig.c:916
+#: authconfig.c:925 authconfig.c:928
 msgid "<lowest-highest>"
 msgstr "<lowest-highest>"
 
-#: authconfig.c:915
+#: authconfig.c:927
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "zakres gid przypisywany przez winbind dla domeny lub użytkowników ads"
 
-#: authconfig.c:919
+#: authconfig.c:931
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -449,19 +453,19 @@ msgstr ""
 "znak rozdzielający domenę i użytkownika w nazwach użytkowników stworzonych "
 "przez winbind, gdy winbindusedefaultdomain jest nie włączona"
 
-#: authconfig.c:923
+#: authconfig.c:935
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "katalog domowy użytkowników stworzonych przez winbind"
 
-#: authconfig.c:927
+#: authconfig.c:939
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "domyślna grupa dla użytkowników stworzonych przez winbind"
 
-#: authconfig.c:930
+#: authconfig.c:942
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr "domyślna powłoka dla użytkowników stworzonych przez winbind"
 
-#: authconfig.c:934
+#: authconfig.c:946
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
@@ -469,7 +473,7 @@ msgstr ""
 "konfiguruje winbind tak że użytkownicy bez domeny w swojej nazwie są "
 "użytkownikami domeny"
 
-#: authconfig.c:938
+#: authconfig.c:950
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
@@ -477,126 +481,134 @@ msgstr ""
 "konfiguruje winbind tak że użytkownicy bez domeny w swojej nazwie nie są "
 "użytkownikami domeny"
 
-#: authconfig.c:942
+#: authconfig.c:954
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr "dołącz do domeny windind lub obszaru ads jako administrator\n"
 
-#: authconfig.c:946
+#: authconfig.c:958
 msgid "enable wins for hostname resolution"
 msgstr "włącz wins do rozwiązywania nazw hostów"
 
-#: authconfig.c:948
+#: authconfig.c:960
 msgid "disable wins for hostname resolution\n"
 msgstr "wyłącz wins do rozwiązywania nazw hostów\n"
 
-#: authconfig.c:951
+#: authconfig.c:963
 msgid "enable hesiod for user information by default"
 msgstr "domyślnie włącz informacje o użytkowniku z hesiod"
 
-#: authconfig.c:953
+#: authconfig.c:965
 msgid "disable hesiod for user information by default"
 msgstr "domyślnie wyłącz informacje o użytkowniku z hesiod"
 
-#: authconfig.c:955
+#: authconfig.c:967
 msgid "default hesiod LHS"
 msgstr "domyślnie hesiod LHS"
 
-#: authconfig.c:955
+#: authconfig.c:967
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:957
+#: authconfig.c:969
 msgid "default hesiod RHS\n"
 msgstr "domyślnie hesiod RHS\n"
 
-#: authconfig.c:957
+#: authconfig.c:969
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:960
+#: authconfig.c:972
 msgid "enable caching of user information by default"
 msgstr "domyślnie włącz cache'owanie informacji o użytkowniku"
 
-#: authconfig.c:962
+#: authconfig.c:974
 msgid "disable caching of user information by default\n"
 msgstr "domyślnie wyłącz cache'owanie informacji o użytkowniku\n"
 
-#: authconfig.c:969
+#: authconfig.c:981
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "nie startuje/zatrzymuje portmap, ypbind i nscd"
 
-#: authconfig.c:971
+#: authconfig.c:983
 msgid "don't display user interface"
 msgstr "nie wyświetla interfejsu użytkownika"
 
-#: authconfig.c:973
+#: authconfig.c:985
 msgid "probe network for defaults and print them"
 msgstr "skanuj sieć w poszukiwaniu parametrów domyślnych i wypisz je"
 
-#: authconfig.c:976
+#: authconfig.c:988
 msgid "use locally-defined policies"
 msgstr "użyj lokalnie zdefiniowane polityki"
 
-#: authconfig.c:978
+#: authconfig.c:990
 msgid "don't use locally-defined policies"
 msgstr "nie używaj lokalnie zdefiniowanej polityki"
 
-#: authconfig.c:989
+#: authconfig.c:993
+msgid "local authorization is sufficient for local users"
+msgstr ""
+
+#: authconfig.c:995
+msgid "authorize local users also through remote service"
+msgstr ""
+
+#: authconfig.c:1005
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: błędny argument %s: %s\n"
 
-#: authconfig.c:998
+#: authconfig.c:1014
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s: próbuje kontynuować\n"
 
-#: authconfig.c:1002
+#: authconfig.c:1018
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: nieoczekiwany argument\n"
 
-#: authconfig.c:1034
+#: authconfig.c:1050
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: może być uruchamiany tylko przez root'a\n"
 
-#: authconfig.c:1045 authconfig.c:1053 authconfig.c:1061 authconfig.c:1069
-#: authconfig.c:1077 authconfig.c:1085 authconfig.c:1093 authconfig.c:1106
-#: authconfig.c:1114
+#: authconfig.c:1061 authconfig.c:1069 authconfig.c:1077 authconfig.c:1085
+#: authconfig.c:1093 authconfig.c:1101 authconfig.c:1109 authconfig.c:1122
+#: authconfig.c:1130
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: błąd krytyczny podczas odczytu %s/%s"
 
-#: authconfig.c:1100
+#: authconfig.c:1116
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s: nie można odczytać cache'owanej konfiguracji"
 
-#: authconfig.c:1200
+#: authconfig.c:1217
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 "  <Tab>/<Alt-Tab> następne pole | <Spacja> wybór | <F12> następny ekran"
 
-#: authconfig.c:1203
+#: authconfig.c:1220
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 Red Hat, Inc."
 
-#: authconfig.c:1210
+#: authconfig.c:1227
 #, c-format
 msgid "dialog was cancelled\n"
 msgstr "dialog został anulowany\n"
 
-#: authconfig.c:1225
+#: authconfig.c:1242
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s: błąd krytyczny przy zapisywaniu cache'owanych ustawień"
 
-#: authconfig.c:1231 authconfig.c:1237 authconfig.c:1243 authconfig.c:1249
-#: authconfig.c:1254 authconfig.c:1260 authconfig.c:1265 authconfig.c:1270
-#: authconfig.c:1275 authconfig.c:1281
+#: authconfig.c:1248 authconfig.c:1254 authconfig.c:1260 authconfig.c:1266
+#: authconfig.c:1271 authconfig.c:1277 authconfig.c:1282 authconfig.c:1287
+#: authconfig.c:1292 authconfig.c:1298
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: błąd krytyczny zapisywania %s/%s"
@@ -828,22 +840,26 @@ msgid "_KDCs"
 msgstr "K_DCs"
 
 #: authconfig.glade.h:61
+msgid "_Local authorization is sufficient for local users"
+msgstr ""
+
+#: authconfig.glade.h:62
 msgid "_Password"
 msgstr "_Hasło"
 
-#: authconfig.glade.h:62
+#: authconfig.glade.h:63
 msgid "_Realm"
 msgstr "Obsza_r"
 
-#: authconfig.glade.h:63
+#: authconfig.glade.h:64
 msgid "_Security Model"
 msgstr "Model Bezpieczeń_stwa"
 
-#: authconfig.glade.h:64
+#: authconfig.glade.h:65
 msgid "_Template Shell"
 msgstr "_Szablonowy Shell"
 
-#: authconfig.glade.h:65
+#: authconfig.glade.h:66
 msgid "_Workgroup"
 msgstr "Grupa _Robocza"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-06 12:03+0100\n"
+"POT-Creation-Date: 2004-12-15 23:27+0100\n"
 "PO-Revision-Date: 2004-10-18 15:18+0200\n"
 "Last-Translator: Xavier Conde Rueda <xaviconde@eremas.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
@@ -28,17 +28,17 @@ msgid "Hesiod Settings"
 msgstr "Configuració del Hesiod"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:631
+#: authconfig.c:358 authconfig.c:459 authconfig.c:640
 msgid "Back"
 msgstr "Endarrere"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:632
+#: authconfig.c:358 authconfig.c:459 authconfig.c:641
 msgid "Next"
 msgstr "Següent"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:476
+#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:479
 msgid "Ok"
 msgstr "D'acord"
 
@@ -118,7 +118,7 @@ msgstr "Contrasenya:"
 msgid "Join Settings"
 msgstr "Configuració d'ingrés"
 
-#: authconfig.c:377 authconfig.c:631
+#: authconfig.c:377 authconfig.c:640
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -167,281 +167,285 @@ msgstr "Configuració del Winbind"
 msgid "Join Domain"
 msgstr "Ingressa al domini"
 
-#: authconfig.c:476
+#: authconfig.c:479
 msgid "Warning"
 msgstr "Avís"
 
-#: authconfig.c:494
+#: authconfig.c:497
 msgid "caching"
 msgstr "memòria cau"
 
-#: authconfig.c:498 authconfig.glade.h:28
+#: authconfig.c:501 authconfig.glade.h:28
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: authconfig.c:502
+#: authconfig.c:505
 msgid "LDAP authentication"
 msgstr "Autenticació amb LDAP"
 
-#: authconfig.c:506 authconfig.glade.h:31
+#: authconfig.c:509 authconfig.glade.h:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:510 authconfig.glade.h:35
+#: authconfig.c:513 authconfig.glade.h:35
 msgid "NIS"
 msgstr "NIS"
 
-#: authconfig.c:514
+#: authconfig.c:517
 msgid "shadow password"
 msgstr "contrasenyes shadow"
 
-#: authconfig.c:518
+#: authconfig.c:521
 msgid "SMB authentication"
 msgstr "Autenticació amb SMB"
 
-#: authconfig.c:522 authconfig.c:530 authconfig.glade.h:51
+#: authconfig.c:525 authconfig.c:533 authconfig.glade.h:51
 msgid "Winbind"
 msgstr "Winbind"
 
-#: authconfig.c:526
+#: authconfig.c:529
 msgid "Winbind authentication"
 msgstr "Autenticació amb Winbind"
 
-#: authconfig.c:536 authconfig.glade.h:50
+#: authconfig.c:539 authconfig.glade.h:50
 msgid "User Information"
 msgstr "Informació d'usuari"
 
-#: authconfig.c:540
+#: authconfig.c:543
 msgid "Cache Information"
 msgstr "Informació de la memòria cau"
 
-#: authconfig.c:547
+#: authconfig.c:550
 msgid "Use Hesiod"
 msgstr "Usa el Hesiod"
 
-#: authconfig.c:553
+#: authconfig.c:556
 msgid "Use LDAP"
 msgstr "Usa l'LDAP"
 
-#: authconfig.c:560
+#: authconfig.c:563
 msgid "Use NIS"
 msgstr "Usa el NIS"
 
-#: authconfig.c:567
+#: authconfig.c:570
 msgid "Use Winbind"
 msgstr "Usa el Winbind"
 
-#: authconfig.c:577 authconfig.desktop.in.h:1 authconfig.glade.h:3
+#: authconfig.c:580 authconfig.desktop.in.h:1 authconfig.glade.h:3
 msgid "Authentication"
 msgstr "Autenticació"
 
-#: authconfig.c:581
+#: authconfig.c:584
 msgid "Use MD5 Passwords"
 msgstr "Usa contrasenyes MD5"
 
-#: authconfig.c:587
+#: authconfig.c:590
 msgid "Use Shadow Passwords"
 msgstr "Usa contrasenyes shadow"
 
-#: authconfig.c:594
+#: authconfig.c:597
 msgid "Use LDAP Authentication"
 msgstr "Usa autenticació amb LDAP"
 
-#: authconfig.c:601
+#: authconfig.c:604
 msgid "Use Kerberos"
 msgstr "Usa el Kerberos"
 
-#: authconfig.c:608
+#: authconfig.c:611
 msgid "Use SMB Authentication"
 msgstr "Usa autenticació amb SMB"
 
-#: authconfig.c:615
+#: authconfig.c:618
 msgid "Use Winbind Authentication"
 msgstr "Usa autenticació amb Winbind"
 
-#: authconfig.c:647 authconfig-gtk.py:290 authconfig.glade.h:4
+#: authconfig.c:625
+msgid "Local authorization is sufficient"
+msgstr ""
+
+#: authconfig.c:656 authconfig-gtk.py:283 authconfig.glade.h:4
 msgid "Authentication Configuration"
 msgstr "Configuració de l'autenticació"
 
-#: authconfig.c:823
+#: authconfig.c:835
 msgid "enable shadowed passwords by default"
 msgstr "habilita les contrasenyes shadow per defecte"
 
-#: authconfig.c:825
+#: authconfig.c:837
 msgid "disable shadowed passwords by default"
 msgstr "inhabilita les contrasenyes shadow per defecte"
 
-#: authconfig.c:829
+#: authconfig.c:841
 msgid "enable MD5 passwords by default"
 msgstr "habilita les contrasenyes MD5 per defecte"
 
-#: authconfig.c:831
+#: authconfig.c:843
 msgid "disable MD5 passwords by default\n"
 msgstr "inhabilita les contrasenyes MD5 per defecte\n"
 
-#: authconfig.c:834
+#: authconfig.c:846
 msgid "enable NIS"
 msgstr "habilita el NIS"
 
-#: authconfig.c:836
+#: authconfig.c:848
 msgid "disable NIS"
 msgstr "inhabilita el NIS"
 
-#: authconfig.c:838
+#: authconfig.c:850
 msgid "default NIS domain"
 msgstr "domini NIS predeterminat"
 
-#: authconfig.c:838
+#: authconfig.c:850
 msgid "<domain>"
 msgstr "<domini>"
 
-#: authconfig.c:840
+#: authconfig.c:852
 msgid "default NIS server\n"
 msgstr "servidor NIS predeterminat\n"
 
-#: authconfig.c:840 authconfig.c:862 authconfig.c:871 authconfig.c:873
-#: authconfig.c:893
+#: authconfig.c:852 authconfig.c:874 authconfig.c:883 authconfig.c:885
+#: authconfig.c:905
 msgid "<server>"
 msgstr "<servidor>"
 
-#: authconfig.c:843
+#: authconfig.c:855
 msgid "enable LDAP for user information by default"
 msgstr "habilita l'LDAP per a la informació d'usuari per defecte"
 
-#: authconfig.c:845
+#: authconfig.c:857
 msgid "disable LDAP for user information by default"
 msgstr "inhabilita l'LDAP per a la informació d'usuari per defecte"
 
-#: authconfig.c:847 authconfig.c:853
+#: authconfig.c:859 authconfig.c:865
 msgid "enable use of TLS with LDAP"
 msgstr "habilita l'ús de TLS amb LDAP"
 
-#: authconfig.c:849 authconfig.c:855
+#: authconfig.c:861 authconfig.c:867
 msgid "disable use of TLS with LDAP"
 msgstr "inhabilita l'ús de TLS amb LDAP"
 
-#: authconfig.c:858
+#: authconfig.c:870
 msgid "enable LDAP for authentication by default"
 msgstr "habilita l'LDAP per autenticar per defecte"
 
-#: authconfig.c:860
+#: authconfig.c:872
 msgid "disable LDAP for authentication by default"
 msgstr "inhabilita l'LDAP per autenticar per defecte"
 
-#: authconfig.c:862
+#: authconfig.c:874
 msgid "default LDAP server"
 msgstr "servidor LDAP predeterminat"
 
-#: authconfig.c:864
+#: authconfig.c:876
 msgid "default LDAP base DN\n"
 msgstr "DN base LDAP predeterminat\n"
 
-#: authconfig.c:864
+#: authconfig.c:876
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:867
+#: authconfig.c:879
 msgid "enable kerberos authentication by default"
 msgstr "habilita el Kerberos per autenticar per defecte"
 
-#: authconfig.c:869
+#: authconfig.c:881
 msgid "disable kerberos authentication by default"
 msgstr "inhabilita el Kerberos per autenticar per defecte"
 
-#: authconfig.c:871
+#: authconfig.c:883
 msgid "default kerberos KDC"
 msgstr "KDC del Kerberos predeterminat"
 
-#: authconfig.c:873
+#: authconfig.c:885
 msgid "default kerberos admin server"
 msgstr "servidor d'administració del Kerberos predeterminat"
 
-#: authconfig.c:875
+#: authconfig.c:887
 msgid "default kerberos realm\n"
 msgstr "regne del Kerberos predeterminat\n"
 
-#: authconfig.c:875
+#: authconfig.c:887
 msgid "<realm>"
 msgstr "<regne>"
 
-#: authconfig.c:878
+#: authconfig.c:890
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "habilita l'ús del DNS per trobar els KDC de Kerberos"
 
-#: authconfig.c:880
+#: authconfig.c:892
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "inhabilita l'ús del DNS per trobar els KDC de Kerberos"
 
-#: authconfig.c:882
+#: authconfig.c:894
 msgid "enable use of DNS to find kerberos realms"
 msgstr "habilita l'ús del DNS per trobar els regnes de Kerberos"
 
-#: authconfig.c:884
+#: authconfig.c:896
 msgid "disable use of DNS to find kerberos realms\n"
 msgstr "inhabilita l'ús del DNS per trobar els regnes de Kerberos\n"
 
-#: authconfig.c:887
+#: authconfig.c:899
 msgid "enable SMB authentication by default"
 msgstr "habilita l'autenticació SMB per defecte"
 
-#: authconfig.c:889
+#: authconfig.c:901
 msgid "disable SMB authentication by default"
 msgstr "inhabilita l'autenticació SMB per defecte"
 
-#: authconfig.c:891
+#: authconfig.c:903
 msgid "workgroup authentication servers are in"
 msgstr "els servidors d'autenticació de treball en grup estan a"
 
-#: authconfig.c:891
+#: authconfig.c:903
 msgid "<workgroup>"
 msgstr "<grup de treball>"
 
-#: authconfig.c:893
+#: authconfig.c:905
 msgid "names of servers to authenticate against\n"
 msgstr "noms de servidors on autenticar-se\n"
 
-#: authconfig.c:896
+#: authconfig.c:908
 msgid "enable winbind for user information by default"
 msgstr "habilita el winbind per a la informació d'usuari per defecte"
 
-#: authconfig.c:899
+#: authconfig.c:911
 msgid "disable winbind for user information by default"
 msgstr "inhabilita el winbind per a la informació d'usuari per defecte"
 
-#: authconfig.c:902
+#: authconfig.c:914
 msgid "enable winbindauth for authentication by default"
 msgstr "habilita windbindauth per autenticar per defecte"
 
-#: authconfig.c:905
+#: authconfig.c:917
 msgid "disable winbindauth for authentication by default"
 msgstr "inhabilita winbindauth per autenticar per defecte"
 
-#: authconfig.c:908
+#: authconfig.c:920
 msgid "security mode to use for samba and winbind"
 msgstr "mode de seguretat que s'usarà amb el Samba i el Winbind"
 
-#: authconfig.c:910
+#: authconfig.c:922
 msgid "default realm for samba and winbind when security=ads"
 msgstr ""
 "regne predeterminat per al Samba i el Winbind quan la seguretat sigui 'ads'"
 
-#: authconfig.c:912
+#: authconfig.c:924
 msgid "uid range winbind will assign to domain or ads users"
 msgstr ""
 "rang de valors de l'identificador d'usuari que el Winbind assignarà als "
 "usuaris del domini o ads"
 
-#: authconfig.c:913 authconfig.c:916
+#: authconfig.c:925 authconfig.c:928
 msgid "<lowest-highest>"
 msgstr "<inferior-superior>"
 
-#: authconfig.c:915
+#: authconfig.c:927
 msgid "gid range winbind will assign to domain or ads users"
 msgstr ""
 "rang de valors de l'identificador de grup que el Winbind assignarà als "
 "usuaris del domini o ads"
 
-#: authconfig.c:919
+#: authconfig.c:931
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -450,24 +454,24 @@ msgstr ""
 "dels noms d'usuari creats pel Winbind, si no s'habilita "
 "winbindusedefaultdomain"
 
-#: authconfig.c:923
+#: authconfig.c:935
 msgid "the directory which winbind-created users will have as home directories"
 msgstr ""
 "el directori que els usuaris creats amb el Winbind tindran com a directoris "
 "personals"
 
-#: authconfig.c:927
+#: authconfig.c:939
 msgid "the group which winbind-created users will have as their primary group"
 msgstr ""
 "el grup que els usuaris creats amb el Winbind tindran com a grup primari"
 
-#: authconfig.c:930
+#: authconfig.c:942
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr ""
 "l'intèrpret d'ordres que els usuaris creats amb el Winbind tindran com a "
 "intèrpret de l'entrada"
 
-#: authconfig.c:934
+#: authconfig.c:946
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
@@ -475,7 +479,7 @@ msgstr ""
 "configura el Winbind per assumir que els usuaris sense domini en els seus "
 "noms d'usuari són usuaris del domini"
 
-#: authconfig.c:938
+#: authconfig.c:950
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
@@ -483,103 +487,111 @@ msgstr ""
 "configura el Winbind per assumir que els usuaris sense domini en els seus "
 "noms d'usuari no són usuaris del domini"
 
-#: authconfig.c:942
+#: authconfig.c:954
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr "ingressa al domini Winbind o al regne ads com a aquest administrador\n"
 
-#: authconfig.c:946
+#: authconfig.c:958
 msgid "enable wins for hostname resolution"
 msgstr "habilita el Wins per resoldre els noms de màquina"
 
-#: authconfig.c:948
+#: authconfig.c:960
 msgid "disable wins for hostname resolution\n"
 msgstr "inhabilita el Wins per resoldre els noms de màquina\n"
 
-#: authconfig.c:951
+#: authconfig.c:963
 msgid "enable hesiod for user information by default"
 msgstr "habilita el Hesiod per a la informació d'usuari per defecte"
 
-#: authconfig.c:953
+#: authconfig.c:965
 msgid "disable hesiod for user information by default"
 msgstr "inhabilita el Hesiod per a la informació d'usuari per defecte"
 
-#: authconfig.c:955
+#: authconfig.c:967
 msgid "default hesiod LHS"
 msgstr "LHS predeterminat del Hesiod"
 
-#: authconfig.c:955
+#: authconfig.c:967
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:957
+#: authconfig.c:969
 msgid "default hesiod RHS\n"
 msgstr "RHS predeterminat del Hesiod\n"
 
-#: authconfig.c:957
+#: authconfig.c:969
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:960
+#: authconfig.c:972
 msgid "enable caching of user information by default"
 msgstr "habilita la memòria cau de la informació d'usuari per defecte"
 
-#: authconfig.c:962
+#: authconfig.c:974
 msgid "disable caching of user information by default\n"
 msgstr "inhabilita la memòria cau de la informació d'usuari per defecte\n"
 
-#: authconfig.c:969
+#: authconfig.c:981
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "no iniciïs/aturis ni el portmap, ni el ypbind ni l'nscd"
 
-#: authconfig.c:971
+#: authconfig.c:983
 msgid "don't display user interface"
 msgstr "no mostris la interfície d'usuari"
 
-#: authconfig.c:973
+#: authconfig.c:985
 msgid "probe network for defaults and print them"
 msgstr "fes proves a la xarxa per als predeterminats, i escriu-los"
 
-#: authconfig.c:976
+#: authconfig.c:988
 msgid "use locally-defined policies"
 msgstr "usa les polítiques definides localment"
 
-#: authconfig.c:978
+#: authconfig.c:990
 msgid "don't use locally-defined policies"
 msgstr "usa les polítiques definides localment"
 
-#: authconfig.c:989
+#: authconfig.c:993
+msgid "local authorization is sufficient for local users"
+msgstr ""
+
+#: authconfig.c:995
+msgid "authorize local users also through remote service"
+msgstr ""
+
+#: authconfig.c:1005
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: l'argument %s és incorrecte: %s\n"
 
-#: authconfig.c:998
+#: authconfig.c:1014
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s: s'està intentant continuar\n"
 
-#: authconfig.c:1002
+#: authconfig.c:1018
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: argument inesperat\n"
 
-#: authconfig.c:1034
+#: authconfig.c:1050
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: només el pot executar el superusuari\n"
 
-#: authconfig.c:1045 authconfig.c:1053 authconfig.c:1061 authconfig.c:1069
-#: authconfig.c:1077 authconfig.c:1085 authconfig.c:1093 authconfig.c:1106
-#: authconfig.c:1114
+#: authconfig.c:1061 authconfig.c:1069 authconfig.c:1077 authconfig.c:1085
+#: authconfig.c:1093 authconfig.c:1101 authconfig.c:1109 authconfig.c:1122
+#: authconfig.c:1130
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: s'ha produït un error en llegir %s/%s"
 
-#: authconfig.c:1100
+#: authconfig.c:1116
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s: no es pot llegir la informació per a la memòria cau"
 
-#: authconfig.c:1200
+#: authconfig.c:1217
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -587,24 +599,24 @@ msgstr ""
 " <Tab>/<Alt-Tab> entre elements | <barra espaiadora> selecciona | <F12> "
 "següent"
 
-#: authconfig.c:1203
+#: authconfig.c:1220
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 Red Hat, Inc."
 
-#: authconfig.c:1210
+#: authconfig.c:1227
 #, c-format
 msgid "dialog was cancelled\n"
 msgstr "s'ha cancel·lat el diàleg\n"
 
-#: authconfig.c:1225
+#: authconfig.c:1242
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr ""
 "%s: s'ha produït un error greu en desar la configuració de la memòria cau"
 
-#: authconfig.c:1231 authconfig.c:1237 authconfig.c:1243 authconfig.c:1249
-#: authconfig.c:1254 authconfig.c:1260 authconfig.c:1265 authconfig.c:1270
-#: authconfig.c:1275 authconfig.c:1281
+#: authconfig.c:1248 authconfig.c:1254 authconfig.c:1260 authconfig.c:1266
+#: authconfig.c:1271 authconfig.c:1277 authconfig.c:1282 authconfig.c:1287
+#: authconfig.c:1292 authconfig.c:1298
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: s'ha produït un error greu en escriure %s/%s"
@@ -838,22 +850,26 @@ msgid "_KDCs"
 msgstr "_KDC"
 
 #: authconfig.glade.h:61
+msgid "_Local authorization is sufficient for local users"
+msgstr ""
+
+#: authconfig.glade.h:62
 msgid "_Password"
 msgstr "_Contrasenya"
 
-#: authconfig.glade.h:62
+#: authconfig.glade.h:63
 msgid "_Realm"
 msgstr "_Regne"
 
-#: authconfig.glade.h:63
+#: authconfig.glade.h:64
 msgid "_Security Model"
 msgstr "Model de _seguretat"
 
-#: authconfig.glade.h:64
+#: authconfig.glade.h:65
 msgid "_Template Shell"
 msgstr "Plan_tilla de l'intèrpret d'ordres"
 
-#: authconfig.glade.h:65
+#: authconfig.glade.h:66
 msgid "_Workgroup"
 msgstr "Gr_up de treball"
 

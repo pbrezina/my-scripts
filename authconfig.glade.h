@@ -58,6 +58,7 @@ char *s = N_("_Admin Servers");
 char *s = N_("_Domain Controllers");
 char *s = N_("_Join Domain");
 char *s = N_("_KDCs");
+char *s = N_("_Local authorization is sufficient for local users");
 char *s = N_("_Password");
 char *s = N_("_Realm");
 char *s = N_("_Security Model");

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.6.7
+Version: 4.6.8
 # Don't change release in elvis CVS, up version after merging all patches
 # from dist CVS instead.
 Release: 1
@@ -80,6 +80,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Dec 17 2004 Tomas Mraz <tmraz@redhat.com>
+- add option for making local authorization sufficient for local users
+  this is attempt to 'solve/workaround' the problem with blocking local logins by
+  pulling out network cable (#115181)
+
 * Wed Dec 15 2004 Tomas Mraz <tmraz@redhat.com>
 - remove dependency on nscd
 - don't show warning messages when switching options off

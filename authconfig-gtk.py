@@ -81,6 +81,8 @@ class childWindow:
 			"enablewinbindauth" :
 			("enableWinbindAuth", self.lib + "/security/pam_winbind.so",
 			 "winbind", "samba-client", ["configwinbindauth"]),
+			"enablelocauthorize" :
+			("enableLocAuthorize", "", "", "", []),
 		}
 		# entry or label / button / checkbox / option menu :
 		# entry (or label): authInfo field

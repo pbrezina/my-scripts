@@ -840,6 +840,13 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				authInfo->enableWinbindAuth = TRUE;
 				continue;
 			}
+			if (strstr(module, "pam_localuser")) {
+				authInfo->enableLocAuthorize = TRUE;
+				if (non_empty(args)) {
+					authInfo->localuserArgs = g_strdup(args);
+				}
+				continue;
+			}
 #ifdef LOCAL_POLICIES
 			if (strstr(module, "pam_stack")) {
 				authInfo->enableLocal = TRUE;
@@ -1112,6 +1119,16 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			}
 			g_free(tmp);
 		}
+		tmp = svGetValue(sv, "USELOCAUTHORIZE");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableLocAuthorize = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableLocAuthorize = FALSE;
+			}
+			g_free(tmp);
+		}
 		svCloseFile(sv);
 		sv = NULL;
 	}
@@ -1241,6 +1258,7 @@ authInfoDiffers(struct authInfoType *a, struct authInfoType *b)
 		(a->enablePasswdQC != b->enablePasswdQC) ||
 		(a->enableShadow != b->enableShadow) ||
 		(a->enableSMB != b->enableSMB) ||
+		(a->enableLocAuthorize != b->enableLocAuthorize) ||
 #ifdef LOCAL_POLICIES
 		(a->enableLocal != b->enableLocal) ||
 #endif
@@ -1432,6 +1450,8 @@ authInfoCopy(struct authInfoType *info)
 			    g_strdup(info->cracklibArgs) : NULL;
 	ret->passwdqcArgs = info->passwdqcArgs ?
 			    g_strdup(info->passwdqcArgs) : NULL;
+	ret->localuserArgs = info->localuserArgs ?
+			    g_strdup(info->localuserArgs) : NULL;
 
 	return ret;
 }
@@ -3652,6 +3672,8 @@ static struct {
 #endif
 	{TRUE,  account,	LOGIC_REQUIRED,
 	 "unix",		NULL},
+	{FALSE,  account,	LOGIC_SUFFICIENT,
+	 "localuser",		NULL},
 	{TRUE,  account,	LOGIC_SUFFICIENT,
 	 "succeed_if",		argv_succeed_if_account},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
@@ -3752,6 +3774,10 @@ fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 			if (strcmp(standard_pam_modules[i].name,
 				   "passwdqc") == 0) {
 				args = info->passwdqcArgs;
+			}
+			if (strcmp(standard_pam_modules[i].name,
+				   "localuser") == 0) {
+				args = info->localuserArgs;
 			}
 			if ((args == NULL) &&
 			    (standard_pam_modules[i].argv != NULL)) {
@@ -3868,7 +3894,9 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		   (authInfo->enableSMB &&
 		    (strcmp("smb_auth", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableWinbindAuth &&
-		    (strcmp("winbind", standard_pam_modules[i].name) == 0))) {
+		    (strcmp("winbind", standard_pam_modules[i].name) == 0)) ||
+		   (authInfo->enableLocAuthorize &&
+		    (strcmp("localuser", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);
 		}
 	}
@@ -3944,6 +3972,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 			   authInfo->enableSMB ? "yes" : "no");
 		svSetValue(sv, "USEWINBINDAUTH",
 			   authInfo->enableWinbindAuth ? "yes" : "no");
+		svSetValue(sv, "USELOCAUTHORIZE",
+			   authInfo->enableLocAuthorize ? "yes" : "no");
 		svWriteFile(sv, 0644);
 		svCloseFile(sv);
 	}
@@ -4477,6 +4507,9 @@ authInfoPrint(struct authInfoType *authInfo)
     printf("pam_passwdqc is %s (%s)\n",
 	   authInfo->enablePasswdQC ? "enabled" : "disabled",
 	   authInfo->passwdqcArgs ? authInfo->passwdqcArgs : "");
+    printf("Always authorize local users is %s (%s)\n",
+	   authInfo->enableLocAuthorize ? "enabled" : "disabled",
+	   authInfo->localuserArgs ? authInfo->localuserArgs : "");
 }
 
 static void

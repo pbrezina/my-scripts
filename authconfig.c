@@ -492,7 +492,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtComponent form, ok, cancel, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid, infoGrid, authGrid;
   newtComponent cache, hesiod, ldap, nis, winbind, krb5, ldapa, smb, shadow, md5,
-       winbindauth;
+       winbindauth, locauthorize;
   struct warntype warnCache = {PATH_NSCD,
 			       _("caching"),
 			       "nscd",
@@ -575,7 +575,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* Authentication. */
-  authGrid = newtCreateGrid(1, 7);
+  authGrid = newtCreateGrid(1, 8);
 
   comp = newtLabel(-1, -1, _("Authentication"));
   newtGridSetField(authGrid, 0, 0, NEWT_GRID_COMPONENT, comp,
@@ -622,12 +622,18 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(authGrid, 0, 6, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
+  locauthorize = cb = newtCheckbox(-1, -1, _("Local authorization is sufficient"),
+		    authInfo->enableLocAuthorize ? '*' : ' ',
+		    NULL, NULL);
+  newtGridSetField(authGrid, 0, 7, NEWT_GRID_COMPONENT, cb,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
   /* Control grid. */
   mechGrid = newtCreateGrid(2, 1);
   newtGridSetField(mechGrid, 0, 0, NEWT_GRID_SUBGRID, infoGrid,
-		   1, 0, 1, 1, NEWT_ANCHOR_LEFT, 0);
+		   1, 0, 1, 1, NEWT_ANCHOR_TOP|NEWT_ANCHOR_LEFT, 0);
   newtGridSetField(mechGrid, 1, 0, NEWT_GRID_SUBGRID, authGrid,
-		   1, 0, 1, 1, NEWT_ANCHOR_RIGHT, 0);
+		   1, 0, 1, 1, NEWT_ANCHOR_TOP|NEWT_ANCHOR_RIGHT, 0);
 
   /* Buttons. */
   buttonGrid = newtCreateGrid(2, 1);
@@ -665,6 +671,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
     authInfo->enableKerberos = (newtCheckboxGetValue(krb5) == '*');
     authInfo->enableSMB = (newtCheckboxGetValue(smb) == '*');
     authInfo->enableWinbindAuth = (newtCheckboxGetValue(winbindauth) == '*');
+    authInfo->enableLocAuthorize = (newtCheckboxGetValue(locauthorize) == '*');
   }
 
   newtFormDestroy(form);
@@ -809,6 +816,8 @@ main(int argc, const char **argv)
 #ifdef LOCAL_POLICIES
   int enableLocal = 0, disableLocal = 0;
 #endif
+
+  int enableLocAuthorize = 0, disableLocAuthorize = 0;
 
   gboolean badOpt = FALSE;
   poptContext optCon;
@@ -980,6 +989,10 @@ main(int argc, const char **argv)
       { "disablelocal", '\0', POPT_ARG_NONE, &disableLocal, 0,
 	_("don't use locally-defined policies"), NULL},
 #endif
+      { "enablelocauthorize", '\0', POPT_ARG_NONE, &enableLocAuthorize, 0,
+	_("local authorization is sufficient for local users"), NULL},
+      { "disablelocauthorize", '\0', POPT_ARG_NONE, &disableLocAuthorize, 0,
+	_("authorize local users also through remote service"), NULL},
       POPT_AUTOHELP { 0, 0, 0, 0, 0, 0 },
     };
 
@@ -1144,6 +1157,7 @@ main(int argc, const char **argv)
 #ifdef LOCAL_POLICIES
   overrideBoolean(&authInfo->enableLocal, enableLocal, disableLocal);
 #endif
+  overrideBoolean(&authInfo->enableLocAuthorize, enableLocAuthorize, disableLocAuthorize);
 
   overrideBoolean(&authInfo->enableShadow, enableShadow, disableShadow);
   overrideBoolean(&authInfo->enableMD5, enableMD5, disableMD5);
