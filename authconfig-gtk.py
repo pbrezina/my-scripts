@@ -1,6 +1,9 @@
 #!/usr/bin/python2.2
 import authconfig, gettext, os, signal, sys
 from rhpl.translate import _, textdomain
+if "--nox" in sys.argv:
+	os.execv('/usr/bin/authconfig',('authconfig',))
+	sys.exit(1)
 try:
 	import gtk, gtk.glade
 except RuntimeError, e:
@@ -8,6 +11,7 @@ except RuntimeError, e:
 	    os.isatty(sys.stdout.fileno()) and
 	    os.isatty(sys.stderr.fileno())):
 		os.execv('/usr/bin/authconfig',('authconfig',))
+		sys.exit(1)
 	else:
 		raise e
 
