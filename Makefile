@@ -1,4 +1,4 @@
-VERSION=$(shell awk '/define version/ { print $$3 }' authconfig.spec)
+VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PROGNAME = authconfig
 

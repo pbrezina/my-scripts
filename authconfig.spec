@@ -1,7 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-%define version 3.0.2
-Version: %{version}
+Version: 3.0.3
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -32,7 +31,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)/usr/man/man8/*
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
+%define date    %(echo `LC_ALL="C" date +"%a %b %d %Y"`)
+
 %changelog
+* %{date} Cristian Gafton <gafton@redhat.com>
+- rebuild for release
+
 * Wed Feb 16 2000 Preston Brown <pbrown@redhat.com>
 - disable LDAP, update man page.
 
