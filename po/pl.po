@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-18 16:17-0500\n"
+"POT-Creation-Date: 2004-01-08 02:25-0500\n"
 "PO-Revision-Date: 2002-10-07 13:51+0200\n"
 "Last-Translator: Bartosz Sapijaszko <bartosz@sapek.net>\n"
 "Language-Team: Polski <pl@li.org>\n"
@@ -29,17 +29,17 @@ msgid "Hesiod Settings"
 msgstr ""
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:461 authconfig.c:659
+#: authconfig.c:385 authconfig.c:486 authconfig.c:684
 msgid "Back"
 msgstr ""
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:461 authconfig.c:660
+#: authconfig.c:385 authconfig.c:486 authconfig.c:685
 msgid "Next"
 msgstr ""
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:404 authconfig.c:461 authconfig.c:488
+#: authconfig.c:385 authconfig.c:404 authconfig.c:486 authconfig.c:513
 msgid "Ok"
 msgstr "OK"
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "LDAP Settings"
 msgstr ""
 
-#: authconfig.c:342 authconfig.c:451
+#: authconfig.c:342 authconfig.c:459
 msgid "Domain:"
 msgstr "Domena:"
 
@@ -119,7 +119,7 @@ msgstr ""
 msgid "Join Settings"
 msgstr ""
 
-#: authconfig.c:404 authconfig.c:659
+#: authconfig.c:404 authconfig.c:684
 msgid "Cancel"
 msgstr ""
 
@@ -142,116 +142,120 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: authconfig.c:449
+#: authconfig.c:457
 msgid "Security Model:"
 msgstr ""
 
-#: authconfig.c:453
+#: authconfig.c:461
 msgid "Domain Controllers:"
 msgstr ""
 
-#: authconfig.c:455
+#: authconfig.c:463
 msgid "ADS Realm:"
 msgstr ""
 
-#: authconfig.c:458 glade.strings:75
+#: authconfig.c:465
+msgid "Template Shell:"
+msgstr ""
+
+#: authconfig.c:483 glade.strings:75
 msgid "Winbind Settings"
 msgstr ""
 
-#: authconfig.c:460
+#: authconfig.c:485
 #, fuzzy
 msgid "Join Domain"
 msgstr "Domena:"
 
-#: authconfig.c:488
+#: authconfig.c:513
 msgid "Warning"
 msgstr "Ostrzeżenie"
 
-#: authconfig.c:505
+#: authconfig.c:530
 msgid "caching"
 msgstr ""
 
-#: authconfig.c:509 glade.strings:35
+#: authconfig.c:534 glade.strings:35
 msgid "Kerberos"
 msgstr ""
 
-#: authconfig.c:513
+#: authconfig.c:538
 msgid "LDAP authentication"
 msgstr ""
 
-#: authconfig.c:517 glade.strings:16 glade.strings:31
+#: authconfig.c:542 glade.strings:16 glade.strings:31
 msgid "LDAP"
 msgstr ""
 
-#: authconfig.c:521 glade.strings:12
+#: authconfig.c:546 glade.strings:12
 msgid "NIS"
 msgstr ""
 
-#: authconfig.c:525
+#: authconfig.c:550
 msgid "shadow password"
 msgstr ""
 
-#: authconfig.c:529
+#: authconfig.c:554
 msgid "SMB authentication"
 msgstr ""
 
-#: authconfig.c:533 authconfig.c:541 glade.strings:24 glade.strings:43
+#: authconfig.c:558 authconfig.c:566 glade.strings:24 glade.strings:43
 msgid "Winbind"
 msgstr ""
 
-#: authconfig.c:537
+#: authconfig.c:562
 msgid "Winbind authentication"
 msgstr ""
 
-#: authconfig.c:552 glade.strings:25
+#: authconfig.c:577 glade.strings:25
 msgid "User Information"
 msgstr ""
 
-#: authconfig.c:556
+#: authconfig.c:581
 msgid "Cache Information"
 msgstr ""
 
-#: authconfig.c:563
+#: authconfig.c:588
 msgid "Use Hesiod"
 msgstr ""
 
-#: authconfig.c:569
+#: authconfig.c:594
 msgid "Use LDAP"
 msgstr ""
 
-#: authconfig.c:576
+#: authconfig.c:601
 msgid "Use NIS"
 msgstr ""
 
-#: authconfig.c:583
+#: authconfig.c:608
 msgid "Use Winbind"
 msgstr ""
 
-#: authconfig.c:593 authconfig.desktop.in.h:1 glade.strings:44
+#: authconfig.c:618 authconfig.desktop.in.h:1 glade.strings:44
 msgid "Authentication"
 msgstr ""
 
-#: authconfig.c:597
+#: authconfig.c:622
 msgid "Use MD5 Passwords"
 msgstr ""
 
-#: authconfig.c:603
+#: authconfig.c:628
 msgid "Use Shadow Passwords"
 msgstr ""
 
-#: authconfig.c:610
+#: authconfig.c:635
 msgid "Use LDAP Authentication"
 msgstr ""
 
-#: authconfig.c:617
+#: authconfig.c:642
 msgid "Use Kerberos"
 msgstr ""
 
-#: authconfig.c:624
+#: authconfig.c:649
 msgid "Use SMB Authentication"
 msgstr ""
 
-#: authconfig.c:631
+#: authconfig.c:656
 msgid "Use Winbind Authentication"
 msgstr ""
 
@@ -269,323 +273,323 @@ msgstr ""
 #. Toggle a boolean.
 #. Create a vbox or dialog using the file, and return it. */
 #. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:675 authconfig-gtk.py:287 glade.strings:7
+#: authconfig.c:700 authconfig-gtk.py:287 glade.strings:7
 msgid "Authentication Configuration"
 msgstr ""
 
-#: authconfig.c:848
+#: authconfig.c:873
 msgid "enable shadowed passwords by default"
 msgstr ""
 
-#: authconfig.c:850
+#: authconfig.c:875
 msgid "disable shadowed passwords by default"
 msgstr ""
 
-#: authconfig.c:854
+#: authconfig.c:879
 msgid "enable MD5 passwords by default"
 msgstr ""
 
-#: authconfig.c:856
+#: authconfig.c:881
 msgid "disable MD5 passwords by default\n"
 msgstr ""
 
-#: authconfig.c:859
+#: authconfig.c:884
 msgid "enable NIS"
 msgstr ""
 
-#: authconfig.c:861
+#: authconfig.c:886
 msgid "disable NIS"
 msgstr ""
 
-#: authconfig.c:863
+#: authconfig.c:888
 msgid "default NIS domain"
 msgstr ""
 
-#: authconfig.c:863
+#: authconfig.c:888
 msgid "<domain>"
 msgstr ""
 
-#: authconfig.c:865
+#: authconfig.c:890
 msgid "default NIS server\n"
 msgstr ""
 
-#: authconfig.c:865 authconfig.c:880 authconfig.c:889 authconfig.c:891
-#: authconfig.c:911
+#: authconfig.c:890 authconfig.c:905 authconfig.c:914 authconfig.c:916
+#: authconfig.c:936
 msgid "<server>"
 msgstr ""
 
-#: authconfig.c:868
+#: authconfig.c:893
 msgid "enable LDAP for user information by default"
 msgstr ""
 
-#: authconfig.c:870
+#: authconfig.c:895
 msgid "disable LDAP for user information by default"
 msgstr ""
 
-#: authconfig.c:872
+#: authconfig.c:897
 msgid "enable use of TLS with LDAP"
 msgstr ""
 
-#: authconfig.c:874
+#: authconfig.c:899
 msgid "disable use of TLS with LDAP"
 msgstr ""
 
-#: authconfig.c:876
+#: authconfig.c:901
 msgid "enable LDAP for authentication by default"
 msgstr ""
 
-#: authconfig.c:878
+#: authconfig.c:903
 msgid "disable LDAP for authentication by default"
 msgstr ""
 
-#: authconfig.c:880
+#: authconfig.c:905
 msgid "default LDAP server"
 msgstr ""
 
-#: authconfig.c:882
+#: authconfig.c:907
 msgid "default LDAP base DN\n"
 msgstr ""
 
-#: authconfig.c:882
+#: authconfig.c:907
 msgid "<dn>"
 msgstr ""
 
-#: authconfig.c:885
+#: authconfig.c:910
 msgid "enable kerberos authentication by default"
 msgstr ""
 
-#: authconfig.c:887
+#: authconfig.c:912
 msgid "disable kerberos authentication by default"
 msgstr ""
 
-#: authconfig.c:889
+#: authconfig.c:914
 msgid "default kerberos KDC"
 msgstr ""
 
-#: authconfig.c:891
+#: authconfig.c:916
 msgid "default kerberos admin server"
 msgstr ""
 
-#: authconfig.c:893
+#: authconfig.c:918
 msgid "default kerberos realm\n"
 msgstr ""
 
-#: authconfig.c:893
+#: authconfig.c:918
 msgid "<realm>"
 msgstr ""
 
-#: authconfig.c:896
+#: authconfig.c:921
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr ""
 
-#: authconfig.c:898
+#: authconfig.c:923
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr ""
 
-#: authconfig.c:900
+#: authconfig.c:925
 msgid "enable use of DNS to find kerberos realms"
 msgstr ""
 
-#: authconfig.c:902
+#: authconfig.c:927
 msgid "disable use of DNS to find kerberos realms\n"
 msgstr ""
 
-#: authconfig.c:905
+#: authconfig.c:930
 msgid "enable SMB authentication by default"
 msgstr ""
 
-#: authconfig.c:907
+#: authconfig.c:932
 msgid "disable SMB authentication by default"
 msgstr ""
 
-#: authconfig.c:909
+#: authconfig.c:934
 msgid "workgroup authentication servers are in"
 msgstr ""
 
-#: authconfig.c:909
+#: authconfig.c:934
 msgid "<workgroup>"
 msgstr ""
 
-#: authconfig.c:911
+#: authconfig.c:936
 msgid "names of servers to authenticate against\n"
 msgstr ""
 
-#: authconfig.c:914
+#: authconfig.c:939
 msgid "enable winbind for user information and authentication by default"
 msgstr ""
 
-#: authconfig.c:917
+#: authconfig.c:942
 msgid "disable winbind for user information and authentication by default"
 msgstr ""
 
-#: authconfig.c:920
+#: authconfig.c:945
 msgid "security mode to use for samba and winbind"
 msgstr ""
 
-#: authconfig.c:922
+#: authconfig.c:947
 msgid "default realm for samba and winbind when security=ads"
 msgstr ""
 
-#: authconfig.c:924
+#: authconfig.c:949
 msgid "uid range winbind will assign to domain or ads users"
 msgstr ""
 
-#: authconfig.c:925 authconfig.c:928
+#: authconfig.c:950 authconfig.c:953
 msgid "<lowest-highest>"
 msgstr ""
 
-#: authconfig.c:927
+#: authconfig.c:952
 msgid "gid range winbind will assign to domain or ads users"
 msgstr ""
 
-#: authconfig.c:931
+#: authconfig.c:956
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
 
-#: authconfig.c:935
+#: authconfig.c:960
 msgid "the directory which winbind-created users will have as home directories"
 msgstr ""
 
-#: authconfig.c:939
+#: authconfig.c:964
 msgid "the group which winbind-created users will have as their primary group"
 msgstr ""
 
-#: authconfig.c:942
+#: authconfig.c:967
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr ""
 
-#: authconfig.c:946
+#: authconfig.c:971
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
 
-#: authconfig.c:950
+#: authconfig.c:975
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
 
-#: authconfig.c:954
+#: authconfig.c:979
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr ""
 
-#: authconfig.c:958
+#: authconfig.c:983
 msgid "enable wins for hostname resolution"
 msgstr ""
 
-#: authconfig.c:960
+#: authconfig.c:985
 msgid "disable wins for hostname resolution\n"
 msgstr ""
 
-#: authconfig.c:963
+#: authconfig.c:988
 msgid "enable hesiod for user information by default"
 msgstr ""
 
-#: authconfig.c:965
+#: authconfig.c:990
 msgid "disable hesiod for user information by default"
 msgstr ""
 
-#: authconfig.c:967
+#: authconfig.c:992
 msgid "default hesiod LHS"
 msgstr ""
 
-#: authconfig.c:967
+#: authconfig.c:992
 msgid "<lhs>"
 msgstr ""
 
-#: authconfig.c:969
+#: authconfig.c:994
 msgid "default hesiod RHS\n"
 msgstr ""
 
-#: authconfig.c:969
+#: authconfig.c:994
 msgid "<rhs>"
 msgstr ""
 
-#: authconfig.c:972
+#: authconfig.c:997
 msgid "enable caching of user information by default"
 msgstr ""
 
-#: authconfig.c:974
+#: authconfig.c:999
 msgid "disable caching of user information by default\n"
 msgstr ""
 
-#: authconfig.c:981
+#: authconfig.c:1006
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr ""
 
-#: authconfig.c:983
+#: authconfig.c:1008
 msgid "don't display user interface"
 msgstr ""
 
-#: authconfig.c:985
+#: authconfig.c:1010
 msgid "probe network for defaults and print them"
 msgstr ""
 
-#: authconfig.c:988
+#: authconfig.c:1013
 msgid "use locally-defined policies"
 msgstr ""
 
-#: authconfig.c:990
+#: authconfig.c:1015
 msgid "don't use locally-defined policies"
 msgstr ""
 
-#: authconfig.c:1001
+#: authconfig.c:1026
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr ""
 
-#: authconfig.c:1010
+#: authconfig.c:1035
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr ""
 
-#: authconfig.c:1014
+#: authconfig.c:1039
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr ""
 
-#: authconfig.c:1046
+#: authconfig.c:1071
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr ""
 
-#: authconfig.c:1057 authconfig.c:1065 authconfig.c:1073 authconfig.c:1081
-#: authconfig.c:1089 authconfig.c:1097 authconfig.c:1105 authconfig.c:1118
-#: authconfig.c:1126
+#: authconfig.c:1082 authconfig.c:1090 authconfig.c:1098 authconfig.c:1106
+#: authconfig.c:1114 authconfig.c:1122 authconfig.c:1130 authconfig.c:1143
+#: authconfig.c:1151
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr ""
 
-#: authconfig.c:1112
+#: authconfig.c:1137
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr ""
 
-#: authconfig.c:1212
+#: authconfig.c:1237
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 
-#: authconfig.c:1215
+#: authconfig.c:1240
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr ""
 
-#: authconfig.c:1222
+#: authconfig.c:1247
 msgid "dialog was cancelled\n"
 msgstr ""
 
-#: authconfig.c:1237
+#: authconfig.c:1262
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr ""
 
-#: authconfig.c:1243 authconfig.c:1249 authconfig.c:1255 authconfig.c:1261
-#: authconfig.c:1266 authconfig.c:1272 authconfig.c:1277 authconfig.c:1282
-#: authconfig.c:1287 authconfig.c:1293
+#: authconfig.c:1268 authconfig.c:1274 authconfig.c:1280 authconfig.c:1286
+#: authconfig.c:1291 authconfig.c:1297 authconfig.c:1302 authconfig.c:1307
+#: authconfig.c:1312 authconfig.c:1318
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr ""

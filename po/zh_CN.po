@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-18 16:17-0500\n"
+"POT-Creation-Date: 2004-01-08 02:25-0500\n"
 "PO-Revision-Date: 2003-11-24 11:39+1000\n"
 "Last-Translator: Sarah Wang <sarahs@redhat.com>\n"
 "Language-Team: Simplified Chinese <i18n@redhat.com>\n"
@@ -31,17 +31,17 @@ msgid "Hesiod Settings"
 msgstr "Hesiod 设置"
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:461 authconfig.c:659
+#: authconfig.c:385 authconfig.c:486 authconfig.c:684
 msgid "Back"
 msgstr "后退"
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:461 authconfig.c:660
+#: authconfig.c:385 authconfig.c:486 authconfig.c:685
 msgid "Next"
 msgstr "下一步"
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:404 authconfig.c:461 authconfig.c:488
+#: authconfig.c:385 authconfig.c:404 authconfig.c:486 authconfig.c:513
 msgid "Ok"
 msgstr "确定"
 
@@ -61,7 +61,7 @@ msgstr "基点 DN："
 msgid "LDAP Settings"
 msgstr "LDAP 设置"
 
-#: authconfig.c:342 authconfig.c:451
+#: authconfig.c:342 authconfig.c:459
 msgid "Domain:"
 msgstr "域："
 
@@ -121,7 +121,7 @@ msgstr "口令："
 msgid "Join Settings"
 msgstr "加入设置"
 
-#: authconfig.c:404 authconfig.c:659
+#: authconfig.c:404 authconfig.c:684
 msgid "Cancel"
 msgstr "取消"
 
@@ -130,7 +130,9 @@ msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr "在继续前，您应该把所做改变保存到磁盘上。如果您不保存它们，那么您加入域的企图就会失败。保存改变吗？"
+msgstr ""
+"在继续前，您应该把所做改变保存到磁盘上。如果您不保存它们，那么您加入域的企图"
+"就会失败。保存改变吗？"
 
 #: authconfig.c:427
 msgid "Save Settings"
@@ -144,115 +146,120 @@ msgstr "否"
 msgid "Yes"
 msgstr "是"
 
-#: authconfig.c:449
+#: authconfig.c:457
 msgid "Security Model:"
 msgstr "安全型号："
 
-#: authconfig.c:453
+#: authconfig.c:461
 msgid "Domain Controllers:"
 msgstr "域控制器："
 
-#: authconfig.c:455
+#: authconfig.c:463
 msgid "ADS Realm:"
 msgstr "ADS 领域："
 
-#: authconfig.c:458 glade.strings:75
+#: authconfig.c:465
+#, fuzzy
+msgid "Template Shell:"
+msgstr "模板 _Shell"
+
+#: authconfig.c:483 glade.strings:75
 msgid "Winbind Settings"
 msgstr "Winbind 设置"
 
-#: authconfig.c:460
+#: authconfig.c:485
 msgid "Join Domain"
 msgstr "加入域"
 
-#: authconfig.c:488
+#: authconfig.c:513
 msgid "Warning"
 msgstr "警告"
 
-#: authconfig.c:505
+#: authconfig.c:530
 msgid "caching"
 msgstr "缓存"
 
-#: authconfig.c:509 glade.strings:35
+#: authconfig.c:534 glade.strings:35
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: authconfig.c:513
+#: authconfig.c:538
 msgid "LDAP authentication"
 msgstr "LDAP 验证"
 
-#: authconfig.c:517 glade.strings:16 glade.strings:31
+#: authconfig.c:542 glade.strings:16 glade.strings:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:521 glade.strings:12
+#: authconfig.c:546 glade.strings:12
 msgid "NIS"
 msgstr "NIS"
 
-#: authconfig.c:525
+#: authconfig.c:550
 msgid "shadow password"
 msgstr "屏蔽口令"
 
-#: authconfig.c:529
+#: authconfig.c:554
 msgid "SMB authentication"
 msgstr "SMB 验证"
 
-#: authconfig.c:533 authconfig.c:541 glade.strings:24 glade.strings:43
+#: authconfig.c:558 authconfig.c:566 glade.strings:24 glade.strings:43
 msgid "Winbind"
 msgstr "Winbind"
 
-#: authconfig.c:537
+#: authconfig.c:562
 msgid "Winbind authentication"
 msgstr "Winbind 验证"
 
-#: authconfig.c:552 glade.strings:25
+#: authconfig.c:577 glade.strings:25
 msgid "User Information"
 msgstr "用户信息"
 
-#: authconfig.c:556
+#: authconfig.c:581
 msgid "Cache Information"
 msgstr "缓存信息"
 
-#: authconfig.c:563
+#: authconfig.c:588
 msgid "Use Hesiod"
 msgstr "使用 Hesiod"
 
-#: authconfig.c:569
+#: authconfig.c:594
 msgid "Use LDAP"
 msgstr "使用 LDAP"
 
-#: authconfig.c:576
+#: authconfig.c:601
 msgid "Use NIS"
 msgstr "使用 NIS"
 
-#: authconfig.c:583
+#: authconfig.c:608
 msgid "Use Winbind"
 msgstr "使用 Winbind"
 
-#: authconfig.c:593 authconfig.desktop.in.h:1 glade.strings:44
+#: authconfig.c:618 authconfig.desktop.in.h:1 glade.strings:44
 msgid "Authentication"
 msgstr "验证"
 
-#: authconfig.c:597
+#: authconfig.c:622
 msgid "Use MD5 Passwords"
 msgstr "使用 MD5 口令"
 
-#: authconfig.c:603
+#: authconfig.c:628
 msgid "Use Shadow Passwords"
 msgstr "使用屏蔽口令"
 
-#: authconfig.c:610
+#: authconfig.c:635
 msgid "Use LDAP Authentication"
 msgstr "使用 LDAP 验证"
 
-#: authconfig.c:617
+#: authconfig.c:642
 msgid "Use Kerberos"
 msgstr "使用 Kerberos"
 
-#: authconfig.c:624
+#: authconfig.c:649
 msgid "Use SMB Authentication"
 msgstr "使用 SMB 验证"
 
-#: authconfig.c:631
+#: authconfig.c:656
 msgid "Use Winbind Authentication"
 msgstr "使用 Winbind 验证"
 
@@ -270,325 +277,325 @@ msgstr "使用 Winbind 验证"
 #. Toggle a boolean.
 #. Create a vbox or dialog using the file, and return it. */
 #. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:675 authconfig-gtk.py:287 glade.strings:7
+#: authconfig.c:700 authconfig-gtk.py:287 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "验证配置"
 
-#: authconfig.c:848
+#: authconfig.c:873
 msgid "enable shadowed passwords by default"
 msgstr "默认启用屏蔽口令"
 
-#: authconfig.c:850
+#: authconfig.c:875
 msgid "disable shadowed passwords by default"
 msgstr "默认禁用屏蔽口令"
 
-#: authconfig.c:854
+#: authconfig.c:879
 msgid "enable MD5 passwords by default"
 msgstr "默认启用 MD5 口令"
 
-#: authconfig.c:856
+#: authconfig.c:881
 msgid "disable MD5 passwords by default\n"
 msgstr "默认禁用 MD5 口令\n"
 
-#: authconfig.c:859
+#: authconfig.c:884
 msgid "enable NIS"
 msgstr "启用 NIS"
 
-#: authconfig.c:861
+#: authconfig.c:886
 msgid "disable NIS"
 msgstr "禁用 NIS"
 
-#: authconfig.c:863
+#: authconfig.c:888
 msgid "default NIS domain"
 msgstr "默认的 NIS 域"
 
-#: authconfig.c:863
+#: authconfig.c:888
 msgid "<domain>"
 msgstr "<domain>"
 
-#: authconfig.c:865
+#: authconfig.c:890
 msgid "default NIS server\n"
 msgstr "默认的 NIS 服务器 \n"
 
-#: authconfig.c:865 authconfig.c:880 authconfig.c:889 authconfig.c:891
-#: authconfig.c:911
+#: authconfig.c:890 authconfig.c:905 authconfig.c:914 authconfig.c:916
+#: authconfig.c:936
 msgid "<server>"
 msgstr "<server>"
 
-#: authconfig.c:868
+#: authconfig.c:893
 msgid "enable LDAP for user information by default"
 msgstr "默认启用用户信息 LDAP "
 
-#: authconfig.c:870
+#: authconfig.c:895
 msgid "disable LDAP for user information by default"
 msgstr "默认禁用用户信息 LDAP"
 
-#: authconfig.c:872
+#: authconfig.c:897
 msgid "enable use of TLS with LDAP"
 msgstr "允许和 LDAP 一齐使用 TLS"
 
-#: authconfig.c:874
+#: authconfig.c:899
 msgid "disable use of TLS with LDAP"
 msgstr "禁止和 LDAP 一齐使用 TLS"
 
-#: authconfig.c:876
+#: authconfig.c:901
 msgid "enable LDAP for authentication by default"
 msgstr "默认启用验证 LDAP"
 
-#: authconfig.c:878
+#: authconfig.c:903
 msgid "disable LDAP for authentication by default"
 msgstr "默认禁用验证 LDAP"
 
-#: authconfig.c:880
+#: authconfig.c:905
 msgid "default LDAP server"
 msgstr "默认的 LDAP 服务器"
 
-#: authconfig.c:882
+#: authconfig.c:907
 msgid "default LDAP base DN\n"
 msgstr "默认的 LDAP 基点 DN\n"
 
-#: authconfig.c:882
+#: authconfig.c:907
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:885
+#: authconfig.c:910
 msgid "enable kerberos authentication by default"
 msgstr "默认启用 kerberos 验证"
 
-#: authconfig.c:887
+#: authconfig.c:912
 msgid "disable kerberos authentication by default"
 msgstr "默认禁用 kerberos 验证"
 
-#: authconfig.c:889
+#: authconfig.c:914
 msgid "default kerberos KDC"
 msgstr "默认的 kerberos KDC"
 
-#: authconfig.c:891
+#: authconfig.c:916
 msgid "default kerberos admin server"
 msgstr "默认的 kerberos 管理服务器"
 
-#: authconfig.c:893
+#: authconfig.c:918
 msgid "default kerberos realm\n"
 msgstr "默认的 kerberos 领域\n"
 
-#: authconfig.c:893
+#: authconfig.c:918
 msgid "<realm>"
 msgstr "<realm>"
 
-#: authconfig.c:896
+#: authconfig.c:921
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "启用 DNS 来查找 kerberos KDC"
 
-#: authconfig.c:898
+#: authconfig.c:923
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "禁用 DNS 来查找 kerberos KDC"
 
-#: authconfig.c:900
+#: authconfig.c:925
 msgid "enable use of DNS to find kerberos realms"
 msgstr "启用 DNS 来查找 kerberos 领域"
 
-#: authconfig.c:902
+#: authconfig.c:927
 msgid "disable use of DNS to find kerberos realms\n"
 msgstr "禁用 DNS 来查找 kerberos 领域\n"
 
-#: authconfig.c:905
+#: authconfig.c:930
 msgid "enable SMB authentication by default"
 msgstr "默认启用 SMB 验证"
 
-#: authconfig.c:907
+#: authconfig.c:932
 msgid "disable SMB authentication by default"
 msgstr "默认禁用 SMB 验证"
 
-#: authconfig.c:909
+#: authconfig.c:934
 msgid "workgroup authentication servers are in"
 msgstr "工作组验证服务器已在"
 
-#: authconfig.c:909
+#: authconfig.c:934
 msgid "<workgroup>"
 msgstr "<workgroup>"
 
-#: authconfig.c:911
+#: authconfig.c:936
 msgid "names of servers to authenticate against\n"
 msgstr "要用来验证的服务器名称\n"
 
-#: authconfig.c:914
+#: authconfig.c:939
 msgid "enable winbind for user information and authentication by default"
 msgstr "默认启用 winbind 进行用户信息验证"
 
-#: authconfig.c:917
+#: authconfig.c:942
 msgid "disable winbind for user information and authentication by default"
 msgstr "默认禁用 winbind 进行用户信息验证"
 
-#: authconfig.c:920
+#: authconfig.c:945
 msgid "security mode to use for samba and winbind"
 msgstr "使用 samba 和 winbind 的安全模式"
 
-#: authconfig.c:922
+#: authconfig.c:947
 msgid "default realm for samba and winbind when security=ads"
 msgstr "当 security=ads 时，samba 和 winbind 的默认领域"
 
-#: authconfig.c:924
+#: authconfig.c:949
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "winbind 分配该域或 ads 用户的 uid 范围"
 
-#: authconfig.c:925 authconfig.c:928
+#: authconfig.c:950 authconfig.c:953
 msgid "<lowest-highest>"
 msgstr "<最低-最高>"
 
-#: authconfig.c:927
+#: authconfig.c:952
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "winbind 分配该域或 ads 用户的 gid 范围"
 
-#: authconfig.c:931
+#: authconfig.c:956
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
-"如果没有启用 winbindusedefaultdomain，用来分隔 winbind "
-"创建的用户名中域和用户部分的字符"
+"如果没有启用 winbindusedefaultdomain，用来分隔 winbind 创建的用户名中域和用户"
+"部分的字符"
 
-#: authconfig.c:935
+#: authconfig.c:960
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "winbind 创建的用户将会用为主目录的目录"
 
-#: authconfig.c:939
+#: authconfig.c:964
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "winbind 创建的用户将会用为主要组群的组群"
 
-#: authconfig.c:942
+#: authconfig.c:967
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr "winbind 创建的用户将会用为登录 shell 的 shell"
 
-#: authconfig.c:946
+#: authconfig.c:971
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr "配置 winbind 来假定在用户名中没有域的用户是域用户"
 
-#: authconfig.c:950
+#: authconfig.c:975
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr "配置 winbind 来假定在用户名中没有域的用户不是域用户"
 
-#: authconfig.c:954
+#: authconfig.c:979
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr "立即作为管理员加入 winbind 域或 ads 领域\n"
 
-#: authconfig.c:958
+#: authconfig.c:983
 msgid "enable wins for hostname resolution"
 msgstr "启用 wins 进行主机名解析"
 
-#: authconfig.c:960
+#: authconfig.c:985
 msgid "disable wins for hostname resolution\n"
 msgstr "禁用 wins 进行主机名解析\n"
 
-#: authconfig.c:963
+#: authconfig.c:988
 msgid "enable hesiod for user information by default"
 msgstr "默认启用 hesiod 来获取用户信息"
 
-#: authconfig.c:965
+#: authconfig.c:990
 msgid "disable hesiod for user information by default"
 msgstr "默认禁用 hesiod 来获取用户信息"
 
-#: authconfig.c:967
+#: authconfig.c:992
 msgid "default hesiod LHS"
 msgstr "默认的 hesiod LHS"
 
-#: authconfig.c:967
+#: authconfig.c:992
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:969
+#: authconfig.c:994
 msgid "default hesiod RHS\n"
 msgstr "默认的 hesiod RHS \n"
 
-#: authconfig.c:969
+#: authconfig.c:994
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:972
+#: authconfig.c:997
 msgid "enable caching of user information by default"
 msgstr "默认启用缓存用户信息"
 
-#: authconfig.c:974
+#: authconfig.c:999
 msgid "disable caching of user information by default\n"
 msgstr "默认禁用缓存用户信息\n"
 
-#: authconfig.c:981
+#: authconfig.c:1006
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "不要开始或停止 portmap, ypbind，及 nscd"
 
-#: authconfig.c:983
+#: authconfig.c:1008
 msgid "don't display user interface"
 msgstr "不要显示用户界面"
 
-#: authconfig.c:985
+#: authconfig.c:1010
 msgid "probe network for defaults and print them"
 msgstr "探测网络的默认值后打印它们"
 
-#: authconfig.c:988
+#: authconfig.c:1013
 msgid "use locally-defined policies"
 msgstr "使用本地定义的策略"
 
-#: authconfig.c:990
+#: authconfig.c:1015
 msgid "don't use locally-defined policies"
 msgstr "不要使用本地定义的策略"
 
-#: authconfig.c:1001
+#: authconfig.c:1026
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s： %s参数不对： %s\n"
 
-#: authconfig.c:1010
+#: authconfig.c:1035
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s： 试图继续\n"
 
-#: authconfig.c:1014
+#: authconfig.c:1039
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s：异常参数\n"
 
-#: authconfig.c:1046
+#: authconfig.c:1071
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s：只能以根用户身份运行\n"
 
-#: authconfig.c:1057 authconfig.c:1065 authconfig.c:1073 authconfig.c:1081
-#: authconfig.c:1089 authconfig.c:1097 authconfig.c:1105 authconfig.c:1118
-#: authconfig.c:1126
+#: authconfig.c:1082 authconfig.c:1090 authconfig.c:1098 authconfig.c:1106
+#: authconfig.c:1114 authconfig.c:1122 authconfig.c:1130 authconfig.c:1143
+#: authconfig.c:1151
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s：读取 %s/%s 时出现严重错误"
 
-#: authconfig.c:1112
+#: authconfig.c:1137
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s：无法读取缓存配置"
 
-#: authconfig.c:1212
+#: authconfig.c:1237
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr "<Tab>/<Alt-Tab> 在元素间切换   |   <Space> 选择   |  <F12> 下一屏幕"
 
-#: authconfig.c:1215
+#: authconfig.c:1240
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 Red Hat, Inc."
 
-#: authconfig.c:1222
+#: authconfig.c:1247
 msgid "dialog was cancelled\n"
 msgstr "对话被取消\n"
 
-#: authconfig.c:1237
+#: authconfig.c:1262
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s：记录缓存设置时出现严重错误"
 
-#: authconfig.c:1243 authconfig.c:1249 authconfig.c:1255 authconfig.c:1261
-#: authconfig.c:1266 authconfig.c:1272 authconfig.c:1277 authconfig.c:1282
-#: authconfig.c:1287 authconfig.c:1293
+#: authconfig.c:1268 authconfig.c:1274 authconfig.c:1280 authconfig.c:1286
+#: authconfig.c:1291 authconfig.c:1297 authconfig.c:1302 authconfig.c:1307
+#: authconfig.c:1312 authconfig.c:1318
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s：写入 %s/%s 时出现严重错误"
@@ -653,7 +660,8 @@ msgstr "配置 Hesiod (_C)..."
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
-msgstr "Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时用在极大的网络中。"
+msgstr ""
+"Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时用在极大的网络中。"
 
 #: glade.strings:20
 msgid "Hesiod"
@@ -673,8 +681,8 @@ msgid ""
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
 msgstr ""
-"Winbind 允许系统检索关于用户的信息，并通过贮存在 NTDOM 或 ADS "
-"服务器中的信息来验证用户。它被用在小型到大型的网络中。"
+"Winbind 允许系统检索关于用户的信息，并通过贮存在 NTDOM 或 ADS 服务器中的信息"
+"来验证用户。它被用在小型到大型的网络中。"
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
@@ -710,7 +718,8 @@ msgstr "配置 SMB (_C)..."
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
-msgstr "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
+msgstr ""
+"SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
 
 #: glade.strings:39
 msgid "SMB"
@@ -846,4 +855,3 @@ msgstr "使用本地策略"
 
 #~ msgid "authconfig"
 #~ msgstr "authconfig"
-
