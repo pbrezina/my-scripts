@@ -76,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 *            2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.4-1
 - add python bindings for the back-end
+- redo the gui so that it exercises the python bindings
 
 * Thu Jan 31 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.3-4
 - rebuild again

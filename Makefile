@@ -1,7 +1,7 @@
 VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PACKAGE = authconfig
-BINARIES = authconfig authconfig-gtk
+BINARIES = authconfig authconfig-gtk.py
 PYTHONMODULES = authconfigmodule.so
 PYTHONREV=2.2
 PYTHONINC=/usr/include/python$(PYTHONREV)
@@ -31,9 +31,6 @@ subdirs:
 
 authconfig: authconfig.o authinfo.o shvar.o dnsclient.o
 	$(CC) -o $@ $^ $(GLIBLIBS) $(LIBS)
-
-authconfig-gtk: authconfig-gtk.o authinfo.o shvar.o dnsclient.o
-	$(CC) -o $@ $^ $(LIBGLADELIBS) $(LIBS)
 
 authconfigmodule.so: authconfigmodule.o authinfo.o shvar.o dnsclient.o
 	$(CC) -o $@ -shared -fPIC $^ $(GLIBLIBS) $(RESOLVLIBS)
