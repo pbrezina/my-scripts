@@ -208,7 +208,7 @@ gboolean authInfoReadLDAP(struct authInfoType *info)
 			/* Skip intervening whitespace. */
 			for(p += 3; (isspace(*p) && (*p != '\0')); p++);
 
-			info->enableLDAPS = (strncmp(p, "yes", 3) == 0);
+			info->enableLDAPS = (strncmp(p, "start_tls", 3) == 0) ||
 
 			memset(buf, '\0', sizeof(buf));
 			continue;
@@ -861,7 +861,8 @@ gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 			if(!wrotessl) {
 				strcat(obuf, "ssl");
 				strcat(obuf, " ");
-				strcat(obuf, info->enableLDAPS ? "yes" : "no");
+				strcat(obuf,
+				       info->enableLDAPS ? "start_tls" : "no");
 				strcat(obuf, "\n");
 				wrotessl = TRUE;
 			}
