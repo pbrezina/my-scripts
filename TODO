@@ -8,17 +8,12 @@ sidestep the thorniness of this problem was a hack.)
     a service to checking the module file itself for the appropriate function.
 
 Probing:
-  * Enabling DNS-based configuration at run-time for Kerberos.
-    - Set "dns_lookup_realm", "dns_lookup_kdc", "dns_fallback" to "true".  We
-      currently don't even look at these settings.
   * Probing DNS for Kerberos and LDAP configuration.  To be added as a button
     for one-time use.
     - Use SRV RRs for LDAP, a la nss_ldap:
       _ldap._tcp.<DOMAIN> = priority weight port server (see RFC 2782)
       Convert <DOMAIN> to base DN using DC components in the way just
       about everything does (example.com -> "dc=example,dc=com")
-    - Use TXT RRs for host-to-realm mapping (see latest
-      draft-ietf-krb-wg-krb-dns-locate at http://www.ietf.org/internet-drafts/)
     - Use SRV RRs for Kerberos realms, a la locate_kdc.c:
       _kerberos._udp.<REALM> = priority weight port server (see RFC 2782)
       We have the realm, a server name, and the port number.  Use all of them.
@@ -44,8 +39,5 @@ UI issues:
     present?
 
 New options:
-  * Add a "db" checkbox under nss configuration to improve speed on single
-    lookups, add it first in the lists, and run "make -C /var/db" on exit.
   * Add an "Automatically create home directories on Logons" checkbox for
     calling pam_mkhomedir at login-time (suggested by Shanker Balan).
-If all of this gets done, there's no way it's going to fit onto two screens....
