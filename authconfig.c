@@ -797,59 +797,59 @@ int main(int argc, const char **argv)
   /* read the values from the configuration files */
   if (authInfoReadHesiod(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/hesiod.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/hesiod.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "hesiod.conf");
       return 2;
     }
   }
   if (authInfoReadKerberos(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/krb5.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/krb5.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "krb5.conf");
       return 2;
     }
   }
   if (authInfoReadLDAP(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/ldap.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/ldap.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "ldap.conf");
       return 2;
     }
   }
 #ifdef WINBIND
   if (authInfoReadWinBind(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/smb.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/smb.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "smb.conf");
       return 2;
     }
   }
 #endif
   if (authInfoReadNIS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/yp.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/yp.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "yp.conf");
       return 2;
     }
   }
   if (authInfoReadNSS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/nsswitch.conf", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/nsswitch.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "nsswitch.conf");
       return 2;
     }
   }
   if (authInfoReadNetwork(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/sysconfig/network", R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/sysconfig/network"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "sysconfig/network");
       return 2;
     }
   }
   if (authInfoReadPAM(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, R_OK)) {
-      fprintf(stderr, i18n("%s: critical error reading %s/pam.d/%s"),
-	      progName, SYSCONFDIR, AUTH_PAM_SERVICE);
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
       return 2;
     }
   }
@@ -981,44 +981,44 @@ int main(int argc, const char **argv)
     return 0;
   } else {
     if (authInfoWriteHesiod(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/hesiod.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "hesiod.conf");
       return 2;
     }
     if (authInfoWriteKerberos(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/krb5.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "krb5.conf");
       return 2;
     }
     if (authInfoWriteLDAP(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/ldap.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "ldap.conf");
       return 2;
     }
     if (authInfoWriteNIS(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/yp.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "yp.conf");
       return 2;
     }
 #ifdef WINBIND
     if (authInfoWriteWinBind(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/smb.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "smb.conf");
       return 2;
     }
 #endif
     if (authInfoWriteNSS(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/nsswitch.conf"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "nsswitch.conf");
     }
     if (authInfoWriteNetwork(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/sysconfig/network"),
-	      progName, SYSCONFDIR);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "sysconfig/network");
       return 2;
     }
     if (authInfoWritePAM(authInfo) == FALSE) {
-      fprintf(stderr, i18n("%s: critical error writing %s/pam.d/%s"),
-	      progName, SYSCONFDIR, AUTH_PAM_SERVICE);
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
       return 2;
     }
     toggleShadow(authInfo);
