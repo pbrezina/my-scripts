@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.8\n"
-"POT-Creation-Date: 2000-01-20 17:40-0500\n"
-"PO-Revision-Date: 1999-09-13 21:40+0900\n"
+"POT-Creation-Date: 2000-02-03 11:51-0500\n"
+"PO-Revision-Date: 2000-02-11 12:10+0900\n"
 "Last-Translator: Byeong-Chan Kim <redhands@linux.sarang.net>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,9 +24,9 @@ msgid "%s: cannot open /etc/yp.conf: %s\n"
 msgstr "%s: /etc/yp.conf를 열 수 없음: %s\n"
 
 #: ../authconfig.c:202 ../authconfig.c:899
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s: /etc/yp.conf를 열 수 없음: %s\n"
+msgstr "%s: /etc/ldap.conf를 열 수 없음: %s\n"
 
 #.
 #. * find length of longest string. Looks useless when strings
@@ -34,9 +34,8 @@ msgstr "%s: /etc/yp.conf를 열 수 없음: %s\n"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:318 ../authconfig.c:486
-#, fuzzy
 msgid "    NIS Domain:"
-msgstr "NIS 도메인:"
+msgstr "    NIS 도메인:"
 
 #: ../authconfig.c:319 ../authconfig.c:461
 msgid "NIS Server:"
@@ -51,50 +50,47 @@ msgstr "NIS 서버:"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:320 ../authconfig.c:449
-#, fuzzy
 msgid "         or use:"
-msgstr "또는:"
+msgstr "         또는:"
 
 #: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-#, fuzzy
 msgid "   LDAP Domain:"
-msgstr "NIS 도메인:"
+msgstr "   LDAP 도메인:"
 
 #: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
 msgid "    LDAP Server:"
-msgstr ""
+msgstr "    LDAP 서버:"
 
 #: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
 msgid "Kerberos Realm:"
-msgstr ""
+msgstr "커버로스 REALM:"
 
 #: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
 msgid "Kerberos Server:"
-msgstr ""
+msgstr "커버로스 서버:"
 
 #.
 #. * what kind of authentication?
 #.
 #: ../authconfig.c:416
-#, fuzzy
 msgid "Authentication Type:"
-msgstr "인증 설정"
+msgstr "인증 유형:"
 
 #: ../authconfig.c:417
 msgid "Password File"
-msgstr ""
+msgstr "패스워드 파일"
 
 #: ../authconfig.c:422
 msgid "NIS"
-msgstr ""
+msgstr "NIS"
 
 #: ../authconfig.c:428
 msgid "LDAP"
-msgstr ""
+msgstr "LDAP"
 
 #: ../authconfig.c:434
 msgid "Kerberos"
-msgstr ""
+msgstr "커버로스"
 
 #: ../authconfig.c:462
 msgid "Request via broadcast"
@@ -139,9 +135,8 @@ msgid "You must enter a NIS server or request via broadcast."
 msgstr "NIS 서버나 브로드캐스트로의 요청 여부를 선택하십시오."
 
 #: ../authconfig.c:650
-#, fuzzy
 msgid "You must enter an authentication domain."
-msgstr "NIS 도메인을 입력하십시오."
+msgstr "인증 도메인을 입력하십시오."
 
 #: ../authconfig.c:707
 #, c-format
@@ -154,26 +149,26 @@ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s: /etc/yp.conf-를 쓰기 위해 열 수 없음: %s\n"
 
 #: ../authconfig.c:906
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s: /etc/yp.conf-를 쓰기 위해 열 수 없음: %s\n"
+msgstr "%s: /etc/ldap.conf-를 쓰기 위해 열 수 없음: %s\n"
 
 #: ../authconfig.c:985
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s: /etc/yp.conf를 열 수 없음: %s\n"
+msgstr "%s: /etc/nsswitch.conf를 열 수 없음: %s\n"
 
 #: ../authconfig.c:992
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s: /etc/yp.conf-를 쓰기 위해 열 수 없음: %s\n"
+msgstr "%s: /etc/nsswitch.conf-를 쓰기 위해 열 수 없음: %s\n"
 
-#: ../authconfig.c:1200
+#: ../authconfig.c:1221
 #, c-format
 msgid "%s: error opening %s\n"
 msgstr "%s: %s 여는 중 오류\n"
 
-#: ../authconfig.c:1236
+#: ../authconfig.c:1257
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -198,99 +193,87 @@ msgstr ""
 "     --kickstart          사용자 인터페이스를 보이지 않음\n"
 "     --help               현재 화면을 출력\n"
 
-#: ../authconfig.c:1302
+#: ../authconfig.c:1323
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: 잘못된 인자값 %s: %s\n"
 
-#: ../authconfig.c:1309
+#: ../authconfig.c:1330
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: 잘못된 인자값\n"
 
-#: ../authconfig.c:1321
+#: ../authconfig.c:1342
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: root로 실행해야만 합니다\n"
 
-#: ../authconfig.c:1337
+#: ../authconfig.c:1358
 #, c-format
 msgid "%s: unknown authorization type %s\n"
-msgstr ""
+msgstr "%s: 알 수 없는 인증 유형 %s\n"
 
-#: ../authconfig.c:1353
+#: ../authconfig.c:1374
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
 msgstr "%s: /etc/sysconfig/network를 읽는 중 치명적인 오류"
 
-#: ../authconfig.c:1362
+#: ../authconfig.c:1383
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
 msgstr "%s: /etc/yp.conf를 읽는 중 치명적인 오류"
 
-#: ../authconfig.c:1381
-#, fuzzy, c-format
+#: ../authconfig.c:1402
+#, c-format
 msgid "%s: critical error reading /etc/ldap.conf"
-msgstr "%s: /etc/yp.conf를 읽는 중 치명적인 오류"
+msgstr "%s: /etc/ldap.conf를 읽는 중 치명적인 오류"
 
-#: ../authconfig.c:1393
+#: ../authconfig.c:1414
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
 msgstr "%s: /etc/pam.d/passwd를 읽는 중 치명적인 오류\n"
 
-#: ../authconfig.c:1402
+#: ../authconfig.c:1423
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 " <Tab>/<Alt-Tab> 항목간 이동        |   <Space> 선택      |  <F12> 다음 화면"
 
-#: ../authconfig.c:1412
+#: ../authconfig.c:1433
 msgid "dialog was cancelled\n"
-msgstr ""
+msgstr "대화창이 취소됨\n"
 
-#: ../authconfig.c:1423
+#: ../authconfig.c:1444
 msgid "authentication type selected: "
-msgstr ""
+msgstr "인증 유형 선택됨: "
 
-#: ../authconfig.c:1453
+#: ../authconfig.c:1474
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
 msgstr "%s: /etc/sysconfig/network에 쓰는 중 치명적인 오류\n"
 
-#: ../authconfig.c:1461
+#: ../authconfig.c:1482
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
 msgstr "%s: /etc/yp.conf에 쓰는 중 치명적인 오류\n"
 
-#: ../authconfig.c:1468
+#: ../authconfig.c:1489
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
 msgstr "%s: NIS 서비스로 전환 중 치명적인 오류\n"
 
-#: ../authconfig.c:1480
-#, fuzzy, c-format
+#: ../authconfig.c:1501
+#, c-format
 msgid "%s: critical error writing /etc/ldap.conf\n"
-msgstr "%s: /etc/yp.conf에 쓰는 중 치명적인 오류\n"
+msgstr "%s: /etc/ldap.conf에 쓰는 중 치명적인 오류\n"
 
-#: ../authconfig.c:1490
-#, fuzzy, c-format
+#: ../authconfig.c:1511
+#, c-format
 msgid "%s: critical error writing /etc/nsswitch.conf\n"
-msgstr "%s: /etc/yp.conf에 쓰는 중 치명적인 오류\n"
+msgstr "%s: /etc/nsswitch.conf에 쓰는 중 치명적인 오류\n"
 
-#: ../authconfig.c:1499
+#: ../authconfig.c:1520
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
 msgstr "%s: 세도우 패스워드 조작에 치명적인 오류\n"
-
-#~ msgid "Enable NIS"
-#~ msgstr "NIS 사용함"
-
-#~ msgid "(NIS not installed)"
-#~ msgstr "(NIS가 설치되지 않음)"
-
-#~ msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-#~ msgstr "%s: NIS 도메인이 %s로 설정되었으나 취소됨\n"
-
-#~ msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-#~ msgstr "반환값: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
