@@ -11,13 +11,13 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-12-15 23:27+0100\n"
-"PO-Revision-Date: 2004-10-04 21:39+0400\n"
+"PO-Revision-Date: 2004-12-26 15:36+0300\n"
 "Last-Translator: Andrew Martynov <andrewm@inventa.ru>\n"
 "Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -250,7 +250,7 @@ msgstr "Использовать скрытые пароли"
 
 #: authconfig.c:597
 msgid "Use LDAP Authentication"
-msgstr "Исп. опознавание через LDAP"
+msgstr "Исп. аутентификацию через LDAP"
 
 #: authconfig.c:604
 msgid "Use Kerberos"
@@ -258,7 +258,7 @@ msgstr "Использовать Kerberos"
 
 #: authconfig.c:611
 msgid "Use SMB Authentication"
-msgstr "Исп. опознавание через SMB"
+msgstr "Исп. аутентификацию через SMB"
 
 #: authconfig.c:618
 msgid "Use Winbind Authentication"
@@ -266,11 +266,11 @@ msgstr "Исп. аутентификацию winbind"
 
 #: authconfig.c:625
 msgid "Local authorization is sufficient"
-msgstr ""
+msgstr "Достаточно локальной аутентификации"
 
 #: authconfig.c:656 authconfig-gtk.py:283 authconfig.glade.h:4
 msgid "Authentication Configuration"
-msgstr "Конфигурация опознавания"
+msgstr "Конфигурация аутентификации"
 
 #: authconfig.c:835
 msgid "enable shadowed passwords by default"
@@ -331,11 +331,11 @@ msgstr "не использовать TLS с LDAP"
 
 #: authconfig.c:870
 msgid "enable LDAP for authentication by default"
-msgstr "использовать опознавание LDAP"
+msgstr "использовать аутентификацию LDAP"
 
 #: authconfig.c:872
 msgid "disable LDAP for authentication by default"
-msgstr "не использовать опознавание LDAP"
+msgstr "не использовать аутентификацию LDAP"
 
 #: authconfig.c:874
 msgid "default LDAP server"
@@ -351,11 +351,11 @@ msgstr "<dn>"
 
 #: authconfig.c:879
 msgid "enable kerberos authentication by default"
-msgstr "использовать опознавание kerberos"
+msgstr "использовать аутентификацию kerberos"
 
 #: authconfig.c:881
 msgid "disable kerberos authentication by default"
-msgstr "не использовать опознавание kerberos"
+msgstr "не использовать аутентификацию kerberos"
 
 #: authconfig.c:883
 msgid "default kerberos KDC"
@@ -391,15 +391,15 @@ msgstr "отключить использование DNS для поиска о
 
 #: authconfig.c:899
 msgid "enable SMB authentication by default"
-msgstr "использовать опознавание SMB"
+msgstr "использовать аутентификацию SMB"
 
 #: authconfig.c:901
 msgid "disable SMB authentication by default"
-msgstr "не использовать опознавание SMB"
+msgstr "не использовать аутентификацию SMB"
 
 #: authconfig.c:903
 msgid "workgroup authentication servers are in"
-msgstr "серверы опознавания рабочей группы в"
+msgstr "серверы аутентификации рабочей группы в"
 
 #: authconfig.c:903
 msgid "<workgroup>"
@@ -407,7 +407,7 @@ msgstr "<рабочая группа>"
 
 #: authconfig.c:905
 msgid "names of servers to authenticate against\n"
-msgstr "имена серверов для опознавания\n"
+msgstr "имена серверов для аутентификации\n"
 
 #: authconfig.c:908
 msgid "enable winbind for user information by default"
@@ -419,11 +419,11 @@ msgstr "не использовать winbind для информации о п�
 
 #: authconfig.c:914
 msgid "enable winbindauth for authentication by default"
-msgstr "использовать winbindauth для опознавание"
+msgstr "использовать winbindauth для аутентификации"
 
 #: authconfig.c:917
 msgid "disable winbindauth for authentication by default"
-msgstr "не использовать winbindauth для опознавания"
+msgstr "не использовать winbindauth для аутентификации"
 
 #: authconfig.c:920
 msgid "security mode to use for samba and winbind"
@@ -556,11 +556,11 @@ msgstr "не использовать местные правила"
 
 #: authconfig.c:993
 msgid "local authorization is sufficient for local users"
-msgstr ""
+msgstr "локальная аутентификация достаточна для локальных пользователей"
 
 #: authconfig.c:995
 msgid "authorize local users also through remote service"
-msgstr ""
+msgstr "авторизовать локальных пользователей через внешние службы"
 
 #: authconfig.c:1005
 #, c-format
@@ -646,7 +646,7 @@ msgstr "Тревога"
 
 #: authconfig.glade.h:5
 msgid "Cache User _Information"
-msgstr "_Кэшировать информацию пользователя"
+msgstr "_Кэшировать информацию о пользователе"
 
 #: authconfig.glade.h:6
 msgid "Con_figure SMB..."
@@ -746,7 +746,7 @@ msgstr ""
 
 #: authconfig.glade.h:32
 msgid "LDAP Search _Base DN"
-msgstr "LDAP Search _Base DN"
+msgstr "_Базовый DN для поиска в LDAP"
 
 #: authconfig.glade.h:34
 msgid "LDAP _Server"
@@ -800,11 +800,15 @@ msgstr "Использовать _DNS для поиска узлов и обла
 
 #: authconfig.glade.h:47
 msgid "Use _MD5 Passwords"
-msgstr "Использовать пароли _MD5"
+msgstr ""
+"Использовать пароли\n"
+"_MD5"
 
 #: authconfig.glade.h:48
 msgid "Use _Shadow Passwords"
-msgstr "Использовать _скрытые пароли"
+msgstr ""
+"Использовать _скрытые\n"
+"пароли"
 
 #: authconfig.glade.h:49
 msgid "Use _TLS to encrypt connections"
@@ -812,7 +816,7 @@ msgstr "Использовать _TLS для шифрования соедине
 
 #: authconfig.glade.h:52
 msgid "Winbind ADS _Realm"
-msgstr "Winbind ADS _Realm"
+msgstr "_Область Winbind ADS"
 
 #: authconfig.glade.h:53
 msgid "Winbind Domain Co_ntrollers"
@@ -846,11 +850,13 @@ msgstr "_Войти в домен"
 
 #: authconfig.glade.h:60
 msgid "_KDCs"
-msgstr "_KDCs"
+msgstr "_Сервера KDC"
 
 #: authconfig.glade.h:61
 msgid "_Local authorization is sufficient for local users"
 msgstr ""
+"_Локальная проверка достаточна\n"
+"для локальных пользователей"
 
 #: authconfig.glade.h:62
 msgid "_Password"
@@ -858,7 +864,7 @@ msgstr "_Пароль"
 
 #: authconfig.glade.h:63
 msgid "_Realm"
-msgstr "_Realm"
+msgstr "_Область"
 
 #: authconfig.glade.h:64
 msgid "_Security Model"
