@@ -1,6 +1,6 @@
  /*
   * Authconfig - client authentication configuration program
-  * Copyright (c) 1999-2001 Red Hat, Inc.
+  * Copyright (c) 1999-2002 Red Hat, Inc.
   *
   * Authors: Preston Brown <pbrown@redhat.com>
   *          Nalin Dahyabhai <nalin@redhat.com>
@@ -1049,7 +1049,7 @@ main(int argc, const char **argv)
     newtPushHelpLine(_(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
     newtDrawRootText(0, 0, packageVersion);
     newtDrawRootText(strlen(packageVersion), 0,
-		     _("(c) 1999-2001 Red Hat, Inc."));
+		     _("(c) 1999-2002 Red Hat, Inc."));
     
     if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo)) {
       /* cancelled */

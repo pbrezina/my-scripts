@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.3.1
+Version: 4.3.2
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -68,6 +68,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Nov  4 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3.2-1
+- update translations
+- update copyright strings (only took 10 months!)
+
 * Wed Oct 23 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3.1-1
 - require a version of PAM (0.75-43) which supports $ISA
 - use $ISA in our own PAM config files
