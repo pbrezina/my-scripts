@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.2.8
-Release: 7
+Version: 4.2.9
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -67,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
+* Mon Jun  3 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.9-1
+- add --enable-experimental to enable some of that experimental code
+- add --enable-local to enable local policies
+- update translations
+
 * Thu May 30 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.8-7
 - use the current revision of python by default
 - get the intltool/gettext situation sorted out
