@@ -164,6 +164,8 @@ class childWindow:
 		self.info = backup
 
 	def winbindjoin_launch(self, button, map, xml, parent):
+		if not self.info.joinUser:
+			self.info.joinUser = "Administrator"
 		response = self.run_on_button(self, "winbindjoin",
 					      "winbindjoin_map", parent)
 		if (response == gtk.RESPONSE_OK):
