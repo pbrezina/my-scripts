@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: authconfig VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-11-18 16:17-0500\n"
-"PO-Revision-Date: 2003-11-18 12:39+0100\n"
+"PO-Revision-Date: 2003-11-19 12:36+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -76,11 +76,11 @@ msgstr "Admin server:"
 
 #: authconfig.c:362
 msgid "Use DNS to resolve hosts to realms"
-msgstr ""
+msgstr "Používat DNS pro převod počítačů na realmy"
 
 #: authconfig.c:364
 msgid "Use DNS to locate KDCs for realms"
-msgstr ""
+msgstr "Používat DNS pro nalezení KDC pro realmy"
 
 #: authconfig.c:367 glade.strings:55
 msgid "Kerberos Settings"
@@ -96,26 +96,23 @@ msgstr "Servery:"
 
 #: authconfig.c:380
 msgid "Shell:"
-msgstr ""
+msgstr "Shell:"
 
 #: authconfig.c:383 glade.strings:64
 msgid "SMB Settings"
 msgstr "Nastavení SMB"
 
 #: authconfig.c:393
-#, fuzzy
 msgid "Domain Administrator:"
-msgstr "_Administrátor domény"
+msgstr "Administrátor domény:"
 
 #: authconfig.c:395
-#, fuzzy
 msgid "Password:"
-msgstr "_Heslo"
+msgstr "Heslo:"
 
 #: authconfig.c:402
-#, fuzzy
 msgid "Join Settings"
-msgstr "Nastavení winbind"
+msgstr "Nastavení připojení"
 
 #: authconfig.c:404 authconfig.c:659
 msgid "Cancel"
@@ -132,41 +129,36 @@ msgstr ""
 "doméně možná selže. Uložit změny?"
 
 #: authconfig.c:427
-#, fuzzy
 msgid "Save Settings"
-msgstr "Nastavení NIS"
+msgstr "Uložit Nastavení"
 
 #: authconfig.c:429
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: authconfig.c:429
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: authconfig.c:449
-#, fuzzy
 msgid "Security Model:"
-msgstr "_Model zabepečení"
+msgstr "Model zabepečení:"
 
 #: authconfig.c:453
-#, fuzzy
 msgid "Domain Controllers:"
-msgstr "_Doménové kontroléry"
+msgstr "Doménové kontroléry:"
 
 #: authconfig.c:455
-#, fuzzy
 msgid "ADS Realm:"
-msgstr "Realm:"
+msgstr "ADS Realm:"
 
 #: authconfig.c:458 glade.strings:75
 msgid "Winbind Settings"
 msgstr "Nastavení winbind"
 
 #: authconfig.c:460
-#, fuzzy
 msgid "Join Domain"
-msgstr "_Připojit se k doméně"
+msgstr "Připojit se k doméně"
 
 #: authconfig.c:488
 msgid "Warning"
@@ -174,16 +166,15 @@ msgstr "Varování"
 
 #: authconfig.c:505
 msgid "caching"
-msgstr ""
+msgstr "kešování"
 
 #: authconfig.c:509 glade.strings:35
 msgid "Kerberos"
 msgstr "Kerberos"
 
 #: authconfig.c:513
-#, fuzzy
 msgid "LDAP authentication"
-msgstr "Používat LDAP autentizaci"
+msgstr "LDAP autentizace"
 
 #: authconfig.c:517 glade.strings:16 glade.strings:31
 msgid "LDAP"
@@ -194,23 +185,20 @@ msgid "NIS"
 msgstr "NIS"
 
 #: authconfig.c:525
-#, fuzzy
 msgid "shadow password"
-msgstr "Používat stínová hesla"
+msgstr "stínová hesla"
 
 #: authconfig.c:529
-#, fuzzy
 msgid "SMB authentication"
-msgstr "Používat SMB autentizaci"
+msgstr "SMB autentizace"
 
 #: authconfig.c:533 authconfig.c:541 glade.strings:24 glade.strings:43
 msgid "Winbind"
 msgstr "Winbind"
 
 #: authconfig.c:537
-#, fuzzy
 msgid "Winbind authentication"
-msgstr "Autentizace"
+msgstr "Autentizace winbind"
 
 #: authconfig.c:552 glade.strings:25
 msgid "User Information"
@@ -233,9 +221,8 @@ msgid "Use NIS"
 msgstr "Použít NIS"
 
 #: authconfig.c:583
-#, fuzzy
 msgid "Use Winbind"
-msgstr "Winbind"
+msgstr "Používat winbind"
 
 #: authconfig.c:593 authconfig.desktop.in.h:1 glade.strings:44
 msgid "Authentication"
@@ -254,18 +241,16 @@ msgid "Use LDAP Authentication"
 msgstr "Používat LDAP autentizaci"
 
 #: authconfig.c:617
-#, fuzzy
 msgid "Use Kerberos"
-msgstr "Používat Kerberos 5"
+msgstr "Používat Kerberos"
 
 #: authconfig.c:624
 msgid "Use SMB Authentication"
 msgstr "Používat SMB autentizaci"
 
 #: authconfig.c:631
-#, fuzzy
 msgid "Use Winbind Authentication"
-msgstr "Používat SMB autentizaci"
+msgstr "Používat autentizaci winbind"
 
 #. !/usr/bin/python
 #. "checkbox/button name": authInfo field, file, generic name,
@@ -388,20 +373,19 @@ msgstr "<realm>"
 
 #: authconfig.c:896
 msgid "enable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "povolit používání DNS pro hledání kerberos KDC"
 
 #: authconfig.c:898
 msgid "disable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "zakázat používání DNS pro hledání kerberos KDC"
 
 #: authconfig.c:900
 msgid "enable use of DNS to find kerberos realms"
-msgstr ""
+msgstr "povolit používání DNS pro hledání kerberos realmů"
 
 #: authconfig.c:902
-#, fuzzy
 msgid "disable use of DNS to find kerberos realms\n"
-msgstr "implicitní realm pro Kerberos\n"
+msgstr "zakázat používání DNS pro hledání kerberos realmů\n"
 
 #: authconfig.c:905
 msgid "enable SMB authentication by default"
@@ -782,11 +766,11 @@ msgstr "_KDC"
 
 #: glade.strings:62
 msgid "Use DNS to resolve hosts to _realms"
-msgstr ""
+msgstr "Používat DNS pro převod počítačů na _realmy"
 
 #: glade.strings:63
 msgid "Use DNS to locate _KDCs for realms"
-msgstr ""
+msgstr "Používat DNS pro nalezení _KDC pro realmy"
 
 #: glade.strings:66
 msgid "_Domain Controllers"
@@ -863,9 +847,3 @@ msgstr "_Neukládat"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Použít lokální politiky"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Konfigurace informací o uživateli"
-
-#~ msgid "Administrator"
-#~ msgstr "Administrator"
