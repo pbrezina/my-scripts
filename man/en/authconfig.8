@@ -1,0 +1,36 @@
+.TH AUTHCONFIG 8 "Thu Feb 02 1999"
+.UC 4
+.SH NAME
+authconfig \- simple interface for configuring system authorization resources
+.SH SYNOPSIS
+\fBauthconfig\fR [--back] [--test]
+.SH DESCRIPTION
+\fBauthconfig\fR provides a simple method of configuring 
+/etc/sysconfig/network to handle NIS, as well as /etc/passwd and /etc/shadow, the files
+used for shadow password support. 
+
+The authconfig window contains a \fBCancel\fR button by default. If 
+\fB--back\fR is specified at run time, a \fBBack\fR button is presented
+instead. If \fB--test\fR is specified, \fBauthconfig\fR can be run by
+users other then root, and any configuration changes are not saved.
+
+.PD
+.SH "RETURN CODES"
+\fBauthconfig\fR returns 0 on success, 2 on error, and 1 if the user cancelled
+the program (by using either the \fBCancel\fR or \fBBack\fR button).
+
+.SH FILES
+.PD 0
+.TP 20
+\fI/etc/sysconfig/network\fR Enables for disables NIS support
+\fl/etc/passwd, /etc/shadow\fR Used for shadow password support
+
+.PD
+.SH "SEE ALSO"
+.BR passwd (5), shadow (5), domainname (1), 
+.BR ypbind (8)
+
+.SH AUTHOR
+.nf
+Preston Brown <pbrown@redhat.com>
+.fi
