@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: authconfig 1.25\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-01-08 02:25-0500\n"
-"PO-Revision-Date: 2002-07-24 01:05+000\n"
+"PO-Revision-Date: 2004-02-08 01:05+0000\n"
 "Last-Translator: Richard Allen <ra@ra.is>\n"
 "Language-Team: is <kde-isl@mmedia.is>\n"
 "MIME-Version: 1.0\n"
@@ -157,9 +157,8 @@ msgid "ADS Realm:"
 msgstr "ADS svæði:"
 
 #: authconfig.c:465
-#, fuzzy
 msgid "Template Shell:"
-msgstr "_Skel"
+msgstr "Sniðmátsskel:"
 
 #: authconfig.c:483 glade.strings:75
 msgid "Winbind Settings"
@@ -449,42 +448,49 @@ msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
+"táknið sem verður notað til að aðskilja lénhlutann frá notandanafninu "
+"í notandanöfnum sem winbind býr til ef winbindusedefaultdomain er ekki "
+"virkt"
 
 #: authconfig.c:960
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
+msgstr "mappan sem winbind notendur hafa sem heimasvæði"
 
 #: authconfig.c:964
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
+msgstr "aðalhópurinn sem winbind notendur eru í"
 
 #: authconfig.c:967
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
+msgstr "skelin sem winbind notendur fá þegar þeir tengjast"
 
 #: authconfig.c:971
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
+"stillir winbind þannig að það gengur út frá því sem vísu að notendur sem "
+"ekki hafa lén í nafninu sínu eru engu að síður í léninu"
 
 #: authconfig.c:975
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
+"stillir winbind þannig að það gengur út frá því sem vísu að notendur sem "
+"ekki hafa lén í nafninu eru ekki hluti af léninu"
 
 #: authconfig.c:979
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
+msgstr "ganga í winbind lén eða ads svæði núna sem núverandi kerfisstjóri\n"
 
 #: authconfig.c:983
 msgid "enable wins for hostname resolution"
-msgstr ""
+msgstr "Nota wins til að fletta upp vélarheitum"
 
 #: authconfig.c:985
 msgid "disable wins for hostname resolution\n"
-msgstr ""
+msgstr "Ekki nota wins til að fletta upp vélarheitum\n"
 
 #: authconfig.c:988
 msgid "enable hesiod for user information by default"
@@ -579,7 +585,7 @@ msgstr ""
 
 #: authconfig.c:1240
 msgid "(c) 1999-2003 Red Hat, Inc."
-msgstr "(c) 1999-2003 Red Hat HF."
+msgstr "(c) 1999-2003 Red Hat Inc."
 
 #: authconfig.c:1247
 msgid "dialog was cancelled\n"
@@ -627,7 +633,7 @@ msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr ""
-"NIS er netupplýsingakerfi. Það er mest notað að litlum og meðalstórum netum."
+"NIS er netupplýsingakerfi. Það er mest notað í litlum og meðalstórum netum."
 
 #: glade.strings:13 glade.strings:28
 msgid "Enable _LDAP Support"
@@ -681,6 +687,9 @@ msgid ""
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
 msgstr ""
+"Winbind gerir þér kleyft að sækja notandaupplýsingar til að "
+"auðkenna notendur frá NTDOM eða ADS þjóni.  "
+"Þetta er iðullega notað í litlum og meðalstórum netum."
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
@@ -763,11 +772,11 @@ msgstr "_KDCs"
 
 #: glade.strings:62
 msgid "Use DNS to resolve hosts to _realms"
-msgstr ""
+msgstr "Nota DNS til að finna vélar í _svæðum"
 
 #: glade.strings:63
 msgid "Use DNS to locate _KDCs for realms"
-msgstr ""
+msgstr "Nota DNS til að finna _KDC svæða"
 
 #: glade.strings:66
 msgid "_Domain Controllers"
