@@ -32,6 +32,8 @@ static PyObject *authconfig_write(PyObject *self, PyObject *args,
 				  PyObject *kwargs);
 static PyObject *authconfig_post(PyObject *self, PyObject *args,
 				 PyObject *kwargs);
+static PyObject *authconfig_differs(PyObject *self, PyObject *args,
+				    PyObject *kwargs);
 static PyObject *authconfig_join(PyObject *self, PyObject *args,
 				 PyObject *kwargs);
 static struct authInfoObject *authconfig_copy(PyObject *self, PyObject *args,
@@ -50,8 +52,8 @@ static struct {
 	enum datatype type;
 	size_t offset;
 } map[] = {
-	S_FIELD(hesiodRHS),
 	S_FIELD(hesiodLHS),
+	S_FIELD(hesiodRHS),
 	S_FIELD(ldapServer),
 	S_FIELD(ldapBaseDN),
 	S_FIELD(kerberosRealm),
@@ -72,22 +74,30 @@ static struct {
 	TF_FIELD(winbindUseDefaultDomain),
 	TF_FIELD(enableCache),
 	TF_FIELD(enableDB),
+	TF_FIELD(enableDirectories),
 	TF_FIELD(enableHesiod),
 	TF_FIELD(enableLDAP),
 	TF_FIELD(enableLDAPS),
 	TF_FIELD(enableNIS),
+	/* TF_FIELD(enableNIS3), */
+	/* TF_FIELD(enableDBbind), */
+	/* TF_FIELD(enableDBIbind), */
+	/* TF_FIELD(enableHesiodbind), */
+	/* TF_FIELD(enableLDAPbind), */
+	/* TF_FIELD(enableOdbcbind), */
+	TF_FIELD(enableWinbind),
+	TF_FIELD(enableWINS),
+
+	/* TF_FIELD(enableAFS), */
+	/* TF_FIELD(enableAFSKerberos), */
+	/* TF_FIELD(enableBigCrypt), */
+	/* TF_FIELD(enableEPS), */
 	TF_FIELD(enableKerberos),
 	TF_FIELD(enableLDAPAuth),
 	TF_FIELD(enableMD5),
+	/* TF_FIELD(enableOTP), */
 	TF_FIELD(enableShadow),
 	TF_FIELD(enableSMB),
-	TF_FIELD(enableWinbind),
-	TF_FIELD(enableWINS),
-	TF_FIELD(enableDBbind),
-	TF_FIELD(enableDBIbind),
-	TF_FIELD(enableHesiodbind),
-	TF_FIELD(enableLDAPbind),
-	TF_FIELD(enableOdbcbind),
 	S_FIELD(joinUser),
 	S_FIELD(joinPassword),
 };
@@ -226,6 +236,8 @@ static PyMethodDef authconfig_methods[] = {
 	 METH_VARARGS | METH_KEYWORDS},
 	{"update", (PyCFunction)authconfig_update,
 	 METH_NOARGS},
+	{"differs", (PyCFunction)authconfig_differs,
+	 METH_VARARGS | METH_KEYWORDS},
 	{"join", (PyCFunction)authconfig_join,
 	 METH_VARARGS | METH_KEYWORDS},
 	{NULL, NULL, 0},
@@ -255,7 +267,7 @@ authInfoObject_getattr(PyObject *self, char *attribute)
 				case svalue:
 					p = G_STRUCT_MEMBER_P(info->info,
 							      map[i].offset);
-					return PyString_FromString(*p ?: "");
+					return PyString_FromString(*p ? *p : "");
 					break;
 				default:
 					return Py_BuildValue("s", "Ouch!  What do you do?");
@@ -396,6 +408,76 @@ authconfig_post(PyObject *self, PyObject *args, PyObject *kwargs)
 	}
 	authInfoPost(info->info, !((start != NULL) && PyObject_IsTrue(start)));
 	return Py_BuildValue("");
+}
+
+static PyObject *
+authconfig_differs(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+	struct authInfoObject *info, *other;
+	char *keywords[] = {"other", NULL};
+	gboolean *b1, *b2, equal;
+	char **p1, **p2;
+	int i;
+
+	if (!authInfoObject_Check(self)) {
+		return NULL;
+	}
+
+	info = (struct authInfoObject *)self;
+	other = NULL;
+
+	if (PyTuple_Check(args)) {
+		if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!", keywords,
+						 &authInfoObjectType, &other)) {
+			return NULL;
+		}
+	} else
+	if (authInfoObject_Check(args)) {
+		other = (struct authInfoObject *)args;
+	} else {
+		PyErr_SetString(PyExc_TypeError, "expected authInfoObject");
+		return NULL;
+	}
+
+	equal = TRUE;
+	for (i = 0; i < G_N_ELEMENTS(map); i++) {
+		switch(map[i].type) {
+			case tfvalue:
+				b1 = G_STRUCT_MEMBER_P(info->info,
+						       map[i].offset);
+				b2 = G_STRUCT_MEMBER_P(other->info,
+						       map[i].offset);
+				if (*b1 != *b2) {
+					equal = FALSE;
+				}
+				break;
+			case svalue:
+				p1 = G_STRUCT_MEMBER_P(info->info,
+						       map[i].offset);
+				p2 = G_STRUCT_MEMBER_P(other->info,
+						       map[i].offset);
+				if (((*p1 == NULL) || (strlen(*p1) == 0)) &&
+				    ((*p2 == NULL) || (strlen(*p2) == 0))) {
+					continue;
+				}
+				if (((*p1 == NULL) || (strlen(*p1) == 0)) ||
+				    ((*p2 == NULL) || (strlen(*p2) == 0))) {
+					equal = FALSE;
+				} else
+				if (strcmp(*p1, *p2) != 0) {
+					equal = FALSE;
+				}
+				break;
+			default:
+				g_error("Ouch!  What do you do?");
+				break;
+		}
+	}
+	if (equal) {
+		Py_INCREF(Py_None);
+		return Py_None;
+	}
+	return Py_BuildValue("i", 1);
 }
 
 static PyObject *
