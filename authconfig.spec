@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.1.10
-Release: 1
+Release: 2
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -42,6 +42,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Jun 25 2001 Nalin Dahyabhai <nalin@redhat.com>
 - fix man page reference to file (/etc/sysconfig/authconfig, not auth) (#43344)
 - own /etc/sysconfig/authconfig (#43344)
+- fix spelling errors in Japanese message files (#15984)
 
 * Tue Jun 12 2001 Nalin Dahyabhai <nalin@redhat.com>
 - rename --{enable,disable}smb to --{enable,disable}smbauth
