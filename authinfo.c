@@ -20,6 +20,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
@@ -485,6 +486,34 @@ authInfoReadNSS(struct authInfoType *info)
 	return TRUE;
 }
 
+/* Read whether or not caching is enabled. */
+gboolean
+authInfoReadCache(struct authInfoType *authInfo)
+{
+	pid_t childpid;
+	int status;
+	authInfo->enableCache = FALSE;
+       	childpid = fork();
+	if(childpid != 0) {
+		/* parent */
+		if((waitpid(childpid, &status, 0) == childpid) &&
+		   WIFEXITED(status) &&
+		   (WEXITSTATUS(status) == 0)) {
+			authInfo->enableCache = TRUE;
+		}
+	} else {
+		/* child */
+		char *args[] = {
+			"chkconfig",
+			"nscd",
+			NULL,
+		};
+		execvp("/sbin/chkconfig", args);
+		exit(1);
+	}
+	return TRUE;
+}
+
 /* Read hints from the PAM control file. */
 gboolean
 authInfoReadPAM(struct authInfoType *authInfo)
@@ -686,6 +715,18 @@ authInfoCopy(struct authInfoType *info)
         ret->smbServers = info->smbServers ? g_strdup(info->smbServers) : NULL;
 
 	return ret;
+}
+
+gboolean
+authInfoWriteCache(struct authInfoType *authInfo)
+{
+  if (authInfo->enableCache) {
+    system("/sbin/chkconfig --add nscd");
+    system("/sbin/chkconfig --level 345 nscd on");
+  } else {
+    system("/sbin/chkconfig --del nscd");
+  }
+  return TRUE;
 }
 
 static gboolean
@@ -1116,15 +1157,15 @@ comma_count(const char *string)
 	return ret;
 }
 
-/* Write Kerberos 5 setup to /etc/krb5.conf. */
+/* Write Kerberos 5 setup to /etc/krb5.conf, */
 gboolean
-authInfoWriteKerberos(struct authInfoType *info)
+authInfoWriteKerberos5(struct authInfoType *info)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
 	struct stat st;
 	struct flock lock;
-	gboolean wrotekdc = FALSE, wroterealm = FALSE, wroteadmin = FALSE;
+	gboolean wroterealm = FALSE, wrotekdc = FALSE, wroteadmin = FALSE;
 	gboolean wroterealms = FALSE, wrotelibdefaults = FALSE;
 	gboolean wrotedefaultrealm = FALSE;
 	char *section = NULL, *subsection = NULL;
@@ -1341,6 +1382,129 @@ authInfoWriteKerberos(struct authInfoType *info)
 	}
 
 	return TRUE;
+}
+
+/* Write Kerberos 4 setup to /etc/krb.conf, */
+gboolean
+authInfoWriteKerberos4(struct authInfoType *info)
+{
+	char *ibuf = NULL, *obuf = NULL;
+	char *p, *q;
+	int fd, l;
+	struct flock lock;
+	struct stat st;
+
+	fd = open(SYSCONFDIR "/krb.conf", O_RDWR | O_CREAT, 0644);
+	if(fd == -1) {
+		return FALSE;
+	}
+
+	memset(&lock, 0, sizeof(lock));
+	lock.l_type = F_WRLCK;
+	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+		return FALSE;
+	}
+	if(fstat(fd, &st) == -1) {
+		return FALSE;
+	}
+
+	ibuf = g_malloc0(st.st_size + 1);
+	if(read(fd, ibuf, st.st_size) != st.st_size) {
+		g_free(ibuf);
+		return FALSE;
+	}
+
+	/* Determine the maximum length of the new file. */
+	l = st.st_size + strlen("\n");
+	l += strlen(info->kerberosRealm ?: " ");
+
+	l += (strlen(info->kerberosRealm ?: "") + strlen("\t \n")) *
+	     (comma_count(info->kerberosKDC) + 1);
+	l += info->kerberosKDC ? strlen(info->kerberosKDC) * 2 : 0;
+
+	l += (strlen(info->kerberosRealm ?: "") + strlen("\t admin server\n")) *
+	     (comma_count(info->kerberosAdminServer) + 1);
+	l += info->kerberosAdminServer ?  strlen(info->kerberosAdminServer) : 0;
+
+	obuf = g_malloc0(l);
+
+	/* Set up the buffer with the parts of the file which pertain to our
+	 * realm. */
+	sprintf(obuf, "%s\n", info->kerberosRealm ?: "");
+
+	p = info->kerberosKDC;
+	if(!is_empty(p)) {
+		while(strchr(p, ',')) {
+			strcat(obuf, info->kerberosRealm ?: "");
+			strcat(obuf, "\t");
+			strncat(obuf, p, strchr(p, ',') - p);
+			strcat(obuf, "\n");
+			p = strchr(p, ',') + 1;
+		}
+	}
+	strcat(obuf, info->kerberosRealm ?: "");
+	strcat(obuf, "\t");
+	strcat(obuf, p);
+	strcat(obuf, "\n");
+
+	p = info->kerberosAdminServer;
+	if(!is_empty(p)) {
+		while(strchr(p, ',')) {
+			strcat(obuf, info->kerberosRealm ?: "");
+			strcat(obuf, "\t");
+			strncat(obuf, p, strchr(p, ',') - p);
+			strcat(obuf, " admin server\n");
+			p = strchr(p, ',') + 1;
+		}
+	}
+	strcat(obuf, info->kerberosRealm ?: "");
+	strcat(obuf, "\t");
+	strcat(obuf, p);
+	strcat(obuf, " admin server\n");
+
+	/* Now append lines from the original file which have nothing to do
+	 * with our realm. */
+	p = strchr(ibuf, '\n');
+	if(p != NULL) {
+		p++;
+		while(strchr(p, '\n')) {
+			q = strchr(p, '\n') + 1;
+			if(strncmp(info->kerberosRealm ?: "",
+				   p,
+				   strlen(info->kerberosRealm ?: "")) != 0) {
+				strncat(obuf, p, q - p);
+			}
+			p = q;
+		}
+	}
+
+	/* Write it out and close it. */
+	ftruncate(fd, 0);
+	lseek(fd, 0, SEEK_SET);
+	write(fd, obuf, strlen(obuf));
+	close(fd);
+
+	/* Clean up. */
+	if(ibuf) {
+		g_free(ibuf);
+	}
+	if(obuf) {
+		g_free(obuf);
+	}
+
+	return TRUE;
+}
+
+/* Write information to /etc/krb5.conf and /etc/krb.conf. */
+gboolean
+authInfoWriteKerberos(struct authInfoType *info)
+{
+	gboolean ret;
+	ret = authInfoWriteKerberos5(info);
+	if(ret == TRUE) {
+		authInfoWriteKerberos4(info);
+	}
+	return ret;
 }
 
 /* Write NSS setup to /etc/nsswitch.conf. */
@@ -1618,6 +1782,7 @@ static const char *argv_ldap_password[] = {
 
 static const char *argv_cracklib_password[] = {
 	"retry=3",
+	"type=",
 	NULL,
 };
 

@@ -43,8 +43,6 @@
 #include "localpol.h"
 #endif
 
-static char *progName;
-
 struct nis_cb {
 	char nss_nis;
 	newtComponent serverLabel, domainLabel;
@@ -62,7 +60,7 @@ struct ldap_cb {
 	char tls;
 	newtComponent tlsCheckbox;
 	newtComponent serverLabel, baseDnLabel;
-       	newtComponent serverEntry, baseDnEntry;
+	newtComponent serverEntry, baseDnEntry;
 };
 struct krb5_cb {
 	char pam_krb5;
@@ -88,6 +86,22 @@ entryFilter(newtComponent entry, void * data, int ch, int cursor)
     return ch;
 }
 
+gboolean
+toggleCachingService(gboolean enableCaching, gboolean nostart)
+{
+  struct stat st;
+  if (!nostart) {
+    if (enableCaching) {
+      system("/sbin/service nscd restart");
+    } else {
+      if(stat(PATH_NSCD_PID, &st) == 0) {
+        system("/sbin/service nscd stop");
+      }
+    }
+  }
+  return TRUE;
+}
+
 static gboolean
 toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 {
@@ -111,9 +125,9 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
       if (!nostart) {
         if(stat(PATH_YPBIND_PID, &st) == 0) {
           system("/sbin/service ypbind restart");
-	} else {
+        } else {
           system("/sbin/service ypbind start");
-	}
+        }
       }
     }
   } else {
@@ -122,7 +136,7 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
       if (!nostart) {
         if(stat(PATH_YPBIND_PID, &st) == 0) {
           system("/sbin/service ypbind stop");
-	}
+        }
       }
       system("/sbin/chkconfig --del ypbind");
     }
@@ -188,6 +202,15 @@ checkWarn(const char *path, const char *service, const char *package)
 }
 
 static void
+cacheToggle(newtComponent cb, void *data)
+{
+  char *cache = (char *) data;
+  if(*cache == '*') {
+    checkWarn(PATH_NSCD, "caching", "nscd");
+  }
+}
+
+static void
 nisToggle(newtComponent cb, void *data)
 {
   struct nis_cb *nis = (struct nis_cb*) data;
@@ -244,7 +267,7 @@ ldapToggle(newtComponent cb, void *data)
   if(((ldap->nss_ldap == '*') && (ldap->screen == 1)) ||
      ((ldap->pam_ldap == '*') && (ldap->screen == 2))) {
     newtCheckboxSetFlags(ldap->tlsCheckbox,
-		         NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+			 NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 			 NEWT_FLAGS_RESET);
     newtEntrySetFlags(ldap->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
@@ -252,7 +275,7 @@ ldapToggle(newtComponent cb, void *data)
 		      NEWT_FLAGS_RESET);
   } else {
     newtCheckboxSetFlags(ldap->tlsCheckbox,
-		         NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+			 NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 			 NEWT_FLAGS_SET);
     newtEntrySetFlags(ldap->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_SET);
@@ -314,12 +337,14 @@ smbToggle(newtComponent cb, void *data)
 
 static int
 getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
-	      gboolean kerberosAvail, struct authInfoType *authInfo)
+	      gboolean kerberosAvail, gboolean smbAvail, gboolean cacheAvail,
+	      struct authInfoType *authInfo)
 {
   newtComponent form, ok, cancel, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid;
   int rc = 0;
 
+  char cache;
   struct nis_cb nis;
   struct hesiod_cb hesiod;
   struct ldap_cb ldap;
@@ -328,7 +353,14 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *nisServer = NULL, *nisDomain = NULL;
 
-  mechGrid = newtCreateGrid(3, 7);
+  mechGrid = newtCreateGrid(3, 9);
+
+  /* NSCD */
+  cb = newtCheckbox(-1, -1, i18n("Cache Information"),
+		    authInfo->enableCache ? '*' : ' ',
+		    NULL, &cache);
+  newtGridSetField(mechGrid, 0, 0, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
   /* NSS modules: NIS. */
   cb = newtCheckbox(-1, -1, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
@@ -337,25 +369,25 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   nis.domainLabel = newtLabel(-1, -1, "");
   nis.domainEntry = newtEntry(-1, -1, authInfo->nisDomain, 35, &nisDomain,
-		  	      NEWT_ENTRY_SCROLL);
+			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.domainEntry, entryFilter, NULL);
 
   nis.serverLabel = newtLabel(-1, -1, "");
   nis.serverEntry = newtEntry(-1, -1, authInfo->nisServer, 35, &nisServer,
-		  	      NEWT_ENTRY_SCROLL);
+			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.serverEntry, entryFilter, NULL);
 
-  newtGridSetField(mechGrid, 0, 0, NEWT_GRID_COMPONENT, cb,
+  newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 0, NEWT_GRID_COMPONENT, nis.domainLabel,
+  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, nis.domainLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 0, NEWT_GRID_COMPONENT, nis.domainEntry,
+  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, nis.domainEntry,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  newtGridSetField(mechGrid, 0, 1, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+  newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 1, NEWT_GRID_COMPONENT, nis.serverLabel,
+  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, nis.serverLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 1, NEWT_GRID_COMPONENT, nis.serverEntry,
+  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, nis.serverEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* NSS modules: LDAP. */
@@ -373,30 +405,30 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   ldap.serverLabel = newtLabel(-1, -1, "");
   ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 35, &ldapServer,
-		  	       NEWT_ENTRY_SCROLL);
+			       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
 
   ldap.baseDnLabel = newtLabel(-1, -1, "");
   ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 35, &ldapBaseDN,
-		  	       NEWT_ENTRY_SCROLL);
+			       NEWT_ENTRY_SCROLL);
 
-  newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
+  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.tlsCheckbox,
+  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, ldap.tlsCheckbox,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.serverLabel,
+  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, ldap.serverLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.serverEntry,
+  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, ldap.serverEntry,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+  newtGridSetField(mechGrid, 0, 6, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
+  newtGridSetField(mechGrid, 1, 6, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
+  newtGridSetField(mechGrid, 2, 6, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* NSS modules: hesiod. */
@@ -415,17 +447,17 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
 
-  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
+  newtGridSetField(mechGrid, 0, 7, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, hesiod.lhsLabel,
+  newtGridSetField(mechGrid, 1, 7, NEWT_GRID_COMPONENT, hesiod.lhsLabel,
 		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, hesiod.lhsEntry,
+  newtGridSetField(mechGrid, 2, 7, NEWT_GRID_COMPONENT, hesiod.lhsEntry,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  newtGridSetField(mechGrid, 0, 6, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+  newtGridSetField(mechGrid, 0, 8, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-  newtGridSetField(mechGrid, 1, 6, NEWT_GRID_COMPONENT, hesiod.rhsLabel,
+  newtGridSetField(mechGrid, 1, 8, NEWT_GRID_COMPONENT, hesiod.rhsLabel,
 		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
-  newtGridSetField(mechGrid, 2, 6, NEWT_GRID_COMPONENT, hesiod.rhsEntry,
+  newtGridSetField(mechGrid, 2, 8, NEWT_GRID_COMPONENT, hesiod.rhsEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
   /* Create the buttons. */
@@ -438,6 +470,7 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 		   0, 0, 0, 0, 0, 0);
 
   /* Call all of the callbacks to initialize disabled fields. */
+  cacheToggle(NULL, &cache);
   nisToggle(NULL, &nis);
   ldapToggle(NULL, &ldap);
   hesiodToggle(NULL, &hesiod);
@@ -456,6 +489,8 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   /* Run the form and interpret the results. */
   comp = newtRunForm(form);
   if(comp != cancel) {
+    authInfo->enableCache = (cache == '*');
+
     authInfo->enableHesiod = (hesiod.nss_hesiod == '*');
     setString(&authInfo->hesiodLHS, hesiodLHS);
     setString(&authInfo->hesiodRHS, hesiodRHS);
@@ -482,7 +517,8 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
 static int
 getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
-	      gboolean kerberosAvail, struct authInfoType *authInfo)
+	      gboolean kerberosAvail, gboolean smbAvail, gboolean cacheAvail,
+	      struct authInfoType *authInfo)
 {
   newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid;
@@ -526,18 +562,18 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   ldap.tls = authInfo->enableLDAPS ? '*' : ' ';
   ldap.tlsCheckbox = newtCheckbox(-1, -1, i18n("Use TLS"),
-		 		  authInfo->enableLDAPS ? '*' : ' ',
+				  authInfo->enableLDAPS ? '*' : ' ',
 				  NULL, &ldap.tls);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.serverLabel = newtLabel(-1, -1, "");
   ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 28, &ldapServer,
-		  	       NEWT_ENTRY_SCROLL);
+			       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
 
   ldap.baseDnLabel = newtLabel(-1, -1, "");
   ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 28, &ldapBaseDN,
-		  	       NEWT_ENTRY_SCROLL);
+			       NEWT_ENTRY_SCROLL);
 
   newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
@@ -564,17 +600,17 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   krb5.realmLabel = newtLabel(-1, -1, "");
   krb5.realmEntry = newtEntry(-1, -1, authInfo->kerberosRealm, 28,
-		  	      &kerberosRealm, NEWT_ENTRY_SCROLL);
+			      &kerberosRealm, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.realmEntry, entryFilter, NULL);
 
   krb5.kdcLabel = newtLabel(-1, -1, "");
   krb5.kdcEntry = newtEntry(-1, -1, authInfo->kerberosKDC, 28,
-		  	    &kerberosKDC, NEWT_ENTRY_SCROLL);
+			    &kerberosKDC, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kdcEntry, entryFilter, NULL);
 
   krb5.kadminLabel = newtLabel(-1, -1, "");
   krb5.kadminEntry = newtEntry(-1, -1, authInfo->kerberosAdminServer, 28,
-		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
+			       &kerberosAdmin, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
 
   newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
@@ -602,12 +638,12 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   smb.workgroupLabel = newtLabel(-1, -1, "");
   smb.workgroupEntry = newtEntry(-1, -1, authInfo->smbWorkgroup, 28,
-		 		 &smbWorkgroup, NEWT_ENTRY_SCROLL);
+				 &smbWorkgroup, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(smb.workgroupEntry, entryFilter, NULL);
 
   smb.serverLabel = newtLabel(-1, -1, "");
   smb.serverEntry = newtEntry(-1, -1, authInfo->smbServers, 28,
-		  	       &smbServers, NEWT_ENTRY_SCROLL);
+			       &smbServers, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(smb.serverEntry, entryFilter, NULL);
 
   newtGridSetField(mechGrid, 0, 8, NEWT_GRID_COMPONENT, cb,
@@ -707,7 +743,8 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
 static int
 getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
-	   gboolean kerberosAvail, struct authInfoType *authInfo)
+	   gboolean kerberosAvail, gboolean smbAvail, gboolean cacheAvail,
+	   struct authInfoType *authInfo)
 {
   int rc = FALSE, next = 1, i;
 
@@ -718,7 +755,7 @@ getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   while (next != 0) {
     switch (next) {
       case 1:
-	i = getNSSChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo);
+	i = getNSSChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo);
         switch(i) {
           case 1:
 	    next = 2;
@@ -729,7 +766,7 @@ getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 	}
 	break;
       case 2:
-	i = getPAMChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo);
+	i = getPAMChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo);
         switch(i) {
           case 2:
 	    next = 1;
@@ -763,10 +800,9 @@ int
 main(int argc, const char **argv)
 {
   int rc;
-  struct stat st;
   struct authInfoType *authInfo = NULL;
   gboolean nisAvail = FALSE, kerberosAvail = FALSE, ldapAvail = FALSE,
-  	   smbAvail = FALSE;
+  	   smbAvail = FALSE, cacheAvail = FALSE;
 
   int back = 0, test = 0, nostart = 0, kickstart = 0;
 
@@ -788,20 +824,21 @@ main(int argc, const char **argv)
   int enableSmb = 0, disableSmb = 0;
   char *smbWorkgroup = NULL, *smbServers = NULL;
 
+  int enableCache = 0, disableCache = 0;
+
   int probe = 0;
 
 #ifdef LOCAL_POLICIES
   int enableLocal = 0, disableLocal = 0;
 #endif
 
+  gboolean badOpt = FALSE;
   poptContext optCon;
 
   /* first set up our locale info for gettext. */
   setlocale(LC_ALL, "");
-  bindtextdomain("authconfig", "/usr/share/locale");
-  textdomain("authconfig");
-
-  progName = basename((char*)argv[0]);
+  bindtextdomain(PACKAGE, "/usr/share/locale");
+  textdomain(PACKAGE);
 
   {
     const struct poptOption options[] = {
@@ -873,6 +910,11 @@ main(int argc, const char **argv)
       { "hesiodrhs", '\0', POPT_ARG_STRING, &hesiodRHS, 0,
 	i18n("default hesiod RHS\n"), i18n("<rhs>")},
 
+      { "enablecache", '\0', POPT_ARG_NONE, &enableCache, 0,
+	i18n("enable caching of user information by default"), NULL},
+      { "disablecache", '\0', POPT_ARG_NONE, &disableCache, 0,
+	i18n("disable caching of user information by default\n"), NULL},
+
       { "back", '\0', POPT_ARG_NONE | POPT_ARGFLAG_DOC_HIDDEN, &back, 0,
 	NULL, NULL},
       { "test", '\0', POPT_ARG_NONE | POPT_ARGFLAG_DOC_HIDDEN, &test, 0,
@@ -893,20 +935,26 @@ main(int argc, const char **argv)
     };
   
     /* next, process cmd. line options */
-    optCon = poptGetContext("authconfig", argc, argv, options, 0);
+    optCon = poptGetContext(PACKAGE, argc, argv, options, 0);
     poptReadDefaultConfig(optCon, 1);
   }
 
-  if ((rc = poptGetNextOpt(optCon)) != -1) {
+  while ((rc = poptGetNextOpt(optCon)) != -1) {
     fprintf(stderr, i18n("%s: bad argument %s: %s\n"),
-	    progName, poptBadOption(optCon, POPT_BADOPTION_NOALIAS),
+	    PACKAGE, poptBadOption(optCon, POPT_BADOPTION_NOALIAS),
 	    poptStrerror(rc));
-    return 2;
+    badOpt = TRUE;
+  }
+  if(badOpt) {
+    if(!kickstart) {
+      return 2;
+    }
+    fprintf(stderr, i18n("%s: attempting to continue\n"), PACKAGE);
   }
 
   if (poptGetArg(optCon)) {
     fprintf(stderr, i18n("%s: unexpected argument\n"),
-	    progName);
+	    PACKAGE);
     return 2;
   }
 
@@ -933,7 +981,7 @@ main(int argc, const char **argv)
   /* if the test parameter wasn't passed, give an error if not root */
   if (!test && getuid()) {
     fprintf(stderr, i18n("%s: can only be run as root\n"),
-	    progName);
+	    PACKAGE);
     return 2;
   }
 
@@ -944,7 +992,7 @@ main(int argc, const char **argv)
   if (authInfoReadHesiod(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/hesiod.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "hesiod.conf");
+	      PACKAGE, SYSCONFDIR, "hesiod.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -952,7 +1000,7 @@ main(int argc, const char **argv)
   if (authInfoReadKerberos(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/krb5.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "krb5.conf");
+	      PACKAGE, SYSCONFDIR, "krb5.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -960,7 +1008,7 @@ main(int argc, const char **argv)
   if (authInfoReadLDAP(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/ldap.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "ldap.conf");
+	      PACKAGE, SYSCONFDIR, "ldap.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -968,7 +1016,7 @@ main(int argc, const char **argv)
   if (authInfoReadNIS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/yp.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "yp.conf");
+	      PACKAGE, SYSCONFDIR, "yp.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -976,7 +1024,7 @@ main(int argc, const char **argv)
   if (authInfoReadSMB(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/pam_smb.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "pam_smb.conf");
+	      PACKAGE, SYSCONFDIR, "pam_smb.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -984,15 +1032,20 @@ main(int argc, const char **argv)
   if (authInfoReadNSS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/nsswitch.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "nsswitch.conf");
+	      PACKAGE, SYSCONFDIR, "nsswitch.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
   }
+  if (authInfoReadCache(authInfo) == FALSE) {
+    fprintf(stderr, i18n("%s: unable to read caching configuration"), PACKAGE);
+    fprintf(stderr, ": %s\n", strerror(errno));
+    return 2;
+  }
   if (authInfoReadNetwork(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/sysconfig/network", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "sysconfig/network");
+	      PACKAGE, SYSCONFDIR, "sysconfig/network");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -1000,7 +1053,7 @@ main(int argc, const char **argv)
   if (authInfoReadPAM(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
-	      progName, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
+	      PACKAGE, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
@@ -1020,6 +1073,9 @@ main(int argc, const char **argv)
   if (access(PATH_PAM_SMB, X_OK) == 0) {
     smbAvail = TRUE;
   }
+  if (access(PATH_NSCD, X_OK) == 0) {
+    cacheAvail = TRUE;
+  }
 
 #ifdef LOCAL_POLICIES
   overrideBoolean(&authInfo->enableLocal, enableLocal, disableLocal);
@@ -1027,6 +1083,8 @@ main(int argc, const char **argv)
 
   overrideBoolean(&authInfo->enableShadow, enableShadow, disableShadow);
   overrideBoolean(&authInfo->enableMD5, enableMD5, disableMD5);
+
+  overrideBoolean(&authInfo->enableCache, enableCache, disableCache);
 
   overrideBoolean(&authInfo->enableHesiod, enableHesiod, disableHesiod);
   overrideString(&authInfo->hesiodLHS, hesiodLHS);
@@ -1052,7 +1110,7 @@ main(int argc, const char **argv)
   overrideString(&authInfo->smbServers, smbServers);
 
   if (!kickstart) {
-    char packageVersion[] = "authconfig " VERSION " - ";
+    char packageVersion[] = PACKAGE " " VERSION " - ";
     newtInit();
     newtCls();
     
@@ -1061,7 +1119,7 @@ main(int argc, const char **argv)
     newtDrawRootText(strlen(packageVersion), 0,
 		     i18n("(c) 1999-2001 Red Hat, Inc."));
     
-    if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
+    if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo)) {
       /* cancelled */
       newtFinished();
      
@@ -1077,6 +1135,7 @@ main(int argc, const char **argv)
   } /* kickstart */
 
   if (test) {
+    printf("caching is %s\n", authInfo->enableCache ? "enabled" : "disabled");
     printf("nss_files is always enabled\n");
     printf("nss_hesiod is %s\n",
 	   authInfo->enableHesiod ? "enabled" : "disabled");
@@ -1131,57 +1190,61 @@ main(int argc, const char **argv)
 	   authInfo->smbServers ?: "");
     return 0;
   } else {
+    if (authInfoWriteCache(authInfo) == FALSE) {
+      fprintf(stderr, i18n("%s: critical error recording caching setting"),
+	      PACKAGE);
+      fprintf(stderr, ": %s\n", strerror(errno));
+      return 2;
+    }
     if (authInfoWriteHesiod(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "hesiod.conf");
+	      PACKAGE, SYSCONFDIR, "hesiod.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteKerberos(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "krb5.conf");
+	      PACKAGE, SYSCONFDIR, "krb5.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteLDAP(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "ldap.conf");
+	      PACKAGE, SYSCONFDIR, "ldap.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteNIS(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "yp.conf");
+	      PACKAGE, SYSCONFDIR, "yp.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWriteSMB(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "pam_smb.conf");
+	      PACKAGE, SYSCONFDIR, "pam_smb.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNSS(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "nsswitch.conf");
+	      PACKAGE, SYSCONFDIR, "nsswitch.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNetwork(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "sysconfig/network");
+	      PACKAGE, SYSCONFDIR, "sysconfig/network");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     if (authInfoWritePAM(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
-	      progName, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
+	      PACKAGE, SYSCONFDIR, "pam.d/" AUTH_PAM_SERVICE);
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
     toggleShadow(authInfo);
     toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
-    if((stat(PATH_NSCD_PID, &st) == 0) && !nostart) {
-      system("/sbin/service nscd restart");
-    }
+    toggleCachingService(authInfo->enableCache, nostart);
   }
 
   return 0;

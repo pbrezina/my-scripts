@@ -1,7 +1,8 @@
 Bite the bullet and do PAM configuration the Hard Way.
   * Per-service configuration, probably using a parallel array for each of the
     services we care about.  Experimental model in authconfig.conf in this
-    directory.  Needs to be expandible using only configuration data.
+    directory.  Needs to be expandible using only configuration data.  Probably
+    will use alchemist for the final setup, because I hate writing parsers now.
   * Go from hard-coded knowledge of whether or not a module is applicable to
     a service to checking the module file itself for the appropriate function.
 
@@ -42,13 +43,11 @@ UI issues:
   * Make no settings for Kerberos force "use DNS", as above.
   * Glob /lib/libnss_{libc-version}*.so for a list of possible services, and
     hide others?
-  * Hide LDAP and Kerberos authentication if modules for PAM not already
+  * Hide LDAP/Kerberos/SMB authentication if modules for PAM not already
     present?
 
 New options:
-  * Add a checkbox to enable/disable nscd.
   * Add a "db" checkbox under nss configuration to improve speed on single
     lookups, add it first in the lists, and run "make -C /var/db" on exit.
-  * Add SMB authentication and pam_smb.
 
 If all of this gets done, there's no way it's going to fit onto two screens....

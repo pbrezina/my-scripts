@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.10
-Release: 2
+Version: 4.1.11
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -39,6 +39,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Mon Jul  9 2001 Nalin Dahyabhai <nalin@redhat.com>
+- add "type=" to the list of arguments set up for pam_cracklib
+- also modify /etc/krb.conf when configuring Kerberos (for compatibility)
+- add --enablecache and --disablecache, which duplicates some of ntsysv's
+  functionality, but it belongs here, too
+- bravely try to carry on if bad options are passed in during kickstart
+
 * Mon Jun 25 2001 Nalin Dahyabhai <nalin@redhat.com>
 - fix man page reference to file (/etc/sysconfig/authconfig, not auth) (#43344)
 - own /etc/sysconfig/authconfig (#43344)

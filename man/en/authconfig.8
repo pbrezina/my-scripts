@@ -1,12 +1,13 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "Thu 7 December 2000" "Red Hat, Inc."
+.TH AUTHCONFIG 8 "Mon 9 July 2001" "Red Hat, Inc."
 .UC 4
 .SH NAME
-authconfig \- an interface for configuring system authorization resources
+authconfig \- an interface for configuring system authentication resources
 .SH SYNOPSIS
 \fBauthconfig\fR [--back] [--test] [--nostart] [--kickstart] [--probe]
+[--enablecache] [--disablecache]
 [--enablenis [--nisdomain <domain>] [--nisserver <nisserver[,nisserver...]>] ]
 [--disablenis]
 [--enableshadow] [--disableshadow]
@@ -38,6 +39,7 @@ options (\fB--enablemd5\fR, \fB--usehadow\fR, etc.).
 
 The \fB--enablenis\fP, \fB--enableldap\fP, and \fB--enablehesiod\fP options
 are used to configure user information services in \fB/etc/nsswitch.conf\fP,
+the \fB--enablecache\fP option is used to configure naming services caching,
 and the \fB--enableshadow\fP, \fB--enablemd5\fP, \fB--enableldapauth\fP,
 \fB--enablekrb5\fP and \fB--enablesmb\fP options are used to configure
 authentication functions via \fB/etc/pam.d/system-auth\fP.  Each
@@ -80,6 +82,9 @@ Used to configure LDAP (and OpenLDAP).
 .TP
 .FN /etc/krb5.conf
 Used to configure Kerberos 5.
+.TP
+.FN /etc/krb.conf
+Used to configure Kerberos IV (write-only).
 .TP
 .FN /etc/hesiod.conf
 Used to configure Hesiod.

@@ -26,6 +26,7 @@
 #define AUTH_MODULE_DIR "/lib/security"
 
 #define PATH_PORTMAP "/sbin/portmap"
+#define PATH_NSCD "/usr/sbin/nscd"
 #define PATH_NSCD_PID "/var/run/nscd.pid"
 #define PATH_YPBIND "/sbin/ypbind"
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
@@ -65,6 +66,7 @@ struct authInfoType {
 	char *smbServers;
  
 	/* NSSwitch setup.  Files is always in there. */
+	gboolean enableCache;
 	gboolean enableDB;
 	gboolean enableHesiod;
 	gboolean enableLDAP;
@@ -83,9 +85,6 @@ struct authInfoType {
 	gboolean enableLocal;
 #endif
 	gboolean brokenShadow;
-
-	/* Auxiliary stuff. */
-	gboolean enableCaching;
 };
 
 struct authInfoType *authInfoRead();
@@ -93,6 +92,7 @@ struct authInfoType *authInfoProbe();
 struct authInfoType *authInfoCopy(struct authInfoType *info);
 gboolean authInfoWrite(struct authInfoType *info);
 
+gboolean authInfoReadCache(struct authInfoType *info);
 gboolean authInfoReadHesiod(struct authInfoType *info);
 gboolean authInfoReadNIS(struct authInfoType *info);
 gboolean authInfoReadSMB(struct authInfoType *info);
@@ -103,6 +103,7 @@ gboolean authInfoReadNSS(struct authInfoType *info);
 gboolean authInfoReadPAM(struct authInfoType *info);
 gboolean authInfoReadNetwork(struct authInfoType *info);
 
+gboolean authInfoWriteCache(struct authInfoType *info);
 gboolean authInfoWriteHesiod(struct authInfoType *info);
 gboolean authInfoWriteNIS(struct authInfoType *info);
 gboolean authInfoWriteSMB(struct authInfoType *info);
