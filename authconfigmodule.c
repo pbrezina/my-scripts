@@ -27,7 +27,7 @@
 void initauthconfig(void);
 
 #define authInfoObject_Check(op) PyObject_TypeCheck(op, &authInfoObjectType)
-extern PyTypeObject authInfoObjectType;
+static PyTypeObject authInfoObjectType;
 static PyObject *authInfoObject_write(PyObject *self, PyObject *args,
 				  PyObject *kwargs);
 static PyObject *authInfoObject_post(PyObject *self, PyObject *args,

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.6.10
+Version: 4.6.11
 # Don't change release in elvis CVS, up version after merging all patches
 # from dist CVS instead.
 Release: 1
@@ -81,6 +81,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Mar  3 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.11-1
+- updated translations
+- fixed build on gcc4
+
 * Wed Feb 23 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.10-1
 - updated translations
 
