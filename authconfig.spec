@@ -30,7 +30,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %{_sbindir}/authconfig
-%{_mandir}/man/man8/*
+%{_mandir}/man8/*
 #%attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
