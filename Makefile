@@ -38,7 +38,7 @@ clean:
 archive:
 	cvs -d `cat CVS/Root` tag -cF $(CVSTAG) .
 	@rm -rf /tmp/$(PROGNAME)-$(VERSION) /tmp/$(PROGNAME)
-	@dir=$$PWD; cd /tmp; cvs -d `cat $$PWD/CVS/Root` export -r$(CVSTAG) $(PROGNAME)
+	@dir=$$PWD; cd /tmp; cvs -d `cat $$dir/CVS/Root` export -r$(CVSTAG) $(PROGNAME)
 	@mv /tmp/$(PROGNAME) /tmp/$(PROGNAME)-$(VERSION)
 	@dir=$$PWD; cd /tmp; tar cvzf $$dir/$(PROGNAME)-$(VERSION).tar.gz \
 		$(PROGNAME)-$(VERSION)
