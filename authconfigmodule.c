@@ -182,6 +182,14 @@ authInfoObject_setattr(PyObject *self, const char *attribute, PyObject *args)
 	return -1;
 }
 
+static PyMethodDef authconfig_methods[] = {
+	{"write", (PyCFunction)authconfig_write,
+	 METH_VARARGS | METH_KEYWORDS},
+	{"post", (PyCFunction)authconfig_post,
+	 METH_VARARGS | METH_KEYWORDS},
+	{NULL, NULL, 0},
+};
+
 static PyObject *
 authInfoObject_getattr(PyObject *self, char *attribute)
 {
@@ -189,13 +197,6 @@ authInfoObject_getattr(PyObject *self, char *attribute)
 	struct authInfoObject *info;
 	char **p;
 	gboolean *b;
-	PyMethodDef methods[] = {
-		{"write", (PyCFunction)authconfig_write,
-		 METH_VARARGS | METH_KEYWORDS},
-		{"post", (PyCFunction)authconfig_post,
-		 METH_VARARGS | METH_KEYWORDS},
-		{NULL, NULL, 0},
-	};
 	if (authInfoObject_Check(self)) {
 		info = (struct authInfoObject *)self;
 	} else {
@@ -220,7 +221,7 @@ authInfoObject_getattr(PyObject *self, char *attribute)
 			}
 		}
 	}
-	return Py_FindMethod(methods, self, attribute);
+	return Py_FindMethod(authconfig_methods, self, attribute);
 }
 
 static PyTypeObject authInfoObjectType = {
@@ -317,7 +318,7 @@ authconfig_post(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 /* Method table mapping functions to wrappers. */
-static PyMethodDef methods[] = {
+static PyMethodDef module_methods[] = {
 	{"read", (PyCFunction)authconfig_read, METH_NOARGS},
 	{"write", (PyCFunction)authconfig_write, METH_VARARGS | METH_KEYWORDS},
 	{"post", (PyCFunction)authconfig_post, METH_VARARGS | METH_KEYWORDS},
@@ -328,5 +329,5 @@ static PyMethodDef methods[] = {
 void
 initauthconfig()
 {
-	Py_InitModule("authconfig", methods);
+	Py_InitModule("authconfig", module_methods);
 }
