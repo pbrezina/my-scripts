@@ -3,7 +3,8 @@
 .SH NAME
 authconfig \- simple interface for configuring system authorization resources
 .SH SYNOPSIS
-\fBauthconfig\fR [--back] [--test] [--nostart]
+\fBauthconfig\fR [--back] [--test] [--nostart] [--enablenis [--nisdomain <domain>]
+[--nisserver <nisserver>] ] [--enableshadow [--usemd5] ] [--kickstart]
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring 
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and /etc/shadow, the files
@@ -15,7 +16,9 @@ instead. If \fB--test\fR is specified, \fBauthconfig\fR can be run by
 users other then root, and any configuration changes are not saved. If
 \fB--nostart\fR is specified (which is what the install program does), ypbind
 will not be started or stopped immediately following program execution, but
-only enabled to start or stop at boot time.
+only enabled to start or stop at boot time. if \fB--kickstart\fR is specified, no interactive
+screens will be seen.  The values the program will use will be those specified by the
+other options (\fB--enablenis\fR, \fB--enableshadow\fR, etc.).
 
 .PD
 .SH "RETURN CODES"
