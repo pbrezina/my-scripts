@@ -713,7 +713,8 @@ gboolean authInfoWriteNIS(struct authInfoType *info)
 }
 
 /* Write LDAP setup to /etc/ldap.conf. */
-gboolean authInfoWriteLDAP(struct authInfoType *info)
+gboolean authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
+			    const char *host, const char *base)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
@@ -721,7 +722,7 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 	struct flock lock;
 	gboolean wrotebasedn = FALSE, wroteserver = FALSE;
 
-	fd = open(SYSCONFDIR "/ldap.conf", O_RDWR | O_CREAT, 0644);
+	fd = open(filename, O_RDWR | O_CREAT, 0644);
 	if(fd == -1) {
 		return FALSE;
 	}
@@ -741,7 +742,7 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 	read(fd, ibuf, st.st_size);
 
 	/* Determine the maximum length of the new file. */
-	l = strlen(" host ") + strlen(" base ");
+	l = strlen(host) + 2 + strlen(base) + 2;
 	l += info->ldapBaseDN ? strlen(info->ldapBaseDN) : 0;
 	l += info->ldapServer ? strlen(info->ldapServer) : 0;
 	obuf = g_malloc0(st.st_size + 1 + l);
@@ -752,11 +753,12 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 		for(q = p; (*q != '\0') && (*q != '\n'); q++);
 		if(*q != '\0') q++;
 
-		/* If it's a 'server' line, insert ours instead. */
-		if(strncmp("host ", p, 4) == 0) {
+		/* If it's a 'HOST' line, insert ours instead. */
+		if(strncmp(host, p, 4) == 0) {
 			if(!wroteserver)
 			if(non_empty(info->ldapServer)) {
-				strcat(obuf, "host ");
+				strcat(obuf, host);
+				strcat(obuf, " ");
 				strcat(obuf, info->ldapServer);
 				strcat(obuf, "\n");
 				wroteserver = TRUE;
@@ -764,10 +766,11 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 		} else
 
 		/* If it's a 'base' line, insert ours instead. */
-		if(strncmp("base", p, 4) == 0) {
+		if(strncmp(base, p, 4) == 0) {
 			if(!wrotebasedn)
 			if(non_empty(info->ldapBaseDN)) {
-				strcat(obuf, "base ");
+				strcat(obuf, base);
+				strcat(obuf, " ");
 				strcat(obuf, info->ldapBaseDN);
 				strcat(obuf, "\n");
 				wrotebasedn = TRUE;
@@ -782,14 +785,16 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 	/* If we haven't encountered either of the config lines yet... */
 	if(!wroteserver) {
 		if(non_empty(info->ldapServer)) {
-			strcat(obuf, "host ");
+			strcat(obuf, host);
+			strcat(obuf, " ");
 			strcat(obuf, info->ldapServer);
 			strcat(obuf, "\n");
 		}
 	}
 	if(!wrotebasedn) {
 		if(non_empty(info->ldapBaseDN)) {
-			strcat(obuf, "base ");
+			strcat(obuf, base);
+			strcat(obuf, " ");
 			strcat(obuf, info->ldapBaseDN);
 			strcat(obuf, "\n");
 		}
@@ -805,6 +810,20 @@ gboolean authInfoWriteLDAP(struct authInfoType *info)
 	g_free(obuf);
 
 	return TRUE;
+}
+
+gboolean authInfoWriteLDAP(struct authInfoType *info)
+{
+	gboolean ret = TRUE;
+	if(ret) {
+		ret = authInfoWriteLDAP2(info, SYSCONFDIR "/ldap.conf",
+					 "host", "base");
+	}
+	if(ret) {
+		ret = authInfoWriteLDAP2(info, SYSCONFDIR "/openldap/ldap.conf",
+					 "HOST", "BASE");
+	}
+	return ret;
 }
 
 static void write_kdc(char *obuf, struct authInfoType *info)

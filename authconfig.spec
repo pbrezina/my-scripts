@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.16
-Release: 4
+Version: 4.0.17
+Release: 1
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Mon Aug 28 2000 Nalin Dahyabhai <nalin@redhat.com>
+- edit /etc/openldap/ldap.conf in addition to /etc/ldap.conf
+
 * Thu Aug 24 2000 Erik Troan <ewt@redhat.com>
 - updated it and es translations
 
