@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Installer 7.0\n"
-"POT-Creation-Date: 2000-06-27 19:39-0400\n"
+"POT-Creation-Date: 2000-07-13 13:08-0400\n"
 "PO-Revision-Date: 2000-07-21 12:15+0200\n"
 "Last-Translator: Jeff Garner <jgarner@us.alpnet.com>\n"
 "Language-Team: German <de@li.org>\n"
@@ -13,7 +13,8 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ../authconfig.c:142
+# ../authconfig.c:142
+#: ../authconfig.c:147
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -23,108 +24,133 @@ msgstr ""
 "unbedingt erforderlich ist. Installieren Sie das Paket %s, das diese Datei "
 "enthält."
 
-#: ../authconfig.c:146
+# ../authconfig.c:146
+#: ../authconfig.c:151
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../authconfig.c:146 ../authconfig.c:507 ../authconfig.c:512
+# ../authconfig.c:146 ../authconfig.c:507 ../authconfig.c:512
+#: ../authconfig.c:151 ../authconfig.c:523 ../authconfig.c:528
 msgid "Ok"
 msgstr "OK"
 
-#: ../authconfig.c:156 ../authconfig.c:230
+# ../authconfig.c:156 ../authconfig.c:230
+#: ../authconfig.c:161 ../authconfig.c:235
 msgid "  Domain:"
 msgstr "  Domäne:"
 
-#: ../authconfig.c:157 ../authconfig.c:203
+# ../authconfig.c:157 ../authconfig.c:203
+#: ../authconfig.c:162 ../authconfig.c:208
 msgid "  Server:"
 msgstr "  Server:"
 
-#: ../authconfig.c:177
+# ../authconfig.c:177
+#: ../authconfig.c:182
 msgid "     LHS:"
 msgstr "     LHS:"
 
-#: ../authconfig.c:178
+# ../authconfig.c:178
+#: ../authconfig.c:183
 msgid "     RHS:"
 msgstr "     RHS:"
 
-#: ../authconfig.c:204
+# ../authconfig.c:204
+#: ../authconfig.c:209
 msgid " Base DN:"
 msgstr "Basis-DN:"
 
-#: ../authconfig.c:247
+# ../authconfig.c:247
+#: ../authconfig.c:252
 msgid "          Realm:"
 msgstr "        Bereich:"
 
-#: ../authconfig.c:248
+# ../authconfig.c:248
+#: ../authconfig.c:253
 msgid "            KDC:"
 msgstr "            KDC:"
 
-#: ../authconfig.c:249
+# ../authconfig.c:249
+#: ../authconfig.c:254
 msgid "   Admin Server:"
 msgstr "   Admin-Server:"
 
+# ../authconfig.c:289
 #. Create the window and a form to put into it.
-#: ../authconfig.c:289
+#: ../authconfig.c:294
 msgid "User Information Configuration"
 msgstr "Konfiguration der Benutzerinformationen"
 
+# ../authconfig.c:293
 #. NSS modules: NIS.
-#: ../authconfig.c:293
+#: ../authconfig.c:298
 msgid "Use NIS"
 msgstr "NIS verwenden"
 
-#: ../authconfig.c:316
+# ../authconfig.c:316
+#: ../authconfig.c:321
 msgid "Use LDAP"
 msgstr "LDAP verwenden"
 
-#: ../authconfig.c:335
+# ../authconfig.c:335
+#: ../authconfig.c:340
 msgid "Use WinBind"
 msgstr "WinBind verwenden"
 
-#: ../authconfig.c:349
+# ../authconfig.c:349
+#: ../authconfig.c:354
 msgid "Use Hesiod"
 msgstr "Hesiod verwenden"
 
+# ../authconfig.c:370
 #. Create the buttons.
-#: ../authconfig.c:370
+#: ../authconfig.c:375
 msgid "Next"
 msgstr "Weiter"
 
-#: ../authconfig.c:371 ../authconfig.c:508 ../authconfig.c:513
+# ../authconfig.c:371 ../authconfig.c:508 ../authconfig.c:513
+#: ../authconfig.c:376 ../authconfig.c:524 ../authconfig.c:529
 msgid "Back"
 msgstr "Zurück"
 
-#: ../authconfig.c:371 ../authconfig.c:509
+# ../authconfig.c:371 ../authconfig.c:509
+#: ../authconfig.c:376 ../authconfig.c:525
 msgid "Cancel"
 msgstr "Abbrechen"
 
+# ../authconfig.c:431
 #. Create the window and a form to put into it.
-#: ../authconfig.c:431
+#: ../authconfig.c:441
 msgid "Authentication Configuration"
 msgstr "Sicherheitsprüfung konfigurieren"
 
+# ../authconfig.c:435
 #. PAM setup.
-#: ../authconfig.c:435
+#: ../authconfig.c:445
 msgid "Use Shadow Passwords"
 msgstr "Shadow-Passwörter verwenden"
 
-#: ../authconfig.c:439
+# ../authconfig.c:439
+#: ../authconfig.c:449
 msgid "Use MD5 Passwords"
 msgstr "MD5-Passwörter verwenden"
 
-#: ../authconfig.c:444
+# ../authconfig.c:444
+#: ../authconfig.c:454
 msgid "Use LDAP Authentication"
 msgstr "LDAP-Sicherheitsprüfung verwenden"
 
-#: ../authconfig.c:465
+# ../authconfig.c:465
+#: ../authconfig.c:475
 msgid "Use WinBind Authentication"
 msgstr "WinBind-Sicherheitsprüfung verwenden"
 
-#: ../authconfig.c:480
+# ../authconfig.c:480
+#: ../authconfig.c:490
 msgid "Use Kerberos 5"
 msgstr "Kerberos 5 verwenden"
 
-#: ../authconfig.c:601
+# ../authconfig.c:601
+#: ../authconfig.c:620
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -169,7 +195,8 @@ msgstr ""
 "\n"
 "     --useshadow\n"
 "     --enableshadow             Shadow-Passwörter standardmäßig aktivieren\n"
-"     --disableshadow            Shadow-Passwörter standardmäßig deaktivieren\n"
+"     --disableshadow            Shadow-Passwörter standardmäßig "
+"deaktivieren\n"
 "     --enablemd5                MD5-Passwörter standardmäßig aktivieren\n"
 "     --disablemd5               MD5-Passwörter standardmäßig deaktivieren\n"
 "\n"
@@ -208,109 +235,136 @@ msgstr ""
 "     --kickstart                keine Benutzeroberfläche anzeigen\n"
 "     --help                     diesen Bildschirm anzeigen\n"
 
-#: ../authconfig.c:738
+#: ../authconfig.c:659
+msgid ""
+"\n"
+"     --enablelocal              use locally-defined policy "
+msgstr ""
+
+# ../authconfig.c:738
+#: ../authconfig.c:770
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: ungültiges Argument %s: %s\n"
 
-#: ../authconfig.c:745
+# ../authconfig.c:745
+#: ../authconfig.c:777
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: unerwartetes Argument\n"
 
-#: ../authconfig.c:757
+# ../authconfig.c:757
+#: ../authconfig.c:789
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: kann nur als Root ausgeführt werden\n"
 
-#: ../authconfig.c:768
+# ../authconfig.c:768
+#: ../authconfig.c:800
 #, c-format
 msgid "%s: critical error reading %s/hesiod.conf"
 msgstr "%s: kritischer Fehler beim Lesen von %s/hesiod.conf"
 
-#: ../authconfig.c:775
+# ../authconfig.c:775
+#: ../authconfig.c:807
 #, c-format
 msgid "%s: critical error reading %s/krb5.conf"
 msgstr "%s: kritischer Fehler beim Lesen von %s/krb5.conf"
 
-#: ../authconfig.c:782
+# ../authconfig.c:782
+#: ../authconfig.c:814
 #, c-format
 msgid "%s: critical error reading %s/ldap.conf"
 msgstr "%s: kritischer Fehler beim Lesen von %s/ldap.conf"
 
-#: ../authconfig.c:790
+# ../authconfig.c:790
+#: ../authconfig.c:822
 #, c-format
 msgid "%s: critical error reading %s/smb.conf"
 msgstr "%s: kritischer Fehler beim Lesen von %s/smb.conf"
 
-#: ../authconfig.c:798
+# ../authconfig.c:798
+#: ../authconfig.c:830
 #, c-format
 msgid "%s: critical error reading %s/yp.conf"
 msgstr "%s: kritischer Fehler beim Lesen von %s/yp.conf"
 
-#: ../authconfig.c:805
+# ../authconfig.c:805
+#: ../authconfig.c:837
 #, c-format
 msgid "%s: critical error reading %s/nsswitch.conf"
 msgstr "%s: kritischer Fehler beim Lesen von %s/nsswitch.conf"
 
-#: ../authconfig.c:812
+# ../authconfig.c:812
+#: ../authconfig.c:844
 #, c-format
 msgid "%s: critical error reading %s/sysconfig/network"
 msgstr "%s: kritischer Fehler beim Lesen von %s/sysconfig/network"
 
-#: ../authconfig.c:819
+# ../authconfig.c:819
+#: ../authconfig.c:851
 #, c-format
 msgid "%s: critical error reading %s/pam.d/%s"
 msgstr "%s: kritischer Fehler beim Lesen von %s/pam.d/%s"
 
-#: ../authconfig.c:872
+# ../authconfig.c:872
+#: ../authconfig.c:908
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
-" <Tab>/<Alt+Tab> Zwischen Elementen wechseln  |  <Leer> Auswählen  |  <F12> Weiter "
+" <Tab>/<Alt+Tab> Zwischen Elementen wechseln  |  <Leer> Auswählen  |  <F12> "
+"Weiter "
 
-#: ../authconfig.c:880
+# ../authconfig.c:880
+#: ../authconfig.c:916
 msgid "dialog was cancelled\n"
 msgstr "Dialogfeld wurde entfernt\n"
 
-#: ../authconfig.c:944
+# ../authconfig.c:944
+#: ../authconfig.c:984
 #, c-format
 msgid "%s: critical error writing %s/hesiod.conf"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/hesiod.conf"
 
-#: ../authconfig.c:949
+# ../authconfig.c:949
+#: ../authconfig.c:989
 #, c-format
 msgid "%s: critical error writing %s/krb5.conf"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/krb5.conf"
 
-#: ../authconfig.c:954
+# ../authconfig.c:954
+#: ../authconfig.c:994
 #, c-format
 msgid "%s: critical error writing %s/ldap.conf"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/ldap.conf"
 
-#: ../authconfig.c:959
+# ../authconfig.c:959
+#: ../authconfig.c:999
 #, c-format
 msgid "%s: critical error writing %s/yp.conf"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/yp.conf"
 
-#: ../authconfig.c:965
+# ../authconfig.c:965
+#: ../authconfig.c:1005
 #, c-format
 msgid "%s: critical error writing %s/smb.conf"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/smb.conf"
 
-#: ../authconfig.c:971
+# ../authconfig.c:971
+#: ../authconfig.c:1011
 #, c-format
 msgid "%s: critical error writing %s/nsswitch.conf"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/nsswitch.conf"
 
-#: ../authconfig.c:975
+# ../authconfig.c:975
+#: ../authconfig.c:1015
 #, c-format
 msgid "%s: critical error writing %s/sysconfig/network"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/sysconfig/network"
 
-#: ../authconfig.c:980
+# ../authconfig.c:980
+#: ../authconfig.c:1020
 #, c-format
 msgid "%s: critical error writing %s/pam.d/%s"
 msgstr "%s: kritischer Fehler beim Schreiben von %s/pam.d/%s"
-

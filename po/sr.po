@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 1.1\n"
-"POT-Creation-Date: 2000-02-16 15:48-0500\n"
+"POT-Creation-Date: 2000-07-13 13:08-0400\n"
 "PO-Revision-Date: 1999-09-09 10:00-0500\n"
 "Last-Translator: Zoltan Èala <zolika@sezampro.yu>\n"
 "Language-Team: Serbian <SR@li.org>\n"
@@ -9,222 +9,230 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../authconfig.c:76 ../authconfig.c:700
+#: ../authconfig.c:147
 #, c-format
-msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/sysconfig/network: %s\n"
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
 
-#: ../authconfig.c:140 ../authconfig.c:795
-#, c-format
-msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/yp.conf: %s\n"
+#: ../authconfig.c:151
+msgid "Warning"
+msgstr ""
 
-#: ../authconfig.c:202 ../authconfig.c:898
-#, c-format
-msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/ldap.conf: %s\n"
-
-#.
-#. * find length of longest string. Looks useless when strings
-#. * are right-padded as below, but will be necessary for xlations
-#. * if they don't pad.
-#.
-#: ../authconfig.c:318 ../authconfig.c:486
-msgid "    NIS Domain:"
-msgstr "     NIS domen:"
-
-#: ../authconfig.c:319 ../authconfig.c:461
-msgid "NIS Server:"
-msgstr "NIS server:"
-
-#.
-#. * authentication server stuff.
-#.
-#.
-#. * find length of longest string. Looks useless when strings
-#. * are right-padded as below, but will be necessary for xlations
-#. * if they don't pad.
-#.
-#: ../authconfig.c:320 ../authconfig.c:449
-msgid "         or use:"
-msgstr "    ili koristi:"
-
-#: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-msgid "   LDAP Domain:"
-msgstr "    LDAP domen:"
-
-#: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
-msgid "    LDAP Server:"
-msgstr "    LDAP server:"
-
-#: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
-msgid "Kerberos Realm:"
-msgstr "Kraljevstvo Kerberos-a:"
-
-#: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
-msgid "Kerberos Server:"
-msgstr "'Kerberos' server:"
-
-#.
-#. * what kind of authentication?
-#.
-#: ../authconfig.c:416
-msgid "Authentication Type:"
-msgstr "Tip autentifikacije:"
-
-#: ../authconfig.c:417
-msgid "Password File"
-msgstr "Datoteka lozinki"
-
-#: ../authconfig.c:422
-msgid "NIS"
-msgstr "NIS"
-
-#: ../authconfig.c:428
-msgid "LDAP"
-msgstr "LDAP"
-
-#: ../authconfig.c:434
-msgid "Kerberos"
-msgstr "Kerberos"
-
-#: ../authconfig.c:462
-msgid "Request via broadcast"
-msgstr "Zahtev preko emisije"
-
-#. if (!nisAvail) {
-#. newtEntrySetFlags(authServerEntry, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
-#. newtCheckboxSetFlags(bcastCheckBox, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
-#. newtEntrySetFlags(authDomainEntry, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
-#. }
-#. Shadow Stuff
-#: ../authconfig.c:535
-msgid "Use Shadow Passwords"
-msgstr "Koristi 'shadow' lozinke"
-
-#: ../authconfig.c:537
-msgid "Enable MD5 Passwords"
-msgstr "Omoguæi MD5 lozinke"
-
-#: ../authconfig.c:544 ../authconfig.c:640 ../authconfig.c:649
+#: ../authconfig.c:151 ../authconfig.c:523 ../authconfig.c:528
 msgid "Ok"
 msgstr "U redu"
 
-#: ../authconfig.c:545
+#: ../authconfig.c:161 ../authconfig.c:235
+#, fuzzy
+msgid "  Domain:"
+msgstr "     NIS domen:"
+
+#: ../authconfig.c:162 ../authconfig.c:208
+#, fuzzy
+msgid "  Server:"
+msgstr "NIS server:"
+
+#: ../authconfig.c:182
+msgid "     LHS:"
+msgstr ""
+
+#: ../authconfig.c:183
+msgid "     RHS:"
+msgstr ""
+
+#: ../authconfig.c:209
+msgid " Base DN:"
+msgstr ""
+
+#: ../authconfig.c:252
+#, fuzzy
+msgid "          Realm:"
+msgstr "    ili koristi:"
+
+#: ../authconfig.c:253
+#, fuzzy
+msgid "            KDC:"
+msgstr "    ili koristi:"
+
+#: ../authconfig.c:254
+#, fuzzy
+msgid "   Admin Server:"
+msgstr "    LDAP server:"
+
+#. Create the window and a form to put into it.
+#: ../authconfig.c:294
+#, fuzzy
+msgid "User Information Configuration"
+msgstr "Pode¹avanje autentifikacije"
+
+#. NSS modules: NIS.
+#: ../authconfig.c:298
+#, fuzzy
+msgid "Use NIS"
+msgstr "NIS"
+
+#: ../authconfig.c:321
+#, fuzzy
+msgid "Use LDAP"
+msgstr "LDAP"
+
+#: ../authconfig.c:340
+msgid "Use WinBind"
+msgstr ""
+
+#: ../authconfig.c:354
+msgid "Use Hesiod"
+msgstr ""
+
+#. Create the buttons.
+#: ../authconfig.c:375
+msgid "Next"
+msgstr ""
+
+#: ../authconfig.c:376 ../authconfig.c:524 ../authconfig.c:529
 msgid "Back"
 msgstr "Natrag"
 
-#: ../authconfig.c:545
+#: ../authconfig.c:376 ../authconfig.c:525
 msgid "Cancel"
 msgstr "Obustavi"
 
-#: ../authconfig.c:612
+#. Create the window and a form to put into it.
+#: ../authconfig.c:441
 msgid "Authentication Configuration"
 msgstr "Pode¹avanje autentifikacije"
 
-#: ../authconfig.c:640 ../authconfig.c:649
-msgid "Error"
-msgstr "Gre¹ka"
+#. PAM setup.
+#: ../authconfig.c:445
+msgid "Use Shadow Passwords"
+msgstr "Koristi 'shadow' lozinke"
 
-#: ../authconfig.c:641
-msgid "You must enter a NIS server or request via broadcast."
-msgstr "Morate uneti NIS server ili zahtevati preko emisije."
+#: ../authconfig.c:449
+#, fuzzy
+msgid "Use MD5 Passwords"
+msgstr "Omoguæi MD5 lozinke"
 
-#: ../authconfig.c:650
-msgid "You must enter an authentication domain."
-msgstr "Morate uneti domen autentifikacije."
+#: ../authconfig.c:454
+#, fuzzy
+msgid "Use LDAP Authentication"
+msgstr "Tip autentifikacije:"
 
-#: ../authconfig.c:707
-#, c-format
-msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/sysconfig/network- za pisanje: %s\n"
+#: ../authconfig.c:475
+#, fuzzy
+msgid "Use WinBind Authentication"
+msgstr "Tip autentifikacije:"
 
-#: ../authconfig.c:802
-#, c-format
-msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/yp.conf- za pisanje: %s\n"
+#: ../authconfig.c:490
+#, fuzzy
+msgid "Use Kerberos 5"
+msgstr "Kerberos"
 
-#: ../authconfig.c:905
-#, c-format
-msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/ldap.conf- za pisanje: %s\n"
-
-#: ../authconfig.c:994
-#, c-format
-msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/nsswitch.conf: %s\n"
-
-#: ../authconfig.c:1001
-#, c-format
-msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/nsswitch.conf- za pisanje: %s\n"
-
-#: ../authconfig.c:1230
-#, c-format
-msgid "%s: error opening %s\n"
-msgstr "%s: gre¹ka kod otvaranja %s\n"
-
-#: ../authconfig.c:1266
+#: ../authconfig.c:620
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
-"     --nostart            do not start/stop yp\n"
-"     --enablenis          enable nis by default\n"
-"     --nisdomain <domain> default NIS domain\n"
-"     --nisserver <server> default NIS server\n"
-"     --useshadow          use shadow passwords\n"
-"     --enablemd5          enable MD5 passwords\n"
-"     --kickstart          don't display user interface\n"
-"     --help               show this screen\n"
-msgstr ""
-"Kori¹æenje: %s [opcije]\n"
+"     --useshadow\n"
+"     --enableshadow             enable shadow passwords by default\n"
+"     --disableshadow            disable shadow passwords by default\n"
+"     --enablemd5                enable MD5 passwords by default\n"
+"     --disablemd5               disable MD5 passwords by default\n"
 "\n"
-"     --nostart            nemoj pokrenuti/zaustaviti yp\n"
-"     --enablenis          podrazumevano omoguæen nis\n"
-"     --nisdomain <domen>  podrazumevani NIS domen\n"
-"     --nisserver <server> podrazumevani NIS server\n"
-"     --useshadow          koristi 'shadow' lozinke\n"
-"     --enablemd5          omoguæi MD5 lozinke\n"
-"     --kickstart          nemoj prikazati korisnièki interfejs\n"
-"     --help               prika¾i ove instrukcije\n"
+"     --enablenis                enable NIS\n"
+"     --disablenis               disable NIS\n"
+"     --nisdomain <domain>       default NIS domain\n"
+"     --nisserver <server>       default NIS server\n"
+"\n"
+"     --enableldap               enable ldap for user information by default\n"
+"     --disableldap              disable ldap for user information by "
+"default\n"
+"     --enableldapauth           enable ldap for authentication by default\n"
+"     --disableldapauth          disable ldap for authentication by default\n"
+"     --ldapserver <server>      default LDAP server\n"
+"     --ldapbasedn <dn>          default LDAP base DN\n"
+"\n"
+"     --enablekrb5               enable kerberos authentication by default\n"
+"     --disablekrb5              disable kerberos authentication by default\n"
+"     --krb5kdc <server>         default kerberos KDC\n"
+"     --krb5adminserver <server> default kerberos admin server\n"
+"     --krb5realm <realm>        default kerberos realm\n"
+"\n"
+"     --enablehesiod             enable hesiod for user information by "
+"default\n"
+"     --disablehesiod            disable hesiod for user information by "
+"default\n"
+"     --hesiodlhs <lhs>          default hesiod LHS\n"
+"     --hesiodrhs <rhs>          default hesiod RHS\n"
+"\n"
+"     --nostart                  do not start/stop ypbind\n"
+"     --kickstart                don't display user interface\n"
+"     --help                     show this screen\n"
+msgstr ""
 
-#: ../authconfig.c:1332
+#: ../authconfig.c:659
+msgid ""
+"\n"
+"     --enablelocal              use locally-defined policy "
+msgstr ""
+
+#: ../authconfig.c:770
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: lo¹ argument %s: %s\n"
 
-#: ../authconfig.c:1339
+#: ../authconfig.c:777
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: neoèekivan argument\n"
 
-#: ../authconfig.c:1351
+#: ../authconfig.c:789
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: mo¾e da pokrene samo 'root'\n"
 
-#: ../authconfig.c:1367
-#, c-format
-msgid "%s: unknown authorization type %s\n"
-msgstr "%s: nepoznat tip autorizacije: %s\n"
-
-#: ../authconfig.c:1383
-#, c-format
-msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr "%s: kritièna gre¹ka kod èitanja /etc/sysconfig/network"
-
-#: ../authconfig.c:1392
-#, c-format
-msgid "%s: critical error reading /etc/yp.conf"
+#: ../authconfig.c:800
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/hesiod.conf"
 msgstr "%s: kritièna gre¹ka kod èitanja /etc/yp.conf"
 
-#: ../authconfig.c:1426
-#, c-format
-msgid "%s: critical error reading /etc/pam.d/passwd\n"
+#: ../authconfig.c:807
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/krb5.conf"
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/yp.conf"
+
+#: ../authconfig.c:814
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/ldap.conf"
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/yp.conf"
+
+#: ../authconfig.c:822
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/smb.conf"
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/yp.conf"
+
+#: ../authconfig.c:830
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/yp.conf"
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/yp.conf"
+
+#: ../authconfig.c:837
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/nsswitch.conf"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/nsswitch.conf\n"
+
+#: ../authconfig.c:844
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/sysconfig/network"
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/sysconfig/network"
+
+#: ../authconfig.c:851
+#, fuzzy, c-format
+msgid "%s: critical error reading %s/pam.d/%s"
 msgstr "%s: kritièna gre¹ka kod èitanja /etc/pam.d/passwd\n"
 
-#: ../authconfig.c:1435
+#: ../authconfig.c:908
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -232,45 +240,132 @@ msgstr ""
 " <Tab>/<Alt-Tab> kretanje izmeðu elemenata | <Space> izbor | <F12> sledeæi "
 "ekran"
 
-#: ../authconfig.c:1445
+#: ../authconfig.c:916
 msgid "dialog was cancelled\n"
 msgstr "dijalog je obustavljen\n"
 
-#: ../authconfig.c:1456
-msgid "authentication type selected: "
-msgstr "izabrani tip autentifikacije: "
-
-#: ../authconfig.c:1486
-#, c-format
-msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr "%s: kritièna gre¹ka kod upisa /etc/sysconfig/network\n"
-
-#: ../authconfig.c:1494
-#, c-format
-msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
-
-#: ../authconfig.c:1501
-#, c-format
-msgid "%s: critical error turning on NIS service\n"
-msgstr "%s: kritièna gre¹ka kod ukljuèivanja NIS servisa\n"
-
-#: ../authconfig.c:1513
-#, c-format
-msgid "%s: critical error writing /etc/ldap.conf\n"
+#: ../authconfig.c:984
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/hesiod.conf"
 msgstr "%s: kritièna gre¹ka kod upisa /etc/ldap.conf\n"
 
-#: ../authconfig.c:1518
-#, c-format
-msgid "%s: critical error writing files in /etc/pam.d\n"
-msgstr "%s: kritièna gre¹ka kod upisa datoteka u /etc/pam.d\n"
+#: ../authconfig.c:989
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/krb5.conf"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
 
-#: ../authconfig.c:1528
-#, c-format
-msgid "%s: critical error writing /etc/nsswitch.conf\n"
+#: ../authconfig.c:994
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/ldap.conf"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/ldap.conf\n"
+
+#: ../authconfig.c:999
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/yp.conf"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
+
+#: ../authconfig.c:1005
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/smb.conf"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
+
+#: ../authconfig.c:1011
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/nsswitch.conf"
 msgstr "%s: kritièna gre¹ka kod upisa /etc/nsswitch.conf\n"
 
-#: ../authconfig.c:1537
-#, c-format
-msgid "%s: critical error with shadow password manipulation\n"
-msgstr "%s: kritièna gre¹ka kod manipulacije 'shadow' lozinkom\n"
+#: ../authconfig.c:1015
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/sysconfig/network"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/sysconfig/network\n"
+
+#: ../authconfig.c:1020
+#, fuzzy, c-format
+msgid "%s: critical error writing %s/pam.d/%s"
+msgstr "%s: kritièna gre¹ka kod upisa datoteka u /etc/pam.d\n"
+
+#~ msgid "%s: cannot open /etc/sysconfig/network: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/sysconfig/network: %s\n"
+
+#~ msgid "%s: cannot open /etc/yp.conf: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/yp.conf: %s\n"
+
+#~ msgid "%s: cannot open /etc/ldap.conf: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/ldap.conf: %s\n"
+
+#~ msgid "   LDAP Domain:"
+#~ msgstr "    LDAP domen:"
+
+#~ msgid "Kerberos Realm:"
+#~ msgstr "Kraljevstvo Kerberos-a:"
+
+#~ msgid "Kerberos Server:"
+#~ msgstr "'Kerberos' server:"
+
+#~ msgid "Password File"
+#~ msgstr "Datoteka lozinki"
+
+#~ msgid "Request via broadcast"
+#~ msgstr "Zahtev preko emisije"
+
+#~ msgid "Error"
+#~ msgstr "Gre¹ka"
+
+#~ msgid "You must enter a NIS server or request via broadcast."
+#~ msgstr "Morate uneti NIS server ili zahtevati preko emisije."
+
+#~ msgid "You must enter an authentication domain."
+#~ msgstr "Morate uneti domen autentifikacije."
+
+#~ msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/sysconfig/network- za pisanje: %s\n"
+
+#~ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/yp.conf- za pisanje: %s\n"
+
+#~ msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/ldap.conf- za pisanje: %s\n"
+
+#~ msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/nsswitch.conf: %s\n"
+
+#~ msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
+#~ msgstr "%s: ne mogu da otvorim /etc/nsswitch.conf- za pisanje: %s\n"
+
+#~ msgid "%s: error opening %s\n"
+#~ msgstr "%s: gre¹ka kod otvaranja %s\n"
+
+#~ msgid ""
+#~ "Usage: %s [options]\n"
+#~ "\n"
+#~ "     --nostart            do not start/stop yp\n"
+#~ "     --enablenis          enable nis by default\n"
+#~ "     --nisdomain <domain> default NIS domain\n"
+#~ "     --nisserver <server> default NIS server\n"
+#~ "     --useshadow          use shadow passwords\n"
+#~ "     --enablemd5          enable MD5 passwords\n"
+#~ "     --kickstart          don't display user interface\n"
+#~ "     --help               show this screen\n"
+#~ msgstr ""
+#~ "Kori¹æenje: %s [opcije]\n"
+#~ "\n"
+#~ "     --nostart            nemoj pokrenuti/zaustaviti yp\n"
+#~ "     --enablenis          podrazumevano omoguæen nis\n"
+#~ "     --nisdomain <domen>  podrazumevani NIS domen\n"
+#~ "     --nisserver <server> podrazumevani NIS server\n"
+#~ "     --useshadow          koristi 'shadow' lozinke\n"
+#~ "     --enablemd5          omoguæi MD5 lozinke\n"
+#~ "     --kickstart          nemoj prikazati korisnièki interfejs\n"
+#~ "     --help               prika¾i ove instrukcije\n"
+
+#~ msgid "%s: unknown authorization type %s\n"
+#~ msgstr "%s: nepoznat tip autorizacije: %s\n"
+
+#~ msgid "authentication type selected: "
+#~ msgstr "izabrani tip autentifikacije: "
+
+#~ msgid "%s: critical error turning on NIS service\n"
+#~ msgstr "%s: kritièna gre¹ka kod ukljuèivanja NIS servisa\n"
+
+#~ msgid "%s: critical error with shadow password manipulation\n"
+#~ msgstr "%s: kritièna gre¹ka kod manipulacije 'shadow' lozinkom\n"
