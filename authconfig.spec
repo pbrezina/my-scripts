@@ -34,6 +34,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Aug 29 2000 Nalin Dahyabhai <nalin@redhat.com>
+- don't set "shadow" or "md5" for authentication with pam_unix, they're
+  not needed (remove for clarity)
+
 * Mon Aug 28 2000 Nalin Dahyabhai <nalin@redhat.com>
 - edit /etc/openldap/ldap.conf in addition to /etc/ldap.conf
 

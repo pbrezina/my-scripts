@@ -1490,8 +1490,7 @@ static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info
 			}
 			if(strcmp(standard_pam_modules[i].name, "unix") == 0)
 			if(stack != NULL) {
-				if((strcmp(stack, "auth") == 0) ||
-				   (strcmp(stack, "password") == 0)) {
+				if(strcmp(stack, "password") == 0) {
 					if(info->enableMD5) {
 						strncat(buf, " md5",
 						sizeof(buf) - 1 - strlen(buf));
