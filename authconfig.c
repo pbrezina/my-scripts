@@ -24,7 +24,7 @@ static int readNetworkConfigFile(char **nisDomain)
 {
   FILE *f;
   char *s, *s1;
-  char buf[500];
+  char buf[250];
   int line = 0;
   
   f = fopen("/etc/sysconfig/network", "r");
@@ -84,7 +84,7 @@ static int readYPConfigFile(char **nisServer)
 {
   FILE *f;
   char *s, *s1;
-  char buf[500];
+  char buf[250];
   int line = 0;
   
   f = fopen("/etc/yp.conf", "r");
@@ -200,7 +200,7 @@ int getChoices(int useBack, int configureNis,
   newtComponent shadowCheckBox, MD5CheckBox;
   newtComponent okButton, cancelButton;
   newtComponent answer;
-  char *newNisDomain, *newNisServer;
+  char *newNisDomain = NULL, *newNisServer = NULL;
   char newUseShadow, newEnableMD5, newEnableBroadCast;
   struct servercbInfo servercb;
   struct niscbInfo niscb;
@@ -331,28 +331,29 @@ int getChoices(int useBack, int configureNis,
 	  newtPopWindow();
 	  return 1;
       } else {
-	  /* process form values */
+	/* process form values */
+	if (configureNis) {
 	  *enableNisServer = newEnableBroadCast == '*' ? ' ' : '*';
 	  if (*enableNisServer == '*' && !strcmp(newNisServer, "")) {
-	      newtWinMessage(i18n("Error"), i18n("Ok"),
-			     i18n("You must enter a NIS server or "
-				  "request via broadcast."));
-	      done = 0;
-	      continue;
+	    newtWinMessage(i18n("Error"), i18n("Ok"),
+			   i18n("You must enter a NIS server or "
+				"request via broadcast."));
+	    done = 0;
+	    continue;
 	  }
 	  if (*enableNis == '*' && !strcmp(newNisDomain, "")) {
-	      newtWinMessage(i18n("Error"), i18n("Ok"),
-			     i18n("You must enter a NIS domain."));
-	      done = 0;
-	      continue;
+	    newtWinMessage(i18n("Error"), i18n("Ok"),
+			   i18n("You must enter a NIS domain."));
+	    done = 0;
+	    continue;
 	  }
 	  *nisDomain = newNisDomain;
 	  *nisServer = newNisServer;
-	  
-	  *useShadow = newUseShadow;
-	  *enableMD5 = newEnableMD5;
-
-	  done = 1;
+	}	  
+	*useShadow = newUseShadow;
+	*enableMD5 = newEnableMD5;
+	
+	done = 1;
       }
   } while (!done);
   
@@ -367,7 +368,7 @@ int rewriteNetworkConfigFile(char enableNis, char *nisDomain)
 {
   FILE *f, *f1;
   char *s, *s2;
-  char buf[500];
+  char buf[250];
   int line = 0;
   int found = 0;
 
@@ -448,7 +449,7 @@ int rewriteYPConfigFile(char enableNisServer, char *nisServer, char *nisDomain)
 {
   FILE *f, *f1;
   char *s, *s2;
-  char buf[500];
+  char buf[250];
   int line = 0;
   int found = 0;
 
@@ -553,7 +554,7 @@ int toggleShadowPam(int enable, int md5)
 {
   char *filenames[] = { "login", "rlogin", "passwd", 0 };    
   FILE *f, *f1;
-  char curFileName[160], curTmpFileName[160], buf[500];
+  char curFileName[80], curTmpFileName[80], buf[250];
   char *s, *s1;
   char *shadowFound, *md5Found;
   int i;
@@ -624,7 +625,7 @@ int toggleShadowPam(int enable, int md5)
 int checkEnableMD5(char *enableMD5)
 {
   char *filename = "/etc/pam.d/passwd";
-  char buf[500];
+  char buf[250];
   FILE *f;
   char *s;
 
@@ -836,10 +837,12 @@ int main(int argc, char **argv) {
       }
   }
 
-  if (toggleNisService(enableNis, nostart)) {
-    fprintf(stderr, i18n("%s: critical error turning on NIS service\n"),
-	    progName);
-    return 2;
+  if (configureNis) {
+    if (toggleNisService(enableNis, nostart)) {
+      fprintf(stderr, i18n("%s: critical error turning on NIS service\n"),
+	      progName);
+      return 2;
+    }
   }
       
   if (doShadowStuff(useShadow, enableMD5)) {
