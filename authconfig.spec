@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.5
+Version: 4.1.6
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -26,16 +26,21 @@ make
 %install
 %{makeinstall}
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root)
 %{_sbindir}/authconfig
 %{_mandir}/man8/*
-%attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Wed Feb 14 2001 Preston Brown <pbrown@redhat.com>
+- final translation update.
+- langify
+
 * Mon Feb 12 2001 Nalin Dahyabhai <nalin@redhat.com>
 - errors connecting to LDAP also trigger service_err returns, so ignore on
   those as well
