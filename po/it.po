@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2002-04-11 16:14-0400\n"
+"POT-Creation-Date: 2002-04-09 20:15-0400\n"
 "PO-Revision-Date: 2002-02-26 16:01GMT\n"
 "Last-Translator:  <marisa@redhat.it>\n"
 "Language-Team:  <en@li.org>\n"
@@ -14,419 +14,567 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: authconfig-gtk.py:124 authconfig-gtk.py:175
-msgid "Authentication Configuration"
-msgstr "Configurazione dell'autenticazione"
+#: ../authconfig.c:123
+msgid "Warning"
+msgstr "Avviso"
 
-#: authconfig-gtk.py:188
+#: ../authconfig-gtk.py:188 ../authconfig.c:123 ../authconfig.c:599
+#: ../authconfig.c:612 ../glade.strings:37
 msgid "Ok"
 msgstr "Ok"
 
-#: authconfig-gtk.py:194
+#: ../authconfig.c:141
+msgid "Domain:"
+msgstr "Dominio:"
+
+#: ../authconfig.c:142 ../authconfig.c:182
+msgid "Server:"
+msgstr "Server:"
+
+#: ../authconfig.c:162
+msgid "LHS:"
+msgstr "LHS:"
+
+#: ../authconfig.c:163
+msgid "RHS:"
+msgstr "RHS:"
+
+#: ../authconfig.c:183
+msgid "Base DN:"
+msgstr "Base DN:"
+
+#: ../authconfig.c:216
+msgid "Realm:"
+msgstr "Realm:"
+
+#: ../authconfig.c:217
+msgid "KDC:"
+msgstr "KDC:"
+
+#: ../authconfig.c:218
+msgid "Admin Server:"
+msgstr "Server Admin:"
+
+#: ../authconfig.c:242
+msgid "Workgroup:"
+msgstr "Gruppo di lavoro:"
+
+#: ../authconfig.c:243
+msgid "Servers:"
+msgstr "Server:"
+
+#. NSCD
+#: ../authconfig.c:283
+msgid "Cache Information"
+msgstr "Informazioni sulla cache"
+
+#. NSS modules: NIS.
+#: ../authconfig.c:291
+msgid "Use NIS"
+msgstr "Usa NIS"
+
+#: ../authconfig.c:321
+msgid "Use LDAP"
+msgstr "Usa LDAP"
+
+#: ../authconfig.c:326 ../authconfig.c:489
+msgid "Use TLS"
+msgstr "Usa TLS"
+
+#. NSS modules: hesiod.
+#: ../authconfig.c:360
+msgid "Use Hesiod"
+msgstr "Usa Hesiod"
+
+#: ../authconfig.c:390
+msgid "Next"
+msgstr "Avanti"
+
+#: ../authconfig.c:391 ../authconfig.c:600 ../authconfig.c:613
+msgid "Back"
+msgstr "Indietro"
+
+#: ../authconfig-gtk.py:194 ../authconfig.c:391 ../authconfig.c:601
+#: ../glade.strings:38
 msgid "Cancel"
 msgstr "Annulla"
 
-#~ msgid "Warning"
-#~ msgstr "Avviso"
-
-#~ msgid "Domain:"
-#~ msgstr "Dominio:"
-
-#~ msgid "Server:"
-#~ msgstr "Server:"
-
-#~ msgid "LHS:"
-#~ msgstr "LHS:"
-
-#~ msgid "RHS:"
-#~ msgstr "RHS:"
-
-#~ msgid "Base DN:"
-#~ msgstr "Base DN:"
-
-#~ msgid "Realm:"
-#~ msgstr "Realm:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Server Admin:"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Gruppo di lavoro:"
-
-#~ msgid "Servers:"
-#~ msgstr "Server:"
-
-#~ msgid "Cache Information"
-#~ msgstr "Informazioni sulla cache"
-
-#~ msgid "Use NIS"
-#~ msgstr "Usa NIS"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Usa LDAP"
-
-#~ msgid "Use TLS"
-#~ msgstr "Usa TLS"
-
-#~ msgid "Use Hesiod"
-#~ msgstr "Usa Hesiod"
-
-#~ msgid "Next"
-#~ msgstr "Avanti"
-
-#~ msgid "Back"
-#~ msgstr "Indietro"
-
-#~ msgid "User Information Configuration"
-#~ msgstr "Configurazione informazioni utente"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Usa Shadow Password"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Usa Password MD5"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Usa autenticazione LDAP"
-
-#~ msgid "Use Kerberos 5"
-#~ msgstr "Usa Kerberos 5"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "Usa l'autenticazione SMB"
-
-#~ msgid "enable shadowed passwords by default"
-#~ msgstr "abilita password shadow di default"
-
-#~ msgid "disable shadowed passwords by default"
-#~ msgstr "disabilita password shadow di default"
-
-#~ msgid "enable MD5 passwords by default"
-#~ msgstr "abilita password MD5 di default"
-
-#~ msgid "disable MD5 passwords by default\n"
-#~ msgstr "disabilita password MD5 di default\n"
-
-#~ msgid "enable NIS"
-#~ msgstr "abilita NIS "
-
-#~ msgid "disable NIS"
-#~ msgstr "disabilita NIS"
-
-#~ msgid "default NIS domain"
-#~ msgstr "dominio NIS di default"
-
-#~ msgid "<domain>"
-#~ msgstr "<dominio>"
-
-#~ msgid "default NIS server\n"
-#~ msgstr "Server NIS di default\n"
-
-#~ msgid "<server>"
-#~ msgstr "<server>"
-
-#~ msgid "enable LDAP for user information by default"
-#~ msgstr "abilita di default LDAP per informazioni utente"
-
-#~ msgid "disable LDAP for user information by default"
-#~ msgstr "disabilita di default LDAP per informazioni utente"
-
-#~ msgid "enable use of TLS with LDAP"
-#~ msgstr "abilita l'uso di TLS con LDAP"
-
-#~ msgid "disable use of TLS with LDAP"
-#~ msgstr "disabilita l'uso di TLS con LDAP"
-
-#~ msgid "enable LDAP for authentication by default"
-#~ msgstr "abilita di default autenticazione LDAP"
-
-#~ msgid "disable LDAP for authentication by default"
-#~ msgstr "disabilita di default autenticazione LDAP"
-
-#~ msgid "default LDAP server"
-#~ msgstr "server LDAP di default"
-
-#~ msgid "default LDAP base DN\n"
-#~ msgstr "base DN LDAP di default\n"
-
-#~ msgid "<dn>"
-#~ msgstr "<dn>"
-
-#~ msgid "enable kerberos authentication by default"
-#~ msgstr "abilita di default autenticazione kerberos"
-
-#~ msgid "disable kerberos authentication by default"
-#~ msgstr "disabilita di default autenticazione kerberos"
-
-#~ msgid "default kerberos KDC"
-#~ msgstr "KDC kerberos di default"
-
-#~ msgid "default kerberos admin server"
-#~ msgstr "server admin kerberos di default"
-
-#~ msgid "default kerberos realm\n"
-#~ msgstr "Kerberos Realm di default\n"
-
-#~ msgid "<realm>"
-#~ msgstr "<realm>"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "abilita di default autenticazione SMB"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "disabilita di default autenticazione SMB"
-
-#~ msgid "workgroup authentication servers are in"
-#~ msgstr "i server per l'autenticazione del gruppo di lavoro sono presenti"
-
-#~ msgid "<workgroup>"
-#~ msgstr "<gruppo di lavoro>"
-
-#~ msgid "names of servers to authenticate against\n"
-#~ msgstr "nomi dei server per l'autenticazione\n"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "abilita di default hesiod per informazione utenti"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "disabilita di default hesiod per informazione utenti"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "LHS hesiod di default"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "default hesiod RHS\n"
-#~ msgstr "RHS hesiod di default\n"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "enable caching of user information by default"
-#~ msgstr "abilita di default il caching delle informazioni utente"
-
-#~ msgid "disable caching of user information by default\n"
-#~ msgstr "disabilita di default il caching delle informazioni utente\n"
-
-#~ msgid "do not start/stop portmap, ypbind, and nscd"
-#~ msgstr "non avviare/fermare portmap, ypbind e nscd"
-
-#~ msgid "don't display user interface"
-#~ msgstr "non mostrare interfaccia utente"
-
-#~ msgid "probe network for defaults and print them"
-#~ msgstr "ricerca i parametri di default sulla rete e stampali"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "utilizza policy definite localmente"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "non utilizzare policy definite localmente"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: argomento sbagliato %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: tentativo di continuare\n"
-
-#~ msgid "%s: unexpected argument\n"
-#~ msgstr "%s: argomento inaspettato\n"
-
-#~ msgid "%s: can only be run as root\n"
-#~ msgstr "%s: può essere eseguito solo come root\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: errore critico durante la lettura di %s/%s"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: impossibile leggere la configurazione di cache"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> tra gli elementi | <Spazio> seleziona | <F12> schermo "
-#~ "successivo "
-
-#~ msgid "(c) 1999-2001 Red Hat, Inc."
-#~ msgstr "(c) 1999-2001 Red Hat, Inc."
-
-#~ msgid "dialog was cancelled\n"
-#~ msgstr "dialogo è stato cancellato\n"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: errore critico durante la registrazione dei parametri di cache"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: errore critico durante la scrittura di %s/%s"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.  Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Il file %s non è stato trovato ma è necessario per il corretto "
-#~ "funzionamento del supporto %s. Installate il pacchetto %s che contiene "
-#~ "questo file."
-
-#~ msgid "Use Local Policies"
-#~ msgstr "Utilizza policy locale"
-
-#~ msgid "_Cache User Information"
-#~ msgstr "_Informazioni sulla cache"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "_Configure NIS..."
-#~ msgstr "_Configura NIS..."
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "Attiva supporto _NIS "
-
-#~ msgid ""
-#~ "NIS is the Name Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS, il Name Information Service, viene solitamente usato sulle reti di "
-#~ "piccole e medie dimensioni."
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "Attiva supporto _LDAP"
-
-#~ msgid "_Configure LDAP..."
-#~ msgstr "_Configura LDAP..."
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy.  "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Il Lightweight Directory Access Protocol è un modo standard di ricerca "
-#~ "delle directory e può contenere dati arbitrari in una gerarchia "
-#~ "strutturata. LDAP viene sempre più usato nelle piccole come nelle grandi "
-#~ "reti."
-
-#~ msgid "Hesiod"
-#~ msgstr "Hesiod"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Attiva supporto _Hesiod"
-
-#~ msgid "_Configure Hesiod..."
-#~ msgstr "_Configura Hesiod..."
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod permette agli amministratori di sistema di pubblicare nel DNS le "
-#~ "informazioni su utenti e gruppi. Viene usato anche nelle reti molto "
-#~ "grandi."
-
-#~ msgid "User Information"
-#~ msgstr "Informazioni sull'utente"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "Usa password _Shadow "
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Usa password _MD5"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos "
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Attiva supporto _Kerberos"
-
-#~ msgid "_Configure Kerberos..."
-#~ msgstr "_Configura Kerberos..."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos è un sistema di autenticazione di terze parti sicuro solitamente "
-#~ "usato nelle reti di medie e grandi dimensioni."
-
-#~ msgid "SMB Authentication"
-#~ msgstr "Autenticazione SMB"
-
-#~ msgid "Enable _SMB Support"
-#~ msgstr "Attiva supporto _SMB"
-
-#~ msgid "_Configure SMB..."
-#~ msgstr "_Configura SMB..."
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "L'autenticazione SMB verifica le password utenti collegandosi a un server "
-#~ "che utilizza la serie di protocolli SMB (System Message Block)."
-
-#~ msgid "Authentication"
-#~ msgstr "Autenticazione"
-
-#~ msgid "NIS Settings"
-#~ msgstr "Parametri NIS"
-
-#~ msgid "NIS _Server"
-#~ msgstr "_Server NIS"
-
-#~ msgid "NIS _Domain"
-#~ msgstr "_Dominio NIS"
-
-#~ msgid "Apply"
-#~ msgstr "Applica"
-
-#~ msgid "Close"
-#~ msgstr "Chiudi"
-
-#~ msgid "Hesiod Settings"
-#~ msgstr "Parametri Hesiod"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "_RHS Hesiod"
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "_LHS Hesiod"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Parametri Kerberos"
-
-#~ msgid "_Admin Servers"
-#~ msgstr "Server _Admin"
-
-#~ msgid "_Realm"
-#~ msgstr "_Realm"
-
-#~ msgid "_KDCs"
-#~ msgstr "_KDC"
-
-#~ msgid "SMB Settings"
-#~ msgstr "Parametri SMB"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "Controller _Domain"
-
-#~ msgid "_Workgroup"
-#~ msgstr "_Gruppo di lavoro:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "Parametri LDAP"
-
-#~ msgid "LDAP _Server"
-#~ msgstr "_Server LDAP"
-
-#~ msgid "LDAP Search _Base DN"
-#~ msgstr "DN _inizio ricerca in LDAP"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Usa _TLS per cifrare le connessioni"
+#: ../authconfig.c:411
+msgid "User Information Configuration"
+msgstr "Configurazione informazioni utente"
+
+#: ../authconfig.c:472
+msgid "Use Shadow Passwords"
+msgstr "Usa Shadow Password"
+
+#: ../authconfig.c:477
+msgid "Use MD5 Passwords"
+msgstr "Usa Password MD5"
+
+#: ../authconfig.c:484
+msgid "Use LDAP Authentication"
+msgstr "Usa autenticazione LDAP"
+
+#: ../authconfig.c:522
+msgid "Use Kerberos 5"
+msgstr "Usa Kerberos 5"
+
+#: ../authconfig.c:560
+msgid "Use SMB Authentication"
+msgstr "Usa l'autenticazione SMB"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: ../authconfig-gtk.py:124 ../authconfig-gtk.py:175 ../authconfig.c:630
+#: ../glade.strings:7
+msgid "Authentication Configuration"
+msgstr "Configurazione dell'autenticazione"
+
+#: ../authconfig.c:773
+msgid "enable shadowed passwords by default"
+msgstr "abilita password shadow di default"
+
+#: ../authconfig.c:775
+msgid "disable shadowed passwords by default"
+msgstr "disabilita password shadow di default"
+
+#: ../authconfig.c:779
+msgid "enable MD5 passwords by default"
+msgstr "abilita password MD5 di default"
+
+#: ../authconfig.c:781
+msgid "disable MD5 passwords by default\n"
+msgstr "disabilita password MD5 di default\n"
+
+#: ../authconfig.c:784
+msgid "enable NIS"
+msgstr "abilita NIS "
+
+#: ../authconfig.c:786
+msgid "disable NIS"
+msgstr "disabilita NIS"
+
+#: ../authconfig.c:788
+msgid "default NIS domain"
+msgstr "dominio NIS di default"
+
+#: ../authconfig.c:788
+msgid "<domain>"
+msgstr "<dominio>"
+
+#: ../authconfig.c:790
+msgid "default NIS server\n"
+msgstr "Server NIS di default\n"
+
+#: ../authconfig.c:790 ../authconfig.c:805 ../authconfig.c:814
+#: ../authconfig.c:816 ../authconfig.c:827
+msgid "<server>"
+msgstr "<server>"
+
+#: ../authconfig.c:793
+msgid "enable LDAP for user information by default"
+msgstr "abilita di default LDAP per informazioni utente"
+
+#: ../authconfig.c:795
+msgid "disable LDAP for user information by default"
+msgstr "disabilita di default LDAP per informazioni utente"
+
+#: ../authconfig.c:797
+msgid "enable use of TLS with LDAP"
+msgstr "abilita l'uso di TLS con LDAP"
+
+#: ../authconfig.c:799
+msgid "disable use of TLS with LDAP"
+msgstr "disabilita l'uso di TLS con LDAP"
+
+#: ../authconfig.c:801
+msgid "enable LDAP for authentication by default"
+msgstr "abilita di default autenticazione LDAP"
+
+#: ../authconfig.c:803
+msgid "disable LDAP for authentication by default"
+msgstr "disabilita di default autenticazione LDAP"
+
+#: ../authconfig.c:805
+msgid "default LDAP server"
+msgstr "server LDAP di default"
+
+#: ../authconfig.c:807
+msgid "default LDAP base DN\n"
+msgstr "base DN LDAP di default\n"
+
+#: ../authconfig.c:807
+msgid "<dn>"
+msgstr "<dn>"
+
+#: ../authconfig.c:810
+msgid "enable kerberos authentication by default"
+msgstr "abilita di default autenticazione kerberos"
+
+#: ../authconfig.c:812
+msgid "disable kerberos authentication by default"
+msgstr "disabilita di default autenticazione kerberos"
+
+#: ../authconfig.c:814
+msgid "default kerberos KDC"
+msgstr "KDC kerberos di default"
+
+#: ../authconfig.c:816
+msgid "default kerberos admin server"
+msgstr "server admin kerberos di default"
+
+#: ../authconfig.c:818
+msgid "default kerberos realm\n"
+msgstr "Kerberos Realm di default\n"
+
+#: ../authconfig.c:818
+msgid "<realm>"
+msgstr "<realm>"
+
+#: ../authconfig.c:821
+msgid "enable SMB authentication by default"
+msgstr "abilita di default autenticazione SMB"
+
+#: ../authconfig.c:823
+msgid "disable SMB authentication by default"
+msgstr "disabilita di default autenticazione SMB"
+
+#: ../authconfig.c:825
+msgid "workgroup authentication servers are in"
+msgstr "i server per l'autenticazione del gruppo di lavoro sono presenti"
+
+#: ../authconfig.c:825
+msgid "<workgroup>"
+msgstr "<gruppo di lavoro>"
+
+#: ../authconfig.c:827
+msgid "names of servers to authenticate against\n"
+msgstr "nomi dei server per l'autenticazione\n"
+
+#: ../authconfig.c:830
+msgid "enable hesiod for user information by default"
+msgstr "abilita di default hesiod per informazione utenti"
+
+#: ../authconfig.c:832
+msgid "disable hesiod for user information by default"
+msgstr "disabilita di default hesiod per informazione utenti"
+
+#: ../authconfig.c:834
+msgid "default hesiod LHS"
+msgstr "LHS hesiod di default"
+
+#: ../authconfig.c:834
+msgid "<lhs>"
+msgstr "<lhs>"
+
+#: ../authconfig.c:836
+msgid "default hesiod RHS\n"
+msgstr "RHS hesiod di default\n"
+
+#: ../authconfig.c:836
+msgid "<rhs>"
+msgstr "<rhs>"
+
+#: ../authconfig.c:839
+msgid "enable caching of user information by default"
+msgstr "abilita di default il caching delle informazioni utente"
+
+#: ../authconfig.c:841
+msgid "disable caching of user information by default\n"
+msgstr "disabilita di default il caching delle informazioni utente\n"
+
+#: ../authconfig.c:848
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "non avviare/fermare portmap, ypbind e nscd"
+
+#: ../authconfig.c:850
+msgid "don't display user interface"
+msgstr "non mostrare interfaccia utente"
+
+#: ../authconfig.c:852
+msgid "probe network for defaults and print them"
+msgstr "ricerca i parametri di default sulla rete e stampali"
+
+#: ../authconfig.c:855
+msgid "use locally-defined policies"
+msgstr "utilizza policy definite localmente"
+
+#: ../authconfig.c:857
+msgid "don't use locally-defined policies"
+msgstr "non utilizzare policy definite localmente"
+
+#: ../authconfig.c:868
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: argomento sbagliato %s: %s\n"
+
+#: ../authconfig.c:877
+#, c-format
+msgid "%s: attempting to continue\n"
+msgstr "%s: tentativo di continuare\n"
+
+#: ../authconfig.c:881
+#, c-format
+msgid "%s: unexpected argument\n"
+msgstr "%s: argomento inaspettato\n"
+
+#: ../authconfig.c:908
+#, c-format
+msgid "%s: can only be run as root\n"
+msgstr "%s: può essere eseguito solo come root\n"
+
+#: ../authconfig.c:919 ../authconfig.c:927 ../authconfig.c:935
+#: ../authconfig.c:943 ../authconfig.c:951 ../authconfig.c:959
+#: ../authconfig.c:972 ../authconfig.c:980
+#, c-format
+msgid "%s: critical error reading %s/%s"
+msgstr "%s: errore critico durante la lettura di %s/%s"
+
+#: ../authconfig.c:966
+#, c-format
+msgid "%s: unable to read caching configuration"
+msgstr "%s: impossibile leggere la configurazione di cache"
+
+#: ../authconfig.c:1042
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> tra gli elementi | <Spazio> seleziona | <F12> schermo "
+"successivo "
+
+#: ../authconfig.c:1045
+msgid "(c) 1999-2001 Red Hat, Inc."
+msgstr "(c) 1999-2001 Red Hat, Inc."
+
+#: ../authconfig.c:1052
+msgid "dialog was cancelled\n"
+msgstr "dialogo è stato cancellato\n"
+
+#: ../authconfig.c:1067
+#, c-format
+msgid "%s: critical error recording caching setting"
+msgstr "%s: errore critico durante la registrazione dei parametri di cache"
+
+#: ../authconfig.c:1073 ../authconfig.c:1079 ../authconfig.c:1085
+#: ../authconfig.c:1091 ../authconfig.c:1097 ../authconfig.c:1102
+#: ../authconfig.c:1107 ../authconfig.c:1113
+#, c-format
+msgid "%s: critical error writing %s/%s"
+msgstr "%s: errore critico durante la scrittura di %s/%s"
+
+#: ../authinfo.h:58
+#, c-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"Il file %s non è stato trovato ma è necessario per il corretto funzionamento "
+"del supporto %s. Installate il pacchetto %s che contiene questo file."
+
+#: ../localpol.h:9
+msgid "Use Local Policies"
+msgstr "Utilizza policy locale"
+
+#: ../glade.strings:8
+msgid "_Cache User Information"
+msgstr "_Informazioni sulla cache"
+
+#: ../glade.strings:9
+msgid "NIS"
+msgstr "NIS"
+
+#: ../glade.strings:10
+msgid "_Configure NIS..."
+msgstr "_Configura NIS..."
+
+#: ../glade.strings:11
+msgid "Enable _NIS Support"
+msgstr "Attiva supporto _NIS "
+
+#: ../glade.strings:12
+msgid ""
+"NIS is the Name Information Service.  It is commonly used on small to medium "
+"networks."
+msgstr ""
+"NIS, il Name Information Service, viene solitamente usato sulle reti di "
+"piccole e medie dimensioni."
+
+#: ../glade.strings:13 ../glade.strings:24
+msgid "LDAP"
+msgstr "LDAP"
+
+#: ../glade.strings:14 ../glade.strings:25
+msgid "Enable _LDAP Support"
+msgstr "Attiva supporto _LDAP"
+
+#: ../glade.strings:15 ../glade.strings:26
+msgid "_Configure LDAP..."
+msgstr "_Configura LDAP..."
+
+#: ../glade.strings:16 ../glade.strings:27
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"Il Lightweight Directory Access Protocol è un modo standard di ricerca delle "
+"directory e può contenere dati arbitrari in una gerarchia strutturata. LDAP "
+"viene sempre più usato nelle piccole come nelle grandi reti."
+
+#: ../glade.strings:17
+msgid "Hesiod"
+msgstr "Hesiod"
+
+#: ../glade.strings:18
+msgid "Enable _Hesiod Support"
+msgstr "Attiva supporto _Hesiod"
+
+#: ../glade.strings:19
+msgid "_Configure Hesiod..."
+msgstr "_Configura Hesiod..."
+
+#: ../glade.strings:20
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiod permette agli amministratori di sistema di pubblicare nel DNS le "
+"informazioni su utenti e gruppi. Viene usato anche nelle reti molto grandi."
+
+#: ../glade.strings:21
+msgid "User Information"
+msgstr "Informazioni sull'utente"
+
+#: ../glade.strings:22
+msgid "Use _Shadow Passwords"
+msgstr "Usa password _Shadow "
+
+#: ../glade.strings:23
+msgid "Use _MD5 Passwords"
+msgstr "Usa password _MD5"
+
+#: ../glade.strings:28
+msgid "Kerberos"
+msgstr "Kerberos "
+
+#: ../glade.strings:29
+msgid "Enable _Kerberos Support"
+msgstr "Attiva supporto _Kerberos"
+
+#: ../glade.strings:30
+msgid "_Configure Kerberos..."
+msgstr "_Configura Kerberos..."
+
+#: ../glade.strings:31
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberos è un sistema di autenticazione di terze parti sicuro solitamente "
+"usato nelle reti di medie e grandi dimensioni."
+
+#: ../glade.strings:32
+msgid "SMB Authentication"
+msgstr "Autenticazione SMB"
+
+#: ../glade.strings:33
+msgid "Enable _SMB Support"
+msgstr "Attiva supporto _SMB"
+
+#: ../glade.strings:34
+msgid "_Configure SMB..."
+msgstr "_Configura SMB..."
+
+#: ../glade.strings:35
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"L'autenticazione SMB verifica le password utenti collegandosi a un server "
+"che utilizza la serie di protocolli SMB (System Message Block)."
+
+#: ../glade.strings:36
+msgid "Authentication"
+msgstr "Autenticazione"
+
+#: ../glade.strings:39
+msgid "NIS Settings"
+msgstr "Parametri NIS"
+
+#: ../glade.strings:40
+msgid "NIS _Server"
+msgstr "_Server NIS"
+
+#: ../glade.strings:41
+msgid "NIS _Domain"
+msgstr "_Dominio NIS"
+
+#: ../glade.strings:42 ../glade.strings:47 ../glade.strings:53
+#: ../glade.strings:58 ../glade.strings:64
+msgid "Apply"
+msgstr "Applica"
+
+#: ../glade.strings:43 ../glade.strings:48 ../glade.strings:54
+#: ../glade.strings:59 ../glade.strings:65
+msgid "Close"
+msgstr "Chiudi"
+
+#: ../glade.strings:44
+msgid "Hesiod Settings"
+msgstr "Parametri Hesiod"
+
+#: ../glade.strings:45
+msgid "Hesiod _RHS"
+msgstr "_RHS Hesiod"
+
+#: ../glade.strings:46
+msgid "Hesiod _LHS"
+msgstr "_LHS Hesiod"
+
+#: ../glade.strings:49
+msgid "Kerberos Settings"
+msgstr "Parametri Kerberos"
+
+#: ../glade.strings:50
+msgid "_Admin Servers"
+msgstr "Server _Admin"
+
+#: ../glade.strings:51
+msgid "_Realm"
+msgstr "_Realm"
+
+#: ../glade.strings:52
+msgid "_KDCs"
+msgstr "_KDC"
+
+#: ../glade.strings:55
+msgid "SMB Settings"
+msgstr "Parametri SMB"
+
+#: ../glade.strings:56
+msgid "_Domain Controllers"
+msgstr "Controller _Domain"
+
+#: ../glade.strings:57
+msgid "_Workgroup"
+msgstr "_Gruppo di lavoro:"
+
+#: ../glade.strings:60
+msgid "LDAP Settings"
+msgstr "Parametri LDAP"
+
+#: ../glade.strings:61
+msgid "LDAP _Server"
+msgstr "_Server LDAP"
+
+#: ../glade.strings:62
+msgid "LDAP Search _Base DN"
+msgstr "DN _inizio ricerca in LDAP"
+
+#: ../glade.strings:63
+msgid "Use _TLS to encrypt connections"
+msgstr "Usa _TLS per cifrare le connessioni"
