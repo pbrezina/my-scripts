@@ -6,7 +6,7 @@
 .SH NAME
 authconfig \- an interface for configuring system authorization resources
 .SH SYNOPSIS
-\fBauthconfig\fR [--back] [--test] [--nostart] [--kickstart]
+\fBauthconfig\fR [--back] [--test] [--nostart] [--kickstart] [--probe]
 [--enablenis [--nisdomain <domain>] [--nisserver <nisserver[,nisserver...]>] ]
 [--disablenis]
 [--enableshadow] [--disableshadow]
@@ -41,6 +41,10 @@ and the \fB--enableshadow\fP, \fB--enablemd5\fP, \fB--enableldapauth\fP and
 \fB--enablekrb5\fP options are used to configure authentication functions via
 \fB/etc/pam.d/system-auth\fP.  Each \fB--enable\fP has a matching
 \fB--disable\fP option that disables the service.
+
+The \fB--probe\fP flag instructs \fBauthconfig\fP to use DNS and other means
+to guess at configuration information for the current host, print its guesses
+to standard output, and exit.
 
 The default in kickstart mode (i.e. without any additional options) is to
 not change the current settings.
