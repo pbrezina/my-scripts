@@ -1283,7 +1283,7 @@ int main(int argc, const char **argv) {
 
   struct authInfoType authInfo;
 
-  char *authArg;
+  char *authArg = NULL;
   int authType = AUTH_PASSWORD;
   char enableNisServer = ' ';
 
