@@ -6,14 +6,18 @@
 .SH NAME
 authconfig \- an interface for configuring system authorization resources
 .SH SYNOPSIS
-\fBauthconfig\fR [--back] [--test] [--nostart] [--enablenis [--nisdomain <domain>]
-[--nisserver <nisserver[,nisserver...]>] ]
-[--useshadow [--enablemd5] ] [--kickstart]
-[--enableldap [ --enableldapauth ]
-[ --ldapserver <ldapserver> ] [ --ldapbasedn <basedn> ]]
-[--enablekrb5 [ --krb5realm <realm> ] [ --krb5kdc <hostname[,hostname,...]> ]
-[ --krb5adminserver <hostname[,hostname,...]> ]]
-[--enablehesiod [ --hesiodlhs <lhs> ] [ --hesiodrhs <rhs> ]]
+\fBauthconfig\fR [--back] [--test] [--nostart] [--kickstart]
+[--enablenis [--nisdomain <domain>] [--nisserver <nisserver[,nisserver...]>] ]
+[--disablenis]
+[--enableshadow] [--disableshadow]
+[--enablemd5] ] [--disablemd5] ]
+[--enableldap [--enableldapauth]
+[--ldapserver <ldapserver>] [--ldapbasedn <basedn>] ]
+[--disableldap] [--disableldapauth]
+[--enablekrb5 [ --krb5realm <realm> ] [--krb5kdc <hostname[,hostname,...]>]
+[--disablekrb5]
+[--krb5adminserver <hostname[,hostname,...]>] ]
+[--enablehesiod [--hesiodlhs <lhs>] [--hesiodrhs <rhs>] ] [--disablehesiod]
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and
@@ -32,13 +36,13 @@ options (\fB--enablemd5\fR, \fB--usehadow\fR, etc.).
 
 The \fB--enablenis\fP, \fB--enableldap\fP, and \fB--enablehesiod\fP options
 are used to configure user information services in \fB/etc/nsswitch.conf\fP,
-and the \fB--useshadow\fP, \fB--enablemd5\fP, \fB--enableldapauth\fP and
+and the \fB--enableshadow\fP, \fB--enablemd5\fP, \fB--enableldapauth\fP and
 \fB--enablekrb5\fP options are used to configure authentication functions via
-\fB/etc/pam.d/system-auth\fP.
+\fB/etc/pam.d/system-auth\fP.  Each \fB--enable\fP has a matching
+\fB--disable\fP option that disables the service.
 
-The default in kickstart mode (i.e. without any additional options) will
-be normal (non-shadow) UNIX password style authentication with
-traditional crypted (not MD5-hashed) passwords.
+The default in kickstart mode (i.e. without any additional options) is to
+not change the current settings.
 
 .PD
 .SH "RETURN CODES"
@@ -49,8 +53,6 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .SH FILES
 .PD 0
 .TP
-.FN /etc/sysconfig/network
-Enables or disables NIS support.
 .TP
 .FN /etc/passwd, /etc/shadow
 Used for shadow password support.
@@ -58,8 +60,14 @@ Used for shadow password support.
 .FN /etc/yp.conf
 Configuration file for NIS support.
 .TP
+.FN /etc/sysconfig/network
+Another configuration file for NIS support.
+.TP
 .FN /etc/ldap.conf
 Used to configure LDAP.
+.TP
+.FN /etc/krb5.conf
+Used to configure Kerberos 5.
 .TP
 .FN /etc/hesiod.conf
 Used to configure Hesiod.
