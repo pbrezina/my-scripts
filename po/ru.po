@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2000-02-03 11:51-0500\n"
+"POT-Creation-Date: 2000-02-16 15:48-0500\n"
 "PO-Revision-Date: 1999-04-08 21:00+0300\n"
 "Last-Translator: Leon Kanter <leon@blackcatlinux.com>\n"
 "Language-Team: Black Cat Linux Team <blackcat-support@blackcatlinux.com>\n"
@@ -23,7 +23,7 @@ msgstr "%s: невозможно открыть /etc/sysconfig/network: %s\n"
 msgid "%s: cannot open /etc/yp.conf: %s\n"
 msgstr "%s: невозможно открыть /etc/yp.conf: %s\n"
 
-#: ../authconfig.c:202 ../authconfig.c:899
+#: ../authconfig.c:202 ../authconfig.c:898
 #, c-format
 msgid "%s: cannot open /etc/ldap.conf: %s\n"
 msgstr "%s: невозможно открыть /etc/ldap.conf: %s\n"
@@ -149,27 +149,27 @@ msgstr "%s: невозможно открыть /etc/sysconfig/network- для записи: %s\n"
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s: невозможно открыть /etc/yp.conf- для записи: %s\n"
 
-#: ../authconfig.c:906
+#: ../authconfig.c:905
 #, c-format
 msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
 msgstr "%s: невозможно открыть /etc/ldap.conf- для записи: %s\n"
 
-#: ../authconfig.c:985
+#: ../authconfig.c:994
 #, c-format
 msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
 msgstr "%s: невозможно открыть /etc/nsswitch.conf: %s\n"
 
-#: ../authconfig.c:992
+#: ../authconfig.c:1001
 #, c-format
 msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
 msgstr "%s: невозможно открыть /etc/nsswitch.conf- для записи: %s\n"
 
-#: ../authconfig.c:1221
+#: ../authconfig.c:1230
 #, c-format
 msgid "%s: error opening %s\n"
 msgstr "%s: ошибка открытия %s\n"
 
-#: ../authconfig.c:1257
+#: ../authconfig.c:1266
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -194,87 +194,90 @@ msgstr ""
 "     --kickstart          не отображать интерфейс пользователя\n"
 "     --help               показать этот экран\n"
 
-#: ../authconfig.c:1323
+#: ../authconfig.c:1332
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: неверный аргумент %s: %s\n"
 
-#: ../authconfig.c:1330
+#: ../authconfig.c:1339
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: неожиданный аргумент\n"
 
-#: ../authconfig.c:1342
+#: ../authconfig.c:1351
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: может выполняться только пользователем root\n"
 
-#: ../authconfig.c:1358
+#: ../authconfig.c:1367
 #, c-format
 msgid "%s: unknown authorization type %s\n"
 msgstr "%s: неизвестный тип авторизации %s\n"
 
-#: ../authconfig.c:1374
+#: ../authconfig.c:1383
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
 msgstr "%s: критическая ошибка чтения /etc/sysconfig/network"
 
-#: ../authconfig.c:1383
+#: ../authconfig.c:1392
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
 msgstr "%s: критическая ошибка чтения /etc/yp.conf"
 
-#: ../authconfig.c:1402
-#, c-format
-msgid "%s: critical error reading /etc/ldap.conf"
-msgstr "%s: критическая ошибка чтения /etc/ldap.conf"
-
-#: ../authconfig.c:1414
+#: ../authconfig.c:1426
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
 msgstr "%s: критическая ошибка чтения /etc/pam.d/passwd\n"
 
-#: ../authconfig.c:1423
+#: ../authconfig.c:1435
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 " <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
-#: ../authconfig.c:1433
+#: ../authconfig.c:1445
 msgid "dialog was cancelled\n"
 msgstr "диалог был прерван\n"
 
-#: ../authconfig.c:1444
+#: ../authconfig.c:1456
 msgid "authentication type selected: "
 msgstr "выбран тип аутентификации: "
 
-#: ../authconfig.c:1474
+#: ../authconfig.c:1486
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
 msgstr "%s: критическая ошибка записи /etc/sysconfig/network\n"
 
-#: ../authconfig.c:1482
+#: ../authconfig.c:1494
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
 msgstr "%s: критическая ошибка записи /etc/yp.conf\n"
 
-#: ../authconfig.c:1489
+#: ../authconfig.c:1501
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
 msgstr "%s: критическая ошибка запуска сервиса NIS\n"
 
-#: ../authconfig.c:1501
+#: ../authconfig.c:1513
 #, c-format
 msgid "%s: critical error writing /etc/ldap.conf\n"
 msgstr "%s: критическая ошибка записи /etc/ldap.conf\n"
 
-#: ../authconfig.c:1511
+#: ../authconfig.c:1518
+#, fuzzy, c-format
+msgid "%s: critical error writing files in /etc/pam.d\n"
+msgstr "%s: критическая ошибка записи /etc/yp.conf\n"
+
+#: ../authconfig.c:1528
 #, c-format
 msgid "%s: critical error writing /etc/nsswitch.conf\n"
 msgstr "%s: критическая ошибка записи /etc/nsswitch.conf\n"
 
-#: ../authconfig.c:1520
+#: ../authconfig.c:1537
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
 msgstr "%s: критическая ошибка манипуляции с теневыми паролями\n"
+
+#~ msgid "%s: critical error reading /etc/ldap.conf"
+#~ msgstr "%s: критическая ошибка чтения /etc/ldap.conf"
