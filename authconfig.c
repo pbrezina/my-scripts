@@ -1076,7 +1076,7 @@ int rewriteNsswitchFile(int authType, struct authInfoType *authInfo)
 	}
 
 	fprintf(f1, "hosts:      %s%s\n",s, (authType == AUTH_LDAP ?
-					     "ldap " : ""));
+					     " ldap" : ""));
       } else {
 	fputs(s2, f1);
       }
