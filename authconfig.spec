@@ -39,6 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Feb  9 2001 Nalin Dahyabhai <nalin@redhat.com>
 - handle the case where the user doesn't specify a Kerberos realm, but
   enables it anyway
+- update translations
 
 * Wed Feb  7 2001 Nalin Dahyabhai <nalin@redhat.com>
 - remove pam_access from the default configuration -- swat, pop, imap, etc.
