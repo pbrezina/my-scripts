@@ -258,7 +258,7 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
 
   newtCheckboxSetValue(MD5CheckBox, *enableMD5);
 
-  buttons =  newtButtonBar(i18n("Okay"), &okButton,
+  buttons =  newtButtonBar(i18n("Ok"), &okButton,
 			   useBack ? i18n("Back") : i18n("Cancel"),
 			   &cancelButton,
 			   NULL);
