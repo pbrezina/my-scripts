@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 2003-09-08 09:36-0400\n"
+"POT-Creation-Date: 2004-07-08 17:27-0400\n"
 "PO-Revision-Date: 2003-11-15 20:08+0530\n"
 "Last-Translator: \n"
 "Language-Team: Tamil <en@li.org>\n"
@@ -15,645 +15,889 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0\n"
 
-#: authconfig.c:125
-msgid "Warning"
-msgstr "எச்சரிக்கை"
-
-#: authconfig.c:125 authconfig.c:601 authconfig.c:614 glade.strings:37
-msgid "Ok"
-msgstr "சரி"
-
-#: authconfig.c:143
-msgid "Domain:"
-msgstr "களம்:"
-
-#: authconfig.c:144 authconfig.c:184
-msgid "Server:"
-msgstr "சேவகன்:"
-
-#: authconfig.c:164
+#: authconfig.c:285
 msgid "LHS:"
 msgstr "LHS:"
 
-#: authconfig.c:165
+#: authconfig.c:287
 msgid "RHS:"
 msgstr "RHS:"
 
-#: authconfig.c:185
-msgid "Base DN:"
-msgstr "அடிப்படை DN:"
+#: authconfig.c:290 glade.strings.h:50
+msgid "Hesiod Settings"
+msgstr "Hesiod அமைத்தல்கள்"
 
-#: authconfig.c:218
-msgid "Realm:"
-msgstr "வட்டாரம்"
-
-#: authconfig.c:219
-msgid "KDC:"
-msgstr "KDC:"
-
-#: authconfig.c:220
-msgid "Admin Server:"
-msgstr "நிர்வகிக்கும் கணினி்:"
-
-#: authconfig.c:244
-msgid "Workgroup:"
-msgstr "பனிக்குழு:"
-
-#: authconfig.c:245
-msgid "Servers:"
-msgstr "வழங்கிகள்:"
-
-#. NSCD
-#: authconfig.c:285
-msgid "Cache Information"
-msgstr "தற்காலிக சேமிப்பு தகவல்"
-
-#. NSS modules: NIS.
-#: authconfig.c:293
-msgid "Use NIS"
-msgstr "NISஐ பயன்படுத்து"
-
-#: authconfig.c:323
-msgid "Use LDAP"
-msgstr "LDAPஐ பயன்படுத்து"
-
-#: authconfig.c:328 authconfig.c:491
-msgid "Use TLS"
-msgstr "TLSஐ பயன்படுத்து"
-
-#. NSS modules: hesiod.
-#: authconfig.c:362
-msgid "Use Hesiod"
-msgstr "Hesiodஐ பயன்படுத்து"
-
-#: authconfig.c:392
-msgid "Next"
-msgstr "அடுத்த"
-
-#: authconfig.c:393 authconfig.c:602 authconfig.c:615
+#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
+#: authconfig.c:358 authconfig.c:459 authconfig.c:631
 msgid "Back"
 msgstr "மறுபடி"
 
-#: authconfig.c:393 authconfig.c:603 glade.strings:38
+#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
+#: authconfig.c:358 authconfig.c:459 authconfig.c:632
+msgid "Next"
+msgstr "அடுத்த"
+
+#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
+#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:476
+msgid "Ok"
+msgstr "சரி"
+
+#: authconfig.c:299
+msgid "Use TLS"
+msgstr "TLSஐ பயன்படுத்து"
+
+#: authconfig.c:301 authconfig.c:317
+msgid "Server:"
+msgstr "சேவகன்:"
+
+#: authconfig.c:303
+msgid "Base DN:"
+msgstr "அடிப்படை DN:"
+
+#: authconfig.c:306 glade.strings.h:69
+msgid "LDAP Settings"
+msgstr "LDAP அமைத்தல்கள்"
+
+#: authconfig.c:315 authconfig.c:432
+msgid "Domain:"
+msgstr "களம்:"
+
+#: authconfig.c:320 glade.strings.h:45
+msgid "NIS Settings"
+msgstr "NIS அமைத்தல்கள்"
+
+#: authconfig.c:329
+msgid "Realm:"
+msgstr "வட்டாரம்"
+
+#: authconfig.c:331
+msgid "KDC:"
+msgstr "KDC:"
+
+#: authconfig.c:333
+msgid "Admin Server:"
+msgstr "நிர்வகிக்கும் கணினி்:"
+
+#: authconfig.c:335
+msgid "Use DNS to resolve hosts to realms"
+msgstr ""
+
+#: authconfig.c:337
+msgid "Use DNS to locate KDCs for realms"
+msgstr ""
+
+#: authconfig.c:340 glade.strings.h:55
+msgid "Kerberos Settings"
+msgstr "Kerberos அமைத்தல்கள்"
+
+#: authconfig.c:349
+msgid "Workgroup:"
+msgstr "பனிக்குழு:"
+
+#: authconfig.c:351
+msgid "Servers:"
+msgstr "வழங்கிகள்:"
+
+#: authconfig.c:353
+msgid "Shell:"
+msgstr ""
+
+#: authconfig.c:356 glade.strings.h:64
+msgid "SMB Settings"
+msgstr "SMB அமைத்தல்கள்"
+
+#: authconfig.c:366
+msgid "Domain Administrator:"
+msgstr ""
+
+#: authconfig.c:368
+#, fuzzy
+msgid "Password:"
+msgstr "MD5 கடவுச்சொாற்களை பயன்படுத்து"
+
+#: authconfig.c:375
+#, fuzzy
+msgid "Join Settings"
+msgstr "NIS அமைத்தல்கள்"
+
+#: authconfig.c:377 authconfig.c:631
 msgid "Cancel"
 msgstr "ரத்து செய்"
 
-#: authconfig.c:413
-msgid "User Information Configuration"
-msgstr "பயன்படுத்துபவர் தகவல் அமைப்பு"
+#: authconfig.c:394 glade.strings.h:94
+msgid ""
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
+"may fail.  Save changes?"
+msgstr ""
 
-#: authconfig.c:474
-msgid "Use Shadow Passwords"
+#: authconfig.c:400
+#, fuzzy
+msgid "Save Settings"
+msgstr "NIS அமைத்தல்கள்"
+
+#: authconfig.c:402
+msgid "No"
+msgstr ""
+
+#: authconfig.c:402
+msgid "Yes"
+msgstr ""
+
+#: authconfig.c:430
+msgid "Security Model:"
+msgstr ""
+
+#: authconfig.c:434
+#, fuzzy
+msgid "Domain Controllers:"
+msgstr "_களம் கட்டுப்பாட்டாளர்கள்"
+
+#: authconfig.c:436
+#, fuzzy
+msgid "ADS Realm:"
+msgstr "வட்டாரம்"
+
+#: authconfig.c:438
+msgid "Template Shell:"
+msgstr ""
+
+#: authconfig.c:456 glade.strings.h:75
+#, fuzzy
+msgid "Winbind Settings"
+msgstr "Hesiod அமைத்தல்கள்"
+
+#: authconfig.c:458
+#, fuzzy
+msgid "Join Domain"
+msgstr "களம்:"
+
+#: authconfig.c:476
+msgid "Warning"
+msgstr "எச்சரிக்கை"
+
+#: authconfig.c:494
+msgid "caching"
+msgstr ""
+
+#: authconfig.c:498 glade.strings.h:35
+msgid "Kerberos"
+msgstr "கெர்பரோஸ்"
+
+#: authconfig.c:502
+#, fuzzy
+msgid "LDAP authentication"
+msgstr "LDAP சரிபார்த்தலை பயன்படுத்து "
+
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+msgid "LDAP"
+msgstr "LDAP"
+
+#: authconfig.c:510 glade.strings.h:12
+msgid "NIS"
+msgstr "NIS"
+
+#: authconfig.c:514
+#, fuzzy
+msgid "shadow password"
 msgstr "நிழற் கடவுச்சொாற்களை பயன்படுத்து"
 
-#: authconfig.c:479
+#: authconfig.c:518
+#, fuzzy
+msgid "SMB authentication"
+msgstr "SMB சரிபார்த்தல்"
+
+#: authconfig.c:522 authconfig.c:530 glade.strings.h:24 glade.strings.h:43
+msgid "Winbind"
+msgstr ""
+
+#: authconfig.c:526
+#, fuzzy
+msgid "Winbind authentication"
+msgstr "சரிபார்த்தல்"
+
+#: authconfig.c:536 glade.strings.h:25
+msgid "User Information"
+msgstr "பயன்படுத்துபவர் தகவல்"
+
+#: authconfig.c:540
+msgid "Cache Information"
+msgstr "தற்காலிக சேமிப்பு தகவல்"
+
+#: authconfig.c:547
+msgid "Use Hesiod"
+msgstr "Hesiodஐ பயன்படுத்து"
+
+#: authconfig.c:553
+msgid "Use LDAP"
+msgstr "LDAPஐ பயன்படுத்து"
+
+#: authconfig.c:560
+msgid "Use NIS"
+msgstr "NISஐ பயன்படுத்து"
+
+#: authconfig.c:567
+msgid "Use Winbind"
+msgstr ""
+
+#: authconfig.c:577 glade.strings.h:44
+msgid "Authentication"
+msgstr "சரிபார்த்தல்"
+
+#: authconfig.c:581
 msgid "Use MD5 Passwords"
 msgstr "MD5 கடவுச்சொாற்களை பயன்படுத்து"
 
-#: authconfig.c:486
+#: authconfig.c:587
+msgid "Use Shadow Passwords"
+msgstr "நிழற் கடவுச்சொாற்களை பயன்படுத்து"
+
+#: authconfig.c:594
 msgid "Use LDAP Authentication"
 msgstr "LDAP சரிபார்த்தலை பயன்படுத்து "
 
-#: authconfig.c:524
-msgid "Use Kerberos 5"
+#: authconfig.c:601
+#, fuzzy
+msgid "Use Kerberos"
 msgstr "Kerberos 5 ஐ பயன்படுத்து"
 
-#: authconfig.c:562
+#: authconfig.c:608
 msgid "Use SMB Authentication"
 msgstr "SMB சரிபார்த்தலை பயன்படுத்து  "
 
-#. !/usr/bin/python2.2
-#. Toggle a boolean.
-#. Create a vbox or dialog using the file, and return it. */
-#. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:632 authconfig-gtk.py:146 glade.strings:7
+#: authconfig.c:615
+#, fuzzy
+msgid "Use Winbind Authentication"
+msgstr "SMB சரிபார்த்தலை பயன்படுத்து  "
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: authconfig.c:647 authconfig-gtk.py:291 glade.strings.h:7
 msgid "Authentication Configuration"
 msgstr "சரிபாரத்தல் வடிவமைப்பு"
 
-#: authconfig.c:785
+#: authconfig.c:823
 msgid "enable shadowed passwords by default"
 msgstr "நிழற் கடவுச்சொல்லை முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:787
+#: authconfig.c:825
 msgid "disable shadowed passwords by default"
 msgstr "நிழற் கடவுச்சொல்லை முன் இருக்குமாறு செயலிழக்கச் செய்"
 
-#: authconfig.c:791
+#: authconfig.c:829
 msgid "enable MD5 passwords by default"
 msgstr "MD5 கடவுச்சொற்களை முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:793
+#: authconfig.c:831
 msgid "disable MD5 passwords by default\n"
 msgstr "MD5 கடவுச்சொற்களை முன் இருக்குமாறு செயலிழக்கச் செய்\n"
 
-#: authconfig.c:796
+#: authconfig.c:834
 msgid "enable NIS"
 msgstr "NIS ஐ செயல்படுத்து"
 
-#: authconfig.c:798
+#: authconfig.c:836
 msgid "disable NIS"
 msgstr "NIS ஐ சொயலிழக்கச் சொய் "
 
-#: authconfig.c:800
+#: authconfig.c:838
 msgid "default NIS domain"
 msgstr "முன் இருக்கும் NIS களம்"
 
-#: authconfig.c:800
+#: authconfig.c:838
 msgid "<domain>"
 msgstr "<களம்>"
 
-#: authconfig.c:802
+#: authconfig.c:840
 msgid "default NIS server\n"
 msgstr "முன் இருக்கும் NIS வழங்கன்\n"
 
-#: authconfig.c:802 authconfig.c:817 authconfig.c:826 authconfig.c:828
-#: authconfig.c:839
+#: authconfig.c:840 authconfig.c:862 authconfig.c:871 authconfig.c:873
+#: authconfig.c:893
 msgid "<server>"
 msgstr "<வழங்கன்>"
 
-#: authconfig.c:805
+#: authconfig.c:843
 msgid "enable LDAP for user information by default"
 msgstr "பயன்படுத்துபவர் தகவலுக்காக LDAPஐ முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:807
+#: authconfig.c:845
 msgid "disable LDAP for user information by default"
 msgstr "பயன்படுத்துபவர் தகவலுக்காக LDAPஐ முன் இருக்குமாறு செயலிழக்கச் செய்"
 
-#: authconfig.c:809
+#: authconfig.c:847 authconfig.c:853
 msgid "enable use of TLS with LDAP"
 msgstr "TLS ன் பயனை LDAP ஓடு செயல்படுத்து"
 
-#: authconfig.c:811
+#: authconfig.c:849 authconfig.c:855
 msgid "disable use of TLS with LDAP"
 msgstr "TLS ன் பயனை LDAP ஓடு செயலிழக்கச் செய்"
 
-#: authconfig.c:813
+#: authconfig.c:858
 msgid "enable LDAP for authentication by default"
 msgstr "LDAPஐ சரிபார்த்தலுக்காக முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:815
+#: authconfig.c:860
 msgid "disable LDAP for authentication by default"
 msgstr "LDAPஐ சரிபார்த்தலுக்காக முன் இருக்குமாறு செயலிழக்கச் செய்"
 
-#: authconfig.c:817
+#: authconfig.c:862
 msgid "default LDAP server"
 msgstr "முன் இருக்கும் LDAP வழங்கன்"
 
-#: authconfig.c:819
+#: authconfig.c:864
 msgid "default LDAP base DN\n"
 msgstr "முன் இருக்கும் LDAP அடிப்படை DN\n"
 
-#: authconfig.c:819
+#: authconfig.c:864
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:822
+#: authconfig.c:867
 msgid "enable kerberos authentication by default"
 msgstr "kerberos சரிபார்த்தலை முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:824
+#: authconfig.c:869
 msgid "disable kerberos authentication by default"
 msgstr "kerberos சரிபார்த்தலை முன் இருக்குமாறு செயலிழக்கச் செய்"
 
-#: authconfig.c:826
+#: authconfig.c:871
 msgid "default kerberos KDC"
 msgstr "முன் இருக்கும் kerberos KDC"
 
-#: authconfig.c:828
+#: authconfig.c:873
 msgid "default kerberos admin server"
 msgstr "முன் இருக்கும் kerberos மேலாண் கணினிகன்"
 
-#: authconfig.c:830
+#: authconfig.c:875
 msgid "default kerberos realm\n"
 msgstr "முன் இருக்கும் kerberos வட்டாரம்\n"
 
-#: authconfig.c:830 authconfig.c:857
+#: authconfig.c:875
 msgid "<realm>"
 msgstr "<வட்டாரம்>"
 
-#: authconfig.c:833
+#: authconfig.c:878
+msgid "enable use of DNS to find kerberos KDCs"
+msgstr ""
+
+#: authconfig.c:880
+msgid "disable use of DNS to find kerberos KDCs"
+msgstr ""
+
+#: authconfig.c:882
+msgid "enable use of DNS to find kerberos realms"
+msgstr ""
+
+#: authconfig.c:884
+#, fuzzy
+msgid "disable use of DNS to find kerberos realms\n"
+msgstr "முன் இருக்கும் kerberos வட்டாரம்\n"
+
+#: authconfig.c:887
 msgid "enable SMB authentication by default"
 msgstr "enable SMB சரிபார்த்தலை முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:835
+#: authconfig.c:889
 msgid "disable SMB authentication by default"
 msgstr "enable SMB சரிபார்த்தலை முன் இருக்குமாறு செயலிழக்கச் செய்"
 
-#: authconfig.c:837
+#: authconfig.c:891
 msgid "workgroup authentication servers are in"
 msgstr "பனிக்குழு சரிபார்க்கும் கணினிகள் இருக்கும் இடம்"
 
-#: authconfig.c:837
+#: authconfig.c:891
 msgid "<workgroup>"
 msgstr "<பணிக்குழுமம்>"
 
-#: authconfig.c:839
+#: authconfig.c:893
 msgid "names of servers to authenticate against\n"
 msgstr "சரிபார்த்தலுக்காக இருக்கும் கணினிகளின் பெயர்கள்\n"
 
-#: authconfig.c:842
-msgid "enable winbind for user information and authentication by default"
-msgstr "பயன்படுத்துபவர் தகவலுக்காகவும் மற்றும் சரிபார்த்தலுக்காகவும் வின்பைண்டை முன் இருக்குமாறு செயல்படுக்து"
+#: authconfig.c:896
+#, fuzzy
+msgid "enable winbind for user information by default"
+msgstr "பயன்படுத்துபவர் தகவலுக்கான hesiodஐ முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:845
-msgid "disable winbind for user information and authentication by default"
-msgstr "பயன்படுத்துபவர் தகவலுக்காகவும் மற்றும் சரிபார்த்தலுக்காகவும் வின்பைண்டை முன் இருக்குமாறு செயலிழக்கச் செய்"
+#: authconfig.c:899
+#, fuzzy
+msgid "disable winbind for user information by default"
+msgstr "பயன்படுத்துபவர் தகவலுக்கான hesiodஐ முன் இருக்குமாறு செயலிழக்கச் செய்"
 
-#: authconfig.c:848
+#: authconfig.c:902
+#, fuzzy
+msgid "enable winbindauth for authentication by default"
+msgstr "LDAPஐ சரிபார்த்தலுக்காக முன் இருக்குமாறு செயல்படுத்து"
+
+#: authconfig.c:905
+#, fuzzy
+msgid "disable winbindauth for authentication by default"
+msgstr "LDAPஐ சரிபார்த்தலுக்காக முன் இருக்குமாறு செயலிழக்கச் செய்"
+
+#: authconfig.c:908
 msgid "security mode to use for samba and winbind"
 msgstr "சம்பா மற்றும் வின்பைண்டிற்கு பயன்படும் பாதுகாப்பு வகை"
 
-#: authconfig.c:850
+#: authconfig.c:910
+msgid "default realm for samba and winbind when security=ads"
+msgstr ""
+
+#: authconfig.c:912
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "uid வின்பைண்ட்் வரம்புகளத்திற்கும் ads பயனாளர்களுக்கும் ஒதுக்குகிறதுs"
 
-#: authconfig.c:851 authconfig.c:854
+#: authconfig.c:913 authconfig.c:916
 msgid "<lowest-highest>"
 msgstr "<குறைந்தது-அதிகமானது>"
 
-#: authconfig.c:853
+#: authconfig.c:915
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "gid வின்பைண்ட்் வரம்புகளத்திற்கும் ads பயனாளர்களுக்கும் ஒதுக்குகிறதுs"
 
-#: authconfig.c:857
-msgid "ads kerberos realm"
-msgstr "ads kerberos வட்டாரம்"
-
-#: authconfig.c:859
+#: authconfig.c:919
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
-"வின் பைண்ட் பயனாளர் முன் இருப்பு களம் செயல்படாத போது"
-"ஒரு களத்தையும், வின் பைண்ட் உருவாக்கிய பயனாளர்கள் பெயர்களின் பயன்படுத்துபவர் பகுதியையும் பிரிக்க "
-"பயன்படுகிறது."
+"வின் பைண்ட் பயனாளர் முன் இருப்பு களம் செயல்படாத போதுஒரு களத்தையும், வின் பைண்ட் "
+"உருவாக்கிய பயனாளர்கள் பெயர்களின் பயன்படுத்துபவர் பகுதியையும் பிரிக்க பயன்படுகிறது."
 
-#: authconfig.c:863
+#: authconfig.c:923
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "வின் பைண்ட் உருவாக்கிய அடைவை பயன்படுத்துபவர்கள் தங்கள் இல்ல அடைவுகளாகக் கொள்வர்"
 
-#: authconfig.c:867
+#: authconfig.c:927
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "வின் பைண்ட் உருவாக்கிய குழுப்பெட்டியை பயனாளர்கள் முதல் குழுப்பெட்டியாகக் கொள்வர்"
 
-#: authconfig.c:870
+#: authconfig.c:930
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "வின் பைண்ட் உருவாக்கிய மேல்வடிவைைவை பயன்படுத்துபவர்கள் தங்கஉள் செல்லும் மேல்வடிவாகக் கொள்வர்.ir login shell"
+msgstr ""
+"வின் பைண்ட் உருவாக்கிய மேல்வடிவைைவை பயன்படுத்துபவர்கள் தங்கஉள் செல்லும் மேல்வடிவாகக் கொள்வர்."
+"ir login shell"
 
-#: authconfig.c:874
+#: authconfig.c:934
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
-"தங்கள் பெயர்களில் களம் இல்லாத்லாத பயனாளர்களை்ளை களத்தின் பயனாளர்களாக நினைத்துக் கொள்ள வின் பைண்டை "
-"வடிவமைக்கிறதுusers"
+"தங்கள் பெயர்களில் களம் இல்லாத்லாத பயனாளர்களை்ளை களத்தின் பயனாளர்களாக நினைத்துக் கொள்ள வின் "
+"பைண்டை வடிவமைக்கிறதுusers"
 
-#: authconfig.c:878
+#: authconfig.c:938
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
-"தங்கள் பெயர்களில் களம் இல்லாத்லாத பயனாளர்களை களத்தின் பயனாளர்களாக நினைத்துக் கொள்ளாமல் வின் பைண்டை "
-"வடிவமைக்கிறது"
+"தங்கள் பெயர்களில் களம் இல்லாத்லாத பயனாளர்களை களத்தின் பயனாளர்களாக நினைத்துக் கொள்ளாமல் வின் "
+"பைண்டை வடிவமைக்கிறது"
 
-#: authconfig.c:882
+#: authconfig.c:942
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr "இந்த நிர்வாகியாக வின் பைண்ட் களத்தில் அல்லது ads வட்டாரத்தில் சேரவும்\n"
 
-#: authconfig.c:886
+#: authconfig.c:946
 msgid "enable wins for hostname resolution"
 msgstr "கணினித் தெளிவுத்திறனுக்கான வின்ஸை செயல்படுத்துத்துெய்"
 
-#: authconfig.c:888
+#: authconfig.c:948
 msgid "disable wins for hostname resolution\n"
 msgstr "கணினித் தெளிவுத்திறனுக்கான வின்ஸை யசெயலிழக்கச் செய்\n"
 
-#: authconfig.c:891
+#: authconfig.c:951
 msgid "enable hesiod for user information by default"
 msgstr "பயன்படுத்துபவர் தகவலுக்கான hesiodஐ முன் இருக்குமாறு செயல்படுத்து"
 
-#: authconfig.c:893
+#: authconfig.c:953
 msgid "disable hesiod for user information by default"
 msgstr "பயன்படுத்துபவர் தகவலுக்கான hesiodஐ முன் இருக்குமாறு செயலிழக்கச் செய்"
 
-#: authconfig.c:895
+#: authconfig.c:955
 msgid "default hesiod LHS"
 msgstr "அடிப்படை hesiod LHS"
 
-#: authconfig.c:895
+#: authconfig.c:955
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:897
+#: authconfig.c:957
 msgid "default hesiod RHS\n"
 msgstr "அடிப்படை hesiod RHS\n"
 
-#: authconfig.c:897
+#: authconfig.c:957
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:900
+#: authconfig.c:960
 msgid "enable caching of user information by default"
 msgstr ""
 "பயன்படுத்துபவர் தகவலை தற்காலிக சேமிப்பில் முன் இருப்பதாகச் செய்வதை செயல்படுத்துefault\n"
 "enable caching of user information by default"
 
-#: authconfig.c:902
+#: authconfig.c:962
 msgid "disable caching of user information by default\n"
-msgstr "பயன்படுத்துபவர் தகவலை தற்காலிக சேமிப்பில் முன் இருப்பதாகச் செய்வதை செயலிழக்கச் செய் \n"
+msgstr ""
+"பயன்படுத்துபவர் தகவலை தற்காலிக சேமிப்பில் முன் இருப்பதாகச் செய்வதை செயலிழக்கச் செய் \n"
 
-#: authconfig.c:909
+#: authconfig.c:969
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind, and nscdஐ துவக்காதே/நிறுத்தாதே"
 
-#: authconfig.c:911
+#: authconfig.c:971
 msgid "don't display user interface"
-msgstr ""
-"don't display user interface "
-"பயன்படுத்துபவர் இடை இணைப்பை காட்டாதே"
+msgstr "don't display user interface பயன்படுத்துபவர் இடை இணைப்பை காட்டாதே"
 
-#: authconfig.c:913
+#: authconfig.c:973
 msgid "probe network for defaults and print them"
 msgstr "முன் இருப்பதற்கான வலைப் பின்னலை தேடவும் மற்றும் அவற்றை அச்சிடவும்."
 
-#: authconfig.c:916
+#: authconfig.c:976
 msgid "use locally-defined policies"
 msgstr "உள் கொள்கைகளை பயன்படுத்து"
 
-#: authconfig.c:918
+#: authconfig.c:978
 msgid "don't use locally-defined policies"
 msgstr "உள் அறுதியிட்ட கொள்கைகளை பயன்படுத்தாதே"
 
-#: authconfig.c:929
+#: authconfig.c:989
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: தவறான மதிப்பு %s: %s\n"
 
-#: authconfig.c:938
+#: authconfig.c:998
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s: தொாடர முனைகிறது\n"
 
-#: authconfig.c:942
+#: authconfig.c:1002
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: எதிர்பாராத மதிப்பு\n"
 
-#: authconfig.c:974
+#: authconfig.c:1034
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: ரூட்டாக மட்டுமே இயக்க முடியிம்\n"
 
-#: authconfig.c:985 authconfig.c:993 authconfig.c:1001 authconfig.c:1009
-#: authconfig.c:1017 authconfig.c:1025 authconfig.c:1033 authconfig.c:1046
-#: authconfig.c:1054
+#: authconfig.c:1045 authconfig.c:1053 authconfig.c:1061 authconfig.c:1069
+#: authconfig.c:1077 authconfig.c:1085 authconfig.c:1093 authconfig.c:1106
+#: authconfig.c:1114
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: முக்கிய பிழையை எழுதுகிறது %s/%s"
 
-#: authconfig.c:1040
+#: authconfig.c:1100
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s: தற்காலிக சேமிப்பு வடிவமைப்பை படிக்க முடியவில்லை"
 
-#: authconfig.c:1146
+#: authconfig.c:1200
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr " <Tab>/<Alt-Tab> உறுப்புகளுக்குள்   |   <Space> தேர்ந்தெடுக்கிறது   |  <F12> அடுத்த திரை"
+msgstr ""
+" <Tab>/<Alt-Tab> உறுப்புகளுக்குள்   |   <Space> தேர்ந்தெடுக்கிறது   |  <F12> அடுத்த "
+"திரை"
 
-#: authconfig.c:1149
+#: authconfig.c:1203
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 ரெட் ஹாட் Hat, Inc."
 
-#: authconfig.c:1156
+#: authconfig.c:1210
+#, c-format
 msgid "dialog was cancelled\n"
 msgstr "உரையாடல் ரத்துச் செய்யப்பட்டது\n"
 
-#: authconfig.c:1171
+#: authconfig.c:1225
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s: முக்கிய பிழையை பதிவிடுகிறது தற்காலிக சேமிப்பில் சேமிக்கிறது அமைக்கிறது"
 
-#: authconfig.c:1177 authconfig.c:1183 authconfig.c:1189 authconfig.c:1195
-#: authconfig.c:1200 authconfig.c:1206 authconfig.c:1211 authconfig.c:1216
-#: authconfig.c:1221 authconfig.c:1227
+#: authconfig.c:1231 authconfig.c:1237 authconfig.c:1243 authconfig.c:1249
+#: authconfig.c:1254 authconfig.c:1260 authconfig.c:1265 authconfig.c:1270
+#: authconfig.c:1275 authconfig.c:1281
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: முக்கிய பிழையை எழுதுகிறது %s/%s"
 
-#: authconfig.desktop.in.h:1 glade.strings:36
-msgid "Authentication"
-msgstr "சரிபார்த்தல்"
-
-#: authconfig.desktop.in.h:2
-msgid "Control how the system verifies users who attempt to log in"
-msgstr "பயன்படுத்துவோர் உள்ளே நுழைய முயற்சிக்கும் போது கணினி எப்படி சரிபார்க்கிறது என்பதை கட்டுப்படுத்து"
-
-#: authinfo.h:65
+#: authinfo.h:68
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
-"%s கோப்பு காணவில்லை. ஆனால் %s ஆதரவு ஒழுங்காக வேலை செய்ய இது தேவை.  "
-"இந்த கோப்பைத் தரும் %s பொதியை நிறுவு."
+"%s கோப்பு காணவில்லை. ஆனால் %s ஆதரவு ஒழுங்காக வேலை செய்ய இது தேவை.  இந்த கோப்பைத் "
+"தரும் %s பொதியை நிறுவு."
 
-#: glade.strings:8
+#: glade.strings.h:8
 msgid "_Cache User Information"
 msgstr "_தற்காலிக சேமிப்பின் பயன்படுத்துபவர் தகவல்"
 
-#: glade.strings:9
-msgid "NIS"
-msgstr "NIS"
-
-#: glade.strings:10
+#: glade.strings.h:9
 msgid "_Configure NIS..."
 msgstr "_NISஐ வடிவமை..."
 
-#: glade.strings:11
+#: glade.strings.h:10
 msgid "Enable _NIS Support"
 msgstr "_NIS ஆதரவை செயல்படுத்து"
 
-#: glade.strings:12
+#: glade.strings.h:11
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
-msgstr "NIS என்பது வலைப் பின்னல் தகவல் சேவை.  இது பொதுவாக சிறியது முதல் ஊடக வலைப்ப் பின்னல்களிலபயன்படுகிறதுs."
+msgstr ""
+"NIS என்பது வலைப் பின்னல் தகவல் சேவை.  இது பொதுவாக சிறியது முதல் ஊடக "
+"வலைப்ப் பின்னல்களிலபயன்படுகிறதுs."
 
-#: glade.strings:13 glade.strings:24
-msgid "LDAP"
-msgstr "LDAP"
-
-#: glade.strings:14 glade.strings:25
+#: glade.strings.h:13 glade.strings.h:28
 msgid "Enable _LDAP Support"
 msgstr "_LDAP ஆதரவை செயல்படுத்து"
 
-#: glade.strings:15 glade.strings:26
+#: glade.strings.h:14 glade.strings.h:29
 msgid "_Configure LDAP..."
 msgstr "_LDAPஐ வடிவமை..."
 
-#: glade.strings:16 glade.strings:27
+#: glade.strings.h:15 glade.strings.h:30
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"The Lightweight Directory Access Protocol என்பது ஒரு அடைவை தேடுவதற்நிகான நிலையான வழியாகும்."
-"LLDAP வரையறுக்கப்பட்ட வரிசையில்தகவலை  வைத்துக் கொள்ளும். LDAP அதிகமாகஊடக மற்றும் பெரிய வலைப் "
-"பின்னல்களில் பயன்படுகிறது. "
+"The Lightweight Directory Access Protocol என்பது ஒரு அடைவை தேடுவதற்நிகான "
+"நிலையான வழியாகும்.LLDAP வரையறுக்கப்பட்ட வரிசையில்தகவலை  வைத்துக் கொள்ளும். LDAP "
+"அதிகமாகஊடக மற்றும் பெரிய வலைப் பின்னல்களில் பயன்படுகிறது. "
 
-#: glade.strings:17
-msgid "Hesiod"
-msgstr "Hesiod"
-
-#: glade.strings:18
+#: glade.strings.h:17
 msgid "Enable _Hesiod Support"
 msgstr "_Hesiod ஆதரவை செயல்படுத்து"
 
-#: glade.strings:19
+#: glade.strings.h:18
 msgid "_Configure Hesiod..."
 msgstr "_Hesiodஐ வடிவமை..."
 
-#: glade.strings:20
+#: glade.strings.h:19
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
 msgstr ""
-"Hesiod கணினி நிர்வாகியை பயன்படுத்துபவர் மற்றும் குழுப்பெட்டி தகவலை"
-"DNSல் வெளியிட அனுமதிக்கிறது. இது சில சமயங்களில் பெரிய வலைப் பின்னல்களில் பயன்படுகிறது."
+"Hesiod கணினி நிர்வாகியை பயன்படுத்துபவர் மற்றும் குழுப்பெட்டி தகவலைDNSல் வெளியிட "
+"அனுமதிக்கிறது. இது சில சமயங்களில் பெரிய வலைப் பின்னல்களில் பயன்படுகிறது."
 
-#: glade.strings:21
-msgid "User Information"
-msgstr "பயன்படுத்துபவர் தகவல்"
+#: glade.strings.h:20
+msgid "Hesiod"
+msgstr "Hesiod"
 
-#: glade.strings:22
+#: glade.strings.h:21 glade.strings.h:40
+#, fuzzy
+msgid "Enable _Winbind Support"
+msgstr "_Hesiod ஆதரவை செயல்படுத்து"
+
+#: glade.strings.h:22 glade.strings.h:41
+#, fuzzy
+msgid "_Configure Winbind..."
+msgstr "_Hesiodஐ வடிவமை..."
+
+#: glade.strings.h:23 glade.strings.h:42
+msgid ""
+"Winbind allows a system to retrieve information about users and to "
+"authenticate users by using information stored in an NTDOM or ADS server.  "
+"It is used in small to large networks."
+msgstr ""
+
+#: glade.strings.h:26
 msgid "Use _Shadow Passwords"
 msgstr "நிழற் க்கடவுச்சொற்களை பயன்படுத்asswords"
 
-#: glade.strings:23
+#: glade.strings.h:27
 msgid "Use _MD5 Passwords"
 msgstr "_MD5 கடவுச்சொற்களை பயன்படுத்து"
 
-#: glade.strings:28
-msgid "Kerberos"
-msgstr "கெர்பரோஸ்"
-
-#: glade.strings:29
+#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr "_கெர்பரோஸின் ஆதரவை செயல்படுத்து"
 
-#: glade.strings:30
+#: glade.strings.h:33
 msgid "_Configure Kerberos..."
 msgstr "_கெர்பரோஸை வடிவமை..."
 
-#: glade.strings:31
+#: glade.strings.h:34
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
-"கெர்பரோஸ் என்பது நம்பிக்கையான மூன்றாவது நபர் சரிபார்க்கும் அமைப்பு பொதுவாக "
-"ஊடகம் முதல் பெரிய வலைப் பின்னல்களில் பயன்படுகிறது."
+"கெர்பரோஸ் என்பது நம்பிக்கையான மூன்றாவது நபர் சரிபார்க்கும் அமைப்பு பொதுவாக ஊடகம் முதல் "
+"பெரிய வலைப் பின்னல்களில் பயன்படுகிறது."
 
-#: glade.strings:32
-msgid "SMB Authentication"
-msgstr "SMB சரிபார்த்தல்"
-
-#: glade.strings:33
+#: glade.strings.h:36
 msgid "Enable _SMB Support"
 msgstr "_SMB ன் ஆதரவை செயல்படுத்து"
 
-#: glade.strings:34
+#: glade.strings.h:37
 msgid "_Configure SMB..."
 msgstr "_SMBஐ வடிவமை"
 
-#: glade.strings:35
+#: glade.strings.h:38
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
 msgstr ""
-"SMB சரிபார்த்தல் பயன்படுத்துபவரின் கடவுச்சொற்களை SMB நெறிமுறை அடுக்குத்தொடர்கள் இருக்கும் கணினியுடன் "
-"தொடர்பு கொள்ள முயற்சித்து சரிபார்க்கும் (கணினியின் செய்திப் பகுதி)"
+"SMB சரிபார்த்தல் பயன்படுத்துபவரின் கடவுச்சொற்களை SMB நெறிமுறை அடுக்குத்தொடர்கள் இருக்கும் "
+"கணினியுடன் தொடர்பு கொள்ள முயற்சித்து சரிபார்க்கும் (கணினியின் செய்திப் பகுதி)"
 
-#: glade.strings:39
-msgid "NIS Settings"
-msgstr "NIS அமைத்தல்கள்"
+#: glade.strings.h:39
+msgid "SMB"
+msgstr ""
 
-#: glade.strings:40
+#: glade.strings.h:46 glade.strings.h:49 glade.strings.h:51 glade.strings.h:54
+#: glade.strings.h:56 glade.strings.h:59 glade.strings.h:61 glade.strings.h:65
+#: glade.strings.h:68 glade.strings.h:70 glade.strings.h:73 glade.strings.h:79
+#: glade.strings.h:81 glade.strings.h:84 glade.strings.h:86 glade.strings.h:90
+msgid "*"
+msgstr ""
+
+#: glade.strings.h:47
 msgid "NIS _Server"
 msgstr "NIS _கணினி"
 
-#: glade.strings:41
+#: glade.strings.h:48
 msgid "NIS _Domain"
 msgstr "NIS _களம்"
 
-#: glade.strings:42 glade.strings:47 glade.strings:53 glade.strings:58
-#: glade.strings:64
-msgid "Apply"
-msgstr "பயன்படுத்து"
-
-#: glade.strings:43 glade.strings:48 glade.strings:54 glade.strings:59
-#: glade.strings:65
-msgid "Close"
-msgstr "மூடு"
-
-#: glade.strings:44
-msgid "Hesiod Settings"
-msgstr "Hesiod அமைத்தல்கள்"
-
-#: glade.strings:45
+#: glade.strings.h:52
 msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
-#: glade.strings:46
+#: glade.strings.h:53
 msgid "Hesiod _LHS"
 msgstr "Hesiod _LHS"
 
-#: glade.strings:49
-msgid "Kerberos Settings"
-msgstr "Kerberos அமைத்தல்கள்"
-
-#: glade.strings:50
+#: glade.strings.h:57
 msgid "_Admin Servers"
 msgstr "_நிர்வகிக்கும் கணினிகள்"
 
-#: glade.strings:51
+#: glade.strings.h:58
 msgid "_Realm"
 msgstr "_வட்டாரம்"
 
-#: glade.strings:52
+#: glade.strings.h:60
 msgid "_KDCs"
 msgstr "_KDCs"
 
-#: glade.strings:55
-msgid "SMB Settings"
-msgstr "SMB அமைத்தல்கள்"
+#: glade.strings.h:62
+msgid "Use DNS to resolve hosts to _realms"
+msgstr ""
 
-#: glade.strings:56
+#: glade.strings.h:63
+msgid "Use DNS to locate _KDCs for realms"
+msgstr ""
+
+#: glade.strings.h:66
 msgid "_Domain Controllers"
 msgstr "_களம் கட்டுப்பாட்டாளர்கள்"
 
-#: glade.strings:57
+#: glade.strings.h:67
 msgid "_Workgroup"
 msgstr "_பணிக்குழுமம்"
 
-#: glade.strings:60
-msgid "LDAP Settings"
-msgstr "LDAP அமைத்தல்கள்"
-
-#: glade.strings:61
+#: glade.strings.h:71
 msgid "LDAP _Server"
 msgstr "LDAP _வழங்கன்"
 
-#: glade.strings:62
+#: glade.strings.h:72
 msgid "LDAP Search _Base DN"
 msgstr "LDAP தேடு _அடிப்படை DN"
 
-#: glade.strings:63
+#: glade.strings.h:74
 msgid "Use _TLS to encrypt connections"
 msgstr "_TLS இணைப்புகளை குறியீடு ஆக்கத்திற்காக பயன்படுத்து"
+
+#: glade.strings.h:76
+#, fuzzy
+msgid "_Join Domain"
+msgstr "களம்:"
+
+#: glade.strings.h:77
+msgid "_Security Model"
+msgstr ""
+
+#: glade.strings.h:78
+#, fuzzy
+msgid "Winbind _Domain"
+msgstr "NIS _களம்"
+
+#: glade.strings.h:80
+#, fuzzy
+msgid "Winbind Domain _Controllers"
+msgstr "_களம் கட்டுப்பாட்டாளர்கள்"
+
+#: glade.strings.h:82
+msgid "Template _Shell"
+msgstr ""
+
+#: glade.strings.h:83
+msgid "Winbind ADS _Realm"
+msgstr ""
+
+#: glade.strings.h:85
+msgid "Joining Winbind Domain"
+msgstr ""
+
+#: glade.strings.h:87
+msgid "Domain _Administrator"
+msgstr ""
+
+#: glade.strings.h:88
+#, fuzzy
+msgid "Domain"
+msgstr "களம்:"
+
+#: glade.strings.h:89
+#, fuzzy
+msgid "_Password"
+msgstr "_MD5 கடவுச்சொற்களை பயன்படுத்து"
+
+#: glade.strings.h:91
+msgid "EXAMPLE.COM"
+msgstr ""
+
+#: glade.strings.h:92
+msgid "Alert"
+msgstr ""
+
+#: glade.strings.h:93
+msgid "Do_n't Save"
+msgstr ""
 
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "உள் கொள்கைகளை பயன்படுத்து"
 
+#~ msgid "User Information Configuration"
+#~ msgstr "பயன்படுத்துபவர் தகவல் அமைப்பு"
+
+#~ msgid "enable winbind for user information and authentication by default"
+#~ msgstr ""
+#~ "பயன்படுத்துபவர் தகவலுக்காகவும் மற்றும் சரிபார்த்தலுக்காகவும் வின்பைண்டை முன் இருக்குமாறு "
+#~ "செயல்படுக்து"
+
+#~ msgid "disable winbind for user information and authentication by default"
+#~ msgstr ""
+#~ "பயன்படுத்துபவர் தகவலுக்காகவும் மற்றும் சரிபார்த்தலுக்காகவும் வின்பைண்டை முன் இருக்குமாறு "
+#~ "செயலிழக்கச் செய்"
+
+#~ msgid "ads kerberos realm"
+#~ msgstr "ads kerberos வட்டாரம்"
+
+#~ msgid "Control how the system verifies users who attempt to log in"
+#~ msgstr ""
+#~ "பயன்படுத்துவோர் உள்ளே நுழைய முயற்சிக்கும் போது கணினி எப்படி சரிபார்க்கிறது என்பதை "
+#~ "கட்டுப்படுத்து"
+
+#~ msgid "Apply"
+#~ msgstr "பயன்படுத்து"
+
+#~ msgid "Close"
+#~ msgstr "மூடு"
