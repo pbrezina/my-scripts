@@ -8,7 +8,7 @@ License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
-Source: %{name}-%{version}.tar.bz2
+Source: %{name}-%{version}.tar.gz
 Requires: glibc >= 2.1, glib2, pam >= 0.77-56, nscd
 Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]")
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
