@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.0.2
-Release: 1
+Release: 2
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -29,12 +29,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%config(noreplace) /etc/pam.d/system-auth
 /usr/sbin/authconfig
 /usr/man/man8/*
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Thu Jun  1 2000 Nalin Dahyabhai <nalin@redhat.com>
+- move default system-auth configuration to pam package
+
 * Wed May 31 2000 Nalin Dahyabhai <nalin@redhat.com>
 - add default system-auth configuration
 

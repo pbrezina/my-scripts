@@ -20,7 +20,6 @@ install:
 	mkdir -p $(INSTROOT)/usr/sbin $(INSTROOT)/usr/man/man8
 	mkdir -p $(INSTROOT)/etc/pam.d
 	install -m 755 $(PROGNAME) $(INSTROOT)/usr/sbin/$(PROGNAME)
-	install -m 644 system-auth $(INSTROOT)/etc/pam.d
 	for d in $(SUBDIRS); do \
 	(cd $$d; $(MAKE) INSTROOT=$(INSTROOT) install) \
 	    || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
