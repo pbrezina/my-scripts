@@ -40,7 +40,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
-* Thu Aug 21 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.17-1
+* Thu Aug 23 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.17-1
 - make pam_ldap required for account management when ldapauth is enabled
   (this requires pam_ldap 114 or later, but simplifies things)
 - more translation updates
