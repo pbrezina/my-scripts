@@ -47,33 +47,6 @@ struct warntype {
   const char *path, *service, *package;
   struct warntype *next;
 };
-struct callbacktype {
-  void (*callback)(newtComponent, void*);
-  void *data;
-  struct callbacktype *next;
-};
-static struct callbacktype *
-createCallbackListItem(void *callback, void *data, struct callbacktype *next)
-{
-  struct callbacktype *ret;
-  ret = g_malloc(sizeof(struct callbacktype));
-  ret->callback = callback;
-  ret->data = data;
-  ret->next = next;
-  return ret;
-}
-static void
-runCallbackList(newtComponent comp, void *cblist)
-{
-  struct callbacktype *i;
-  i = cblist;
-  while (i != NULL) {
-    if (i->callback) {
-      i->callback(comp, i->data);
-    }
-    i = i->next;
-  }
-}
 
 /*
  * A newt callback to disallow spaces in an entry field.
@@ -487,16 +460,6 @@ getWinbindSettings(struct authInfoType *authInfo, gboolean next)
 }
 
 static void
-syncCheckbox(newtComponent comp, void *comp2)
-{
-  newtComponent second;
-  second = comp2;
-  if (newtCheckboxGetValue(second) != newtCheckboxGetValue(comp)) {
-    newtCheckboxSetValue(second, newtCheckboxGetValue(comp));
-  }
-}
-
-static void
 warnCallback(newtComponent comp, void *warningp)
 {
   struct warntype *warning;
@@ -525,7 +488,8 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 {
   newtComponent form, ok, cancel, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid, infoGrid, authGrid;
-  char cache, hesiod, ldap, nis, krb5, ldapa, smb, shadow, md5;
+  char cache, hesiod, ldap, nis, winbind, krb5, ldapa, smb, shadow, md5,
+       winbindauth;
   struct warntype warnCache = {PATH_NSCD,
 			       _("caching"),
 			       "nscd",
@@ -566,11 +530,6 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 				 _("Winbind"),
 				 "samba-common",
 				 &warnWinbindAuth};
-  struct {
-    newtComponent a, b;
-  } matched[] = {
-    {NULL, NULL},
-  };
 
   /* Information. */
   infoGrid = newtCreateGrid(1, 6);
@@ -607,10 +566,10 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   cb = newtCheckbox(-1, -1, _("Use Winbind"),
 		    authInfo->enableWinbind ? '*' : ' ',
-		    NULL, NULL);
+		    NULL, &winbind);
+  newtComponentAddCallback(cb, warnCallback, &warnWinbind);
   newtGridSetField(infoGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  matched[0].a = cb;
 
   /* Authentication. */
   authGrid = newtCreateGrid(1, 7);
@@ -654,23 +613,11 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtComponentAddCallback(cb, warnCallback, &warnSMB);
 
   cb = newtCheckbox(-1, -1, _("Use Winbind Authentication"),
-		    authInfo->enableWinbind ? '*' : ' ',
-		    NULL, NULL);
+		    authInfo->enableWinbindAuth ? '*' : ' ',
+		    NULL, &winbindauth);
+  newtComponentAddCallback(cb, warnCallback, &warnWinbindAuth);
   newtGridSetField(authGrid, 0, 6, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
-  matched[0].b = cb;
-
-  /* Make sure that the checkboxes have the same value. */
-  newtComponentAddCallback(matched[0].a,
-  			   runCallbackList,
-			   createCallbackListItem(syncCheckbox, matched[0].b,
-			   createCallbackListItem(warnCallback, &warnWinbind,
-			   NULL)));
-  newtComponentAddCallback(matched[0].b,
-  			   runCallbackList,
-			   createCallbackListItem(syncCheckbox, matched[0].a,
-			   createCallbackListItem(warnCallback, &warnWinbindAuth,
-			   NULL)));
 
   /* Control grid. */
   mechGrid = newtCreateGrid(2, 1);
@@ -708,12 +655,13 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
     authInfo->enableHesiod = (hesiod == '*');
     authInfo->enableLDAP = (ldap == '*');
     authInfo->enableNIS = (nis == '*');
-    authInfo->enableWinbind = (newtCheckboxGetValue(matched[0].a) == '*');
+    authInfo->enableWinbind = (winbind == '*');
     authInfo->enableShadow = (shadow == '*');
     authInfo->enableMD5 = (md5 == '*');
     authInfo->enableLDAPAuth = (ldapa == '*');
     authInfo->enableKerberos = (krb5 == '*');
     authInfo->enableSMB = (smb == '*');
+    authInfo->enableWinbindAuth = (winbindauth == '*');
   }
 
   newtFormDestroy(form);
@@ -743,7 +691,8 @@ getChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 	       authInfo->enableKerberos ||
 	       authInfo->enableNIS ||
 	       authInfo->enableSMB ||
-	       authInfo->enableWinbind;
+	       authInfo->enableWinbind ||
+	       authInfo->enableWinbindAuth;
         rc = getHesiodSettings(authInfo, more);
       }
       break;
@@ -840,6 +789,7 @@ main(int argc, const char **argv)
   char *smbWorkgroup = NULL, *smbServers = NULL, *smbRealm = NULL;
 
   int enableWinbind = 0, disableWinbind = 0;
+  int enableWinbindAuth = 0, disableWinbindAuth = 0;
   char *smbSecurity = NULL, *smbIdmapUid = NULL, *smbIdmapGid = NULL;
 
   int enableWinbindUseDefaultDomain = 0, disableWinbindUseDefaultDomain = 0;
@@ -943,10 +893,16 @@ main(int argc, const char **argv)
 	_("names of servers to authenticate against\n"), _("<server>")},
 
       { "enablewinbind", '\0', POPT_ARG_NONE, &enableWinbind, 0,
-	_("enable winbind for user information and authentication by default"),
+	_("enable winbind for user information by default"),
 	NULL},
       { "disablewinbind", '\0', POPT_ARG_NONE, &disableWinbind, 0,
-	_("disable winbind for user information and authentication by default"),
+	_("disable winbind for user information by default"),
+	NULL},
+      { "enablewinbindauth", '\0', POPT_ARG_NONE, &enableWinbindAuth, 0,
+	_("enable winbindauth for authentication by default"),
+	NULL},
+      { "disablewinbindauth", '\0', POPT_ARG_NONE, &disableWinbindAuth, 0,
+	_("disable winbindauth for authentication by default"),
 	NULL},
       { "smbsecurity", '\0', POPT_ARG_STRING, &smbSecurity, 0,
 	_("security mode to use for samba and winbind"), "<user|server|domain|ads>"},
