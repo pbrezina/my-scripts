@@ -112,10 +112,28 @@ void overrideString(char **dest, const char *source)
   }
 }
 
+void checkWarn(const char *path, const char *service, const char *package)
+{
+  char buf[LINE_MAX];
+
+  if(access(path, R_OK) == 0) {
+    return;
+  }
+
+  snprintf(buf, sizeof(buf), i18n("The %s file was not found, but it is "
+           "required for %s support to work properly.  Install the %s package, "
+           "which provides this file."), path, service, package);
+ 
+  newtWinMessage(i18n("Warning"), i18n("Ok"), buf, NULL); 
+
+  newtRefresh();
+}
+
 void nisToggle(newtComponent cb, void *data)
 {
   struct nis_cb *nis = (struct nis_cb*) data;
   if(nis->nss_nis == '*') {
+    checkWarn(PATH_YPBIND, "NIS", "ypbind");
     newtLabelSetText(nis->domainLabel, i18n("  Domain:"));
     newtLabelSetText(nis->serverLabel, i18n("  Server:"));
     newtEntrySetFlags(nis->domainEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -158,6 +176,11 @@ void ldapToggle(newtComponent cb, void *data)
 {
   struct ldap_cb *ldap = (struct ldap_cb*) data;
   if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*')) {
+    if(ldap->nss_ldap == '*') {
+      checkWarn(PATH_LIBNSS_LDAP, "LDAP", "nss_ldap");
+    } else {
+      checkWarn(PATH_PAM_LDAP, "LDAP", "nss_ldap");
+    }
     newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
     newtLabelSetText(ldap->baseDnLabel, i18n(" Base DN:"));
     newtEntrySetFlags(ldap->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -179,6 +202,7 @@ void krb5Toggle(newtComponent cb, void *data)
 {
   struct krb5_cb *krb5 = (struct krb5_cb*) data;
   if(krb5->pam_krb5 == '*') {
+    checkWarn(PATH_PAM_KRB5, "Kerberos", "pam_krb5");
     newtLabelSetText(krb5->realmLabel,  i18n("          Realm:"));
     newtLabelSetText(krb5->kdcLabel,    i18n("            KDC:"));
     newtLabelSetText(krb5->kadminLabel, i18n("   Admin Server:"));

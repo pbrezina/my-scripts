@@ -40,6 +40,7 @@ rm -rf $RPM_BUILD_ROOT
 - bail on errors, even when we can see the file
 - use RPM_OPT_FLAGS
 - support multiple NIS servers
+- warn if needed files aren't there
 
 * Mon Jun  5 2000 Nalin Dahyabhai <nalin@redhat.com>
 - fix for false-matching beginnings of realm subsections
