@@ -100,8 +100,8 @@ struct authInfoType {
 	gboolean brokenShadow;
 };
 
-struct authInfoType *authInfoRead();
-struct authInfoType *authInfoProbe();
+struct authInfoType *authInfoRead(void);
+struct authInfoType *authInfoProbe(void);
 struct authInfoType *authInfoCopy(struct authInfoType *info);
 gboolean authInfoWrite(struct authInfoType *info);
 
@@ -128,5 +128,6 @@ gboolean authInfoWriteNetwork(struct authInfoType *info);
 gboolean authInfoWriteWinbind(struct authInfoType *info);
 
 void authInfoPost(struct authInfoType *authInfo, int nostart);
+void authInfoPrint(struct authInfoType *authInfo);
 
 #endif
