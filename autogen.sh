@@ -1,8 +1,8 @@
 set -x
 gettextize --intl -f
-autoheader
-automake
+autoheader-2.53
+automake-1.5 -a
 libtoolize -f -c
-aclocal
+aclocal-1.5
 intltoolize
-autoconf
+autoconf-2.53
