@@ -395,23 +395,21 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 		}
 	}
 
-	if(nss_config == NULL) {
-		nss_config = g_strdup(NSS_DEFAULT);
+	if(nss_config != NULL) {
+		info->enableDB = (strstr(nss_config, "db") != NULL);
+		info->enableHesiod = (strstr(nss_config, "hesiod") != NULL);
+		info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
+		/* Don't be fooled by "nisplus". */
+		for(p = nss_config; strstr(p, "nis") != NULL; p++) {
+			info->enableNIS = ((strstr(p, "nis") != NULL) &&
+					   ((strstr(p, "nis"))[3] != 'p'));
+			if(info->enableNIS) {
+				break;
+			}
+		}
+		info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
 	}
 
-	info->enableDB = (strstr(nss_config, "db") != NULL);
-	info->enableHesiod = (strstr(nss_config, "hesiod") != NULL);
-	info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
-	/* Cover for the "nisplus nis" case, which would otherwise fail. */
-	for(p = nss_config; strstr(p, "nis") != NULL; p++) {
-		info->enableNIS = ((strstr(p, "nis") != NULL) &&
-				   ((strstr(p, "nis"))[3] != 'p'));
-		if(info->enableNIS) {
-			break;
-		}
-	}
-	info->enableNIS3 = (strstr(nss_config, "nisplus") != NULL);
-	g_free(nss_config);
 	fclose(fp);
 	return TRUE;
 }
@@ -1243,7 +1241,7 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	    strlen("netgroup:   \n") +
 	    strlen("automount:  \n") +
 	    strlen("hosts:      \n");
-	l += strlen(NSS_DEFAULT) * 8;
+	l += strlen(" files nisplus nis") * 8;
 	l += strlen(" db") * 8;
 	l += strlen(" files") * 8;
 	l += strlen(" hesiod") * 8;
@@ -1261,11 +1259,7 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	if(info->enableNIS) strcat(normal, " nis");
 	if(info->enableLDAP) strcat(normal, " ldap");
 	if(info->enableHesiod) strcat(normal, " hesiod");
-	if(!info->enableHesiod &&
-	   !info->enableLDAP &&
-	   !info->enableNIS) {
-		strcpy(normal, NSS_DEFAULT);
-	}
+	
 	/* Hostnames we treat specially. */
 	strcat(hosts, " files");
 	if(info->enableNIS3) strcat(hosts, " nisplus");

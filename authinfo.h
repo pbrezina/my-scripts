@@ -11,7 +11,6 @@
 #define SYSCONFDIR "/etc"
 #define AUTH_PAM_SERVICE "system-auth"
 #define AUTH_MODULE_DIR "/lib/security"
-#define NSS_DEFAULT "files nisplus nis"
 
 #define PATH_PORTMAP "/sbin/portmap"
 #define PATH_NSCD_PID "/var/run/nscd.pid"
