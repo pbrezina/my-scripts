@@ -179,9 +179,9 @@ void krb5Toggle(newtComponent cb, void *data)
 {
   struct krb5_cb *krb5 = (struct krb5_cb*) data;
   if(krb5->pam_krb5 == '*') {
-    newtLabelSetText(krb5->realmLabel, i18n(" Realm:"));
-    newtLabelSetText(krb5->kdcLabel, i18n("   KDC:"));
-    newtLabelSetText(krb5->kadminLabel, i18n(" Admin Server:"));
+    newtLabelSetText(krb5->realmLabel,  i18n("          Realm:"));
+    newtLabelSetText(krb5->kdcLabel,    i18n("            KDC:"));
+    newtLabelSetText(krb5->kadminLabel, i18n("   Admin Server:"));
     newtEntrySetFlags(krb5->realmEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
     newtEntrySetFlags(krb5->kdcEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -202,43 +202,40 @@ void krb5Toggle(newtComponent cb, void *data)
   newtRefresh();
 }
 
-int getChoices(int back,
-	       gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
-	       struct authInfoType *authInfo)
+int getNSSChoices(int back,
+	          gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
+	          struct authInfoType *authInfo)
 {
-  newtComponent form, ok, cancel, comp, label, cb;
-  gboolean rc = FALSE;
+  newtComponent form, ok, cancel, comp, cb;
+  char nss_files;
+  int rc = FALSE;
 
   struct nis_cb nis;
   struct hesiod_cb hesiod;
   struct ldap_cb ldap;
-  struct krb5_cb krb5;
 
-  char shadow = 0, md5 = 0;
   char *hesiodLHS = NULL, *hesiodRHS = NULL;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *nisServer = NULL, *nisDomain = NULL;
-  char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
 
   /* Create the window and a form to put into it. */
-  newtCenteredWindow(70, 19, i18n("Authentication Configuration"));
+  newtCenteredWindow(61, 16, i18n("User Information Configuration"));
   form = newtForm(NULL, NULL, 0);
 
-  /* Labels. */
-  label = newtLabel(3, 1, i18n("User Information Services"));
-  newtFormAddComponent(form, label);
-  label = newtLabel(37, 1, i18n("Authentication Services"));
-  newtFormAddComponent(form, label);
+  /* NSS files. */
+  cb = newtCheckbox(1, 1, i18n("Use /etc/passwd"), '*', "*", &nss_files);
+  newtFormAddComponent(form, cb);
+  newtCheckboxSetFlags(cb, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
 
   /* NSS modules: NIS. */
-  cb = newtCheckbox(3, 3, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
+  cb = newtCheckbox(1, 3, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
 		    NULL, &nis.nss_nis);
-  nis.domainLabel = newtLabel(3, 4, "");
-  nis.domainEntry = newtEntry(13, 4, authInfo->nisDomain, 20, &nisDomain,
+  nis.domainLabel = newtLabel(15, 3, "");
+  nis.domainEntry = newtEntry(25, 3, authInfo->nisDomain, 35, &nisDomain,
 		  	      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.domainEntry, entryFilter, NULL);
-  nis.serverLabel = newtLabel(3, 5, "");
-  nis.serverEntry = newtEntry(13, 5, authInfo->nisServer, 20, &nisServer,
+  nis.serverLabel = newtLabel(15, 4, "");
+  nis.serverEntry = newtEntry(25, 4, authInfo->nisServer, 35, &nisServer,
 		  	      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.serverEntry, entryFilter, NULL);
   newtFormAddComponents(form,
@@ -250,14 +247,18 @@ int getChoices(int back,
 			NULL);
   newtComponentAddCallback(cb, nisToggle, &nis);
 
-  cb = newtCheckbox(3, 7, i18n("Use LDAP"),
+  /* Make this checkbox the starting location. */
+  newtFormSetCurrent(form, cb);
+
+  ldap.pam_ldap = authInfo->enableLDAPAuth ? '*' : ' ';
+  cb = newtCheckbox(1, 6, i18n("Use LDAP"),
 		    authInfo->enableLDAP ? '*' : ' ', NULL, &ldap.nss_ldap);
-  ldap.serverLabel = newtLabel(3, 8, "");
-  ldap.baseDnLabel = newtLabel(3, 9, "");
-  ldap.serverEntry = newtEntry(13, 8, authInfo->ldapServer, 20, &ldapServer,
+  ldap.serverLabel = newtLabel(15, 6, "");
+  ldap.serverEntry = newtEntry(25, 6, authInfo->ldapServer, 35, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
-  ldap.baseDnEntry = newtEntry(13, 9, authInfo->ldapBaseDN, 20, &ldapBaseDN,
+  ldap.baseDnLabel = newtLabel(15, 7, "");
+  ldap.baseDnEntry = newtEntry(25, 7, authInfo->ldapBaseDN, 35, &ldapBaseDN,
 		  	       NEWT_ENTRY_SCROLL);
   newtFormAddComponents(form,
 		  	cb,
@@ -268,15 +269,15 @@ int getChoices(int back,
 			NULL);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
-  cb = newtCheckbox(3, 11, i18n("Use Hesiod"),
+  cb = newtCheckbox(1, 9, i18n("Use Hesiod"),
 		    authInfo->enableHesiod ? '*' : ' ', NULL,
 		    &hesiod.nss_hesiod);
-  hesiod.lhsLabel = newtLabel(3, 12, "");
-  hesiod.lhsEntry = newtEntry(13, 12, authInfo->hesiodLHS, 20, &hesiodLHS,
+  hesiod.lhsLabel = newtLabel(15, 9, "");
+  hesiod.lhsEntry = newtEntry(25, 9, authInfo->hesiodLHS, 35, &hesiodLHS,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
-  hesiod.rhsLabel = newtLabel(3, 13, "");
-  hesiod.rhsEntry = newtEntry(13, 13, authInfo->hesiodRHS, 20, &hesiodRHS,
+  hesiod.rhsLabel = newtLabel(15, 10, "");
+  hesiod.rhsEntry = newtEntry(25, 10, authInfo->hesiodRHS, 35, &hesiodRHS,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
   newtFormAddComponents(form,
@@ -288,55 +289,15 @@ int getChoices(int back,
 			NULL);
   newtComponentAddCallback(cb, hesiodToggle, &hesiod);
 
-  /* PAM setup. */
-  cb = newtCheckbox(37, 3, i18n("Use Shadow Passwords"),
-		    authInfo->enableShadow ? '*' : ' ', NULL, &shadow);
-  newtFormAddComponent(form, cb);
-
-  cb = newtCheckbox(37, 5, i18n("Use MD5 Passwords"),
-		    authInfo->enableMD5 ? '*' : ' ', NULL, &md5);
-  newtFormAddComponent(form, cb);
-
-  cb = newtCheckbox(37, 7, i18n("Use LDAP Authentication"),
-		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
-  newtFormAddComponent(form, cb);
-  newtComponentAddCallback(cb, ldapToggle, &ldap);
-
-  cb = newtCheckbox(37, 9, i18n("Use Kerberos"),
-		    authInfo->enableKerberos ? '*' : ' ', NULL, &krb5.pam_krb5);
-  krb5.realmLabel = newtLabel(37, 10, "");
-  krb5.realmEntry = newtEntry(45, 10, authInfo->kerberosRealm, 22,
-		  	      &kerberosRealm, NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(krb5.realmEntry, entryFilter, NULL);
-  krb5.kdcLabel = newtLabel(37, 11, "");
-  krb5.kdcEntry = newtEntry(45, 11, authInfo->kerberosKDC, 22,
-		  	    &kerberosKDC, NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(krb5.kdcEntry, entryFilter, NULL);
-  krb5.kadminLabel = newtLabel(37, 12, "");
-  krb5.kadminEntry = newtEntry(52, 12, authInfo->kerberosAdminServer, 15,
-		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
-  newtComponentAddCallback(cb, krb5Toggle, &krb5);
-  newtFormAddComponents(form,
-		  	cb,
-			krb5.realmLabel,
-			krb5.realmEntry,
-			krb5.kdcLabel,
-			krb5.kdcEntry,
-			krb5.kadminLabel,
-			krb5.kadminEntry,
-			NULL);
-
   /* Create the buttons. */
-  ok = newtButton(20, 15, i18n("Ok"));
-  cancel = newtButton(38, 15, back ? i18n("Back") : i18n("Cancel"));
+  ok = newtButton(15, 12, i18n("Ok"));
+  cancel = newtButton(33, 12, back ? i18n("Back") : i18n("Cancel"));
   newtFormAddComponents(form, ok, cancel, NULL);
 
   /* Call all of the callbacks to initialize disabled fields. */
   nisToggle(NULL, &nis);
   ldapToggle(NULL, &ldap);
   hesiodToggle(NULL, &hesiod);
-  krb5Toggle(NULL, &krb5);
 
   /* Run the form and interpret the results. */
   comp = newtRunForm(form);
@@ -353,19 +314,148 @@ int getChoices(int back,
     setString(&authInfo->nisServer, nisServer);
     setString(&authInfo->nisDomain, nisDomain);
 
+    rc = TRUE;
+  }
+  newtFormDestroy(form);
+  newtPopWindow();
+
+  return rc;
+}
+
+int getPAMChoices(int back,
+	          gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
+	          struct authInfoType *authInfo)
+{
+  newtComponent form, ok, cancel, comp, cb;
+  gboolean rc = FALSE;
+
+  struct ldap_cb ldap;
+  struct krb5_cb krb5;
+
+  char shadow = 0, md5 = 0;
+  char *ldapServer = NULL, *ldapBaseDN = NULL;
+  char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
+
+  /* Create the window and a form to put into it. */
+  newtCenteredWindow(70, 16, i18n("Authentication Configuration"));
+  form = newtForm(NULL, NULL, 0);
+
+  /* PAM setup. */
+  cb = newtCheckbox(1, 1, i18n("Use Shadow Passwords"),
+		    authInfo->enableShadow ? '*' : ' ', NULL, &shadow);
+  newtFormAddComponent(form, cb);
+
+  cb = newtCheckbox(1, 3, i18n("Use MD5 Passwords"),
+		    authInfo->enableMD5 ? '*' : ' ', NULL, &md5);
+  newtFormAddComponent(form, cb);
+
+  ldap.nss_ldap = authInfo->enableLDAP ? '*' : ' ';
+  cb = newtCheckbox(1, 5, i18n("Use LDAP Authentication"),
+		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
+
+  newtComponentAddCallback(cb, ldapToggle, &ldap);
+  ldap.serverLabel = newtLabel(28, 5, "");
+  ldap.serverEntry = newtEntry(38, 5, authInfo->ldapServer, 30, &ldapServer,
+		  	       NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
+  ldap.baseDnLabel = newtLabel(28, 6, "");
+  ldap.baseDnEntry = newtEntry(38, 6, authInfo->ldapBaseDN, 30, &ldapBaseDN,
+		  	       NEWT_ENTRY_SCROLL);
+  newtFormAddComponents(form,
+		  	cb,
+		  	ldap.serverLabel,
+			ldap.baseDnLabel,
+			ldap.serverEntry,
+			ldap.baseDnEntry,
+			NULL);
+  newtComponentAddCallback(cb, ldapToggle, &ldap);
+
+  cb = newtCheckbox(1, 8, i18n("Use Kerberos 5"),
+		    authInfo->enableKerberos ? '*' : ' ', NULL, &krb5.pam_krb5);
+  krb5.realmLabel = newtLabel(21, 8, "");
+  krb5.realmEntry = newtEntry(38, 8, authInfo->kerberosRealm, 30,
+		  	      &kerberosRealm, NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(krb5.realmEntry, entryFilter, NULL);
+  krb5.kdcLabel = newtLabel(21, 9, "");
+  krb5.kdcEntry = newtEntry(38, 9, authInfo->kerberosKDC, 30,
+		  	    &kerberosKDC, NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(krb5.kdcEntry, entryFilter, NULL);
+  krb5.kadminLabel = newtLabel(21, 10, "");
+  krb5.kadminEntry = newtEntry(38, 10, authInfo->kerberosAdminServer, 30,
+		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
+  newtComponentAddCallback(cb, krb5Toggle, &krb5);
+  newtFormAddComponents(form,
+		  	cb,
+			krb5.realmLabel,
+			krb5.realmEntry,
+			krb5.kdcLabel,
+			krb5.kdcEntry,
+			krb5.kadminLabel,
+			krb5.kadminEntry,
+			NULL);
+
+  /* Create the buttons. */
+  ok = newtButton(20, 12, i18n("Ok"));
+  cancel = newtButton(38, 12, back ? i18n("Back") : i18n("Cancel"));
+  newtFormAddComponents(form, ok, cancel, NULL);
+
+  /* Call all of the callbacks to initialize disabled fields. */
+  ldapToggle(NULL, &ldap);
+  krb5Toggle(NULL, &krb5);
+
+  /* Run the form and interpret the results. */
+  comp = newtRunForm(form);
+  if(comp == ok) {
     authInfo->enableMD5 = (md5 == '*');
     authInfo->enableShadow = (shadow == '*');
+
+    authInfo->enableLDAPAuth = (ldap.pam_ldap == '*');
+    setString(&authInfo->ldapServer, ldapServer);
+    setString(&authInfo->ldapBaseDN, ldapBaseDN);
 
     authInfo->enableKerberos = (krb5.pam_krb5 == '*');
     setString(&authInfo->kerberosRealm, kerberosRealm);
     setString(&authInfo->kerberosKDC, kerberosKDC);
     setString(&authInfo->kerberosAdminServer, kerberosAdmin);
 
-    authInfo->enableLDAPAuth = (ldap.pam_ldap == '*');
-
     rc = TRUE;
   }
   newtFormDestroy(form);
+  newtPopWindow();
+
+  return rc;
+}
+
+int getChoices(int back,
+	       gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
+	       struct authInfoType *authInfo)
+{
+  int rc = FALSE, next = 1;
+
+  /* State machine (couldn't come up with a cleaner way to express the logic):
+   * 1: query for NSS setup.
+   * 2: query for PAM setup.
+   * 0: quit */
+  while (next != 0) {
+    switch (next) {
+      case 1:
+	if (getNSSChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
+	  next = 2;
+	} else {
+	  next = 0;
+	}
+	break;
+      case 2:
+	if (getPAMChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
+	  next = 0;
+	  rc = TRUE;
+	} else {
+	  next = 1;
+	}
+	break;
+    }
+  }
 
   return rc;
 }

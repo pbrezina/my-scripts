@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.1
+Version: 4.0.2
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -39,6 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 - base DN can have spaces in it
 - use pam_krb5afs for krb5 if /afs is readable
 - add the tokens flag to pam_krb5afs
+- break (user info and auth setup) into two screens
 
 * Fri May 26 2000 Nalin Dahyabhai <nalin@redhat.com>
 - finish LDAP support
