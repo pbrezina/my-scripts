@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2000-01-20 17:40-0500\n"
+"POT-Creation-Date: 2000-02-03 11:51-0500\n"
 "PO-Revision-Date: 1999-04-08 21:00+0300\n"
 "Last-Translator: Leon Kanter <leon@geon.donetsk.ua>\n"
 "Language-Team: DonLUG <donlug@geon.donetsk.ua>\n"
@@ -26,7 +26,7 @@ msgstr "%s: невозможно открыть /etc/yp.conf: %s\n"
 #: ../authconfig.c:202 ../authconfig.c:899
 #, fuzzy, c-format
 msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s: невозможно открыть /etc/yp.conf: %s\n"
+msgstr "%s: невозможно открыть /etc/ldap.conf: %s\n"
 
 #.
 #. * find length of longest string. Looks useless when strings
@@ -34,13 +34,12 @@ msgstr "%s: невозможно открыть /etc/yp.conf: %s\n"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:318 ../authconfig.c:486
-#, fuzzy
 msgid "    NIS Domain:"
-msgstr "Домен NIS:"
+msgstr "     Домен NIS:"
 
 #: ../authconfig.c:319 ../authconfig.c:461
 msgid "NIS Server:"
-msgstr "Сервер NIS:"
+msgstr "    Сервер NIS:"
 
 #.
 #. * authentication server stuff.
@@ -51,18 +50,16 @@ msgstr "Сервер NIS:"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:320 ../authconfig.c:449
-#, fuzzy
 msgid "         or use:"
 msgstr "либо использовать:"
 
 #: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-#, fuzzy
 msgid "   LDAP Domain:"
-msgstr "Домен NIS:"
+msgstr "       Домен LDAP:"
 
 #: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
 msgid "    LDAP Server:"
-msgstr ""
+msgstr "      Сервер LDAP:"
 
 #: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
 msgid "Kerberos Realm:"
@@ -70,31 +67,30 @@ msgstr ""
 
 #: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
 msgid "Kerberos Server:"
-msgstr ""
+msgstr "Сервер Kerberos:"
 
 #.
 #. * what kind of authentication?
 #.
 #: ../authconfig.c:416
-#, fuzzy
 msgid "Authentication Type:"
-msgstr "Конфигурация аутентификации"
+msgstr "Тип аутентификации:"
 
 #: ../authconfig.c:417
 msgid "Password File"
-msgstr ""
+msgstr "Файл passwd"
 
 #: ../authconfig.c:422
 msgid "NIS"
-msgstr ""
+msgstr "NIS"
 
 #: ../authconfig.c:428
 msgid "LDAP"
-msgstr ""
+msgstr "LDAP"
 
 #: ../authconfig.c:434
 msgid "Kerberos"
-msgstr ""
+msgstr "Kerberos"
 
 #: ../authconfig.c:462
 msgid "Request via broadcast"
@@ -140,9 +136,8 @@ msgstr ""
 "Вы должны соединиться с сервером NIS или послать широковещателный запрос."
 
 #: ../authconfig.c:650
-#, fuzzy
 msgid "You must enter an authentication domain."
-msgstr "Вы должны войти в домен NIS."
+msgstr "Вы должны войти в домен аутентификации."
 
 #: ../authconfig.c:707
 #, c-format
@@ -155,26 +150,26 @@ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s: невозможно открыть /etc/yp.conf- для записи: %s\n"
 
 #: ../authconfig.c:906
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s: невозможно открыть /etc/yp.conf- для записи: %s\n"
+msgstr "%s: невозможно открыть /etc/ldap.conf- для записи: %s\n"
 
 #: ../authconfig.c:985
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s: невозможно открыть /etc/yp.conf: %s\n"
+msgstr "%s: невозможно открыть /etc/nsswitch.conf: %s\n"
 
 #: ../authconfig.c:992
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s: невозможно открыть /etc/yp.conf- для записи: %s\n"
+msgstr "%s: невозможно открыть /etc/nsswitch.conf- для записи: %s\n"
 
-#: ../authconfig.c:1200
+#: ../authconfig.c:1221
 #, c-format
 msgid "%s: error opening %s\n"
 msgstr "%s: ошибка открытия %s\n"
 
-#: ../authconfig.c:1236
+#: ../authconfig.c:1257
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -199,99 +194,87 @@ msgstr ""
 "     --kickstart          не отображать интерфейс пользователя\n"
 "     --help               показать этот экран\n"
 
-#: ../authconfig.c:1302
+#: ../authconfig.c:1323
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: неверный аргумент %s: %s\n"
 
-#: ../authconfig.c:1309
+#: ../authconfig.c:1330
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: неожиданный аргумент\n"
 
-#: ../authconfig.c:1321
+#: ../authconfig.c:1342
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: может выполняться только пользователем root\n"
 
-#: ../authconfig.c:1337
+#: ../authconfig.c:1358
 #, c-format
 msgid "%s: unknown authorization type %s\n"
-msgstr ""
+msgstr "%s: неизвестный тип авторизации %s\n"
 
-#: ../authconfig.c:1353
+#: ../authconfig.c:1374
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
 msgstr "%s: критическая ошибка чтения /etc/sysconfig/network"
 
-#: ../authconfig.c:1362
+#: ../authconfig.c:1383
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
 msgstr "%s: критическая ошибка чтения /etc/yp.conf"
 
-#: ../authconfig.c:1381
-#, fuzzy, c-format
+#: ../authconfig.c:1402
+#, c-format
 msgid "%s: critical error reading /etc/ldap.conf"
-msgstr "%s: критическая ошибка чтения /etc/yp.conf"
+msgstr "%s: критическая ошибка чтения /etc/ldap.conf"
 
-#: ../authconfig.c:1393
+#: ../authconfig.c:1414
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
 msgstr "%s: критическая ошибка чтения /etc/pam.d/passwd\n"
 
-#: ../authconfig.c:1402
+#: ../authconfig.c:1423
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 " <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
-#: ../authconfig.c:1412
+#: ../authconfig.c:1433
 msgid "dialog was cancelled\n"
-msgstr ""
+msgstr "диалог был прерван\n"
 
-#: ../authconfig.c:1423
+#: ../authconfig.c:1444
 msgid "authentication type selected: "
-msgstr ""
+msgstr "выбран тип аутентификации: "
 
-#: ../authconfig.c:1453
+#: ../authconfig.c:1474
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
 msgstr "%s: критическая ошибка записи /etc/sysconfig/network\n"
 
-#: ../authconfig.c:1461
+#: ../authconfig.c:1482
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
 msgstr "%s: критическая ошибка записи /etc/yp.conf\n"
 
-#: ../authconfig.c:1468
+#: ../authconfig.c:1489
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
 msgstr "%s: критическая ошибка запуска сервиса NIS\n"
 
-#: ../authconfig.c:1480
-#, fuzzy, c-format
+#: ../authconfig.c:1501
+#, c-format
 msgid "%s: critical error writing /etc/ldap.conf\n"
-msgstr "%s: критическая ошибка записи /etc/yp.conf\n"
+msgstr "%s: критическая ошибка записи /etc/ldap.conf\n"
 
-#: ../authconfig.c:1490
-#, fuzzy, c-format
+#: ../authconfig.c:1511
+#, c-format
 msgid "%s: critical error writing /etc/nsswitch.conf\n"
-msgstr "%s: критическая ошибка записи /etc/yp.conf\n"
+msgstr "%s: критическая ошибка записи /etc/nsswitch.conf\n"
 
-#: ../authconfig.c:1499
+#: ../authconfig.c:1520
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
 msgstr "%s: критическая ошибка манипуляции с теневыми паролями\n"
-
-#~ msgid "Enable NIS"
-#~ msgstr "Разрешить NIS"
-
-#~ msgid "(NIS not installed)"
-#~ msgstr "(NIS не установлен)"
-
-#~ msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-#~ msgstr "%s: домен nis был установлен в %s, но диалог был прекращен\n"
-
-#~ msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-#~ msgstr "возврат значений: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
