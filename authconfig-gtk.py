@@ -54,7 +54,7 @@ class childWindow:
 			("enableCache", "/usr/sbin/nscd",
 			 "caching", "nscd", []),
 			"enablenis" :
-			("enableNIS", "/usr/sbin/ypbind",
+			("enableNIS", "/sbin/ypbind",
 			 "NIS", "ypbind", ["confignis"]),
 			"enablehesiod" :
 			("enableHesiod", self.lib + "/libnss_hesiod.so.2",
@@ -76,7 +76,7 @@ class childWindow:
 			"enablemd5" :
 			("enableMD5", "", "", "", []),
 			"enablewinbind" :
-			("enableWinbind", self.lib + "/nss_winbind.so.2",
+			("enableWinbind", self.lib + "/libnss_winbind.so.2",
 			 "winbind", "samba-client", ["configwinbind"]),
 			"enablewinbindauth" :
 			("enableWinbindAuth", self.lib + "/security/pam_winbind.so",
@@ -302,7 +302,13 @@ class childWindow:
 		# Hook up checkboxes and entry fields.
 		for entry in self.main_map.keys():
 			widget = xml.get_widget(entry)
-			widget.set_active(getattr(self.info,
+			try:
+				if self.main_map[entry][1]:
+					os.stat(self.main_map[entry][1])
+			except:
+				widget.set_sensitive(False)
+			else:
+				widget.set_active(getattr(self.info,
 						  self.main_map[entry][0]))
 			if hasattr(widget, "get_active"):
 				aliases = []
