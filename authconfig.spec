@@ -73,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
-* Thu Jan  3 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2.2-2
+* Thu Jan  3 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.2-2
 - bump release and rebuild
 
 * Thu Dec 20 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2.2-1
