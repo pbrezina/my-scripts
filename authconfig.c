@@ -75,14 +75,16 @@ gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
     if(stat(PATH_YPBIND, &st) == 0) {
       system("/sbin/chkconfig --add ypbind");
       system("/sbin/chkconfig --level 345 ypbind on");
+      if (!nostart) {
+        system("/sbin/service ypbind restart");
+      }
     }
     if(stat(PATH_PORTMAP, &st) == 0) {
       system("/sbin/chkconfig --add portmap");
       system("/sbin/chkconfig --level 345 portmap on");
-    }
-    if (!nostart) {
-      system("/sbin/service portmap restart");
-      system("/sbin/service ypbind restart");
+      if (!nostart) {
+        system("/sbin/service portmap restart");
+      }
     }
   } else {
     system("/bin/domainname \"(none)\"");
