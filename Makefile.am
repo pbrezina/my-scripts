@@ -1,5 +1,4 @@
 SUBDIRS = po man
-CONFIGURE_DEPENDENCIES = $(top_srcdir)/authconfig.spec
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -85,7 +84,11 @@ authconfigmodule_la_SOURCES = authconfigmodule.c
 authconfigmodule_la_LIBADD = libauthconfig.la
 authconfigmodule_la_LDFLAGS = -module -avoid-version -export-dynamic @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop.in authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png README.samba3 mkinstalldirs authconfig.glade.h cacertdir_rehash
+EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd authconfig-gtk.pamd \
+	authconfig.console authconfig-gtk.console authconfig.desktop.in \
+	authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo \
+	intltool-extract.in intltool-merge.in intltool-update.in user_auth.png \
+	README.samba3 mkinstalldirs authconfig.glade.h cacertdir_rehash
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update authconfig.desktop
 
 VERSION=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{version}\n' | head -n1)
@@ -98,8 +101,11 @@ tag:
 force-tag forcetag:
 	cvs tag -cFR $(TAG)
 
+authconfig.spec: authconfig.spec.in configure.in
+	./autogen.sh
+
 archive:
-	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.gz
+	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.bz2
 	dir=`pwd` ; \
 	root=`cat CVS/Root` ; \
 	cd /tmp ; \
@@ -109,4 +115,4 @@ archive:
 	./configure ; \
 	aclocal ; \
 	make dist ; \
-	mv $(distdir).tar.gz $$dir
+	mv $(distdir).tar.bz2 $$dir

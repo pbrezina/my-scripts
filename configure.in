@@ -1,5 +1,5 @@
-AC_INIT(TODO)
-AM_INIT_AUTOMAKE(authconfig,`awk '/Version:/ { print $2 }' ${srcdir}/authconfig.spec`)
+AC_INIT(authconfig,4.6.11)
+AM_INIT_AUTOMAKE([dist-bzip2 no-dist-gzip])
 AC_PREFIX_DEFAULT(/usr)
 AC_PROG_CC
 ALL_LINGUAS="ar bg bn bs ca cs cy da de el en_GB es et fa fi fr gl gu he hi hr hu id is it ja ka ko ku lo mk mr ms nb nl nn no pa pl pt_BR pt ro ru si sk sl sq sr sv ta tr uk ur vi wa zh_CN zh_TW"
