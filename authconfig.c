@@ -24,7 +24,7 @@ static int readNetworkConfigFile(char **nisDomain)
 {
   FILE *f;
   char *s, *s1;
-  char buf[250];
+  char buf[500];
   int line = 0;
   
   f = fopen("/etc/sysconfig/network", "r");
@@ -84,7 +84,7 @@ static int readYPConfigFile(char **nisServer)
 {
   FILE *f;
   char *s, *s1;
-  char buf[250];
+  char buf[500];
   int line = 0;
   
   f = fopen("/etc/yp.conf", "r");
@@ -367,7 +367,7 @@ int rewriteNetworkConfigFile(char enableNis, char *nisDomain)
 {
   FILE *f, *f1;
   char *s, *s2;
-  char buf[250];
+  char buf[500];
   int line = 0;
   int found = 0;
 
@@ -448,7 +448,7 @@ int rewriteYPConfigFile(char enableNisServer, char *nisServer, char *nisDomain)
 {
   FILE *f, *f1;
   char *s, *s2;
-  char buf[250];
+  char buf[500];
   int line = 0;
   int found = 0;
 
@@ -553,7 +553,7 @@ int toggleShadowPam(int enable, int md5)
 {
   char *filenames[] = { "login", "rlogin", "passwd", 0 };    
   FILE *f, *f1;
-  char curFileName[80], curTmpFileName[80], buf[250];
+  char curFileName[160], curTmpFileName[160], buf[500];
   char *s, *s1;
   char *shadowFound, *md5Found;
   int i;
@@ -624,7 +624,7 @@ int toggleShadowPam(int enable, int md5)
 int checkEnableMD5(char *enableMD5)
 {
   char *filename = "/etc/pam.d/passwd";
-  char buf[250];
+  char buf[500];
   FILE *f;
   char *s;
 
