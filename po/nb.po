@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: authconfig 4.0.16\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-01-08 02:25-0500\n"
-"PO-Revision-Date: 2003-12-18 00:04+0100\n"
+"PO-Revision-Date: 2004-01-19 23:34+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnu.org>\n"
-"Language-Team: Norwegian <no@li.org>\n"
+"Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
@@ -75,11 +75,11 @@ msgstr "Admin-tjener:"
 
 #: authconfig.c:362
 msgid "Use DNS to resolve hosts to realms"
-msgstr ""
+msgstr "Bruk DNS for oppslag av verter til områder"
 
 #: authconfig.c:364
 msgid "Use DNS to locate KDCs for realms"
-msgstr ""
+msgstr "Bruk DNS for å lokalisere KDCer for områder"
 
 #: authconfig.c:367 glade.strings:55
 msgid "Kerberos Settings"
@@ -122,7 +122,7 @@ msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr ""
+msgstr "Noen av endringene du har gjort i konfigurasjonen bør lagres til disk før du fortsetter. Hvis du ikke lagrer dem vil ditt forsøk på å bli medlem av domenet feile. Lagre endringene?"
 
 #: authconfig.c:427
 msgid "Save Settings"
@@ -149,9 +149,8 @@ msgid "ADS Realm:"
 msgstr "ADS-område:"
 
 #: authconfig.c:465
-#, fuzzy
 msgid "Template Shell:"
-msgstr "Mal-_skall"
+msgstr "Mal-_skall:"
 
 #: authconfig.c:483 glade.strings:75
 msgid "Winbind Settings"
@@ -374,15 +373,15 @@ msgstr "<område>"
 
 #: authconfig.c:921
 msgid "enable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "aktiver bruk av DNS for å finne kerberos-KDCer"
 
 #: authconfig.c:923
 msgid "disable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "deaktiver bruk av DNS for å finne kerberos-KDCer"
 
 #: authconfig.c:925
 msgid "enable use of DNS to find kerberos realms"
-msgstr ""
+msgstr "aktiver bruk av DNS for å finne kerberos-områder"
 
 #: authconfig.c:927
 msgid "disable use of DNS to find kerberos realms\n"
@@ -409,26 +408,24 @@ msgid "names of servers to authenticate against\n"
 msgstr "navn på tjenere som det skal gjøres autentisering mot\n"
 
 #: authconfig.c:939
-#, fuzzy
 msgid "enable winbind for user information and authentication by default"
-msgstr "bruk hesiod som standard for brukerinformasjon"
+msgstr "bruk winbind som forvalg for brukerinformasjon of autentisering"
 
 #: authconfig.c:942
-#, fuzzy
 msgid "disable winbind for user information and authentication by default"
-msgstr "ikke bruk hesiod som standard for brukerinformasjon"
+msgstr "ikke bruk winbind som forvalg for brukerinformasjon og autentisering"
 
 #: authconfig.c:945
 msgid "security mode to use for samba and winbind"
-msgstr ""
+msgstr "sikkerhetsmodus som skal brukes for samba og winbind"
 
 #: authconfig.c:947
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
+msgstr "forvalgt område for samba og winbind når security=ads"
 
 #: authconfig.c:949
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "uid-område som tildeles domene- eller ads-brukere av winbind"
 
 #: authconfig.c:950 authconfig.c:953
 msgid "<lowest-highest>"
@@ -436,49 +433,49 @@ msgstr "<lavest-høyest>"
 
 #: authconfig.c:952
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "gid-område som tildeles domene- eller ads-brukere av winbind"
 
 #: authconfig.c:956
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
+msgstr "tegn som brukes til å separere domene- og brukerdelen av brukernavn opprettet av winbind hvis winbindusedefaultdomaon ikke er aktivert"
 
 #: authconfig.c:960
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
+msgstr "hjemmekatalog for brukere som er opprettet via winbind"
 
 #: authconfig.c:964
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
+msgstr "primærgruppe for brukere opprettet via winbind"
 
 #: authconfig.c:967
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
+msgstr "påloggingsskall for brukere opprettet via winbind"
 
 #: authconfig.c:971
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr ""
+msgstr "konfigurerer winbind til å anta at brukere uten et domene i sitt brukernavn er domenebrukere"
 
 #: authconfig.c:975
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr ""
+msgstr "konfigurerer winbind til å anta at brukere uten domenedel i brukernavn ikke er domenebrukere"
 
 #: authconfig.c:979
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
+msgstr "bli medlem i winbind-domene eller ads-område som denne administratoren\n"
 
 #: authconfig.c:983
 msgid "enable wins for hostname resolution"
-msgstr ""
+msgstr "aktiver wins for oppslag av vertsnavn"
 
 #: authconfig.c:985
 msgid "disable wins for hostname resolution\n"
-msgstr ""
+msgstr "deaktiver wins for oppslag av vertsnavn\n"
 
 #: authconfig.c:988
 msgid "enable hesiod for user information by default"
@@ -676,7 +673,7 @@ msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
-msgstr ""
+msgstr "Winbind lar et system hente informasjon om brukere og autentisere brukere ved bruk av informasjon lagret på en NTDOM eller ADS-tjener. Brukes i små og store nettverk."
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
@@ -759,11 +756,11 @@ msgstr "_KDCer"
 
 #: glade.strings:62
 msgid "Use DNS to resolve hosts to _realms"
-msgstr ""
+msgstr "Bruk DNS for oppslag av verter til om_råder"
 
 #: glade.strings:63
 msgid "Use DNS to locate _KDCs for realms"
-msgstr ""
+msgstr "Bruk DNS til å lokalisere _KDCer for områder"
 
 #: glade.strings:66
 msgid "_Domain Controllers"
