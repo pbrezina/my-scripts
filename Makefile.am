@@ -89,7 +89,11 @@ authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
 EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png
 
-TAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}-%{release}\n' | head -1 | sed 's,\.,-,g')
+VERSION=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{version}\n' | head -n1)
+RELEASE=$(shell rpm -q --specfile $(top_srcdir)/authconfig.spec --qf '%{release}\n' | head -n1)
+TAG=$(shell echo r-$(VERSION)-$(RELEASE) | sed 's,\.,-,g')
+distdir=$(PACKAGE)-$(VERSION)-$(RELEASE)
+
 tag:
 	cvs tag -cR $(TAG)
 
@@ -97,7 +101,7 @@ forcetag:
 	cvs tag -cFR $(TAG)
 
 archive:
-	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.gz
+	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION)-$(RELEASE).tar.gz
 	dir=`pwd` ; \
 	root=`cat CVS/Root` ; \
 	cd /tmp ; \
