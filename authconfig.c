@@ -1030,7 +1030,7 @@ int main(int argc, const char **argv)
     }
     toggleShadow(authInfo);
     toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
-    if(stat(PATH_NSCD_PID, &st) == 0) {
+    if((stat(PATH_NSCD_PID, &st) == 0) && !nostart) {
       system("/sbin/service nscd restart");
     }
   }

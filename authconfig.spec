@@ -37,7 +37,7 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Aug  4 2000 Nalin Dahyabhai <nalin@redhat.com>
 - change nss order from (hesiod,ldap,nis) to (nis,ldap,hesiod) in case shadow
   is in use
-- kick nscd when we quit if it's running
+- kick nscd when we quit if it's running (and obey --nostart)
 
 * Mon Jul 31 2000 Nalin Dahyabhai <nalin@redhat.com>
 - silently support the broken_shadow and bigcrypt flags for pam_unix
