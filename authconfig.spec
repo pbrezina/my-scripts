@@ -11,6 +11,7 @@ Requires: glibc >= 2.1, pam >= 0.73, glib2, pam >= 0.75-43
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 BuildPrereq: pam-devel >= 0.73, newt-devel, glib2-devel, python, python-devel
 BuildPrereq: desktop-file-utils
+Requires: usermode
 
 %description 
 Authconfig is a terminal mode program which can configure a workstation
@@ -21,7 +22,7 @@ authentication schemes.
 %package gtk
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}, pygtk2-libglade, pam >= 0.75-37
+Requires: %{name} = %{version}-%{release}, pygtk2-libglade, pam >= 0.75-37, rhpl
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
@@ -62,18 +63,27 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
 %{_bindir}/redhat-config-authentication
+%{_bindir}/system-config-authentication
 %{_datadir}/%{name}
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/pam.d/redhat-config-authentication
+%config(noreplace) %{_sysconfdir}/pam.d/system-config-authentication
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/security/console.apps/redhat-config-authentication
+%config(noreplace) %{_sysconfdir}/security/console.apps/system-config-authentication
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 
 %changelog
-* Thu Dec 11 2003 Nalin Dahyabhai <nalin@redhat.com> 4.5-1
-- add hidden support for "compat" in /etc/nsswitch.conf, so we can preserve
-  it if people are already using it when we are run
+* Thu Jan  8 2004 Nalin Dahyabhai <nalin@redhat.com> 4.5-1
+- authconfig-gtk.py: require rhpl, which is required by the script (#104209)
+- both: require usermode (authconfig-gtk transitively), else leave a dangling
+  symlink (#104209)
+- the great redhat-config-authentication/system-config-authentication renaming,
+  as was foretold in the fedora-config-list archives
+
+* Wed Jan  7 2004 Nalin Dahyabhai <nalin@redhat.com>
+- preserve "compat" if it's used in /etc/nsswitch.conf
 
 * Tue Nov 18 2003 Nalin Dahyabhai <nalin@redhat.com> 4.4-1
 - add options for toggling krb5's use of DNS
