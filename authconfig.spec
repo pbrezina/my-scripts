@@ -30,7 +30,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %attr(-,root,root)/usr/sbin/authconfig
 %attr(-,root,root)/usr/man/man8/authconfig.8
-%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
+%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/*
 
 %changelog
 * Wed Feb 03 1999 Preston Brown <pbrown@redhat.com>
