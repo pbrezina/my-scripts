@@ -207,7 +207,6 @@ int getNSSChoices(int back,
 	          struct authInfoType *authInfo)
 {
   newtComponent form, ok, cancel, comp, cb;
-  char nss_files;
   int rc = 0;
 
   struct nis_cb nis;
