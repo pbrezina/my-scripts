@@ -1,106 +1,106 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Authconfig messages for Red Hat Linux.
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Zoltan Èala <zolika@sezampro.yu>, 1999.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 1999-04-01 16:48-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 1999-09-09 10:00-0500\n"
+"Last-Translator: Zoltan Èala <zolika@sezampro.yu>\n"
+"Language-Team: Serbian <SR@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../authconfig.c:36 ../authconfig.c:386
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr ""
+msgstr "%s: ne mogu da otvorim /etc/sysconfig/network: %s\n"
 
 #: ../authconfig.c:96 ../authconfig.c:468
 #, c-format
 msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr ""
+msgstr "%s: ne mogu da otvorim /etc/yp.conf: %s\n"
 
 #.
 #. * NIS stuff.
 #.
 #: ../authconfig.c:215
 msgid "NIS Server:"
-msgstr ""
+msgstr "NIS server:"
 
 #: ../authconfig.c:216
 msgid "Request via broadcast"
-msgstr ""
+msgstr "Zahtev preko emisije"
 
 #: ../authconfig.c:233
 msgid "Enable NIS"
-msgstr ""
+msgstr "Omoguæi NIS"
 
 #: ../authconfig.c:235
 msgid "NIS Domain:"
-msgstr ""
+msgstr "NIS domen:"
 
 #. Shadow Stuff
 #: ../authconfig.c:271
 msgid "Use Shadow Passwords"
-msgstr ""
+msgstr "Koristi 'shadow' lozinke"
 
 #: ../authconfig.c:273
 msgid "Enable MD5 Passwords"
-msgstr ""
+msgstr "Omoguæi MD5 lozinke"
 
 #: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
 msgid "Ok"
-msgstr ""
+msgstr "U redu"
 
 #: ../authconfig.c:281
 msgid "Back"
-msgstr ""
+msgstr "Natrag"
 
 #: ../authconfig.c:281
 msgid "Cancel"
-msgstr ""
+msgstr "Obustavi"
 
 #: ../authconfig.c:298
 msgid "(NIS not installed)"
-msgstr ""
+msgstr "(NIS nije instaliran)"
 
 #: ../authconfig.c:312
 msgid "or use:"
-msgstr ""
+msgstr "ili koristi:"
 
 #: ../authconfig.c:334
 msgid "Authentication Configuration"
-msgstr ""
+msgstr "Pode¹avanje autentifikacije"
 
 #: ../authconfig.c:347 ../authconfig.c:354
 msgid "Error"
-msgstr ""
+msgstr "Gre¹ka"
 
 #: ../authconfig.c:348
 msgid "You must enter a NIS server or request via broadcast."
-msgstr ""
+msgstr "Morate uneti NIS server ili zahtevati preko emisije."
 
 #: ../authconfig.c:355
 msgid "You must enter a NIS domain."
-msgstr ""
+msgstr "Morate uneti NIS domen."
 
 #: ../authconfig.c:393
 #, c-format
 msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr ""
+msgstr "%s: ne mogu da otvorim /etc/sysconfig/network- za pisanje: %s\n"
 
 #: ../authconfig.c:475
 #, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr ""
+msgstr "%s: ne mogu da otvorim /etc/yp.conf- za pisanje: %s\n"
 
 #: ../authconfig.c:657
 #, c-format
 msgid "%s: error opening %s\n"
-msgstr ""
+msgstr "%s: gre¹ka kod otvaranja %s\n"
 
 #: ../authconfig.c:691
 #, c-format
@@ -116,69 +116,81 @@ msgid ""
 "     --kickstart          don't display user interface\n"
 "     --help               show this screen\n"
 msgstr ""
+"Kori¹æenje: %s [opcije]\n"
+"\n"
+"     --nostart            nemoj pokrenuti/zaustaviti yp\n"
+"     --enablenis          podrazumevano omoguæen nis\n"
+"     --nisdomain <domen>  podrazumevani NIS domen\n"
+"     --nisserver <server> podrazumevani NIS server\n"
+"     --useshadow          koristi 'shadow' lozinke\n"
+"     --enablemd5          omoguæi MD5 lozinke\n"
+"     --kickstart          nemoj prikazati korisnièki interfejs\n"
+"     --help               prika¾i ove instrukcije\n"
 
 #: ../authconfig.c:745
 #, c-format
 msgid "%s: bad argument %s: %s\n"
-msgstr ""
+msgstr "%s: lo¹ argument %s: %s\n"
 
 #: ../authconfig.c:752
 #, c-format
 msgid "%s: unexpected argument\n"
-msgstr ""
+msgstr "%s: neoèekivan argument\n"
 
 #: ../authconfig.c:764
 #, c-format
 msgid "%s: can only be run as root\n"
-msgstr ""
+msgstr "%s: mo¾e da pokrene samo 'root'\n"
 
 #: ../authconfig.c:779
 #, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr ""
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/sysconfig/network"
 
 #: ../authconfig.c:792
 #, c-format
 msgid "%s: critical error reading /etc/yp.conf"
-msgstr ""
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/yp.conf"
 
 #: ../authconfig.c:809
 #, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
-msgstr ""
+msgstr "%s: kritièna gre¹ka kod èitanja /etc/pam.d/passwd\n"
 
 #: ../authconfig.c:818
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
+" <Tab>/<Alt-Tab> kretanje izmeðu elemenata | <Space> izbor | <F12> sledeæi "
+"ekran"
 
 #: ../authconfig.c:829
 #, c-format
 msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr ""
+msgstr "%s: NIS domen je postavljen na %s, ali je dijalog prekinut\n"
 
 #: ../authconfig.c:842
 #, c-format
 msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-msgstr ""
+msgstr "vraæene vrednosti: nis: %c, nisdomen: %s, senka: %c, md5: %c\n"
 
 #: ../authconfig.c:850
 #, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr ""
+msgstr "%s: kritièna gre¹ka kod upisa /etc/sysconfig/network\n"
 
 #: ../authconfig.c:858
 #, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr ""
+msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
 
 #: ../authconfig.c:866
 #, c-format
 msgid "%s: critical error turning on NIS service\n"
-msgstr ""
+msgstr "%s: kriti;na gre¹ka kod ukljuèivanja NIS servisa\n"
 
 #: ../authconfig.c:873
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
-msgstr ""
+msgstr "%s: kritièna gre¹ka kod manipulacije 'shadow' lozinkom\n"
