@@ -649,17 +649,17 @@ void usage(void) {
 			    "     --disablehesiod            disable hesiod for user information by default\n"
 			    "     --hesiodlhs <lhs>          default hesiod LHS\n"
 			    "     --hesiodrhs <rhs>          default hesiod RHS\n"
-#ifdef LOCAL_POLICIES
-			    "\n"
-			    "     --enablelocal              use locally-defined policy " LOCAL_POLICY_NAME "\n"
-			    "     --disablelocal             don't use locally-defined policy " LOCAL_POLICY_NAME "\n"
-#endif
 			    "\n"
 
 			    "     --nostart                  do not start/stop ypbind\n"
 			    "     --kickstart                don't display user interface\n"
 			    "     --help                     show this screen\n"),
 	    progName);
+#ifdef LOCAL_POLICIES
+    fprintf(stderr, gettext("\n"
+			    "     --enablelocal              use locally-defined policy " LOCAL_POLICY_NAME "\n"
+			    "     --disablelocal             don't use locally-defined policy " LOCAL_POLICY_NAME "\n"));
+#endif
 
     exit(0);
 }
