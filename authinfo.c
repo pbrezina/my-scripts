@@ -2202,6 +2202,8 @@ static struct {
 	 "ldap",		NULL},
 	{FALSE, account,	LOGIC_SUFFICIENT,
 	 "krb5",		NULL},
+	{FALSE, account,	LOGIC_SUFFICIENT,
+	 "krb5afs",		NULL},
 	{TRUE,  account, 	LOGIC_REQUIRED,
 	 "deny",		NULL},
 
