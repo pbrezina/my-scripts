@@ -1,9 +1,11 @@
+# Translation of authconfig to Croatian
+# Copyright (C) Croatian team
+# Translators: Automatski Prijevod <>,Denis Lackovic <delacko@fly.srk.fer.hr>,Robert Sedak <robert.sedak@sk.tel.hr>,Zoran Jankovic <zoran.jankovic@inet.hr>,
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-18 16:17-0500\n"
-"PO-Revision-Date: 2003-09-17 10:09+CEST\n"
+"POT-Creation-Date: 2003-11-19 12:19-0500\n"
+"PO-Revision-Date: 2003-12-10 16:29+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
@@ -24,17 +26,17 @@ msgid "Hesiod Settings"
 msgstr "Postavke za Hesiod"
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:461 authconfig.c:659
+#: authconfig.c:385 authconfig.c:481 authconfig.c:679
 msgid "Back"
-msgstr "Povratak"
+msgstr "Nazad"
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:461 authconfig.c:660
+#: authconfig.c:385 authconfig.c:481 authconfig.c:680
 msgid "Next"
-msgstr "Sljedeće"
+msgstr "Dalje"
 
 #: authconfig.c:319 authconfig.c:335 authconfig.c:349 authconfig.c:369
-#: authconfig.c:385 authconfig.c:404 authconfig.c:461 authconfig.c:488
+#: authconfig.c:385 authconfig.c:404 authconfig.c:481 authconfig.c:508
 msgid "Ok"
 msgstr "U redu"
 
@@ -54,7 +56,7 @@ msgstr "Osnovna DN:"
 msgid "LDAP Settings"
 msgstr "Postavke za LDAP"
 
-#: authconfig.c:342 authconfig.c:451
+#: authconfig.c:342 authconfig.c:456
 msgid "Domain:"
 msgstr "Domena:"
 
@@ -76,11 +78,11 @@ msgstr "Administrativni poslužitelj:"
 
 #: authconfig.c:362
 msgid "Use DNS to resolve hosts to realms"
-msgstr ""
+msgstr "Koristi DNS za pronalaženje računala prema područjima"
 
 #: authconfig.c:364
 msgid "Use DNS to locate KDCs for realms"
-msgstr ""
+msgstr "Koristi DNS za pronalaženje KDC-ova za područja"
 
 #: authconfig.c:367 glade.strings:55
 msgid "Kerberos Settings"
@@ -96,28 +98,25 @@ msgstr "Poslužitelji:"
 
 #: authconfig.c:380
 msgid "Shell:"
-msgstr ""
+msgstr "Ljuska:"
 
 #: authconfig.c:383 glade.strings:64
 msgid "SMB Settings"
 msgstr "Postavke za SMB"
 
 #: authconfig.c:393
-#, fuzzy
 msgid "Domain Administrator:"
-msgstr "_Domenski kontrolori"
+msgstr "Administrator domene:"
 
 #: authconfig.c:395
-#, fuzzy
 msgid "Password:"
-msgstr "Koristi _MD5 lozinke"
+msgstr "Lozinka:"
 
 #: authconfig.c:402
-#, fuzzy
 msgid "Join Settings"
-msgstr "Postavke za Hesiod"
+msgstr "Postavke pridruživanja"
 
-#: authconfig.c:404 authconfig.c:659
+#: authconfig.c:404 authconfig.c:679
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -127,497 +126,480 @@ msgid ""
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
 msgstr ""
+"Neke od promijenjenih postavki, koje ste napravili, trebaju biti spremljene "
+"disk prije nastavka. Ukoliko ih ne spremite, tada vaš pokušaj pridruživanja "
+"domeni neće uspijeti. Da spremim postavke?"
 
 #: authconfig.c:427
-#, fuzzy
 msgid "Save Settings"
-msgstr "Postavke za NIS"
+msgstr "Spremi postavke"
 
 #: authconfig.c:429
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: authconfig.c:429
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
-#: authconfig.c:449
+#: authconfig.c:454
 msgid "Security Model:"
-msgstr ""
+msgstr "Model sigurnosti:"
 
-#: authconfig.c:453
-#, fuzzy
+#: authconfig.c:458
 msgid "Domain Controllers:"
-msgstr "_Domenski kontrolori"
-
-#: authconfig.c:455
-#, fuzzy
-msgid "ADS Realm:"
-msgstr "Područje:"
-
-#: authconfig.c:458 glade.strings:75
-#, fuzzy
-msgid "Winbind Settings"
-msgstr "Postavke za Hesiod"
+msgstr "Kontrolori domene:"
 
 #: authconfig.c:460
-#, fuzzy
-msgid "Join Domain"
-msgstr "Domena:"
+msgid "ADS Realm:"
+msgstr "Područje ADS-a:"
 
-#: authconfig.c:488
+#: authconfig.c:462
+msgid "Template Shell:"
+msgstr "Predložak korisničke ljuske:"
+
+#: authconfig.c:478 glade.strings:75
+msgid "Winbind Settings"
+msgstr "Postavke Winbind-a"
+
+#: authconfig.c:480
+msgid "Join Domain"
+msgstr "Domena pridruživanja"
+
+#: authconfig.c:508
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: authconfig.c:505
+#: authconfig.c:525
 msgid "caching"
-msgstr ""
+msgstr "predpohranjivanje"
 
-#: authconfig.c:509 glade.strings:35
+#: authconfig.c:529 glade.strings:35
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: authconfig.c:513
-#, fuzzy
+#: authconfig.c:533
 msgid "LDAP authentication"
-msgstr "Koristi LDAP provjeru vjerodostojnosti"
+msgstr "LDAP provjera autentičnosti"
 
-#: authconfig.c:517 glade.strings:16 glade.strings:31
+#: authconfig.c:537 glade.strings:16 glade.strings:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:521 glade.strings:12
+#: authconfig.c:541 glade.strings:12
 msgid "NIS"
 msgstr "NIS"
 
-#: authconfig.c:525
-#, fuzzy
+#: authconfig.c:545
 msgid "shadow password"
-msgstr "Koristi lozinke u sjeni"
+msgstr "zasjenjena lozinka"
 
-#: authconfig.c:529
-#, fuzzy
+#: authconfig.c:549
 msgid "SMB authentication"
 msgstr "SMB provjera autentičnosti"
 
-#: authconfig.c:533 authconfig.c:541 glade.strings:24 glade.strings:43
+#: authconfig.c:553 authconfig.c:561 glade.strings:24 glade.strings:43
 msgid "Winbind"
-msgstr ""
+msgstr "Winbind"
 
-#: authconfig.c:537
-#, fuzzy
+#: authconfig.c:557
 msgid "Winbind authentication"
-msgstr "Provjera vjerodostojnosti"
+msgstr "Winbind provjera vjerodostojnosti"
 
-#: authconfig.c:552 glade.strings:25
+#: authconfig.c:572 glade.strings:25
 msgid "User Information"
 msgstr "Korisničke informacije"
 
-#: authconfig.c:556
+#: authconfig.c:576
 msgid "Cache Information"
 msgstr "Informacije o međuspremniku"
 
-#: authconfig.c:563
+#: authconfig.c:583
 msgid "Use Hesiod"
 msgstr "Koristi Hesoid"
 
-#: authconfig.c:569
+#: authconfig.c:589
 msgid "Use LDAP"
 msgstr "Koristi LDAP"
 
-#: authconfig.c:576
+#: authconfig.c:596
 msgid "Use NIS"
 msgstr "Koristi NIS"
 
-#: authconfig.c:583
+#: authconfig.c:603
 msgid "Use Winbind"
-msgstr ""
+msgstr "Koristi Winbind"
 
-#: authconfig.c:593 authconfig.desktop.in.h:1 glade.strings:44
+#: authconfig.c:613 authconfig.desktop.in.h:1 glade.strings:44
 msgid "Authentication"
 msgstr "Provjera vjerodostojnosti"
 
-#: authconfig.c:597
+#: authconfig.c:617
 msgid "Use MD5 Passwords"
 msgstr "Koristi MD5 lozinke"
 
-#: authconfig.c:603
+#: authconfig.c:623
 msgid "Use Shadow Passwords"
 msgstr "Koristi lozinke u sjeni"
 
-#: authconfig.c:610
+#: authconfig.c:630
 msgid "Use LDAP Authentication"
 msgstr "Koristi LDAP provjeru vjerodostojnosti"
 
-#: authconfig.c:617
-#, fuzzy
+#: authconfig.c:637
 msgid "Use Kerberos"
-msgstr "Koristi Kerberos 5"
+msgstr "Koristi Kerberos"
 
-#: authconfig.c:624
+#: authconfig.c:644
 msgid "Use SMB Authentication"
 msgstr "Koristi SMB provjeru vjerodostojnosti"
 
-#: authconfig.c:631
-#, fuzzy
+#: authconfig.c:651
 msgid "Use Winbind Authentication"
-msgstr "Koristi SMB provjeru vjerodostojnosti"
+msgstr "Koristi Winbind provjeru vjerodostojnosti"
 
 #. !/usr/bin/python
-#. "checkbox/button name": authInfo field, file, generic name,
-#. package, names of widgets to disable if checkbox not active
-#. entry or label / button / checkbox / option menu :
-#. entry (or label): authInfo field
-#. button: function
-#. checkbox: authInfo field
-#. option menu: authInfo field, list of choices, list of tuples
-#. of value/sensitive widgets
-#. Don't save.
-#. Save.
-#. Toggle a boolean.
-#. Create a vbox or dialog using the file, and return it. */
-#. Create a vbox with the right controls and return the vbox. */
-#: authconfig.c:675 authconfig-gtk.py:287 glade.strings:7
+#.  "checkbox/button name": authInfo field, file, generic name,
+#.  package, names of widgets to disable if checkbox not active
+#.  entry or label / button / checkbox / option menu :
+#.  entry (or label): authInfo field
+#.  button: function
+#.  checkbox: authInfo field
+#.  option menu: authInfo field, list of choices, list of tuples
+#.  of value/sensitive widgets
+#.  Don't save.
+#.  Save.
+#.  Toggle a boolean.
+#.  Create a vbox or dialog using the file, and return it. */
+#.  Create a vbox with the right controls and return the vbox. */
+#: authconfig.c:695 authconfig-gtk.py:287 glade.strings:7
 msgid "Authentication Configuration"
 msgstr "Postavljanje provjere vjerodostojnosti"
 
-#: authconfig.c:848
+#: authconfig.c:868
 msgid "enable shadowed passwords by default"
 msgstr "omogući zasjenjene lozinke kao uobičajenu postavku"
 
-#: authconfig.c:850
+#: authconfig.c:870
 msgid "disable shadowed passwords by default"
 msgstr "onemogući zasjenjene lozinke kao uobičajenu postavku"
 
-#: authconfig.c:854
+#: authconfig.c:874
 msgid "enable MD5 passwords by default"
 msgstr "omogući MD5 lozinke kao uobičajenu postavku"
 
-#: authconfig.c:856
+#: authconfig.c:876
 msgid "disable MD5 passwords by default\n"
 msgstr "onemogući MD5 lozinke kao uobičajenu postavku\n"
 
-#: authconfig.c:859
+#: authconfig.c:879
 msgid "enable NIS"
 msgstr "omogući MIS"
 
-#: authconfig.c:861
+#: authconfig.c:881
 msgid "disable NIS"
 msgstr "onemogući NIS"
 
-#: authconfig.c:863
+#: authconfig.c:883
 msgid "default NIS domain"
 msgstr "uobičajena NIS domena"
 
-#: authconfig.c:863
+#: authconfig.c:883
 msgid "<domain>"
 msgstr "<domena>"
 
-#: authconfig.c:865
+#: authconfig.c:885
 msgid "default NIS server\n"
 msgstr "uobičajeni NIS poslužitelj\n"
 
-#: authconfig.c:865 authconfig.c:880 authconfig.c:889 authconfig.c:891
-#: authconfig.c:911
+#: authconfig.c:885 authconfig.c:900 authconfig.c:909 authconfig.c:911
+#: authconfig.c:931
 msgid "<server>"
 msgstr "<poslužitelj>"
 
-#: authconfig.c:868
+#: authconfig.c:888
 msgid "enable LDAP for user information by default"
 msgstr "omogući LDAP za korisničke informacije kao uobičajenu postavku"
 
-#: authconfig.c:870
+#: authconfig.c:890
 msgid "disable LDAP for user information by default"
 msgstr "onemogući LDAP za korisničke informacije kao uobičajenu postavku"
 
-#: authconfig.c:872
+#: authconfig.c:892
 msgid "enable use of TLS with LDAP"
 msgstr "omogući korištenje TLS s LDAP"
 
-#: authconfig.c:874
+#: authconfig.c:894
 msgid "disable use of TLS with LDAP"
 msgstr "onemogući korištenje TLS s LDAP"
 
-#: authconfig.c:876
+#: authconfig.c:896
 msgid "enable LDAP for authentication by default"
 msgstr "omogući LDAP za provjeru vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:878
+#: authconfig.c:898
 msgid "disable LDAP for authentication by default"
 msgstr "onemogući LDAP za provjeru vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:880
+#: authconfig.c:900
 msgid "default LDAP server"
 msgstr "uobičajeni LDAP poslužitelj"
 
-#: authconfig.c:882
+#: authconfig.c:902
 msgid "default LDAP base DN\n"
 msgstr "uobičajena LDAP osnovna DN\n"
 
-#: authconfig.c:882
+#: authconfig.c:902
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:885
+#: authconfig.c:905
 msgid "enable kerberos authentication by default"
 msgstr "omogući kerberos za provjeru vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:887
+#: authconfig.c:907
 msgid "disable kerberos authentication by default"
-msgstr ""
-"onemogući kerberos za provjeru vjerodostojnosti kao uobičajenu postavku"
+msgstr "onemogući kerberos za provjeru vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:889
+#: authconfig.c:909
 msgid "default kerberos KDC"
 msgstr "uobičajeni kerberos KDC"
 
-#: authconfig.c:891
+#: authconfig.c:911
 msgid "default kerberos admin server"
 msgstr "uobičajeni kerberos administrativni poslužitelj"
 
-#: authconfig.c:893
+#: authconfig.c:913
 msgid "default kerberos realm\n"
 msgstr "uobičajeno kerberos područje\n"
 
-#: authconfig.c:893
+#: authconfig.c:913
 msgid "<realm>"
 msgstr "<područje>"
 
-#: authconfig.c:896
+#: authconfig.c:916
 msgid "enable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "omogući korištenje DNS-a za pronalaženje KDC-a kerberosa"
 
-#: authconfig.c:898
+#: authconfig.c:918
 msgid "disable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "onemogući korištenje DNS-a za pronalaženje KDC-a kerberosa"
 
-#: authconfig.c:900
+#: authconfig.c:920
 msgid "enable use of DNS to find kerberos realms"
-msgstr ""
+msgstr "omogući korištenje DNS-a za traženje područja kerberosa"
 
-#: authconfig.c:902
-#, fuzzy
+#: authconfig.c:922
 msgid "disable use of DNS to find kerberos realms\n"
-msgstr "uobičajeno kerberos područje\n"
+msgstr "neomogući korištenje DNS-a za traženje područja kerberosa\n"
 
-#: authconfig.c:905
+#: authconfig.c:925
 msgid "enable SMB authentication by default"
 msgstr "omogući SMB za provjeru vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:907
+#: authconfig.c:927
 msgid "disable SMB authentication by default"
 msgstr "onemogući SMB za provjeru vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:909
+#: authconfig.c:929
 msgid "workgroup authentication servers are in"
 msgstr "poslužitelji za provjeru autentičnosti radne grupe su u"
 
-#: authconfig.c:909
+#: authconfig.c:929
 msgid "<workgroup>"
 msgstr "<radna grupa>"
 
-#: authconfig.c:911
+#: authconfig.c:931
 msgid "names of servers to authenticate against\n"
 msgstr "imena poslužitelja za provjeru autentičnosti\n"
 
-#: authconfig.c:914
-#, fuzzy
+#: authconfig.c:934
 msgid "enable winbind for user information and authentication by default"
-msgstr "Omogući hesoid kao uobičajenu postavku za korisničke informacije"
+msgstr "omogući winbind za korisnikove informacije i provjere vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:917
-#, fuzzy
+#: authconfig.c:937
 msgid "disable winbind for user information and authentication by default"
-msgstr "Onemogući hesoid kao uobičajenu postavku za korisničke informacije"
+msgstr "onemogući winbind za korisnikove informacije i provjere vjerodostojnosti kao uobičajenu postavku"
 
-#: authconfig.c:920
+#: authconfig.c:940
 msgid "security mode to use for samba and winbind"
-msgstr ""
+msgstr "način sigurnosti koji se koristi za samba-u i winbind"
 
-#: authconfig.c:922
+#: authconfig.c:942
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
+msgstr "uobičajeno područje za samba-u i winbind kada je postavljno security=ads"
 
-#: authconfig.c:924
+#: authconfig.c:944
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "winbond će dodijeliti raspon uid-a domeni ili korisnicima"
 
-#: authconfig.c:925 authconfig.c:928
+#: authconfig.c:945 authconfig.c:948
 msgid "<lowest-highest>"
-msgstr ""
+msgstr "<najmanje-najveće>"
 
-#: authconfig.c:927
+#: authconfig.c:947
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "raspon winbind gid-a biti će dodijeljen korisnicima domene ili ads-a"
 
-#: authconfig.c:931
+#: authconfig.c:951
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
+"znak koji će biti korišten za odvajanje dijelova domene i korisnika u imenima "
+"korisnika, koji su stvorenu winbind-om, ukoliko nije omogućena varijabla winbindusedefaultdomain"
 
-#: authconfig.c:935
+#: authconfig.c:955
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
+msgstr "mapa koju će korisnici, stvoreni winbind-om, imati kao svoju početnu mapu"
 
-#: authconfig.c:939
+#: authconfig.c:959
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
+msgstr "grupa koju će korisnici, stvoreni winbind-om, imati kao svoju glavnu grupu"
 
-#: authconfig.c:942
+#: authconfig.c:962
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
+msgstr "korisnička ljuska koju će korisnici, stvoreni winbind-om, imati kao svoju ljusku prijave"
 
-#: authconfig.c:946
+#: authconfig.c:966
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
+"Namješta winbind da pretpostavi kako su korisnici bez domene u njihovim "
+"korisničkim imenima korisnici domene"
 
-#: authconfig.c:950
+#: authconfig.c:970
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
+"Namješta winbind da pretpostavi kako korisnici bez domene u njihovim "
+"korisničkim imenima nisu korisnici domene"
 
-#: authconfig.c:954
+#: authconfig.c:974
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
+msgstr "sada pridružuje winbind domenu ili područje ads-a kao ovaj administrator\n"
 
-#: authconfig.c:958
+#: authconfig.c:978
 msgid "enable wins for hostname resolution"
-msgstr ""
+msgstr "omogući pobjede za razlučivanje naziva računala"
 
-#: authconfig.c:960
+#: authconfig.c:980
 msgid "disable wins for hostname resolution\n"
-msgstr ""
+msgstr "onemogući pobjede za razlučivanje naziva računala\n"
 
-#: authconfig.c:963
+#: authconfig.c:983
 msgid "enable hesiod for user information by default"
 msgstr "Omogući hesoid kao uobičajenu postavku za korisničke informacije"
 
-#: authconfig.c:965
+#: authconfig.c:985
 msgid "disable hesiod for user information by default"
 msgstr "Onemogući hesoid kao uobičajenu postavku za korisničke informacije"
 
-#: authconfig.c:967
+#: authconfig.c:987
 msgid "default hesiod LHS"
 msgstr "hesiod LHS kao uobičajena postavka"
 
-#: authconfig.c:967
+#: authconfig.c:987
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:969
+#: authconfig.c:989
 msgid "default hesiod RHS\n"
 msgstr "hesiod RHS kao uobičajena postavka\n"
 
-#: authconfig.c:969
+#: authconfig.c:989
 msgid "<rhs>"
 msgstr "<rh>"
 
-#: authconfig.c:972
+#: authconfig.c:992
 msgid "enable caching of user information by default"
 msgstr "omogući međuspremanje korisničkih informacija kao uobičajenu postavku"
 
-#: authconfig.c:974
+#: authconfig.c:994
 msgid "disable caching of user information by default\n"
-msgstr ""
-"onemogući međuspremanje korisničkih informacija kao uobičajenu postavku\n"
+msgstr "onemogući međuspremanje korisničkih informacija kao uobičajenu postavku\n"
 
-#: authconfig.c:981
+#: authconfig.c:1001
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "nemoj pokrenuti/zaustaviti portmap, ypbind, i nscd"
 
-#: authconfig.c:983
+#: authconfig.c:1003
 msgid "don't display user interface"
 msgstr "nemoj prikazati korisničko sučelje"
 
-#: authconfig.c:985
+#: authconfig.c:1005
 msgid "probe network for defaults and print them"
 msgstr "ispitaj mrežu za uobičajene postavke i ispiši ih"
 
-#: authconfig.c:988
+#: authconfig.c:1008
 msgid "use locally-defined policies"
 msgstr "koristi lokalno definirana pravila"
 
-#: authconfig.c:990
+#: authconfig.c:1010
 msgid "don't use locally-defined policies"
 msgstr "nemoj koristi lokalno definirana pravila"
 
-#: authconfig.c:1001
-#, c-format
+#: authconfig.c:1021
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: loš argument %s: %s\n"
 
-#: authconfig.c:1010
-#, c-format
+#: authconfig.c:1030
 msgid "%s: attempting to continue\n"
 msgstr "%s: pokušavam nastaviti\n"
 
-#: authconfig.c:1014
-#, c-format
+#: authconfig.c:1034
 msgid "%s: unexpected argument\n"
 msgstr "%s: neočekivani argument\n"
 
-#: authconfig.c:1046
-#, c-format
+#: authconfig.c:1066
 msgid "%s: can only be run as root\n"
 msgstr "%s: može biti pokrenuto samo od root korisnika\n"
 
-#: authconfig.c:1057 authconfig.c:1065 authconfig.c:1073 authconfig.c:1081
-#: authconfig.c:1089 authconfig.c:1097 authconfig.c:1105 authconfig.c:1118
-#: authconfig.c:1126
-#, c-format
+#: authconfig.c:1077 authconfig.c:1085 authconfig.c:1093 authconfig.c:1101
+#: authconfig.c:1109 authconfig.c:1117 authconfig.c:1125 authconfig.c:1138
+#: authconfig.c:1146
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: kritična greška kod čitanja %s/%s"
 
-#: authconfig.c:1112
-#, c-format
+#: authconfig.c:1132
 msgid "%s: unable to read caching configuration"
 msgstr "%s: ne mogu čitati postavke međuspremanja"
 
-#: authconfig.c:1212
+#: authconfig.c:1232
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> između elemenata  |   <Space> odabir   |  <F12> sljedeći "
-"zaslon"
+msgstr " <Tab>/<Alt-Tab> između elemenata  |   <Space> odabir   |  <F12> sljedeći zaslon"
 
-#: authconfig.c:1215
+#: authconfig.c:1235
 msgid "(c) 1999-2003 Red Hat, Inc."
 msgstr "(c) 1999-2003 Red Hat, Inc."
 
-#: authconfig.c:1222
+#: authconfig.c:1242
 msgid "dialog was cancelled\n"
 msgstr "dijalog je otkazan\n"
 
-#: authconfig.c:1237
-#, c-format
+#: authconfig.c:1257
 msgid "%s: critical error recording caching setting"
 msgstr "%s: kritična greška kod zapisivanja postavki međuspremanja"
 
-#: authconfig.c:1243 authconfig.c:1249 authconfig.c:1255 authconfig.c:1261
-#: authconfig.c:1266 authconfig.c:1272 authconfig.c:1277 authconfig.c:1282
-#: authconfig.c:1287 authconfig.c:1293
-#, c-format
+#: authconfig.c:1263 authconfig.c:1269 authconfig.c:1275 authconfig.c:1281
+#: authconfig.c:1286 authconfig.c:1292 authconfig.c:1297 authconfig.c:1302
+#: authconfig.c:1307 authconfig.c:1313
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritična greška zapisivanja %s/%s"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Kontrolira kako sustav provjerava korisnike koji se namjeravaju prijaviti"
+msgstr "Kontrolira kako sustav provjerava korisnike koji se namjeravaju prijaviti"
 
 #: authinfo.h:68
-#, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
-msgstr ""
-"Datoteka %s nije nađena, ali je potrebna za podršku ispravnog rada %s. "
-"Instalirajte %s paket, koji pruža ovu datoteku."
+msgstr "Datoteka %s nije nađena, ali je potrebna za podršku ispravnog rada %s. Instalirajte %s paket, koji pruža ovu datoteku."
 
 #: glade.strings:8
 msgid "_Cache User Information"
@@ -635,9 +617,7 @@ msgstr "Omogući podršku za _NIS"
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
-msgstr ""
-"NIS je Network Informatio Service. Često se koristi u malim i srednjim "
-"mrežama."
+msgstr "NIS je Network Informatio Service. Često se koristi u malim i srednjim mrežama."
 
 #: glade.strings:13 glade.strings:28
 msgid "Enable _LDAP Support"
@@ -652,10 +632,7 @@ msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
 "increasingly being used in small to large networks."
-msgstr ""
-"Lightweight Directory Access Protocol je standardni način pretraživanja "
-"imenika, koji sadrži proizvoljne hierarhijski ustrojene podatke. LDAP se sve "
-"više koristi u malim i u velkim mrežama."
+msgstr "Lightweight Directory Access Protocol je standardni način pretraživanja imenika, koji sadrži proizvoljne hierarhijski ustrojene podatke. LDAP se sve više koristi u malim i u velkim mrežama."
 
 #: glade.strings:17
 msgid "Enable _Hesiod Support"
@@ -669,23 +646,19 @@ msgstr "_Postavi Hesoid..."
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
-msgstr ""
-"Hesiod omogućava sustavskom administratoru davanje podataka o korisnicima i "
-"grupama preko DNS-a. Koristi se u vrlo velikim mrežama."
+msgstr "Hesiod omogućava sustavskom administratoru davanje podataka o korisnicima i grupama preko DNS-a. Koristi se u vrlo velikim mrežama."
 
 #: glade.strings:20
 msgid "Hesiod"
 msgstr "Hesiod"
 
 #: glade.strings:21 glade.strings:40
-#, fuzzy
 msgid "Enable _Winbind Support"
-msgstr "Omogući podršku za _Hesoid"
+msgstr "Omogući podršku za _Winbind"
 
 #: glade.strings:22 glade.strings:41
-#, fuzzy
 msgid "_Configure Winbind..."
-msgstr "_Postavi Hesoid..."
+msgstr "_Namjesti Winbind..."
 
 #: glade.strings:23 glade.strings:42
 msgid ""
@@ -693,6 +666,9 @@ msgid ""
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
 msgstr ""
+"Winbind omogućava sustavu dohvaćanje informacija o korisnicima i provjerava "
+"vjerodostojnost korisnika koristeći informacije spremeljene na NTDOM ili "
+"ADS poslužiteljima. Koristi se od malih do velikih mreža."
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
@@ -714,9 +690,7 @@ msgstr "_Postavi Kerberos..."
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
-msgstr ""
-"Kerberos je autentifikacijski sustav koji se često koristi u srednjim i "
-"velikim mrežama."
+msgstr "Kerberos je autentifikacijski sustav koji se često koristi u srednjim i velikim mrežama."
 
 #: glade.strings:36
 msgid "Enable _SMB Support"
@@ -730,20 +704,18 @@ msgstr "_Postavi SMB..."
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
-msgstr ""
-"SMB autentifikacija provjerava korisničke lozinke pokušavajući se spojiti na "
-"poslužitelj koji koristi SMB (system message blok) protokol."
+msgstr "SMB autentifikacija provjerava korisničke lozinke pokušavajući se spojiti na poslužitelj koji koristi SMB (system message blok) protokol."
 
 #: glade.strings:39
 msgid "SMB"
-msgstr ""
+msgstr "SMB"
 
 #: glade.strings:46 glade.strings:49 glade.strings:51 glade.strings:54
 #: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:65
 #: glade.strings:68 glade.strings:70 glade.strings:73 glade.strings:79
 #: glade.strings:81 glade.strings:84 glade.strings:86 glade.strings:90
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: glade.strings:47
 msgid "NIS _Server"
@@ -775,11 +747,11 @@ msgstr "_KDC-ovi"
 
 #: glade.strings:62
 msgid "Use DNS to resolve hosts to _realms"
-msgstr ""
+msgstr "Koristi DNS za pronalaženje računala prema _područjima"
 
 #: glade.strings:63
 msgid "Use DNS to locate _KDCs for realms"
-msgstr ""
+msgstr "Koristi DNS za pronalaženje _KDC-ova za područja"
 
 #: glade.strings:66
 msgid "_Domain Controllers"
@@ -802,72 +774,58 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Koristi _TSL za šifrirane veze"
 
 #: glade.strings:76
-#, fuzzy
 msgid "_Join Domain"
-msgstr "Domena:"
+msgstr "Domena _pridruživanja"
 
 #: glade.strings:77
 msgid "_Security Model"
-msgstr ""
+msgstr "Model _sigurnosti"
 
 #: glade.strings:78
-#, fuzzy
 msgid "Winbind _Domain"
-msgstr "NID _domena"
+msgstr "Winbind _domena"
 
 #: glade.strings:80
-#, fuzzy
 msgid "Winbind Domain _Controllers"
-msgstr "_Domenski kontrolori"
+msgstr "_Kontrolori Winbind domene"
 
 #: glade.strings:82
 msgid "Template _Shell"
-msgstr ""
+msgstr "_Ljuska predloška"
 
 #: glade.strings:83
 msgid "Winbind ADS _Realm"
-msgstr ""
+msgstr "_Područje Winbind ADS-a"
 
 #: glade.strings:85
 msgid "Joining Winbind Domain"
-msgstr ""
+msgstr "Pridruživanje domeni Winbind"
 
 #: glade.strings:87
-#, fuzzy
 msgid "Domain _Administrator"
-msgstr "_Domenski kontrolori"
+msgstr "_Administrator domene:"
 
 #: glade.strings:88
-#, fuzzy
 msgid "Domain"
-msgstr "Domena:"
+msgstr "Domena"
 
 #: glade.strings:89
-#, fuzzy
 msgid "_Password"
-msgstr "Koristi _MD5 lozinke"
+msgstr "_Lozinka"
 
 #: glade.strings:91
 msgid "EXAMPLE.COM"
-msgstr ""
+msgstr "PRIMJER.COM"
 
 #: glade.strings:92
 msgid "Alert"
-msgstr ""
+msgstr "Upozorenje"
 
 #: glade.strings:93
 msgid "Do_n't Save"
-msgstr ""
+msgstr "_Nemoj spremiti"
 
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Koristi lokalna pravila"
 
-#~ msgid "User Information Configuration"
-#~ msgstr "Postavljanje korisničkih informacija"
-
-#~ msgid "Apply"
-#~ msgstr "Primjeni"
-
-#~ msgid "Close"
-#~ msgstr "Zatvori"
