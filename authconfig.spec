@@ -76,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 - port to glib2
 - move post code to the back-end
 - add a libglade GUI in a -gtk subpackage
+- set up to use userhelper
 
 * Tue Nov 27 2001 Nalin Dahyabhai <nalin@redhat.com>
 - remove pam_winbind from the list of session modules, because it doesn't

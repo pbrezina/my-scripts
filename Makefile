@@ -1,6 +1,7 @@
 VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PACKAGE = authconfig
+BINARIES = authconfig authconfig-gtk
 
 CFLAGS = -g3 -Wall -DPACKAGE=\"$(PACKAGE)\" -DVERSION=\"$(VERSION)\"
 CFLAGS += $(shell pkg-config --cflags glib-2.0)
@@ -15,7 +16,7 @@ mandir=/usr/man
 sbindir=/usr/sbin
 CFLAGS += -DDATADIR=\"$(datadir)\"
 
-all:	subdirs authconfig authconfig-gtk
+all:	subdirs $(BINARIES)
 
 subdirs:
 	for d in $(SUBDIRS); do \
@@ -32,7 +33,7 @@ authconfig-gtk: authconfig-gtk.o authinfo.o shvar.o dnsclient.o
 install:
 	mkdir -p $(sbindir) $(mandir)/man8 $(datadir)/$(PACKAGE)
 	mkdir -p $(INSTROOT)$(sysconfdir)/pam.d
-	install -m 755 $(PACKAGE) $(sbindir)/$(PACKAGE)
+	install -m 755 $(BINARIES) $(sbindir)/
 	install -m 644 $(PACKAGE).glade2 $(datadir)/$(PACKAGE)/$(PACKAGE).glade
 	for d in $(SUBDIRS); do \
 	(cd $$d; $(MAKE) sbindir=$(sbindir) install) \
