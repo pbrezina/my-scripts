@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 3.0.1\n"
 "POT-Creation-Date: 2000-07-31 17:07-0400\n"
-"PO-Revision-Date: 2000-02-20 00:40+01:00\n"
+"PO-Revision-Date: 2000-08-04 01:16+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,81 +15,75 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
+"Filen %s ble ikke funnet, men er nødvendig for at støtte for %s skal fungere "
+"riktig. Installér pakken %s, som gir deg denne filen."
 
 #: ../authconfig.c:157
 msgid "Warning"
-msgstr ""
+msgstr "Advarsel"
 
 #: ../authconfig.c:157 ../authconfig.c:529 ../authconfig.c:534
 msgid "Ok"
 msgstr "Ok"
 
 #: ../authconfig.c:167 ../authconfig.c:241
-#, fuzzy
 msgid "  Domain:"
-msgstr "    NIS-domene:"
+msgstr "  Domene:"
 
 #: ../authconfig.c:168 ../authconfig.c:214
-#, fuzzy
 msgid "  Server:"
-msgstr "NIS-tjener:"
+msgstr "  Tjener:"
 
 #: ../authconfig.c:188
 msgid "     LHS:"
-msgstr ""
+msgstr "     LHS:"
 
 #: ../authconfig.c:189
 msgid "     RHS:"
-msgstr ""
+msgstr "     RHS:"
 
 #: ../authconfig.c:215
 msgid " Base DN:"
-msgstr ""
+msgstr " Basis DN:"
 
 #: ../authconfig.c:258
-#, fuzzy
 msgid "          Realm:"
-msgstr "     eller bruk:"
+msgstr "          Område:"
 
 #: ../authconfig.c:259
-#, fuzzy
 msgid "            KDC:"
-msgstr "     eller bruk:"
+msgstr "            KDC:"
 
 #: ../authconfig.c:260
-#, fuzzy
 msgid "   Admin Server:"
-msgstr "    LDAP-tjener:"
+msgstr "   Admin-tjener:"
 
 #. Create the window and a form to put into it.
 #: ../authconfig.c:300
-#, fuzzy
 msgid "User Information Configuration"
-msgstr "Autentiseringskonfigurasjon"
+msgstr "Konfigurasjon av brukerinformasjon"
 
 #. NSS modules: NIS.
 #: ../authconfig.c:304
-#, fuzzy
 msgid "Use NIS"
-msgstr "NIS"
+msgstr "Bruk NIS"
 
 #: ../authconfig.c:327
-#, fuzzy
 msgid "Use LDAP"
-msgstr "LDAP"
+msgstr "Bruk LDAP"
 
 #: ../authconfig.c:346
 msgid "Use WinBind"
-msgstr ""
+msgstr "Bruk WinBind"
 
 #: ../authconfig.c:360
 msgid "Use Hesiod"
-msgstr ""
+msgstr "Bruk Hesiod"
 
 #. Create the buttons.
 #: ../authconfig.c:381
 msgid "Next"
-msgstr ""
+msgstr "Neste"
 
 #: ../authconfig.c:382 ../authconfig.c:530 ../authconfig.c:535
 msgid "Back"
@@ -110,24 +104,20 @@ msgid "Use Shadow Passwords"
 msgstr "Bruk skyggepassord"
 
 #: ../authconfig.c:455
-#, fuzzy
 msgid "Use MD5 Passwords"
-msgstr "Slå på MD5-passord"
+msgstr "Bruk MD5-passord"
 
 #: ../authconfig.c:460
-#, fuzzy
 msgid "Use LDAP Authentication"
-msgstr "Autentiseringstype:"
+msgstr "Bruk LDAP-autentisering"
 
 #: ../authconfig.c:481
-#, fuzzy
 msgid "Use WinBind Authentication"
-msgstr "Autentiseringstype:"
+msgstr "Bruk WinBind autentisering"
 
 #: ../authconfig.c:496
-#, fuzzy
 msgid "Use Kerberos 5"
-msgstr "Kerberos"
+msgstr "Bruk Kerberos 5"
 
 #: ../authconfig.c:626
 #, c-format
@@ -170,12 +160,54 @@ msgid ""
 "     --kickstart                don't display user interface\n"
 "     --help                     show this screen\n"
 msgstr ""
+"Bruk: %s [flagg]\n"
+"\n"
+"      --useshadow\n"
+"      --enableshadow            bruk skyggepassord som standard\n"
+"      --disableshadow           ikke bruk skyggepassord som standard\n"
+"      --enablemd5               bruk MD5 passord som standard\n"
+"      --disablemd5              ikke bruk MD5 passord som standard\n"
+"\n"
+"      --enablenis               bruk NIS\n"
+"      --disablenis              ikke bruk NIS\n"
+"      --nisdomain <domene>      standard NIS-domene\n"
+"      --nisserver <tjener>      standard NIS-tjener\n"
+"\n"
+"      --enableldap              bruk LDAP som standard for "
+"brukerinformasjon\n"
+"      --disableldap             ikke bruk LDAP som standard for "
+"brukerinformasjon\n"
+"      --enableldapauth          bruk LDAP som standard for autentisering\n"
+"      --disableldapauth         ikke bruk LDAP som standard for "
+"autentisering\n"
+"      --ldapserver <tjener>     standard LDAP-tjener\n"
+"      --ldapbasedn <dn>         standard LDAP basis DN\n"
+"\n"
+"      --enablekrb5              bruk kerberos autentisering som standard\n"
+"      --disablekrb5             ikke bruk kerberos autentisering som "
+"standard\n"
+"      --krb5kdc <tjener>        standard kerberos KDC\n"
+"      --krb5adminserver <tjener>standard kerberos admin-tjener\n"
+"      --krb5realm <område>      standard kerberos område\n"
+"\n"
+"      --enablehesiod            bruk hesiod som standard for "
+"brukerinformasjon\n"
+"      --disablehesiod           ikke bruk hesiod som standard for "
+"brukerinformasjon.\n"
+"      --hesiodlhs               standard hesiod LHS\n"
+"      --hesiodrhs               standard hesiod RHS\n"
+"\n"
+"      --nostart                 ikke start/stopp ypbind\n"
+"      --kickstart               ikke vis brukergrensesnitt\n"
+"      --help                    vis denne informasjonen\n"
 
 #: ../authconfig.c:665
 msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
 msgstr ""
+"\n"
+"     --enablelocal              bruk lokalt definert policy"
 
 #: ../authconfig.c:776
 #, c-format
@@ -195,9 +227,9 @@ msgstr "%s: kan bare kjøres av root\n"
 #: ../authconfig.c:806 ../authconfig.c:813 ../authconfig.c:820
 #: ../authconfig.c:828 ../authconfig.c:836 ../authconfig.c:843
 #: ../authconfig.c:850 ../authconfig.c:857
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error reading %s/%s"
-msgstr "%s: kritisk feil under lesing av /etc/pam.d/passwd\n"
+msgstr "%s: kritisk feil under lesing av %s/%s"
 
 #: ../authconfig.c:914
 msgid ""
@@ -214,147 +246,6 @@ msgstr "dialogen ble avbrutt\n"
 #: ../authconfig.c:990 ../authconfig.c:995 ../authconfig.c:1000
 #: ../authconfig.c:1005 ../authconfig.c:1011 ../authconfig.c:1017
 #: ../authconfig.c:1021 ../authconfig.c:1026
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing %s/%s"
-msgstr "%s: kritisk feil under skriving til /etc/pam.d\n"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/hesiod.conf"
-#~ msgstr "%s: kritisk feil under lesing av /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/krb5.conf"
-#~ msgstr "%s: kritisk feil under lesing av /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/ldap.conf"
-#~ msgstr "%s: kritisk feil under lesing av /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/smb.conf"
-#~ msgstr "%s: kritisk feil under lesing av /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/yp.conf"
-#~ msgstr "%s: kritisk feil under lesing av /etc/yp.conf"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/nsswitch.conf"
-#~ msgstr "%s: kritisk feil under skriving til /etc/nsswitch.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error reading %s/sysconfig/network"
-#~ msgstr "%s: kritisk feil under lesing av /etc/sysconfig/network"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/hesiod.conf"
-#~ msgstr "%s: kritisk feil under skriving til /etc/ldap.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/krb5.conf"
-#~ msgstr "%s: kritisk feil under skriving til /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/ldap.conf"
-#~ msgstr "%s: kritisk feil under skriving til /etc/ldap.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/yp.conf"
-#~ msgstr "%s: kritisk feil under skriving til /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/smb.conf"
-#~ msgstr "%s: kritisk feil under skriving til /etc/yp.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/nsswitch.conf"
-#~ msgstr "%s: kritisk feil under skriving til /etc/nsswitch.conf\n"
-
-#, fuzzy
-#~ msgid "%s: critical error writing %s/sysconfig/network"
-#~ msgstr "%s: kritisk feil under skriving til /etc/sysconfig/network\n"
-
-#~ msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/sysconfig/network: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/yp.conf: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/ldap.conf: %s\n"
-
-#~ msgid "   LDAP Domain:"
-#~ msgstr "   LDAP-domene:"
-
-#~ msgid "Kerberos Realm:"
-#~ msgstr "Kerberos rike:"
-
-#~ msgid "Kerberos Server:"
-#~ msgstr "Kerberos-tjener:"
-
-#~ msgid "Password File"
-#~ msgstr "Passordfil"
-
-#~ msgid "Request via broadcast"
-#~ msgstr "Forespørsel via kringkasting"
-
-#~ msgid "Error"
-#~ msgstr "Feil"
-
-#~ msgid "You must enter a NIS server or request via broadcast."
-#~ msgstr "Du må skrive inn en NIS-tjener eller kringkaste en forespørsel."
-
-#~ msgid "You must enter an authentication domain."
-#~ msgstr "Du må oppgi et autentiseringsdomene."
-
-#~ msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/sysconfig/network for skriving: %s\n"
-
-#~ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/yp.conf- for skriving: %s\n"
-
-#~ msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/ldap.conf- for skriving: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/nsswitch.conf: %s\n"
-
-#~ msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-#~ msgstr "%s: kan ikke åpne /etc/nsswitch.conf- for skriving: %s\n"
-
-#~ msgid "%s: error opening %s\n"
-#~ msgstr "%s: feil under åpning av %s\n"
-
-#~ msgid ""
-#~ "Usage: %s [options]\n"
-#~ "\n"
-#~ "     --nostart            do not start/stop yp\n"
-#~ "     --enablenis          enable nis by default\n"
-#~ "     --nisdomain <domain> default NIS domain\n"
-#~ "     --nisserver <server> default NIS server\n"
-#~ "     --useshadow          use shadow passwords\n"
-#~ "     --enablemd5          enable MD5 passwords\n"
-#~ "     --kickstart          don't display user interface\n"
-#~ "     --help               show this screen\n"
-#~ msgstr ""
-#~ "Bruk: %s [flagg]\n"
-#~ "     --nostart               ikke start/stopp yp\n"
-#~ "     --enablenis             slå på nis som standard\n"
-#~ "     --nisdomain <nisdomene> standard NIS-domene\n"
-#~ "     --nisserver <tjener>    standard NIS-tjener\n"
-#~ "     --useshadow             bruk skyggepassord\n"
-#~ "     --enablemd5             slå på MD5-passord\n"
-#~ "     --kickstart             ikke vis brukergrensesnitt\n"
-#~ "     --help                  vis denne teksten\n"
-
-#~ msgid "%s: unknown authorization type %s\n"
-#~ msgstr "%s: ukjent autorisasjonstype %s\n"
-
-#~ msgid "authentication type selected: "
-#~ msgstr "valgt autentiseringstype:     "
-
-#~ msgid "%s: critical error turning on NIS service\n"
-#~ msgstr "%s: kritisk feil når NIS-tjenesten ble slått på\n"
-
-#~ msgid "%s: critical error with shadow password manipulation\n"
-#~ msgstr "%s: kritisk feil ved manipulasjon av skyggepassord\n"
+msgstr "%s: kritisk feil under skriving til %s/%s"
