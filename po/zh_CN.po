@@ -3,14 +3,15 @@
 # Sarah Smith <sarahs@redhat.com>, 2002.
 # Sarah Saiying Smith <sarahs@redhat.com>, 2003
 # Sarah Saiying Wang <sarahs@redhat.com>, 2003
+# Sarah Wang <sarahs@redhat.com>, 2003
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-11-18 16:17-0500\n"
-"PO-Revision-Date: 2003-11-21 15:24+1000\n"
-"Last-Translator: Sarah Saiying Wang <sarahs@redhat.com>\n"
+"PO-Revision-Date: 2003-11-24 11:39+1000\n"
+"Last-Translator: Sarah Wang <sarahs@redhat.com>\n"
 "Language-Team: Simplified Chinese <i18n@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -443,50 +444,52 @@ msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
+"如果没有启用 winbindusedefaultdomain，用来分隔 winbind "
+"创建的用户名中域和用户部分的字符"
 
 #: authconfig.c:935
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
+msgstr "winbind 创建的用户将会用为主目录的目录"
 
 #: authconfig.c:939
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
+msgstr "winbind 创建的用户将会用为主要组群的组群"
 
 #: authconfig.c:942
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
+msgstr "winbind 创建的用户将会用为登录 shell 的 shell"
 
 #: authconfig.c:946
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr ""
+msgstr "配置 winbind 来假定在用户名中没有域的用户是域用户"
 
 #: authconfig.c:950
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr ""
+msgstr "配置 winbind 来假定在用户名中没有域的用户不是域用户"
 
 #: authconfig.c:954
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
+msgstr "立即作为管理员加入 winbind 域或 ads 领域\n"
 
 #: authconfig.c:958
 msgid "enable wins for hostname resolution"
-msgstr ""
+msgstr "启用 wins 进行主机名解析"
 
 #: authconfig.c:960
 msgid "disable wins for hostname resolution\n"
-msgstr ""
+msgstr "禁用 wins 进行主机名解析\n"
 
 #: authconfig.c:963
 msgid "enable hesiod for user information by default"
-msgstr "默认启用用户信息 hesiod"
+msgstr "默认启用 hesiod 来获取用户信息"
 
 #: authconfig.c:965
 msgid "disable hesiod for user information by default"
-msgstr "默认禁用用户信息 hesiod"
+msgstr "默认禁用 hesiod 来获取用户信息"
 
 #: authconfig.c:967
 msgid "default hesiod LHS"
@@ -657,14 +660,12 @@ msgid "Hesiod"
 msgstr "Hesiod"
 
 #: glade.strings:21 glade.strings:40
-#, fuzzy
 msgid "Enable _Winbind Support"
-msgstr "启用 Hesiod 支持 (_H)"
+msgstr "启用 _Winbind 支持"
 
 #: glade.strings:22 glade.strings:41
-#, fuzzy
 msgid "_Configure Winbind..."
-msgstr "配置 Hesiod (_C)..."
+msgstr "配置 Winbind (_C)..."
 
 #: glade.strings:23 glade.strings:42
 msgid ""
@@ -672,6 +673,8 @@ msgid ""
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
 msgstr ""
+"Winbind 允许系统检索关于用户的信息，并通过贮存在 NTDOM 或 ADS "
+"服务器中的信息来验证用户。它被用在小型到大型的网络中。"
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
@@ -711,14 +714,14 @@ msgstr "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服�
 
 #: glade.strings:39
 msgid "SMB"
-msgstr ""
+msgstr "SMB"
 
 #: glade.strings:46 glade.strings:49 glade.strings:51 glade.strings:54
 #: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:65
 #: glade.strings:68 glade.strings:70 glade.strings:73 glade.strings:79
 #: glade.strings:81 glade.strings:84 glade.strings:86 glade.strings:90
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: glade.strings:47
 msgid "NIS _Server"
@@ -750,11 +753,11 @@ msgstr "KDC(_K)"
 
 #: glade.strings:62
 msgid "Use DNS to resolve hosts to _realms"
-msgstr ""
+msgstr "使用 DNS 把主机解析到领域(_R)"
 
 #: glade.strings:63
 msgid "Use DNS to locate _KDCs for realms"
-msgstr ""
+msgstr "使用 DNS 查找领域的 _KDC"
 
 #: glade.strings:66
 msgid "_Domain Controllers"
@@ -777,62 +780,56 @@ msgid "Use _TLS to encrypt connections"
 msgstr "使用 TLS 来加密连接 (_T)"
 
 #: glade.strings:76
-#, fuzzy
 msgid "_Join Domain"
-msgstr "域："
+msgstr "加入域(_J)"
 
 #: glade.strings:77
 msgid "_Security Model"
-msgstr ""
+msgstr "安全模型(_S)"
 
 #: glade.strings:78
-#, fuzzy
 msgid "Winbind _Domain"
-msgstr "NIS 域 (_D)"
+msgstr "Winbind 域 (_D)"
 
 #: glade.strings:80
-#, fuzzy
 msgid "Winbind Domain _Controllers"
-msgstr "域控制器 (_D)"
+msgstr "Winbind 域控制器(_C)"
 
 #: glade.strings:82
 msgid "Template _Shell"
-msgstr ""
+msgstr "模板 _Shell"
 
 #: glade.strings:83
 msgid "Winbind ADS _Realm"
-msgstr ""
+msgstr "Winbind ADS 领域(_R)"
 
 #: glade.strings:85
 msgid "Joining Winbind Domain"
-msgstr ""
+msgstr "加入 Winbind 域"
 
 #: glade.strings:87
-#, fuzzy
 msgid "Domain _Administrator"
-msgstr "域控制器 (_D)"
+msgstr "域管理器(_A)"
 
 #: glade.strings:88
-#, fuzzy
 msgid "Domain"
-msgstr "域："
+msgstr "域"
 
 #: glade.strings:89
-#, fuzzy
 msgid "_Password"
-msgstr "使用 MD5 口令(_M)"
+msgstr "口令(_P)"
 
 #: glade.strings:91
 msgid "EXAMPLE.COM"
-msgstr ""
+msgstr "EXAMPLE.COM"
 
 #: glade.strings:92
 msgid "Alert"
-msgstr ""
+msgstr "警告"
 
 #: glade.strings:93
 msgid "Do_n't Save"
-msgstr ""
+msgstr "不要保存(_N)"
 
 #: localpol.h:9
 msgid "Use Local Policies"
