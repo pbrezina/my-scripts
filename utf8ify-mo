@@ -5,11 +5,15 @@ CONVERTED=`mktemp /tmp/utf8.po.XXXXXX`
 for mo in $@ ; do
 	msgunfmt $mo > $UNFORMATTED
 	ENCODING=`grep 'Content-Type:.*text/plain;.*charset=' $UNFORMATTED | sed -e 's,.*charset=,,g' -e 's,[^A-Za-z0-9-].*,,g'`
-	echo Converting $mo from $ENCODING to UTF-8.
-	cat $UNFORMATTED | \
-	sed -e 's,Content-Type: *text/plain; *charset=.*\\n,Content-Type: text/plain; charset=UTF-8\\n,g' | \
-	iconv -f $ENCODING -t UTF-8 - > $CONVERTED
-	msgfmt -o $mo $CONVERTED
+	if test -n "$ENCODING" ; then
+		echo Converting $mo from $ENCODING to UTF-8.
+		cat $UNFORMATTED | \
+		sed -e 's,Content-Type: *text/plain; *charset=.*\\n,Content-Type: text/plain; charset=UTF-8\\n,g' | \
+		iconv -f "$ENCODING" -t UTF-8 - > $CONVERTED
+		msgfmt -o $mo $CONVERTED
+	else
+		echo Skipping $mo due to unknown encoding.
+	fi
 done
 
 rm $UNFORMATTED $CONVERTED

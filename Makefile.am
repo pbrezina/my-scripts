@@ -81,3 +81,21 @@ authconfigmodule_so_SOURCES = \
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
 EXTRA_DIST = config.rpath authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo
+
+CVSTAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}\n' | head -1 | sed 's,\.,-,g')
+tag:
+	cvs tag -cFR $(CVSTAG)
+
+archive: tag
+	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.gz
+	dir=`pwd` ; \
+	root=`cat CVS/Root` ; \
+	cd /tmp ; \
+	cvs export -r $(CVSTAG) -d $(PACKAGE) ; \
+	cd $(PACKAGE)-$(VERSION) ; \
+	./autogen.sh ; \
+	./configure ; \
+	make dist ; \
+	mv $(PACKAGE)-$(VERSION).tar.gz $$dir ; \
+	cd $$dir ; \
+	rm -fr /tmp/$(PACKAGE)
