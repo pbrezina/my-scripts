@@ -2,7 +2,7 @@ Summary: Text-mode tool for setting up NIS and shadow passwords
 Name: authconfig
 %define version	1.2
 Version: %{version}
-Release: 4
+Release: 5
 Copyright: GPL
 ExclusiveOS: Linux
 Group: Utilities/System
@@ -33,6 +33,9 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Mon Feb  8 1999 Matt Wilson <msw@redhat.com>
+- Don't rewrite ypbind.conf if you're not configuring NIS
+
 * Mon Feb  8 1999 Matt Wilson <msw@redhat.com>
 - Don't configure NIS if /etc/ypbind.conf does not exist.
 

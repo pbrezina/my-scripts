@@ -828,10 +828,12 @@ int main(int argc, char **argv) {
     return 2;
   }
 
-  if (rewriteYPConfigFile(enableNisServer, nisServer, nisDomain)) {
-    fprintf(stderr, i18n("%s: critical error writing /etc/yp.conf\n"),
-	    progName);
-    return 2;
+  if (configureNis) {
+      if (rewriteYPConfigFile(enableNisServer, nisServer, nisDomain)) {
+	  fprintf(stderr, i18n("%s: critical error writing /etc/yp.conf\n"),
+		  progName);
+	  return 2;
+      }
   }
 
   if (toggleNisService(enableNis, nostart)) {
