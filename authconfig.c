@@ -510,7 +510,7 @@ int toggleNisService(char enableNis, int nostart)
   if (enableNis == '*') {
     if (!nostart) 
       system("/etc/rc.d/init.d/ypbind start");
-    system("/sbin/chkconfig --add ypbind");
+    system("/sbin/chkconfig --level 345 ypbind on");
   }  else {
     if (!nostart)
       system("/etc/rc.d/init.d/ypbind stop");
