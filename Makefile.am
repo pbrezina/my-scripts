@@ -1,4 +1,4 @@
-SUBDIRS = intl m4  intl m4 po man
+SUBDIRS = intl m4 po man
 
 PYTHONREV=@PYTHONREV@
 pythonsitedir = $(libdir)/python@PYTHONREV@/site-packages
