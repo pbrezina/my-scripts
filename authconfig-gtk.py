@@ -187,6 +187,7 @@ if __name__ == '__main__':
 
 	button = gtk.Button(_("Ok"), stock=gtk.STOCK_OK);
 	button.connect("clicked", module.apply)
+	button.connect("clicked", gtk.mainquit)
 	button.show()
 	hbox.pack_start_defaults(button)
 
