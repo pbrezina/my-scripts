@@ -1168,6 +1168,7 @@ static struct {
 } standard_pam_modules[] = {
 	{TRUE,  auth,		sufficient,	"unix",		argv_unix_auth},
 	{FALSE, auth,		sufficient,	"krb5",		argv_krb5_auth},
+	{FALSE, auth,		sufficient,	"krb5afs",	argv_krb5_auth},
 	{FALSE, auth,		sufficient,	"ldap",		argv_ldap_auth},
 	{TRUE,  auth,		required,	"deny",		NULL},
 
@@ -1181,12 +1182,15 @@ static struct {
 	 argv_unix_password},
 	{FALSE, password,	sufficient,	"krb5",
 	 argv_krb5_password},
+	{FALSE, password,	sufficient,	"krb5afs",
+	 argv_krb5_password},
 	{FALSE, password,	sufficient,	"ldap",
 	 argv_ldap_password},
 	{TRUE,  password,	required,	"deny",		NULL},
 
 	{TRUE,  session,	required,	"unix",		NULL},
 	{FALSE, session,	optional,	"krb5",		NULL},
+	{FALSE, session,	optional,	"krb5afs",	NULL},
 	{FALSE, session,	optional,	"ldap",		NULL},
 };
 
@@ -1272,6 +1276,7 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	char *obuf = NULL;
 	int fd;
 	struct flock lock;
+	gboolean have_afs = FALSE;
 
 	fd = open(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, O_RDWR|O_CREAT, 0644);
 	if(fd == -1) {
@@ -1292,12 +1297,16 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
       	strcat(obuf, "# User changes will be destroyed the next time "
 		     "authconfig is run.\n");
 
+	have_afs = (access("/afs", R_OK | X_OK) != -1);
+
 	for(i = 0;
 	    i < sizeof(standard_pam_modules) / sizeof(standard_pam_modules[0]);
 	    i++) {
 		if(standard_pam_modules[i].mandatory ||
-		   (authInfo->enableKerberos &&
+		   (authInfo->enableKerberos && !have_afs &&
 		    (strcmp("krb5", standard_pam_modules[i].name) == 0)) ||
+		   (authInfo->enableKerberos && have_afs &&
+		    (strcmp("krb5afs", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableLDAPAuth &&
 		    (strcmp("ldap", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);

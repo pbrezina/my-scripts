@@ -37,6 +37,7 @@ rm -rf $RPM_BUILD_ROOT
 - fix the uncommented comment problem
 - pam_krb5 doesn't provide account management
 - base DN can have spaces in it
+- use pam_krb5afs for krb5 if /afs is readable
 
 * Fri May 26 2000 Nalin Dahyabhai <nalin@redhat.com>
 - finish LDAP support
