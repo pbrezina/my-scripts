@@ -2,7 +2,7 @@ Summary: Text-mode tool for setting up NIS and shadow passwords
 Name: authconfig
 %define version	1.2
 Version: %{version}
-Release: 2
+Release: 3
 Copyright: GPL
 ExclusiveOS: Linux
 Group: Utilities/System
@@ -33,6 +33,13 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Sat Feb  6 1999 Matt Wilson <msw@redhat.com>
+- changed "/sbin/chkconfig --add ypbind" to
+  "/sbin/chkconfig --level 345 ypbind on"
+- added checks for null nis domains and servers if nis is enabled or if
+  not using broadcast.
+- added newt entry filter for spaces in domains
+
 * Sat Feb  6 1999 Matt Wilson <msw@redhat.com>
 - changed command line options to match user interface
 - added --help

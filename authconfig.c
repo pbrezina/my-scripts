@@ -177,6 +177,13 @@ static void nisEntryToggle(newtComponent co, void * arg) {
       newtEntrySetFlags(cb->serverEntry, NEWT_ENTRY_DISABLED, sense);
 }
 
+int entryFilter(newtComponent entry, void * data, int ch, int cursor)
+{
+    if (ch == ' ')
+	return 0;
+    return ch;
+}
+
 /*
  * draw the main window for authconfig.  Displays choices about
  * using NIS and shadow passwords.  return results by reference.
@@ -196,6 +203,7 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   char newUseShadow, newEnableMD5, newEnableBroadCast;
   struct servercbInfo servercb;
   struct niscbInfo niscb;
+  int done = 0;
   
   /* create the main form and window */
   mainForm = newtForm(NULL, NULL, 0);
@@ -210,6 +218,8 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
 
   nisServerEntry = newtEntry(-1, -1, "", 25, &newNisServer,
 			     NEWT_FLAG_SCROLL);
+  newtEntrySetFilter(nisServerEntry, entryFilter, NULL);
+
   if (*enableNisServer == ' ')
       newtEntrySetFlags(nisServerEntry, NEWT_ENTRY_DISABLED,
 			NEWT_FLAGS_SET);
@@ -224,7 +234,8 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   nisLabel = newtLabel(-1, -1, i18n("NIS Domain:"));
   nisEntry = newtEntry(-1, -1, "", 25, &newNisDomain, 
 		       NEWT_FLAG_SCROLL);
-
+  newtEntrySetFilter(nisEntry, entryFilter, NULL);
+  
   niscb.state = enableNis;
   niscb.bcastState = &newEnableBroadCast;
   niscb.domEntry = nisEntry;
@@ -313,21 +324,39 @@ int getChoices(int useBack, char *enableNis, char **nisDomain,
   
   newtGridWrappedWindow(mainGrid, i18n("Authentication Configuration"));
 
-  answer = newtRunForm(mainForm);
+  do {
+      answer = newtRunForm(mainForm);
   
-  if (answer == cancelButton)
-    return 1;
-  else {
-    /* process form values */
-    *enableNisServer = newEnableBroadCast == '*' ? ' ' : '*';
+      if (answer == cancelButton) {
+	  newtPopWindow();
+	  return 1;
+      } else {
+	  /* process form values */
+	  *enableNisServer = newEnableBroadCast == '*' ? ' ' : '*';
+	  if (*enableNisServer == '*' && !strcmp(newNisServer, "")) {
+	      newtWinMessage(i18n("Error"), i18n("Ok"),
+			     i18n("You must enter a NIS server or "
+				  "request via broadcast."));
+	      done = 0;
+	      continue;
+	  }
+	  if (*enableNis == '*' && !strcmp(newNisDomain, "")) {
+	      newtWinMessage(i18n("Error"), i18n("Ok"),
+			     i18n("You must enter a NIS domain."));
+	      done = 0;
+	      continue;
+	  }
+	  *nisDomain = newNisDomain;
+	  *nisServer = newNisServer;
+	  
+	  *useShadow = newUseShadow;
+	  *enableMD5 = newEnableMD5;
 
-    *nisDomain = newNisDomain;
-    *nisServer = newNisServer;
-
-    *useShadow = newUseShadow;
-    *enableMD5 = newEnableMD5;
-    return 0;
-  }
+	  done = 1;
+      }
+  } while (!done);
+  
+  return 0;
 }
 
 /*
