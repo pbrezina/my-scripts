@@ -7,3 +7,4 @@ aclocal-1.6
 automake-1.6 -a
 intltoolize -f
 autoconf-2.53
+./configure $@

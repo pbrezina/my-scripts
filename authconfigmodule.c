@@ -24,6 +24,8 @@
 #include <glib.h>
 #include "authinfo.h"
 
+void initauthconfig(void);
+
 #define authInfoObject_Check(op) PyObject_TypeCheck(op, &authInfoObjectType)
 extern PyTypeObject authInfoObjectType;
 static PyObject *authconfig_write(PyObject *self, PyObject *args,
@@ -328,7 +330,7 @@ static PyMethodDef module_methods[] = {
 
 /* The module initialization function. */
 void
-initauthconfig()
+initauthconfig(void)
 {
 	Py_InitModule("authconfig", module_methods);
 }

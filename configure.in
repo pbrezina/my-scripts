@@ -75,6 +75,16 @@ AC_MSG_RESULT($PYTHONPREFIX/include/python$PYTHONREV)
 PYTHON_CFLAGS=-I$PYTHONPREFIX/include/python$PYTHONREV
 AC_SUBST(PYTHON_CFLAGS)
 
+if test x$GCC = xyes ; then
+	CFLAGS="${CFLAGS} -Wunused"
+	CFLAGS="${CFLAGS} -Wuninitialized"
+	CFLAGS="${CFLAGS} -Wimplicit"
+	CFLAGS="${CFLAGS} -Wstrict-prototypes"
+	CFLAGS="${CFLAGS} -Wmissing-prototypes"
+	CFLAGS="${CFLAGS} -Wmissing-declarations"
+	CFLAGS="${CFLAGS} -Wcast-align"
+fi
+
 AM_CONFIG_HEADER(config.h)
 
 AC_OUTPUT([

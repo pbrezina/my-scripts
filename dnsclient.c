@@ -18,6 +18,7 @@
   */
 
 #include "config.h"
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -558,10 +559,10 @@ dns_parse_results(const unsigned char *results, size_t length)
 }
 
 struct dns_client_context *
-dns_client_init()
+dns_client_init(void)
 {
 	struct dns_client_context *ret = NULL;
-	char buf[LINE_MAX], *p, *q;
+	char buf[BUFSIZ], *p, *q;
 	FILE *fp;
 	int tokens, ns;
 

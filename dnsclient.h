@@ -124,6 +124,6 @@ typedef struct dns_client_context {
 size_t dns_format_query(const char *query, u_int16_t qclass, u_int16_t qtype,
 			unsigned char *qbuf, size_t qbuf_len);
 struct dns_rr *dns_parse_results(const unsigned char *results, size_t length);
-struct dns_client_context *dns_client_init();
+struct dns_client_context *dns_client_init(void);
 
 #endif

@@ -22,6 +22,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <arpa/nameser.h>
+#include <netinet/in.h>
 #include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
@@ -29,6 +31,7 @@
 #include <glib.h>
 #include <libgen.h>
 #include <libintl.h>
+#include <limits.h>
 #include <locale.h>
 #include <resolv.h>
 #include <stdio.h>
@@ -109,7 +112,7 @@ gboolean
 authInfoReadSMB(struct authInfoType *info)
 {
 	FILE *fp = NULL;
-	char buf[LINE_MAX], *p;
+	char buf[BUFSIZ], *p;
 
 	/* Open the file.  Bail if it's not there or there's some problem
 	 * reading it. */
@@ -155,7 +158,7 @@ gboolean
 authInfoReadNIS(struct authInfoType *info)
 {
 	FILE *fp = NULL;
-	char buf[LINE_MAX], *p, *q;
+	char buf[BUFSIZ], *p, *q;
 
 	/* Open the file.  Bail if it's not there. */
 	fp = fopen(SYSCONFDIR "/yp.conf", "r");
@@ -238,7 +241,7 @@ gboolean
 authInfoReadLDAP(struct authInfoType *info)
 {
 	FILE *fp = NULL;
-	char buf[LINE_MAX], *p;
+	char buf[BUFSIZ], *p;
 
 	/* Open the file.  Bail if it's not there. */
 	fp = fopen(SYSCONFDIR "/ldap.conf", "r");
@@ -324,7 +327,7 @@ gboolean
 authInfoReadKerberos(struct authInfoType *info)
 {
 	FILE *fp = NULL;
-	char buf[LINE_MAX], *p, *q;
+	char buf[BUFSIZ], *p, *q;
 	char *section = NULL;
 	char *subsection = NULL;
 
@@ -465,7 +468,7 @@ gboolean
 authInfoReadNSS(struct authInfoType *info)
 {
 	FILE *fp = NULL;
-	char buf[LINE_MAX], *p;
+	char buf[BUFSIZ], *p;
 	char *nss_config = NULL;
 
 	/* Read NIS setup. */
@@ -550,7 +553,7 @@ authInfoReadCache(struct authInfoType *authInfo)
 gboolean
 authInfoReadPAM(struct authInfoType *authInfo)
 {
-	char ibuf[LINE_MAX];
+	char ibuf[BUFSIZ];
 	char module[PATH_MAX];
 	char flags[PATH_MAX];
 	char *p, *q, *stack;
@@ -1469,7 +1472,7 @@ comma_count(const char *string)
 }
 
 /* Write Kerberos 5 setup to /etc/krb5.conf, */
-gboolean
+static gboolean
 authInfoWriteKerberos5(struct authInfoType *info)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
@@ -1696,7 +1699,7 @@ authInfoWriteKerberos5(struct authInfoType *info)
 }
 
 /* Write Kerberos 4 setup to /etc/krb.conf, */
-gboolean
+static gboolean
 authInfoWriteKerberos4(struct authInfoType *info)
 {
 	char *ibuf = NULL, *obuf = NULL;
@@ -1830,7 +1833,7 @@ authInfoWriteNSS(struct authInfoType *info)
 	int fd, l;
 	struct stat st;
 	struct flock lock;
-	char normal[LINE_MAX] = "", hosts[LINE_MAX] = "";
+	char normal[BUFSIZ] = "", hosts[BUFSIZ] = "";
 	gboolean wrotepasswd = FALSE, wrotegroup = FALSE, wroteshadow = FALSE,
 		 wroteservices = FALSE, wroteprotocols = FALSE,
 		 wrotenetgroup = FALSE, wroteautomount = FALSE,
@@ -2275,7 +2278,7 @@ fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
 	if (non_empty(stack) && non_empty(logic)) {
 		if (strlen(logic) > 0) {
 			int j;
-			char buf[LINE_MAX];
+			char buf[BUFSIZ];
 			memset(buf, '\0', sizeof(buf));
 			snprintf(buf, sizeof(buf) - 1,
 				 "%-12s%-13s %s/pam_%s.so", stack, logic,
@@ -2345,7 +2348,7 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		return FALSE;
 	}
 
-	obuf = g_malloc0(LINE_MAX *
+	obuf = g_malloc0(BUFSIZ *
 		       	 (sizeof(standard_pam_modules) / 
 		       	  sizeof(standard_pam_modules[0])));
 	strcpy(obuf, "#%PAM-1.0\n");
@@ -2498,7 +2501,7 @@ authInfoWrite(struct authInfoType *authInfo)
 static char *
 domain2dn(const char *domain)
 {
-	char buf[LINE_MAX];
+	char buf[BUFSIZ];
 	int i;
 	strcpy(buf, "DC=");
 	for (i = 0; (domain[i] != '\0') && (strlen(buf) < sizeof(buf) - 1); i++){
@@ -2523,9 +2526,9 @@ struct authInfoType *
 authInfoProbe()
 {
 	struct authInfoType *ret = NULL;
-	char hostname[LINE_MAX];
+	char hostname[BUFSIZ];
 	struct dns_rr *results = NULL;
-	unsigned char qname[LINE_MAX], query[LINE_MAX], *buf;
+	unsigned char qname[BUFSIZ], query[BUFSIZ], *buf;
 	size_t length, size;
 	char *p;
 
@@ -2569,9 +2572,9 @@ authInfoProbe()
 		}
 	}
 
-	if (results && (p != NULL)) {
+	if ((results != NULL) && (p != NULL)) {
 		if ((results->dns_type == DNS_T_SRV) &&
-		   (results->dns_rdata.srv.server)) {
+		    (results->dns_rdata.srv.server != NULL)) {
 			ret->ldapServer = strdup(results->dns_rdata.srv.server);
 			terminate_hostname(ret->ldapServer);
 			ret->ldapBaseDN = domain2dn(++p);
@@ -2580,31 +2583,55 @@ authInfoProbe()
 
 	/* now, check for a Kerberos realm the local host or domain is in */
 	results = NULL;
-	snprintf(buf, sizeof(buf), "_kerberos.%s", hostname);
-	length = dns_format_query(buf, DNS_C_IN, DNS_T_TXT,
+	snprintf(qname, sizeof(qname), "_kerberos.%s", hostname);
+	length = dns_format_query(qname, DNS_C_IN, DNS_T_TXT,
 				  query, sizeof(query));
 	if (length > 0) {
 		int ret;
-		ret = res_send(query, length, buf, sizeof(buf));
+		size = 12;
+		buf = malloc(size);
+		do {
+			ret = res_send(query, length, buf, size);
+			if (ret >= size) {
+				size = ret + 1024;
+				free(buf);
+				buf = malloc(size);
+				continue;
+			}
+			break;
+		} while (1);
 		if (ret != -1) {
 			results = dns_parse_results(buf, ret);
 		}
+		free(buf);
 	}
 	if ((results == NULL) && ((p = strchr(hostname, '.')) != NULL)) {
-		snprintf(buf, sizeof(buf), "_kerberos%s", p);
-		length = dns_format_query(buf, DNS_C_IN, DNS_T_TXT,
+		snprintf(qname, sizeof(qname), "_kerberos%s", p);
+		length = dns_format_query(qname, DNS_C_IN, DNS_T_TXT,
 					  query, sizeof(query));
 		if (length > 0) {
 			int ret;
-			ret = res_send(query, length, buf, sizeof(buf));
+			size = 12;
+			buf = malloc(size);
+			do {
+				ret = res_send(query, length, buf, size);
+				if (ret >= size) {
+					size = ret + 1024;
+					free(buf);
+					buf = malloc(size);
+					continue;
+				}
+				break;
+			} while (1);
 			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
+			free(buf);
 		}
 	}
 	if (results != NULL) {
 		if ((results->dns_type == DNS_T_TXT) &&
-		   (results->dns_rdata.txt.data)) {
+		    (results->dns_rdata.txt.data != NULL)) {
 			ret->kerberosRealm = strdup(results->dns_rdata.txt.data);
 		}
 	}
@@ -2612,74 +2639,97 @@ authInfoProbe()
 	/* now fetch server information for the realm */
 	results = NULL;
 	if (ret->kerberosRealm) {
-		snprintf(buf, sizeof(buf), "_kerberos._udp.%s",
+		snprintf(qname, sizeof(qname), "_kerberos._udp.%s",
 			 ret->kerberosRealm);
-		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
+		length = dns_format_query(qname, DNS_C_IN, DNS_T_SRV,
 					  query, sizeof(query));
 		if (length > 0) {
 			int ret;
-			ret = res_send(query, length, buf, sizeof(buf));
+			size = 12;
+			buf = malloc(size);
+			do {
+				ret = res_send(query, length, buf, size);
+				if (ret >= size) {
+					size = ret + 1024;
+					free(buf);
+					buf = malloc(size);
+					continue;
+				}
+				break;
+			} while (1);
 			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
+			free(buf);
 		}
 	}
 
-	memset(buf, '\0', sizeof(buf));
 	if (results != NULL) {
 		if ((results->dns_type == DNS_T_SRV) &&
-		   (results->dns_rdata.srv.server != NULL)) {
-			snprintf(buf, sizeof(buf), "%s",
+		    (results->dns_rdata.srv.server != NULL)) {
+			snprintf(qname, sizeof(qname), "%s",
 				 results->dns_rdata.srv.server);
-			terminate_hostname(buf);
+			terminate_hostname(qname);
 			if (results->dns_rdata.srv.port != 0) {
-				snprintf(buf + strlen(buf),
-					 sizeof(buf) - strlen(buf),
+				snprintf(qname + strlen(qname),
+					 sizeof(qname) - strlen(qname),
 					 ":%d",
 					 results->dns_rdata.srv.port);
 			}
-			ret->kerberosKDC = strdup(buf);
+			ret->kerberosKDC = strdup(qname);
 		}
 	}
 
 	/* now fetch admin server information for the realm */
 	results = NULL;
 	if (ret->kerberosRealm) {
-		snprintf(buf, sizeof(buf), "_kerberos-adm._udp.%s",
+		snprintf(qname, sizeof(qname), "_kerberos-adm._udp.%s",
 			 ret->kerberosRealm);
-		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
+		length = dns_format_query(qname, DNS_C_IN, DNS_T_SRV,
 					  query, sizeof(query));
 		if (length > 0) {
 			int ret;
-			ret = res_send(query, length, buf, sizeof(buf));
+			size = 12;
+			buf = malloc(size);
+			do {
+				ret = res_send(query, length, buf, size);
+				if (ret >= size) {
+					size = ret + 1024;
+					free(buf);
+					buf = malloc(size);
+					continue;
+				}
+				break;
+			} while (1);
 			if (ret != -1) {
 				results = dns_parse_results(buf, ret);
 			}
+			free(buf);
 		}
 	}
 
 	/* use all values */
-	memset(buf, '\0', sizeof(buf));
+	memset(qname, '\0', sizeof(qname));
 	if (results != NULL) {
 		if ((results->dns_type == DNS_T_SRV) &&
-		   (results->dns_rdata.srv.server != NULL)) {
-			snprintf(buf, sizeof(buf), "%s",
+		    (results->dns_rdata.srv.server != NULL)) {
+			snprintf(qname, sizeof(qname), "%s",
 				 results->dns_rdata.srv.server);
-			terminate_hostname(buf);
+			terminate_hostname(qname);
 			if (results->dns_rdata.srv.port != 0) {
-				snprintf(buf + strlen(buf),
-					 sizeof(buf) - strlen(buf),
+				snprintf(qname + strlen(qname),
+					 sizeof(qname) - strlen(qname),
 					 ":%d",
 					 results->dns_rdata.srv.port);
 			}
-			ret->kerberosAdminServer = strdup(buf);
+			ret->kerberosAdminServer = strdup(qname);
 		}
 	}
 
 	return ret;
 }
 
-gboolean
+static gboolean
 toggleCachingService(gboolean enableCaching, gboolean nostart)
 {
 	struct stat st;
@@ -2756,14 +2806,6 @@ toggleShadow(struct authInfoType *authInfo)
 }
 
 void
-authInfoPost(struct authInfoType *authInfo, int nostart)
-{
-    toggleShadow(authInfo);
-    toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
-    toggleCachingService(authInfo->enableCache, nostart);
-}
-
-void
 authInfoPrint(struct authInfoType *authInfo)
 {
     printf("caching is %s\n", authInfo->enableCache ? "enabled" : "disabled");
@@ -2819,4 +2861,12 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->smbWorkgroup ?: "");
     printf(" SMB servers = \"%s\"\n",
 	   authInfo->smbServers ?: "");
+}
+
+void
+authInfoPost(struct authInfoType *authInfo, int nostart)
+{
+    toggleShadow(authInfo);
+    toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
+    toggleCachingService(authInfo->enableCache, nostart);
 }

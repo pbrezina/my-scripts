@@ -29,6 +29,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <libintl.h>
+#include <limits.h>
 #include <locale.h>
 #include <newt.h>
 #include <popt.h>
@@ -112,7 +113,7 @@ overrideString(char **dest, const char *source)
 static void
 checkWarn(const char *path, const char *service, const char *package)
 {
-  char buf[LINE_MAX];
+  char buf[BUFSIZ];
 
   if(access(path, R_OK) == 0) {
     return;
