@@ -1,9 +1,22 @@
-/*
- * Authconfig - authentication configuration program
- * Copyright (c) 1999, 2000 Red Hat, Inc.
- *
- * This program is licensed under the terms of the GPL.
- */
+ /*
+  * Authconfig - client authentication configuration program
+  * Copyright (c) 1999-2001 Red Hat, Inc.
+  *
+  * This is free software; you can redistribute it and/or modify it
+  * under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 2 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful, but
+  * WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  * General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program; if not, write to the Free Software
+  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  *
+  */
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -15,12 +28,14 @@
 #include <libgen.h>
 #include <libintl.h>
 #include <locale.h>
+#include <resolv.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include "shvar.h"
 #include "authinfo.h"
+#include "dnsclient.h"
 
 #ifdef LOCAL_POLICIES
 #include "localpol.h"
@@ -1770,5 +1785,177 @@ authInfoWrite(struct authInfoType *authInfo)
 	ret = ret && authInfoWriteNSS(authInfo);
 	ret = ret && authInfoWritePAM(authInfo);
 	ret = ret && authInfoWriteNetwork(authInfo);
+	return ret;
+}
+
+static char *
+domain2dn(const char *domain)
+{
+	char buf[LINE_MAX];
+	int i;
+	strcpy(buf, "DC=");
+	for(i = 0; (domain[i] != '\0') && (strlen(buf) < sizeof(buf) - 1); i++){
+		if(domain[i] == '.') {
+			strcat(buf, ",DC=");
+		} else {
+			strncat(buf, domain + i, 1);
+		}
+	}
+	return strdup(buf);
+}
+
+static void
+terminate_hostname(char *hostname)
+{
+	if(hostname[strlen(hostname) - 1] == '.'){
+		hostname[strlen(hostname) - 1] = '\0';
+	}
+}
+
+struct authInfoType *
+authInfoProbe()
+{
+	struct authInfoType *ret = NULL;
+	char hostname[LINE_MAX];
+	struct dns_rr *results = NULL;
+	unsigned char query[LINE_MAX], buf[LINE_MAX];
+	size_t length;
+	char *p;
+
+	ret = g_malloc0(sizeof(struct authInfoType));
+
+	/* get the local host name */
+	memset(hostname, '\0', sizeof(hostname));
+	gethostname(hostname, sizeof(hostname) - 1);
+	hostname[sizeof(hostname) - 1] = '\0';
+
+	if(strlen(hostname) == 0) {
+		return ret;
+	}
+
+	dns_client_init();
+
+	/* first, check for an LDAP server for the local domain */
+	results = NULL;
+	if((p = strchr(hostname, '.')) != NULL) {
+		snprintf(buf, sizeof(buf), "_ldap._tcp%s", p);
+		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
+					  query, sizeof(query));
+		if(length > 0) {
+			int ret;
+			ret = res_send(query, length, buf, sizeof(buf));
+			if(ret != -1) {
+				results = dns_parse_results(buf, ret);
+			}
+		}
+	}
+
+	if(results && (p != NULL)) {
+		if((results->dns_type == DNS_T_SRV) &&
+		   (results->dns_rdata.srv.server)) {
+			ret->ldapServer = strdup(results->dns_rdata.srv.server);
+			terminate_hostname(ret->ldapServer);
+			ret->ldapBaseDN = domain2dn(++p);
+		}
+	}
+
+	/* now, check for a Kerberos realm the local host or domain is in */
+	results = NULL;
+	snprintf(buf, sizeof(buf), "_kerberos.%s", hostname);
+	length = dns_format_query(buf, DNS_C_IN, DNS_T_TXT,
+				  query, sizeof(query));
+	if(length > 0) {
+		int ret;
+		ret = res_send(query, length, buf, sizeof(buf));
+		if(ret != -1) {
+			results = dns_parse_results(buf, ret);
+		}
+	}
+	if((results == NULL) && ((p = strchr(hostname, '.')) != NULL)) {
+		snprintf(buf, sizeof(buf), "_kerberos%s", p);
+		length = dns_format_query(buf, DNS_C_IN, DNS_T_TXT,
+					  query, sizeof(query));
+		if(length > 0) {
+			int ret;
+			ret = res_send(query, length, buf, sizeof(buf));
+			if(ret != -1) {
+				results = dns_parse_results(buf, ret);
+			}
+		}
+	}
+	if(results != NULL) {
+		if((results->dns_type == DNS_T_TXT) &&
+		   (results->dns_rdata.txt.data)) {
+			ret->kerberosRealm = strdup(results->dns_rdata.txt.data);
+		}
+	}
+
+	/* now fetch server information for the realm */
+	results = NULL;
+	if(ret->kerberosRealm) {
+		snprintf(buf, sizeof(buf), "_kerberos._udp.%s",
+			 ret->kerberosRealm);
+		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
+					  query, sizeof(query));
+		if(length > 0) {
+			int ret;
+			ret = res_send(query, length, buf, sizeof(buf));
+			if(ret != -1) {
+				results = dns_parse_results(buf, ret);
+			}
+		}
+	}
+
+	memset(buf, '\0', sizeof(buf));
+	if(results != NULL) {
+		if((results->dns_type == DNS_T_SRV) &&
+		   (results->dns_rdata.srv.server != NULL)) {
+			snprintf(buf, sizeof(buf), "%s",
+				 results->dns_rdata.srv.server);
+			terminate_hostname(buf);
+			if(results->dns_rdata.srv.port != 0) {
+				snprintf(buf + strlen(buf),
+					 sizeof(buf) - strlen(buf),
+					 ":%d",
+					 results->dns_rdata.srv.port);
+			}
+			ret->kerberosKDC = strdup(buf);
+		}
+	}
+
+	/* now fetch admin server information for the realm */
+	results = NULL;
+	if(ret->kerberosRealm) {
+		snprintf(buf, sizeof(buf), "_kerberos-adm._udp.%s",
+			 ret->kerberosRealm);
+		length = dns_format_query(buf, DNS_C_IN, DNS_T_SRV,
+					  query, sizeof(query));
+		if(length > 0) {
+			int ret;
+			ret = res_send(query, length, buf, sizeof(buf));
+			if(ret != -1) {
+				results = dns_parse_results(buf, ret);
+			}
+		}
+	}
+
+	/* use all values */
+	memset(buf, '\0', sizeof(buf));
+	if(results != NULL) {
+		if((results->dns_type == DNS_T_SRV) &&
+		   (results->dns_rdata.srv.server != NULL)) {
+			snprintf(buf, sizeof(buf), "%s",
+				 results->dns_rdata.srv.server);
+			terminate_hostname(buf);
+			if(results->dns_rdata.srv.port != 0) {
+				snprintf(buf + strlen(buf),
+					 sizeof(buf) - strlen(buf),
+					 ":%d",
+					 results->dns_rdata.srv.port);
+			}
+			ret->kerberosAdminServer = strdup(buf);
+		}
+	}
+
 	return ret;
 }

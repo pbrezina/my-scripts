@@ -1,11 +1,28 @@
-/*
- * Authconfig - authentication configuration program
- * Author: Nalin Dahyabhai <nalin@redhat.com>
- * Copyright (c) 1999, 2000 Red Hat, Inc.
- *
- * This program is licensed under the terms of the GNU General Public License,
- * version 2 or later.
- */
+ /*
+  * Authconfig - client authentication configuration program
+  * Copyright (c) 1999-2001 Red Hat, Inc.
+  *
+  * Authors: Preston Brown <pbrown@redhat.com>
+  *          Nalin Dahyabhai <nalin@redhat.com>
+  *          Matt Wilson <msw@redhat.com>
+  * Current maintainer: Nalin Dahyabhai <nalin@redhat.com>
+  *
+  * This is free software; you can redistribute it and/or modify it
+  * under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 2 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful, but
+  * WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  * General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program; if not, write to the Free Software
+  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  *
+  */
+
 
 #include <ctype.h>
 #include <dirent.h>
@@ -701,6 +718,8 @@ main(int argc, const char **argv)
   int enableKrb5 = 0, disableKrb5 = 0;
   char *krb5Realm = NULL, *krb5KDC = NULL, *krb5AdminServer = NULL;
 
+  int probe = 0;
+
 #ifdef LOCAL_POLICIES
   int enableLocal = 0, disableLocal = 0;
 #endif
@@ -783,6 +802,8 @@ main(int argc, const char **argv)
 	i18n("do not start/stop portmap, ypbind, and nscd"), NULL},
       { "kickstart", '\0', POPT_ARG_NONE, &kickstart, 0,
 	i18n("don't display user interface"), NULL},
+      { "probe", '\0', POPT_ARG_NONE, &probe, 0,
+	i18n("probe network for defaults"), NULL},
 #ifdef LOCAL_POLICIES
       { "enablelocal", '\0', POPT_ARG_NONE, &enableLocal, 0,
 	i18n("use locally-defined policies"), NULL},
@@ -811,6 +832,24 @@ main(int argc, const char **argv)
   }
 
   poptFreeContext(optCon);
+
+  /* if the probe parameter wasn't passed, probe for everything we can
+   * figure out using DNS or other means */
+  if (probe) {
+    authInfo = authInfoProbe();
+    if (authInfo->ldapServer && authInfo->ldapBaseDN) {
+      printf("ldap %s/%s\n",
+	     authInfo->ldapServer,
+	     authInfo->ldapBaseDN);
+    }
+    if (authInfo->kerberosRealm && authInfo->kerberosKDC) {
+      printf("krb5 %s/%s/%s\n",
+	     authInfo->kerberosRealm,
+	     authInfo->kerberosKDC,
+             authInfo->kerberosAdminServer ?: "");
+    }
+    return 0;
+  }
 
   /* if the test parameter wasn't passed, give an error if not root */
   if (!test && getuid()) {

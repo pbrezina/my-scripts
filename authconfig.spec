@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.6
+Version: 4.1.7
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -15,7 +15,6 @@ Authconfig is a terminal mode program for setting up Network
 Information Service (NIS) and shadow (more secure) passwords
 on your system. Authconfig also configures the system to
 automatically turn on NIS at system startup.
-
 
 %prep
 %setup -q
@@ -37,6 +36,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Thu May 31 2001 Nalin Dahyabhai <nalin@redhat.com>
+- add --probe option to guess at LDAP and Kerberos configuration using DNS
+
 * Wed Feb 14 2001 Preston Brown <pbrown@redhat.com>
 - final translation update.
 - langify

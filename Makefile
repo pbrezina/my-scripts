@@ -3,7 +3,7 @@ CVSTAG = r$(subst .,-,$(VERSION))
 PROGNAME = authconfig
 
 CFLAGS += -Wall -DVERSION=\"$(VERSION)\" `glib-config --cflags` -ggdb $(RPM_OPT_FLAGS) $(EXTRA_CFLAGS)
-LOADLIBES = `glib-config --libs` -lnewt -lpopt
+LOADLIBES = `glib-config --libs` -lnewt -lpopt -lresolv
 SUBDIRS = po man
 
 datadir=/usr/share
@@ -18,7 +18,8 @@ subdirs:
 	|| case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
 	done && test -z "$$fail"
 
-authconfig: $(PROGNAME).o authinfo.o shvar.o
+authconfig: $(PROGNAME).o authinfo.o shvar.o dnsclient.o
+	$(CC) -o $(PROGNAME) $^ $(LOADLIBES)
 
 install:
 	mkdir -p $(sbindir) $(mandir)/man8
