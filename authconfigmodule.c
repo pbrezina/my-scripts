@@ -75,6 +75,7 @@ static struct {
 	S_FIELD(winbindTemplateShell),
 	TF_FIELD(winbindUseDefaultDomain),
 	TF_FIELD(enableCache),
+	TF_FIELD(enableCompat),
 	TF_FIELD(enableDB),
 	TF_FIELD(enableDirectories),
 	TF_FIELD(enableHesiod),

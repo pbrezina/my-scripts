@@ -715,6 +715,7 @@ authInfoReadNSS(struct authInfoType *info)
 	}
 
 	if (nss_config != NULL) {
+		info->enableCompat = authInfoCheckNSS(nss_config, "compat");
 		info->enableDB = authInfoCheckNSS(nss_config, "db");
 		info->enableDirectories = authInfoCheckNSS(nss_config,
 							   "directories");
@@ -3230,7 +3231,7 @@ authInfoWriteNSS(struct authInfoType *info)
 	int fd, l;
 	struct stat st;
 	struct flock lock;
-	char normal[BUFSIZ] = "", hosts[BUFSIZ] = "";
+	char users[BUFSIZ] = "", normal[BUFSIZ] = "", hosts[BUFSIZ] = "";
 	gboolean wrotepasswd = FALSE, wrotegroup = FALSE, wroteshadow = FALSE,
 		 wroteservices = FALSE, wroteprotocols = FALSE,
 		 wrotenetgroup = FALSE, wroteautomount = FALSE,
@@ -3267,6 +3268,7 @@ authInfoWriteNSS(struct authInfoType *info)
 	    strlen("automount:  \n") +
 	    strlen("hosts:      \n");
 	l += strlen(" files nisplus nis") * 8;
+	l += strlen(" compat") * 8;
 	l += strlen(" db") * 8;
 	l += strlen(" files") * 8;
 	l += strlen(" directories") * 8;
@@ -3301,6 +3303,18 @@ authInfoWriteNSS(struct authInfoType *info)
 	if (info->enableDBIbind) strcat(normal, " dbibind");
 	if (info->enableDBbind) strcat(normal, " dbbind");
 
+	/* Generate the list for users and groups.  The same as most other
+	 * services, just use "compat" instead of "files" if "compat" is
+	 * enabled. */
+	strcpy(users, normal);
+	if (info->enableCompat) {
+		char *dest, *src;
+		dest = strstr(users, "files");
+		src = strstr(normal, "files");
+		strcpy(dest, "compat ");
+		strcpy(dest + 7, src + 6);
+	}
+
 	/* Hostnames we treat specially. */
 	strcat(hosts, " files");
 	if (info->enableWINS) strcat(hosts, " wins");
@@ -3318,7 +3332,7 @@ authInfoWriteNSS(struct authInfoType *info)
 		if (strncmp("passwd:", p, 7) == 0) {
 			if (!wrotepasswd) {
 				strcat(obuf, "passwd:    ");
-				strcat(obuf, normal);
+				strcat(obuf, users);
 				strcat(obuf, "\n");
 				wrotepasswd = TRUE;
 			}
@@ -3328,7 +3342,7 @@ authInfoWriteNSS(struct authInfoType *info)
 		if (strncmp("shadow:", p, 7) == 0) {
 			if (!wroteshadow) {
 				strcat(obuf, "shadow:    ");
-				strcat(obuf, normal);
+				strcat(obuf, users);
 				strcat(obuf, "\n");
 				wroteshadow = TRUE;
 			}
@@ -3338,7 +3352,7 @@ authInfoWriteNSS(struct authInfoType *info)
 		if (strncmp("group:", p, 6) == 0) {
 			if (!wrotegroup) {
 				strcat(obuf, "group:     ");
-				strcat(obuf, normal);
+				strcat(obuf, users);
 				strcat(obuf, "\n");
 				wrotegroup = TRUE;
 			}
@@ -4277,6 +4291,8 @@ authInfoPrint(struct authInfoType *authInfo)
 {
     printf("caching is %s\n", authInfo->enableCache ? "enabled" : "disabled");
     printf("nss_files is always enabled\n");
+    printf("nss_compat is %s\n",
+	   authInfo->enableCompat ? "enabled" : "disabled");
     printf("nss_db is %s\n",
 	   authInfo->enableDB ? "enabled" : "disabled");
 #ifdef EXPERIMENTAL

@@ -113,6 +113,7 @@ struct authInfoType {
  
 	/* NSSwitch setup.  Files is always in there. */
 	gboolean enableCache;
+	gboolean enableCompat;
 	gboolean enableDB;
 	gboolean enableDirectories;
 	gboolean enableHesiod;

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.4
+Version: 4.5
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -71,6 +71,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Dec 11 2003 Nalin Dahyabhai <nalin@redhat.com> 4.5-1
+- add hidden support for "compat" in /etc/nsswitch.conf, so we can preserve
+  it if people are already using it when we are run
+
 * Tue Nov 18 2003 Nalin Dahyabhai <nalin@redhat.com> 4.4-1
 - add options for toggling krb5's use of DNS
 
