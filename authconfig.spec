@@ -71,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Oct 28 2003 Nalin Dahyabhai <nalin@redhat.com>
+- make pam_cracklib requisite instead of required in generated PAM configs
+
 * Wed Oct 22 2003 Bill Nottingham <notting@redhat.com> 4.3.8-1
 - rebuild with current translations
 

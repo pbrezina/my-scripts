@@ -2349,7 +2349,7 @@ static struct {
 	{FALSE, password,	LOGIC_REQUIRED,
 	 "stack",		argv_local_all},
 #endif
-	{TRUE,  password,	LOGIC_REQUIRED,
+	{TRUE,  password,	LOGIC_REQUISITE,
 	 "cracklib",		argv_cracklib_password},
 	{TRUE,  password,	LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_password},
