@@ -6,5 +6,5 @@
 #define LOCAL_POLICY_NAME "local-policy"
 #endif
 #ifndef LOCAL_POLICY_COMMENT
-#define LOCAL_POLICY_COMMENT "Use Local Policies to Restrict Access"
+#define LOCAL_POLICY_COMMENT i18n("Use Local Policies")
 #endif

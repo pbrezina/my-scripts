@@ -17,6 +17,7 @@
 #define PATH_NSCD_PID "/var/run/nscd.pid"
 #define PATH_YPBIND "/sbin/ypbind"
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
+#define PATH_LIBNSS_DB "/lib/libnss_db.so.2"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
 #define PATH_PAM_KRB5 "/lib/security/pam_krb5.so"
@@ -48,6 +49,7 @@ struct authInfoType {
 	char *nisDomain;
  
 	/* NSSwitch setup.  Files is always in there. */
+	gboolean enableDB;
 	gboolean enableHesiod;
 	gboolean enableLDAP;
 	gboolean enableNIS;

@@ -388,6 +388,7 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 		nss_config = g_strdup(NSS_DEFAULT);
 	}
 
+	info->enableDB = (strstr(nss_config, "db") != NULL);
 	info->enableHesiod = (strstr(nss_config, "hesiod") != NULL);
 	info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
 	info->enableNIS = ((strstr(nss_config, "nis") != NULL) &&
@@ -482,16 +483,6 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 		sv = svNewFile(SYSCONFDIR "/sysconfig/authconfig");
 	}
 	if(sv != NULL) {
-		tmp = svGetValue(sv, "USESHADOW");
-		if(tmp != NULL) {
-			if(strcmp(tmp, "yes") == 0) {
-				authInfo->enableShadow = TRUE;
-			}
-			if(strcmp(tmp, "no") == 0) {
-				authInfo->enableShadow = FALSE;
-			}
-			free(tmp);
-		}
 		tmp = svGetValue(sv, "USEMD5");
 		if(tmp != NULL) {
 			if(strcmp(tmp, "yes") == 0) {
@@ -1180,10 +1171,11 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	int fd, l;
 	struct stat st;
 	struct flock lock;
-	char buf[LINE_MAX] = "";
+	char normal[LINE_MAX] = "", hosts[LINE_MAX] = "";
 	gboolean wrotepasswd = FALSE, wrotegroup = FALSE, wroteshadow = FALSE,
 		 wroteservices = FALSE, wroteprotocols = FALSE,
-		 wrotenetgroup = FALSE, wroteautomount = FALSE;
+		 wrotenetgroup = FALSE, wroteautomount = FALSE,
+		 wrotehosts = FALSE;
 
 	fd = open(SYSCONFDIR "/nsswitch.conf", O_RDWR|O_CREAT, 0644);
 	if(fd == -1) {
@@ -1211,26 +1203,33 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	    strlen("services:   \n") +
 	    strlen("protocols:  \n") +
 	    strlen("netgroup:   \n") +
-	    strlen("automount:  \n");
-	l += strlen(NSS_DEFAULT) * 7;
-	l += strlen(" files") * 7;
-	l += strlen(" hesiod") * 7;
-	l += strlen(" ldap") * 7;
-	l += strlen(" nis") * 7;
+	    strlen("automount:  \n") +
+	    strlen("hosts:      \n");
+	l += strlen(NSS_DEFAULT) * 8;
+	l += strlen(" db") * 8;
+	l += strlen(" files") * 8;
+	l += strlen(" hesiod") * 8;
+	l += strlen(" ldap") * 8;
+	l += strlen(" nis") * 8;
 	l += strlen(" dns");
-	l += strlen(" winbind") * 7;
+	l += strlen(" winbind") * 8;
 	obuf = g_malloc0(st.st_size + 1 + l);
 
-	/* Determine what we want in that file. */
-	strcpy(buf, "files");
-	if(info->enableNIS) strcat(buf, " nis");
-	if(info->enableLDAP) strcat(buf, " ldap");
-	if(info->enableHesiod) strcat(buf, " hesiod");
+	/* Determine what we want in that file for most of the databases. */
+	if(info->enableDB) strcat(normal, " db");
+	strcat(normal, " files");
+	if(info->enableNIS) strcat(normal, " nis");
+	if(info->enableLDAP) strcat(normal, " ldap");
+	if(info->enableHesiod) strcat(normal, " hesiod");
 	if(!info->enableHesiod &&
 	   !info->enableLDAP &&
 	   !info->enableNIS) {
-		strcpy(buf, NSS_DEFAULT);
+		strcpy(normal, NSS_DEFAULT);
 	}
+	/* Hostnames we treat specially. */
+	strcat(hosts, " files");
+	if(info->enableNIS) strcat(hosts, " nis");
+	strcat(hosts, " dns");
 
 	p = ibuf;
 	while(*p != '\0') {
@@ -1241,8 +1240,8 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		/* If it's a 'passwd' line, insert ours instead. */
 		if(strncmp("passwd:", p, 7) == 0) {
 			if(!wrotepasswd) {
-				strcat(obuf, "passwd:     ");
-				strcat(obuf, buf);
+				strcat(obuf, "passwd:    ");
+				strcat(obuf, normal);
 				strcat(obuf, "\n");
 				wrotepasswd = TRUE;
 			}
@@ -1251,8 +1250,8 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		/* If it's a 'shadow' line, insert ours instead. */
 		if(strncmp("shadow:", p, 7) == 0) {
 			if(!wroteshadow) {
-				strcat(obuf, "shadow:     ");
-				strcat(obuf, buf);
+				strcat(obuf, "shadow:    ");
+				strcat(obuf, normal);
 				strcat(obuf, "\n");
 				wroteshadow = TRUE;
 			}
@@ -1261,8 +1260,8 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		/* If it's a 'group' line, insert ours instead. */
 		if(strncmp("group:", p, 6) == 0) {
 			if(!wrotegroup) {
-				strcat(obuf, "group:      ");
-				strcat(obuf, buf);
+				strcat(obuf, "group:     ");
+				strcat(obuf, normal);
 				strcat(obuf, "\n");
 				wrotegroup = TRUE;
 			}
@@ -1271,8 +1270,8 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		/* If it's a 'services' line, insert ours instead. */
 		if(strncmp("services:", p, 9) == 0) {
 			if(!wroteservices) {
-				strcat(obuf, "services:   ");
-				strcat(obuf, buf);
+				strcat(obuf, "services:  ");
+				strcat(obuf, normal);
 				strcat(obuf, "\n");
 				wroteservices = TRUE;
 			}
@@ -1281,8 +1280,8 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		/* If it's a 'protocols' line, insert ours instead. */
 		if(strncmp("protocols:", p, 10) == 0) {
 			if(!wroteprotocols) {
-				strcat(obuf, "protocols:  ");
-				strcat(obuf, buf);
+				strcat(obuf, "protocols: ");
+				strcat(obuf, normal);
 				strcat(obuf, "\n");
 				wroteprotocols = TRUE;
 			}
@@ -1291,8 +1290,8 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		/* If it's a 'netgroup' line, insert ours instead. */
 		if(strncmp("netgroup:", p, 9) == 0) {
 			if(!wrotenetgroup) {
-				strcat(obuf, "netgroup:   ");
-				strcat(obuf, buf);
+				strcat(obuf, "netgroup:  ");
+				strcat(obuf, normal);
 				strcat(obuf, "\n");
 				wrotenetgroup = TRUE;
 			}
@@ -1301,10 +1300,20 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		/* If it's a 'automount' line, insert ours instead. */
 		if(strncmp("automount:", p, 10) == 0) {
 			if(!wroteautomount) {
-				strcat(obuf, "automount:  ");
-				strcat(obuf, buf);
+				strcat(obuf, "automount: ");
+				strcat(obuf, normal);
 				strcat(obuf, "\n");
 				wroteautomount = TRUE;
+			}
+		} else
+
+		/* If it's a 'hosts' line, insert ours instead. */
+		if(strncmp("hosts:", p, 6) == 0) {
+			if(!wrotehosts) {
+				strcat(obuf, "hosts:     ");
+				strcat(obuf, hosts);
+				strcat(obuf, "\n");
+				wrotehosts = TRUE;
 			}
 		} else
 
@@ -1315,38 +1324,43 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 
 	/* If we haven't encountered any of the config lines yet... */
 	if(!wrotepasswd) {
-		strcat(obuf, "passwd:     ");
-		strcat(obuf, buf);
+		strcat(obuf, "passwd:    ");
+		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
 	if(!wroteshadow) {
-		strcat(obuf, "shadow:     ");
-		strcat(obuf, buf);
+		strcat(obuf, "shadow:    ");
+		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
 	if(!wrotegroup) {
-		strcat(obuf, "group:      ");
-		strcat(obuf, buf);
+		strcat(obuf, "group:     ");
+		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
 	if(!wroteprotocols) {
-		strcat(obuf, "protocols:  ");
-		strcat(obuf, buf);
+		strcat(obuf, "protocols: ");
+		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
 	if(!wroteservices) {
-		strcat(obuf, "services:   ");
-		strcat(obuf, buf);
+		strcat(obuf, "services:  ");
+		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
 	if(!wrotenetgroup) {
-		strcat(obuf, "netgroup:   ");
-		strcat(obuf, buf);
+		strcat(obuf, "netgroup:  ");
+		strcat(obuf, normal);
 		strcat(obuf, "\n");
 	}
 	if(!wroteautomount) {
-		strcat(obuf, "automount:  ");
-		strcat(obuf, buf);
+		strcat(obuf, "automount: ");
+		strcat(obuf, normal);
+		strcat(obuf, "\n");
+	}
+	if(!wrotehosts) {
+		strcat(obuf, "hosts:     ");
+		strcat(obuf, hosts);
 		strcat(obuf, "\n");
 	}
 
@@ -1634,8 +1648,6 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 
 	sv = svCreateFile(SYSCONFDIR "/sysconfig/authconfig");
 	if(sv != NULL) {
-		svSetValue(sv, "USESHADOW",
-			   authInfo->enableShadow ? "yes" : "no");
 		svSetValue(sv, "USEMD5",
 			   authInfo->enableMD5 ? "yes" : "no");
 		svSetValue(sv, "USEKERBEROS",

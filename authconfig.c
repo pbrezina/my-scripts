@@ -156,17 +156,15 @@ void checkWarn(const char *path, const char *service, const char *package)
 void nisToggle(newtComponent cb, void *data)
 {
   struct nis_cb *nis = (struct nis_cb*) data;
+  newtLabelSetText(nis->domainLabel, i18n("  Domain:"));
+  newtLabelSetText(nis->serverLabel, i18n("  Server:"));
   if(nis->nss_nis == '*') {
     checkWarn(PATH_YPBIND, "NIS", "ypbind");
-    newtLabelSetText(nis->domainLabel, i18n("  Domain:"));
-    newtLabelSetText(nis->serverLabel, i18n("  Server:"));
     newtEntrySetFlags(nis->domainEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
     newtEntrySetFlags(nis->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
   } else {
-    newtLabelSetText(nis->domainLabel, "");
-    newtLabelSetText(nis->serverLabel, "");
     newtEntrySetFlags(nis->domainEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_SET);
     newtEntrySetFlags(nis->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -178,16 +176,14 @@ void nisToggle(newtComponent cb, void *data)
 void hesiodToggle(newtComponent cb, void *data)
 {
   struct hesiod_cb *hesiod = (struct hesiod_cb*) data;
+  newtLabelSetText(hesiod->lhsLabel, i18n("     LHS:"));
+  newtLabelSetText(hesiod->rhsLabel, i18n("     RHS:"));
   if(hesiod->nss_hesiod == '*') {
-    newtLabelSetText(hesiod->lhsLabel, i18n("     LHS:"));
-    newtLabelSetText(hesiod->rhsLabel, i18n("     RHS:"));
     newtEntrySetFlags(hesiod->lhsEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
     newtEntrySetFlags(hesiod->rhsEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
   } else {
-    newtLabelSetText(hesiod->lhsLabel, "");
-    newtLabelSetText(hesiod->rhsLabel, "");
     newtEntrySetFlags(hesiod->lhsEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_SET);
     newtEntrySetFlags(hesiod->rhsEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -199,21 +195,19 @@ void hesiodToggle(newtComponent cb, void *data)
 void ldapToggle(newtComponent cb, void *data)
 {
   struct ldap_cb *ldap = (struct ldap_cb*) data;
+  newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
+  newtLabelSetText(ldap->baseDnLabel, i18n(" Base DN:"));
   if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*')) {
     if(ldap->nss_ldap == '*') {
       checkWarn(PATH_LIBNSS_LDAP, "LDAP", "nss_ldap");
     } else {
       checkWarn(PATH_PAM_LDAP, "LDAP", "nss_ldap");
     }
-    newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
-    newtLabelSetText(ldap->baseDnLabel, i18n(" Base DN:"));
     newtEntrySetFlags(ldap->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
     newtEntrySetFlags(ldap->baseDnEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
   } else {
-    newtLabelSetText(ldap->serverLabel, "");
-    newtLabelSetText(ldap->baseDnLabel, "");
     newtEntrySetFlags(ldap->serverEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_SET);
     newtEntrySetFlags(ldap->baseDnEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -225,11 +219,11 @@ void ldapToggle(newtComponent cb, void *data)
 void krb5Toggle(newtComponent cb, void *data)
 {
   struct krb5_cb *krb5 = (struct krb5_cb*) data;
+  newtLabelSetText(krb5->realmLabel,  i18n("          Realm:"));
+  newtLabelSetText(krb5->kdcLabel,    i18n("            KDC:"));
+  newtLabelSetText(krb5->kadminLabel, i18n("   Admin Server:"));
   if(krb5->pam_krb5 == '*') {
     checkWarn(PATH_PAM_KRB5, "Kerberos", "pam_krb5");
-    newtLabelSetText(krb5->realmLabel,  i18n("          Realm:"));
-    newtLabelSetText(krb5->kdcLabel,    i18n("            KDC:"));
-    newtLabelSetText(krb5->kadminLabel, i18n("   Admin Server:"));
     newtEntrySetFlags(krb5->realmEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
     newtEntrySetFlags(krb5->kdcEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -237,9 +231,6 @@ void krb5Toggle(newtComponent cb, void *data)
     newtEntrySetFlags(krb5->kadminEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
   } else {
-    newtLabelSetText(krb5->realmLabel, "");
-    newtLabelSetText(krb5->kdcLabel, "");
-    newtLabelSetText(krb5->kadminLabel, "");
     newtEntrySetFlags(krb5->realmEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_SET);
     newtEntrySetFlags(krb5->kdcEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -255,6 +246,7 @@ int getNSSChoices(int back,
 		  gboolean kerberosAvail, struct authInfoType *authInfo)
 {
   newtComponent form, ok, cancel, comp, cb;
+  newtGrid mainGrid, mechGrid, buttonGrid;
   int rc = 0;
 
   struct nis_cb nis;
@@ -265,81 +257,117 @@ int getNSSChoices(int back,
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *nisServer = NULL, *nisDomain = NULL;
 
-  /* Create the window and a form to put into it. */
-  newtCenteredWindow(62, 14, i18n("User Information Configuration"));
-  form = newtForm(NULL, NULL, 0);
+  mechGrid = newtCreateGrid(3, 6);
 
   /* NSS modules: NIS. */
-  cb = newtCheckbox(1, 1, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
+  cb = newtCheckbox(-1, -1, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
 		    NULL, &nis.nss_nis);
-  nis.domainLabel = newtLabel(16, 1, "");
-  nis.domainEntry = newtEntry(26, 1, authInfo->nisDomain, 35, &nisDomain,
-		  	      NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(nis.domainEntry, entryFilter, NULL);
-  nis.serverLabel = newtLabel(16, 2, "");
-  nis.serverEntry = newtEntry(26, 2, authInfo->nisServer, 35, &nisServer,
-		  	      NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(nis.serverEntry, entryFilter, NULL);
-  newtFormAddComponents(form,
-		  	cb,
-			nis.domainLabel,
-			nis.domainEntry,
-			nis.serverLabel,
-			nis.serverEntry,
-			NULL);
   newtComponentAddCallback(cb, nisToggle, &nis);
 
-  /* Make this checkbox the starting location. */
-  newtFormSetCurrent(form, cb);
+  nis.domainLabel = newtLabel(-1, -1, "");
+  nis.domainEntry = newtEntry(-1, -1, authInfo->nisDomain, 35, &nisDomain,
+		  	      NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(nis.domainEntry, entryFilter, NULL);
 
+  nis.serverLabel = newtLabel(-1, -1, "");
+  nis.serverEntry = newtEntry(-1, -1, authInfo->nisServer, 35, &nisServer,
+		  	      NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(nis.serverEntry, entryFilter, NULL);
+
+  newtGridSetField(mechGrid, 0, 0, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 0, NEWT_GRID_COMPONENT, nis.domainLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 0, NEWT_GRID_COMPONENT, nis.domainEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 1, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 1, NEWT_GRID_COMPONENT, nis.serverLabel,
+		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 1, NEWT_GRID_COMPONENT, nis.serverEntry,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
+  /* NSS modules: LDAP. */
   ldap.pam_ldap = authInfo->enableLDAPAuth ? '*' : ' ';
-  cb = newtCheckbox(1, 4, i18n("Use LDAP"),
+  cb = newtCheckbox(-1, -1, i18n("Use LDAP"),
 		    authInfo->enableLDAP ? '*' : ' ', NULL, &ldap.nss_ldap);
-  ldap.serverLabel = newtLabel(16, 4, "");
-  ldap.serverEntry = newtEntry(26, 4, authInfo->ldapServer, 35, &ldapServer,
-		  	       NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
-  ldap.baseDnLabel = newtLabel(16, 5, "");
-  ldap.baseDnEntry = newtEntry(26, 5, authInfo->ldapBaseDN, 35, &ldapBaseDN,
-		  	       NEWT_ENTRY_SCROLL);
-  newtFormAddComponents(form,
-		  	cb,
-		  	ldap.serverLabel,
-			ldap.baseDnLabel,
-			ldap.serverEntry,
-			ldap.baseDnEntry,
-			NULL);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
-  cb = newtCheckbox(1, 7, i18n("Use Hesiod"),
+  ldap.serverLabel = newtLabel(-1, -1, "");
+  ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 35, &ldapServer,
+		  	       NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
+
+  ldap.baseDnLabel = newtLabel(-1, -1, "");
+  ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 35, &ldapBaseDN,
+		  	       NEWT_ENTRY_SCROLL);
+
+  newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, ldap.serverLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.serverEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
+		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
+  /* NSS modules: LDAP. */
+  cb = newtCheckbox(-1, -1, i18n("Use Hesiod"),
 		    authInfo->enableHesiod ? '*' : ' ', NULL,
 		    &hesiod.nss_hesiod);
-  hesiod.lhsLabel = newtLabel(16, 7, "");
-  hesiod.lhsEntry = newtEntry(26, 7, authInfo->hesiodLHS, 35, &hesiodLHS,
-			      NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
-  hesiod.rhsLabel = newtLabel(16,  8, "");
-  hesiod.rhsEntry = newtEntry(26,  8, authInfo->hesiodRHS, 35, &hesiodRHS,
-			      NEWT_ENTRY_SCROLL);
-  newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
-  newtFormAddComponents(form,
-		  	cb,
-			hesiod.lhsLabel,
-			hesiod.lhsEntry,
-			hesiod.rhsLabel,
-			hesiod.rhsEntry,
-			NULL);
   newtComponentAddCallback(cb, hesiodToggle, &hesiod);
 
+  hesiod.lhsLabel = newtLabel(-1, -1, "");
+  hesiod.lhsEntry = newtEntry(-1, -1, authInfo->hesiodLHS, 35, &hesiodLHS,
+			      NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
+
+  hesiod.rhsLabel = newtLabel(-1, -1, "");
+  hesiod.rhsEntry = newtEntry(-1, -1, authInfo->hesiodRHS, 35, &hesiodRHS,
+			      NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
+
+  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, hesiod.lhsLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, hesiod.lhsEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, hesiod.rhsLabel,
+		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, hesiod.rhsEntry,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
   /* Create the buttons. */
-  ok = newtButton(16, 10, i18n("Next"));
-  cancel = newtButton(35, 10, back ? i18n("Back") : i18n("Cancel"));
-  newtFormAddComponents(form, ok, cancel, NULL);
+  buttonGrid = newtCreateGrid(2, 1);
+  ok = newtButton(-1, -1, i18n("Next"));
+  cancel = newtButton(-1, -1, back ? i18n("Back") : i18n("Cancel"));
+  newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, ok,
+		   0, 0, 0, 0, 0, 0);
+  newtGridSetField(buttonGrid, 1, 0, NEWT_GRID_COMPONENT, cancel,
+		   0, 0, 0, 0, 0, 0);
 
   /* Call all of the callbacks to initialize disabled fields. */
   nisToggle(NULL, &nis);
   ldapToggle(NULL, &ldap);
   hesiodToggle(NULL, &hesiod);
+
+  /* Finish generating the form. */
+  mainGrid = newtCreateGrid(1, 2);
+  newtGridSetField(mainGrid, 0, 0, NEWT_GRID_SUBGRID, mechGrid,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, buttonGrid,
+		   0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
+
+  form = newtForm(NULL, NULL, 0);
+  newtGridWrappedWindow(mainGrid, i18n("User Information Configuration"));
+  newtGridAddComponentsToForm(mainGrid, form, 1);
 
   /* Run the form and interpret the results. */
   comp = newtRunForm(form);
@@ -372,7 +400,8 @@ int getPAMChoices(int back,
 		  gboolean kerberosAvail, struct authInfoType *authInfo)
 {
   newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
-  int rc = 0, window_height = 16;
+  newtGrid mainGrid, mechGrid, buttonGrid;
+  int rc = 0;
 
   struct ldap_cb ldap;
   struct krb5_cb krb5;
@@ -383,83 +412,122 @@ int getPAMChoices(int back,
 
 #ifdef LOCAL_POLICIES
   char local = ' ';
-  window_height += 2;
 #endif
 
   /* Create the window and a form to put into it. */
-  newtCenteredWindow(72, window_height, i18n("Authentication Configuration"));
-  form = newtForm(NULL, NULL, 0);
+  mainGrid = newtCreateGrid(1, 2);
 
   /* PAM setup. */
-  cb = newtCheckbox(1, 1, i18n("Use Shadow Passwords"),
+  mechGrid = newtCreateGrid(3, 8);
+  cb = newtCheckbox(-1, -1, i18n("Use Shadow Passwords"),
 		    authInfo->enableShadow ? '*' : ' ', NULL, &shadow);
-  newtFormAddComponent(form, cb);
+  newtGridSetField(mechGrid, 0, 0, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
-  cb = newtCheckbox(1, 3, i18n("Use MD5 Passwords"),
+  cb = newtCheckbox(-1, -1, i18n("Use MD5 Passwords"),
 		    authInfo->enableMD5 ? '*' : ' ', NULL, &md5);
-  newtFormAddComponent(form, cb);
+  newtGridSetField(mechGrid, 0, 1, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 
   ldap.nss_ldap = authInfo->enableLDAP ? '*' : ' ';
-  cb = newtCheckbox(1, 5, i18n("Use LDAP Authentication"),
+  cb = newtCheckbox(-1, -1, i18n("Use LDAP Authentication"),
 		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
-
   newtComponentAddCallback(cb, ldapToggle, &ldap);
-  ldap.serverLabel = newtLabel(31, 5, "");
-  ldap.serverEntry = newtEntry(41, 5, authInfo->ldapServer, 30, &ldapServer,
+
+  ldap.serverLabel = newtLabel(-1, -1, "");
+  ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 30, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
-  ldap.baseDnLabel = newtLabel(31, 6, "");
-  ldap.baseDnEntry = newtEntry(41, 6, authInfo->ldapBaseDN, 30, &ldapBaseDN,
+
+  ldap.baseDnLabel = newtLabel(-1, -1, "");
+  ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 30, &ldapBaseDN,
 		  	       NEWT_ENTRY_SCROLL);
-  newtFormAddComponents(form,
-		  	cb,
-		  	ldap.serverLabel,
-			ldap.baseDnLabel,
-			ldap.serverEntry,
-			ldap.baseDnEntry,
-			NULL);
-  newtComponentAddCallback(cb, ldapToggle, &ldap);
-  cb = newtCheckbox(1,  8, i18n("Use Kerberos 5"),
+
+  newtGridSetField(mechGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 2, NEWT_GRID_COMPONENT, ldap.serverLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 2, NEWT_GRID_COMPONENT, ldap.serverEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 3, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 3, NEWT_GRID_COMPONENT, ldap.baseDnLabel,
+		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 3, NEWT_GRID_COMPONENT, ldap.baseDnEntry,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
+  cb = newtCheckbox(-1, -1, i18n("Use Kerberos 5"),
 		    authInfo->enableKerberos ? '*' : ' ', NULL, &krb5.pam_krb5);
-  krb5.realmLabel = newtLabel(24,  8, "");
-  krb5.realmEntry = newtEntry(41,  8, authInfo->kerberosRealm, 30,
+  newtComponentAddCallback(cb, krb5Toggle, &krb5);
+
+  krb5.realmLabel = newtLabel(-1, -1, "");
+  krb5.realmEntry = newtEntry(-1, -1, authInfo->kerberosRealm, 30,
 		  	      &kerberosRealm, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.realmEntry, entryFilter, NULL);
-  krb5.kdcLabel = newtLabel(24,  9, "");
-  krb5.kdcEntry = newtEntry(41,  9, authInfo->kerberosKDC, 30,
+
+  krb5.kdcLabel = newtLabel(-1, -1, "");
+  krb5.kdcEntry = newtEntry(-1, -1, authInfo->kerberosKDC, 30,
 		  	    &kerberosKDC, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kdcEntry, entryFilter, NULL);
-  krb5.kadminLabel = newtLabel(24, 10, "");
-  krb5.kadminEntry = newtEntry(41, 10, authInfo->kerberosAdminServer, 30,
+
+  krb5.kadminLabel = newtLabel(-1, -1, "");
+  krb5.kadminEntry = newtEntry(-1, -1, authInfo->kerberosAdminServer, 30,
 		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
-  newtComponentAddCallback(cb, krb5Toggle, &krb5);
-  newtFormAddComponents(form,
-		  	cb,
-			krb5.realmLabel,
-			krb5.realmEntry,
-			krb5.kdcLabel,
-			krb5.kdcEntry,
-			krb5.kadminLabel,
-			krb5.kadminEntry,
-			NULL);
+
+  newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 4, NEWT_GRID_COMPONENT, krb5.realmLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 4, NEWT_GRID_COMPONENT, krb5.realmEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 5, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 5, NEWT_GRID_COMPONENT, krb5.kdcLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 5, NEWT_GRID_COMPONENT, krb5.kdcEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 6, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 6, NEWT_GRID_COMPONENT, krb5.kadminLabel,
+		   0, 0, 0, 1, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 6, NEWT_GRID_COMPONENT, krb5.kadminEntry,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
 #ifdef LOCAL_POLICIES
-  cb = newtCheckbox(1,  12, i18n(LOCAL_POLICY_COMMENT),
+  cb = newtCheckbox(1,  12, LOCAL_POLICY_COMMENT,
 		    authInfo->enableLocal ? '*' : ' ', NULL, &local);
-  newtFormAddComponent(form, cb);
+  newtGridSetField(mechGrid, 0, 7, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 #endif
+
+  newtGridSetField(mainGrid, 0, 0, NEWT_GRID_SUBGRID, mechGrid,
+		   0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
 
   /* Create the buttons. */
   if (back == FALSE) {
-    ok = newtButton(14, window_height - 4, i18n("Ok"));
-    backb = newtButton(44, window_height - 4, i18n("Back"));
-    cancel = newtButton(27, window_height - 4, i18n("Cancel"));
-    newtFormAddComponents(form, ok, cancel, backb, NULL);
+    ok = newtButton(-1, -1, i18n("Ok"));
+    backb = newtButton(-1, -1, i18n("Back"));
+    cancel = newtButton(-1, -1, i18n("Cancel"));
+    buttonGrid = newtCreateGrid(3, 1);
+    newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, ok,
+		     0, 0, 0, 0, 0, 0);
+    newtGridSetField(buttonGrid, 1, 0, NEWT_GRID_COMPONENT, backb,
+		     0, 0, 0, 0, 0, 0);
+    newtGridSetField(buttonGrid, 2, 0, NEWT_GRID_COMPONENT, cancel,
+		     0, 0, 0, 0, 0, 0);
+    newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, buttonGrid,
+		     0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
   } else {
-    ok = newtButton(20, window_height - 4, i18n("Ok"));
-    backb = newtButton(38, window_height - 4, i18n("Back"));
-    newtFormAddComponents(form, ok, backb, NULL);
+    ok = newtButton(-1, -1, i18n("Ok"));
+    backb = newtButton(-1, -1, i18n("Back"));
+    buttonGrid = newtCreateGrid(2, 1);
+    newtGridSetField(buttonGrid, 0, 0, NEWT_GRID_COMPONENT, ok,
+		     0, 0, 0, 0, 0, 0);
+    newtGridSetField(buttonGrid, 1, 0, NEWT_GRID_COMPONENT, backb,
+		     0, 0, 0, 0, 0, 0);
+    newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, buttonGrid,
+		     0, 0, 0, 0, 0, NEWT_GRID_FLAG_GROWX);
   }
 
   /* Call all of the callbacks to initialize disabled fields. */
@@ -467,6 +535,9 @@ int getPAMChoices(int back,
   krb5Toggle(NULL, &krb5);
 
   /* Run the form and interpret the results. */
+  form = newtForm(NULL, NULL, 0);
+  newtGridWrappedWindow(mainGrid, i18n("Authentication Configuration"));
+  newtGridAddComponentsToForm(mainGrid, form, 1);
   comp = newtRunForm(form);
   if((comp != cancel) && (comp != backb)) {
     authInfo->enableMD5 = (md5 == '*');

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.18
+Version: 4.0.20
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,6 +34,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Wed Nov 29 2000 Nalin Dahyabhai <nalin@redhat.com>
+- don't bother with USESHADOW; testing for /etc/shadow is sufficient
+- use newtGrids to make NLS text fit (mostly)
+- also edit "hosts:" to make sure it's there if nsswitch.conf was somehow erased
+- preserve use of "db"
+
 * Mon Nov 27 2000 Nalin Dahyabhai <nalin@redhat.com>
 - add the "nis" flag to pam_unix when NIS is enabled
 
