@@ -95,5 +95,6 @@ archive: tag
 	cd $(PACKAGE) ; \
 	./autogen.sh ; \
 	./configure ; \
+	aclocal ; \
 	make dist ; \
 	mv $(PACKAGE)-$(VERSION).tar.gz $$dir
