@@ -177,10 +177,9 @@ class childWindow:
 	def info_apply(self, map, xml):
 		for entry in map.keys():
 			widget = xml.get_widget(entry)
-			if type(widget) == type(gtk.OptionMenu()):
-				history = widget.get_history()
+			if type(widget) == type(gtk.ComboBox()):
 				setattr(self.info, map[entry][0],
-					widget.get_data('option_list')[history])
+					widget.get_data("option_list")[widget.get_active()])
 			if type(widget) == type(gtk.Entry()):
 				setattr(self.info, map[entry][0],
 					widget.get_text())
@@ -198,12 +197,12 @@ class childWindow:
 			widget.set_sensitive(checkbox.get_active())
 		return
 
-	def changeoption(self, optionmenu, entry, xml):
-		history = optionmenu.get_history()
-		options = optionmenu.get_data("option_list")
+	def changeoption(self, combo, entry, xml):
+	        options = combo.get_data("option_list")
+		option = options[combo.get_active()]
 		for candidate in entry[2]:
 			dependent = xml.get_widget(candidate[0])
-			if options[history] in candidate[1]:
+			if option in candidate[1]:
 				dependent.set_sensitive(gtk.TRUE)
 			else:
 				dependent.set_sensitive(gtk.FALSE)
@@ -216,34 +215,26 @@ class childWindow:
 		dialog = xml.get_widget(top)
 		self.info.update()
 		for entry in map.keys():
-			widget = xml.get_widget(entry)
-			if type(widget) == type(gtk.OptionMenu()):
-				widget = xml.get_widget(entry)
-				menu = gtk.Menu()
+			widget = xml.get_widget(entry)			
+			if type(widget) == type(gtk.ComboBox()):
+				widget.remove_text(0) # remove the bogus text necessary for glade
 				options = []
-				history = 0
 				offset = 0
 				for option in tuple(map[entry][1]):
 					if option == '':
 						continue
-					item = gtk.MenuItem(option)
-					item.show()
-					menu.append(item)
+					widget.append_text(option)
 					options.append(option)
 					if option == getattr(self.info, map[entry][0]):
-						history = offset
+						widget.set_active(offset)
 					offset = offset + 1
-				widget.set_menu(menu)
 				option = getattr(self.info, map[entry][0])
 				if option not in options:
 					if option != '':
-						item = gtk.MenuItem(option)
-						item.show()
-						menu.prepend(item)
+						widget.prepend_text(item)
+						widget.set_active(0)
 						options.insert(0, option)
-						history = 0
-				widget.set_history(history)
-				widget.set_data('option_list', options)
+				widget.set_data("option_list", options)
 				widget.connect("changed", self.changeoption,
 					       map[entry], xml)
 				self.changeoption(widget, map[entry], xml)
@@ -285,7 +276,7 @@ class childWindow:
 			parent.set_sensitive(gtk.TRUE)
 		return response
 
-	# Create a vbox with the right controls and return the vbox. */
+	# Create a vbox with the right controls and return the vbox.
 	def get_main_widget(self):
 		dialog = gtk.Dialog(_("Authentication Configuration"),
 				    None,
