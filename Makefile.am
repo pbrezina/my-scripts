@@ -23,6 +23,7 @@ install-exec-local:
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-gtk
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/redhat-config-authentication
+	ln -sf consolehelper $(DESTDIR)/$(bindir)/system-config-authentication
 
 install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(pamdir)
@@ -33,9 +34,11 @@ install-data-local: authconfig.desktop
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/redhat-config-authentication
+	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/system-config-authentication
 	$(INSTALL_DATA) $(srcdir)/authconfig.console $(DESTDIR)/$(consoledir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/authconfig-gtk
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/redhat-config-authentication
+	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/system-config-authentication
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
 	mkdir -p $(DESTDIR)/$(datadir)/applications
 	desktop-file-install --vendor redhat \
@@ -49,12 +52,15 @@ uninstall-local:
 	$(RM) $(DESTDIR)/$(bindir)/authconfig
 	$(RM) $(DESTDIR)/$(bindir)/authconfig-gtk
 	$(RM) $(DESTDIR)/$(bindir)/redhat-config-authentication
+	$(RM) $(DESTDIR)/$(bindir)/system-config-authentication
 	$(RM) $(DESTDIR)/$(pamdir)/authconfig
 	$(RM) $(DESTDIR)/$(pamdir)/authconfig-gtk
 	$(RM) $(DESTDIR)/$(pamdir)/redhat-config-authentication
+	$(RM) $(DESTDIR)/$(pamdir)/system-config-authentication
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig-gtk
 	$(RM) $(DESTDIR)/$(consoledir)/redhat-config-authentication
+	$(RM) $(DESTDIR)/$(consoledir)/system-config-authentication
 	$(RM) $(DESTDIR)/$(sysconfigdir)/authconfig
 	$(RM) $(DESTDIR)$(pkgdatadir)/*.pyc
 	rmdir $(DESTDIR)/$(applnkdir)
