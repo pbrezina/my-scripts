@@ -1,9 +1,32 @@
 #!/usr/bin/python2.2
 import authconfig, gettext, os, signal, sys
 from rhpl.translate import _, textdomain
+
+firstbootservices = [
+	"autofs",
+	"dovecot",
+	"messagebus",
+	"postfix",
+	"privoxy",
+	"radiusd",
+	"rstatd",
+	"rusersd",
+	"rwalld",
+	"rwhod",
+	"saslauthd",
+	"sendmail",
+	"smb",
+	"squid",
+	"sshd",
+	"vncserver",
+	"vsftpd",
+	"winbind"
+]
+
 if "--nox" in sys.argv:
 	os.execv('/usr/bin/authconfig',('authconfig',))
 	sys.exit(1)
+
 try:
 	import gtk, gtk.glade
 except RuntimeError, e:
@@ -156,6 +179,10 @@ class childWindow:
 	def apply(self, button = None):
 		self.info.write()
 		self.info.post(1)
+		if "--firstboot" in sys.argv:
+			for service in firstbootservices:
+				if os.access("/etc/init.d/" + service, os.X_OK):
+					os.system("/etc/init.d/" + service + " condrestart")
 		return
 
 # Fake the firstboot setup.

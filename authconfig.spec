@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.3.6
+Version: 4.3.7
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -71,6 +71,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Aug 21 2003 Nalin Dahyabhai <nalin@redhat.com> 4.3.7-1
+- authconfig-gtk: condrestart certain additional services if invoked with
+  the --firstboot flag (half of #91268, needs cooperating firstboot)
+- translation updates
+
 * Mon Jul  7 2003 Nalin Dahyabhai <nalin@redhat.com> 4.3.6-1
 - translation updates
 
