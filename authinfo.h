@@ -62,6 +62,8 @@
 #define PATH_PAM_SMB LIBDIR "/security/pam_smb_auth.so"
 #define PATH_PAM_WINBIND LIBDIR "/security/pam_winbind.so"
 
+#define PATH_WINBIND_NET "/usr/bin/net"
+
 #define _(String) gettext((String))
 #define AUTHCONFIG_PACKAGE_WARNING _("The %s file was not found, but it is "\
         "required for %s support to work properly.  Install the %s package, "\
