@@ -78,9 +78,9 @@ class childWindow:
 			"enablewinbind" :
 			("enableWinbind", self.lib + "/nss_winbind.so.2",
 			 "winbind", "samba-client", ["configwinbind"]),
-			"enablewinbind2" :
-			("enableWinbind", self.lib + "/security/pam_winbind.so",
-			 "winbind", "samba-client", ["configwinbind2"]),
+			"enablewinbindauth" :
+			("enableWinbindAuth", self.lib + "/security/pam_winbind.so",
+			 "winbind", "samba-client", ["configwinbindauth"]),
 		}
 		# entry or label / button / checkbox / option menu :
 		# entry (or label): authInfo field
@@ -135,7 +135,7 @@ class childWindow:
 			"configsmb": ("smbsettings", "smb_map"),
 			"configkerberos": ("kerberossettings", "kerberos_map"),
 			"configwinbind": ("winbindsettings", "winbind_map"),
-			"configwinbind2": ("winbindsettings", "winbind_map"),
+			"configwinbindauth": ("winbindsettings", "winbind_map"),
 		}
 		self.info = authconfig.read()
 		return
