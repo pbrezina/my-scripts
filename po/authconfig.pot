@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-05-31 14:22-0400\n"
+"POT-Creation-Date: 2001-05-31 16:44-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,291 +14,323 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ../authconfig.c:175
+#: ../authconfig.c:181
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
 
-#: ../authconfig.c:179
+#: ../authconfig.c:185
 msgid "Warning"
 msgstr ""
 
-#: ../authconfig.c:179 ../authconfig.c:579 ../authconfig.c:592
+#: ../authconfig.c:185 ../authconfig.c:638 ../authconfig.c:651
 msgid "Ok"
 msgstr ""
 
-#: ../authconfig.c:188
+#: ../authconfig.c:194
 msgid "  Domain:"
 msgstr ""
 
-#: ../authconfig.c:189 ../authconfig.c:229
+#: ../authconfig.c:195 ../authconfig.c:235
 msgid "  Server:"
 msgstr ""
 
-#: ../authconfig.c:209
+#: ../authconfig.c:215
 msgid "     LHS:"
 msgstr ""
 
-#: ../authconfig.c:210
+#: ../authconfig.c:216
 msgid "     RHS:"
 msgstr ""
 
-#: ../authconfig.c:230
+#: ../authconfig.c:236
 msgid " Base DN:"
 msgstr ""
 
-#: ../authconfig.c:263
+#: ../authconfig.c:269
 msgid "          Realm:"
 msgstr ""
 
-#: ../authconfig.c:264
+#: ../authconfig.c:270
 msgid "            KDC:"
 msgstr ""
 
-#: ../authconfig.c:265
+#: ../authconfig.c:271
 msgid "   Admin Server:"
 msgstr ""
 
+#: ../authconfig.c:295
+msgid "      Workgroup:"
+msgstr ""
+
+#: ../authconfig.c:296
+msgid "        Servers:"
+msgstr ""
+
 #. NSS modules: NIS.
-#: ../authconfig.c:304
+#: ../authconfig.c:334
 msgid "Use NIS"
 msgstr ""
 
-#: ../authconfig.c:334
+#: ../authconfig.c:364
 msgid "Use LDAP"
 msgstr ""
 
-#: ../authconfig.c:339 ../authconfig.c:496
+#: ../authconfig.c:369 ../authconfig.c:528
 msgid "Use TLS"
 msgstr ""
 
 #. NSS modules: hesiod.
-#: ../authconfig.c:373
+#: ../authconfig.c:403
 msgid "Use Hesiod"
 msgstr ""
 
-#: ../authconfig.c:403
+#: ../authconfig.c:433
 msgid "Next"
 msgstr ""
 
-#: ../authconfig.c:404 ../authconfig.c:580 ../authconfig.c:593
+#: ../authconfig.c:434 ../authconfig.c:639 ../authconfig.c:652
 msgid "Back"
 msgstr ""
 
-#: ../authconfig.c:404 ../authconfig.c:581
+#: ../authconfig.c:434 ../authconfig.c:640
 msgid "Cancel"
 msgstr ""
 
-#: ../authconfig.c:423
+#: ../authconfig.c:453
 msgid "User Information Configuration"
 msgstr ""
 
-#: ../authconfig.c:479
+#: ../authconfig.c:511
 msgid "Use Shadow Passwords"
 msgstr ""
 
-#: ../authconfig.c:484
+#: ../authconfig.c:516
 msgid "Use MD5 Passwords"
 msgstr ""
 
-#: ../authconfig.c:491
+#: ../authconfig.c:523
 msgid "Use LDAP Authentication"
 msgstr ""
 
-#: ../authconfig.c:529
+#: ../authconfig.c:561
 msgid "Use Kerberos 5"
 msgstr ""
 
-#: ../authconfig.c:609
+#: ../authconfig.c:599
+msgid "Use SMB Authentication"
+msgstr ""
+
+#: ../authconfig.c:669
 msgid "Authentication Configuration"
 msgstr ""
 
-#: ../authconfig.c:741
+#: ../authconfig.c:811
 msgid "enable shadowed passwords by default"
 msgstr ""
 
-#: ../authconfig.c:743
+#: ../authconfig.c:813
 msgid "disable shadowed passwords by default"
 msgstr ""
 
-#: ../authconfig.c:747
+#: ../authconfig.c:817
 msgid "enable MD5 passwords by default"
 msgstr ""
 
-#: ../authconfig.c:749
+#: ../authconfig.c:819
 msgid "disable MD5 passwords by default\n"
 msgstr ""
 
-#: ../authconfig.c:752
+#: ../authconfig.c:822
 msgid "enable NIS"
 msgstr ""
 
-#: ../authconfig.c:754
+#: ../authconfig.c:824
 msgid "disable NIS"
 msgstr ""
 
-#: ../authconfig.c:756
+#: ../authconfig.c:826
 msgid "default NIS domain"
 msgstr ""
 
-#: ../authconfig.c:756
+#: ../authconfig.c:826
 msgid "<domain>"
 msgstr ""
 
-#: ../authconfig.c:758
+#: ../authconfig.c:828
 msgid "default NIS server\n"
 msgstr ""
 
-#: ../authconfig.c:758 ../authconfig.c:773 ../authconfig.c:782
-#: ../authconfig.c:784
+#: ../authconfig.c:828 ../authconfig.c:843 ../authconfig.c:852
+#: ../authconfig.c:854 ../authconfig.c:865
 msgid "<server>"
 msgstr ""
 
-#: ../authconfig.c:761
+#: ../authconfig.c:831
 msgid "enable LDAP for user information by default"
 msgstr ""
 
-#: ../authconfig.c:763
+#: ../authconfig.c:833
 msgid "disable LDAP for user information by default"
 msgstr ""
 
-#: ../authconfig.c:765
+#: ../authconfig.c:835
 msgid "enable use of TLS with LDAP"
 msgstr ""
 
-#: ../authconfig.c:767
+#: ../authconfig.c:837
 msgid "disable use of TLS with LDAP"
 msgstr ""
 
-#: ../authconfig.c:769
+#: ../authconfig.c:839
 msgid "enable LDAP for authentication by default"
 msgstr ""
 
-#: ../authconfig.c:771
+#: ../authconfig.c:841
 msgid "disable LDAP for authentication by default"
 msgstr ""
 
-#: ../authconfig.c:773
+#: ../authconfig.c:843
 msgid "default LDAP server"
 msgstr ""
 
-#: ../authconfig.c:775
+#: ../authconfig.c:845
 msgid "default LDAP base DN\n"
 msgstr ""
 
-#: ../authconfig.c:775
+#: ../authconfig.c:845
 msgid "<dn>"
 msgstr ""
 
-#: ../authconfig.c:778
+#: ../authconfig.c:848
 msgid "enable kerberos authentication by default"
 msgstr ""
 
-#: ../authconfig.c:780
+#: ../authconfig.c:850
 msgid "disable kerberos authentication by default"
 msgstr ""
 
-#: ../authconfig.c:782
+#: ../authconfig.c:852
 msgid "default kerberos KDC"
 msgstr ""
 
-#: ../authconfig.c:784
+#: ../authconfig.c:854
 msgid "default kerberos admin server"
 msgstr ""
 
-#: ../authconfig.c:786
+#: ../authconfig.c:856
 msgid "default kerberos realm\n"
 msgstr ""
 
-#: ../authconfig.c:786
+#: ../authconfig.c:856
 msgid "<realm>"
 msgstr ""
 
-#: ../authconfig.c:789
+#: ../authconfig.c:859
+msgid "enable SMB authentication by default"
+msgstr ""
+
+#: ../authconfig.c:861
+msgid "disable SMB authentication by default"
+msgstr ""
+
+#: ../authconfig.c:863
+msgid "workgroup authentication servers are in"
+msgstr ""
+
+#: ../authconfig.c:863
+msgid "<workgroup>"
+msgstr ""
+
+#: ../authconfig.c:865
+msgid "names of servers to authenticate against\n"
+msgstr ""
+
+#: ../authconfig.c:868
 msgid "enable hesiod for user information by default"
 msgstr ""
 
-#: ../authconfig.c:791
+#: ../authconfig.c:870
 msgid "disable hesiod for user information by default"
 msgstr ""
 
-#: ../authconfig.c:793
+#: ../authconfig.c:872
 msgid "default hesiod LHS"
 msgstr ""
 
-#: ../authconfig.c:793
+#: ../authconfig.c:872
 msgid "<lhs>"
 msgstr ""
 
-#: ../authconfig.c:795
+#: ../authconfig.c:874
 msgid "default hesiod RHS\n"
 msgstr ""
 
-#: ../authconfig.c:795
+#: ../authconfig.c:874
 msgid "<rhs>"
 msgstr ""
 
-#: ../authconfig.c:802
+#: ../authconfig.c:881
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr ""
 
-#: ../authconfig.c:804
+#: ../authconfig.c:883
 msgid "don't display user interface"
 msgstr ""
 
-#: ../authconfig.c:806
+#: ../authconfig.c:885
 msgid "probe network for defaults"
 msgstr ""
 
-#: ../authconfig.c:809
+#: ../authconfig.c:888
 msgid "use locally-defined policies"
 msgstr ""
 
-#: ../authconfig.c:811
+#: ../authconfig.c:890
 msgid "don't use locally-defined policies"
 msgstr ""
 
-#: ../authconfig.c:822
+#: ../authconfig.c:901
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr ""
 
-#: ../authconfig.c:829
+#: ../authconfig.c:908
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr ""
 
-#: ../authconfig.c:856
+#: ../authconfig.c:935
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr ""
 
-#: ../authconfig.c:867 ../authconfig.c:875 ../authconfig.c:883
-#: ../authconfig.c:891 ../authconfig.c:899 ../authconfig.c:907
-#: ../authconfig.c:915
+#: ../authconfig.c:946 ../authconfig.c:954 ../authconfig.c:962
+#: ../authconfig.c:970 ../authconfig.c:978 ../authconfig.c:986
+#: ../authconfig.c:994 ../authconfig.c:1002
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr ""
 
-#: ../authconfig.c:965
+#: ../authconfig.c:1059
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 
-#: ../authconfig.c:968
+#: ../authconfig.c:1062
 msgid "(c) 1999-2001 Red Hat, Inc."
 msgstr ""
 
-#: ../authconfig.c:975
+#: ../authconfig.c:1069
 msgid "dialog was cancelled\n"
 msgstr ""
 
-#: ../authconfig.c:1035 ../authconfig.c:1041 ../authconfig.c:1047
-#: ../authconfig.c:1053 ../authconfig.c:1059 ../authconfig.c:1064
-#: ../authconfig.c:1070
+#: ../authconfig.c:1135 ../authconfig.c:1141 ../authconfig.c:1147
+#: ../authconfig.c:1153 ../authconfig.c:1159 ../authconfig.c:1164
+#: ../authconfig.c:1169 ../authconfig.c:1175
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr ""

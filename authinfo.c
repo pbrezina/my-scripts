@@ -88,6 +88,51 @@ authInfoReadHesiod(struct authInfoType *info)
 	return TRUE;
 }
 
+/* Read SMB setup from /etc/pam_smb.conf. */
+gboolean
+authInfoReadSMB(struct authInfoType *info)
+{
+	FILE *fp = NULL;
+	char buf[LINE_MAX], *p;
+
+	/* Read SMB setup. */
+	fp = fopen(SYSCONFDIR "/pam_smb.conf", "r");
+	if(fp == NULL) {
+		return FALSE;
+	}
+
+	/* Read three lines. */
+	if(fgets(buf, sizeof(buf), fp) != NULL) {
+		p = strchr(buf, '\n');
+		if(p != NULL) {
+			*p = '\0';
+		}
+		info->smbWorkgroup = g_strdup(buf);
+	}
+	if(fgets(buf, sizeof(buf), fp) != NULL) {
+		p = strchr(buf, '\n');
+		if(p != NULL) {
+			*p = '\0';
+		}
+		info->smbServers = g_strdup(buf);
+	}
+	while(fgets(buf, sizeof(buf), fp) != NULL) {
+		p = strchr(buf, '\n');
+		if(p != NULL) {
+			*p = '\0';
+		}
+		if(strlen(buf) > 0) {
+			p = info->smbServers;
+			info->smbServers = g_strconcat(p, ",", buf, NULL);
+			g_free(p);
+		}
+	}
+
+	fclose(fp);
+
+	return TRUE;
+}
+
 /* Read NIS setup from /etc/yp.conf. */
 gboolean
 authInfoReadNIS(struct authInfoType *info)
@@ -491,6 +536,10 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				authInfo->enableLDAPAuth = TRUE;
 				continue;
 			}
+			if(strstr(module, "pam_smb")) {
+				authInfo->enableSMB = TRUE;
+				continue;
+			}
 #ifdef LOCAL_POLICIES
 			if(strstr(module, "pam_stack")) {
 				authInfo->enableLocal = TRUE;
@@ -594,6 +643,7 @@ authInfoRead()
 	ret = g_malloc0(sizeof(struct authInfoType));
 
 	authInfoReadHesiod(ret);
+	authInfoReadSMB(ret);
 	authInfoReadNIS(ret);
 	authInfoReadLDAP(ret);
 	authInfoReadKerberos(ret);
@@ -630,6 +680,10 @@ authInfoCopy(struct authInfoType *info)
 
         ret->nisServer = info->nisServer ? g_strdup(info->nisServer) : NULL;
         ret->nisDomain = info->nisDomain ? g_strdup(info->nisDomain) : NULL;
+
+        ret->smbWorkgroup = info->smbWorkgroup ?
+			    g_strdup(info->smbWorkgroup) : NULL;
+        ret->smbServers = info->smbServers ? g_strdup(info->smbServers) : NULL;
 
 	return ret;
 }
@@ -675,6 +729,52 @@ authInfoWriteHesiod(struct authInfoType *info)
 
 	svWriteFile(sv, 0644);
 	svCloseFile(sv);
+
+	return TRUE;
+}
+
+/* Write SMB setup to /etc/pam_smb.conf. */
+gboolean
+authInfoWriteSMB(struct authInfoType *info)
+{
+	int fd;
+	struct flock lock;
+	char **v;
+
+	fd = open(SYSCONFDIR "/pam_smb.conf", O_RDWR | O_CREAT, 0644);
+	if(fd == -1) {
+		return FALSE;
+	}
+
+	memset(&lock, 0, sizeof(lock));
+	lock.l_type = F_WRLCK;
+	if(fcntl(fd, F_SETLKW, &lock) == -1) {
+		return FALSE;
+	}
+
+	if(ftruncate(fd, 0) == -1) {
+		return FALSE;
+	}
+
+	if(info->smbWorkgroup != NULL) {
+		write(fd, info->smbWorkgroup, strlen(info->smbWorkgroup));
+	}
+	write(fd, "\n", 1);
+
+	v = g_strsplit(info->smbServers, ",", 0);
+	if(v && v[0]) {
+		write(fd, v[0], strlen(v[0]));
+	}
+	write(fd, "\n", 1);
+	if(v && v[0] && v[1]) {
+		write(fd, v[1], strlen(v[1]));
+	}
+	write(fd, "\n", 1);
+	if(v) {
+		g_strfreev(v);
+	}
+
+	close(fd);
 
 	return TRUE;
 }
@@ -1495,6 +1595,12 @@ static const char *argv_ldap_auth[] = {
 	NULL,
 };
 
+static const char *argv_smb_auth[] = {
+	"use_first_pass",
+	"nolocal",
+	NULL,
+};
+
 static const char *argv_winbind_auth[] = {
 	"use_first_pass",
 	NULL,
@@ -1545,6 +1651,8 @@ static struct {
 	 "krb5afs",		argv_krb5afs_auth},
 	{FALSE, auth,		LOGIC_SUFFICIENT,
 	 "ldap",		argv_ldap_auth},
+	{FALSE, auth,		LOGIC_SUFFICIENT,
+	 "smb_auth",		argv_smb_auth},
 	{FALSE, auth,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth},
 	{TRUE,  auth,		LOGIC_REQUIRED,	
@@ -1719,6 +1827,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		   (authInfo->enableLocal &&
 		    (strcmp("stack", standard_pam_modules[i].name) == 0)) ||
 #endif
+		   (authInfo->enableSMB &&
+		    (strcmp("smb_auth", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableLDAPAuth &&
 		    (strcmp("ldap", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);
@@ -1780,6 +1890,8 @@ authInfoWrite(struct authInfoType *authInfo)
 		ret = ret && authInfoWriteHesiod(authInfo);
 	if(authInfo->enableNIS)
 		ret = ret && authInfoWriteNIS(authInfo);
+	if(authInfo->enableSMB)
+		ret = ret && authInfoWriteSMB(authInfo);
 	if(authInfo->enableLDAP)
 		ret = ret && authInfoWriteLDAP(authInfo);
 	ret = ret && authInfoWriteNSS(authInfo);

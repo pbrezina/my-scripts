@@ -34,6 +34,7 @@
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
 #define PATH_PAM_KRB5 "/lib/security/pam_krb5.so"
 #define PATH_PAM_LDAP "/lib/security/pam_ldap.so"
+#define PATH_PAM_SMB "/lib/security/pam_smb_auth.so"
 
 #define i18n(String) gettext((String))
 
@@ -59,6 +60,9 @@ struct authInfoType {
 
 	char *nisServer;
 	char *nisDomain;
+
+	char *smbWorkgroup;
+	char *smbServers;
  
 	/* NSSwitch setup.  Files is always in there. */
 	gboolean enableDB;
@@ -74,6 +78,7 @@ struct authInfoType {
 	gboolean enableBigCrypt;
 	gboolean enableKerberos;
 	gboolean enableLDAPAuth;
+	gboolean enableSMB;
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;
 #endif
@@ -90,6 +95,7 @@ gboolean authInfoWrite(struct authInfoType *info);
 
 gboolean authInfoReadHesiod(struct authInfoType *info);
 gboolean authInfoReadNIS(struct authInfoType *info);
+gboolean authInfoReadSMB(struct authInfoType *info);
 gboolean authInfoReadLDAP(struct authInfoType *info);
 gboolean authInfoReadKerberos(struct authInfoType *info);
 gboolean authInfoReadWinBind(struct authInfoType *info);
@@ -99,6 +105,7 @@ gboolean authInfoReadNetwork(struct authInfoType *info);
 
 gboolean authInfoWriteHesiod(struct authInfoType *info);
 gboolean authInfoWriteNIS(struct authInfoType *info);
+gboolean authInfoWriteSMB(struct authInfoType *info);
 gboolean authInfoWriteLDAP(struct authInfoType *info);
 gboolean authInfoWriteKerberos(struct authInfoType *info);
 gboolean authInfoWriteNSS(struct authInfoType *info);

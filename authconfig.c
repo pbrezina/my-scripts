@@ -70,6 +70,12 @@ struct krb5_cb {
 	newtComponent realmLabel, kdcLabel, kadminLabel;
 	newtComponent realmEntry, kdcEntry, kadminEntry;
 };
+struct smb_cb {
+	char pam_smb_auth;
+	newtComponent smbCheckbox;
+	newtComponent workgroupLabel, serverLabel;
+	newtComponent workgroupEntry, serverEntry;
+};
 
 /*
  * small callback to disallow spaces in an entry field.
@@ -282,6 +288,30 @@ krb5Toggle(newtComponent cb, void *data)
   newtRefresh();
 }
 
+static void
+smbToggle(newtComponent cb, void *data)
+{
+  struct smb_cb *smb = (struct smb_cb*) data;
+  newtLabelSetText(smb->workgroupLabel,  i18n("      Workgroup:"));
+  newtLabelSetText(smb->serverLabel,     i18n("        Servers:"));
+  if(smb->pam_smb_auth == '*') {
+    checkWarn(PATH_PAM_SMB, "SMB", "pam_smb");
+    newtEntrySetFlags(smb->workgroupEntry,
+		      NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+		      NEWT_FLAGS_RESET);
+    newtEntrySetFlags(smb->serverEntry,
+		      NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+		      NEWT_FLAGS_RESET);
+  } else {
+    newtEntrySetFlags(smb->workgroupEntry,
+		      NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+		      NEWT_FLAGS_SET);
+    newtEntrySetFlags(smb->serverEntry,
+		      NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
+		      NEWT_FLAGS_SET);
+  }
+}
+
 static int
 getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 	      gboolean kerberosAvail, struct authInfoType *authInfo)
@@ -460,11 +490,13 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   struct ldap_cb ldap;
   struct krb5_cb krb5;
+  struct smb_cb smb;
 
   char shadow = 0, md5 = 0;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
-  int height = 8;
+  char *smbWorkgroup = NULL, *smbServers = NULL;
+  int height = 10;
 
 #ifdef LOCAL_POLICIES
   char local = ' ';
@@ -564,11 +596,38 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(mechGrid, 2, 7, NEWT_GRID_COMPONENT, krb5.kadminEntry,
 		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
+  cb = newtCheckbox(-1, -1, i18n("Use SMB Authentication"),
+		    authInfo->enableSMB ? '*' : ' ', NULL, &smb.pam_smb_auth);
+  newtComponentAddCallback(cb, smbToggle, &smb);
+
+  smb.workgroupLabel = newtLabel(-1, -1, "");
+  smb.workgroupEntry = newtEntry(-1, -1, authInfo->smbWorkgroup, 28,
+		 		 &smbWorkgroup, NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(smb.workgroupEntry, entryFilter, NULL);
+
+  smb.serverLabel = newtLabel(-1, -1, "");
+  smb.serverEntry = newtEntry(-1, -1, authInfo->smbServers, 28,
+		  	       &smbServers, NEWT_ENTRY_SCROLL);
+  newtEntrySetFilter(smb.serverEntry, entryFilter, NULL);
+
+  newtGridSetField(mechGrid, 0, 8, NEWT_GRID_COMPONENT, cb,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 8, NEWT_GRID_COMPONENT, smb.workgroupLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 8, NEWT_GRID_COMPONENT, smb.workgroupEntry,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+  newtGridSetField(mechGrid, 0, 9, NEWT_GRID_COMPONENT, newtLabel(-1, -1, ""),
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(mechGrid, 1, 9, NEWT_GRID_COMPONENT, smb.serverLabel,
+		   0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(mechGrid, 2, 9, NEWT_GRID_COMPONENT, smb.serverEntry,
+		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
+
 #ifdef LOCAL_POLICIES
-  cb = newtCheckbox(1,  12, LOCAL_POLICY_COMMENT,
+  cb = newtCheckbox(1,  10, LOCAL_POLICY_COMMENT,
 		    authInfo->enableLocal ? '*' : ' ', NULL, &local);
   newtGridSetField(mechGrid, 0, 8, NEWT_GRID_COMPONENT, cb,
-		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
+		   1, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
 #endif
 
   newtGridSetField(mainGrid, 0, 0, NEWT_GRID_SUBGRID, mechGrid,
@@ -603,6 +662,7 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   /* Call all of the callbacks to initialize disabled fields. */
   ldapToggle(NULL, &ldap);
   krb5Toggle(NULL, &krb5);
+  smbToggle(NULL, &smb);
 
   /* Run the form and interpret the results. */
   form = newtForm(NULL, NULL, 0);
@@ -617,13 +677,19 @@ getPAMChoices(int back, gboolean nisAvail, gboolean ldapAvail,
     authInfo->enableLDAPS = (ldap.tls == '*');
     setString(&authInfo->ldapServer, ldapServer);
     setString(&authInfo->ldapBaseDN, ldapBaseDN);
+
     authInfo->enableKerberos = (krb5.pam_krb5 == '*');
-#ifdef LOCAL_POLICIES
-    authInfo->enableLocal = (local == '*');
-#endif
     setString(&authInfo->kerberosRealm, kerberosRealm);
     setString(&authInfo->kerberosKDC, kerberosKDC);
     setString(&authInfo->kerberosAdminServer, kerberosAdmin);
+
+    authInfo->enableSMB = (smb.pam_smb_auth == '*');
+    setString(&authInfo->smbWorkgroup, smbWorkgroup);
+    setString(&authInfo->smbServers, smbServers);
+
+#ifdef LOCAL_POLICIES
+    authInfo->enableLocal = (local == '*');
+#endif
 
     rc = 1;
   }
@@ -699,7 +765,8 @@ main(int argc, const char **argv)
   int rc;
   struct stat st;
   struct authInfoType *authInfo = NULL;
-  gboolean nisAvail = FALSE, kerberosAvail = FALSE, ldapAvail = FALSE;
+  gboolean nisAvail = FALSE, kerberosAvail = FALSE, ldapAvail = FALSE,
+  	   smbAvail = FALSE;
 
   int back = 0, test = 0, nostart = 0, kickstart = 0;
 
@@ -717,6 +784,9 @@ main(int argc, const char **argv)
 
   int enableKrb5 = 0, disableKrb5 = 0;
   char *krb5Realm = NULL, *krb5KDC = NULL, *krb5AdminServer = NULL;
+
+  int enableSmb = 0, disableSmb = 0;
+  char *smbWorkgroup = NULL, *smbServers = NULL;
 
   int probe = 0;
 
@@ -784,6 +854,15 @@ main(int argc, const char **argv)
 	i18n("default kerberos admin server"), i18n("<server>")},
       { "krb5realm", '\0', POPT_ARG_STRING, &krb5Realm, 0,
 	i18n("default kerberos realm\n"), i18n("<realm>")},
+
+      { "enablesmb", '\0', POPT_ARG_NONE, &enableSmb, 0,
+	i18n("enable SMB authentication by default"), NULL},
+      { "disablesmb", '\0', POPT_ARG_NONE, &disableSmb, 0,
+	i18n("disable SMB authentication by default"), NULL},
+      { "smbworkgroup", '\0', POPT_ARG_STRING, &smbWorkgroup, 0,
+	i18n("workgroup authentication servers are in"), i18n("<workgroup>")},
+      { "smbservers", '\0', POPT_ARG_STRING, &smbServers, 0,
+	i18n("names of servers to authenticate against\n"), i18n("<server>")},
 
       { "enablehesiod", '\0', POPT_ARG_NONE, &enableHesiod, 0,
 	i18n("enable hesiod for user information by default"), NULL},
@@ -894,6 +973,14 @@ main(int argc, const char **argv)
       return 2;
     }
   }
+  if (authInfoReadSMB(authInfo) == FALSE) {
+    if (fileInaccessible(SYSCONFDIR "/pam_smb.conf", R_OK)) {
+      fprintf(stderr, i18n("%s: critical error reading %s/%s"),
+	      progName, SYSCONFDIR, "pam_smb.conf");
+      fprintf(stderr, ": %s\n", strerror(errno));
+      return 2;
+    }
+  }
   if (authInfoReadNSS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/nsswitch.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/%s"),
@@ -930,6 +1017,9 @@ main(int argc, const char **argv)
       (access(PATH_LIBNSS_LDAP, X_OK) == 0)) {
     ldapAvail = TRUE;
   }
+  if (access(PATH_PAM_SMB, X_OK) == 0) {
+    smbAvail = TRUE;
+  }
 
 #ifdef LOCAL_POLICIES
   overrideBoolean(&authInfo->enableLocal, enableLocal, disableLocal);
@@ -956,6 +1046,10 @@ main(int argc, const char **argv)
   overrideString(&authInfo->kerberosRealm, krb5Realm);
   overrideString(&authInfo->kerberosKDC, krb5KDC);
   overrideString(&authInfo->kerberosAdminServer, krb5AdminServer);
+
+  overrideBoolean(&authInfo->enableSMB, enableSmb, disableSmb);
+  overrideString(&authInfo->smbWorkgroup, smbWorkgroup);
+  overrideString(&authInfo->smbServers, smbServers);
 
   if (!kickstart) {
     char packageVersion[] = "authconfig " VERSION " - ";
@@ -1016,19 +1110,25 @@ main(int argc, const char **argv)
     printf("pam_krb5 is %s\n",
 	   authInfo->enableKerberos ? "enabled" : "disabled");
     printf(" krb5 realm = \"%s\"\n",
-	   authInfo->kerberosRealm ? authInfo->kerberosRealm : "");
+	   authInfo->kerberosRealm ?: "");
     printf(" krb5 kdc = \"%s\"\n",
-	   authInfo->kerberosKDC ? authInfo->kerberosKDC : "");
+	   authInfo->kerberosKDC ?: "");
     printf(" krb5 admin server = \"%s\"\n",
-	   authInfo->kerberosAdminServer ? authInfo->kerberosAdminServer : "");
+	   authInfo->kerberosAdminServer ?: "");
     printf("pam_ldap is %s\n",
 	   authInfo->enableLDAPAuth ? "enabled" : "disabled");
     printf(" LDAP+TLS is %s\n",
 	   authInfo->enableLDAPS ? "enabled" : "disabled");
     printf(" LDAP server = \"%s\"\n",
-	   authInfo->ldapServer ? authInfo->ldapServer : "");
+	   authInfo->ldapServer ?: "");
     printf(" LDAP base DN = \"%s\"\n",
-	   authInfo->ldapBaseDN ? authInfo->ldapBaseDN : "");
+	   authInfo->ldapBaseDN ?: "");
+    printf("pam_smb_auth is %s\n",
+	   authInfo->enableSMB ? "enabled" : "disabled");
+    printf(" SMB workgroup = \"%s\"\n",
+	   authInfo->smbWorkgroup ?: "");
+    printf(" SMB servers = \"%s\"\n",
+	   authInfo->smbServers ?: "");
     return 0;
   } else {
     if (authInfoWriteHesiod(authInfo) == FALSE) {
@@ -1054,6 +1154,11 @@ main(int argc, const char **argv)
 	      progName, SYSCONFDIR, "yp.conf");
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
+    }
+    if (authInfoWriteSMB(authInfo) == FALSE) {
+      fprintf(stderr, i18n("%s: critical error writing %s/%s"),
+	      progName, SYSCONFDIR, "pam_smb.conf");
+      fprintf(stderr, ": %s\n", strerror(errno));
     }
     if (authInfoWriteNSS(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/%s"),
