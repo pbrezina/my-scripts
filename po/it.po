@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 1999 Red Hat Software Italia.
-# Federico Musto  <federico@redhat.it>, 1999.
+# Federico Musto  <federico@redhat.it>, 2000.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: 2000-02-16 15:48-0500\n"
-"PO-Revision-Date: 1999-04-08 18:15+1\n"
+"PO-Revision-Date: 2000-03-09 10:05+1\n"
 "Last-Translator: Federico Musto <federico@redhat.it>\n"
 "Language-Team: ITALIAN <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,9 +24,8 @@ msgid "%s: cannot open /etc/yp.conf: %s\n"
 msgstr "%s: non posso aprire /etc/yp.conf: %s\n"
 
 #: ../authconfig.c:202 ../authconfig.c:898
-#, fuzzy, c-format
 msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s: non posso aprire /etc/yp.conf: %s\n"
+msgstr "%s: non posso aprire /etc/ldap.conf: %s\n"
 
 #.
 #. * find length of longest string. Looks useless when strings
@@ -34,9 +33,8 @@ msgstr "%s: non posso aprire /etc/yp.conf: %s\n"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:318 ../authconfig.c:486
-#, fuzzy
 msgid "    NIS Domain:"
-msgstr "Dominio NIS:"
+msgstr "   Dominio NIS:"
 
 #: ../authconfig.c:319 ../authconfig.c:461
 msgid "NIS Server:"
@@ -51,50 +49,47 @@ msgstr "Server NIS:"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:320 ../authconfig.c:449
-#, fuzzy
 msgid "         or use:"
-msgstr "o usa:"
+msgstr "          o usa:"
 
 #: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-#, fuzzy
 msgid "   LDAP Domain:"
-msgstr "Dominio NIS:"
+msgstr "  Dominio LDAP:"
 
 #: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
 msgid "    LDAP Server:"
-msgstr ""
+msgstr "    Server LDAP:"
 
 #: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
 msgid "Kerberos Realm:"
-msgstr ""
+msgstr "Kerberos Realm:"
 
 #: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
 msgid "Kerberos Server:"
-msgstr ""
+msgstr "Server Kerberos"
 
 #.
 #. * what kind of authentication?
 #.
 #: ../authconfig.c:416
-#, fuzzy
 msgid "Authentication Type:"
-msgstr "Autenticazione della Configurazione"
+msgstr "Tipo di autenticazione:"
 
 #: ../authconfig.c:417
 msgid "Password File"
-msgstr ""
+msgstr "Password File"
 
 #: ../authconfig.c:422
 msgid "NIS"
-msgstr ""
+msgstr "NIS"
 
 #: ../authconfig.c:428
 msgid "LDAP"
-msgstr ""
+msgstr "LDAP"
 
 #: ../authconfig.c:434
 msgid "Kerberos"
-msgstr ""
+msgstr "Kerberos"
 
 #: ../authconfig.c:462
 msgid "Request via broadcast"
@@ -139,9 +134,8 @@ msgid "You must enter a NIS server or request via broadcast."
 msgstr "Dovete inserire un NIS server o richiederlo in broadcast"
 
 #: ../authconfig.c:650
-#, fuzzy
 msgid "You must enter an authentication domain."
-msgstr "Dovete inserire un dominio NIS"
+msgstr "Dovete inserire un dominio di autenticazione."
 
 #: ../authconfig.c:707
 #, c-format
@@ -154,19 +148,16 @@ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s: non posso aprire /etc/yp.conf- in scrittura: %s\n"
 
 #: ../authconfig.c:905
-#, fuzzy, c-format
 msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s: non posso aprire /etc/yp.conf- in scrittura: %s\n"
+msgstr "%s: non posso aprire /etc/ldap.conf- in scrittura: %s\n"
 
 #: ../authconfig.c:994
-#, fuzzy, c-format
 msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s: non posso aprire /etc/yp.conf: %s\n"
+msgstr "%s: non e' possibile aprire /etc/nsswitch.conf: %s\n"
 
 #: ../authconfig.c:1001
-#, fuzzy, c-format
 msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s: non posso aprire /etc/yp.conf- in scrittura: %s\n"
+msgstr "%s: non e' possibile aprire /etc/nsswitch.conf- in scrittura: %s\n"
 
 #: ../authconfig.c:1230
 #, c-format
@@ -216,7 +207,7 @@ msgstr "%s: puo' essere eseguito solo come root\n"
 #: ../authconfig.c:1367
 #, c-format
 msgid "%s: unknown authorization type %s\n"
-msgstr ""
+msgstr "%s: tipo di autorizzazione sconosciuta %s\n"
 
 #: ../authconfig.c:1383
 #, c-format
@@ -243,11 +234,11 @@ msgstr ""
 
 #: ../authconfig.c:1445
 msgid "dialog was cancelled\n"
-msgstr ""
+msgstr "dialog was cancelled\n"
 
 #: ../authconfig.c:1456
 msgid "authentication type selected: "
-msgstr ""
+msgstr "tipo di autenticazione selezionata:"
 
 #: ../authconfig.c:1486
 #, c-format
@@ -265,26 +256,22 @@ msgid "%s: critical error turning on NIS service\n"
 msgstr "%s: errore critico su servizio NIS\n"
 
 #: ../authconfig.c:1513
-#, fuzzy, c-format
 msgid "%s: critical error writing /etc/ldap.conf\n"
-msgstr "%s: errore critico scrivendo /etc/yp.conf\n"
+msgstr "%s: errore critico durante la scrittura di /etc/ldap.conf\n"
 
 #: ../authconfig.c:1518
-#, fuzzy, c-format
 msgid "%s: critical error writing files in /etc/pam.d\n"
-msgstr "%s: errore critico scrivendo /etc/yp.conf\n"
+msgstr "%s: errore critico durante la scrittura di file in /etc/pam.d\n"
 
 #: ../authconfig.c:1528
-#, fuzzy, c-format
 msgid "%s: critical error writing /etc/nsswitch.conf\n"
-msgstr "%s: errore critico scrivendo /etc/yp.conf\n"
+msgstr "%s: errore critico durante la scrittura di /etc/nsswitch.conf\n"
 
 #: ../authconfig.c:1537
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
 msgstr "%s: errore critico con la gestione delle shadow password\n"
 
-#, fuzzy
 #~ msgid "%s: critical error reading /etc/ldap.conf"
 #~ msgstr "%s: errore critico leggendo /etc/yp.conf"
 
