@@ -1,8 +1,8 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-%define version	1.2
+%define version	1.3
 Version: %{version}
-Release: 8
+Release: 1
 Copyright: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -19,7 +19,7 @@ automatically turn on NIS at system startup.
 %setup -q
 
 %build
-make
+make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 make INSTROOT=$RPM_BUILD_ROOT install
@@ -33,6 +33,9 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Mar 09 1999 Preston Brown <pbrown@redhat.com>
+- static buffer sizes increased.
+
 * Tue Mar  9 1999 Matt Wilson <msw@redhat.com>
 - removed build opts because of problems on alpha
 

@@ -37,4 +37,4 @@ archive:
 	@dir=$$PWD; cd /tmp; tar cvzf $$dir/$(PROGNAME)-$(VERSION).tar.gz \
 		$(PROGNAME)-$(VERSION)
 	@rm -rf /tmp/$(PROGNAME)-$(VERSION)
-	@echo "The archive is in $(PROGNAME)-$(VERSION)"
+	@echo "The archive is in $(PROGNAME)-$(VERSION).tar.gz"
