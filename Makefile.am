@@ -80,4 +80,4 @@ authconfigmodule_so_SOURCES = \
 	shvar.h
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = config.rpath authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES
+EXTRA_DIST = config.rpath authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo
