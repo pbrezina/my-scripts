@@ -484,6 +484,20 @@ warnCallback(newtComponent comp, void *warningp)
   }
 }
 
+static void
+displayCACertsMessage(struct authInfoType *authInfo)
+{
+  char *p;
+  
+  p = g_strdup_printf(_("To properly connect to a LDAP server using TLS you need to copy the "
+                        "PEM form CA certificate which signed your server's certificate to the "
+                        "'%s' directory.\nThen press OK."), 
+			authInfo->ldapCacertDir);
+  newtWinMessage(_("Warning"), _("Ok"), p, NULL);
+  g_free(p);
+  newtRefresh();
+}
+
 static gboolean
 getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 	       gboolean kerberosAvail, gboolean smbAvail, gboolean cacheAvail,
@@ -1216,8 +1230,7 @@ main(int argc, const char **argv)
 
     newtPushHelpLine(_(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
     newtDrawRootText(0, 0, packageVersion);
-    newtDrawRootText(strlen(packageVersion), 0,
-		     _("(c) 1999-2003 Red Hat, Inc."));
+    newtDrawRootText(strlen(packageVersion), 0, "(c) 1999-2005 Red Hat, Inc.");
 
     if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, smbAvail, cacheAvail, authInfo)) {
       /* cancelled */
@@ -1231,6 +1244,10 @@ main(int argc, const char **argv)
       return 1;
     }
 
+    if (authInfoLDAPCACertsTest(authInfo) == TRUE) {
+	    displayCACertsMessage(authInfo);
+    }
+
     newtFinished();
   } /* kickstart */
 
@@ -1238,6 +1255,8 @@ main(int argc, const char **argv)
     authInfoPrint(authInfo);
     return 0;
   } else {
+    authInfoLDAPCACertsRehash(authInfo);
+
     if (authInfoWriteCache(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error recording caching setting"),
 	      PACKAGE);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-15 23:27+0100\n"
+"POT-Creation-Date: 2005-01-25 17:47+0100\n"
 "PO-Revision-Date: 2004-01-10 16:16+0330\n"
 "Last-Translator: Abbas Izad <abbasizad@hotmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -29,17 +29,18 @@ msgid "Hesiod Settings"
 msgstr "تنظیمات Hesiod"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:640
+#: authconfig.c:358 authconfig.c:459 authconfig.c:654
 msgid "Back"
 msgstr "عقب"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:641
+#: authconfig.c:358 authconfig.c:459 authconfig.c:655
 msgid "Next"
 msgstr "بعدی"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
 #: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:479
+#: authconfig.c:496
 msgid "Ok"
 msgstr "تایید"
 
@@ -119,7 +120,7 @@ msgstr "گذرواژه:"
 msgid "Join Settings"
 msgstr "تنظیمات پیوست"
 
-#: authconfig.c:377 authconfig.c:640
+#: authconfig.c:377 authconfig.c:654
 msgid "Cancel"
 msgstr "لغو"
 
@@ -169,284 +170,293 @@ msgstr "تنظیمات Winbind"
 msgid "Join Domain"
 msgstr "پیوستن به دامنه"
 
-#: authconfig.c:479
+#: authconfig.c:479 authconfig.c:496
 msgid "Warning"
 msgstr "هشدار"
 
-#: authconfig.c:497
+#: authconfig.c:492 authconfig-gtk.py:355
+#, c-format, python-format
+msgid ""
+"To properly connect to a LDAP server using TLS you need to copy the PEM form "
+"CA certificate which signed your server's certificate to the '%s' "
+"directory.\n"
+"Then press OK."
+msgstr ""
+
+#: authconfig.c:511
 msgid "caching"
 msgstr "ذخیره به حافظه‌ی نهان"
 
-#: authconfig.c:501 authconfig.glade.h:28
+#: authconfig.c:515 authconfig.glade.h:28
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: authconfig.c:505
+#: authconfig.c:519
 msgid "LDAP authentication"
 msgstr "تأیید هویت LDAP"
 
-#: authconfig.c:509 authconfig.glade.h:31
+#: authconfig.c:523 authconfig.glade.h:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:513 authconfig.glade.h:35
+#: authconfig.c:527 authconfig.glade.h:35
 msgid "NIS"
 msgstr "NIS"
 
-#: authconfig.c:517
+#: authconfig.c:531
 msgid "shadow password"
 msgstr "گذرواژه‌ی سایه"
 
-#: authconfig.c:521
+#: authconfig.c:535
 msgid "SMB authentication"
 msgstr "تأیید هویت SMB"
 
-#: authconfig.c:525 authconfig.c:533 authconfig.glade.h:51
+#: authconfig.c:539 authconfig.c:547 authconfig.glade.h:51
 msgid "Winbind"
 msgstr "Winbind"
 
-#: authconfig.c:529
+#: authconfig.c:543
 msgid "Winbind authentication"
 msgstr "تأیید هویت Winbind"
 
-#: authconfig.c:539 authconfig.glade.h:50
+#: authconfig.c:553 authconfig.glade.h:50
 msgid "User Information"
 msgstr "اطلاعات کاربر"
 
-#: authconfig.c:543
+#: authconfig.c:557
 msgid "Cache Information"
 msgstr "اطلاعات حافظه‌ی نهان"
 
-#: authconfig.c:550
+#: authconfig.c:564
 msgid "Use Hesiod"
 msgstr "استفاده از Hesiod"
 
-#: authconfig.c:556
+#: authconfig.c:570
 msgid "Use LDAP"
 msgstr "استفاده از LDAP"
 
-#: authconfig.c:563
+#: authconfig.c:577
 msgid "Use NIS"
 msgstr "استفاده از NIS"
 
-#: authconfig.c:570
+#: authconfig.c:584
 msgid "Use Winbind"
 msgstr "استفاده از Winbind"
 
-#: authconfig.c:580 authconfig.desktop.in.h:1 authconfig.glade.h:3
+#: authconfig.c:594 authconfig.desktop.in.h:1 authconfig.glade.h:3
 msgid "Authentication"
 msgstr "تأیید هویت"
 
-#: authconfig.c:584
+#: authconfig.c:598
 msgid "Use MD5 Passwords"
 msgstr "استفاده از گذرواژه‌های MD5"
 
-#: authconfig.c:590
+#: authconfig.c:604
 msgid "Use Shadow Passwords"
 msgstr "استفاده از گذرواژه‌های سایه"
 
-#: authconfig.c:597
+#: authconfig.c:611
 msgid "Use LDAP Authentication"
 msgstr "استفاده از تأیید هویت LDAP"
 
-#: authconfig.c:604
+#: authconfig.c:618
 msgid "Use Kerberos"
 msgstr "استفاده از Kerberos"
 
-#: authconfig.c:611
+#: authconfig.c:625
 msgid "Use SMB Authentication"
 msgstr "استفاده از تأیید هویت SMB"
 
-#: authconfig.c:618
+#: authconfig.c:632
 msgid "Use Winbind Authentication"
 msgstr "استفاده از تأیید هویت Winbind"
 
-#: authconfig.c:625
+#: authconfig.c:639
 msgid "Local authorization is sufficient"
 msgstr ""
 
-#: authconfig.c:656 authconfig-gtk.py:283 authconfig.glade.h:4
+#: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
 msgid "Authentication Configuration"
 msgstr "پیکربندی تأیید هویت"
 
-#: authconfig.c:835
+#: authconfig.c:849
 msgid "enable shadowed passwords by default"
 msgstr "بکار اندازی گذرواژه‌های سایه در پیش‌فرض"
 
-#: authconfig.c:837
+#: authconfig.c:851
 msgid "disable shadowed passwords by default"
 msgstr "از کار اندازی گذرواژه‌های سایه در پیش‌فرض"
 
-#: authconfig.c:841
+#: authconfig.c:855
 msgid "enable MD5 passwords by default"
 msgstr "بکار اندازی گذرواژه‌های MD5 در پیش‌فرض"
 
-#: authconfig.c:843
+#: authconfig.c:857
 msgid "disable MD5 passwords by default\n"
 msgstr "از کار اندازی گذرواژه‌های MD5 در پیش‌فرض\n"
 
-#: authconfig.c:846
+#: authconfig.c:860
 msgid "enable NIS"
 msgstr "بکار اندازی NIS"
 
-#: authconfig.c:848
+#: authconfig.c:862
 msgid "disable NIS"
 msgstr "از کار اندازی NIS"
 
-#: authconfig.c:850
+#: authconfig.c:864
 msgid "default NIS domain"
 msgstr "دامنه‌ی پیش‌فرض NIS"
 
-#: authconfig.c:850
+#: authconfig.c:864
 msgid "<domain>"
 msgstr "<domain>"
 
-#: authconfig.c:852
+#: authconfig.c:866
 msgid "default NIS server\n"
 msgstr "کارگزار پیش‌فرض NIS\n"
 
-#: authconfig.c:852 authconfig.c:874 authconfig.c:883 authconfig.c:885
-#: authconfig.c:905
+#: authconfig.c:866 authconfig.c:888 authconfig.c:897 authconfig.c:899
+#: authconfig.c:919
 msgid "<server>"
 msgstr "<server>"
 
-#: authconfig.c:855
+#: authconfig.c:869
 msgid "enable LDAP for user information by default"
 msgstr "بکار اندازی LDAP برای اطلاعات کاربر در پیش‌فرض"
 
-#: authconfig.c:857
+#: authconfig.c:871
 msgid "disable LDAP for user information by default"
 msgstr "از کار اندازی LDAP برای اطلاعات کاربر در پیش‌فرض"
 
-#: authconfig.c:859 authconfig.c:865
+#: authconfig.c:873 authconfig.c:879
 msgid "enable use of TLS with LDAP"
 msgstr "بکار اندازی استفاده از TLS با LDAP"
 
-#: authconfig.c:861 authconfig.c:867
+#: authconfig.c:875 authconfig.c:881
 msgid "disable use of TLS with LDAP"
 msgstr "از کار اندازی استفاده از TLS با LDAP"
 
-#: authconfig.c:870
+#: authconfig.c:884
 msgid "enable LDAP for authentication by default"
 msgstr "بکار اندازی LDAP برای تأیید هویت در پیش‌فرض"
 
-#: authconfig.c:872
+#: authconfig.c:886
 msgid "disable LDAP for authentication by default"
 msgstr "از کار اندازی LDAP برای تأیید هویت در پیش‌فرض"
 
-#: authconfig.c:874
+#: authconfig.c:888
 msgid "default LDAP server"
 msgstr "کارگزار پیش‌فرض LDAP"
 
-#: authconfig.c:876
+#: authconfig.c:890
 msgid "default LDAP base DN\n"
 msgstr "پیش‌فرض LDAP پایه‌ی DN\n"
 
-#: authconfig.c:876
+#: authconfig.c:890
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:879
+#: authconfig.c:893
 msgid "enable kerberos authentication by default"
 msgstr "بکار اندازی تأیید هویت kerberos در پیش‌فرض"
 
-#: authconfig.c:881
+#: authconfig.c:895
 msgid "disable kerberos authentication by default"
 msgstr "بکار اندازی تأیید هویت kerberos در پیش‌فرض"
 
-#: authconfig.c:883
+#: authconfig.c:897
 msgid "default kerberos KDC"
 msgstr "kerberos KDC پیش‌فرض"
 
-#: authconfig.c:885
+#: authconfig.c:899
 msgid "default kerberos admin server"
 msgstr "کارگزار مدیریت پیش‌فرض kerberos"
 
-#: authconfig.c:887
+#: authconfig.c:901
 msgid "default kerberos realm\n"
 msgstr "پیش‌فرض kerberos realm\n"
 
-#: authconfig.c:887
+#: authconfig.c:901
 msgid "<realm>"
 msgstr "<realm>"
 
-#: authconfig.c:890
+#: authconfig.c:904
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "بکار اندازی استفاده از DNS برای یافتن kerberos KDCs"
 
-#: authconfig.c:892
+#: authconfig.c:906
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "از کار اندازی استفاده از DNS برای یافتن kerberos KDCs"
 
-#: authconfig.c:894
+#: authconfig.c:908
 msgid "enable use of DNS to find kerberos realms"
 msgstr "بکار اندازی استفاده از DNS برای یافتن kerberos realms"
 
-#: authconfig.c:896
+#: authconfig.c:910
 msgid "disable use of DNS to find kerberos realms\n"
 msgstr "از کار اندازی استفاده از DNS برای یافتن kerberos realms\n"
 
-#: authconfig.c:899
+#: authconfig.c:913
 msgid "enable SMB authentication by default"
 msgstr "بکار اندازی تأیید هویت SMB در پیش‌فرض"
 
-#: authconfig.c:901
+#: authconfig.c:915
 msgid "disable SMB authentication by default"
 msgstr "از کار انداختن تایید هویت SMB بوسیله‌ی پیش‌فرض"
 
-#: authconfig.c:903
+#: authconfig.c:917
 msgid "workgroup authentication servers are in"
 msgstr "کارگزار تایید هویت گروه‌کار موجود در"
 
-#: authconfig.c:903
+#: authconfig.c:917
 msgid "<workgroup>"
 msgstr "<workgroup>"
 
-#: authconfig.c:905
+#: authconfig.c:919
 msgid "names of servers to authenticate against\n"
 msgstr "نام کارگزارهایی که تایید هویت می‌کنند\n"
 
-#: authconfig.c:908
+#: authconfig.c:922
 #, fuzzy
 msgid "enable winbind for user information by default"
 msgstr "به کار انداختن hesiod برای اطلاعات کاربر بوسیله‌ی پیش‌فرض"
 
-#: authconfig.c:911
+#: authconfig.c:925
 #, fuzzy
 msgid "disable winbind for user information by default"
 msgstr "از کار انداختن hesiod برای اطلاعات کاربر بوسیله‌ی پیش‌فرض"
 
-#: authconfig.c:914
+#: authconfig.c:928
 #, fuzzy
 msgid "enable winbindauth for authentication by default"
 msgstr "بکار اندازی LDAP برای تأیید هویت در پیش‌فرض"
 
-#: authconfig.c:917
+#: authconfig.c:931
 #, fuzzy
 msgid "disable winbindauth for authentication by default"
 msgstr "از کار اندازی LDAP برای تأیید هویت در پیش‌فرض"
 
-#: authconfig.c:920
+#: authconfig.c:934
 msgid "security mode to use for samba and winbind"
 msgstr "حالت امنیتی برای استفاده در سامبا و وین‌بیند"
 
-#: authconfig.c:922
+#: authconfig.c:936
 msgid "default realm for samba and winbind when security=ads"
 msgstr "پیش‌فرض realm برای سامبا و وین‌بیند وقتی security=ads"
 
-#: authconfig.c:924
+#: authconfig.c:938
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "گستره‌ی شناسه‌ی کاربر که وین‌بیند به دامنه یا کاربرهای ads خواهد گذارد"
 
-#: authconfig.c:925 authconfig.c:928
+#: authconfig.c:939 authconfig.c:942
 msgid "<lowest-highest>"
 msgstr "<lowest-highest>"
 
-#: authconfig.c:927
+#: authconfig.c:941
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "گستره‌ی شناسه‌ی گروه که وین‌بیند به دامنه یا کاربرهای ads خواهد گذارد"
 
-#: authconfig.c:931
+#: authconfig.c:945
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -454,20 +464,20 @@ msgstr ""
 "نویسه‌ایی که برای جدا کردن دامنه و قسمت کاربری نام‌های کاربر ایجاد شده-وین‌بیند "
 "اگر winbindusedefaultdomain به کار نیافتاده باشد استفاده خواهد شد."
 
-#: authconfig.c:935
+#: authconfig.c:949
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "شاخه‌ایی که کاربرهای ایجاد شده-وین‌بیند مانند شاخه‌های خانه خواهند داشت"
 
-#: authconfig.c:939
+#: authconfig.c:953
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "گروهی که کاربرهای ایجاد شده-وین‌بیند مانند گروه اولیه‌ی خود خواهند داشت"
 
-#: authconfig.c:942
+#: authconfig.c:956
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr ""
 "پوسته‌ایی که کاربرهای ایجاد شده-وین‌بیند مانند پوسته‌ی ثبت‌ورود خود خواهند داشت"
 
-#: authconfig.c:946
+#: authconfig.c:960
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
@@ -475,7 +485,7 @@ msgstr ""
 "پیکربندی وین‌بیند با فرض گذاشتن اینکه کاربرهایی که در قسمت نام‌های کاربری آنها "
 "نام دامنه وجود ندارد مانند کاربرهای این دامنه هستند"
 
-#: authconfig.c:950
+#: authconfig.c:964
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
@@ -483,133 +493,129 @@ msgstr ""
 "پیکربندی وین‌بیند با فرض گذاشتن اینکه کاربرهایی که در قسمت نام‌های کاربری آنها "
 "نام دامنه وجود ندارد مانند کاربرهای این دامنه نیستند"
 
-#: authconfig.c:954
+#: authconfig.c:968
 msgid "join the winbind domain or ads realm now as this administrator\n"
 msgstr "به هم پیوند دادن دامنه‌ی winbind و ads realm مانند این مدیر\n"
 
-#: authconfig.c:958
+#: authconfig.c:972
 msgid "enable wins for hostname resolution"
 msgstr "به کار انداختن wins برای دریافت نام میزبان"
 
-#: authconfig.c:960
+#: authconfig.c:974
 msgid "disable wins for hostname resolution\n"
 msgstr "از کار انداختن wins برای دریافت نام میزبان\n"
 
-#: authconfig.c:963
+#: authconfig.c:977
 msgid "enable hesiod for user information by default"
 msgstr "به کار انداختن hesiod برای اطلاعات کاربر بوسیله‌ی پیش‌فرض"
 
-#: authconfig.c:965
+#: authconfig.c:979
 msgid "disable hesiod for user information by default"
 msgstr "از کار انداختن hesiod برای اطلاعات کاربر بوسیله‌ی پیش‌فرض"
 
-#: authconfig.c:967
+#: authconfig.c:981
 msgid "default hesiod LHS"
 msgstr "پیش‌فرض hesiod LHS"
 
-#: authconfig.c:967
+#: authconfig.c:981
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:969
+#: authconfig.c:983
 msgid "default hesiod RHS\n"
 msgstr "پیش‌فرض hesiod RHS\n"
 
-#: authconfig.c:969
+#: authconfig.c:983
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:972
+#: authconfig.c:986
 msgid "enable caching of user information by default"
 msgstr "به کار انداختن انبارچه برای اطلاعات کاربر بوسیله‌ی پیش‌فرض"
 
-#: authconfig.c:974
+#: authconfig.c:988
 msgid "disable caching of user information by default\n"
 msgstr "از کار انداختن انبارچه برای اطلاعات کاربر بوسیله‌ی پیش‌فرض\n"
 
-#: authconfig.c:981
+#: authconfig.c:995
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "شروع/متوقف نکردن portmap, ypbind, و nscd"
 
-#: authconfig.c:983
+#: authconfig.c:997
 msgid "don't display user interface"
 msgstr "واسط کاربری نمایش داده نشود"
 
-#: authconfig.c:985
+#: authconfig.c:999
 msgid "probe network for defaults and print them"
 msgstr "وارسی شبکه برای پیش‌فرض‌ها و چاپ کردن آنها به صفحه"
 
-#: authconfig.c:988
+#: authconfig.c:1002
 msgid "use locally-defined policies"
 msgstr "استفاده از سیاست‌های تعیین شده‌ی-محلی"
 
-#: authconfig.c:990
+#: authconfig.c:1004
 msgid "don't use locally-defined policies"
 msgstr "استفاده نکردن از سیاست‌های تعیین شده‌ی-محلی"
 
-#: authconfig.c:993
+#: authconfig.c:1007
 msgid "local authorization is sufficient for local users"
 msgstr ""
 
-#: authconfig.c:995
+#: authconfig.c:1009
 msgid "authorize local users also through remote service"
 msgstr ""
 
-#: authconfig.c:1005
+#: authconfig.c:1019
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: آرگومان بد %s: %s\n"
 
-#: authconfig.c:1014
+#: authconfig.c:1028
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s: اقدام به ادامه دادن\n"
 
-#: authconfig.c:1018
+#: authconfig.c:1032
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: آرگومان غیرمنتظره\n"
 
-#: authconfig.c:1050
+#: authconfig.c:1064
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: فقط می‌تواند مانند مدیر اجرا شود\n"
 
-#: authconfig.c:1061 authconfig.c:1069 authconfig.c:1077 authconfig.c:1085
-#: authconfig.c:1093 authconfig.c:1101 authconfig.c:1109 authconfig.c:1122
-#: authconfig.c:1130
+#: authconfig.c:1075 authconfig.c:1083 authconfig.c:1091 authconfig.c:1099
+#: authconfig.c:1107 authconfig.c:1115 authconfig.c:1123 authconfig.c:1136
+#: authconfig.c:1144
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: خطای بحرانی در خواندن %s/%s"
 
-#: authconfig.c:1116
+#: authconfig.c:1130
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s: ناتوان در خواندن پیکربندی حافظه‌ی نهان"
 
-#: authconfig.c:1217
+#: authconfig.c:1231
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr " <Tab>/<Alt-Tab> بین اجزا   |   <Space> گزینش   |  <F12> صفحه بعد"
 
-#: authconfig.c:1220
-msgid "(c) 1999-2003 Red Hat, Inc."
-msgstr "(c) 1999-2003 Red Hat, Inc."
-
-#: authconfig.c:1227
+#: authconfig.c:1240
 #, c-format
 msgid "dialog was cancelled\n"
 msgstr "گفتگو لغو شد\n"
 
-#: authconfig.c:1242
+#: authconfig.c:1261
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s: خطای بحرانی ضبط تنظیمات حافظه‌ی نهان"
 
-#: authconfig.c:1248 authconfig.c:1254 authconfig.c:1260 authconfig.c:1266
-#: authconfig.c:1271 authconfig.c:1277 authconfig.c:1282 authconfig.c:1287
-#: authconfig.c:1292 authconfig.c:1298
+#: authconfig.c:1267 authconfig.c:1273 authconfig.c:1279 authconfig.c:1285
+#: authconfig.c:1290 authconfig.c:1296 authconfig.c:1301 authconfig.c:1306
+#: authconfig.c:1311 authconfig.c:1317
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: خطای بحرانی در نوشتن %s/%s"
@@ -620,7 +626,7 @@ msgstr ""
 "کنترل کردن اینکه سیستم چگونه کاربرهایی را که اقدام به ثبت‌ورود می‌کنند "
 "اعتبارسنجی ‌کند"
 
-#: authinfo.h:69
+#: authinfo.h:71
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -872,6 +878,13 @@ msgstr "گرـوه‌کاری"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "استفاده از سیاست‌های محلی"
+
+#, fuzzy
+#~ msgid "Information"
+#~ msgstr "اطلاعات کاربر"
+
+#~ msgid "(c) 1999-2003 Red Hat, Inc."
+#~ msgstr "(c) 1999-2003 Red Hat, Inc."
 
 #~ msgid "Use DNS to resolve hosts to _realms"
 #~ msgstr "استفاده از DNS یافتن میزبان‌ها به _realms"

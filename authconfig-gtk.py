@@ -273,6 +273,8 @@ class childWindow:
 			response = dialog.run()
 		if (response == gtk.RESPONSE_OK):
 			self.info_apply(map, xml)
+			if (mapname == "ldap_map"):
+			    self.ldap_cacerts_test()
 		dialog.destroy()
 		if parent:
 			parent.set_sensitive(gtk.TRUE)
@@ -332,6 +334,8 @@ class childWindow:
 
 	# Save changes.
 	def apply(self, button = None):
+		self.ldap_cacerts_test()
+		self.info.ldapcacerts_rehash()
 		self.info.write()
 		self.info.post(1)
 		if "--firstboot" in sys.argv:
@@ -345,6 +349,14 @@ class childWindow:
     					cond = "cond"
 				os.system("/etc/init.d/autofs " + cond + "restart")
 		return
+	def ldap_cacerts_test(self):
+		if self.info.ldapcacerts_test():
+		    msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
+			_("To properly connect to a LDAP server using TLS you need to copy the "
+			"PEM form CA certificate which signed your server's certificate to the "
+		        "'%s' directory.\nThen press OK.") % self.info.ldapCacertDir)
+		    msg.run()
+		    msg.destroy()
 
 # Fake the firstboot setup.
 if __name__ == '__main__':

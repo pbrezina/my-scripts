@@ -13,6 +13,7 @@ applnkdir = $(sysconfdir)/X11/applnk/System
 startheredir = $(sysconfdir)/X11/sysconfig
 
 sbin_PROGRAMS = authconfig
+sbin_SCRIPTS = cacertdir_rehash
 pkgdata_SCRIPTS = authconfig-gtk.py
 pkgdata_DATA = authconfig.glade
 pythonsite_LTLIBRARIES = authconfigmodule.la

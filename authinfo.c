@@ -372,6 +372,8 @@ authInfoReadLDAP(struct authInfoType *info)
 	FILE *fp = NULL;
 	char buf[BUFSIZ], *p;
 
+	info->ldapCacertDir = g_strdup(PATH_LDAP_CACERTS);
+
 	/* Open the file.  Bail if it's not there. */
 	fp = fopen(SYSCONFDIR "/ldap.conf", "r");
 	if (fp == NULL) {
@@ -1394,6 +1396,9 @@ authInfoFree(struct authInfoType *info)
 		if (info->joinPassword) {
 			g_free(info->joinPassword);
 		}
+		if (info->ldapCacertDir) {
+			g_free(info->ldapCacertDir);
+		}
 		g_free(info);
 	}
 }
@@ -1411,7 +1416,9 @@ authInfoCopy(struct authInfoType *info)
 	ret->hesiodRHS = info->hesiodRHS ? g_strdup(info->hesiodRHS) : NULL;
 
 	ret->ldapServer = info->ldapServer ? g_strdup(info->ldapServer) : NULL;
-	ret->ldapBaseDN = info->ldapBaseDN? g_strdup(info->ldapBaseDN) : NULL;
+	ret->ldapBaseDN = info->ldapBaseDN ? g_strdup(info->ldapBaseDN) : NULL;
+	ret->ldapCacertDir = info->ldapCacertDir ?
+			    g_strdup(info->ldapCacertDir) : NULL;
 
 	ret->kerberosRealm =
 	info->kerberosRealm ? g_strdup(info->kerberosRealm) : NULL;
@@ -1723,7 +1730,7 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	struct stat st;
 	struct flock lock;
 	gboolean wrotebasedn = FALSE, wroteserver = FALSE, wrotessl = FALSE,
-		 wrotepass = FALSE;
+		 wrotepass = FALSE, wrotecacertdir = FALSE;
 
 	fd = open(filename, O_RDWR | O_CREAT, 0644);
 	if (fd == -1) {
@@ -1803,6 +1810,17 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 			}
 		} else
 
+		/* If it's an 'tls_cacertdir' line, insert ours instead. */
+		if (writePadl && (strncmp("tls_cacertdir", p, 13)) == 0) {
+			if (!wrotecacertdir) {
+				strcat(obuf, "tls_cacertdir");
+				strcat(obuf, " ");
+				strcat(obuf, info->ldapCacertDir);
+				strcat(obuf, "\n");
+				wrotecacertdir = TRUE;
+			}
+		} else
+
 		/* If it's a 'pam_password' line, write the correct setting. */
 		if (writePadl && strncmp("pam_password", p, 12) == 0) {
 			if (!wrotepass) {
@@ -1847,6 +1865,12 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		strcat(obuf, "ssl");
 		strcat(obuf, " ");
 		strcat(obuf, info->enableLDAPS ? "start_tls" : "no");
+		strcat(obuf, "\n");
+	}
+	if (writePadl && !wrotecacertdir) {
+		strcat(obuf, "tls_cacertdir");
+		strcat(obuf, " ");
+		strcat(obuf, info->ldapCacertDir);
 		strcat(obuf, "\n");
 	}
 	if (writePadl && !wrotepass) {
@@ -4689,4 +4713,66 @@ authInfoPost(struct authInfoType *authInfo, int nostart)
 			       PATH_ODBCBIND, PATH_ODBCBIND_PID,
 			       "odbcbind", nostart);
 	toggleCachingService(authInfo->enableCache, nostart);
+}
+
+static gboolean
+isEmptyDir(const char *path)
+{
+	DIR *dir;
+	gchar *fpath;
+	struct dirent *dent;
+	struct stat st;
+    
+	dir = opendir(path);
+	if (dir == NULL) {
+		/* we don't know but return TRUE anyway */
+		return TRUE;
+	}
+	
+	while ((dent=readdir(dir)) != NULL) {
+		fpath = g_strconcat(path, "/", dent->d_name, NULL);
+		if (fpath != NULL) {
+			if (!stat(fpath, &st) && S_ISREG(st.st_mode)) {
+				g_free(fpath);
+				closedir(dir);
+				return FALSE;
+			}
+			g_free(fpath);
+		}
+	}
+	closedir(dir);
+	return TRUE;
+}
+
+gboolean
+authInfoLDAPCACertsTest(struct authInfoType *authInfo)
+{
+	struct stat st;
+
+	if ((authInfo->enableLDAP || authInfo->enableLDAPAuth)
+	    && authInfo->enableLDAPS) {
+		if (stat(authInfo->ldapCacertDir, &st)) {
+		    if (errno == ENOENT) {
+			mkdir(authInfo->ldapCacertDir, 0755);
+		    }
+		}
+		return isEmptyDir(authInfo->ldapCacertDir);
+	}
+	return FALSE;
+}
+
+void
+authInfoLDAPCACertsRehash(struct authInfoType *authInfo)
+{
+	gchar *command;
+	
+	if ((authInfo->enableLDAP || authInfo->enableLDAPAuth)
+	    && authInfo->enableLDAPS) {
+		command = g_strconcat("/usr/sbin/", "cacertdir_rehash ",
+			authInfo->ldapCacertDir, NULL);
+		if (command != NULL) {
+			system(command);
+			g_free(command);
+		}		
+	}
 }

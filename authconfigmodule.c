@@ -28,17 +28,19 @@ void initauthconfig(void);
 
 #define authInfoObject_Check(op) PyObject_TypeCheck(op, &authInfoObjectType)
 extern PyTypeObject authInfoObjectType;
-static PyObject *authconfig_write(PyObject *self, PyObject *args,
+static PyObject *authInfoObject_write(PyObject *self, PyObject *args,
 				  PyObject *kwargs);
-static PyObject *authconfig_post(PyObject *self, PyObject *args,
+static PyObject *authInfoObject_post(PyObject *self, PyObject *args,
 				 PyObject *kwargs);
-static PyObject *authconfig_differs(PyObject *self, PyObject *args,
+static PyObject *authInfoObject_differs(PyObject *self, PyObject *args,
 				    PyObject *kwargs);
-static PyObject *authconfig_join(PyObject *self, PyObject *args,
+static PyObject *authInfoObject_join(PyObject *self, PyObject *args,
 				 PyObject *kwargs);
-static struct authInfoObject *authconfig_copy(PyObject *self, PyObject *args,
+static struct authInfoObject *authInfoObject_copy(PyObject *self, PyObject *args,
 					      PyObject *kwargs);
-static PyObject *authconfig_update(PyObject *self);
+static PyObject *authInfoObject_update(PyObject *self);
+static PyObject *authInfoObject_ldapcacerts_test(PyObject *self);
+static PyObject *authInfoObject_ldapcacerts_rehash(PyObject *self);
 
 /* Define a mapping for the fields in the authInfo structure we want to
  * expose through python. */
@@ -107,6 +109,7 @@ static struct {
 	TF_FIELD(enableLocAuthorize),
 	S_FIELD(joinUser),
 	S_FIELD(joinPassword),
+	S_FIELD(ldapCacertDir)
 };
 
 struct authInfoObject {
@@ -234,19 +237,15 @@ authInfoObject_setattr(PyObject *self, const char *attribute, PyObject *args)
 	return -1;
 }
 
-static PyMethodDef authconfig_methods[] = {
-	{"write", (PyCFunction)authconfig_write,
-	 METH_VARARGS | METH_KEYWORDS},
-	{"copy", (PyCFunction)authconfig_copy,
-	 METH_VARARGS | METH_KEYWORDS},
-	{"post", (PyCFunction)authconfig_post,
-	 METH_VARARGS | METH_KEYWORDS},
-	{"update", (PyCFunction)authconfig_update,
-	 METH_NOARGS},
-	{"differs", (PyCFunction)authconfig_differs,
-	 METH_VARARGS | METH_KEYWORDS},
-	{"join", (PyCFunction)authconfig_join,
-	 METH_VARARGS | METH_KEYWORDS},
+static PyMethodDef authinfoobject_methods[] = {
+	{"write", (PyCFunction)authInfoObject_write, METH_VARARGS | METH_KEYWORDS},
+	{"copy", (PyCFunction)authInfoObject_copy, METH_VARARGS | METH_KEYWORDS},
+	{"post", (PyCFunction)authInfoObject_post, METH_VARARGS | METH_KEYWORDS},
+	{"update", (PyCFunction)authInfoObject_update, METH_NOARGS},
+	{"differs", (PyCFunction)authInfoObject_differs, METH_VARARGS | METH_KEYWORDS},
+	{"join", (PyCFunction)authInfoObject_join, METH_VARARGS | METH_KEYWORDS},
+	{"ldapcacerts_test", (PyCFunction)authInfoObject_ldapcacerts_test, METH_NOARGS},
+	{"ldapcacerts_rehash", (PyCFunction)authInfoObject_ldapcacerts_rehash, METH_NOARGS},
 	{NULL, NULL, 0},
 };
 
@@ -281,7 +280,7 @@ authInfoObject_getattr(PyObject *self, char *attribute)
 			}
 		}
 	}
-	return Py_FindMethod(authconfig_methods, self, attribute);
+	return Py_FindMethod(authinfoobject_methods, self, attribute);
 }
 
 static PyTypeObject authInfoObjectType = {
@@ -338,7 +337,7 @@ authconfig_read(PyObject *self)
 }
 
 static struct authInfoObject *
-authconfig_copy(PyObject *self, PyObject *args, PyObject *kwargs)
+authInfoObject_copy(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *ret = NULL, *info;
 	char *keywords[] = {"info", NULL};
@@ -364,7 +363,7 @@ authconfig_copy(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-authconfig_write(PyObject *self, PyObject *args, PyObject *kwargs)
+authInfoObject_write(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *info = NULL;
 	char *keywords[] = {"info", NULL};
@@ -391,7 +390,7 @@ authconfig_write(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-authconfig_post(PyObject *self, PyObject *args, PyObject *kwargs)
+authInfoObject_post(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *info;
 	char *keywords[] = {"info", "start_daemons", NULL};
@@ -418,7 +417,7 @@ authconfig_post(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-authconfig_differs(PyObject *self, PyObject *args, PyObject *kwargs)
+authInfoObject_differs(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *info, *other;
 	char *keywords[] = {"other", NULL};
@@ -452,7 +451,7 @@ authconfig_differs(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-authconfig_join(PyObject *self, PyObject *args, PyObject *kwargs)
+authInfoObject_join(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *info;
 	char *keywords[] = {"info", NULL};
@@ -474,7 +473,7 @@ authconfig_join(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-authconfig_update(PyObject *self)
+authInfoObject_update(PyObject *self)
 {
 	struct authInfoObject *info;
 	if (authInfoObject_Check(self)) {
@@ -486,20 +485,45 @@ authconfig_update(PyObject *self)
 	return Py_BuildValue("");
 }
 
+static PyObject *
+authInfoObject_ldapcacerts_test(PyObject *self)
+{
+	struct authInfoObject *info;
+	if (authInfoObject_Check(self)) {
+		info = (struct authInfoObject *)self;
+	} else {
+		return NULL;
+	}
+
+	if (authInfoLDAPCACertsTest(info->info)) {
+		return Py_BuildValue("i", 1);
+	} else {
+		return Py_BuildValue("i", 0);
+	}
+}
+
+static PyObject *
+authInfoObject_ldapcacerts_rehash(PyObject *self)
+{
+	struct authInfoObject *info;
+	if (authInfoObject_Check(self)) {
+		info = (struct authInfoObject *)self;
+	} else {
+		return NULL;
+	}
+	authInfoLDAPCACertsRehash(info->info);
+	return Py_BuildValue("");
+}
+
 /* Method table mapping functions to wrappers. */
 static PyMethodDef module_methods[] = {
 	{"read", (PyCFunction)authconfig_read, METH_NOARGS},
-	{"write", (PyCFunction)authconfig_write, METH_VARARGS | METH_KEYWORDS},
-	{"post", (PyCFunction)authconfig_post, METH_VARARGS | METH_KEYWORDS},
-	{"update", (PyCFunction)authconfig_update, METH_NOARGS},
-	{"join", (PyCFunction)authconfig_join, METH_VARARGS | METH_KEYWORDS},
-	{"copy", (PyCFunction)authconfig_copy, METH_VARARGS | METH_KEYWORDS},
 	{"getusershells", (PyCFunction)authconfig_getusershells, METH_NOARGS},
 	{NULL, NULL, 0},
 };
 
 /* The module initialization function. */
-void
+PyMODINIT_FUNC
 initauthconfig(void)
 {
 	Py_InitModule("authconfig", module_methods);

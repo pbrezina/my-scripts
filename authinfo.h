@@ -65,6 +65,8 @@
 
 #define PATH_WINBIND_NET "/usr/bin/net"
 
+#define PATH_LDAP_CACERTS "/etc/openldap/cacerts"
+
 #define _(String) gettext((String))
 #define AUTHCONFIG_PACKAGE_WARNING _("The %s file was not found, but it is "\
         "required for %s support to work properly.  Install the %s package, "\
@@ -157,6 +159,7 @@ struct authInfoType {
 	char *cracklibArgs;
 	char *passwdqcArgs;
 	char *localuserArgs;
+	char *ldapCacertDir;
 };
 
 struct authInfoType *authInfoRead(void);
@@ -194,5 +197,8 @@ gboolean authInfoWriteWinbind(struct authInfoType *info);
 void authInfoPost(struct authInfoType *authInfo, int nostart);
 void authInfoPrint(struct authInfoType *authInfo);
 void authInfoJoin(struct authInfoType *authInfo, gboolean echo);
+
+gboolean authInfoLDAPCACertsTest(struct authInfoType *authInfo);
+void authInfoLDAPCACertsRehash(struct authInfoType *authInfo);
 
 #endif

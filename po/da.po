@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: da\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-15 23:27+0100\n"
+"POT-Creation-Date: 2005-01-25 17:47+0100\n"
 "PO-Revision-Date: 2005-01-17 02:05+0100\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Danish <<dansk@klid.dk>>\n"
@@ -30,17 +30,18 @@ msgid "Hesiod Settings"
 msgstr "Hesoid-opsætning"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:640
+#: authconfig.c:358 authconfig.c:459 authconfig.c:654
 msgid "Back"
 msgstr "Tilbage"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:641
+#: authconfig.c:358 authconfig.c:459 authconfig.c:655
 msgid "Next"
 msgstr "Næste"
 
 #: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
 #: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:479
+#: authconfig.c:496
 msgid "Ok"
 msgstr "O.k."
 
@@ -121,7 +122,7 @@ msgstr "Adgangskode:"
 msgid "Join Settings"
 msgstr "Medlemskabsindstillinger"
 
-#: authconfig.c:377 authconfig.c:640
+#: authconfig.c:377 authconfig.c:654
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -171,280 +172,289 @@ msgstr "Winbind-indstillinger"
 msgid "Join Domain"
 msgstr "Vær med i domænet"
 
-#: authconfig.c:479
+#: authconfig.c:479 authconfig.c:496
 msgid "Warning"
 msgstr "Advarsel"
 
-#: authconfig.c:497
+#: authconfig.c:492 authconfig-gtk.py:355
+#, c-format, python-format
+msgid ""
+"To properly connect to a LDAP server using TLS you need to copy the PEM form "
+"CA certificate which signed your server's certificate to the '%s' "
+"directory.\n"
+"Then press OK."
+msgstr ""
+
+#: authconfig.c:511
 msgid "caching"
 msgstr "cachning"
 
-#: authconfig.c:501 authconfig.glade.h:28
+#: authconfig.c:515 authconfig.glade.h:28
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: authconfig.c:505
+#: authconfig.c:519
 msgid "LDAP authentication"
 msgstr "LDAP-godkendelse"
 
-#: authconfig.c:509 authconfig.glade.h:31
+#: authconfig.c:523 authconfig.glade.h:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:513 authconfig.glade.h:35
+#: authconfig.c:527 authconfig.glade.h:35
 msgid "NIS"
 msgstr "NIS"
 
-#: authconfig.c:517
+#: authconfig.c:531
 msgid "shadow password"
 msgstr "skyggeadgangskode"
 
-#: authconfig.c:521
+#: authconfig.c:535
 msgid "SMB authentication"
 msgstr "SMB-godkendelse"
 
-#: authconfig.c:525 authconfig.c:533 authconfig.glade.h:51
+#: authconfig.c:539 authconfig.c:547 authconfig.glade.h:51
 msgid "Winbind"
 msgstr "Winbind"
 
-#: authconfig.c:529
+#: authconfig.c:543
 msgid "Winbind authentication"
 msgstr "Winbind-godkendelse"
 
-#: authconfig.c:539 authconfig.glade.h:50
+#: authconfig.c:553 authconfig.glade.h:50
 msgid "User Information"
 msgstr "Brugerinformation"
 
-#: authconfig.c:543
+#: authconfig.c:557
 msgid "Cache Information"
 msgstr "Mellemlagringsinformation"
 
-#: authconfig.c:550
+#: authconfig.c:564
 msgid "Use Hesiod"
 msgstr "Benyt Hesiod"
 
-#: authconfig.c:556
+#: authconfig.c:570
 msgid "Use LDAP"
 msgstr "Benyt LDAP"
 
-#: authconfig.c:563
+#: authconfig.c:577
 msgid "Use NIS"
 msgstr "Benyt NIS"
 
-#: authconfig.c:570
+#: authconfig.c:584
 msgid "Use Winbind"
 msgstr "Brug Winbind"
 
-#: authconfig.c:580 authconfig.desktop.in.h:1 authconfig.glade.h:3
+#: authconfig.c:594 authconfig.desktop.in.h:1 authconfig.glade.h:3
 msgid "Authentication"
 msgstr "Godkendelse"
 
-#: authconfig.c:584
+#: authconfig.c:598
 msgid "Use MD5 Passwords"
 msgstr "Benyt MD5-adgangskoder"
 
-#: authconfig.c:590
+#: authconfig.c:604
 msgid "Use Shadow Passwords"
 msgstr "Benyt skyggeadgangskoder"
 
-#: authconfig.c:597
+#: authconfig.c:611
 msgid "Use LDAP Authentication"
 msgstr "Benyt LDAP-godkendelse"
 
-#: authconfig.c:604
+#: authconfig.c:618
 msgid "Use Kerberos"
 msgstr "Benyt Kerberos"
 
-#: authconfig.c:611
+#: authconfig.c:625
 msgid "Use SMB Authentication"
 msgstr "Benyt SMB-godkendelse"
 
-#: authconfig.c:618
+#: authconfig.c:632
 msgid "Use Winbind Authentication"
 msgstr "Benyt Winbind-godkendelse"
 
-#: authconfig.c:625
+#: authconfig.c:639
 msgid "Local authorization is sufficient"
 msgstr "Lokal bekræftelse er tilstrækkeligt"
 
-#: authconfig.c:656 authconfig-gtk.py:283 authconfig.glade.h:4
+#: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
 msgid "Authentication Configuration"
 msgstr "Godkendelseskonfiguration"
 
-#: authconfig.c:835
+#: authconfig.c:849
 msgid "enable shadowed passwords by default"
 msgstr "anvend skyggeadgangskoder som standard"
 
-#: authconfig.c:837
+#: authconfig.c:851
 msgid "disable shadowed passwords by default"
 msgstr "anvend ikke skyggeadgangskoder som standard"
 
-#: authconfig.c:841
+#: authconfig.c:855
 msgid "enable MD5 passwords by default"
 msgstr "anvend MD5-adgangskoder som standard"
 
-#: authconfig.c:843
+#: authconfig.c:857
 msgid "disable MD5 passwords by default\n"
 msgstr "anvend ikke MD5-adgangskoder som standard\n"
 
-#: authconfig.c:846
+#: authconfig.c:860
 msgid "enable NIS"
 msgstr "anvend NIS"
 
-#: authconfig.c:848
+#: authconfig.c:862
 msgid "disable NIS"
 msgstr "anvend ikke NIS"
 
-#: authconfig.c:850
+#: authconfig.c:864
 msgid "default NIS domain"
 msgstr "standard-NIS-domæne"
 
-#: authconfig.c:850
+#: authconfig.c:864
 msgid "<domain>"
 msgstr "<domæne>"
 
-#: authconfig.c:852
+#: authconfig.c:866
 msgid "default NIS server\n"
 msgstr "standard-NIS-server\n"
 
-#: authconfig.c:852 authconfig.c:874 authconfig.c:883 authconfig.c:885
-#: authconfig.c:905
+#: authconfig.c:866 authconfig.c:888 authconfig.c:897 authconfig.c:899
+#: authconfig.c:919
 msgid "<server>"
 msgstr "<server>"
 
-#: authconfig.c:855
+#: authconfig.c:869
 msgid "enable LDAP for user information by default"
 msgstr "aktivér LDAP til bruger information som standard"
 
-#: authconfig.c:857
+#: authconfig.c:871
 msgid "disable LDAP for user information by default"
 msgstr "deaktivér LDAP til bruger information som standard"
 
-#: authconfig.c:859 authconfig.c:865
+#: authconfig.c:873 authconfig.c:879
 msgid "enable use of TLS with LDAP"
 msgstr "aktivér brug af TLS med LDAP"
 
-#: authconfig.c:861 authconfig.c:867
+#: authconfig.c:875 authconfig.c:881
 msgid "disable use of TLS with LDAP"
 msgstr "deaktivér brug af TLS med LDAP"
 
-#: authconfig.c:870
+#: authconfig.c:884
 msgid "enable LDAP for authentication by default"
 msgstr "aktivér LDAP-godkendelse som standard"
 
-#: authconfig.c:872
+#: authconfig.c:886
 msgid "disable LDAP for authentication by default"
 msgstr "deaktivér LDAP-godkendelse som standard"
 
-#: authconfig.c:874
+#: authconfig.c:888
 msgid "default LDAP server"
 msgstr "standard-LDAP-server"
 
-#: authconfig.c:876
+#: authconfig.c:890
 msgid "default LDAP base DN\n"
 msgstr "standard LDAP basal DN\n"
 
-#: authconfig.c:876
+#: authconfig.c:890
 msgid "<dn>"
 msgstr "<dn>"
 
-#: authconfig.c:879
+#: authconfig.c:893
 msgid "enable kerberos authentication by default"
 msgstr "aktivér kerberos adgangstilladelse som standard"
 
-#: authconfig.c:881
+#: authconfig.c:895
 msgid "disable kerberos authentication by default"
 msgstr "deaktivér kerberos adgangstilladelse som standard"
 
-#: authconfig.c:883
+#: authconfig.c:897
 msgid "default kerberos KDC"
 msgstr "standard kerberos KDC"
 
-#: authconfig.c:885
+#: authconfig.c:899
 msgid "default kerberos admin server"
 msgstr "standard kerberos admin server"
 
-#: authconfig.c:887
+#: authconfig.c:901
 msgid "default kerberos realm\n"
 msgstr "standard kerberos realm\n"
 
-#: authconfig.c:887
+#: authconfig.c:901
 msgid "<realm>"
 msgstr "<realm>"
 
-#: authconfig.c:890
+#: authconfig.c:904
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "aktivér brug af DNS for at finde kerberos-KDC'er"
 
-#: authconfig.c:892
+#: authconfig.c:906
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "deaktivér brug af DNS for at finde kerberos-KDC'er"
 
-#: authconfig.c:894
+#: authconfig.c:908
 msgid "enable use of DNS to find kerberos realms"
 msgstr "aktivér brug af DNS for at finde kerberos-realmer"
 
-#: authconfig.c:896
+#: authconfig.c:910
 msgid "disable use of DNS to find kerberos realms\n"
 msgstr "deaktivér brug af DNS for at finde kerberos-realmer\n"
 
-#: authconfig.c:899
+#: authconfig.c:913
 msgid "enable SMB authentication by default"
 msgstr "aktivér SMB adgangstilladelse som standard"
 
-#: authconfig.c:901
+#: authconfig.c:915
 msgid "disable SMB authentication by default"
 msgstr "deaktivér SMB-godkendelse"
 
-#: authconfig.c:903
+#: authconfig.c:917
 msgid "workgroup authentication servers are in"
 msgstr "arbejdsgruppe-godkendelsesservere er i"
 
-#: authconfig.c:903
+#: authconfig.c:917
 msgid "<workgroup>"
 msgstr "<arbejdsgruppe>"
 
-#: authconfig.c:905
+#: authconfig.c:919
 msgid "names of servers to authenticate against\n"
 msgstr "navne på servere at godkende mod\n"
 
-#: authconfig.c:908
+#: authconfig.c:922
 msgid "enable winbind for user information by default"
 msgstr "aktivér winbind til brugerinformation som standard"
 
-#: authconfig.c:911
+#: authconfig.c:925
 msgid "disable winbind for user information by default"
 msgstr "deaktivér winbind til brugerinformation som standard"
 
-#: authconfig.c:914
+#: authconfig.c:928
 msgid "enable winbindauth for authentication by default"
 msgstr "aktivér winbindauth-godkendelse som standard"
 
-#: authconfig.c:917
+#: authconfig.c:931
 msgid "disable winbindauth for authentication by default"
 msgstr "deaktivér winbindauth-godkendelse som standard"
 
-#: authconfig.c:920
+#: authconfig.c:934
 msgid "security mode to use for samba and winbind"
 msgstr "sikkerhedstilstand som skal bruges for samba og winbind"
 
-#: authconfig.c:922
+#: authconfig.c:936
 msgid "default realm for samba and winbind when security=ads"
 msgstr "standard-realm for samba og winbind når security=ads"
 
-#: authconfig.c:924
+#: authconfig.c:938
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "uid-interval som winbind vil tildele domæne- eller ads-brugere"
 
-#: authconfig.c:925 authconfig.c:928
+#: authconfig.c:939 authconfig.c:942
 msgid "<lowest-highest>"
 msgstr "<laveste-højeste>"
 
-#: authconfig.c:927
+#: authconfig.c:941
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "gid-interval som winbind vil tildele domæne- eller ads-brugere"
 
-#: authconfig.c:931
+#: authconfig.c:945
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -452,19 +462,21 @@ msgstr ""
 "det tegn som vil blive brugt til at adskille domæne- og brugerdelen af "
 "winbind-oprettede brugernavne hvis winbindusedefaultdomain ikke er aktiveret"
 
-#: authconfig.c:935
+#: authconfig.c:949
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "det katalog som winbind-oprettede brugere vil have som hjemmekataloger"
 
-#: authconfig.c:939
+#: authconfig.c:953
 msgid "the group which winbind-created users will have as their primary group"
-msgstr "den gruppe som winbind-oprettede brugere vil have som deres primære gruppe"
+msgstr ""
+"den gruppe som winbind-oprettede brugere vil have som deres primære gruppe"
 
-#: authconfig.c:942
+#: authconfig.c:956
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "den skál som winbind-oprettede brugere vil have som deres indlogningsskál"
+msgstr ""
+"den skál som winbind-oprettede brugere vil have som deres indlogningsskál"
 
-#: authconfig.c:946
+#: authconfig.c:960
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
@@ -472,7 +484,7 @@ msgstr ""
 "konfigurerer winbind til at antage, at brugere uden domæne i deres "
 "brugernavne er domænebrugere"
 
-#: authconfig.c:950
+#: authconfig.c:964
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
@@ -480,133 +492,131 @@ msgstr ""
 "konfigurerer winbind til at antage, at brugere uden domæne i deres "
 "brugernavne ikke er domænebrugere"
 
-#: authconfig.c:954
+#: authconfig.c:968
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr "vær med nu i winbind-domænet eller ads-realmen som denne administrator\n"
+msgstr ""
+"vær med nu i winbind-domænet eller ads-realmen som denne administrator\n"
 
-#: authconfig.c:958
+#: authconfig.c:972
 msgid "enable wins for hostname resolution"
 msgstr "aktivér wins for værtsnavnsopslag"
 
-#: authconfig.c:960
+#: authconfig.c:974
 msgid "disable wins for hostname resolution\n"
 msgstr "deaktivér wins for værtsnavnsopslag\n"
 
-#: authconfig.c:963
+#: authconfig.c:977
 msgid "enable hesiod for user information by default"
 msgstr "aktivér Hesiod til brugerinformation som standard"
 
-#: authconfig.c:965
+#: authconfig.c:979
 msgid "disable hesiod for user information by default"
 msgstr "deaktivér Hesiod til brugerinformation som standard"
 
-#: authconfig.c:967
+#: authconfig.c:981
 msgid "default hesiod LHS"
 msgstr "standard Hesiod LHS"
 
-#: authconfig.c:967
+#: authconfig.c:981
 msgid "<lhs>"
 msgstr "<lhs>"
 
-#: authconfig.c:969
+#: authconfig.c:983
 msgid "default hesiod RHS\n"
 msgstr "standard-Hesiod RHS\n"
 
-#: authconfig.c:969
+#: authconfig.c:983
 msgid "<rhs>"
 msgstr "<rhs>"
 
-#: authconfig.c:972
+#: authconfig.c:986
 msgid "enable caching of user information by default"
 msgstr "aktivér mellemlagring af brugerinformation som standard"
 
-#: authconfig.c:974
+#: authconfig.c:988
 msgid "disable caching of user information by default\n"
 msgstr "deaktivér mellemlagring af brugerinformation som standard\n"
 
-#: authconfig.c:981
+#: authconfig.c:995
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "start/stop ikke portmap, ypbind og nscd"
 
-#: authconfig.c:983
+#: authconfig.c:997
 msgid "don't display user interface"
 msgstr "vis ikke brugerflade"
 
-#: authconfig.c:985
+#: authconfig.c:999
 msgid "probe network for defaults and print them"
 msgstr "Søg netværk for forvalgte værdier og skriv dem"
 
-#: authconfig.c:988
+#: authconfig.c:1002
 msgid "use locally-defined policies"
 msgstr "brug lokalt definerede retningslinier"
 
-#: authconfig.c:990
+#: authconfig.c:1004
 msgid "don't use locally-defined policies"
 msgstr "brug ikke lokalt definerede retningslinier"
 
-#: authconfig.c:993
+#: authconfig.c:1007
 msgid "local authorization is sufficient for local users"
 msgstr "Lokal bekræftelse er tilstrækkeligt for lokale brugere"
 
-#: authconfig.c:995
+#: authconfig.c:1009
 msgid "authorize local users also through remote service"
 msgstr "Bekræft lokale brugere også via ekstern tjeneste"
 
-#: authconfig.c:1005
+#: authconfig.c:1019
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: dårligt argument %s: %s\n"
 
-#: authconfig.c:1014
+#: authconfig.c:1028
 #, c-format
 msgid "%s: attempting to continue\n"
 msgstr "%s: forsøger at fortsætte\n"
 
-#: authconfig.c:1018
+#: authconfig.c:1032
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: uventet argument\n"
 
-#: authconfig.c:1050
+#: authconfig.c:1064
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: kan kun køres som root\n"
 
-#: authconfig.c:1061 authconfig.c:1069 authconfig.c:1077 authconfig.c:1085
-#: authconfig.c:1093 authconfig.c:1101 authconfig.c:1109 authconfig.c:1122
-#: authconfig.c:1130
+#: authconfig.c:1075 authconfig.c:1083 authconfig.c:1091 authconfig.c:1099
+#: authconfig.c:1107 authconfig.c:1115 authconfig.c:1123 authconfig.c:1136
+#: authconfig.c:1144
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s: kritisk fejl ved læsning af %s/%s"
 
-#: authconfig.c:1116
+#: authconfig.c:1130
 #, c-format
 msgid "%s: unable to read caching configuration"
 msgstr "%s: kan ikke læse mellemlagrings-information"
 
-#: authconfig.c:1217
+#: authconfig.c:1231
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr " <Tab>/<Alt-Tab> mellem elementer   |  <Mellemrum> vælger | <F12> næste skærm"
+msgstr ""
+" <Tab>/<Alt-Tab> mellem elementer   |  <Mellemrum> vælger | <F12> næste skærm"
 
-#: authconfig.c:1220
-msgid "(c) 1999-2003 Red Hat, Inc."
-msgstr "(c) 1999-2003 Red Hat, Inc."
-
-#: authconfig.c:1227
+#: authconfig.c:1240
 #, c-format
 msgid "dialog was cancelled\n"
 msgstr "dialog blev annulleret\n"
 
-#: authconfig.c:1242
+#: authconfig.c:1261
 #, c-format
 msgid "%s: critical error recording caching setting"
 msgstr "%s: kritisk fejl ved gemning af mellemlagrings-opsætning"
 
-#: authconfig.c:1248 authconfig.c:1254 authconfig.c:1260 authconfig.c:1266
-#: authconfig.c:1271 authconfig.c:1277 authconfig.c:1282 authconfig.c:1287
-#: authconfig.c:1292 authconfig.c:1298
+#: authconfig.c:1267 authconfig.c:1273 authconfig.c:1279 authconfig.c:1285
+#: authconfig.c:1290 authconfig.c:1296 authconfig.c:1301 authconfig.c:1306
+#: authconfig.c:1311 authconfig.c:1317
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritisk fejl ved skrivning af %s/%s"
@@ -615,7 +625,7 @@ msgstr "%s: kritisk fejl ved skrivning af %s/%s"
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "bestem hvorledes systemet kontrollerer brugere som prøver at logge ind"
 
-#: authinfo.h:69
+#: authinfo.h:71
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -865,6 +875,13 @@ msgstr "_Arbejdsgruppe:"
 msgid "Use Local Policies"
 msgstr "brug lokale retningslinier"
 
+#, fuzzy
+#~ msgid "Information"
+#~ msgstr "Brugerinformation"
+
+#~ msgid "(c) 1999-2003 Red Hat, Inc."
+#~ msgstr "(c) 1999-2003 Red Hat, Inc."
+
 #~ msgid "Use DNS to resolve hosts to _realms"
 #~ msgstr "Brug DNS for at slå værter til _realmer op"
 
@@ -880,4 +897,3 @@ msgstr "brug lokale retningslinier"
 #~ msgid "disable winbind for user information and authentication by default"
 #~ msgstr ""
 #~ "deaktivér winbind til brugerinformation og -godkendelse som standard"
-

@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.6.8
+Version: 4.6.9
 # Don't change release in elvis CVS, up version after merging all patches
 # from dist CVS instead.
 Release: 1
@@ -62,6 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
 %{_bindir}/authconfig
 %{_sbindir}/authconfig
+%{_sbindir}/cacertdir_rehash
 %{_mandir}/man8/*
 %{_libdir}/python*/site-packages/authconfigmodule.so
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig
@@ -80,7 +81,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Wed Dec 17 2004 Tomas Mraz <tmraz@redhat.com>
+* Tue Jan 25 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.9-1
+- renamed functions in authconfigmodule to be more clear
+- implemented cacertdir for LDAP with TLS
+
+* Mon Jan 24 2005 Tomas Mraz <tmraz@redhat.com>
+- fixed a bug in authinfo_differs when called from python
+
+* Wed Dec 17 2004 Tomas Mraz <tmraz@redhat.com> - 4.6.8-1
 - add option for making local authorization sufficient for local users
   this is attempt to 'solve/workaround' the problem with blocking local logins by
   pulling out network cable (#115181)
