@@ -2757,6 +2757,9 @@ authInfoReadWinbind(struct authInfoType *info)
 		}
 		info->winbindTemplateShell = tmp;
 	}
+	if (is_empty(info->winbindTemplateShell)) {
+		info->winbindTemplateShell = g_strdup("/bin/false");
+	}
 	tmp = authInfoReadWinbindGlobal(info, "winbind use default domain");
 	if (tmp != NULL) {
 		if (strcasecmp(tmp, "yes") == 0) {
@@ -4302,6 +4305,8 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->nisDomain ? authInfo->nisDomain : "");
     printf("nss_nisplus is %s\n",
 	   authInfo->enableNIS3 ? "enabled" : "disabled");
+    printf("nss_winbind is %s\n",
+	   authInfo->enableWinbind ? "enabled" : "disabled");
     printf("nss_wins is %s\n",
 	   authInfo->enableWINS ? "enabled" : "disabled");
 #ifdef EXPERIMENTAL
@@ -4353,12 +4358,16 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->smbRealm ?: "");
     printf(" SMB servers = \"%s\"\n",
 	   authInfo->smbServers ?: "");
+    printf("pam_winbind is %s\n",
+	   authInfo->enableWinbind ? "enabled" : "disabled");
     printf(" SMB security = \"%s\"\n",
 	   authInfo->smbSecurity ?: "");
     printf(" SMB idmap uid = \"%s\"\n",
 	   authInfo->smbIdmapUid ?: "");
     printf(" SMB idmap gid = \"%s\"\n",
 	   authInfo->smbIdmapGid ?: "");
+    printf(" Winbind template shell = \"%s\"\n",
+	   authInfo->winbindTemplateShell ?: "");
 }
 
 static void
