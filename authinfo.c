@@ -350,14 +350,6 @@ gboolean authInfoReadKerberos(struct authInfoType *info)
 	return TRUE;
 }
 
-#ifdef WINBIND
-/* Read WinBind setup from /etc/smb.conf. */
-gboolean authInfoReadWinBind(struct authInfoType *info)
-{
-#error WRITE CODE TO PARSE /etc/smb.conf
-}
-#endif
-
 /* Read NSS setup from /etc/nsswitch.conf. */
 gboolean authInfoReadNSS(struct authInfoType *info)
 {
@@ -400,9 +392,6 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 	info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
 	info->enableNIS = ((strstr(nss_config, "nis") != NULL) &&
 			   ((strstr(nss_config, "nis"))[3] != 'p'));
-#ifdef WINBIND
-	info->enableWinBind = (strstr(nss_config, "winbind") != NULL);
-#endif
 	g_free(nss_config);
 	fclose(fp);
 	return TRUE;
@@ -417,6 +406,8 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 	char *p, *q, *stack;
 	FILE *fp;
 	struct stat st;
+	shvarFile *sv = NULL;
+	char *tmp = NULL;
 
 	fp = fopen(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, "r");
 	if(fp == NULL) {
@@ -487,6 +478,54 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 
 	fclose(fp);
 
+	if(stat(SYSCONFDIR "/sysconfig/authconfig", &st) == 0) {
+		sv = svNewFile(SYSCONFDIR "/sysconfig/authconfig");
+	}
+	if(sv != NULL) {
+		tmp = svGetValue(sv, "USESHADOW");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableShadow = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableShadow = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USEMD5");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableMD5 = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableMD5 = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USEKERBEROS");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableKerberos = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableKerberos = FALSE;
+			}
+			free(tmp);
+		}
+		tmp = svGetValue(sv, "USELDAPAUTH");
+		if(tmp != NULL) {
+			if(strcmp(tmp, "yes") == 0) {
+				authInfo->enableLDAPAuth = TRUE;
+			}
+			if(strcmp(tmp, "no") == 0) {
+				authInfo->enableLDAPAuth = FALSE;
+			}
+			free(tmp);
+		}
+		svCloseFile(sv);
+		sv = NULL;
+	}
+
 	return TRUE;
 }
 
@@ -554,13 +593,6 @@ struct authInfoType *authInfoCopy(struct authInfoType *info)
 
         ret->nisServer = info->nisServer ? g_strdup(info->nisServer) : NULL;
         ret->nisDomain = info->nisDomain ? g_strdup(info->nisDomain) : NULL;
-
-#ifdef WINBIND
-        ret->winBindServer =
-	info->winBindServer ? g_strdup(info->winBindServer) : NULL;
-        ret->winBindDomain =
-	info->winBindDomain ? g_strdup(info->winBindDomain) : NULL;
-#endif
 
 	return ret;
 }
@@ -1141,14 +1173,6 @@ gboolean authInfoWriteKerberos(struct authInfoType *info)
 	return TRUE;
 }
 
-#ifdef WINBIND
-/* Write WinBind setup to /etc/smb.conf. */
-gboolean authInfoWriteWinBind(struct authInfoType *info)
-{
-#error WRITE SOME CODE TO WRITE /etc/smb.conf
-}
-#endif
-
 /* Write NSS setup to /etc/nsswitch.conf. */
 gboolean authInfoWriteNSS(struct authInfoType *info)
 {
@@ -1202,14 +1226,8 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	if(info->enableNIS) strcat(buf, " nis");
 	if(info->enableLDAP) strcat(buf, " ldap");
 	if(info->enableHesiod) strcat(buf, " hesiod");
-#ifdef WINBIND
-	if(info->enableWinBind) strcat(buf, " winbind");
-#endif
 	if(!info->enableHesiod &&
 	   !info->enableLDAP &&
-#ifdef WINBIND
-	   !info->enableWinBind &&
-#endif
 	   !info->enableNIS) {
 		strcpy(buf, NSS_DEFAULT);
 	}
@@ -1563,6 +1581,7 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	int fd;
 	struct flock lock;
 	gboolean have_afs = FALSE;
+	shvarFile *sv = NULL;
 
 	fd = open(SYSCONFDIR "/pam.d/" AUTH_PAM_SERVICE, O_RDWR|O_CREAT, 0644);
 	if(fd == -1) {
@@ -1593,10 +1612,6 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		    (strcmp("krb5", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableKerberos && have_afs &&
 		    (strcmp("krb5afs", standard_pam_modules[i].name) == 0)) ||
-#ifdef WINBIND
-		   (authInfo->enableWinBindAuth &&
-		    (strcmp("winbind", standard_pam_modules[i].name) == 0)) ||
-#endif
 #ifdef LOCAL_POLICIES
 		   (authInfo->enableLocal &&
 		    (strcmp("stack", standard_pam_modules[i].name) == 0)) ||
@@ -1612,6 +1627,20 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 	write(fd, obuf, strlen(obuf));
 	g_free(obuf);
 	close(fd);
+
+	sv = svCreateFile(SYSCONFDIR "/sysconfig/authconfig");
+	if(sv != NULL) {
+		svSetValue(sv, "USESHADOW",
+			   authInfo->enableShadow ? "yes" : "no");
+		svSetValue(sv, "USEMD5",
+			   authInfo->enableMD5 ? "yes" : "no");
+		svSetValue(sv, "USEKERBEROS",
+			   authInfo->enableKerberos ? "yes" : "no");
+		svSetValue(sv, "USELDAPAUTH",
+			   authInfo->enableLDAPAuth ? "yes" : "no");
+		svWriteFile(sv, 0644);
+		svCloseFile(sv);
+	}
 
 	return TRUE;
 }

@@ -19,10 +19,8 @@
 #define PATH_YPBIND_PID "/var/run/ypbind.pid"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
-#define PATH_LIBNSS_WINBIND "/lib/libnss_winbind.so.2"
 #define PATH_PAM_KRB5 "/lib/security/pam_krb5.so"
 #define PATH_PAM_LDAP "/lib/security/pam_ldap.so"
-#define PATH_PAM_WINBIND "/lib/security/pam_winbind.so"
 
 #define i18n(String) gettext((String))
 
@@ -49,19 +47,10 @@ struct authInfoType {
 	char *nisServer;
 	char *nisDomain;
  
-#ifdef WINBIND
-	char *winBindServer;
-	char *winBindDomain;
-#endif
-  
 	/* NSSwitch setup.  Files is always in there. */
 	gboolean enableHesiod;
 	gboolean enableLDAP;
 	gboolean enableNIS;
-#ifdef WINBIND
-	gboolean enableWinBind;
-	gboolean enableWinBindAuth;
-#endif
 
 	/* Authentication setup. */
 	gboolean enableMD5;
@@ -92,9 +81,6 @@ gboolean authInfoWriteHesiod(struct authInfoType *info);
 gboolean authInfoWriteNIS(struct authInfoType *info);
 gboolean authInfoWriteLDAP(struct authInfoType *info);
 gboolean authInfoWriteKerberos(struct authInfoType *info);
-#ifdef WINBIND
-gboolean authInfoWriteWinBind(struct authInfoType *info);
-#endif
 gboolean authInfoWriteNSS(struct authInfoType *info);
 gboolean authInfoWritePAM(struct authInfoType *info);
 gboolean authInfoWriteNetwork(struct authInfoType *info);

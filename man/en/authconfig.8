@@ -1,7 +1,7 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "Wed 7 June 2000" "Red Hat, Inc."
+.TH AUTHCONFIG 8 "Wed 4 October 2000" "Red Hat, Inc."
 .UC 4
 .SH NAME
 authconfig \- an interface for configuring system authorization resources
@@ -21,7 +21,8 @@ authconfig \- an interface for configuring system authorization resources
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and
-/etc/shadow, the files used for shadow password support.
+/etc/shadow, the files used for shadow password support.  Basic LDAP
+and Kerberos 5 client configuration is also provided.
 
 The authconfig window contains a \fBCancel\fR button by default. If
 \fB--back\fR is specified at run time, a \fBBack\fR button is presented
@@ -53,6 +54,11 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .SH FILES
 .PD 0
 .TP
+.TP
+.FN /etc/sysconfig/auth
+Used to track whether or not particular authentication mechanisms are enabled.
+Currently includes variables named USESHADOW, USEMD5, USELDAPAUTH, and
+USEKERBEROS.
 .TP
 .FN /etc/passwd, /etc/shadow
 Used for shadow password support.
