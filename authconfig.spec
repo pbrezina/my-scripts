@@ -22,18 +22,22 @@ automatically turn on NIS at system startup.
 make
 
 %install
-make INSTROOT=$RPM_BUILD_ROOT install
+%{makeinstall}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-/usr/sbin/authconfig
-/usr/man/man8/*
-#%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
+%{_sbindir}/authconfig
+%{_mandir}/man/man8/*
+#%attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Mon Jun  5 2000 Nalin Dahyabhai <nalin@redhat.com>
+- fix for false-matching beginnings of realm subsections
+- FHS fixes
+
 * Thu Jun  1 2000 Nalin Dahyabhai <nalin@redhat.com>
 - move default system-auth configuration to pam package
 

@@ -6,6 +6,10 @@ CFLAGS += -Wall -DVERSION=\"$(VERSION)\" `glib-config --cflags` -ggdb $(RPM_OPT_
 LOADLIBES = `glib-config --libs` -lnewt -lpopt
 SUBDIRS = po man
 
+datadir=/usr/share
+mandir=/usr/man
+sbindir=/usr/sbin
+
 all:	subdirs $(PROGNAME)
 
 subdirs:
@@ -17,16 +21,16 @@ subdirs:
 authconfig: $(PROGNAME).o authinfo.o shvar.o
 
 install:
-	mkdir -p $(INSTROOT)/usr/sbin $(INSTROOT)/usr/man/man8
-	mkdir -p $(INSTROOT)/etc/pam.d
-	install -m 755 $(PROGNAME) $(INSTROOT)/usr/sbin/$(PROGNAME)
+	mkdir -p $(sbindir) $(mandir)/man8
+	mkdir -p $(INSTROOT)$(sysconfdir)/pam.d
+	install -m 755 $(PROGNAME) $(sbindir)/$(PROGNAME)
 	for d in $(SUBDIRS); do \
-	(cd $$d; $(MAKE) INSTROOT=$(INSTROOT) install) \
+	(cd $$d; $(MAKE) sbindir=$(sbindir) install) \
 	    || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
 	done && test -z "$$fail"
 
 clean:
-	rm -f $(PROGNAME)
+	rm -f $(PROGNAME) *.o
 	make -C po clean
 
 archive:

@@ -224,10 +224,7 @@ gboolean authInfoReadKerberos(struct authInfoType *info)
 		/* If it's a new section, note which one we're "in". */
 		if(p[0] == '[') {
 			p++;
-			q = p;
-			while((*q != ']') && (*q != '\0')) {
-				q++;
-			}
+			for(q = p; ((*q != ']') && (*q != '\0')); q++);
 
 			if(section != NULL) {
 				g_free(section);
@@ -236,7 +233,9 @@ gboolean authInfoReadKerberos(struct authInfoType *info)
 				g_free(subsection);
 				subsection = NULL;
 			}
-			section = g_strndup(p, q - p);
+			if(q - p > 0)  {
+				section = g_strndup(p, q - p);
+			}
 
 			memset(buf, '\0', sizeof(buf));
 			continue;
@@ -267,7 +266,9 @@ gboolean authInfoReadKerberos(struct authInfoType *info)
 			/* Read the name of the realm. */
 			for(q = p; (!isspace(*q) && (*q != '\0')); q++);
 
-			subsection = g_strndup(p, q - p);
+			if(q - p > 0)  {
+				subsection = g_strndup(p, q - p);
+			}
 
 			memset(buf, '\0', sizeof(buf));
 			continue;
