@@ -29,6 +29,10 @@ class childWindow:
 			"enablesmb" :
 			("enableSMB", "/lib/security/pam_smb_auth.so",
 			 "SMB", "pam_smb"),
+			"enableshadow" :
+			("enableShadow", "", "", ""),
+			"enablemd5" :
+			("enableMD5", "", "", ""),
 		}
 		self.nis_map = {
 			"domain" : ("nisDomain", ""),
