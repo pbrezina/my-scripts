@@ -149,12 +149,14 @@ getGenericChoices(const char *dialogTitle,
       for (j = 0; items[i].r_valid_values[j] != NULL; j++) /* nothing */;
       radioGrid = newtCreateGrid(1, j);
       radios[i] = g_ptr_array_new();
+      /* figure out which radio button to make the default */
       def = 0;
       for (j = 0; items[i].r_valid_values[j] != NULL; j++) {
 	if (strcmp(*s, items[i].r_valid_values[j]) == 0) {
 	  def = j;
 	}
       }
+      /* save the button and its string */
       for (j = 0; items[i].r_valid_values[j] != NULL; j++) {
         comp = newtRadiobutton(-1, -1, items[i].r_valid_values[j],
 			       j == def,
@@ -260,6 +262,7 @@ runform:
       radios[i] = NULL;
     }
   }
+
   g_free(radios);
   g_free(strings);
   g_free(booleans);
@@ -424,6 +427,16 @@ struct warntype {
 };
 
 static void
+syncCheckbox(newtComponent comp, void *comp2)
+{
+  newtComponent second;
+  second = comp2;
+  if (newtCheckboxGetValue(second) != newtCheckboxGetValue(comp)) {
+    newtCheckboxSetValue(second, newtCheckboxGetValue(comp));
+  }
+}
+
+static void
 warnCallback(newtComponent comp, void *warningp)
 {
   struct warntype *warning;
@@ -452,7 +465,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 {
   newtComponent form, ok, cancel, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid, infoGrid, authGrid;
-  char cache, hesiod, ldap, nis, krb5, ldapa, smb, winbind, shadow, md5;
+  char cache, hesiod, ldap, nis, krb5, ldapa, smb, shadow, md5;
   struct warntype warnCache = {PATH_NSCD,
 			       _("caching"),
 			       "nscd"};
@@ -480,6 +493,11 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   struct warntype warnWinbind = {PATH_LIBNSS_WINBIND,
 				 _("Winbind"),
 				 "samba-client"};
+  struct {
+    newtComponent a, b;
+  } matched[] = {
+    {NULL, NULL},
+  };
 
   /* Information. */
   infoGrid = newtCreateGrid(1, 6);
@@ -516,10 +534,11 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   cb = newtCheckbox(-1, -1, _("Use Winbind"),
 		    authInfo->enableWinbind ? '*' : ' ',
-		    NULL, &winbind);
+		    NULL, NULL);
   newtGridSetField(infoGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnWinbind);
+  matched[0].a = cb;
 
   /* Authentication. */
   authGrid = newtCreateGrid(1, 7);
@@ -564,10 +583,15 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 
   cb = newtCheckbox(-1, -1, _("Use Winbind Authentication"),
 		    authInfo->enableWinbind ? '*' : ' ',
-		    NULL, &winbind);
+		    NULL, NULL);
   newtGridSetField(authGrid, 0, 6, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnWinbindAuth);
+  matched[0].b = cb;
+
+  /* Make sure that the checkboxes have the same value. */
+  newtComponentAddCallback(matched[0].a, syncCheckbox, matched[0].b);
+  newtComponentAddCallback(matched[0].b, syncCheckbox, matched[0].a);
 
   /* Control grid. */
   mechGrid = newtCreateGrid(2, 1);
@@ -605,7 +629,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
     authInfo->enableHesiod = (hesiod == '*');
     authInfo->enableLDAP = (ldap == '*');
     authInfo->enableNIS = (nis == '*');
-    authInfo->enableWinbind = (winbind == '*');
+    authInfo->enableWinbind = (newtCheckboxGetValue(matched[0].a) == '*');
     authInfo->enableShadow = (shadow == '*');
     authInfo->enableMD5 = (md5 == '*');
     authInfo->enableLDAPAuth = (ldapa == '*');
