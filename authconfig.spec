@@ -34,6 +34,10 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Jun 13 2000 Nalin Dahyabhai <nalin@redhat.com>
+- fix multiple-blank-line problem
+- verify that NISDOMAIN is recorded properly in /etc/sysconfig/network
+
 * Sat Jun 10 2000 Nalin Dahyabhai <nalin@redhat.com>
 - add calls to pam_limits in shared session stack
 
