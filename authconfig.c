@@ -212,55 +212,61 @@ int getChoices(int useBack, int configureNis,
   /*
    * NIS stuff.
    */
-  if (configureNis) {
-      nisServerLabel = newtLabel(-1, -1, i18n("NIS Server:"));
-      bcastCheckBox = newtCheckbox(-1, -1, i18n("Request via broadcast"),
-				   *enableNisServer == '*' ? ' ' : '*',
-				   0, &newEnableBroadCast);
-      
-      nisServerEntry = newtEntry(-1, -1, "", 25, &newNisServer,
-				 NEWT_FLAG_SCROLL);
-      newtEntrySetFilter(nisServerEntry, entryFilter, NULL);
-      
-      if (*enableNisServer == ' ')
-	  newtEntrySetFlags(nisServerEntry, NEWT_ENTRY_DISABLED,
-			    NEWT_FLAGS_SET);
-      
-      servercb.state = &newEnableBroadCast;
-      servercb.entry = nisServerEntry;
-      newtComponentAddCallback(bcastCheckBox, serverEntryToggle,
-			       &servercb);
-      
-      nisCheckBox = newtCheckbox(-1, -1, i18n("Enable NIS"), 0, 0, enableNis);
-      
-      nisLabel = newtLabel(-1, -1, i18n("NIS Domain:"));
-      nisEntry = newtEntry(-1, -1, "", 25, &newNisDomain, 
-			   NEWT_FLAG_SCROLL);
-      newtEntrySetFilter(nisEntry, entryFilter, NULL);
+  nisServerLabel = newtLabel(-1, -1, i18n("NIS Server:"));
+  bcastCheckBox = newtCheckbox(-1, -1, i18n("Request via broadcast"),
+	       (*enableNisServer == '*' || !configureNis) ? ' ' : '*',
+			       0, &newEnableBroadCast);
   
-      niscb.state = enableNis;
-      niscb.bcastState = &newEnableBroadCast;
-      niscb.domEntry = nisEntry;
-      niscb.bcast = bcastCheckBox;
-      niscb.serverEntry = nisServerEntry;
-      
-      newtComponentAddCallback(nisCheckBox, nisEntryToggle,
-			       &niscb);
+  nisServerEntry = newtEntry(-1, -1, "", 25, &newNisServer,
+			     NEWT_FLAG_SCROLL);
+  newtEntrySetFilter(nisServerEntry, entryFilter, NULL);
   
-      /* if NIS is already enabled, show that. */
-      if (strcmp(*nisDomain,"")) {
-	  newtCheckboxSetValue(nisCheckBox, '*');
-	  newtEntrySet(nisEntry,*nisDomain, 1);
-      }
-      
-      /* likewise for a nisserver. */
-      if (strcmp(*nisServer,"") && *enableNis == '*') {
-	  newtEntrySet(nisServerEntry, *nisServer, 1);
-      }
-
-      serverEntryToggle(bcastCheckBox, &servercb);
-      nisEntryToggle(nisCheckBox, &niscb);
+  if (*enableNisServer == ' ')
+      newtEntrySetFlags(nisServerEntry, NEWT_ENTRY_DISABLED,
+			NEWT_FLAGS_SET);
+  
+  servercb.state = &newEnableBroadCast;
+  servercb.entry = nisServerEntry;
+  newtComponentAddCallback(bcastCheckBox, serverEntryToggle,
+			   &servercb);
+  
+  nisCheckBox = newtCheckbox(-1, -1, i18n("Enable NIS"), 0, 0, enableNis);
+  
+  nisLabel = newtLabel(-1, -1, i18n("NIS Domain:"));
+  nisEntry = newtEntry(-1, -1, "", 25, &newNisDomain, 
+		       NEWT_FLAG_SCROLL);
+  newtEntrySetFilter(nisEntry, entryFilter, NULL);
+  
+  niscb.state = enableNis;
+  niscb.bcastState = &newEnableBroadCast;
+  niscb.domEntry = nisEntry;
+  niscb.bcast = bcastCheckBox;
+  niscb.serverEntry = nisServerEntry;
+  
+  newtComponentAddCallback(nisCheckBox, nisEntryToggle,
+			   &niscb);
+  
+  /* if NIS is already enabled, show that. */
+  if (strcmp(*nisDomain,"")) {
+      newtCheckboxSetValue(nisCheckBox, '*');
+      newtEntrySet(nisEntry,*nisDomain, 1);
   }
+  
+  /* likewise for a nisserver. */
+  if (strcmp(*nisServer,"") && *enableNis == '*') {
+      newtEntrySet(nisServerEntry, *nisServer, 1);
+  }
+  
+  serverEntryToggle(bcastCheckBox, &servercb);
+  nisEntryToggle(nisCheckBox, &niscb);
+  
+  if (!configureNis) {
+      newtEntrySetFlags(nisServerEntry, NEWT_ENTRY_DISABLED, NEWT_FLAGS_SET);
+      newtCheckboxSetFlags(bcastCheckBox, NEWT_ENTRY_DISABLED, NEWT_FLAGS_SET);
+      newtEntrySetFlags(nisEntry, NEWT_ENTRY_DISABLED, NEWT_FLAGS_SET);
+      newtCheckboxSetFlags(nisCheckBox, NEWT_ENTRY_DISABLED, NEWT_FLAGS_SET);
+  }
+      
   /* Shadow Stuff */
   shadowCheckBox = newtCheckbox(-1, -1, i18n("Use Shadow Passwords"),
 				0, 0, &newUseShadow);
@@ -278,38 +284,41 @@ int getChoices(int useBack, int configureNis,
 
   mainGrid = newtCreateGrid(1, 6);
 
-  if (configureNis) {
+  /* Row 2 of main grid */
+  
+  /* Create the subgrid for nis info */
+  subGrid = newtCreateGrid(2, 4);
 
-      /* Begin row 1 of main grid */
-      newtGridSetField(mainGrid, 0, 0, NEWT_GRID_COMPONENT, nisCheckBox,
-		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-      
-      /* Row 2 of main grid */
-      
-      /* Create the subgrid for nis info */
-      subGrid = newtCreateGrid(2, 3);
-      
-      newtGridSetField(subGrid, 0, 0, NEWT_GRID_COMPONENT, nisLabel,
-		       1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
-      newtGridSetField(subGrid, 1, 0, NEWT_GRID_COMPONENT, nisEntry,
-		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-      newtGridSetField(subGrid, 0, 1, NEWT_GRID_COMPONENT, nisServerLabel,
-		       1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
-      
-      newtGridSetField(subGrid, 1, 1, NEWT_GRID_COMPONENT, bcastCheckBox,
-		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-      newtGridSetField(subGrid, 0, 2, NEWT_GRID_COMPONENT, 
-		       newtLabel(-1, -1, i18n("or use:")),
-		       0, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
-      newtGridSetField(subGrid, 1, 2, NEWT_GRID_COMPONENT, nisServerEntry,
-		       0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
-      
-      /* and the subgrid to the main grid */
-      newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, subGrid, 
-		       0, 1, 0, 1, 0, NEWT_GRID_FLAG_GROWX);
-  }	  
+    /* Begin row 1 of main grid */
+  newtGridSetField(subGrid, 0, 0, NEWT_GRID_COMPONENT, nisCheckBox,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+
+  if (!configureNis) {
+      newtGridSetField(subGrid, 1, 0, NEWT_GRID_COMPONENT, 
+	     newtLabel(-1, -1, i18n("(NIS not installed)")),
+		       0, 0, 0, 0, NEWT_ANCHOR_RIGHT, 0);
+  }
+
+  newtGridSetField(subGrid, 0, 1, NEWT_GRID_COMPONENT, nisLabel,
+		   1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(subGrid, 1, 1, NEWT_GRID_COMPONENT, nisEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(subGrid, 0, 2, NEWT_GRID_COMPONENT, nisServerLabel,
+		   1, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+  
+  newtGridSetField(subGrid, 1, 2, NEWT_GRID_COMPONENT, bcastCheckBox,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  newtGridSetField(subGrid, 0, 3, NEWT_GRID_COMPONENT, 
+		   newtLabel(-1, -1, i18n("or use:")),
+		   0, 0, 1, 0, NEWT_ANCHOR_RIGHT, 0);
+  newtGridSetField(subGrid, 1, 3, NEWT_GRID_COMPONENT, nisServerEntry,
+		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, 0);
+  
+  /* and the subgrid to the main grid */
+  newtGridSetField(mainGrid, 0, 1, NEWT_GRID_SUBGRID, subGrid, 
+		   0, 1, 0, 1, 0, NEWT_GRID_FLAG_GROWX);
+  
   /* Row 3... and so on */
-
   
   newtGridSetField(mainGrid, 0, 2, NEWT_GRID_COMPONENT, shadowCheckBox, 
 		   0, 0, 0, 1, NEWT_ANCHOR_LEFT, 0);
