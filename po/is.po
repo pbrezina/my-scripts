@@ -68,9 +68,8 @@ msgid "Use LDAP"
 msgstr "Nota LDAP"
 
 #: ../authconfig.c:298 ../authconfig.c:453
-#, fuzzy
 msgid "Use TLS"
-msgstr "Nota NIS"
+msgstr "Nota TLS"
 
 #. NSS modules: LDAP.
 #: ../authconfig.c:331
@@ -114,7 +113,7 @@ msgid "Authentication Configuration"
 msgstr "Stillingar auðkenningar"
 
 #: ../authconfig.c:642
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
@@ -173,6 +172,8 @@ msgstr ""
 "notendaupplýsingar\n"
 "     --disableldap              ekki nota sjálfgefið ldap fyrir "
 "notendaupplýsingar\n"
+"     --enableldaptls            nota TLS með ldap\n"
+"     --disableldaptls           ekki nota TLS með ldap\n"
 "     --enableldapauth           nota sjálfgefið ldap auðkenningu fyrir "
 "notendur\n"
 "     --disableldapauth          ekki nota sjálfgefið ldap auðkenningu fyrir "
@@ -244,9 +245,3 @@ msgstr "hætt var við val\n"
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: alvarleg villa við skrift í %s/%s"
-
-#~ msgid "Use WinBind"
-#~ msgstr "Nota WinBind"
-
-#~ msgid "Use WinBind Authentication"
-#~ msgstr "Nota WinBind auðkenningu"
