@@ -3688,14 +3688,29 @@ static struct {
 	{TRUE,  auth,		LOGIC_REQUIRED,
 	 "deny",		NULL},
 
+/* Account management is tricky.  Because we've implicitly committed to
+ * getting it "right" for any combination of nss and pam, we have to be
+ * careful about how we handle cases where networked sources of information
+ * are unavailable.
+ * At the very least, proper handling of password expiration depends on
+ * this, and in the case of pam_ldap, we also may be depending on the
+ * directory server for actual "is allowed to log in on this host" data.
+ * The frequently-suggested method of using pam_localuser to short-circuit
+ * pam_ldap wouldn't work in the nss_files + pam_ldap case, but we can use
+ * pam_succeed_if to short-circuit any network checks for *system* accounts
+ * without allowing actual users in who should be legitimately denied by
+ * LDAP.  
+ * Because we'd now be ending the stack with sufficient modules, and PAM's
+ * behavior isn't defined if none of them return success, we add a
+ * successful call to pam_permit at the end as a requirement. */
 #ifdef LOCAL_POLICIES
 	{FALSE, account,	LOGIC_REQUIRED,
 	 "stack",		argv_local_all},
 #endif
-	{TRUE,  account,	LOGIC_SUFFICIENT,
-	 "succeed_if",		argv_succeed_if_account},
 	{TRUE,  account,	LOGIC_REQUIRED,
 	 "unix",		NULL},
+	{TRUE,  account,	LOGIC_SUFFICIENT,
+	 "succeed_if",		argv_succeed_if_account},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		NULL},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
@@ -3704,6 +3719,8 @@ static struct {
 	 "krb5afs",		NULL},
 	{FALSE, account,	LOGIC_IGNORE_UNKNOWN,
 	 "winbind",		NULL},
+	{TRUE,  account,	LOGIC_REQUIRED,
+	 "permit",		NULL},
 
 #ifdef LOCAL_POLICIES
 	{FALSE, password,	LOGIC_REQUIRED,

@@ -7,21 +7,24 @@ implies that pam_ldap is the right thing to use, because the network might
 just as likely be using Kerberos for authentication.
 
 Currently, we read and parse the "passwd" entry in /etc/nsswitch.conf to
-get the client configuration.  We always assume that "files" is enabled,
-and don't preserve order or control flags.  Depending on what is enabled,
-we write out entries in the file, adding modules for a particular service
-based on a priori knowledge of whether or not a particular module is
+get the client configuration.  We always assume that either "files" or "compat"
+is enabled, and don't preserve order or control flags.  Depending on what is
+enabled, we write out entries in the file, adding modules for a particular
+service based on a priori knowledge of whether or not a particular module is
 applicable to the service.  Because we control nis, hesiod, ldap, and winbind,
-we add and remove those always.  We preserve "db" and "nisplus" if we found
-them being used.
+we add and remove those always.  We preserve "db", "nisplus", and a few other
+modules if we found them being used, but neither add nor remove them.
 
 PAM configuration only touches /etc/pam.d/system-auth.  We assume pam_unix
 first.  If enabled, pam_krb5 (or if /afs exists) pam_krb5afs comes next,
 then pam_ldap, then pam_winbind.  For passwords, pam_cracklib goes first.
-All services use pam_limits.  Not all can use pam_access (which requires that
-a TTY is set by the calling application).
+All services use pam_limits*.  Not all can use pam_access (which requires
+that a TTY is set by the calling application).
 
-The code is roughly divided into two modules: the back and the front.  The
-back is in authinfo.[ch], and the front is authconfig.c.  They communicate
-by using the authInfoRead() and authInfoWrite() functions.  The rest is
-gravy, so to speak.
+The code is roughly divided into two modules: the back and the fronts.  The
+back is in authinfo.[ch], and the fronts are authconfig.c and
+authconfig-gtk.py, which needs authconfigmodule.c.  They communicate by
+using the authInfoRead() and authInfoWrite() functions.  The rest is gravy,
+so to speak.
+
+* Due to PAM's design, pam_limits can never work perfectly.
