@@ -88,10 +88,10 @@ gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
     }
   } else {
     system("/bin/domainname \"(none)\"");
-    if (!nostart) {
-      system("/sbin/service ypbind stop");
-    }
     if(stat(PATH_YPBIND, &st) == 0) {
+      if (!nostart) {
+        system("/sbin/service ypbind stop");
+      }
       system("/sbin/chkconfig --del ypbind");
     }
   }
