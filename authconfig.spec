@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.6.4
-Release: 3
+Release: 4
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Sep 22 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-4
+- added "quiet" option to pam_success_if PAM module in sytem-auth (#133179)
+
 * Mon Sep 13 2004 Jindrich Novy <jnovy@redhat.com> 4.6.4-3
 - corrected package dependencies #132411
 - regenerated glade.strings.h #132369

@@ -3565,6 +3565,7 @@ static const char *argv_smb_auth[] = {
 
 static const char *argv_succeed_if_account[] = {
 	"uid < 100",
+	"quiet",
 	NULL,
 };
 
