@@ -1,0 +1,57 @@
+AC_INIT(TODO)
+AM_INIT_AUTOMAKE(authconfig,`awk '/Version:/ { print $$2 }' authconfig.spec`)
+AC_PREFIX_DEFAULT(/usr)
+AC_PROG_CC
+ALL_LINGUAS="bs cs da de es eu_ES fi fr gl hu id is it ja ko nn no pl pt_BR pt ro ru sk sl sr sv tr uk wa zh_CN.GB2312 zh zh_TW.Big5 zh_TW"
+AM_GNU_GETTEXT
+AC_PROG_INTLTOOL
+PKG_CHECK_MODULES(GLIB,glib-2.0)
+
+libs="$LIBS"
+AC_CHECK_FUNC(poptGetContext,,[AC_CHECK_LIB(popt,poptGetContext)])
+if test "$LIBS" != "$libs" ; then
+	POPT_LIBS="$LIBS"
+else
+	POPT_LIBS=
+fi
+LIBS="$libs"
+AC_SUBST(POPT_LIBS)
+
+libs="$LIBS"
+AC_CHECK_FUNC(newtCls,,[AC_CHECK_LIB(newt,newtCls)])
+if test "$LIBS" != "$libs" ; then
+	NEWT_LIBS="$LIBS"
+else
+	NEWT_LIBS=
+fi
+LIBS="$libs"
+AC_SUBST(NEWT_LIBS)
+
+AC_CHECK_FUNC(res_init,,[AC_CHECK_LIB(resolv,res_init,,
+[
+AC_MSG_CHECKING([for res_init in -lc])
+AC_TRY_COMPILE([#include <resolv.h>],[res_init()],
+               [AC_MSG_RESULT([found])
+	        LIBS="-lresolv $LIBS"],
+               [AC_MSG_RESULT([not found])
+AC_MSG_CHECKING([for res_init in -lresolv])
+libs="$LIBS"
+LIBS="-lresolv $LIBS"
+AC_TRY_COMPILE([#include <resolv.h>],[res_init()],
+               [AC_MSG_RESULT([found])],
+               [AC_MSG_RESULT([not found])
+                LIBS="$libs"
+])
+])
+]
+)])
+
+AC_ARG_WITH(python-rev,
+            [  --with-pythonrev=2.2    version of python for which modules should be built],
+            PYTHONREV=$withval,
+            PYTHONREV=2.2)
+AC_SUBST(PYTHONREV)
+
+AM_CONFIG_HEADER(config.h)
+
+AC_OUTPUT(Makefile man/Makefile man/en/Makefile intl/Makefile po/Makefile.in m4/Makefile)

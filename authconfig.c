@@ -23,6 +23,7 @@
   *
   */
 
+#include "config.h"
 #include <sys/stat.h>
 #include <ctype.h>
 #include <dirent.h>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 4.1.4\n"
-"POT-Creation-Date: 2001-08-22 18:57-0400\n"
+"POT-Creation-Date: 2002-04-11 16:14-0400\n"
 "PO-Revision-Date: 2001-08-14 23:28-0500\n"
 "Last-Translator: Thiago Vinhas de Moraes <tvinhas@networx.com.br>\n"
 "Language-Team: Brazilian Portuguese <en@li.org>\n"
@@ -9,366 +9,220 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ../authconfig.c:195
-#, c-format
-msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.  Install the %s package, which provides this file."
-msgstr ""
-"O arquivo %s não foi encontrato, mas ele é necessário para o suporte a %s "
-"funcionar corretamente.  Instale o pacote %s, que fornece esse arquivo."
-
-#: ../authconfig.c:199
-msgid "Warning"
-msgstr "Aviso"
-
-#: ../authconfig.c:199 ../authconfig.c:675 ../authconfig.c:688
-msgid "Ok"
-msgstr ""
-
-#: ../authconfig.c:217
-msgid "Domain:"
-msgstr "Domínio:"
-
-#: ../authconfig.c:218 ../authconfig.c:258
-msgid "Server:"
-msgstr "Servidor:"
-
-#: ../authconfig.c:238
-msgid "LHS:"
-msgstr ""
-
-#: ../authconfig.c:239
-msgid "RHS:"
-msgstr ""
-
-#: ../authconfig.c:259
-msgid "Base DN:"
-msgstr ""
-
-#: ../authconfig.c:292
-msgid "Realm:"
-msgstr ""
-
-#: ../authconfig.c:293
-msgid "KDC:"
-msgstr ""
-
-#: ../authconfig.c:294
-msgid "Admin Server:"
-msgstr "Servidor Admin."
-
-#: ../authconfig.c:318
-msgid "Workgroup:"
-msgstr ""
-
-#: ../authconfig.c:319
-#, fuzzy
-msgid "Servers:"
-msgstr "Servidor:"
-
-#. NSCD
-#: ../authconfig.c:359
-msgid "Cache Information"
-msgstr ""
-
-#. NSS modules: NIS.
-#: ../authconfig.c:367
-msgid "Use NIS"
-msgstr "Usar NIS"
-
-#: ../authconfig.c:397
-msgid "Use LDAP"
-msgstr "Usar LDAP"
-
-#: ../authconfig.c:402 ../authconfig.c:565
-msgid "Use TLS"
-msgstr "Usar TLS"
-
-#. NSS modules: hesiod.
-#: ../authconfig.c:436
-msgid "Use Hesiod"
-msgstr "Usar Hesiod"
-
-#: ../authconfig.c:466
-msgid "Next"
-msgstr "Avançar"
-
-#: ../authconfig.c:467 ../authconfig.c:676 ../authconfig.c:689
-msgid "Back"
-msgstr "Retornar"
-
-#: ../authconfig.c:467 ../authconfig.c:677
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: ../authconfig.c:487
-msgid "User Information Configuration"
-msgstr "Configuração de Informações do Usuário"
-
-#: ../authconfig.c:548
-msgid "Use Shadow Passwords"
-msgstr "Usar Senhas \"Shadow\""
-
-#: ../authconfig.c:553
-msgid "Use MD5 Passwords"
-msgstr "Usar Senhas MD5"
-
-#: ../authconfig.c:560
-msgid "Use LDAP Authentication"
-msgstr "Usar Autenticação LDAP"
-
-#: ../authconfig.c:598
-msgid "Use Kerberos 5"
-msgstr "Usar Kerberos 5"
-
-#: ../authconfig.c:636
-#, fuzzy
-msgid "Use SMB Authentication"
-msgstr "Usar Autenticação LDAP"
-
-#: ../authconfig.c:706
+#: authconfig-gtk.py:124 authconfig-gtk.py:175
 msgid "Authentication Configuration"
 msgstr "Configuração da Autenticação"
 
-#: ../authconfig.c:849
-msgid "enable shadowed passwords by default"
-msgstr "habilitar senhas shadow por padrão"
-
-#: ../authconfig.c:851
-msgid "disable shadowed passwords by default"
-msgstr "desabilitar senhas shadow por padrão"
-
-#: ../authconfig.c:855
-msgid "enable MD5 passwords by default"
-msgstr "habilitar senhas MD5 por padrão"
-
-#: ../authconfig.c:857
-msgid "disable MD5 passwords by default\n"
-msgstr "desabilitar senhas MD5 por padrão\n"
-
-#: ../authconfig.c:860
-msgid "enable NIS"
-msgstr "habilitar NIS"
-
-#: ../authconfig.c:862
-msgid "disable NIS"
-msgstr "desabilitar NIS"
-
-#: ../authconfig.c:864
-msgid "default NIS domain"
-msgstr "domínio NIS padrão"
-
-#: ../authconfig.c:864
-msgid "<domain>"
-msgstr "<domínio>"
-
-#: ../authconfig.c:866
-msgid "default NIS server\n"
-msgstr "servidor NIS padrão\n"
-
-#: ../authconfig.c:866 ../authconfig.c:881 ../authconfig.c:890
-#: ../authconfig.c:892 ../authconfig.c:903
-msgid "<server>"
-msgstr "<servidor>"
-
-#: ../authconfig.c:869
-msgid "enable LDAP for user information by default"
-msgstr "habilitar LDAP para informação de usuário por padrão"
-
-#: ../authconfig.c:871
-msgid "disable LDAP for user information by default"
-msgstr "desabilitar LDAP para informação de usuário por padrão"
-
-#: ../authconfig.c:873
-msgid "enable use of TLS with LDAP"
-msgstr "habilitar uso do TLS com LDAP"
-
-#: ../authconfig.c:875
-msgid "disable use of TLS with LDAP"
-msgstr "desabilitar uso do TLS com LDAP"
-
-#: ../authconfig.c:877
-msgid "enable LDAP for authentication by default"
-msgstr "habilitar LDAP para autenticação por padrão"
-
-#: ../authconfig.c:879
-msgid "disable LDAP for authentication by default"
-msgstr "desabilitar LDAP para autenticação por padrão"
-
-#: ../authconfig.c:881
-msgid "default LDAP server"
-msgstr "servidor LDAP padrão"
-
-#: ../authconfig.c:883
-msgid "default LDAP base DN\n"
-msgstr "LDAP base DN padrão\n"
-
-#: ../authconfig.c:883
-msgid "<dn>"
+#: authconfig-gtk.py:188
+msgid "Ok"
 msgstr ""
 
-#: ../authconfig.c:886
-msgid "enable kerberos authentication by default"
-msgstr "habilitar autenticação por kerberos por padrão"
+#: authconfig-gtk.py:194
+msgid "Cancel"
+msgstr "Cancelar"
 
-#: ../authconfig.c:888
-msgid "disable kerberos authentication by default"
-msgstr "desabilitar autenticação por kerberos por padrão"
+#~ msgid ""
+#~ "The %s file was not found, but it is required for %s support to work "
+#~ "properly.  Install the %s package, which provides this file."
+#~ msgstr ""
+#~ "O arquivo %s não foi encontrato, mas ele é necessário para o suporte a %s "
+#~ "funcionar corretamente.  Instale o pacote %s, que fornece esse arquivo."
 
-#: ../authconfig.c:890
-msgid "default kerberos KDC"
-msgstr "kerberos KDC padrão"
+#~ msgid "Warning"
+#~ msgstr "Aviso"
 
-#: ../authconfig.c:892
-msgid "default kerberos admin server"
-msgstr "servidor admin kerberos padrão"
+#~ msgid "Domain:"
+#~ msgstr "Domínio:"
 
-#: ../authconfig.c:894
-msgid "default kerberos realm\n"
-msgstr "kerberos realm padrão\n"
+#~ msgid "Server:"
+#~ msgstr "Servidor:"
 
-#: ../authconfig.c:894
-msgid "<realm>"
-msgstr ""
+#~ msgid "Admin Server:"
+#~ msgstr "Servidor Admin."
 
-#: ../authconfig.c:897
 #, fuzzy
-msgid "enable SMB authentication by default"
-msgstr "habilitar autenticação por kerberos por padrão"
+#~ msgid "Servers:"
+#~ msgstr "Servidor:"
 
-#: ../authconfig.c:899
+#~ msgid "Use NIS"
+#~ msgstr "Usar NIS"
+
+#~ msgid "Use LDAP"
+#~ msgstr "Usar LDAP"
+
+#~ msgid "Use TLS"
+#~ msgstr "Usar TLS"
+
+#~ msgid "Use Hesiod"
+#~ msgstr "Usar Hesiod"
+
+#~ msgid "Next"
+#~ msgstr "Avançar"
+
+#~ msgid "Back"
+#~ msgstr "Retornar"
+
+#~ msgid "User Information Configuration"
+#~ msgstr "Configuração de Informações do Usuário"
+
+#~ msgid "Use Shadow Passwords"
+#~ msgstr "Usar Senhas \"Shadow\""
+
+#~ msgid "Use MD5 Passwords"
+#~ msgstr "Usar Senhas MD5"
+
+#~ msgid "Use LDAP Authentication"
+#~ msgstr "Usar Autenticação LDAP"
+
+#~ msgid "Use Kerberos 5"
+#~ msgstr "Usar Kerberos 5"
+
 #, fuzzy
-msgid "disable SMB authentication by default"
-msgstr "desabilitar LDAP para autenticação por padrão"
+#~ msgid "Use SMB Authentication"
+#~ msgstr "Usar Autenticação LDAP"
 
-#: ../authconfig.c:901
-msgid "workgroup authentication servers are in"
-msgstr ""
+#~ msgid "enable shadowed passwords by default"
+#~ msgstr "habilitar senhas shadow por padrão"
 
-#: ../authconfig.c:901
-msgid "<workgroup>"
-msgstr ""
+#~ msgid "disable shadowed passwords by default"
+#~ msgstr "desabilitar senhas shadow por padrão"
 
-#: ../authconfig.c:903
-msgid "names of servers to authenticate against\n"
-msgstr ""
+#~ msgid "enable MD5 passwords by default"
+#~ msgstr "habilitar senhas MD5 por padrão"
 
-#: ../authconfig.c:906
-msgid "enable hesiod for user information by default"
-msgstr "habilitar hesiod para informação de usuário por padrão"
+#~ msgid "disable MD5 passwords by default\n"
+#~ msgstr "desabilitar senhas MD5 por padrão\n"
 
-#: ../authconfig.c:908
-msgid "disable hesiod for user information by default"
-msgstr "desabilitar hesiod para informação de usuário por padrão"
+#~ msgid "enable NIS"
+#~ msgstr "habilitar NIS"
 
-#: ../authconfig.c:910
-msgid "default hesiod LHS"
-msgstr "hesiod LHS padrão"
+#~ msgid "disable NIS"
+#~ msgstr "desabilitar NIS"
 
-#: ../authconfig.c:910
-msgid "<lhs>"
-msgstr ""
+#~ msgid "default NIS domain"
+#~ msgstr "domínio NIS padrão"
 
-#: ../authconfig.c:912
-msgid "default hesiod RHS\n"
-msgstr "hesiod RHS padrão\n"
+#~ msgid "<domain>"
+#~ msgstr "<domínio>"
 
-#: ../authconfig.c:912
-msgid "<rhs>"
-msgstr ""
+#~ msgid "default NIS server\n"
+#~ msgstr "servidor NIS padrão\n"
 
-#: ../authconfig.c:915
+#~ msgid "<server>"
+#~ msgstr "<servidor>"
+
+#~ msgid "enable LDAP for user information by default"
+#~ msgstr "habilitar LDAP para informação de usuário por padrão"
+
+#~ msgid "disable LDAP for user information by default"
+#~ msgstr "desabilitar LDAP para informação de usuário por padrão"
+
+#~ msgid "enable use of TLS with LDAP"
+#~ msgstr "habilitar uso do TLS com LDAP"
+
+#~ msgid "disable use of TLS with LDAP"
+#~ msgstr "desabilitar uso do TLS com LDAP"
+
+#~ msgid "enable LDAP for authentication by default"
+#~ msgstr "habilitar LDAP para autenticação por padrão"
+
+#~ msgid "disable LDAP for authentication by default"
+#~ msgstr "desabilitar LDAP para autenticação por padrão"
+
+#~ msgid "default LDAP server"
+#~ msgstr "servidor LDAP padrão"
+
+#~ msgid "default LDAP base DN\n"
+#~ msgstr "LDAP base DN padrão\n"
+
+#~ msgid "enable kerberos authentication by default"
+#~ msgstr "habilitar autenticação por kerberos por padrão"
+
+#~ msgid "disable kerberos authentication by default"
+#~ msgstr "desabilitar autenticação por kerberos por padrão"
+
+#~ msgid "default kerberos KDC"
+#~ msgstr "kerberos KDC padrão"
+
+#~ msgid "default kerberos admin server"
+#~ msgstr "servidor admin kerberos padrão"
+
+#~ msgid "default kerberos realm\n"
+#~ msgstr "kerberos realm padrão\n"
+
 #, fuzzy
-msgid "enable caching of user information by default"
-msgstr "habilitar hesiod para informação de usuário por padrão"
+#~ msgid "enable SMB authentication by default"
+#~ msgstr "habilitar autenticação por kerberos por padrão"
 
-#: ../authconfig.c:917
 #, fuzzy
-msgid "disable caching of user information by default\n"
-msgstr "desabilitar hesiod para informação de usuário por padrão"
+#~ msgid "disable SMB authentication by default"
+#~ msgstr "desabilitar LDAP para autenticação por padrão"
 
-#: ../authconfig.c:924
-msgid "do not start/stop portmap, ypbind, and nscd"
-msgstr "não inicia/para portmap, ypbind e nscd"
+#~ msgid "enable hesiod for user information by default"
+#~ msgstr "habilitar hesiod para informação de usuário por padrão"
 
-#: ../authconfig.c:926
-msgid "don't display user interface"
-msgstr "não mostra interface de usuário"
+#~ msgid "disable hesiod for user information by default"
+#~ msgstr "desabilitar hesiod para informação de usuário por padrão"
 
-#: ../authconfig.c:928
-msgid "probe network for defaults and print them"
-msgstr ""
+#~ msgid "default hesiod LHS"
+#~ msgstr "hesiod LHS padrão"
 
-#: ../authconfig.c:931
-msgid "use locally-defined policies"
-msgstr "usar política definida localmente"
+#~ msgid "default hesiod RHS\n"
+#~ msgstr "hesiod RHS padrão\n"
 
-#: ../authconfig.c:933
-msgid "don't use locally-defined policies"
-msgstr "não usar política definida localmente"
-
-#: ../authconfig.c:944
-#, c-format
-msgid "%s: bad argument %s: %s\n"
-msgstr "%s: argumento errado %s: %s\n"
-
-#: ../authconfig.c:953
-#, c-format
-msgid "%s: attempting to continue\n"
-msgstr ""
-
-#: ../authconfig.c:957
-#, c-format
-msgid "%s: unexpected argument\n"
-msgstr "%s: argumento inesperado\n"
-
-#: ../authconfig.c:984
-#, c-format
-msgid "%s: can only be run as root\n"
-msgstr "%s: só pode ser executado como root\n"
-
-#: ../authconfig.c:995 ../authconfig.c:1003 ../authconfig.c:1011
-#: ../authconfig.c:1019 ../authconfig.c:1027 ../authconfig.c:1035
-#: ../authconfig.c:1048 ../authconfig.c:1056
-#, c-format
-msgid "%s: critical error reading %s/%s"
-msgstr "%s: erro crítico lendo %s/%s"
-
-#: ../authconfig.c:1042
-#, fuzzy, c-format
-msgid "%s: unable to read caching configuration"
-msgstr "Configuração de Informações do Usuário"
-
-#: ../authconfig.c:1118
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
-" <Tab>/<Alt-Tab> entre elementos   |   <Espaço> seleciona |  <F12> próxima "
-"tela"
-
-#: ../authconfig.c:1121
-msgid "(c) 1999-2001 Red Hat, Inc."
-msgstr ""
-
-#: ../authconfig.c:1128
-msgid "dialog was cancelled\n"
-msgstr "o diálogo foi cancelado\n"
-
-#: ../authconfig.c:1195
-#, fuzzy, c-format
-msgid "%s: critical error recording caching setting"
-msgstr "%s: erro crítico lendo %s/%s"
-
-#: ../authconfig.c:1201 ../authconfig.c:1207 ../authconfig.c:1213
-#: ../authconfig.c:1219 ../authconfig.c:1225 ../authconfig.c:1230
-#: ../authconfig.c:1235 ../authconfig.c:1241
-#, c-format
-msgid "%s: critical error writing %s/%s"
-msgstr "%s: erro crítico escrevendo %s/%s"
-
-#: ../localpol.h:9
 #, fuzzy
-msgid "Use Local Policies"
-msgstr "usar política definida localmente"
+#~ msgid "enable caching of user information by default"
+#~ msgstr "habilitar hesiod para informação de usuário por padrão"
+
+#, fuzzy
+#~ msgid "disable caching of user information by default\n"
+#~ msgstr "desabilitar hesiod para informação de usuário por padrão"
+
+#~ msgid "do not start/stop portmap, ypbind, and nscd"
+#~ msgstr "não inicia/para portmap, ypbind e nscd"
+
+#~ msgid "don't display user interface"
+#~ msgstr "não mostra interface de usuário"
+
+#~ msgid "use locally-defined policies"
+#~ msgstr "usar política definida localmente"
+
+#~ msgid "don't use locally-defined policies"
+#~ msgstr "não usar política definida localmente"
+
+#~ msgid "%s: bad argument %s: %s\n"
+#~ msgstr "%s: argumento errado %s: %s\n"
+
+#~ msgid "%s: unexpected argument\n"
+#~ msgstr "%s: argumento inesperado\n"
+
+#~ msgid "%s: can only be run as root\n"
+#~ msgstr "%s: só pode ser executado como root\n"
+
+#~ msgid "%s: critical error reading %s/%s"
+#~ msgstr "%s: erro crítico lendo %s/%s"
+
+#, fuzzy
+#~ msgid "%s: unable to read caching configuration"
+#~ msgstr "Configuração de Informações do Usuário"
+
+#~ msgid ""
+#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+#~ "screen"
+#~ msgstr ""
+#~ " <Tab>/<Alt-Tab> entre elementos   |   <Espaço> seleciona |  <F12> "
+#~ "próxima tela"
+
+#~ msgid "dialog was cancelled\n"
+#~ msgstr "o diálogo foi cancelado\n"
+
+#, fuzzy
+#~ msgid "%s: critical error recording caching setting"
+#~ msgstr "%s: erro crítico lendo %s/%s"
+
+#~ msgid "%s: critical error writing %s/%s"
+#~ msgstr "%s: erro crítico escrevendo %s/%s"
+
+#, fuzzy
+#~ msgid "Use Local Policies"
+#~ msgstr "usar política definida localmente"

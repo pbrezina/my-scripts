@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ID-authconfig 1.0\n"
-"POT-Creation-Date: 2001-08-22 18:57-0400\n"
+"POT-Creation-Date: 2002-04-11 16:14-0400\n"
 "PO-Revision-Date: 1999-09-08 10:24+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@ldp.linux.or.id>\n"
 "Language-Team: LDP Indonesia <http://ldp.linux.or.id>\n"
@@ -14,378 +14,127 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: ISO-8859-1\n"
 
-#: ../authconfig.c:195
-#, c-format
-msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.  Install the %s package, which provides this file."
-msgstr ""
-
-#: ../authconfig.c:199
-msgid "Warning"
-msgstr ""
-
-#: ../authconfig.c:199 ../authconfig.c:675 ../authconfig.c:688
-msgid "Ok"
-msgstr "Ok"
-
-#: ../authconfig.c:217
-#, fuzzy
-msgid "Domain:"
-msgstr "Domain NIS:"
-
-#: ../authconfig.c:218 ../authconfig.c:258
-#, fuzzy
-msgid "Server:"
-msgstr "Server NIS:"
-
-#: ../authconfig.c:238
-msgid "LHS:"
-msgstr ""
-
-#: ../authconfig.c:239
-msgid "RHS:"
-msgstr ""
-
-#: ../authconfig.c:259
-msgid "Base DN:"
-msgstr ""
-
-#: ../authconfig.c:292
-#, fuzzy
-msgid "Realm:"
-msgstr "atau gunakan:"
-
-#: ../authconfig.c:293
-#, fuzzy
-msgid "KDC:"
-msgstr "atau gunakan:"
-
-#: ../authconfig.c:294
-msgid "Admin Server:"
-msgstr ""
-
-#: ../authconfig.c:318
-msgid "Workgroup:"
-msgstr ""
-
-#: ../authconfig.c:319
-#, fuzzy
-msgid "Servers:"
-msgstr "Server NIS:"
-
-#. NSCD
-#: ../authconfig.c:359
-msgid "Cache Information"
-msgstr ""
-
-#. NSS modules: NIS.
-#: ../authconfig.c:367
-msgid "Use NIS"
-msgstr ""
-
-#: ../authconfig.c:397
-msgid "Use LDAP"
-msgstr ""
-
-#: ../authconfig.c:402 ../authconfig.c:565
-msgid "Use TLS"
-msgstr ""
-
-#. NSS modules: hesiod.
-#: ../authconfig.c:436
-msgid "Use Hesiod"
-msgstr ""
-
-#: ../authconfig.c:466
-msgid "Next"
-msgstr ""
-
-#: ../authconfig.c:467 ../authconfig.c:676 ../authconfig.c:689
-msgid "Back"
-msgstr "Kembali"
-
-#: ../authconfig.c:467 ../authconfig.c:677
-msgid "Cancel"
-msgstr "Batal"
-
-#: ../authconfig.c:487
-#, fuzzy
-msgid "User Information Configuration"
-msgstr "Konfigurasi Autentikasi"
-
-#: ../authconfig.c:548
-msgid "Use Shadow Passwords"
-msgstr "Gunakan password Shadow"
-
-#: ../authconfig.c:553
-#, fuzzy
-msgid "Use MD5 Passwords"
-msgstr "Gunakan password MD5"
-
-#: ../authconfig.c:560
-#, fuzzy
-msgid "Use LDAP Authentication"
-msgstr "Konfigurasi Autentikasi"
-
-#: ../authconfig.c:598
-msgid "Use Kerberos 5"
-msgstr ""
-
-#: ../authconfig.c:636
-#, fuzzy
-msgid "Use SMB Authentication"
-msgstr "Konfigurasi Autentikasi"
-
-#: ../authconfig.c:706
+#: authconfig-gtk.py:124 authconfig-gtk.py:175
 msgid "Authentication Configuration"
 msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:849
-msgid "enable shadowed passwords by default"
-msgstr ""
+#: authconfig-gtk.py:188
+msgid "Ok"
+msgstr "Ok"
 
-#: ../authconfig.c:851
-msgid "disable shadowed passwords by default"
-msgstr ""
+#: authconfig-gtk.py:194
+msgid "Cancel"
+msgstr "Batal"
 
-#: ../authconfig.c:855
-msgid "enable MD5 passwords by default"
-msgstr ""
-
-#: ../authconfig.c:857
 #, fuzzy
-msgid "disable MD5 passwords by default\n"
-msgstr "Gunakan password MD5"
+#~ msgid "Domain:"
+#~ msgstr "Domain NIS:"
 
-#: ../authconfig.c:860
 #, fuzzy
-msgid "enable NIS"
-msgstr "Jalankan NIS"
+#~ msgid "Server:"
+#~ msgstr "Server NIS:"
 
-#: ../authconfig.c:862
 #, fuzzy
-msgid "disable NIS"
-msgstr "Jalankan NIS"
+#~ msgid "Realm:"
+#~ msgstr "atau gunakan:"
 
-#: ../authconfig.c:864
-msgid "default NIS domain"
-msgstr ""
-
-#: ../authconfig.c:864
-msgid "<domain>"
-msgstr ""
-
-#: ../authconfig.c:866
-msgid "default NIS server\n"
-msgstr ""
-
-#: ../authconfig.c:866 ../authconfig.c:881 ../authconfig.c:890
-#: ../authconfig.c:892 ../authconfig.c:903
-msgid "<server>"
-msgstr ""
-
-#: ../authconfig.c:869
-msgid "enable LDAP for user information by default"
-msgstr ""
-
-#: ../authconfig.c:871
-msgid "disable LDAP for user information by default"
-msgstr ""
-
-#: ../authconfig.c:873
-msgid "enable use of TLS with LDAP"
-msgstr ""
-
-#: ../authconfig.c:875
-msgid "disable use of TLS with LDAP"
-msgstr ""
-
-#: ../authconfig.c:877
 #, fuzzy
-msgid "enable LDAP for authentication by default"
-msgstr "Konfigurasi Autentikasi"
+#~ msgid "KDC:"
+#~ msgstr "atau gunakan:"
 
-#: ../authconfig.c:879
 #, fuzzy
-msgid "disable LDAP for authentication by default"
-msgstr "Konfigurasi Autentikasi"
+#~ msgid "Servers:"
+#~ msgstr "Server NIS:"
 
-#: ../authconfig.c:881
-msgid "default LDAP server"
-msgstr ""
+#~ msgid "Back"
+#~ msgstr "Kembali"
 
-#: ../authconfig.c:883
-msgid "default LDAP base DN\n"
-msgstr ""
-
-#: ../authconfig.c:883
-msgid "<dn>"
-msgstr ""
-
-#: ../authconfig.c:886
-msgid "enable kerberos authentication by default"
-msgstr ""
-
-#: ../authconfig.c:888
-msgid "disable kerberos authentication by default"
-msgstr ""
-
-#: ../authconfig.c:890
-msgid "default kerberos KDC"
-msgstr ""
-
-#: ../authconfig.c:892
-msgid "default kerberos admin server"
-msgstr ""
-
-#: ../authconfig.c:894
-msgid "default kerberos realm\n"
-msgstr ""
-
-#: ../authconfig.c:894
-msgid "<realm>"
-msgstr ""
-
-#: ../authconfig.c:897
 #, fuzzy
-msgid "enable SMB authentication by default"
-msgstr "Konfigurasi Autentikasi"
+#~ msgid "User Information Configuration"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:899
+#~ msgid "Use Shadow Passwords"
+#~ msgstr "Gunakan password Shadow"
+
 #, fuzzy
-msgid "disable SMB authentication by default"
-msgstr "Konfigurasi Autentikasi"
+#~ msgid "Use MD5 Passwords"
+#~ msgstr "Gunakan password MD5"
 
-#: ../authconfig.c:901
-msgid "workgroup authentication servers are in"
-msgstr ""
-
-#: ../authconfig.c:901
-msgid "<workgroup>"
-msgstr ""
-
-#: ../authconfig.c:903
-msgid "names of servers to authenticate against\n"
-msgstr ""
-
-#: ../authconfig.c:906
-msgid "enable hesiod for user information by default"
-msgstr ""
-
-#: ../authconfig.c:908
-msgid "disable hesiod for user information by default"
-msgstr ""
-
-#: ../authconfig.c:910
-msgid "default hesiod LHS"
-msgstr ""
-
-#: ../authconfig.c:910
-msgid "<lhs>"
-msgstr ""
-
-#: ../authconfig.c:912
-msgid "default hesiod RHS\n"
-msgstr ""
-
-#: ../authconfig.c:912
-msgid "<rhs>"
-msgstr ""
-
-#: ../authconfig.c:915
 #, fuzzy
-msgid "enable caching of user information by default"
-msgstr "Konfigurasi Autentikasi"
+#~ msgid "Use LDAP Authentication"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:917
 #, fuzzy
-msgid "disable caching of user information by default\n"
-msgstr "Konfigurasi Autentikasi"
+#~ msgid "Use SMB Authentication"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:924
-msgid "do not start/stop portmap, ypbind, and nscd"
-msgstr ""
+#, fuzzy
+#~ msgid "disable MD5 passwords by default\n"
+#~ msgstr "Gunakan password MD5"
 
-#: ../authconfig.c:926
-msgid "don't display user interface"
-msgstr ""
+#, fuzzy
+#~ msgid "enable NIS"
+#~ msgstr "Jalankan NIS"
 
-#: ../authconfig.c:928
-msgid "probe network for defaults and print them"
-msgstr ""
+#, fuzzy
+#~ msgid "disable NIS"
+#~ msgstr "Jalankan NIS"
 
-#: ../authconfig.c:931
-msgid "use locally-defined policies"
-msgstr ""
+#, fuzzy
+#~ msgid "enable LDAP for authentication by default"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:933
-msgid "don't use locally-defined policies"
-msgstr ""
+#, fuzzy
+#~ msgid "disable LDAP for authentication by default"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:944
-#, c-format
-msgid "%s: bad argument %s: %s\n"
-msgstr "%s: argumen salah %s: %s\n"
+#, fuzzy
+#~ msgid "enable SMB authentication by default"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:953
-#, c-format
-msgid "%s: attempting to continue\n"
-msgstr ""
+#, fuzzy
+#~ msgid "disable SMB authentication by default"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:957
-#, c-format
-msgid "%s: unexpected argument\n"
-msgstr "%s: argumen harusnya tidak ada\n"
+#, fuzzy
+#~ msgid "enable caching of user information by default"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:984
-#, c-format
-msgid "%s: can only be run as root\n"
-msgstr "%s: Anda harus jadi root dulu\n"
+#, fuzzy
+#~ msgid "disable caching of user information by default\n"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:995 ../authconfig.c:1003 ../authconfig.c:1011
-#: ../authconfig.c:1019 ../authconfig.c:1027 ../authconfig.c:1035
-#: ../authconfig.c:1048 ../authconfig.c:1056
-#, fuzzy, c-format
-msgid "%s: critical error reading %s/%s"
-msgstr "%s: gagal membaca /etc/pam.d/passwd\n"
+#~ msgid "%s: bad argument %s: %s\n"
+#~ msgstr "%s: argumen salah %s: %s\n"
 
-#: ../authconfig.c:1042
-#, fuzzy, c-format
-msgid "%s: unable to read caching configuration"
-msgstr "Konfigurasi Autentikasi"
+#~ msgid "%s: unexpected argument\n"
+#~ msgstr "%s: argumen harusnya tidak ada\n"
 
-#: ../authconfig.c:1118
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
-" <Tab>/<Alt-Tab> untuk switch | <Spasi> untuk memilih | <F12> layar "
-"berikutnya"
+#~ msgid "%s: can only be run as root\n"
+#~ msgstr "%s: Anda harus jadi root dulu\n"
 
-#: ../authconfig.c:1121
-msgid "(c) 1999-2001 Red Hat, Inc."
-msgstr ""
+#, fuzzy
+#~ msgid "%s: critical error reading %s/%s"
+#~ msgstr "%s: gagal membaca /etc/pam.d/passwd\n"
 
-#: ../authconfig.c:1128
-msgid "dialog was cancelled\n"
-msgstr ""
+#, fuzzy
+#~ msgid "%s: unable to read caching configuration"
+#~ msgstr "Konfigurasi Autentikasi"
 
-#: ../authconfig.c:1195
-#, fuzzy, c-format
-msgid "%s: critical error recording caching setting"
-msgstr "%s: gagal membaca /etc/pam.d/passwd\n"
+#~ msgid ""
+#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+#~ "screen"
+#~ msgstr ""
+#~ " <Tab>/<Alt-Tab> untuk switch | <Spasi> untuk memilih | <F12> layar "
+#~ "berikutnya"
 
-#: ../authconfig.c:1201 ../authconfig.c:1207 ../authconfig.c:1213
-#: ../authconfig.c:1219 ../authconfig.c:1225 ../authconfig.c:1230
-#: ../authconfig.c:1235 ../authconfig.c:1241
-#, fuzzy, c-format
-msgid "%s: critical error writing %s/%s"
-msgstr "%s: gagal menulis /etc/yp.conf\n"
+#, fuzzy
+#~ msgid "%s: critical error recording caching setting"
+#~ msgstr "%s: gagal membaca /etc/pam.d/passwd\n"
 
-#: ../localpol.h:9
-msgid "Use Local Policies"
-msgstr ""
+#, fuzzy
+#~ msgid "%s: critical error writing %s/%s"
+#~ msgstr "%s: gagal menulis /etc/yp.conf\n"
 
 #, fuzzy
 #~ msgid "Use WinBind Authentication"

@@ -18,6 +18,7 @@
   *
   */
 
+#include "config.h"
 #include <sys/types.h>
 #include <Python.h>
 #include <glib.h>
