@@ -89,7 +89,7 @@ authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
 EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png
 
-TAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}\n' | head -1 | sed 's,\.,-,g')
+TAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}-%{release}\n' | head -1 | sed 's,\.,-,g')
 tag:
 	cvs tag -cR $(TAG)
 
