@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Sat Jun 10 2000 Nalin Dahyabhai <nalin@redhat.com>
+- add calls to pam_limits in shared session stack
+
 * Wed Jun  7 2000 Nalin Dahyabhai <nalin@redhat.com>
 - fix multiple realms section bug
 - close all files we open

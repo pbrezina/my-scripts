@@ -1252,6 +1252,7 @@ static struct {
 #endif
 	{TRUE,  password,	required,	"deny",		NULL},
 
+	{TRUE,  session,	required,	"limits",	NULL},
 	{TRUE,  session,	required,	"unix",		NULL},
 	{FALSE, session,	optional,	"krb5",		NULL},
 	{FALSE, session,	optional,	"krb5afs",	NULL},
