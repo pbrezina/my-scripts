@@ -40,7 +40,7 @@ struct hesiod_cb {
 struct ldap_cb {
 	char nss_ldap;
 	char pam_ldap;
-	char ssl;
+	char tls;
 	newtComponent serverLabel, baseDnLabel;
        	newtComponent serverEntry, baseDnEntry;
 };
@@ -198,7 +198,7 @@ void ldapToggle(newtComponent cb, void *data)
   struct ldap_cb *ldap = (struct ldap_cb*) data;
   newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
   newtLabelSetText(ldap->baseDnLabel, i18n(" Base DN:"));
-  if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*') || (ldap->ssl == '*')) {
+  if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*') || (ldap->tls == '*')) {
     if(ldap->nss_ldap == '*') {
       checkWarn(PATH_LIBNSS_LDAP, "LDAP", "nss_ldap");
     } else {
@@ -294,9 +294,9 @@ int getNSSChoices(int back,
 		    authInfo->enableLDAP ? '*' : ' ', NULL, &ldap.nss_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
-  ldap.ssl = authInfo->enableLDAPS ? '*' : ' ';
+  ldap.tls = authInfo->enableLDAPS ? '*' : ' ';
   cbs = newtCheckbox(-1, -1, i18n("Use TLS"),
-		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.ssl);
+		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.tls);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.serverLabel = newtLabel(-1, -1, "");
@@ -389,7 +389,7 @@ int getNSSChoices(int back,
     setString(&authInfo->hesiodRHS, hesiodRHS);
 
     authInfo->enableLDAP = (ldap.nss_ldap == '*');
-    authInfo->enableLDAPS = (ldap.ssl == '*');
+    authInfo->enableLDAPS = (ldap.tls == '*');
     setString(&authInfo->ldapServer, ldapServer);
     setString(&authInfo->ldapBaseDN, ldapBaseDN);
 
@@ -449,9 +449,9 @@ int getPAMChoices(int back,
 		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
-  ldap.ssl = authInfo->enableLDAPS ? '*' : ' ';
+  ldap.tls = authInfo->enableLDAPS ? '*' : ' ';
   cbs = newtCheckbox(-1, -1, i18n("Use TLS"),
-		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.ssl);
+		    authInfo->enableLDAPS ? '*' : ' ', NULL, &ldap.tls);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.serverLabel = newtLabel(-1, -1, "");
@@ -570,7 +570,7 @@ int getPAMChoices(int back,
     authInfo->enableShadow = (shadow == '*');
 
     authInfo->enableLDAPAuth = (ldap.pam_ldap == '*');
-    authInfo->enableLDAPS = (ldap.ssl == '*');
+    authInfo->enableLDAPS = (ldap.tls == '*');
     setString(&authInfo->ldapServer, ldapServer);
     setString(&authInfo->ldapBaseDN, ldapBaseDN);
     authInfo->enableKerberos = (krb5.pam_krb5 == '*');
@@ -654,8 +654,8 @@ void usage(void) {
    
 			    "     --enableldap               enable ldap for user information by default\n"
 			    "     --disableldap              disable ldap for user information by default\n"
-			    "     --enableldapssl            enable use of TLS with ldap\n"
-			    "     --disableldapssl           disable use of TLS with ldap\n"
+			    "     --enableldaptls            enable use of TLS with ldap\n"
+			    "     --disableldaptls           disable use of TLS with ldap\n"
 			    "     --enableldapauth           enable ldap for authentication by default\n"
 			    "     --disableldapauth          disable ldap for authentication by default\n"
 			    "     --ldapserver <server>      default LDAP server\n"
@@ -750,8 +750,8 @@ int main(int argc, const char **argv)
 
     { "enableldap", '\0', POPT_ARG_NONE, &enableLDAP, 0, NULL, NULL},
     { "disableldap", '\0', POPT_ARG_NONE, &disableLDAP, 0, NULL, NULL},
-    { "enableldapssl", '\0', POPT_ARG_NONE, &enableLDAPS, 0, NULL, NULL},
-    { "disableldapssl", '\0', POPT_ARG_NONE, &disableLDAPS, 0, NULL, NULL},
+    { "enableldaptls", '\0', POPT_ARG_NONE, &enableLDAPS, 0, NULL, NULL},
+    { "disableldaptls", '\0', POPT_ARG_NONE, &disableLDAPS, 0, NULL, NULL},
     { "enableldapauth", '\0', POPT_ARG_NONE, &enableLDAPAuth, 0, NULL, NULL},
     { "disableldapauth", '\0', POPT_ARG_NONE, &disableLDAPAuth, 0, NULL, NULL},
     { "ldapserver", '\0', POPT_ARG_STRING, &ldapServer, 0, NULL, NULL},
