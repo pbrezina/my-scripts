@@ -89,6 +89,8 @@ class childWindow:
 		# checkbox: authInfo field
 		# option menu: authInfo field, list of choices, list of tuples
 		#              of value/sensitive widgets
+		self.empty_map = {
+		}
 		self.nis_map = {
 			"domain" : ("nisDomain", ""),
 			"server" : ("nisServer", ""),
@@ -122,7 +124,7 @@ class childWindow:
 			"realm" : ("smbRealm", ""),
 			"servers" : ("smbServers", ""),
 			"shell" : ("winbindTemplateShell", ["/bin/false"] + authconfig.getusershells(), ()),
-			"join" : ("winbindjoin_launch", "")
+			"join" : ("winbindjoin_maybe_launch", "")
 		}
 		self.launch_map = {
 			"confignis": ("nissettings", "nis_map"),
@@ -141,14 +143,33 @@ class childWindow:
 		widget.destroy()
 		return
 
-	def winbindjoin_launch(self, button, map, xml, parent):
+	def winbindjoin_maybe_launch(self, button, map, xml, parent):
 		backup = self.info.copy()
+		pristine = authconfig.read()
 		self.info_apply(map, xml)
+		if self.info.differs(pristine):
+			response = self.run_on_button(self, "joinsave",
+						      "empty_map", parent,
+						      (0, 1))
+			if (response == gtk.RESPONSE_CANCEL):
+				return
+			# Don't save.
+			if (response == 0):
+				self.info = backup
+			# Save.
+			if (response == 1):
+				self.apply()
+				backup = self.info
+		self.winbindjoin_launch(button, map, xml, parent)
+		self.info = backup
+
+	def winbindjoin_launch(self, button, map, xml, parent):
 		response = self.run_on_button(self, "winbindjoin",
 					      "winbindjoin_map", parent)
 		if (response == gtk.RESPONSE_OK):
 			self.info.join()
-		self.info = backup
+		self.info.joinUser = None
+		self.info.joinPassword = None
 
 	def info_apply(self, map, xml):
 		for entry in map.keys():
@@ -185,7 +206,7 @@ class childWindow:
 				dependent.set_sensitive(gtk.FALSE)
 
 	# Create a vbox or dialog using the file, and return it. */
-	def run_on_button(self, button, top, mapname, parent=None):
+	def run_on_button(self, button, top, mapname, parent=None, responses=()):
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
 				    top, "authconfig")
 		map = getattr(self, mapname)
@@ -247,7 +268,8 @@ class childWindow:
 		dialog.set_resizable(gtk.FALSE)
 		response = None
 		while ((response != gtk.RESPONSE_OK) and
-		       (response != gtk.RESPONSE_CANCEL)):
+		       (response != gtk.RESPONSE_CANCEL) and
+		       (response not in responses)):
 			response = dialog.run()
 		if (response == gtk.RESPONSE_OK):
 			self.info_apply(map, xml)
