@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-08 17:27-0400\n"
+"POT-Creation-Date: 2004-11-18 11:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,7 +174,7 @@ msgstr ""
 msgid "caching"
 msgstr ""
 
-#: authconfig.c:498 glade.strings.h:35
+#: authconfig.c:498 glade.strings.h:29
 msgid "Kerberos"
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr ""
 msgid "LDAP authentication"
 msgstr ""
 
-#: authconfig.c:506 glade.strings.h:16 glade.strings.h:31
+#: authconfig.c:506 glade.strings.h:16 glade.strings.h:33
 msgid "LDAP"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgstr ""
 msgid "Use Winbind"
 msgstr ""
 
-#: authconfig.c:577 glade.strings.h:44
+#: authconfig.c:577 authconfig.desktop.in.h:1 glade.strings.h:44
 msgid "Authentication"
 msgstr ""
 
@@ -263,7 +263,7 @@ msgstr ""
 #. * Add this file to your project's POTFILES.in.
 #. * DO NOT compile it as part of your application.
 #.
-#: authconfig.c:647 authconfig-gtk.py:291 glade.strings.h:7
+#: authconfig.c:647 authconfig-gtk.py:290 glade.strings.h:7
 msgid "Authentication Configuration"
 msgstr ""
 
@@ -593,7 +593,11 @@ msgstr ""
 msgid "%s: critical error writing %s/%s"
 msgstr ""
 
-#: authinfo.h:68
+#: authconfig.desktop.in.h:2
+msgid "Control how the system verifies users who attempt to log in"
+msgstr ""
+
+#: authinfo.h:69
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -618,15 +622,15 @@ msgid ""
 "medium networks."
 msgstr ""
 
-#: glade.strings.h:13 glade.strings.h:28
+#: glade.strings.h:13 glade.strings.h:30
 msgid "Enable _LDAP Support"
 msgstr ""
 
-#: glade.strings.h:14 glade.strings.h:29
+#: glade.strings.h:14 glade.strings.h:31
 msgid "Configure L_DAP..."
 msgstr ""
 
-#: glade.strings.h:15 glade.strings.h:30
+#: glade.strings.h:15 glade.strings.h:32
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -667,25 +671,25 @@ msgid ""
 msgstr ""
 
 #: glade.strings.h:26
-msgid "Use _Shadow Passwords"
-msgstr ""
-
-#: glade.strings.h:27
-msgid "Use _MD5 Passwords"
-msgstr ""
-
-#: glade.strings.h:32
 msgid "Enable _Kerberos Support"
 msgstr ""
 
-#: glade.strings.h:33
+#: glade.strings.h:27
 msgid "Configure K_erberos..."
 msgstr ""
 
-#: glade.strings.h:34
+#: glade.strings.h:28
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
+msgstr ""
+
+#: glade.strings.h:34
+msgid "Use _Shadow Passwords"
+msgstr ""
+
+#: glade.strings.h:35
+msgid "Use _MD5 Passwords"
 msgstr ""
 
 #: glade.strings.h:36
@@ -742,11 +746,11 @@ msgid "_KDCs"
 msgstr ""
 
 #: glade.strings.h:62
-msgid "Use DNS to resolve hosts to _realms"
+msgid "Use _DNS to resolve hosts to realms"
 msgstr ""
 
 #: glade.strings.h:63
-msgid "Use DNS to locate _KDCs for realms"
+msgid "Use DNS to _locate KDCs for realms"
 msgstr ""
 
 #: glade.strings.h:66
@@ -782,11 +786,11 @@ msgid "Winbind _Domain"
 msgstr ""
 
 #: glade.strings.h:80
-msgid "Winbind Domain _Controllers"
+msgid "Winbind Domain Co_ntrollers"
 msgstr ""
 
 #: glade.strings.h:82
-msgid "Template _Shell"
+msgid "_Template Shell"
 msgstr ""
 
 #: glade.strings.h:83
