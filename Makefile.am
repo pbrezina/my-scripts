@@ -1,4 +1,4 @@
-SUBDIRS = intl m4 po man
+SUBDIRS = intl m4  intl m4 po man
 
 PYTHONREV=@PYTHONREV@
 pythonsitedir = $(libdir)/python@PYTHONREV@/site-packages
@@ -61,3 +61,5 @@ authconfigmodule_so_SOURCES = \
 	shvar.c \
 	shvar.h
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
+
+EXTRA_DIST = config.rpath
