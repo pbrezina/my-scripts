@@ -47,7 +47,7 @@ depend:
 
 install:
 	catalogs='$(CATALOGS)'; \
-	for cat in $(CATALOGS); do \
+	for cat in $$catalogs; do \
 		l=`basename $$cat .mo`; \
 		mkdir -p $(INSTALLNLSDIR)/$$l/LC_MESSAGES; \
 		$(INSTALL) -m 644 $$cat $(INSTALLNLSDIR)/$$l/LC_MESSAGES/$(NLSPACKAGE).mo; \
