@@ -38,7 +38,12 @@ install-data-local: authconfig.desktop
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/redhat-config-auth
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
 	mkdir -p $(DESTDIR)/$(datadir)/applications
-	desktop-file-install --vendor redhat --add-category='X-Red-Hat-Base;Application;System' authconfig.desktop --dir=$(DESTDIR)$(datadir)/applications
+	desktop-file-install --vendor redhat \
+		--add-category=X-Red-Hat-Base \
+		--add-category=Application \
+		--add-category=System \
+		--dir=$(DESTDIR)$(datadir)/applications \
+		authconfig.desktop
 
 uninstall-local:
 	$(RM) $(DESTDIR)/$(bindir)/authconfig
