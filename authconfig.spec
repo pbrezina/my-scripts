@@ -23,8 +23,9 @@ automatically turn on NIS at system startup.
 make
 
 %install
+rm -rf $RPM_BUILD_ROOT
 %{makeinstall}
-touch %{_sysconfdir}/sysconfig/authconfig
+touch $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/authconfig
 %find_lang %{name}
 
 %clean
