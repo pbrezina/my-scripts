@@ -1602,12 +1602,10 @@ static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info
 						strncat(buf, " shadow",
 						sizeof(buf) - 1 - strlen(buf));
 					}
-#ifdef PAM_UNIX_NOT_BROKEN_ANYMORE
 					if(info->enableNIS) {
 						strncat(buf, " nis",
 						sizeof(buf) - 1 - strlen(buf));
 					}
-#endif
 					if(info->enableBigCrypt) {
 						strncat(buf, " bigcrypt",
 						sizeof(buf) - 1 - strlen(buf));
