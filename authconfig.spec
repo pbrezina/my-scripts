@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.19
+Version: 4.1.20
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -40,6 +40,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Mon Sep 24 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.20-1
+- make pam_localuser sufficient after pam_unix in account management, to allow
+  local users in even if network connections to the LDAP directory are down (the
+  network users should fail when pam_ldap returns a system error)
+
 * Thu Sep  6 2001 Nalin Dahyabhai <nalin@redhat.com> 4.1.19-1
 - translation refresh
 

@@ -1999,6 +1999,8 @@ static struct {
 #endif
 	{TRUE,  account, 	LOGIC_REQUIRED,
 	 "unix",		NULL},
+	{TRUE,  account, 	LOGIC_SUFFICIENT,
+	 "localuser",		NULL},
 	{FALSE, account,	LOGIC_REQUIRED,
 	 "ldap",		NULL},
 
