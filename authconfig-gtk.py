@@ -178,14 +178,14 @@ class childWindow:
 	def info_apply(self, map, xml):
 		for entry in map.keys():
 			widget = xml.get_widget(entry)
-			if hasattr(widget, "get_history"):
+			if type(widget) == type(gtk.OptionMenu()):
 				history = widget.get_history()
 				setattr(self.info, map[entry][0],
 					widget.get_data('option_list')[history])
-			elif hasattr(widget, "get_text"):
+			if type(widget) == type(gtk.Entry()):
 				setattr(self.info, map[entry][0],
 					widget.get_text())
-			elif hasattr(widget, "get_active"):
+			if type(widget) == type(gtk.CheckButton()):
 				setattr(self.info, map[entry][0],
 					widget.get_active())
 		self.info.update()
@@ -218,7 +218,7 @@ class childWindow:
 		self.info.update()
 		for entry in map.keys():
 			widget = xml.get_widget(entry)
-			if hasattr(widget, "set_history"):
+			if type(widget) == type(gtk.OptionMenu()):
 				widget = xml.get_widget(entry)
 				menu = gtk.Menu()
 				options = []
@@ -248,21 +248,21 @@ class childWindow:
 				widget.connect("changed", self.changeoption,
 					       map[entry], xml)
 				self.changeoption(widget, map[entry], xml)
-			elif hasattr(widget, "clicked"):
+			if type(widget) == type(gtk.Button()):
 				widget.connect("clicked",
 					       getattr(self, map[entry][0]),
 					       map,
 					       xml,
 					       dialog)
-			elif hasattr(widget, "set_text"):
+			if type(widget) == type(gtk.Entry()):
 				if getattr(self.info, map[entry][0]):
 					widget.set_text(getattr(self.info,
 								map[entry][0]))
 
-			elif hasattr(widget, "set_active"):
+			if type(widget) == type(gtk.CheckButton()):
 				widget.set_active(getattr(self.info,
 							  map[entry][0]))
-				if map[entry][4]:
+				if len(map[entry]) > 4:
 					button = xml.get_widget(map[entry][4])
 					button.set_sensitive(getattr(self.info,
 								     map[entry][0]))
