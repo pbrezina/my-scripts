@@ -445,6 +445,11 @@ getWinbindSettings(struct authInfoType *authInfo, gboolean next)
   const char *security[] = {
     "ads", "domain", NULL,
   };
+  const char *candidates[] = {
+    "/sbin/nologin", "/bin/sh", "/bin/bash", "/bin/tcsh", "/bin/ksh", "/bin/zsh",
+  };
+  const char *shells[6];
+  int i, j;
   struct formdata questions[] = {
     {rvalue, _("Security Model:"),
      G_STRUCT_OFFSET(struct authInfoType, smbSecurity), (char**) security},
@@ -454,7 +459,22 @@ getWinbindSettings(struct authInfoType *authInfo, gboolean next)
      G_STRUCT_OFFSET(struct authInfoType, smbServers)},
     {svalue, _("ADS Realm:"),
      G_STRUCT_OFFSET(struct authInfoType, smbRealm)},
+    {rvalue, _("Template Shell:"),
+     G_STRUCT_OFFSET(struct authInfoType, winbindTemplateShell), (char**) shells},
   };
+  i = 0;
+  if ((authInfo->winbindTemplateShell != NULL) &&
+      (strlen(authInfo->winbindTemplateShell) > 0)) {
+    shells[i++] = g_strdup(authInfo->winbindTemplateShell); /* XXX */
+  }
+  for (j = 0;
+       (j < G_N_ELEMENTS(candidates)) && (i < (G_N_ELEMENTS(shells) - 1));
+       j++) {
+    if (access(candidates[j], X_OK) == 0) {
+      shells[i++] = candidates[j];
+    }
+  }
+  shells[i] = NULL;
   return getGenericChoices(_("Winbind Settings"),
 			   G_N_ELEMENTS(questions), questions, authInfo,
 			   _("Join Domain"), maybeGetJoinSettings,
