@@ -40,6 +40,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Mon Aug 20 2001 Nalin Dahyabhai <nalin@redhat.com>
+- right justify labels, and remove padding
+
 * Fri Aug 17 2001 Nalin Dahyabhai <nalin@redhat.com>
 - update translations from CVS, fixing #51873
 

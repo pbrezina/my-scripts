@@ -214,8 +214,8 @@ static void
 nisToggle(newtComponent cb, void *data)
 {
   struct nis_cb *nis = (struct nis_cb*) data;
-  newtLabelSetText(nis->domainLabel, i18n("  Domain:"));
-  newtLabelSetText(nis->serverLabel, i18n("  Server:"));
+  newtLabelSetText(nis->domainLabel, i18n("Domain:"));
+  newtLabelSetText(nis->serverLabel, i18n("Server:"));
   if(nis->nss_nis == '*') {
     checkWarn(PATH_YPBIND, "NIS", "ypbind");
     newtEntrySetFlags(nis->domainEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -235,8 +235,8 @@ static void
 hesiodToggle(newtComponent cb, void *data)
 {
   struct hesiod_cb *hesiod = (struct hesiod_cb*) data;
-  newtLabelSetText(hesiod->lhsLabel, i18n("     LHS:"));
-  newtLabelSetText(hesiod->rhsLabel, i18n("     RHS:"));
+  newtLabelSetText(hesiod->lhsLabel, i18n("LHS:"));
+  newtLabelSetText(hesiod->rhsLabel, i18n("RHS:"));
   if(hesiod->nss_hesiod == '*') {
     newtEntrySetFlags(hesiod->lhsEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
 		      NEWT_FLAGS_RESET);
@@ -255,8 +255,8 @@ static void
 ldapToggle(newtComponent cb, void *data)
 {
   struct ldap_cb *ldap = (struct ldap_cb*) data;
-  newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
-  newtLabelSetText(ldap->baseDnLabel, i18n(" Base DN:"));
+  newtLabelSetText(ldap->serverLabel, i18n("Server:"));
+  newtLabelSetText(ldap->baseDnLabel, i18n("Base DN:"));
   if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*')) {
     if(ldap->nss_ldap == '*') {
       checkWarn(PATH_LIBNSS_LDAP, "LDAP", "nss_ldap");
@@ -289,9 +289,9 @@ static void
 krb5Toggle(newtComponent cb, void *data)
 {
   struct krb5_cb *krb5 = (struct krb5_cb*) data;
-  newtLabelSetText(krb5->realmLabel,  i18n("          Realm:"));
-  newtLabelSetText(krb5->kdcLabel,    i18n("            KDC:"));
-  newtLabelSetText(krb5->kadminLabel, i18n("   Admin Server:"));
+  newtLabelSetText(krb5->realmLabel,  i18n("Realm:"));
+  newtLabelSetText(krb5->kdcLabel,    i18n("KDC:"));
+  newtLabelSetText(krb5->kadminLabel, i18n("Admin Server:"));
   if(krb5->pam_krb5 == '*') {
     checkWarn(PATH_PAM_KRB5, "Kerberos", "pam_krb5");
     newtEntrySetFlags(krb5->realmEntry, NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN,
@@ -315,8 +315,8 @@ static void
 smbToggle(newtComponent cb, void *data)
 {
   struct smb_cb *smb = (struct smb_cb*) data;
-  newtLabelSetText(smb->workgroupLabel,  i18n("      Workgroup:"));
-  newtLabelSetText(smb->serverLabel,     i18n("        Servers:"));
+  newtLabelSetText(smb->workgroupLabel,  i18n("Workgroup:"));
+  newtLabelSetText(smb->serverLabel,     i18n("Servers:"));
   if(smb->pam_smb_auth == '*') {
     checkWarn(PATH_PAM_SMB, "SMB", "pam_smb");
     newtEntrySetFlags(smb->workgroupEntry,
@@ -368,12 +368,12 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtComponentAddCallback(cb, nisToggle, &nis);
 
   nis.domainLabel = newtLabel(-1, -1, "");
-  nis.domainEntry = newtEntry(-1, -1, authInfo->nisDomain, 35, &nisDomain,
+  nis.domainEntry = newtEntry(-1, -1, authInfo->nisDomain, 28, &nisDomain,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.domainEntry, entryFilter, NULL);
 
   nis.serverLabel = newtLabel(-1, -1, "");
-  nis.serverEntry = newtEntry(-1, -1, authInfo->nisServer, 35, &nisServer,
+  nis.serverEntry = newtEntry(-1, -1, authInfo->nisServer, 28, &nisServer,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.serverEntry, entryFilter, NULL);
 
@@ -404,12 +404,12 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
   ldap.serverLabel = newtLabel(-1, -1, "");
-  ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 35, &ldapServer,
+  ldap.serverEntry = newtEntry(-1, -1, authInfo->ldapServer, 28, &ldapServer,
 			       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
 
   ldap.baseDnLabel = newtLabel(-1, -1, "");
-  ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 35, &ldapBaseDN,
+  ldap.baseDnEntry = newtEntry(-1, -1, authInfo->ldapBaseDN, 28, &ldapBaseDN,
 			       NEWT_ENTRY_SCROLL);
 
   newtGridSetField(mechGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
@@ -438,12 +438,12 @@ getNSSChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtComponentAddCallback(cb, hesiodToggle, &hesiod);
 
   hesiod.lhsLabel = newtLabel(-1, -1, "");
-  hesiod.lhsEntry = newtEntry(-1, -1, authInfo->hesiodLHS, 35, &hesiodLHS,
+  hesiod.lhsEntry = newtEntry(-1, -1, authInfo->hesiodLHS, 28, &hesiodLHS,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
 
   hesiod.rhsLabel = newtLabel(-1, -1, "");
-  hesiod.rhsEntry = newtEntry(-1, -1, authInfo->hesiodRHS, 35, &hesiodRHS,
+  hesiod.rhsEntry = newtEntry(-1, -1, authInfo->hesiodRHS, 28, &hesiodRHS,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
 
