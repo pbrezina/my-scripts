@@ -1,0 +1,20 @@
+We split naming services from authentication services because they are
+not the same thing.  Any nsswitch module that provides a crypted-password
+field is enough to make pam_unix work, so nss_ldap + pam_unix can be used
+for authentication.  Problem being that this is not enough, and you can't
+assume nss_ldap implies that pam_ldap is the right thing to use, because
+the network might just as well be using Kerberos for authentication.
+
+Currently, we read and parse the "passwd" entry in /etc/nsswitch.conf to
+get the client configuration.  We always assume that "files" is enabled,
+and don't preserve order or control flags.  Depending on what is enabled,
+we write out entries in the file, adding modules for a particular service
+based on a priori knowledge of whether or not a particular module is
+applicable to the service.  Becase we control nis, hesiod, and ldap, we
+add and remove those always.  We preserve "db" and "nisplus" if we found
+them being used.
+
+PAM configuration only touches /etc/pam.d/system-auth.  We assume pam_unix
+first.  If enabled, pam_krb5 or pam_krb5afs comes next.  Then pam_ldap.
+For passwords, pam_cracklib goes first.  All services use pam_limits.  Not
+all can use pam_access, so we'll have to mod PAM configs as packages churn.

@@ -1,0 +1,24 @@
+* Per-service configuration, probably using a parallel array for each of the
+  services we care about.  Could get messy UI-wise.
+* Probing for NIS servers and domains using broadcast RPC (servers can be done
+  by calling the NULL function for the ypserv program, and Cristian says one of
+  the RPCs will let me query the domain the server supports).  To be added as a
+  button for one-time use.
+* Probing DNS for Kerberos and LDAP configuration.  To be added as a button
+  for one-time use.
+* Enabling DNS-based configuration at run-time for Kerberos.
+* Make it clear that no server set for NIS forces "use broadcast".  Probably
+  need to reintroduce that checkbox.
+* Make it clear that no server set for LDAP forces "use DNS".  Probably needs
+  a checkbox.
+* Go from hard-coded knowledge of whether or not a module is applicable to
+  a service to checking the module file itself for the appropriate function.
+* Glob /lib/libnss_{libc-version}*.so for a list of possible services, and
+  hide others?
+* Hide LDAP and Kerberos authentication if modules for PAM not already present?
+* An easy-to-parse way to dump what we think the current configuration is (for
+  anaconda to use if we want to add probing at install-time).
+* Add a "db" checkbox under nss configuration to improve speed on single
+  lookups, add it first in the list, and run "make -C /var/db" on exit.
+
+No way this stuff's going to fit onto two screens....
