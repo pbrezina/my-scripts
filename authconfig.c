@@ -72,18 +72,18 @@ gboolean toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
     domainStr = g_strdup_printf("/bin/domainname %s", nisDomain);
     system(domainStr);
     g_free(domainStr);
-    if(stat(PATH_YPBIND, &st) == 0) {
-      system("/sbin/chkconfig --add ypbind");
-      system("/sbin/chkconfig --level 345 ypbind on");
-      if (!nostart) {
-        system("/sbin/service ypbind restart");
-      }
-    }
     if(stat(PATH_PORTMAP, &st) == 0) {
       system("/sbin/chkconfig --add portmap");
       system("/sbin/chkconfig --level 345 portmap on");
       if (!nostart) {
         system("/sbin/service portmap restart");
+      }
+    }
+    if(stat(PATH_YPBIND, &st) == 0) {
+      system("/sbin/chkconfig --add ypbind");
+      system("/sbin/chkconfig --level 345 ypbind on");
+      if (!nostart) {
+        system("/sbin/service ypbind restart");
       }
     }
   } else {

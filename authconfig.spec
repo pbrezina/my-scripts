@@ -36,6 +36,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Tue Jun 27 2000 Nalin Dahyabhai <nalin@redhat.com>
 - add --disable options
+- try to not mess with ypbind if it isn't installed
 
 * Tue Jun 20 2000 Nalin Dahyabhai <nalin@redhat.com>
 - tweak chkconfig magic for ypbind to work better
