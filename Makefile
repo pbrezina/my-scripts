@@ -58,7 +58,7 @@ install:
 	done && test -z "$$fail"
 
 clean:
-	rm -f authconfig authconfig-gtk *.o
+	rm -f $(BINARIES) *.o
 	make -C po clean
 
 archive:
