@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.1
+Version: 4.1.2
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -36,6 +36,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Tue Feb  6 2001 Nalin Dahyabhai <nalin@redhat.com>
+- ignore on errors connecting to LDAP servers when doing LDAP account mgmt
+  (probably less secure, but it allows root to log in when a wrong server
+  name has been specified or the server is down)
+
 * Mon Feb  5 2001 Nalin Dahyabhai <nalin@redhat.com>
 - make account management in system-auth be an AND operation, but ignore
   user_unknown status for pam_ldap account management so that local root
