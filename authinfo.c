@@ -69,10 +69,10 @@ static void
 snipString(char *string)
 {
 	char *p;
-        p = strpbrk(string, "\r\n");
-        if (p != NULL) {
-            *p = '\0';
-        }
+	p = strpbrk(string, "\r\n");
+	if (p != NULL) {
+		*p = '\0';
+	}
 	p = string + strlen(string);
 	while ((p > string) && isspace(p[-1])) {
 		*p = '\0';
@@ -90,24 +90,6 @@ static gboolean
 is_empty(const char *string)
 {
 	return (string == NULL) || (strlen(string) == 0);
-}
-static gboolean
-changed(const char *old_value, const char *new_value, gboolean case_sensitive)
-{
-	if (is_empty(old_value) && non_empty(new_value)) {
-		return TRUE;
-	}
-	if (non_empty(old_value) && is_empty(new_value)) {
-		return TRUE;
-	}
-	if (is_empty(old_value) && is_empty(new_value)) {
-		return FALSE;
-	}
-	if (case_sensitive) {
-		return (strcmp(old_value, new_value) != 0);
-	} else {
-		return (g_ascii_strcasecmp(old_value, new_value) != 0);
-	}
 }
 
 /* Make a list presentable. */
@@ -855,7 +837,7 @@ authInfoReadPAM(struct authInfoType *authInfo)
 				continue;
 			}
 			if (strstr(module, "pam_winbind")) {
-				authInfo->enableWinbind = TRUE;
+				authInfo->enableWinbindAuth = TRUE;
 				continue;
 			}
 #ifdef LOCAL_POLICIES
@@ -1125,6 +1107,16 @@ authInfoReadPAM(struct authInfoType *authInfo)
 			}
 			g_free(tmp);
 		}
+		tmp = svGetValue(sv, "USEWINBINDAUTH");
+		if (tmp != NULL) {
+			if (strcmp(tmp, "yes") == 0) {
+				authInfo->enableWinbindAuth = TRUE;
+			}
+			if (strcmp(tmp, "no") == 0) {
+				authInfo->enableWinbindAuth = FALSE;
+			}
+			g_free(tmp);
+		}
 		svCloseFile(sv);
 		sv = NULL;
 	}
@@ -1233,6 +1225,7 @@ authInfoDiffers(struct authInfoType *a, struct authInfoType *b)
 		(a->enableLDAPbind != b->enableLDAPbind) ||
 		(a->enableOdbcbind != b->enableOdbcbind) ||
 		(a->enableWinbind != b->enableWinbind) ||
+		(a->enableWinbindAuth != b->enableWinbindAuth) ||
 		(a->enableWINS != b->enableWINS) ||
 
 		(a->enableAFS != b->enableAFS) ||
@@ -1265,7 +1258,6 @@ authInfoDiffers(struct authInfoType *a, struct authInfoType *b)
 void
 authInfoUpdate(struct authInfoType *info)
 {
-	const char *p;
 	cleanList(info->smbServers);
 	cleanList(info->kerberosKDC);
 	cleanList(info->kerberosAdminServer);
@@ -1279,120 +1271,6 @@ authInfoUpdate(struct authInfoType *info)
 				for (i = 0; info->smbRealm[i] != '\0'; i++) {
 					info->smbRealm[i] =
 						g_ascii_toupper(info->smbRealm[i]);
-				}
-			}
-			/* If we have changed a value, make the related setting
-			 * reflect the change. */
-			if (info->pvt != NULL) {
-				if (changed(info->pvt->oldKerberosRealm,
-					    info->kerberosRealm,
-					    TRUE)) {
-					if (info->smbRealm != NULL) {
-						g_free(info->smbRealm);
-					}
-					info->smbRealm =
-						g_strdup(info->kerberosRealm);
-				} else
-				if (changed(info->pvt->oldSmbRealm,
-					    info->smbRealm,
-					    FALSE)) {
-					if (info->kerberosRealm != NULL) {
-						g_free(info->kerberosRealm);
-					}
-					info->kerberosRealm =
-						g_strdup(info->smbRealm);
-				}
-				if (changed(info->pvt->oldKerberosAdminServer,
-					    info->kerberosAdminServer,
-					    TRUE) ||
-				    changed(info->pvt->oldKerberosKDC,
-					    info->kerberosKDC,
-					    TRUE)) {
-					if (info->smbServers != NULL) {
-						g_free(info->smbServers);
-					}
-					info->smbServers =
-						g_strdup_printf("%s,%s",
-						info->kerberosAdminServer ?
-						info->kerberosAdminServer : "",
-						info->kerberosKDC ?
-						info->kerberosKDC : "");
-				} else
-				if (changed(info->pvt->oldSmbServers,
-					    info->smbServers,
-					    TRUE)) {
-					if (info->kerberosKDC != NULL) {
-						g_free(info->kerberosKDC);
-					}
-					if (info->kerberosAdminServer != NULL) {
-						g_free(info->kerberosAdminServer);
-					}
-					p = strchr(info->smbServers, ',');
-					if (p != NULL) {
-						info->kerberosAdminServer =
-							g_strndup(info->smbServers,
-								  p - info->smbServers);
-						info->kerberosKDC =
-							g_strdup(p + 1);
-					} else {
-						info->kerberosAdminServer =
-							g_strdup(info->smbServers);
-						info->kerberosKDC =
-							g_strdup(info->smbServers);
-					}
-				}
-			}
-			/* Override smb.conf realm with krb5.conf realm. */
-			if (non_empty(info->kerberosRealm)) {
-				if (info->smbRealm != NULL) {
-					g_free(info->smbRealm);
-				}
-				info->smbRealm = g_strdup(info->kerberosRealm);
-			}
-			/* Default krb5.conf realm to smb.conf realm. */
-			if (is_empty(info->kerberosRealm)) {
-				if (non_empty(info->smbRealm)) {
-					if (info->kerberosRealm != NULL) {
-						g_free(info->kerberosRealm);
-					}
-					info->kerberosRealm =
-						g_strdup(info->smbRealm);
-				}
-			}
-			/* Override smb.conf servers with krb5.conf servers. */
-			if (non_empty(info->kerberosAdminServer) ||
-			    non_empty(info->kerberosKDC)) {
-				if (info->smbServers != NULL) {
-					g_free(info->smbServers);
-				}
-				info->smbServers = g_strdup_printf("%s,%s",
-					info->kerberosAdminServer ?
-					info->kerberosAdminServer : "",
-					info->kerberosKDC ?
-					info->kerberosKDC : "");
-			}
-			/* Default krb5.conf servers with smb.conf servers. */
-			if (is_empty(info->kerberosKDC)) {
-				if (non_empty(info->smbServers)) {
-					if (info->kerberosKDC != NULL) {
-						g_free(info->kerberosKDC);
-					}
-					if (info->kerberosAdminServer != NULL) {
-						g_free(info->kerberosAdminServer);
-					}
-					p = strchr(info->smbServers, ',');
-					if (p != NULL) {
-						info->kerberosAdminServer =
-							g_strndup(info->smbServers,
-								  p - info->smbServers);
-						info->kerberosKDC =
-							g_strdup(p + 1);
-					} else {
-						info->kerberosAdminServer =
-							g_strdup(info->smbServers);
-						info->kerberosKDC =
-							g_strdup(info->smbServers);
-					}
 				}
 			}
 		}
@@ -1563,7 +1441,7 @@ authInfoWriteCache(struct authInfoType *authInfo)
 		system("/sbin/chkconfig --add nscd");
 		system("/sbin/chkconfig --level 345 nscd on");
 	} else {
-		system("/sbin/chkconfig --del nscd");
+		system("/sbin/chkconfig --level 345 nscd off");
 	}
 	return TRUE;
 }
@@ -2107,11 +1985,12 @@ authInfoWriteLibuser(struct authInfoType *info)
 }
 
 static void
-write_kdc(char *obuf, struct authInfoType *info)
+write_kdc(char *obuf, char *list)
 {
-	char *p = info->kerberosKDC;
-	if (is_empty(p))
+	char *p = list;
+	if (is_empty(p)) {
 		return;
+	}
 	while (strchr(p, ',')) {
 		strcat(obuf, "  kdc = ");
 		strncat(obuf, p, strchr(p, ',') - p);
@@ -2124,11 +2003,12 @@ write_kdc(char *obuf, struct authInfoType *info)
 }
 
 static void
-write_admin_server(char *obuf, struct authInfoType *info)
+write_admin_server(char *obuf, char *adminserver)
 {
-	char *p = info->kerberosAdminServer;
-	if (is_empty(p))
+	char *p = adminserver;
+	if (is_empty(p)) {
 		return;
+	}
 	while (strchr(p, ',')) {
 		strcat(obuf, "  admin_server = ");
 		strncat(obuf, p, strchr(p, ',') - p);
@@ -2136,20 +2016,22 @@ write_admin_server(char *obuf, struct authInfoType *info)
 		strcat(obuf, "\n");
 	}
 	strcat(obuf, "  admin_server = ");
-		strcat(obuf, p);
+	strcat(obuf, p);
 	strcat(obuf, "\n");
 }
 
 static void
-write_realm(char *obuf, struct authInfoType *info)
+write_realm(char *obuf, char *realm, char *kdclist, char *adminservers)
 {
-	strcat(obuf, " ");
-	strcat(obuf, info->kerberosRealm);
-	strcat(obuf, " = {\n");
-	write_kdc(obuf, info);
-	write_admin_server(obuf, info);
-	strcat(obuf, " }\n");
-	strcat(obuf, "\n");
+	if (non_empty(realm)) {
+		strcat(obuf, " ");
+		strcat(obuf, realm);
+		strcat(obuf, " = {\n");
+		write_kdc(obuf, kdclist);
+		write_admin_server(obuf, adminservers);
+		strcat(obuf, " }\n");
+		strcat(obuf, "\n");
+	}
 }
 
 static int
@@ -2173,6 +2055,7 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	struct stat st;
 	struct flock lock;
 	gboolean wroterealm = FALSE, wrotekdc = FALSE, wroteadmin = FALSE;
+	gboolean wrotesmbrealm = FALSE, wrotesmbkdc = FALSE;
 	gboolean wroterealms = FALSE, wrotelibdefaults = FALSE,
 		 wroterealms2 = FALSE, wrotelibdefaults2 = FALSE;
 	gboolean wrotedefaultrealm = FALSE, wrotednsrealm = FALSE,
@@ -2204,8 +2087,11 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	l = strlen("[libdefaults]\n default_realm = \n\n[realm]\n  = { \n }\n");
 	l += strlen(" dns_lookup_realm = false\n") * 2;
 	l += info->kerberosRealm ? strlen(info->kerberosRealm) * 2 : 1;
+	l += info->smbRealm ? strlen(info->smbRealm) * 2 : 1;
 	l += strlen("  kdc = \n\n") * (comma_count(info->kerberosKDC) + 1);
+	l += strlen("  kdc = \n\n") * (comma_count(info->smbServers) + 1);
 	l += info->kerberosKDC ? strlen(info->kerberosKDC) * 2 : 0;
+	l += info->smbServers ? strlen(info->smbServers) * 2 : 0;
 	l += strlen("  admin_server = \n\n") *
 	     (comma_count(info->kerberosAdminServer) + 1);
 	l += info->kerberosAdminServer ?
@@ -2225,15 +2111,33 @@ authInfoWriteKerberos5(struct authInfoType *info)
 		/* If this is the "kdc" in our realm, replace it with
 		 * the values we now have. */
 		if ((section != NULL) &&
-		   (strcmp(section, "realms") == 0) &&
-		   (subsection != NULL) &&
-		   (non_empty(info->kerberosRealm)) &&
-		   (strcmp(subsection, info->kerberosRealm) == 0) &&
-		   (strncmp(p, "kdc", 3) == 0)) {
+		    (strcmp(section, "realms") == 0) &&
+		    (subsection != NULL) &&
+		    (non_empty(info->kerberosRealm)) &&
+		    (strcmp(subsection, info->kerberosRealm) == 0) &&
+		    (strncmp(p, "kdc", 3) == 0)) {
 			if (!wrotekdc)
 			if (info->kerberosKDC) {
-				write_kdc(obuf, info);
+				write_kdc(obuf, info->kerberosKDC);
 				wrotekdc = TRUE;
+			}
+			p = q;
+			continue;
+		}
+		/* If this is the "kdc" in the SMB realm, replace it with
+		 * the values we now have. */
+		if ((section != NULL) &&
+		    (strcmp(section, "realms") == 0) &&
+		    (subsection != NULL) &&
+		    (non_empty(info->smbSecurity)) &&
+		    (strcmp(info->smbSecurity, "ads") == 0) &&
+		    (non_empty(info->smbRealm)) &&
+		    (strcmp(subsection, info->smbRealm) == 0) &&
+		    (strncmp(p, "kdc", 3) == 0)) {
+			if (!wrotesmbkdc)
+			if (info->smbServers) {
+				write_kdc(obuf, info->smbServers);
+				wrotesmbkdc = TRUE;
 			}
 			p = q;
 			continue;
@@ -2249,7 +2153,8 @@ authInfoWriteKerberos5(struct authInfoType *info)
 		   (strncmp(p, "admin_server", 3) == 0)) {
 			if (!wroteadmin)
 			if (info->kerberosAdminServer) {
-				write_admin_server(obuf, info);
+				write_admin_server(obuf,
+						   info->kerberosAdminServer);
 				wroteadmin = TRUE;
 			}
 			p = q;
@@ -2273,28 +2178,43 @@ authInfoWriteKerberos5(struct authInfoType *info)
 			} else {
 				/* If this is the section for our realm, mark
 				 * that. */
-				if (strcmp(subsection,info->kerberosRealm) == 0){
+				if (non_empty(info->kerberosRealm))
+				if (strcmp(subsection,
+					   info->kerberosRealm) == 0){
 					wroterealm = TRUE;
+				}
+				if (non_empty(info->smbRealm))
+				if (strcmp(subsection,
+					   info->smbRealm) == 0){
+					wrotesmbrealm = TRUE;
 				}
 			}
 		}
 
 		/* If it's the end of a subsection, mark that. */
 		if ((section != NULL) &&
-		   (strcmp(section, "realms") == 0) &&
-		   (subsection != NULL) &&
-		   (strncmp(p, "}", 1) == 0)) {
+		    (strcmp(section, "realms") == 0) &&
+		    (subsection != NULL) &&
+		    (strncmp(p, "}", 1) == 0)) {
 			/* If it's the right section of realms, write out
 			 * info we haven't already written. */
 			if (non_empty(info->kerberosRealm) &&
 			    (strcmp(subsection, info->kerberosRealm) == 0)) {
 				if (!wrotekdc) {
-					write_kdc(obuf, info);
+					write_kdc(obuf, info->kerberosKDC);
 					wrotekdc = TRUE;
 				}
 				if (!wroteadmin) {
-					write_admin_server(obuf, info);
+					write_admin_server(obuf,
+						info->kerberosAdminServer);
 					wroteadmin = TRUE;
+				}
+			}
+			if (non_empty(info->smbRealm) &&
+			    (strcmp(subsection, info->smbRealm) == 0)) {
+				if (!wrotesmbkdc) {
+					write_kdc(obuf, info->smbServers);
+					wrotesmbkdc = TRUE;
 				}
 			}
 			if (subsection) {
@@ -2355,8 +2275,20 @@ authInfoWriteKerberos5(struct authInfoType *info)
 			    (strcmp(section, "realms") == 0) &&
 			    (non_empty(info->kerberosRealm)) &&
 			    !wroterealm) {
-				write_realm(obuf, info);
+				write_realm(obuf, info->kerberosRealm,
+					    info->kerberosKDC,
+					    info->kerberosAdminServer);
 				wroterealm = TRUE;
+			}
+			/* If the previous section was "realms", and we didn't
+			 * see the SMB realm, write it out. */
+			if ((section != NULL) &&
+			    (strcmp(section, "realms") == 0) &&
+			    (non_empty(info->smbRealm)) &&
+			    !wrotesmbrealm) {
+				write_realm(obuf, info->smbRealm,
+					    info->smbServers, NULL);
+				wrotesmbrealm = TRUE;
 			}
 			/* If the previous section was "libdefaults", and we
 			 * didn't see a "default_realm", write it out. */
@@ -2431,11 +2363,14 @@ authInfoWriteKerberos5(struct authInfoType *info)
 	}
 
 	/* If we haven't encountered a realms section yet... */
-	if (!wroterealms2 && non_empty(info->kerberosRealm)) {
+	if (!wroterealms2 &&
+	    (non_empty(info->kerberosRealm) || non_empty(info->smbRealm))) {
 		if (!wroterealms) {
 			strcat(obuf, "[realms]\n");
 		}
-		write_realm(obuf, info);
+		write_realm(obuf, info->kerberosRealm, info->kerberosKDC,
+			    info->kerberosAdminServer);
+		write_realm(obuf, info->smbRealm, info->smbServers, NULL);
 	}
 
 	/* Write it out and close it. */
@@ -3700,7 +3635,7 @@ static struct {
  * pam_ldap wouldn't work in the nss_files + pam_ldap case, but we can use
  * pam_succeed_if to short-circuit any network checks for *system* accounts
  * without allowing actual users in who should be legitimately denied by
- * LDAP.  
+ * LDAP.
  * Because we'd now be ending the stack with sufficient modules, and PAM's
  * behavior isn't defined if none of them return success, we add a
  * successful call to pam_permit at the end as a requirement. */
@@ -3924,7 +3859,7 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		    (strcmp("passwdqc", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableSMB &&
 		    (strcmp("smb_auth", standard_pam_modules[i].name) == 0)) ||
-		   (authInfo->enableWinbind &&
+		   (authInfo->enableWinbindAuth &&
 		    (strcmp("winbind", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);
 		}
@@ -3999,6 +3934,8 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 			   authInfo->enableShadow ? "yes" : "no");
 		svSetValue(sv, "USESMBAUTH",
 			   authInfo->enableSMB ? "yes" : "no");
+		svSetValue(sv, "USEWINBINDAUTH",
+			   authInfo->enableWinbindAuth ? "yes" : "no");
 		svWriteFile(sv, 0644);
 		svCloseFile(sv);
 	}
@@ -4044,7 +3981,7 @@ authInfoWrite(struct authInfoType *authInfo)
 	if (authInfo->enableLDAP)
 		ret = ret && authInfoWriteLDAP(authInfo);
 	if (authInfo->enableKerberos ||
-	    (authInfo->enableWinbind &&
+	    (authInfo->enableWinbindAuth &&
 	     non_empty(authInfo->smbSecurity) &&
 	     (strcmp(authInfo->smbSecurity, "ads") == 0)))
 		ret = ret && authInfoWriteKerberos(authInfo);
@@ -4052,7 +3989,7 @@ authInfoWrite(struct authInfoType *authInfo)
 		ret = ret && authInfoWriteNIS(authInfo);
 	if (authInfo->enableSMB)
 		ret = ret && authInfoWriteSMB(authInfo);
-	if (authInfo->enableWinbind)
+	if (authInfo->enableWinbind || authInfo->enableWinbindAuth)
 		ret = ret && authInfoWriteWinbind(authInfo);
 	ret = ret && authInfoWriteNSS(authInfo);
 	ret = ret && authInfoWritePAM(authInfo);
@@ -4319,7 +4256,7 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 					system("/sbin/service ypbind stop");
 				}
 			}
-			system("/sbin/chkconfig --del ypbind");
+			system("/sbin/chkconfig --level 345 ypbind off");
 		}
 	}
 
@@ -4329,15 +4266,15 @@ toggleNisService(gboolean enableNis, char *nisDomain, gboolean nostart)
 static gboolean
 toggleShadow(struct authInfoType *authInfo)
 {
-  /* now, do file manipulation on the password files themselves. */
-  if (authInfo->enableShadow) {
-    system("/usr/sbin/pwconv");
-    system("/usr/sbin/grpconv");
-  } else {
-    system("/usr/sbin/pwunconv");
-    system("/usr/sbin/grpunconv");
-  }
-  return TRUE;
+	/* now, do file manipulation on the password files themselves. */
+	if (authInfo->enableShadow) {
+		system("/usr/sbin/pwconv");
+		system("/usr/sbin/grpconv");
+	} else {
+		system("/usr/sbin/pwunconv");
+		system("/usr/sbin/grpunconv");
+	}
+	return TRUE;
 }
 
 static gboolean
@@ -4360,7 +4297,7 @@ toggleWinbindService(gboolean enableWinbind, gboolean nostart)
 					system("/sbin/service winbind stop");
 				}
 			}
-			system("/sbin/chkconfig --del winbind");
+			system("/sbin/chkconfig --level 345 winbind off");
 		}
 	}
 
@@ -4398,7 +4335,7 @@ toggleSplatbindService(gboolean enable, const char *path, const char *pidfile,
 				}
 			}
 			snprintf(buf, sizeof(buf),
-				 "/sbin/chkconfig --del %s", name);
+				 "/sbin/chkconfig --level 345 %s off", name);
 			system(buf);
 		}
 	}
@@ -4443,6 +4380,20 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->enableNIS3 ? "enabled" : "disabled");
     printf("nss_winbind is %s\n",
 	   authInfo->enableWinbind ? "enabled" : "disabled");
+    printf(" SMB workgroup = \"%s\"\n",
+	   authInfo->smbWorkgroup ?: "");
+    printf(" SMB servers = \"%s\"\n",
+	   authInfo->smbServers ?: "");
+    printf(" SMB security = \"%s\"\n",
+	   authInfo->smbSecurity ?: "");
+    printf(" SMB realm = \"%s\"\n",
+	   authInfo->smbRealm ?: "");
+    printf(" Winbind template shell = \"%s\"\n",
+	   authInfo->winbindTemplateShell ?: "");
+    printf(" SMB idmap uid = \"%s\"\n",
+	   authInfo->smbIdmapUid ?: "");
+    printf(" SMB idmap gid = \"%s\"\n",
+	   authInfo->smbIdmapGid ?: "");
     printf("nss_wins is %s\n",
 	   authInfo->enableWINS ? "enabled" : "disabled");
 #ifdef EXPERIMENTAL
@@ -4490,20 +4441,18 @@ authInfoPrint(struct authInfoType *authInfo)
 	   authInfo->enableSMB ? "enabled" : "disabled");
     printf(" SMB workgroup = \"%s\"\n",
 	   authInfo->smbWorkgroup ?: "");
-    printf(" SMB realm = \"%s\"\n",
-	   authInfo->smbRealm ?: "");
     printf(" SMB servers = \"%s\"\n",
 	   authInfo->smbServers ?: "");
     printf("pam_winbind is %s\n",
-	   authInfo->enableWinbind ? "enabled" : "disabled");
+	   authInfo->enableWinbindAuth ? "enabled" : "disabled");
+    printf(" SMB workgroup = \"%s\"\n",
+	   authInfo->smbWorkgroup ?: "");
+    printf(" SMB servers = \"%s\"\n",
+	   authInfo->smbServers ?: "");
     printf(" SMB security = \"%s\"\n",
 	   authInfo->smbSecurity ?: "");
-    printf(" SMB idmap uid = \"%s\"\n",
-	   authInfo->smbIdmapUid ?: "");
-    printf(" SMB idmap gid = \"%s\"\n",
-	   authInfo->smbIdmapGid ?: "");
-    printf(" Winbind template shell = \"%s\"\n",
-	   authInfo->winbindTemplateShell ?: "");
+    printf(" SMB realm = \"%s\"\n",
+	   authInfo->smbRealm ?: "");
     printf("pam_cracklib is %s (%s)\n",
 	   authInfo->enableCracklib ? "enabled" : "disabled",
 	   authInfo->cracklibArgs ? authInfo->cracklibArgs : "");
@@ -4514,173 +4463,179 @@ authInfoPrint(struct authInfoType *authInfo)
 
 static void
 feedFork(const char *command, gboolean echo,
-         const char *query, const char *response)
+	 const char *query, const char *response)
 {
-    pid_t pid, child;
-    int master, status, i;
-    struct timeval tv;
-    GString *str;
-    fd_set fds;
-    char c;
-    gboolean eof;
+	pid_t pid, child;
+	int master, status, i;
+	struct timeval tv;
+	GString *str;
+	fd_set fds;
+	char c;
+	gboolean eof;
 
-    master = -1;
-    pid = forkpty(&master, NULL, NULL, NULL);
-    switch (pid) {
-    case -1:
-        /* uh, hide */
-        break;
-    case 0:
-        /* child */
-	system(command);
-	_exit(0);
-	break;
-    default:
-        str = g_string_new("");
-	i = fcntl(master, F_GETFL);
-	if (i != -1) {
-	    fcntl(master, F_SETFL, i & ~O_NONBLOCK);
-	}
-	eof = FALSE;
-	while (!eof) {
-	    FD_ZERO(&fds);
-	    FD_SET(master, &fds);
-	    tv.tv_sec = 600;
-	    tv.tv_usec = 0;
-	    if ((i = select(master + 1, &fds, NULL, &fds, &tv)) != 1) {
-	        if (i == -1) {
-	            perror("select");
-		}
-	        kill(pid, SIGINT);
-	        break;
-	    }
-	    child = waitpid(pid, &status, WNOHANG);
-            switch (child) {
-	    case -1:
-                perror("waitpid");
-                break;
-	    case 0:
-                break;
-	    default:
-	        g_assert(child == pid);
-	        close(master);
-		eof = TRUE;
-                continue;
-                break;
-            }
-	    switch (read(master, &c, sizeof(c))) {
-	    case -1:
-	        switch (errno) {
-		case EINTR:
-		case EAGAIN:
-		    break;
-                case EIO:
-	            close(master);
-		    eof = TRUE;
-		    break;
-		default:
-		    perror("read");
-	            close(master);
-		    eof = TRUE;
-		    break;
-		}
+	master = -1;
+	pid = forkpty(&master, NULL, NULL, NULL);
+	switch (pid) {
+	case -1:
+		/* uh, hide */
 		break;
-	    case 0:
-	        close(master);
-		eof = TRUE;
+	case 0:
+		/* child */
+		system(command);
+		_exit(0);
 		break;
-	    case 1:
-	        g_string_append_c(str, c);
-	        if (echo) {
-		    fprintf(stderr, "%c", c);
-	        }
-	        if (strstr(str->str, query) != NULL) {
-	            write(master, response, strlen(response));
-	            write(master, "\r\n", 2);
-		    fsync(master);
-		    g_string_truncate(str, 0);
-		    fprintf(stderr, "<...>\n");
-	        }
-	        break;
-            default:
-	        break;
-	    }
+	default:
+		str = g_string_new("");
+		i = fcntl(master, F_GETFL);
+		if (i != -1) {
+			fcntl(master, F_SETFL, i & ~O_NONBLOCK);
+		}
+		eof = FALSE;
+		while (!eof) {
+			FD_ZERO(&fds);
+			FD_SET(master, &fds);
+			tv.tv_sec = 600;
+			tv.tv_usec = 0;
+			if ((i = select(master + 1, &fds, NULL, &fds,
+					&tv)) != 1) {
+				if (i == -1) {
+					perror("select");
+				}
+				kill(pid, SIGINT);
+				break;
+			}
+			child = waitpid(pid, &status, WNOHANG);
+			switch (child) {
+			case -1:
+				perror("waitpid");
+				break;
+			case 0:
+				break;
+			default:
+				g_assert(child == pid);
+				close(master);
+				eof = TRUE;
+				continue;
+				break;
+			}
+			switch (read(master, &c, sizeof(c))) {
+			case -1:
+				switch (errno) {
+				case EINTR:
+				case EAGAIN:
+					break;
+				case EIO:
+					close(master);
+					eof = TRUE;
+					break;
+				default:
+					perror("read");
+					close(master);
+					eof = TRUE;
+					break;
+				}
+				break;
+			case 0:
+				close(master);
+				eof = TRUE;
+				break;
+			case 1:
+				g_string_append_c(str, c);
+				if (echo) {
+					fprintf(stderr, "%c", c);
+				}
+				if (strstr(str->str, query) != NULL) {
+					write(master, response, strlen(response));
+					write(master, "\r\n", 2);
+					fsync(master);
+					g_string_truncate(str, 0);
+					fprintf(stderr, "<...>\n");
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		g_string_free(str, TRUE);
+		break;
 	}
-        g_string_free(str, TRUE);
-    }
 }
 
 void
 authInfoJoin(struct authInfoType *authInfo, gboolean echo)
 {
-    if (authInfo->enableWinbind && (authInfo->joinUser != NULL)) {
-        const char *domain, *server, *protocol;
-        char *cmd, *p;
-        protocol = "ads";
-        server = NULL;
-        domain = NULL;
-        if (non_empty(authInfo->smbWorkgroup)) {
-            domain = authInfo->smbWorkgroup;
-        }
-        if (non_empty(authInfo->smbSecurity)) {
-            protocol = authInfo->smbSecurity;
-        }
-        if (non_empty(authInfo->smbServers)) {
-            server = g_strdup(authInfo->smbServers);
-            p = strpbrk(server, ", \t");
-            if (p != NULL) {
-                *p = '\0';
-            }
-        }
-        if (is_empty(protocol)) {
-	    return;
+	if ((authInfo->enableWinbind || authInfo->enableWinbindAuth) &&
+	    (authInfo->joinUser != NULL)) {
+		const char *domain, *server, *protocol;
+		char *cmd, *p;
+		protocol = "ads";
+		server = NULL;
+		domain = NULL;
+		if (non_empty(authInfo->smbWorkgroup)) {
+			domain = authInfo->smbWorkgroup;
+		}
+		if (non_empty(authInfo->smbSecurity)) {
+			protocol = authInfo->smbSecurity;
+		}
+		if (non_empty(authInfo->smbServers)) {
+			server = g_strdup(authInfo->smbServers);
+			p = strpbrk(server, ", \t");
+			if (p != NULL) {
+				*p = '\0';
+			}
+		}
+		if (is_empty(protocol)) {
+			return;
+		}
+		if ((strcmp(protocol, "ads") != 0) &&
+		    (strcmp(protocol, "domain") != 0)) {
+			/* Not needed -- "joining" is meaningless for other
+			 * models. */
+			return;
+		}
+		cmd = g_strdup_printf("/usr/bin/net %s %s %s %s %s -U %s",
+				      "join",
+				      domain ? "-w" : "", domain ? domain : "",
+				      server ? "-S" : "", server ? server : "",
+				      authInfo->joinUser);
+		p = cmd;
+		while ((p = strstr(p, "  ")) != NULL) {
+			memmove(p, p + 1, strlen(p));
+		}
+		if (echo) {
+			fprintf(stderr, "[%s]\n", cmd);
+		}
+		if (authInfo->joinPassword != NULL) {
+			feedFork(cmd, echo, "sword:", authInfo->joinPassword);
+		} else {
+			system(cmd);
+		}
+		g_free(cmd);
 	}
-	if ((strcmp(protocol, "ads") != 0) &&
-	    (strcmp(protocol, "domain") != 0)) {
-	    /* Not needed -- "joining" is meaningless for other models. */
-	    return;
-	}
-        cmd = g_strdup_printf("/usr/bin/net %s %s %s %s %s -U %s",
-                              "join",
-                              domain ? "-w" : "", domain ? domain : "",
-                              server ? "-S" : "", server ? server : "",
-                              authInfo->joinUser);
-        p = cmd;
-	while ((p = strstr(p, "  ")) != NULL) {
-	    memmove(p, p + 1, strlen(p));
-	}
-        if (echo) {
-	    fprintf(stderr, "[%s]\n", cmd);
-        }
-        if (authInfo->joinPassword != NULL) {
-            feedFork(cmd, echo, "sword:", authInfo->joinPassword);
-        } else {
-            system(cmd);
-        }
-        g_free(cmd);
-    }
 }
 
 void
 authInfoPost(struct authInfoType *authInfo, int nostart)
 {
-    toggleShadow(authInfo);
-    toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
-    toggleWinbindService(authInfo->enableWinbind, nostart);
-    toggleSplatbindService(authInfo->enableDBbind,
-			   PATH_DBBIND, PATH_DBBIND_PID,
-			   "dbbind", nostart);
-    toggleSplatbindService(authInfo->enableDBIbind,
-			   PATH_DBIBIND, PATH_DBIBIND_PID,
-			   "dbibind", nostart);
-    toggleSplatbindService(authInfo->enableHesiodbind,
-			   PATH_HESIODBIND, PATH_HESIODBIND_PID,
-			   "hesiodbind", nostart);
-    toggleSplatbindService(authInfo->enableLDAPbind,
-			   PATH_LDAPBIND, PATH_LDAPBIND_PID,
-			   "ldapbind", nostart);
-    toggleSplatbindService(authInfo->enableOdbcbind,
-			   PATH_ODBCBIND, PATH_ODBCBIND_PID,
-			   "odbcbind", nostart);
-    toggleCachingService(authInfo->enableCache, nostart);
+	toggleShadow(authInfo);
+	toggleNisService(authInfo->enableNIS, authInfo->nisDomain, nostart);
+	toggleWinbindService(authInfo->enableWinbind ||
+			     authInfo->enableWinbindAuth,
+			     nostart);
+	toggleSplatbindService(authInfo->enableDBbind,
+			       PATH_DBBIND, PATH_DBBIND_PID,
+			       "dbbind", nostart);
+	toggleSplatbindService(authInfo->enableDBIbind,
+			       PATH_DBIBIND, PATH_DBIBIND_PID,
+			       "dbibind", nostart);
+	toggleSplatbindService(authInfo->enableHesiodbind,
+			       PATH_HESIODBIND, PATH_HESIODBIND_PID,
+			       "hesiodbind", nostart);
+	toggleSplatbindService(authInfo->enableLDAPbind,
+			       PATH_LDAPBIND, PATH_LDAPBIND_PID,
+			       "ldapbind", nostart);
+	toggleSplatbindService(authInfo->enableOdbcbind,
+			       PATH_ODBCBIND, PATH_ODBCBIND_PID,
+			       "odbcbind", nostart);
+	toggleCachingService(authInfo->enableCache, nostart);
 }
