@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.6.2
+Version: 4.6.3
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -74,6 +74,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue May 11 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.3-1
+- omit the "ads" or "rpc" when calling "net join", Samba's smarter now (#122802)
+- properly warn about missing "net" (samba-client) and libnss_winbind and
+  pam_winbind (samba-common) in text mode (#122802)
+
 * Wed Apr 21 2004 Nalin Dahyabhai <nalin@redhat.com> 4.6.2-1
 - learn all about pam_passwdqc
 - preserve arguments to pam_cracklib and pam_passwdqc

@@ -4619,11 +4619,10 @@ authInfoJoin(struct authInfoType *authInfo, gboolean echo)
 	}
 	if ((strcmp(protocol, "ads") != 0) &&
 	    (strcmp(protocol, "domain") != 0)) {
-	    /* Not needed. */
+	    /* Not needed -- "joining" is meaningless for other models. */
 	    return;
 	}
-        cmd = g_strdup_printf("/usr/bin/net %s %s %s %s %s %s -U %s",
-                              protocol,
+        cmd = g_strdup_printf("/usr/bin/net %s %s %s %s %s -U %s",
                               "join",
                               domain ? "-w" : "", domain ? domain : "",
                               server ? "-S" : "", server ? server : "",

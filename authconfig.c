@@ -560,12 +560,12 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 				    NULL};
   struct warntype warnWinbindAuth = {PATH_PAM_WINBIND,
 				     _("Winbind authentication"),
-				     "samba-client",
+				     "samba-common",
 				     &warnWinbindNet};
   struct warntype warnWinbind = {PATH_LIBNSS_WINBIND,
 				 _("Winbind"),
-				 "samba-client",
-				 &warnWinbindNet};
+				 "samba-common",
+				 &warnWinbindAuth};
   struct {
     newtComponent a, b;
   } matched[] = {
