@@ -36,6 +36,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Tue Jun 20 2000 Nalin Dahyabhai <nalin@redhat.com>
 - tweak chkconfig magic for ypbind to work better
+- turn on portmap when ypbind is enabled
 
 * Mon Jun 19 2000 Nalin Dahyabhai <nalin@redhat.com>
 - only do chkconfig magic on ypbind if the ypbind init script exists

@@ -13,6 +13,7 @@
 #define AUTH_MODULE_DIR "/lib/security"
 #define NSS_DEFAULT "files nisplus nis"
 
+#define PATH_PORTMAP "/sbin/portmap"
 #define PATH_YPBIND "/sbin/ypbind"
 #define PATH_LIBNSS_LDAP "/lib/libnss_ldap.so.2"
 #define PATH_LIBNSS_NIS "/lib/libnss_nis.so.2"
