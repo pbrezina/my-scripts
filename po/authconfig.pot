@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-11-29 23:03-0500\n"
+"POT-Creation-Date: 2000-12-07 19:12-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,104 +14,108 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 
-#: ../authconfig.c:147
+#: ../authconfig.c:148
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
 
-#: ../authconfig.c:151
+#: ../authconfig.c:152
 msgid "Warning"
 msgstr ""
 
-#: ../authconfig.c:151 ../authconfig.c:509 ../authconfig.c:522
+#: ../authconfig.c:152 ../authconfig.c:535 ../authconfig.c:548
 msgid "Ok"
 msgstr ""
 
-#: ../authconfig.c:159
+#: ../authconfig.c:160
 msgid "  Domain:"
 msgstr ""
 
-#: ../authconfig.c:160 ../authconfig.c:198
+#: ../authconfig.c:161 ../authconfig.c:199
 msgid "  Server:"
 msgstr ""
 
-#: ../authconfig.c:179
+#: ../authconfig.c:180
 msgid "     LHS:"
 msgstr ""
 
-#: ../authconfig.c:180
+#: ../authconfig.c:181
 msgid "     RHS:"
 msgstr ""
 
-#: ../authconfig.c:199
+#: ../authconfig.c:200
 msgid " Base DN:"
 msgstr ""
 
-#: ../authconfig.c:222
+#: ../authconfig.c:223
 msgid "          Realm:"
 msgstr ""
 
-#: ../authconfig.c:223
+#: ../authconfig.c:224
 msgid "            KDC:"
 msgstr ""
 
-#: ../authconfig.c:224
+#: ../authconfig.c:225
 msgid "   Admin Server:"
 msgstr ""
 
 #. NSS modules: NIS.
-#: ../authconfig.c:263
+#: ../authconfig.c:264
 msgid "Use NIS"
 msgstr ""
 
-#: ../authconfig.c:292
+#: ../authconfig.c:293
 msgid "Use LDAP"
 msgstr ""
 
+#: ../authconfig.c:298 ../authconfig.c:453
+msgid "Use SSL/TLS"
+msgstr ""
+
 #. NSS modules: LDAP.
-#: ../authconfig.c:319
+#: ../authconfig.c:331
 msgid "Use Hesiod"
 msgstr ""
 
-#: ../authconfig.c:349
+#: ../authconfig.c:361
 msgid "Next"
 msgstr ""
 
-#: ../authconfig.c:350 ../authconfig.c:510 ../authconfig.c:523
+#: ../authconfig.c:362 ../authconfig.c:536 ../authconfig.c:549
 msgid "Back"
 msgstr ""
 
-#: ../authconfig.c:350 ../authconfig.c:511
+#: ../authconfig.c:362 ../authconfig.c:537
 msgid "Cancel"
 msgstr ""
 
-#: ../authconfig.c:369
+#: ../authconfig.c:381
 msgid "User Information Configuration"
 msgstr ""
 
-#: ../authconfig.c:422
+#: ../authconfig.c:437
 msgid "Use Shadow Passwords"
 msgstr ""
 
-#: ../authconfig.c:427
+#: ../authconfig.c:442
 msgid "Use MD5 Passwords"
 msgstr ""
 
-#: ../authconfig.c:433
+#: ../authconfig.c:448
 msgid "Use LDAP Authentication"
 msgstr ""
 
-#: ../authconfig.c:459
+#: ../authconfig.c:485
 msgid "Use Kerberos 5"
 msgstr ""
 
-#: ../authconfig.c:539
+#: ../authconfig.c:565
 msgid "Authentication Configuration"
 msgstr ""
 
-#: ../authconfig.c:615
+#: ../authconfig.c:642
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -130,6 +134,8 @@ msgid ""
 "     --enableldap               enable ldap for user information by default\n"
 "     --disableldap              disable ldap for user information by "
 "default\n"
+"     --enableldapssl            enable use of SSL/TLS with ldap\n"
+"     --disableldapssl           disable use of SSL/TLS with ldap\n"
 "     --enableldapauth           enable ldap for authentication by default\n"
 "     --disableldapauth          disable ldap for authentication by default\n"
 "     --ldapserver <server>      default LDAP server\n"
@@ -153,47 +159,47 @@ msgid ""
 "     --help                     show this screen\n"
 msgstr ""
 
-#: ../authconfig.c:654
+#: ../authconfig.c:683
 msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
 msgstr ""
 
-#: ../authconfig.c:755
+#: ../authconfig.c:787
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr ""
 
-#: ../authconfig.c:762
+#: ../authconfig.c:794
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr ""
 
-#: ../authconfig.c:774
+#: ../authconfig.c:806
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr ""
 
-#: ../authconfig.c:785 ../authconfig.c:793 ../authconfig.c:801
-#: ../authconfig.c:809 ../authconfig.c:817 ../authconfig.c:825
-#: ../authconfig.c:833
+#: ../authconfig.c:817 ../authconfig.c:825 ../authconfig.c:833
+#: ../authconfig.c:841 ../authconfig.c:849 ../authconfig.c:857
+#: ../authconfig.c:865
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr ""
 
-#: ../authconfig.c:881
+#: ../authconfig.c:914
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 
-#: ../authconfig.c:889
+#: ../authconfig.c:922
 msgid "dialog was cancelled\n"
 msgstr ""
 
-#: ../authconfig.c:945 ../authconfig.c:951 ../authconfig.c:957
-#: ../authconfig.c:963 ../authconfig.c:969 ../authconfig.c:974
-#: ../authconfig.c:980
+#: ../authconfig.c:982 ../authconfig.c:988 ../authconfig.c:994
+#: ../authconfig.c:1000 ../authconfig.c:1006 ../authconfig.c:1011
+#: ../authconfig.c:1017
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr ""
