@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.4
+Version: 4.1.5
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -36,6 +36,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Mon Feb 12 2001 Nalin Dahyabhai <nalin@redhat.com>
+- errors connecting to LDAP also trigger service_err returns, so ignore on
+  those as well
+
 * Fri Feb  9 2001 Nalin Dahyabhai <nalin@redhat.com>
 - handle the case where the user doesn't specify a Kerberos realm, but
   enables it anyway

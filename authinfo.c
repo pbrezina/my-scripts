@@ -30,7 +30,7 @@
 #define LOGIC_REQUISITE		"requisite"
 #define LOGIC_SUFFICIENT	"sufficient"
 #define LOGIC_OPTIONAL		"optional"
-#define LOGIC_IGNORE_UNKNOWN	"[default=ok user_unknown=ignore system_err=ignore]"
+#define LOGIC_IGNORE_UNKNOWN	"[default=ok user_unknown=ignore service_err=ignore system_err=ignore]"
 
 /* Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvar
  * can read it just fine. */
