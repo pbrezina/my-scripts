@@ -33,7 +33,7 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
-* Tue May 30 2000 Nalin Dahyabhai <nalin@redhat.com>
+* Fri May 26 2000 Nalin Dahyabhai <nalin@redhat.com>
 - finish LDAP support
 - add Kerberos 5 support
 - add Hesiod support
