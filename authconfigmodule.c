@@ -103,6 +103,7 @@ static struct {
 	/* TF_FIELD(enableOTP), */
 	TF_FIELD(enableShadow),
 	TF_FIELD(enableSMB),
+	TF_FIELD(enableWinbindAuth),
 	S_FIELD(joinUser),
 	S_FIELD(joinPassword),
 };

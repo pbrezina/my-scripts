@@ -142,6 +142,7 @@ struct authInfoType {
 	gboolean enablePasswdQC;
 	gboolean enableShadow;
 	gboolean enableSMB;
+	gboolean enableWinbindAuth;
 
 #ifdef LOCAL_POLICIES
 	gboolean enableLocal;
