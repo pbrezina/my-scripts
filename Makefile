@@ -1,17 +1,21 @@
 VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
-PROGNAME = authconfig
+PACKAGE = authconfig
 
-GLIBCONFIG=glib-config
-CFLAGS += -Wall -DPACKAGE=\"$(PROGNAME)\" -DVERSION=\"$(VERSION)\" `$(GLIBCONFIG) --cflags` $(RPM_OPT_FLAGS) $(EXTRA_CFLAGS)
-LOADLIBES = `$(GLIBCONFIG) --libs` -lnewt -lpopt -lresolv
+CFLAGS = -g3 -Wall -DPACKAGE=\"$(PACKAGE)\" -DVERSION=\"$(VERSION)\"
+CFLAGS += $(shell pkg-config --cflags glib-2.0)
+CFLAGS += $(shell pkg-config --cflags libglade-2.0)
+LIBS = -lnewt -lpopt -lresolv
+GLIBLIBS = $(shell pkg-config --libs glib-2.0)
+LIBGLADELIBS = $(shell pkg-config --libs libglade-2.0)
 SUBDIRS = po man
 
 datadir=/usr/share
 mandir=/usr/man
 sbindir=/usr/sbin
+CFLAGS += -DDATADIR=\"$(datadir)\"
 
-all:	subdirs $(PROGNAME)
+all:	subdirs authconfig authconfig-gtk
 
 subdirs:
 	for d in $(SUBDIRS); do \
@@ -19,28 +23,32 @@ subdirs:
 	|| case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
 	done && test -z "$$fail"
 
-authconfig: $(PROGNAME).o authinfo.o shvar.o dnsclient.o
-	$(CC) -o $(PROGNAME) $^ $(LOADLIBES)
+authconfig: authconfig.o authinfo.o shvar.o dnsclient.o
+	$(CC) -o $@ $^ $(GLIBLIBS) $(LIBS)
+
+authconfig-gtk: authconfig-gtk.o authinfo.o shvar.o dnsclient.o
+	$(CC) -o $@ $^ $(LIBGLADELIBS) $(LIBS)
 
 install:
-	mkdir -p $(sbindir) $(mandir)/man8
+	mkdir -p $(sbindir) $(mandir)/man8 $(datadir)/$(PACKAGE)
 	mkdir -p $(INSTROOT)$(sysconfdir)/pam.d
-	install -m 755 $(PROGNAME) $(sbindir)/$(PROGNAME)
+	install -m 755 $(PACKAGE) $(sbindir)/$(PACKAGE)
+	install -m 644 $(PACKAGE).glade2 $(datadir)/$(PACKAGE)/$(PACKAGE).glade
 	for d in $(SUBDIRS); do \
 	(cd $$d; $(MAKE) sbindir=$(sbindir) install) \
 	    || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
 	done && test -z "$$fail"
 
 clean:
-	rm -f $(PROGNAME) *.o
+	rm -f authconfig authconfig-gtk *.o
 	make -C po clean
 
 archive:
 	cvs -d `cat CVS/Root` tag -cFR $(CVSTAG) .
-	@rm -rf /tmp/$(PROGNAME)-$(VERSION) /tmp/$(PROGNAME)
-	@dir=$$PWD; cd /tmp; cvs -d `cat $$dir/CVS/Root` export -r$(CVSTAG) $(PROGNAME)
-	@mv /tmp/$(PROGNAME) /tmp/$(PROGNAME)-$(VERSION)
-	@dir=$$PWD; cd /tmp; tar cvzf $$dir/$(PROGNAME)-$(VERSION).tar.gz \
-		$(PROGNAME)-$(VERSION)
-	@rm -rf /tmp/$(PROGNAME)-$(VERSION)
-	@echo "The archive is in $(PROGNAME)-$(VERSION).tar.gz"
+	@rm -rf /tmp/$(PACKAGE)-$(VERSION) /tmp/$(PACKAGE)
+	@dir=$$PWD; cd /tmp; cvs -d `cat $$dir/CVS/Root` export -r$(CVSTAG) $(PACKAGE)
+	@mv /tmp/$(PACKAGE) /tmp/$(PACKAGE)-$(VERSION)
+	@dir=$$PWD; cd /tmp; tar cvzf $$dir/$(PACKAGE)-$(VERSION).tar.gz \
+		$(PACKAGE)-$(VERSION)
+	@rm -rf /tmp/$(PACKAGE)-$(VERSION)
+	@echo "The archive is in $(PACKAGE)-$(VERSION).tar.gz"

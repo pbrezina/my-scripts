@@ -10,7 +10,7 @@ NLSPACKAGE = authconfig
 
 CATALOGS = $(shell ls *.po | sed 's/po/mo/')
 
-POTFILES  = ../authconfig.c ../localpol.h
+POTFILES  = ../authconfig.c ../authinfo.h ../localpol.h ../glade.strings
 
 all: $(NLSPACKAGE).pot $(CATALOGS)
 

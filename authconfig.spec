@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.20
+Version: 4.2
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -8,13 +8,18 @@ Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
 Requires: glibc >= 2.1, pam >= 0.73, glib
-BuildPrereq: pam-devel >= 0.73, glib-devel, newt-devel
+BuildPrereq: pam-devel >= 0.73, glib2-devel, newt-devel
 
 %description 
 Authconfig is a terminal mode program for setting up Network
 Information Service (NIS) and shadow (more secure) passwords
 on your system. Authconfig also configures the system to
 automatically turn on NIS at system startup.
+
+%package gtk
+BuildPrereq: gtk2-devel, libglade2-devel
+Summary: Graphical tool for setting up NIS and shadow passwords.
+Group: System Environment/Base
 
 %prep
 %setup -q
@@ -40,6 +45,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Fri Dec  7 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2-1
+- port to glib2
+- move post code to the back-end
+- add a libglade GUI in a -gtk subpackage
+
 * Tue Nov 27 2001 Nalin Dahyabhai <nalin@redhat.com>
 - remove pam_winbind from the list of session modules, because it doesn't
   provide a session-management interface

@@ -1062,59 +1062,7 @@ main(int argc, const char **argv)
   } /* kickstart */
 
   if (test) {
-    printf("caching is %s\n", authInfo->enableCache ? "enabled" : "disabled");
-    printf("nss_files is always enabled\n");
-    printf("nss_hesiod is %s\n",
-	   authInfo->enableHesiod ? "enabled" : "disabled");
-    printf(" hesiod LHS = \"%s\"\n",
-	   authInfo->hesiodLHS ? authInfo->hesiodLHS : "");
-    printf(" hesiod RHS = \"%s\"\n",
-	   authInfo->hesiodRHS ? authInfo->hesiodRHS : "");
-    printf("nss_ldap is %s\n",
-	   authInfo->enableLDAP ? "enabled" : "disabled");
-    printf(" LDAP+TLS is %s\n",
-	   authInfo->enableLDAPS ? "enabled" : "disabled");
-    printf(" LDAP server = \"%s\"\n",
-	   authInfo->ldapServer ? authInfo->ldapServer : "");
-    printf(" LDAP base DN = \"%s\"\n",
-	   authInfo->ldapBaseDN ? authInfo->ldapBaseDN : "");
-    printf("nss_nis is %s\n",
-	   authInfo->enableNIS ? "enabled" : "disabled");
-    printf(" NIS server = \"%s\"\n",
-	   authInfo->nisServer ? authInfo->nisServer : "");
-    printf(" NIS domain = \"%s\"\n",
-	   authInfo->nisDomain ? authInfo->nisDomain : "");
-#ifdef LOCAL_POLICIES
-    printf("local policies are %s\n",
-	   authInfo->enableLocal ? "enabled" : "disabled");
-#endif
-    printf("pam_unix is always enabled\n");
-    printf(" shadow passwords are %s\n",
-	   authInfo->enableShadow ? "enabled" : "disabled");
-    printf(" md5 passwords are %s\n",
-	   authInfo->enableMD5 ? "enabled" : "disabled");
-    printf("pam_krb5 is %s\n",
-	   authInfo->enableKerberos ? "enabled" : "disabled");
-    printf(" krb5 realm = \"%s\"\n",
-	   authInfo->kerberosRealm ?: "");
-    printf(" krb5 kdc = \"%s\"\n",
-	   authInfo->kerberosKDC ?: "");
-    printf(" krb5 admin server = \"%s\"\n",
-	   authInfo->kerberosAdminServer ?: "");
-    printf("pam_ldap is %s\n",
-	   authInfo->enableLDAPAuth ? "enabled" : "disabled");
-    printf(" LDAP+TLS is %s\n",
-	   authInfo->enableLDAPS ? "enabled" : "disabled");
-    printf(" LDAP server = \"%s\"\n",
-	   authInfo->ldapServer ?: "");
-    printf(" LDAP base DN = \"%s\"\n",
-	   authInfo->ldapBaseDN ?: "");
-    printf("pam_smb_auth is %s\n",
-	   authInfo->enableSMB ? "enabled" : "disabled");
-    printf(" SMB workgroup = \"%s\"\n",
-	   authInfo->smbWorkgroup ?: "");
-    printf(" SMB servers = \"%s\"\n",
-	   authInfo->smbServers ?: "");
+    authInfoPrint(authInfo);
     return 0;
   } else {
     if (authInfoWriteCache(authInfo) == FALSE) {
