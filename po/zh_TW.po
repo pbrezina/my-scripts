@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: zh_TW\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-11-18 16:17-0500\n"
-"PO-Revision-Date: 2003-11-19 10:22+1000\n"
+"PO-Revision-Date: 2003-11-19 15:49+1000\n"
 "Last-Translator: Ben Wu <hpwu@redhat.com>\n"
 "Language-Team: Traditional Chinese <i18n-list@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -81,11 +81,11 @@ msgstr "管理主控台:"
 
 #: authconfig.c:362
 msgid "Use DNS to resolve hosts to realms"
-msgstr ""
+msgstr "使用 DNS 來解析主機到領域中"
 
 #: authconfig.c:364
 msgid "Use DNS to locate KDCs for realms"
-msgstr ""
+msgstr "使用 DNS 來找出領域中的 KDCs"
 
 #: authconfig.c:367 glade.strings:55
 msgid "Kerberos Settings"
@@ -101,7 +101,7 @@ msgstr "伺服器:"
 
 #: authconfig.c:380
 msgid "Shell:"
-msgstr ""
+msgstr "Shell:"
 
 #: authconfig.c:383 glade.strings:64
 msgid "SMB Settings"
@@ -129,6 +129,8 @@ msgid ""
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
 msgstr ""
+"在繼續之前，必須儲存您所做的設定變更到磁碟中，假如不儲存的話，當您試著加入網域時，將會失敗。 "
+"是否要儲存變更？"
 
 #: authconfig.c:427
 msgid "Save Settings"
@@ -136,15 +138,15 @@ msgstr "儲存設定"
 
 #: authconfig.c:429
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: authconfig.c:429
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: authconfig.c:449
 msgid "Security Model:"
-msgstr ""
+msgstr "安全性模式："
 
 #: authconfig.c:453
 msgid "Domain Controllers:"
@@ -168,16 +170,15 @@ msgstr "警告"
 
 #: authconfig.c:505
 msgid "caching"
-msgstr ""
+msgstr "快取"
 
 #: authconfig.c:509 glade.strings:35
 msgid "Kerberos"
 msgstr "Kerberos"
 
 #: authconfig.c:513
-#, fuzzy
 msgid "LDAP authentication"
-msgstr "使用 LDAP 認證"
+msgstr "LDAP 認證"
 
 #: authconfig.c:517 glade.strings:16 glade.strings:31
 msgid "LDAP"
@@ -188,23 +189,20 @@ msgid "NIS"
 msgstr "NIS"
 
 #: authconfig.c:525
-#, fuzzy
 msgid "shadow password"
-msgstr "使用 Shadow 密碼"
+msgstr "shadow 密碼"
 
 #: authconfig.c:529
-#, fuzzy
 msgid "SMB authentication"
 msgstr "SMB 認證"
 
 #: authconfig.c:533 authconfig.c:541 glade.strings:24 glade.strings:43
 msgid "Winbind"
-msgstr ""
+msgstr "Winbind"
 
 #: authconfig.c:537
-#, fuzzy
 msgid "Winbind authentication"
-msgstr "認證"
+msgstr "Winbind 認證"
 
 #: authconfig.c:552 glade.strings:25
 msgid "User Information"
@@ -228,7 +226,7 @@ msgstr "使用 NIS"
 
 #: authconfig.c:583
 msgid "Use Winbind"
-msgstr ""
+msgstr "使用 Winbind"
 
 #: authconfig.c:593 authconfig.desktop.in.h:1 glade.strings:44
 msgid "Authentication"
@@ -247,18 +245,16 @@ msgid "Use LDAP Authentication"
 msgstr "使用 LDAP 認證"
 
 #: authconfig.c:617
-#, fuzzy
 msgid "Use Kerberos"
-msgstr "使用 Kerberos 5"
+msgstr "使用 Kerberos"
 
 #: authconfig.c:624
 msgid "Use SMB Authentication"
 msgstr "使用 SMB 認證"
 
 #: authconfig.c:631
-#, fuzzy
 msgid "Use Winbind Authentication"
-msgstr "使用 SMB 認證"
+msgstr "使用 Winbind 認證"
 
 #. !/usr/bin/python
 #. "checkbox/button name": authInfo field, file, generic name,
@@ -381,20 +377,19 @@ msgstr "< 領域 >"
 
 #: authconfig.c:896
 msgid "enable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "啟用 DNS 以搜尋 kerberos KDCs"
 
 #: authconfig.c:898
 msgid "disable use of DNS to find kerberos KDCs"
-msgstr ""
+msgstr "停用 DNS 以搜尋 kerberos KDCs"
 
 #: authconfig.c:900
 msgid "enable use of DNS to find kerberos realms"
-msgstr ""
+msgstr "啟用 DNS 以搜尋 kerberos 領域"
 
 #: authconfig.c:902
-#, fuzzy
 msgid "disable use of DNS to find kerberos realms\n"
-msgstr "預設的 kerberos 領域\n"
+msgstr "停用 DNS 以搜尋 kerberos 領域\n"
 
 #: authconfig.c:905
 msgid "enable SMB authentication by default"
@@ -417,76 +412,74 @@ msgid "names of servers to authenticate against\n"
 msgstr "用來對照認證的伺服器名稱\n"
 
 #: authconfig.c:914
-#, fuzzy
 msgid "enable winbind for user information and authentication by default"
-msgstr "啟用 hesiod 預設的使用者資訊"
+msgstr "啟用 winbind 預設的使用者資訊與認證"
 
 #: authconfig.c:917
-#, fuzzy
 msgid "disable winbind for user information and authentication by default"
-msgstr "停用 hesiod 預設的使用者資訊"
+msgstr "停用 winbind 預設的使用者資訊與認證"
 
 #: authconfig.c:920
 msgid "security mode to use for samba and winbind"
-msgstr ""
+msgstr "用於 samba 與 winbind 的安全性模式"
 
 #: authconfig.c:922
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
+msgstr "當 security=ads 時 samba 與 winbind 的預設領域"
 
 #: authconfig.c:924
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "uid 範圍的 winbind 將會指派給網域或 ads 的使用者"
 
 #: authconfig.c:925 authconfig.c:928
 msgid "<lowest-highest>"
-msgstr ""
+msgstr "<lowest-highest>"
 
 #: authconfig.c:927
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
+msgstr "gid 範圍的 winbind 將會指派給網域或 ads 的使用者"
 
 #: authconfig.c:931
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
+msgstr "將用來分隔由 winbind 所建立之使用者名稱的網域與使用者部份的字元（當停用 winbindusedefaultdomain 時）"
 
 #: authconfig.c:935
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
+msgstr "將成為由 winbind 所建立之使用者的家目錄"
 
 #: authconfig.c:939
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
+msgstr "將成為由 winbind 所建立之使用者所屬的主要群組"
 
 #: authconfig.c:942
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
+msgstr "將成為由 winbind 所建立之使用者的登入 shell"
 
 #: authconfig.c:946
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr ""
+msgstr "設定 winbind 以假設使用者名稱不含網域資訊的使用者為網域的使用者"
 
 #: authconfig.c:950
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr ""
+msgstr "設定 winbind 以假設使用者名稱不含網域資訊的使用者非為網域的使用者"
 
 #: authconfig.c:954
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
+msgstr "現在以管理員身份加入 winbind 網域或 ads 領域\n"
 
 #: authconfig.c:958
 msgid "enable wins for hostname resolution"
-msgstr ""
+msgstr "啟用主機名稱解析的 wins"
 
 #: authconfig.c:960
 msgid "disable wins for hostname resolution\n"
-msgstr ""
+msgstr "停用主機名稱解析的 wins\n"
 
 #: authconfig.c:963
 msgid "enable hesiod for user information by default"
@@ -666,14 +659,12 @@ msgid "Hesiod"
 msgstr "Hesiod"
 
 #: glade.strings:21 glade.strings:40
-#, fuzzy
 msgid "Enable _Winbind Support"
-msgstr "啟用 Hesiod 支援(_H)"
+msgstr "啟用 _Winbind 支援"
 
 #: glade.strings:22 glade.strings:41
-#, fuzzy
 msgid "_Configure Winbind..."
-msgstr "設定 Hesiod(_C)..."
+msgstr "設定 Winbind(_C)..."
 
 #: glade.strings:23 glade.strings:42
 msgid ""
@@ -681,6 +672,8 @@ msgid ""
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
 msgstr ""
+"Winbind 使得系統可以擷取關於使用者的資訊，並且使用儲存在 NTDOM 或 ADS 伺服器的資訊來認證使用者， "
+"通常被使用在小型至大型的網路環境中。"
 
 #: glade.strings:26
 msgid "Use _Shadow Passwords"
@@ -722,14 +715,14 @@ msgstr ""
 
 #: glade.strings:39
 msgid "SMB"
-msgstr ""
+msgstr "SMB"
 
 #: glade.strings:46 glade.strings:49 glade.strings:51 glade.strings:54
 #: glade.strings:56 glade.strings:59 glade.strings:61 glade.strings:65
 #: glade.strings:68 glade.strings:70 glade.strings:73 glade.strings:79
 #: glade.strings:81 glade.strings:84 glade.strings:86 glade.strings:90
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: glade.strings:47
 msgid "NIS _Server"
@@ -761,11 +754,11 @@ msgstr "_KDCs"
 
 #: glade.strings:62
 msgid "Use DNS to resolve hosts to _realms"
-msgstr ""
+msgstr "使用 DNS 來解析主機到領域中"
 
 #: glade.strings:63
 msgid "Use DNS to locate _KDCs for realms"
-msgstr ""
+msgstr "使用 DNS 來領域中的 _KDCs"
 
 #: glade.strings:66
 msgid "_Domain Controllers"
@@ -788,62 +781,56 @@ msgid "Use _TLS to encrypt connections"
 msgstr "使用 TLS 為連線加密 （_T)"
 
 #: glade.strings:76
-#, fuzzy
 msgid "_Join Domain"
-msgstr "網域:"
+msgstr "加入網域(_J)"
 
 #: glade.strings:77
 msgid "_Security Model"
-msgstr ""
+msgstr "安全性模式(_S)"
 
 #: glade.strings:78
-#, fuzzy
 msgid "Winbind _Domain"
-msgstr "NIS 網域(_D)"
+msgstr "Winbind 網域(_D)"
 
 #: glade.strings:80
-#, fuzzy
 msgid "Winbind Domain _Controllers"
-msgstr "網域控制站（_D)"
+msgstr "Winbind 網域控制站（_C)"
 
 #: glade.strings:82
 msgid "Template _Shell"
-msgstr ""
+msgstr "樣板 _Shell"
 
 #: glade.strings:83
 msgid "Winbind ADS _Realm"
-msgstr ""
+msgstr "Winbind ADS 領域(_R)"
 
 #: glade.strings:85
 msgid "Joining Winbind Domain"
-msgstr ""
+msgstr "加入 Winbind 網域"
 
 #: glade.strings:87
-#, fuzzy
 msgid "Domain _Administrator"
-msgstr "網域控制站（_D)"
+msgstr "網域管理員（_A)"
 
 #: glade.strings:88
-#, fuzzy
 msgid "Domain"
-msgstr "網域:"
+msgstr "網域"
 
 #: glade.strings:89
-#, fuzzy
 msgid "_Password"
-msgstr "使用 MD5 編碼(_M)"
+msgstr "密碼(_P)"
 
 #: glade.strings:91
 msgid "EXAMPLE.COM"
-msgstr ""
+msgstr "EXAMPLE.COM"
 
 #: glade.strings:92
 msgid "Alert"
-msgstr ""
+msgstr "警示"
 
 #: glade.strings:93
 msgid "Do_n't Save"
-msgstr ""
+msgstr "不儲存(_N)"
 
 #: localpol.h:9
 msgid "Use Local Policies"
