@@ -446,8 +446,11 @@ getWinbindSettings(struct authInfoType *authInfo, gboolean next)
     "ads", "domain", NULL,
   };
   const char *candidates[] = {
-    "/sbin/nologin", "/bin/sh", "/bin/bash", "/bin/tcsh", "/bin/ksh", "/bin/zsh",
+    "/sbin/nologin", "/bin/sh", "/bin/bash", "/bin/tcsh", "/bin/ksh",
+    "/bin/zsh",
   };
+  /* Why does your favorite shell not show up in the list?  Because it won't
+   * fit, that's why! */
   const char *shells[6];
   int i, j;
   struct formdata questions[] = {
@@ -470,8 +473,10 @@ getWinbindSettings(struct authInfoType *authInfo, gboolean next)
   for (j = 0;
        (j < G_N_ELEMENTS(candidates)) && (i < (G_N_ELEMENTS(shells) - 1));
        j++) {
-    if (access(candidates[j], X_OK) == 0) {
-      shells[i++] = candidates[j];
+    if ((shells[0] == NULL) || (strcmp(shells[0], candidates[j]) != 0)) {
+      if (access(candidates[j], X_OK) == 0) {
+        shells[i++] = candidates[j];
+      }
     }
   }
   shells[i] = NULL;
