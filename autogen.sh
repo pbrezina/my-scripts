@@ -1,5 +1,6 @@
 set -x
 glib-gettextize -f -c
+touch config.h.in
 autoheader-2.53
 libtoolize -f -c
 aclocal-1.6
