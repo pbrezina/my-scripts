@@ -330,7 +330,7 @@ int getPAMChoices(int back,
 	          gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
 	          struct authInfoType *authInfo)
 {
-  newtComponent form, ok, backb = NULL, cancel, comp, cb;
+  newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
   int rc = 0;
 
   struct ldap_cb ldap;
