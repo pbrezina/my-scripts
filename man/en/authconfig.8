@@ -12,21 +12,24 @@ authconfig \- an interface for configuring system authentication resources
 [--disablenis]
 [--enableshadow] [--disableshadow]
 [--enablemd5] ] [--disablemd5] ]
-[--enableldap [--enableldapauth] [--enableldaptls]
-[--ldapserver <ldapserver[,ldapserver,...]>] [--ldapbasedn <basedn>] ]
+[--enableldap] [--enableldapauth] [--enableldaptls]
+[--ldapserver <ldapserver[,ldapserver,...]>] [--ldapbasedn <basedn>]
 [--disableldap] [--disableldapauth]
 [--enablekrb5 [ --krb5realm <realm> ] [--krb5kdc <hostname[,hostname,...]>]
-[--krb5adminserver <hostname[,hostname,...]>] ]
+[--krb5adminserver <hostname[,hostname,...]>] [--enablekrb5kdcdns] 
+[--disablekrb5kdcdns] [--enablekrb5realmdns] [--disablekrb5realmdns] ]
 [--disablekrb5]
 [--enablehesiod [--hesiodlhs <lhs>] [--hesiodrhs <rhs>] ] [--disablehesiod]
-[--enablesmb [--smbworkgroup <workgroup>] [--smbservers <server[,server]>] ]
-[--enablewinbind [--smbsecurity <user|server|domain|ads>] [--smbrealm <realm>]
-[--smbidmapuid=<range>] [--smbidmapgid=<range>]
+[--enablesmbauth] [--smbworkgroup <workgroup>] [--smbservers <server[,server]>]
+[--disablesmbauth]
+[--enablewinbind [--enablewinbindauth] [--smbsecurity <user|server|domain|ads>]
+[--smbrealm <realm>] [--smbidmapuid=<range>] [--smbidmapgid=<range>]
 [--winbindseparator=<\\>] [--winbindtemplateprimarygroup=<group>]
 [--winbindtemplatehomedir=<directory>] [--winbindtemplateshell=<path>] ]
-[--disablewinbind]
+[--disablewinbind] [--disablewinbindauth]
 [--enablewinbindusedefaultdomain]
 [--disablewinbindusedefaultdomain]
+[--winbindjoin <admin>] [--enablewins] [--disablewins]
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and
@@ -42,20 +45,23 @@ ypbind will not be started or stopped immediately following program
 execution, but only enabled to start or stop at boot time. if
 \fB--kickstart\fR is specified, no interactive screens will be seen.
 The values the program will use will be those specified by the other
-options (\fB--enablemd5\fR, \fB--usehadow\fR, etc.).
+options (\fB--enablemd5\fR, \fB--enableshadow\fR, etc.).
 
-The \fB--enablenis\fP, \fB--enableldap\fP, and \fB--enablehesiod\fP options
+The \fB--enablenis\fP, \fB--enableldap\fP, \fB--enablewinbind\fP,
+and \fB--enablehesiod\fP options
 are used to configure user information services in \fB/etc/nsswitch.conf\fP,
 the \fB--enablecache\fP option is used to configure naming services caching,
 and the \fB--enableshadow\fP, \fB--enablemd5\fP, \fB--enableldapauth\fP,
-\fB--enablekrb5\fP and \fB--enablesmb\fP options are used to configure
+\fB--enablekrb5\fP, \fB--enablewinbindauth\fP,
+and \fB--enablesmbauth\fP options are used to configure
 authentication functions via \fB/etc/pam.d/system-auth\fP.  Each
 \fB--enable\fP has a matching \fB--disable\fP option that disables the service
-if it is already enabled.
+if it is already enabled. The respective services have parameters which configure
+their server names etc.
 
 The \fB--probe\fP flag instructs \fBauthconfig\fP to use DNS and other means
 to guess at configuration information for the current host, print its guesses
-to standard output, and exit.
+if it finds them to standard output, and exit.
 
 The default in kickstart mode (i.e. without any additional options) is to
 not change the current settings.
@@ -73,7 +79,7 @@ the program (by using either the \fBCancel\fR or \fBBack\fR button).
 .FN /etc/sysconfig/authconfig
 Used to track whether or not particular authentication mechanisms are enabled.
 Currently includes variables named USESHADOW, USEMD5, USEKERBEROS, USELDAPAUTH,
-USESMBAUTH, USEWINBIND, USEHESIOD, USENIS, USELDAP.
+USESMBAUTH, USEWINBIND, USEWINBINDAUTH, USEHESIOD, USENIS, USELDAP.
 .TP
 .FN /etc/passwd, /etc/shadow
 Used for shadow password support.
