@@ -8,7 +8,7 @@ Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
 Requires: glibc >= 2.1, pam >= 0.73, glib
-BuildPrereq: pam-devel >= 0.73, glib2-devel, newt-devel
+BuildPrereq: pam-devel >= 0.73, newt-devel, gtk2-devel, libglade2-devel
 
 %description 
 Authconfig is a terminal mode program for setting up Network
@@ -45,7 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
-* Fri Dec  7 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2-1
+* Mon Dec 10 2001 Nalin Dahyabhai <nalin@redhat.com> 4.2-1
 - port to glib2
 - move post code to the back-end
 - add a libglade GUI in a -gtk subpackage
