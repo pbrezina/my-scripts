@@ -1172,7 +1172,6 @@ static struct {
 	{TRUE,  auth,		required,	"deny",		NULL},
 
 	{TRUE,  account,	sufficient,	"unix",		NULL},
-	{FALSE, account,	sufficient,	"krb5",		NULL},
 	{FALSE, account,	sufficient,	"ldap",		NULL},
 	{TRUE,  account,	required,	"deny",		NULL},
 
