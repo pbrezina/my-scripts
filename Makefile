@@ -2,8 +2,9 @@ VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PROGNAME = authconfig
 
+RPM_OPT_FLAGS = -g3
 GLIBCONFIG=glib-config
-CFLAGS += -Wall -DPACKAGE=\"$(PROGNAME)\" -DVERSION=\"$(VERSION)\" `$(GLIBCONFIG) --cflags` -g3 $(RPM_OPT_FLAGS) $(EXTRA_CFLAGS)
+CFLAGS += -Wall -DPACKAGE=\"$(PROGNAME)\" -DVERSION=\"$(VERSION)\" `$(GLIBCONFIG) --cflags` $(RPM_OPT_FLAGS) $(EXTRA_CFLAGS)
 LOADLIBES = `$(GLIBCONFIG) --libs` -lnewt -lpopt -lresolv
 SUBDIRS = po man
 

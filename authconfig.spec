@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.1.13
+Version: 4.1.14
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,11 +34,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-,root,root)
+%doc NOTES TODO
 %ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
 %{_sbindir}/authconfig
 %{_mandir}/man8/*
 
 %changelog
+* Thu Aug 16 2001 Nalin Dahyabhai <nalin@redhat.com>
+- set "pam_password crypt" in ldap.conf if not previously set
+- update translations
+
 * Mon Aug  6 2001 Nalin Dahyabhai <nalin@redhat.com>
 - don't mess with krb4 config files if we have no realm
 - update translations

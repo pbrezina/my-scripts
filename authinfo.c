@@ -1006,13 +1006,14 @@ authInfoWriteNIS(struct authInfoType *info)
 /* Write LDAP setup to an ldap.conf using host and base as keys. */
 static gboolean
 authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
-		   const char *host, const char *base, gboolean writessl)
+		   const char *host, const char *base, gboolean writepadl)
 {
 	char *ibuf = NULL, *obuf = NULL, *p, *q;
 	int fd, l;
 	struct stat st;
 	struct flock lock;
-	gboolean wrotebasedn = FALSE, wroteserver = FALSE, wrotessl = FALSE;
+	gboolean wrotebasedn = FALSE, wroteserver = FALSE, wrotessl = FALSE,
+		 wrotepass = FALSE;
 
 	fd = open(filename, O_RDWR | O_CREAT, 0644);
 	if(fd == -1) {
@@ -1038,6 +1039,7 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	l += info->ldapBaseDN ? strlen(info->ldapBaseDN) : 0;
 	l += info->ldapServer ? strlen(info->ldapServer) : 0;
 	l += strlen("ssl start_tls\n");
+	l += strlen("pam_password crypt\n");
 	obuf = g_malloc0((st.st_size + 1 + l) * 2);
 
 	p = ibuf;
@@ -1071,7 +1073,7 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		} else
 
 		/* If it's an 'ssl' line, insert ours instead. */
-		if(writessl && (strncmp("ssl", p, 3)) == 0) {
+		if(writepadl && (strncmp("ssl", p, 3)) == 0) {
 			if(!wrotessl) {
 				strcat(obuf, "ssl");
 				strcat(obuf, " ");
@@ -1080,6 +1082,12 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 				strcat(obuf, "\n");
 				wrotessl = TRUE;
 			}
+		} else
+
+		/* If it's a 'pam_password' line, note that it's set. */
+		if(writepadl && strncmp("pam_password", p, 12) == 0) {
+			strncat(obuf, p, q - p);
+			wrotepass = TRUE;
 		} else
 
 		/* Otherwise, just copy the current line out. */
@@ -1104,10 +1112,16 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 			strcat(obuf, "\n");
 		}
 	}
-	if(writessl && !wrotessl) {
+	if(writepadl && !wrotessl) {
 		strcat(obuf, "ssl");
 		strcat(obuf, " ");
 		strcat(obuf, info->enableLDAPS ? "start_tls" : "no");
+		strcat(obuf, "\n");
+	}
+	if(writepadl && !wrotepass) {
+		strcat(obuf, "pam_password");
+		strcat(obuf, " ");
+		strcat(obuf, "crypt");
 		strcat(obuf, "\n");
 	}
 
