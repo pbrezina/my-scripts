@@ -1176,6 +1176,9 @@ static struct {
 	{FALSE, auth,		sufficient,	"krb5",		argv_krb5_auth},
 	{FALSE, auth,		sufficient,	"krb5afs",	argv_krb5afs_auth},
 	{FALSE, auth,		sufficient,	"ldap",		argv_ldap_auth},
+#ifdef WINBIND
+	{FALSE, auth,		sufficient,	"winbind",	NULL},
+#endif
 	{TRUE,  auth,		required,	"deny",		NULL},
 
 	{TRUE,  account,	sufficient,	"unix",		NULL},
@@ -1192,12 +1195,18 @@ static struct {
 	 argv_krb5_password},
 	{FALSE, password,	sufficient,	"ldap",
 	 argv_ldap_password},
+#ifdef WINBIND
+	{FALSE, password,	sufficient,	"winbind",	NULL},
+#endif
 	{TRUE,  password,	required,	"deny",		NULL},
 
 	{TRUE,  session,	required,	"unix",		NULL},
 	{FALSE, session,	optional,	"krb5",		NULL},
 	{FALSE, session,	optional,	"krb5afs",	NULL},
 	{FALSE, session,	optional,	"ldap",		NULL},
+#ifdef WINBIND
+	{FALSE, session,	optional,	"winbind",	NULL},
+#endif
 };
 
 static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
@@ -1313,6 +1322,10 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 		    (strcmp("krb5", standard_pam_modules[i].name) == 0)) ||
 		   (authInfo->enableKerberos && have_afs &&
 		    (strcmp("krb5afs", standard_pam_modules[i].name) == 0)) ||
+#ifdef WINBIND
+		   (authInfo->enableWinBindAuth &&
+		    (strcmp("winbind", standard_pam_modules[i].name) == 0)) ||
+#endif
 		   (authInfo->enableLDAPAuth &&
 		    (strcmp("ldap", standard_pam_modules[i].name) == 0))) {
 			fmt_standard_pam_module(i, obuf, authInfo);

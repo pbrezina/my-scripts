@@ -28,11 +28,16 @@ make INSTROOT=$RPM_BUILD_ROOT install
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(-,root,root)/usr/sbin/authconfig
-%attr(-,root,root)/usr/man/man8/*
+%defattr(-,root,root)
+%config(noreplace) /etc/pam.d/system-auth
+/usr/sbin/authconfig
+/usr/man/man8/*
 #%attr(-,root,root)/usr/share/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Wed May 31 2000 Nalin Dahyabhai <nalin@redhat.com>
+- add default system-auth configuration
+
 * Tue May 30 2000 Nalin Dahyabhai <nalin@redhat.com>
 - fix the uncommented comment problem
 - pam_krb5 doesn't provide account management

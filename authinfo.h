@@ -48,6 +48,10 @@ struct authInfoType {
 	gboolean enableHesiod;
 	gboolean enableLDAP;
 	gboolean enableNIS;
+#ifdef WINBIND
+	gboolean enableWinBind;
+	gboolean enableWinBindAuth;
+#endif
 
 	/* Authentication setup. */
 	gboolean enableMD5;

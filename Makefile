@@ -2,7 +2,7 @@ VERSION=$(shell awk '/Version:/ { print $$2 }' authconfig.spec)
 CVSTAG = r$(subst .,-,$(VERSION))
 PROGNAME = authconfig
 
-CFLAGS += -Wall -DVERSION=\"$(VERSION)\" `glib-config --cflags` $(RPM_OPT_FLAGS)
+CFLAGS += -Wall -DVERSION=\"$(VERSION)\" `glib-config --cflags` -ggdb $(RPM_OPT_FLAGS)
 LOADLIBES = `glib-config --libs` -lnewt -lpopt
 SUBDIRS = po man
 
@@ -18,7 +18,9 @@ authconfig: $(PROGNAME).o authinfo.o shvar.o
 
 install:
 	mkdir -p $(INSTROOT)/usr/sbin $(INSTROOT)/usr/man/man8
-	install -m 755 -s $(PROGNAME) $(INSTROOT)/usr/sbin/$(PROGNAME)
+	mkdir -p $(INSTROOT)/etc/pam.d
+	install -m 755 $(PROGNAME) $(INSTROOT)/usr/sbin/$(PROGNAME)
+	install -m 644 system-auth $(INSTROOT)/etc/pam.d
 	for d in $(SUBDIRS); do \
 	(cd $$d; $(MAKE) INSTROOT=$(INSTROOT) install) \
 	    || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac;\
