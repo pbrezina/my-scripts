@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: et\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 17:47+0100\n"
+"POT-Creation-Date: 2005-02-10 17:30+0100\n"
 "PO-Revision-Date: 2005-02-04 15:32+0200\n"
 "Last-Translator: Allan Sims <allsi@eau.ee>\n"
 "Language-Team: Estonian <Eesti>\n"
@@ -27,39 +27,22 @@ msgstr "LHS:"
 msgid "RHS:"
 msgstr "RHS:"
 
-#: authconfig.c:290
-#: authconfig.glade.h:23
+#: authconfig.c:290 authconfig.glade.h:23
 msgid "Hesiod Settings"
 msgstr "Hesiod seaded"
 
-#: authconfig.c:292
-#: authconfig.c:308
-#: authconfig.c:322
-#: authconfig.c:342
-#: authconfig.c:358
-#: authconfig.c:459
-#: authconfig.c:654
+#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
+#: authconfig.c:358 authconfig.c:459 authconfig.c:654
 msgid "Back"
 msgstr "Tagasi"
 
-#: authconfig.c:292
-#: authconfig.c:308
-#: authconfig.c:322
-#: authconfig.c:342
-#: authconfig.c:358
-#: authconfig.c:459
-#: authconfig.c:655
+#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
+#: authconfig.c:358 authconfig.c:459 authconfig.c:655
 msgid "Next"
 msgstr "Edasi"
 
-#: authconfig.c:292
-#: authconfig.c:308
-#: authconfig.c:322
-#: authconfig.c:342
-#: authconfig.c:358
-#: authconfig.c:377
-#: authconfig.c:459
-#: authconfig.c:479
+#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
+#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:479
 #: authconfig.c:496
 msgid "Ok"
 msgstr "Olgu"
@@ -68,8 +51,7 @@ msgstr "Olgu"
 msgid "Use TLS"
 msgstr "Kasuta TLS"
 
-#: authconfig.c:301
-#: authconfig.c:317
+#: authconfig.c:301 authconfig.c:317
 msgid "Server:"
 msgstr "Server:"
 
@@ -77,18 +59,15 @@ msgstr "Server:"
 msgid "Base DN:"
 msgstr "Baasnumber:"
 
-#: authconfig.c:306
-#: authconfig.glade.h:33
+#: authconfig.c:306 authconfig.glade.h:33
 msgid "LDAP Settings"
 msgstr "LDAP seaded"
 
-#: authconfig.c:315
-#: authconfig.c:432
+#: authconfig.c:315 authconfig.c:432
 msgid "Domain:"
 msgstr "Domeen:"
 
-#: authconfig.c:320
-#: authconfig.glade.h:36
+#: authconfig.c:320 authconfig.glade.h:36
 msgid "NIS Settings"
 msgstr "NIS seaded"
 
@@ -112,8 +91,7 @@ msgstr "kasutatakse DNS-i lahendamaks piirkonna arvuteid"
 msgid "Use DNS to locate KDCs for realms"
 msgstr "kasutatakse DNS-i leidmaks FDC-d piirkonnale"
 
-#: authconfig.c:340
-#: authconfig.glade.h:29
+#: authconfig.c:340 authconfig.glade.h:29
 msgid "Kerberos Settings"
 msgstr "Kerberos seaded"
 
@@ -129,8 +107,7 @@ msgstr "Serverid:"
 msgid "Shell:"
 msgstr "Kest:"
 
-#: authconfig.c:356
-#: authconfig.glade.h:41
+#: authconfig.c:356 authconfig.glade.h:41
 msgid "SMB Settings"
 msgstr "SMB seaded"
 
@@ -146,15 +123,19 @@ msgstr "Parool:"
 msgid "Join Settings"
 msgstr "Ühinemise seaded"
 
-#: authconfig.c:377
-#: authconfig.c:654
+#: authconfig.c:377 authconfig.c:654
 msgid "Cancel"
 msgstr "Loobu"
 
-#: authconfig.c:394
-#: authconfig.glade.h:43
-msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
-msgstr "Mõned seadistuse muutused, mis on tehtud salvestatakse kettale enne jätkamist. Nende mittesalvestamise korral võib domeeniga ühendamise üritus ebaõnnestuda. Salvestada muudatused?"
+#: authconfig.c:394 authconfig.glade.h:43
+msgid ""
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
+"may fail.  Save changes?"
+msgstr ""
+"Mõned seadistuse muutused, mis on tehtud salvestatakse kettale enne "
+"jätkamist. Nende mittesalvestamise korral võib domeeniga ühendamise üritus "
+"ebaõnnestuda. Salvestada muudatused?"
 
 #: authconfig.c:400
 msgid "Save Settings"
@@ -184,8 +165,7 @@ msgstr "ADS piirkond:"
 msgid "Template Shell:"
 msgstr "Mall kest:"
 
-#: authconfig.c:456
-#: authconfig.glade.h:54
+#: authconfig.c:456 authconfig.glade.h:54
 msgid "Winbind Settings"
 msgstr "Winbind seaded"
 
@@ -193,27 +173,28 @@ msgstr "Winbind seaded"
 msgid "Join Domain"
 msgstr "Ühine domeeniga"
 
-#: authconfig.c:479
-#: authconfig.c:496
+#: authconfig.c:479 authconfig.c:496
 msgid "Warning"
 msgstr "Hoiatus"
 
-#: authconfig.c:492
-#: authconfig-gtk.py:355
+#: authconfig.c:492 authconfig-gtk.py:355
 #, c-format, python-format
 msgid ""
-"To properly connect to a LDAP server using TLS you need to copy the PEM form CA certificate which signed your server's certificate to the '%s' directory.\n"
+"To properly connect to a LDAP server using TLS you need to copy the PEM form "
+"CA certificate which signed your server's certificate to the '%s' "
+"directory.\n"
 "Then press OK."
 msgstr ""
-"LDAP serverisse õigesti ühendamiseks TLS-i kaudu on vaja kopeerida kataloogi '%s' PEM vorm CA sertifikaat, milline on allkirjastatud sinu serveri sertifikaadina.\n"
+"LDAP serverisse õigesti ühendamiseks TLS-i kaudu on vaja kopeerida kataloogi "
+"'%s' PEM vorm CA sertifikaat, milline on allkirjastatud sinu serveri "
+"sertifikaadina.\n"
 "Siis vajuta Olgu."
 
 #: authconfig.c:511
 msgid "caching"
 msgstr "puhverdamine"
 
-#: authconfig.c:515
-#: authconfig.glade.h:28
+#: authconfig.c:515 authconfig.glade.h:28
 msgid "Kerberos"
 msgstr "Kerberos"
 
@@ -221,13 +202,11 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP autentimine"
 
-#: authconfig.c:523
-#: authconfig.glade.h:31
+#: authconfig.c:523 authconfig.glade.h:31
 msgid "LDAP"
 msgstr "LDAP"
 
-#: authconfig.c:527
-#: authconfig.glade.h:35
+#: authconfig.c:527 authconfig.glade.h:35
 msgid "NIS"
 msgstr "NIS"
 
@@ -239,9 +218,7 @@ msgstr "variparool"
 msgid "SMB authentication"
 msgstr "SMB autentimine"
 
-#: authconfig.c:539
-#: authconfig.c:547
-#: authconfig.glade.h:51
+#: authconfig.c:539 authconfig.c:547 authconfig.glade.h:51
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -249,8 +226,7 @@ msgstr "Winbind"
 msgid "Winbind authentication"
 msgstr "Winbind autentimine"
 
-#: authconfig.c:553
-#: authconfig.glade.h:50
+#: authconfig.c:553 authconfig.glade.h:50
 msgid "User Information"
 msgstr "Kasutaja info"
 
@@ -274,9 +250,7 @@ msgstr "Kasuta NIS"
 msgid "Use Winbind"
 msgstr "Kasuta Winbind"
 
-#: authconfig.c:594
-#: authconfig.desktop.in.h:1
-#: authconfig.glade.h:3
+#: authconfig.c:594 authconfig.desktop.in.h:1 authconfig.glade.h:3
 msgid "Authentication"
 msgstr "Autentimine"
 
@@ -308,9 +282,7 @@ msgstr "Kasuta Winbind autentimist"
 msgid "Local authorization is sufficient"
 msgstr "Kohalik autoriseerimine on piisav"
 
-#: authconfig.c:670
-#: authconfig-gtk.py:285
-#: authconfig.glade.h:4
+#: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
 msgid "Authentication Configuration"
 msgstr "Autentimise seadistus"
 
@@ -350,10 +322,7 @@ msgstr "<domain>"
 msgid "default NIS server\n"
 msgstr "vaike NIS server\n"
 
-#: authconfig.c:866
-#: authconfig.c:888
-#: authconfig.c:897
-#: authconfig.c:899
+#: authconfig.c:866 authconfig.c:888 authconfig.c:897 authconfig.c:899
 #: authconfig.c:919
 msgid "<server>"
 msgstr "<server>"
@@ -366,13 +335,11 @@ msgstr "lubatakse vaikimisi LDAP kasutaja infole"
 msgid "disable LDAP for user information by default"
 msgstr "keelatakse vaikimisi LDAP kasutaja infole"
 
-#: authconfig.c:873
-#: authconfig.c:879
+#: authconfig.c:873 authconfig.c:879
 msgid "enable use of TLS with LDAP"
 msgstr "lubatakseTLS koos LDAP-ga"
 
-#: authconfig.c:875
-#: authconfig.c:881
+#: authconfig.c:875 authconfig.c:881
 msgid "disable use of TLS with LDAP"
 msgstr "keelatakse TLS koos LDAP-ga"
 
@@ -484,8 +451,7 @@ msgstr "vaike piirkond samba ja winbind-ile kui turvalisus=ads"
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "uid ulatus, mille annab winbind domeeni või ads kasutajatele"
 
-#: authconfig.c:939
-#: authconfig.c:942
+#: authconfig.c:939 authconfig.c:942
 msgid "<lowest-highest>"
 msgstr "<madalaim-kõrgeim>"
 
@@ -494,8 +460,12 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "gid ulatus, mille annab winbind domeeni või ads kasutajatele"
 
 #: authconfig.c:945
-msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr "märk, mis eraldab domeeni ja winbind loodud kasutajanime kui winbind-kasuta-vaike-domeeni ei ole lubatud"
+msgid ""
+"the character which will be used to separate the domain and user part of "
+"winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr ""
+"märk, mis eraldab domeeni ja winbind loodud kasutajanime kui winbind-kasuta-"
+"vaike-domeeni ei ole lubatud"
 
 #: authconfig.c:949
 msgid "the directory which winbind-created users will have as home directories"
@@ -510,12 +480,20 @@ msgid "the shell which winbind-created users will have as their login shell"
 msgstr "winbind loodud kasutajate kest on nende logimise kest"
 
 #: authconfig.c:960
-msgid "configures winbind to assume that users with no domain in their user names are domain users"
-msgstr "seadistada winbind oletama, kui kasutajanimes puudub domeen, on ta domeeni kasutaja"
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are domain users"
+msgstr ""
+"seadistada winbind oletama, kui kasutajanimes puudub domeen, on ta domeeni "
+"kasutaja"
 
 #: authconfig.c:964
-msgid "configures winbind to assume that users with no domain in their user names are not domain users"
-msgstr "seadistada winbind oletama, kui kasutajanimes puudub domeen, ei ole ta domeeni kasutaja"
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are not domain users"
+msgstr ""
+"seadistada winbind oletama, kui kasutajanimes puudub domeen, ei ole ta "
+"domeeni kasutaja"
 
 #: authconfig.c:968
 msgid "join the winbind domain or ads realm now as this administrator\n"
@@ -609,14 +587,8 @@ msgstr "%s: ootamatu argument\n"
 msgid "%s: can only be run as root\n"
 msgstr "%s: võimalik käivitada ainult juurkasutajana\n"
 
-#: authconfig.c:1075
-#: authconfig.c:1083
-#: authconfig.c:1091
-#: authconfig.c:1099
-#: authconfig.c:1107
-#: authconfig.c:1115
-#: authconfig.c:1123
-#: authconfig.c:1136
+#: authconfig.c:1075 authconfig.c:1083 authconfig.c:1091 authconfig.c:1099
+#: authconfig.c:1107 authconfig.c:1115 authconfig.c:1123 authconfig.c:1136
 #: authconfig.c:1144
 #, c-format
 msgid "%s: critical error reading %s/%s"
@@ -628,8 +600,12 @@ msgid "%s: unable to read caching configuration"
 msgstr "%s: puhverdamise seadistust pole võimalik lugeda"
 
 #: authconfig.c:1231
-msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
-msgstr " <Tab>/<Alt-Tab> elementide vahel   |   <tühik> valikud  |  <F12> järgmine kuva"
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> elementide vahel   |   <tühik> valikud  |  <F12> järgmine "
+"kuva"
 
 #: authconfig.c:1240
 #, c-format
@@ -641,28 +617,26 @@ msgstr "dialoog tühistati\n"
 msgid "%s: critical error recording caching setting"
 msgstr "%s: kriitiline viga salvestades puhverdamise seadeid"
 
-#: authconfig.c:1267
-#: authconfig.c:1273
-#: authconfig.c:1279
-#: authconfig.c:1285
-#: authconfig.c:1290
-#: authconfig.c:1296
-#: authconfig.c:1301
-#: authconfig.c:1306
-#: authconfig.c:1311
-#: authconfig.c:1317
+#: authconfig.c:1267 authconfig.c:1273 authconfig.c:1279 authconfig.c:1285
+#: authconfig.c:1290 authconfig.c:1296 authconfig.c:1301 authconfig.c:1306
+#: authconfig.c:1311 authconfig.c:1317
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: kriitiline viga kirjutamisel %s/%s"
 
 #: authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr "Kontrolli kuidas süsteem kontrollib kasutajaid, kes üritavad sisse logida"
+msgstr ""
+"Kontrolli kuidas süsteem kontrollib kasutajaid, kes üritavad sisse logida"
 
 #: authinfo.h:71
 #, c-format
-msgid "The %s file was not found, but it is required for %s support to work properly.  Install the %s package, which provides this file."
-msgstr "Fail %s pole võimalik leida, kuid see on vajalik toetamaks %s korralikult töötamist. Installeeri %s pakett, milles on fail olemas."
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.  Install the %s package, which provides this file."
+msgstr ""
+"Fail %s pole võimalik leida, kuid see on vajalik toetamaks %s korralikult "
+"töötamist. Installeeri %s pakett, milles on fail olemas."
 
 #: authconfig.glade.h:1
 msgid "*"
@@ -753,16 +727,24 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
 #: authconfig.glade.h:26
-msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
-msgstr "Hesiod lubab süsteemi administratoril avalikustada kasutaja ja grupi infot DNS-is. Vahel kasutatakse seda väga suurtes võrkudes."
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiod lubab süsteemi administratoril avalikustada kasutaja ja grupi infot "
+"DNS-is. Vahel kasutatakse seda väga suurtes võrkudes."
 
 #: authconfig.glade.h:27
 msgid "Joining Winbind Domain"
 msgstr "Winbind domeeniga ühinemine"
 
 #: authconfig.glade.h:30
-msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
-msgstr "Kerberos on usaldatav kolmanda osapoole autentimise süsteem, mida kasutatakse tavaliselt keskmiste ja suuremate võrkude korra."
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberos on usaldatav kolmanda osapoole autentimise süsteem, mida "
+"kasutatakse tavaliselt keskmiste ja suuremate võrkude korra."
 
 #: authconfig.glade.h:32
 msgid "LDAP Search _Base DN"
@@ -781,20 +763,34 @@ msgid "NIS _Server"
 msgstr "NIS _Server"
 
 #: authconfig.glade.h:39
-msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
-msgstr "NIS on võrgu informatsiooni teenus. Kasutatakse tavaliselt väiksestes ja keskmistes võrkudes."
+msgid ""
+"NIS is the Network Information Service.  It is commonly used on small to "
+"medium networks."
+msgstr ""
+"NIS on võrgu informatsiooni teenus. Kasutatakse tavaliselt väiksestes ja "
+"keskmistes võrkudes."
 
 #: authconfig.glade.h:40
 msgid "SMB"
 msgstr "SMB"
 
 #: authconfig.glade.h:42
-msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
-msgstr "SMB autentimine kontrollib kasutaja parooli üritades ühendada serveriga, milline kasutab SMB (serverisõnumiplokk) protokolli."
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"SMB autentimine kontrollib kasutaja parooli üritades ühendada serveriga, "
+"milline kasutab SMB (serverisõnumiplokk) protokolli."
 
 #: authconfig.glade.h:44
-msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy.  LDAP is increasingly being used in small to large networks."
-msgstr "Lihtsustatud kataloogisirvimise protokoll (LDAP) on standardne kataloogi otsimise viis, mis suudab hoida suvalisi andmeid struktureeritult. LDAP on leidnud järjest enam kasutust väikestest võrkudest suurematesse."
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"Lihtsustatud kataloogisirvimise protokoll (LDAP) on standardne kataloogi "
+"otsimise viis, mis suudab hoida suvalisi andmeid struktureeritult. LDAP on "
+"leidnud järjest enam kasutust väikestest võrkudest suurematesse."
 
 #: authconfig.glade.h:45
 msgid "Use DNS to _locate KDCs for realms"
@@ -829,8 +825,14 @@ msgid "Winbind _Domain"
 msgstr "Winbind _domeen"
 
 #: authconfig.glade.h:56
-msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
-msgstr "Winbind lubab süsteemil otsida infot kasutajatest ja neid autentida kasutades infot NTDOM või ADS serveris. Kasutatakse väikestest kuni suurte võrkudeni."
+msgid ""
+"Winbind allows a system to retrieve information about users and to "
+"authenticate users by using information stored in an NTDOM or ADS server.  "
+"It is used in small to large networks."
+msgstr ""
+"Winbind lubab süsteemil otsida infot kasutajatest ja neid autentida "
+"kasutades infot NTDOM või ADS serveris. Kasutatakse väikestest kuni suurte "
+"võrkudeni."
 
 #: authconfig.glade.h:57
 msgid "_Admin Servers"
@@ -875,4 +877,3 @@ msgstr "_Töögrupp"
 #: localpol.h:9
 msgid "Use Local Policies"
 msgstr "Kasuta kohalikke reegleid"
-
