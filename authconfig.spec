@@ -7,13 +7,15 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
-Requires: glibc >= 2.1, pam >= 0.72, glib
+Requires: glibc >= 2.1, pam >= 0.73, glib
+BuildPrereq: pam-devel >= 0.73, glib-devel, newt-devel
 
 %description 
 Authconfig is a terminal mode program for setting up Network
 Information Service (NIS) and shadow (more secure) passwords
 on your system. Authconfig also configures the system to
 automatically turn on NIS at system startup.
+
 
 %prep
 %setup -q
@@ -36,6 +38,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Fri Jan 12 2001 Nalin Dahyabhai <nalin@redhat.com>
 - really fix #23016 this time
+- add buildprereqs on pam-devel, newt-devel, and glib-devel
 
 * Wed Jan 10 2001 Nalin Dahyabhai <nalin@redhat.com>
 - match nss_ldap change of flag definitions for "ssl" flag ("on"=>"start_tls")
