@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-06-07 17:16-0400\n"
+"POT-Creation-Date: 2000-06-13 17:17-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,112 +14,115 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 
-#: ../authconfig.c:123
+#: ../authconfig.c:129
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
 
-#: ../authconfig.c:127
+#: ../authconfig.c:133
 msgid "Warning"
 msgstr ""
 
-#: ../authconfig.c:127 ../authconfig.c:428 ../authconfig.c:433
+#: ../authconfig.c:133 ../authconfig.c:494 ../authconfig.c:499
 msgid "Ok"
 msgstr ""
 
-#: ../authconfig.c:137
+#: ../authconfig.c:143 ../authconfig.c:217
 msgid "  Domain:"
 msgstr ""
 
-#: ../authconfig.c:138 ../authconfig.c:184
+#: ../authconfig.c:144 ../authconfig.c:190
 msgid "  Server:"
 msgstr ""
 
-#: ../authconfig.c:158
+#: ../authconfig.c:164
 msgid "     LHS:"
 msgstr ""
 
-#: ../authconfig.c:159
+#: ../authconfig.c:165
 msgid "     RHS:"
 msgstr ""
 
-#: ../authconfig.c:185
+#: ../authconfig.c:191
 msgid " Base DN:"
 msgstr ""
 
-#: ../authconfig.c:206
+#: ../authconfig.c:234
 msgid "          Realm:"
 msgstr ""
 
-#: ../authconfig.c:207
+#: ../authconfig.c:235
 msgid "            KDC:"
 msgstr ""
 
-#: ../authconfig.c:208
+#: ../authconfig.c:236
 msgid "   Admin Server:"
 msgstr ""
 
 #. Create the window and a form to put into it.
-#: ../authconfig.c:245
+#: ../authconfig.c:276
 msgid "User Information Configuration"
 msgstr ""
 
-#. NSS files.
-#: ../authconfig.c:250
-msgid "Use /etc/passwd"
-msgstr ""
-
 #. NSS modules: NIS.
-#: ../authconfig.c:256
+#: ../authconfig.c:280
 msgid "Use NIS"
 msgstr ""
 
-#: ../authconfig.c:279
+#: ../authconfig.c:303
 msgid "Use LDAP"
 msgstr ""
 
-#: ../authconfig.c:297
+#: ../authconfig.c:322
+msgid "Use WinBind"
+msgstr ""
+
+#: ../authconfig.c:336
 msgid "Use Hesiod"
 msgstr ""
 
 #. Create the buttons.
-#: ../authconfig.c:318
+#: ../authconfig.c:357
 msgid "Next"
 msgstr ""
 
-#: ../authconfig.c:319 ../authconfig.c:429 ../authconfig.c:434
+#: ../authconfig.c:358 ../authconfig.c:495 ../authconfig.c:500
 msgid "Back"
 msgstr ""
 
-#: ../authconfig.c:319 ../authconfig.c:430
+#: ../authconfig.c:358 ../authconfig.c:496
 msgid "Cancel"
 msgstr ""
 
 #. Create the window and a form to put into it.
-#: ../authconfig.c:368
+#: ../authconfig.c:418
 msgid "Authentication Configuration"
 msgstr ""
 
 #. PAM setup.
-#: ../authconfig.c:372
+#: ../authconfig.c:422
 msgid "Use Shadow Passwords"
 msgstr ""
 
-#: ../authconfig.c:376
+#: ../authconfig.c:426
 msgid "Use MD5 Passwords"
 msgstr ""
 
-#: ../authconfig.c:381
+#: ../authconfig.c:431
 msgid "Use LDAP Authentication"
 msgstr ""
 
-#: ../authconfig.c:401
+#: ../authconfig.c:452
+msgid "Use WinBind Authentication"
+msgstr ""
+
+#: ../authconfig.c:467
 msgid "Use Kerberos 5"
 msgstr ""
 
-#: ../authconfig.c:515
+#: ../authconfig.c:588
 #, c-format
 msgid ""
 "Usage: %s [options]\n"
@@ -146,97 +149,107 @@ msgid ""
 "     --help                     show this screen\n"
 msgstr ""
 
-#: ../authconfig.c:620
+#: ../authconfig.c:702
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr ""
 
-#: ../authconfig.c:627
+#: ../authconfig.c:709
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr ""
 
-#: ../authconfig.c:639
+#: ../authconfig.c:721
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr ""
 
-#: ../authconfig.c:650
+#: ../authconfig.c:732
 #, c-format
 msgid "%s: critical error reading %s/hesiod.conf"
 msgstr ""
 
-#: ../authconfig.c:657
+#: ../authconfig.c:739
 #, c-format
 msgid "%s: critical error reading %s/krb5.conf"
 msgstr ""
 
-#: ../authconfig.c:664
+#: ../authconfig.c:746
 #, c-format
 msgid "%s: critical error reading %s/ldap.conf"
 msgstr ""
 
-#: ../authconfig.c:671
+#: ../authconfig.c:754
+#, c-format
+msgid "%s: critical error reading %s/smb.conf"
+msgstr ""
+
+#: ../authconfig.c:762
 #, c-format
 msgid "%s: critical error reading %s/yp.conf"
 msgstr ""
 
-#: ../authconfig.c:678
+#: ../authconfig.c:769
 #, c-format
 msgid "%s: critical error reading %s/nsswitch.conf"
 msgstr ""
 
-#: ../authconfig.c:685
+#: ../authconfig.c:776
 #, c-format
 msgid "%s: critical error reading %s/sysconfig/network"
 msgstr ""
 
-#: ../authconfig.c:692
+#: ../authconfig.c:783
 #, c-format
 msgid "%s: critical error reading %s/pam.d/%s"
 msgstr ""
 
-#: ../authconfig.c:735
+#: ../authconfig.c:836
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr ""
 
-#: ../authconfig.c:743
+#: ../authconfig.c:844
 msgid "dialog was cancelled\n"
 msgstr ""
 
-#: ../authconfig.c:795
+#: ../authconfig.c:908
 #, c-format
 msgid "%s: critical error writing %s/hesiod.conf"
 msgstr ""
 
-#: ../authconfig.c:800
+#: ../authconfig.c:913
 #, c-format
 msgid "%s: critical error writing %s/krb5.conf"
 msgstr ""
 
-#: ../authconfig.c:805
+#: ../authconfig.c:918
 #, c-format
 msgid "%s: critical error writing %s/ldap.conf"
 msgstr ""
 
-#: ../authconfig.c:810
+#: ../authconfig.c:923
 #, c-format
 msgid "%s: critical error writing %s/yp.conf"
 msgstr ""
 
-#: ../authconfig.c:815
+#: ../authconfig.c:929
+#, c-format
+msgid "%s: critical error writing %s/smb.conf"
+msgstr ""
+
+#: ../authconfig.c:935
 #, c-format
 msgid "%s: critical error writing %s/nsswitch.conf"
 msgstr ""
 
-#: ../authconfig.c:819
+#: ../authconfig.c:939
 #, c-format
 msgid "%s: critical error writing %s/sysconfig/network"
 msgstr ""
 
-#: ../authconfig.c:824
+#: ../authconfig.c:944
 #, c-format
 msgid "%s: critical error writing %s/pam.d/%s"
 msgstr ""

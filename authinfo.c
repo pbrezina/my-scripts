@@ -346,6 +346,14 @@ gboolean authInfoReadKerberos(struct authInfoType *info)
 	return TRUE;
 }
 
+#ifdef WINBIND
+/* Read WinBind setup from /etc/smb.conf. */
+gboolean authInfoReadWinBind(struct authInfoType *info)
+{
+#error WRITE CODE TO PARSE /etc/smb.conf
+}
+#endif
+
 /* Read NSS setup from /etc/nsswitch.conf. */
 gboolean authInfoReadNSS(struct authInfoType *info)
 {
@@ -388,7 +396,9 @@ gboolean authInfoReadNSS(struct authInfoType *info)
 	info->enableLDAP = (strstr(nss_config, "ldap") != NULL);
 	info->enableNIS = ((strstr(nss_config, "nis") != NULL) &&
 			   ((strstr(nss_config, "nis"))[3] != 'p'));
-
+#ifdef WINBIND
+	info->enableWinBind = (strstr(nss_config, "winbind") != NULL);
+#endif
 	g_free(nss_config);
 	fclose(fp);
 	return TRUE;
@@ -498,6 +508,15 @@ struct authInfoType *authInfoRead()
 	return ret;
 }
 
+static gboolean non_empty(const char *string)
+{
+	return (string != NULL) && (strlen(string) > 0);
+}
+static gboolean is_empty(const char *string)
+{
+	return (string == NULL) || (strlen(string) == 0);
+}
+
 gboolean authInfoWriteHesiod(struct authInfoType *info)
 {
 	shvarFile *sv = NULL;
@@ -510,21 +529,25 @@ gboolean authInfoWriteHesiod(struct authInfoType *info)
 		return FALSE;
 	}
 
+	if(info->hesiodLHS != NULL) {
+		if(strlen(info->hesiodLHS) == 0) {
+			g_free(info->hesiodLHS);
+			info->hesiodLHS = NULL;
+		}
+	}
 	svSetValue(sv, "lhs", info->hesiodLHS);
+	if(info->hesiodRHS != NULL) {
+		if(strlen(info->hesiodRHS) == 0) {
+			g_free(info->hesiodRHS);
+			info->hesiodRHS = NULL;
+		}
+	}
 	svSetValue(sv, "rhs", info->hesiodRHS);
+
 	svWriteFile(sv, 0644);
 	svCloseFile(sv);
 
 	return TRUE;
-}
-
-static gboolean non_empty(const char *string)
-{
-	return (string != NULL) && (strlen(string) > 0);
-}
-static gboolean is_empty(const char *string)
-{
-	return (string == NULL) || (strlen(string) == 0);
 }
 
 /* Write NIS setup to /etc/yp.conf. */
@@ -1040,6 +1063,14 @@ gboolean authInfoWriteKerberos(struct authInfoType *info)
 	return TRUE;
 }
 
+#ifdef WINBIND
+/* Write WinBind setup to /etc/smb.conf. */
+gboolean authInfoWriteWinBind(struct authInfoType *info)
+{
+#error WRITE CODE TO WRITE /etc/smb.conf
+}
+#endif
+
 /* Write NSS setup to /etc/nsswitch.conf. */
 gboolean authInfoWriteNSS(struct authInfoType *info)
 {
@@ -1078,6 +1109,7 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	l += strlen(" hesiod") * 3;
 	l += strlen(" ldap") * 3;
 	l += strlen(" nis") * 3;
+	l += strlen(" winbind") * 3;
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	/* Determine what we want in that file. */
@@ -1085,7 +1117,15 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	if(info->enableHesiod) strcat(buf, " hesiod");
 	if(info->enableLDAP) strcat(buf, " ldap");
 	if(info->enableNIS) strcat(buf, " nis");
-	if(!info->enableHesiod && !info->enableLDAP && !info->enableNIS) {
+#ifdef WINBIND
+	if(info->enableWinBind) strcat(buf, " winbind");
+#endif
+	if(!info->enableHesiod &&
+	   !info->enableLDAP &&
+#ifdef WINBIND
+	   !info->enableWinBind &&
+#endif
+	   !info->enableNIS) {
 		strcpy(buf, NSS_DEFAULT);
 	}
 
@@ -1192,6 +1232,16 @@ static const char *argv_ldap_auth[] = {
 	NULL,
 };
 
+static const char *argv_winbind_auth[] = {
+	"use_first_pass",
+	NULL,
+};
+
+static const char *argv_winbind_password[] = {
+	"use_authtok",
+	NULL,
+};
+
 static const char *argv_ldap_password[] = {
 	"use_authtok",
 	NULL,
@@ -1228,9 +1278,7 @@ static struct {
 	{FALSE, auth,		sufficient,	"krb5",		argv_krb5_auth},
 	{FALSE, auth,		sufficient,	"krb5afs",	argv_krb5afs_auth},
 	{FALSE, auth,		sufficient,	"ldap",		argv_ldap_auth},
-#ifdef WINBIND
-	{FALSE, auth,		sufficient,	"winbind",	NULL},
-#endif
+	{FALSE, auth,		sufficient,	"winbind",	argv_winbind_auth},
 	{TRUE,  auth,		required,	"deny",		NULL},
 
 	{TRUE,  account,	sufficient,	"unix",		NULL},
@@ -1247,9 +1295,7 @@ static struct {
 	 argv_krb5_password},
 	{FALSE, password,	sufficient,	"ldap",
 	 argv_ldap_password},
-#ifdef WINBIND
-	{FALSE, password,	sufficient,	"winbind",	NULL},
-#endif
+	{FALSE, password,	sufficient,	"winbind",	argv_winbind_password},
 	{TRUE,  password,	required,	"deny",		NULL},
 
 	{TRUE,  session,	required,	"limits",	NULL},
@@ -1257,9 +1303,8 @@ static struct {
 	{FALSE, session,	optional,	"krb5",		NULL},
 	{FALSE, session,	optional,	"krb5afs",	NULL},
 	{FALSE, session,	optional,	"ldap",		NULL},
-#ifdef WINBIND
-	{FALSE, session,	optional,	"winbind",	NULL},
-#endif
+	{FALSE, session,	required,	"winbind",	NULL},
+	{TRUE,  session,	required,	"deny",		NULL},
 };
 
 static void fmt_standard_pam_module(int i, char *obuf, struct authInfoType *info)
@@ -1405,6 +1450,12 @@ gboolean authInfoWriteNetwork(struct authInfoType *info)
 		return FALSE;
 	}
 
+	if(info->nisDomain != NULL) {
+		if(strlen(info->nisDomain) == 0) {
+			g_free(info->nisDomain);
+			info->nisDomain = NULL;
+		}
+	}
 	svSetValue(sv, "NISDOMAIN", info->nisDomain);
 	svWriteFile(sv, 0644);
 	svCloseFile(sv);

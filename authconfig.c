@@ -34,6 +34,12 @@ struct hesiod_cb {
 	newtComponent lhsLabel, rhsLabel;
 	newtComponent lhsEntry, rhsEntry;
 };
+struct winBind_cb {
+	char nss_winBind;
+	char pam_winBind;
+	newtComponent winBindDomainLabel;
+	newtComponent winBindDomainEntry;
+};
 struct ldap_cb {
 	char nss_ldap;
 	char pam_ldap;
@@ -198,6 +204,28 @@ void ldapToggle(newtComponent cb, void *data)
   newtRefresh();
 }
 
+#ifdef WINBIND
+void winBindToggle(newtComponent cb, void *data)
+{
+  struct winBind_cb *winBind = (struct winBind_cb*) data;
+  if((winBind->nss_winBind == '*') || (winBind->pam_winBind == '*')) {
+    if(winBind->nss_winBind == '*') {
+      checkWarn(PATH_LIBNSS_WINBIND, "WinBind", "winbind");
+    } else {
+      checkWarn(PATH_PAM_WINBIND, "WinBind", "winbind");
+    }
+    newtLabelSetText(winBind->winBindDomainLabel, i18n("  Domain:"));
+    newtEntrySetFlags(winBind->winBindDomainEntry,
+		      NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN, NEWT_FLAGS_RESET);
+  } else {
+    newtLabelSetText(winBind->winBindDomainLabel, "");
+    newtEntrySetFlags(winBind->winBindDomainEntry,
+		      NEWT_FLAG_DISABLED | NEWT_FLAG_HIDDEN, NEWT_FLAGS_SET);
+  }
+  newtRefresh();
+}
+#endif
+
 void krb5Toggle(newtComponent cb, void *data)
 {
   struct krb5_cb *krb5 = (struct krb5_cb*) data;
@@ -227,7 +255,8 @@ void krb5Toggle(newtComponent cb, void *data)
 }
 
 int getNSSChoices(int back,
-	          gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
+	          gboolean nisAvail, gboolean ldapAvail,
+		  gboolean kerberosAvail, gboolean winBindAvail,
 	          struct authInfoType *authInfo)
 {
   newtComponent form, ok, cancel, comp, cb;
@@ -235,32 +264,27 @@ int getNSSChoices(int back,
 
   struct nis_cb nis;
   struct hesiod_cb hesiod;
+  struct winBind_cb winBind;
   struct ldap_cb ldap;
 
   char *hesiodLHS = NULL, *hesiodRHS = NULL;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *nisServer = NULL, *nisDomain = NULL;
+  char *winBindDomain = NULL;
 
   /* Create the window and a form to put into it. */
-  newtCenteredWindow(61, 14, i18n("User Information Configuration"));
+  newtCenteredWindow(62, 14, i18n("User Information Configuration"));
   form = newtForm(NULL, NULL, 0);
-
-#if 0
-  /* NSS files. */
-  cb = newtCheckbox(1, 1, i18n("Use /etc/passwd"), '*', "*", &nss_files);
-  newtFormAddComponent(form, cb);
-  newtCheckboxSetFlags(cb, NEWT_FLAG_DISABLED, NEWT_FLAGS_SET);
-#endif
 
   /* NSS modules: NIS. */
   cb = newtCheckbox(1, 1, i18n("Use NIS"), authInfo->enableNIS ? '*' : ' ',
 		    NULL, &nis.nss_nis);
-  nis.domainLabel = newtLabel(15, 1, "");
-  nis.domainEntry = newtEntry(25, 1, authInfo->nisDomain, 35, &nisDomain,
+  nis.domainLabel = newtLabel(16, 1, "");
+  nis.domainEntry = newtEntry(26, 1, authInfo->nisDomain, 35, &nisDomain,
 		  	      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.domainEntry, entryFilter, NULL);
-  nis.serverLabel = newtLabel(15, 2, "");
-  nis.serverEntry = newtEntry(25, 2, authInfo->nisServer, 35, &nisServer,
+  nis.serverLabel = newtLabel(16, 2, "");
+  nis.serverEntry = newtEntry(26, 2, authInfo->nisServer, 35, &nisServer,
 		  	      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(nis.serverEntry, entryFilter, NULL);
   newtFormAddComponents(form,
@@ -278,12 +302,12 @@ int getNSSChoices(int back,
   ldap.pam_ldap = authInfo->enableLDAPAuth ? '*' : ' ';
   cb = newtCheckbox(1, 4, i18n("Use LDAP"),
 		    authInfo->enableLDAP ? '*' : ' ', NULL, &ldap.nss_ldap);
-  ldap.serverLabel = newtLabel(15, 4, "");
-  ldap.serverEntry = newtEntry(25, 4, authInfo->ldapServer, 35, &ldapServer,
+  ldap.serverLabel = newtLabel(16, 4, "");
+  ldap.serverEntry = newtEntry(26, 4, authInfo->ldapServer, 35, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
-  ldap.baseDnLabel = newtLabel(15, 5, "");
-  ldap.baseDnEntry = newtEntry(25, 5, authInfo->ldapBaseDN, 35, &ldapBaseDN,
+  ldap.baseDnLabel = newtLabel(16, 5, "");
+  ldap.baseDnEntry = newtEntry(26, 5, authInfo->ldapBaseDN, 35, &ldapBaseDN,
 		  	       NEWT_ENTRY_SCROLL);
   newtFormAddComponents(form,
 		  	cb,
@@ -294,15 +318,30 @@ int getNSSChoices(int back,
 			NULL);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
 
+#ifdef WINBIND
+  cb = newtCheckbox(1, 7, i18n("Use WinBind"),
+		    authInfo->enableWinBind ? '*' : ' ', NULL,
+		    &winBind.nss_winBind);
+  winBind.winBindDomainLabel = newtLabel(16, 7, "");
+  winBind.winBindDomainEntry = newtEntry(26, 7, authInfo->winBindDomain, 35,
+		 			 &winBindDomain, NEWT_ENTRY_SCROLL);
+  newtFormAddComponents(form,
+		  	cb,
+			winBind.winBindDomainLabel,
+			winBind.winBindDomainEntry,
+			NULL);
+  newtComponentAddCallback(cb, winBindToggle, &winBind);
+#endif
+
   cb = newtCheckbox(1, 7, i18n("Use Hesiod"),
 		    authInfo->enableHesiod ? '*' : ' ', NULL,
 		    &hesiod.nss_hesiod);
-  hesiod.lhsLabel = newtLabel(15, 7, "");
-  hesiod.lhsEntry = newtEntry(25, 7, authInfo->hesiodLHS, 35, &hesiodLHS,
+  hesiod.lhsLabel = newtLabel(16, 7, "");
+  hesiod.lhsEntry = newtEntry(26, 7, authInfo->hesiodLHS, 35, &hesiodLHS,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
-  hesiod.rhsLabel = newtLabel(15, 8, "");
-  hesiod.rhsEntry = newtEntry(25, 8, authInfo->hesiodRHS, 35, &hesiodRHS,
+  hesiod.rhsLabel = newtLabel(16,  8, "");
+  hesiod.rhsEntry = newtEntry(26,  8, authInfo->hesiodRHS, 35, &hesiodRHS,
 			      NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(hesiod.lhsEntry, entryFilter, NULL);
   newtFormAddComponents(form,
@@ -323,6 +362,9 @@ int getNSSChoices(int back,
   nisToggle(NULL, &nis);
   ldapToggle(NULL, &ldap);
   hesiodToggle(NULL, &hesiod);
+#ifdef WINBIND
+  winBindToggle(NULL, &winBind);
+#endif
 
   /* Run the form and interpret the results. */
   comp = newtRunForm(form);
@@ -339,6 +381,11 @@ int getNSSChoices(int back,
     setString(&authInfo->nisServer, nisServer);
     setString(&authInfo->nisDomain, nisDomain);
 
+#ifdef WINBIND
+    authInfo->enableWinBind = (winBind.nss_winBind == '*');
+    setString(&authInfo->winBindDomain, winBindDomain);
+#endif
+
     rc = 1;
   }
   if(comp == cancel) {
@@ -351,7 +398,8 @@ int getNSSChoices(int back,
 }
 
 int getPAMChoices(int back,
-	          gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
+	          gboolean nisAvail, gboolean ldapAvail,
+		  gboolean kerberosAvail, gboolean winBindAvail,
 	          struct authInfoType *authInfo)
 {
   newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
@@ -359,13 +407,15 @@ int getPAMChoices(int back,
 
   struct ldap_cb ldap;
   struct krb5_cb krb5;
+  struct winBind_cb winBind;
 
   char shadow = 0, md5 = 0;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
   char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
+  char *winBindDomain = NULL;
 
   /* Create the window and a form to put into it. */
-  newtCenteredWindow(70, 16, i18n("Authentication Configuration"));
+  newtCenteredWindow(72, 16, i18n("Authentication Configuration"));
   form = newtForm(NULL, NULL, 0);
 
   /* PAM setup. */
@@ -382,12 +432,12 @@ int getPAMChoices(int back,
 		    authInfo->enableLDAPAuth ? '*' : ' ', NULL, &ldap.pam_ldap);
 
   newtComponentAddCallback(cb, ldapToggle, &ldap);
-  ldap.serverLabel = newtLabel(29, 5, "");
-  ldap.serverEntry = newtEntry(39, 5, authInfo->ldapServer, 30, &ldapServer,
+  ldap.serverLabel = newtLabel(31, 5, "");
+  ldap.serverEntry = newtEntry(41, 5, authInfo->ldapServer, 30, &ldapServer,
 		  	       NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(ldap.serverEntry, entryFilter, NULL);
-  ldap.baseDnLabel = newtLabel(29, 6, "");
-  ldap.baseDnEntry = newtEntry(39, 6, authInfo->ldapBaseDN, 30, &ldapBaseDN,
+  ldap.baseDnLabel = newtLabel(31, 6, "");
+  ldap.baseDnEntry = newtEntry(41, 6, authInfo->ldapBaseDN, 30, &ldapBaseDN,
 		  	       NEWT_ENTRY_SCROLL);
   newtFormAddComponents(form,
 		  	cb,
@@ -397,19 +447,35 @@ int getPAMChoices(int back,
 			ldap.baseDnEntry,
 			NULL);
   newtComponentAddCallback(cb, ldapToggle, &ldap);
+#ifdef WINBIND
+  winBind.pam_winBind = authInfo->enableWinBindAuth ? '*' : ' ';
+  cb = newtCheckbox(1, 8, i18n("Use WinBind Authentication"),
+		    authInfo->enableWinBindAuth ? '*' : ' ',
+		    NULL, &winBind.pam_winBind);
+  newtComponentAddCallback(cb, winBindToggle, &winBind);
 
-  cb = newtCheckbox(1, 8, i18n("Use Kerberos 5"),
+  winBind.winBindDomainLabel = newtLabel(31, 8, "");
+  winBind.winBindDomainEntry = newtEntry(41, 8, authInfo->winBindDomain, 30,
+					 &winBindDomain, NEWT_ENTRY_SCROLL);
+  newtFormAddComponents(form,
+		  	cb,
+		  	winBind.winBindDomainLabel,
+			winBind.winBindDomainEntry,
+			NULL);
+  newtComponentAddCallback(cb, winBindToggle, &winBind);
+#endif
+  cb = newtCheckbox(1,  8, i18n("Use Kerberos 5"),
 		    authInfo->enableKerberos ? '*' : ' ', NULL, &krb5.pam_krb5);
-  krb5.realmLabel = newtLabel(22, 8, "");
-  krb5.realmEntry = newtEntry(39, 8, authInfo->kerberosRealm, 30,
+  krb5.realmLabel = newtLabel(24,  8, "");
+  krb5.realmEntry = newtEntry(41,  8, authInfo->kerberosRealm, 30,
 		  	      &kerberosRealm, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.realmEntry, entryFilter, NULL);
-  krb5.kdcLabel = newtLabel(22, 9, "");
-  krb5.kdcEntry = newtEntry(39, 9, authInfo->kerberosKDC, 30,
+  krb5.kdcLabel = newtLabel(24,  9, "");
+  krb5.kdcEntry = newtEntry(41,  9, authInfo->kerberosKDC, 30,
 		  	    &kerberosKDC, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kdcEntry, entryFilter, NULL);
-  krb5.kadminLabel = newtLabel(22, 10, "");
-  krb5.kadminEntry = newtEntry(39, 10, authInfo->kerberosAdminServer, 30,
+  krb5.kadminLabel = newtLabel(24, 10, "");
+  krb5.kadminEntry = newtEntry(41, 10, authInfo->kerberosAdminServer, 30,
 		  	       &kerberosAdmin, NEWT_ENTRY_SCROLL);
   newtEntrySetFilter(krb5.kadminEntry, entryFilter, NULL);
   newtComponentAddCallback(cb, krb5Toggle, &krb5);
@@ -438,6 +504,9 @@ int getPAMChoices(int back,
   /* Call all of the callbacks to initialize disabled fields. */
   ldapToggle(NULL, &ldap);
   krb5Toggle(NULL, &krb5);
+#ifdef WINBIND
+  winBindToggle(NULL, &winBind);
+#endif
 
   /* Run the form and interpret the results. */
   comp = newtRunForm(form);
@@ -448,7 +517,10 @@ int getPAMChoices(int back,
     authInfo->enableLDAPAuth = (ldap.pam_ldap == '*');
     setString(&authInfo->ldapServer, ldapServer);
     setString(&authInfo->ldapBaseDN, ldapBaseDN);
-
+#ifdef WINBIND
+    authInfo->enableWinBindAuth = (winBind.pam_winBind == '*');
+    setString(&authInfo->winBindDomain, winBindDomain);
+#endif
     authInfo->enableKerberos = (krb5.pam_krb5 == '*');
     setString(&authInfo->kerberosRealm, kerberosRealm);
     setString(&authInfo->kerberosKDC, kerberosKDC);
@@ -469,7 +541,8 @@ int getPAMChoices(int back,
 }
 
 int getChoices(int back,
-	       gboolean nisAvail, gboolean ldapAvail, gboolean kerberosAvail,
+	       gboolean nisAvail, gboolean ldapAvail,
+	       gboolean kerberosAvail, gboolean winBindAvail,
 	       struct authInfoType *authInfo)
 {
   int rc = FALSE, next = 1, i;
@@ -481,7 +554,7 @@ int getChoices(int back,
   while (next != 0) {
     switch (next) {
       case 1:
-	i = getNSSChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo);
+	i = getNSSChoices(back, nisAvail, ldapAvail, kerberosAvail, winBindAvail, authInfo);
         switch(i) {
           case 1:
 	    next = 2;
@@ -492,7 +565,7 @@ int getChoices(int back,
 	}
 	break;
       case 2:
-	i = getPAMChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo);
+	i = getPAMChoices(back, nisAvail, ldapAvail, kerberosAvail, winBindAvail, authInfo);
         switch(i) {
           case 2:
 	    next = 1;
@@ -555,7 +628,8 @@ int main(int argc, const char **argv)
 {
   int rc;
   struct authInfoType *authInfo = NULL;
-  gboolean nisAvail = FALSE, kerberosAvail = FALSE, ldapAvail = FALSE;
+  gboolean nisAvail = FALSE, kerberosAvail = FALSE;
+  gboolean ldapAvail = FALSE, winBindAvail = FALSE;
 
   int back = 0, test = 0, nostart = 0, kickstart = 0, help = 0;
 
@@ -566,6 +640,9 @@ int main(int argc, const char **argv)
 
   int enableLDAP = 0, enableLDAPAuth = 0;
   char *ldapServer = NULL, *ldapBaseDN = NULL;
+
+  int enableWinBind = 0, enableWinBindAuth = 0;
+  char *winBindDomain = NULL;
 
   int enableNIS = 0;
   char *nisServer = NULL, *nisDomain = NULL;
@@ -600,6 +677,11 @@ int main(int argc, const char **argv)
     { "enablenis", '\0', POPT_ARG_NONE, &enableNIS, 0, NULL, NULL},
     { "nisserver", '\0', POPT_ARG_STRING, &nisServer, 0, NULL, NULL},
     { "nisdomain", '\0', POPT_ARG_STRING, &nisDomain, 0, NULL, NULL},
+#ifdef WINBIND
+    { "enablewinbind", '\0', POPT_ARG_NONE, &enableWinBind, 0, NULL, NULL},
+    { "enablewinbindauth", '\0', POPT_ARG_NONE, &enableWinBindAuth, 0, NULL, NULL},
+    { "winbinddomain", '\0', POPT_ARG_STRING, &winBindDomain, 0, NULL, NULL},
+#endif
 
     { "help", 'h', 0, &help, 0, NULL, NULL},
     { 0, 0, 0, 0, 0, 0 },
@@ -666,6 +748,15 @@ int main(int argc, const char **argv)
       return 2;
     }
   }
+#ifdef WINBIND
+  if (authInfoReadWinBind(authInfo) == FALSE) {
+    if (fileInaccessible(SYSCONFDIR "/smb.conf", R_OK)) {
+      fprintf(stderr, i18n("%s: critical error reading %s/smb.conf"),
+	      progName, SYSCONFDIR);
+      return 2;
+    }
+  }
+#endif
   if (authInfoReadNIS(authInfo) == FALSE) {
     if (fileInaccessible(SYSCONFDIR "/yp.conf", R_OK)) {
       fprintf(stderr, i18n("%s: critical error reading %s/yp.conf"),
@@ -706,6 +797,10 @@ int main(int argc, const char **argv)
       (access(PATH_LIBNSS_LDAP, X_OK) == 0)) {
     ldapAvail = TRUE;
   }
+  if ((access(PATH_PAM_WINBIND, X_OK) == 0) &&
+      (access(PATH_LIBNSS_WINBIND, X_OK) == 0)) {
+    winBindAvail = TRUE;
+  }
 
   overrideBoolean(&authInfo->enableShadow, useShadow);
   overrideBoolean(&authInfo->enableMD5, enableMD5);
@@ -728,6 +823,12 @@ int main(int argc, const char **argv)
   overrideString(&authInfo->kerberosKDC, krb5KDC);
   overrideString(&authInfo->kerberosAdminServer, krb5AdminServer);
 
+#ifdef WINBIND
+  overrideBoolean(&authInfo->enableWinBind, enableWinBind);
+  overrideBoolean(&authInfo->enableWinBindAuth, enableWinBindAuth);
+  overrideString(&authInfo->winBindDomain, winBindDomain);
+#endif
+
   if (!kickstart) {
     newtInit();
     newtCls();
@@ -735,7 +836,7 @@ int main(int argc, const char **argv)
     newtPushHelpLine(i18n(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"));
     newtDrawRootText(0, 0, "authconfig " VERSION " - (c) 1999, 2000 Red Hat, Inc.");
     
-    if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, authInfo)) {
+    if (!getChoices(back, nisAvail, ldapAvail, kerberosAvail, winBindAvail, authInfo)) {
       /* cancelled */
       newtFinished();
      
@@ -770,6 +871,12 @@ int main(int argc, const char **argv)
 	   authInfo->nisServer ? authInfo->nisServer : "");
     printf(" NIS domain = \"%s\"\n",
 	   authInfo->nisDomain ? authInfo->nisDomain : "");
+#ifdef WINBIND
+    printf("nss_winbind is %s\n",
+	   authInfo->enableWinBind ? "enabled" : "disabled");
+    printf(" winbind domain = \"%s\"\n",
+	   authInfo->winBindDomain ? authInfo->winBindDomain : "");
+#endif
     printf("pam_unix is always enabled\n");
     printf(" shadow passwords are %s\n",
 	   authInfo->enableShadow ? "enabled" : "disabled");
@@ -789,6 +896,12 @@ int main(int argc, const char **argv)
 	   authInfo->ldapServer ? authInfo->ldapServer : "");
     printf(" LDAP base DN = \"%s\"\n",
 	   authInfo->ldapBaseDN ? authInfo->ldapBaseDN : "");
+#ifdef WINBIND
+    printf("pam_winbind is %s\n",
+	   authInfo->enableWinBindAuth ? "enabled" : "disabled");
+    printf(" winbind domain = \"%s\"\n",
+	   authInfo->winBindDomain ? authInfo->winBindDomain : "");
+#endif
     return 0;
   } else {
     if (authInfoWriteHesiod(authInfo) == FALSE) {
@@ -811,6 +924,13 @@ int main(int argc, const char **argv)
 	      progName, SYSCONFDIR);
       return 2;
     }
+#ifdef WINBIND
+    if (authInfoWriteWinBind(authInfo) == FALSE) {
+      fprintf(stderr, i18n("%s: critical error writing %s/smb.conf"),
+	      progName, SYSCONFDIR);
+      return 2;
+    }
+#endif
     if (authInfoWriteNSS(authInfo) == FALSE) {
       fprintf(stderr, i18n("%s: critical error writing %s/nsswitch.conf"),
 	      progName, SYSCONFDIR);
