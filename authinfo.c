@@ -1297,7 +1297,7 @@ authInfoCopy(struct authInfoType *info)
 	*ret = *info;
 
 	ret->hesiodLHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
-	ret->hesiodRHS = info->hesiodLHS ? g_strdup(info->hesiodLHS) : NULL;
+	ret->hesiodRHS = info->hesiodRHS ? g_strdup(info->hesiodRHS) : NULL;
 
 	ret->ldapServer = info->ldapServer ? g_strdup(info->ldapServer) : NULL;
 	ret->ldapBaseDN = info->ldapBaseDN? g_strdup(info->ldapBaseDN) : NULL;
