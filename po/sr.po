@@ -1,7 +1,3 @@
-# Authconfig messages for Red Hat Linux.
-# Copyright (C) 1999 Free Software Foundation, Inc.
-# Zoltan Èala <zolika@sezampro.yu>, 1999.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 1.1\n"
@@ -24,9 +20,9 @@ msgid "%s: cannot open /etc/yp.conf: %s\n"
 msgstr "%s: ne mogu da otvorim /etc/yp.conf: %s\n"
 
 #: ../authconfig.c:202 ../authconfig.c:898
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/yp.conf: %s\n"
+msgstr "%s: ne mogu da otvorim /etc/ldap.conf: %s\n"
 
 #.
 #. * find length of longest string. Looks useless when strings
@@ -34,9 +30,8 @@ msgstr "%s: ne mogu da otvorim /etc/yp.conf: %s\n"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:318 ../authconfig.c:486
-#, fuzzy
 msgid "    NIS Domain:"
-msgstr "NIS domen:"
+msgstr "     NIS domen:"
 
 #: ../authconfig.c:319 ../authconfig.c:461
 msgid "NIS Server:"
@@ -51,50 +46,47 @@ msgstr "NIS server:"
 #. * if they don't pad.
 #.
 #: ../authconfig.c:320 ../authconfig.c:449
-#, fuzzy
 msgid "         or use:"
-msgstr "ili koristi:"
+msgstr "    ili koristi:"
 
 #: ../authconfig.c:338 ../authconfig.c:487 ../authconfig.c:488
-#, fuzzy
 msgid "   LDAP Domain:"
-msgstr "NIS domen:"
+msgstr "    LDAP domen:"
 
 #: ../authconfig.c:340 ../authconfig.c:450 ../authconfig.c:451
 msgid "    LDAP Server:"
-msgstr ""
+msgstr "    LDAP server:"
 
 #: ../authconfig.c:358 ../authconfig.c:489 ../authconfig.c:490
 msgid "Kerberos Realm:"
-msgstr ""
+msgstr "Kraljevstvo Kerberos-a:"
 
 #: ../authconfig.c:360 ../authconfig.c:452 ../authconfig.c:453
 msgid "Kerberos Server:"
-msgstr ""
+msgstr "'Kerberos' server:"
 
 #.
 #. * what kind of authentication?
 #.
 #: ../authconfig.c:416
-#, fuzzy
 msgid "Authentication Type:"
-msgstr "Pode¹avanje autentifikacije"
+msgstr "Tip autentifikacije:"
 
 #: ../authconfig.c:417
 msgid "Password File"
-msgstr ""
+msgstr "Datoteka lozinki"
 
 #: ../authconfig.c:422
 msgid "NIS"
-msgstr ""
+msgstr "NIS"
 
 #: ../authconfig.c:428
 msgid "LDAP"
-msgstr ""
+msgstr "LDAP"
 
 #: ../authconfig.c:434
 msgid "Kerberos"
-msgstr ""
+msgstr "Kerberos"
 
 #: ../authconfig.c:462
 msgid "Request via broadcast"
@@ -139,9 +131,8 @@ msgid "You must enter a NIS server or request via broadcast."
 msgstr "Morate uneti NIS server ili zahtevati preko emisije."
 
 #: ../authconfig.c:650
-#, fuzzy
 msgid "You must enter an authentication domain."
-msgstr "Morate uneti NIS domen."
+msgstr "Morate uneti domen autentifikacije."
 
 #: ../authconfig.c:707
 #, c-format
@@ -154,19 +145,19 @@ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 msgstr "%s: ne mogu da otvorim /etc/yp.conf- za pisanje: %s\n"
 
 #: ../authconfig.c:905
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/yp.conf- za pisanje: %s\n"
+msgstr "%s: ne mogu da otvorim /etc/ldap.conf- za pisanje: %s\n"
 
 #: ../authconfig.c:994
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/yp.conf: %s\n"
+msgstr "%s: ne mogu da otvorim /etc/nsswitch.conf: %s\n"
 
 #: ../authconfig.c:1001
-#, fuzzy, c-format
+#, c-format
 msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
-msgstr "%s: ne mogu da otvorim /etc/yp.conf- za pisanje: %s\n"
+msgstr "%s: ne mogu da otvorim /etc/nsswitch.conf- za pisanje: %s\n"
 
 #: ../authconfig.c:1230
 #, c-format
@@ -216,7 +207,7 @@ msgstr "%s: mo¾e da pokrene samo 'root'\n"
 #: ../authconfig.c:1367
 #, c-format
 msgid "%s: unknown authorization type %s\n"
-msgstr ""
+msgstr "%s: nepoznat tip autorizacije: %s\n"
 
 #: ../authconfig.c:1383
 #, c-format
@@ -243,11 +234,11 @@ msgstr ""
 
 #: ../authconfig.c:1445
 msgid "dialog was cancelled\n"
-msgstr ""
+msgstr "dijalog je obustavljen\n"
 
 #: ../authconfig.c:1456
 msgid "authentication type selected: "
-msgstr ""
+msgstr "izabrani tip autentifikacije: "
 
 #: ../authconfig.c:1486
 #, c-format
@@ -265,37 +256,21 @@ msgid "%s: critical error turning on NIS service\n"
 msgstr "%s: kritièna gre¹ka kod ukljuèivanja NIS servisa\n"
 
 #: ../authconfig.c:1513
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing /etc/ldap.conf\n"
-msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/ldap.conf\n"
 
 #: ../authconfig.c:1518
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing files in /etc/pam.d\n"
-msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
+msgstr "%s: kritièna gre¹ka kod upisa datoteka u /etc/pam.d\n"
 
 #: ../authconfig.c:1528
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error writing /etc/nsswitch.conf\n"
-msgstr "%s: kritièna gre¹ka kod upisa /etc/yp.conf\n"
+msgstr "%s: kritièna gre¹ka kod upisa /etc/nsswitch.conf\n"
 
 #: ../authconfig.c:1537
 #, c-format
 msgid "%s: critical error with shadow password manipulation\n"
 msgstr "%s: kritièna gre¹ka kod manipulacije 'shadow' lozinkom\n"
-
-#, fuzzy
-#~ msgid "%s: critical error reading /etc/ldap.conf"
-#~ msgstr "%s: kritièna gre¹ka kod èitanja /etc/yp.conf"
-
-#~ msgid "Enable NIS"
-#~ msgstr "Omoguæi NIS"
-
-#~ msgid "(NIS not installed)"
-#~ msgstr "(NIS nije instaliran)"
-
-#~ msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-#~ msgstr "%s: NIS domen je postavljen na %s, ali je dijalog prekinut\n"
-
-#~ msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-#~ msgstr "vraæene vrednosti: nis: %c, nisdomen: %s, senka: %c, md5: %c\n"
