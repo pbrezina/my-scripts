@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.1\n"
-"POT-Creation-Date: 2000-08-08 11:34-0400\n"
+"POT-Creation-Date: 2000-12-08 01:50-0500\n"
 "PO-Revision-Date: 2000-08-10 00:29+09:00\n"
 "Last-Translator: Dmytro Koval'ov <kov@tokyo.email.ne.jp>\n"
 "Language-Team: linux@linux.org.ua\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=koi8-u\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../authconfig.c:153
+#: ../authconfig.c:148
 #, c-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -18,109 +18,103 @@ msgstr ""
 "Не знайдено файл %s, але в╕н потр╕бен для забезпечення  в╕рно╖ роботи %s. "
 "Встанов╕ть пакет %s, який забезпечу╓ цей файл."
 
-#: ../authconfig.c:157
+#: ../authconfig.c:152
 msgid "Warning"
 msgstr "Попередження"
 
-#: ../authconfig.c:157 ../authconfig.c:529 ../authconfig.c:534
+#: ../authconfig.c:152 ../authconfig.c:535 ../authconfig.c:548
 msgid "Ok"
 msgstr "Так"
 
-#: ../authconfig.c:167 ../authconfig.c:241
+#: ../authconfig.c:160
 msgid "  Domain:"
 msgstr "   Домен :"
 
-#: ../authconfig.c:168 ../authconfig.c:214
+#: ../authconfig.c:161 ../authconfig.c:199
 msgid "  Server:"
 msgstr "   Сервер:"
 
-#: ../authconfig.c:188
+#: ../authconfig.c:180
 msgid "     LHS:"
 msgstr "     LHS:"
 
-#: ../authconfig.c:189
+#: ../authconfig.c:181
 msgid "     RHS:"
 msgstr "     RHS:"
 
-#: ../authconfig.c:215
+#: ../authconfig.c:200
 msgid " Base DN:"
 msgstr "Основна DN:"
 
-#: ../authconfig.c:258
+#: ../authconfig.c:223
 msgid "          Realm:"
 msgstr "          Realm:"
 
-#: ../authconfig.c:259
+#: ../authconfig.c:224
 msgid "            KDC:"
 msgstr "            KDC:"
 
-#: ../authconfig.c:260
+#: ../authconfig.c:225
 msgid "   Admin Server:"
 msgstr "     Адм╕н╕стративний сервер: "
 
-#. Create the window and a form to put into it.
-#: ../authconfig.c:300
-msgid "User Information Configuration"
-msgstr "Конф╕гурац╕я ╕нформац╕╖ про користувача"
-
 #. NSS modules: NIS.
-#: ../authconfig.c:304
+#: ../authconfig.c:264
 msgid "Use NIS"
 msgstr "Використовувати NIS"
 
-#: ../authconfig.c:327
+#: ../authconfig.c:293
 msgid "Use LDAP"
 msgstr "Використовувати LDAP"
 
-#: ../authconfig.c:346
-msgid "Use WinBind"
-msgstr "Використовувати WinBind"
+#: ../authconfig.c:298 ../authconfig.c:453
+#, fuzzy
+msgid "Use TLS"
+msgstr "Використовувати NIS"
 
-#: ../authconfig.c:360
+#. NSS modules: LDAP.
+#: ../authconfig.c:331
 msgid "Use Hesiod"
 msgstr "Користуватися Hesiod"
 
-#. Create the buttons.
-#: ../authconfig.c:381
+#: ../authconfig.c:361
 msgid "Next"
 msgstr "Наступний"
 
-#: ../authconfig.c:382 ../authconfig.c:530 ../authconfig.c:535
+#: ../authconfig.c:362 ../authconfig.c:536 ../authconfig.c:549
 msgid "Back"
 msgstr "Назад"
 
-#: ../authconfig.c:382 ../authconfig.c:531
+#: ../authconfig.c:362 ../authconfig.c:537
 msgid "Cancel"
 msgstr "Скасувати"
 
-#. Create the window and a form to put into it.
-#: ../authconfig.c:447
-msgid "Authentication Configuration"
-msgstr "Конф╕гурац╕я аутентикац╕╖"
+#: ../authconfig.c:381
+msgid "User Information Configuration"
+msgstr "Конф╕гурац╕я ╕нформац╕╖ про користувача"
 
-#. PAM setup.
-#: ../authconfig.c:451
+#: ../authconfig.c:437
 msgid "Use Shadow Passwords"
 msgstr "Використовувати прихован╕ парол╕"
 
-#: ../authconfig.c:455
+#: ../authconfig.c:442
 msgid "Use MD5 Passwords"
 msgstr "Використовувати парол╕ MD5"
 
-#: ../authconfig.c:460
+#: ../authconfig.c:448
 msgid "Use LDAP Authentication"
 msgstr "Використовувати аутентикац╕ю LDAP"
 
-#: ../authconfig.c:481
-msgid "Use WinBind Authentication"
-msgstr "Використовувати аутентикац╕ю WinBind"
-
-#: ../authconfig.c:496
+#: ../authconfig.c:485
 msgid "Use Kerberos 5"
 msgstr "Використовувати Kerberos 5"
 
-#: ../authconfig.c:626
-#, c-format
+#: ../authconfig.c:565
+msgid "Authentication Configuration"
+msgstr "Конф╕гурац╕я аутентикац╕╖"
+
+#: ../authconfig.c:642
+#, fuzzy, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
@@ -138,6 +132,8 @@ msgid ""
 "     --enableldap               enable ldap for user information by default\n"
 "     --disableldap              disable ldap for user information by "
 "default\n"
+"     --enableldaptls            enable use of TLS with ldap\n"
+"     --disableldaptls           disable use of TLS with ldap\n"
 "     --enableldapauth           enable ldap for authentication by default\n"
 "     --disableldapauth          disable ldap for authentication by default\n"
 "     --ldapserver <server>      default LDAP server\n"
@@ -215,7 +211,7 @@ msgstr ""
 "     --kickstart                не показувати ╕нтерфейс користувача\n"
 "     --help                     показати цей екран\n"
 
-#: ../authconfig.c:665
+#: ../authconfig.c:683
 msgid ""
 "\n"
 "     --enablelocal              use locally-defined policy "
@@ -224,29 +220,29 @@ msgstr ""
 "     --enablelocal              користуватися пол╕тикою, що визнача╓ться "
 "локально "
 
-#: ../authconfig.c:777
+#: ../authconfig.c:787
 #, c-format
 msgid "%s: bad argument %s: %s\n"
 msgstr "%s: нев╕рний аргумент %s: %s\n"
 
-#: ../authconfig.c:784
+#: ../authconfig.c:794
 #, c-format
 msgid "%s: unexpected argument\n"
 msgstr "%s: неспод╕ваний аргумент\n"
 
-#: ../authconfig.c:796
+#: ../authconfig.c:806
 #, c-format
 msgid "%s: can only be run as root\n"
 msgstr "%s: приступно лише користувачев╕ root\n"
 
-#: ../authconfig.c:807 ../authconfig.c:815 ../authconfig.c:823
-#: ../authconfig.c:832 ../authconfig.c:841 ../authconfig.c:849
-#: ../authconfig.c:857 ../authconfig.c:865
+#: ../authconfig.c:817 ../authconfig.c:825 ../authconfig.c:833
+#: ../authconfig.c:841 ../authconfig.c:849 ../authconfig.c:857
+#: ../authconfig.c:865
 #, c-format
 msgid "%s: critical error reading %s/%s"
 msgstr "%s:  критична помилка читання %s/%s"
 
-#: ../authconfig.c:923
+#: ../authconfig.c:914
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -254,13 +250,19 @@ msgstr ""
 " <Tab>/<Alt-Tab> м╕ж елементами   |   <Space> виб╕р   |  <F12> наступний "
 "екран"
 
-#: ../authconfig.c:931
+#: ../authconfig.c:922
 msgid "dialog was cancelled\n"
 msgstr "диалог було прервано\n"
 
-#: ../authconfig.c:999 ../authconfig.c:1005 ../authconfig.c:1011
-#: ../authconfig.c:1017 ../authconfig.c:1024 ../authconfig.c:1031
-#: ../authconfig.c:1036 ../authconfig.c:1042
+#: ../authconfig.c:982 ../authconfig.c:988 ../authconfig.c:994
+#: ../authconfig.c:1000 ../authconfig.c:1006 ../authconfig.c:1011
+#: ../authconfig.c:1017
 #, c-format
 msgid "%s: critical error writing %s/%s"
 msgstr "%s: критична помилка запису %s/%s"
+
+#~ msgid "Use WinBind"
+#~ msgstr "Використовувати WinBind"
+
+#~ msgid "Use WinBind Authentication"
+#~ msgstr "Використовувати аутентикац╕ю WinBind"
