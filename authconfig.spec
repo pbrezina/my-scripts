@@ -9,7 +9,7 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
-Requires: glibc >= 2.1, glib2, pam >= 0.77-56, nscd
+Requires: glibc >= 2.1, glib2, pam >= 0.77-56
 Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]")
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 BuildPrereq: pam-devel >= 0.77, newt-devel, glib2-devel, python, python-devel
@@ -80,6 +80,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Dec 15 2004 Tomas Mraz <tmraz@redhat.com>
+- remove dependency on nscd
+- don't show warning messages when switching options off
+
 * Mon Dec  6 2004 Tomas Mraz <tmraz@redhat.com> - 4.6.7-1
 - updated translations
 - winbind in authconfig-gtk.py was setting the nsswitch.conf on the auth tab

@@ -1439,11 +1439,15 @@ authInfoCopy(struct authInfoType *info)
 gboolean
 authInfoWriteCache(struct authInfoType *authInfo)
 {
+	struct stat st;
+	
 	if (authInfo->enableCache) {
 		system("/sbin/chkconfig --add nscd");
 		system("/sbin/chkconfig --level 345 nscd on");
 	} else {
-		system("/sbin/chkconfig --level 345 nscd off");
+		if (stat(PATH_NSCD, &st) == 0) {
+		    system("/sbin/chkconfig --level 345 nscd off");
+		}
 	}
 	return TRUE;
 }

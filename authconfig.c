@@ -464,6 +464,9 @@ warnCallback(newtComponent comp, void *warningp)
 {
   struct warntype *warning;
   char *p;
+  
+  if(newtCheckboxGetValue(comp) == ' ')
+    return;
 
   warning = warningp;
 
@@ -488,7 +491,7 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
 {
   newtComponent form, ok, cancel, comp, cb;
   newtGrid mainGrid, mechGrid, buttonGrid, infoGrid, authGrid;
-  char cache, hesiod, ldap, nis, winbind, krb5, ldapa, smb, shadow, md5,
+  newtComponent cache, hesiod, ldap, nis, winbind, krb5, ldapa, smb, shadow, md5,
        winbindauth;
   struct warntype warnCache = {PATH_NSCD,
 			       _("caching"),
@@ -537,36 +540,36 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(infoGrid, 0, 0, NEWT_GRID_COMPONENT, comp,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
-  cb = newtCheckbox(-1, -1, _("Cache Information"),
+  cache = cb = newtCheckbox(-1, -1, _("Cache Information"),
 		    authInfo->enableCache ? '*' : ' ',
-		    NULL, &cache);
+		    NULL, NULL);
   newtGridSetField(infoGrid, 0, 1, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnCache);
 
-  cb = newtCheckbox(-1, -1, _("Use Hesiod"),
+  hesiod = cb = newtCheckbox(-1, -1, _("Use Hesiod"),
 		    authInfo->enableHesiod ? '*' : ' ',
-		    NULL, &hesiod);
+		    NULL, NULL);
   newtGridSetField(infoGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
-  cb = newtCheckbox(-1, -1, _("Use LDAP"),
+  ldap = cb = newtCheckbox(-1, -1, _("Use LDAP"),
 		    authInfo->enableLDAP ? '*' : ' ',
-		    NULL, &ldap);
+		    NULL, NULL);
   newtGridSetField(infoGrid, 0, 3, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnLDAP);
 
-  cb = newtCheckbox(-1, -1, _("Use NIS"),
+  nis = cb = newtCheckbox(-1, -1, _("Use NIS"),
 		    authInfo->enableNIS ? '*' : ' ',
-		    NULL, &nis);
+		    NULL, NULL);
   newtGridSetField(infoGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnNIS);
 
-  cb = newtCheckbox(-1, -1, _("Use Winbind"),
+  winbind = cb = newtCheckbox(-1, -1, _("Use Winbind"),
 		    authInfo->enableWinbind ? '*' : ' ',
-		    NULL, &winbind);
+		    NULL, NULL);
   newtComponentAddCallback(cb, warnCallback, &warnWinbind);
   newtGridSetField(infoGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   0, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
@@ -578,43 +581,43 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   newtGridSetField(authGrid, 0, 0, NEWT_GRID_COMPONENT, comp,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
-  cb = newtCheckbox(-1, -1, _("Use MD5 Passwords"),
+  md5 = cb = newtCheckbox(-1, -1, _("Use MD5 Passwords"),
 		    authInfo->enableMD5 ? '*' : ' ',
-		    NULL, &md5);
+		    NULL, NULL);
   newtGridSetField(authGrid, 0, 1, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
 
-  cb = newtCheckbox(-1, -1, _("Use Shadow Passwords"),
+  shadow = cb = newtCheckbox(-1, -1, _("Use Shadow Passwords"),
 		    authInfo->enableShadow ? '*' : ' ',
-		    NULL, &shadow);
+		    NULL, NULL);
   newtGridSetField(authGrid, 0, 2, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnShadow);
 
-  cb = newtCheckbox(-1, -1, _("Use LDAP Authentication"),
-		    authInfo->enableLDAP ? '*' : ' ',
-		    NULL, &ldapa);
+  ldapa = cb = newtCheckbox(-1, -1, _("Use LDAP Authentication"),
+		    authInfo->enableLDAPAuth ? '*' : ' ',
+		    NULL, NULL);
   newtGridSetField(authGrid, 0, 3, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnLDAPAuth);
 
-  cb = newtCheckbox(-1, -1, _("Use Kerberos"),
+  krb5 = cb = newtCheckbox(-1, -1, _("Use Kerberos"),
 		    authInfo->enableKerberos ? '*' : ' ',
-		    NULL, &krb5);
+		    NULL, NULL);
   newtGridSetField(authGrid, 0, 4, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnKerberos);
 
-  cb = newtCheckbox(-1, -1, _("Use SMB Authentication"),
+  smb = cb = newtCheckbox(-1, -1, _("Use SMB Authentication"),
 		    authInfo->enableSMB ? '*' : ' ',
-		    NULL, &smb);
+		    NULL, NULL);
   newtGridSetField(authGrid, 0, 5, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
   newtComponentAddCallback(cb, warnCallback, &warnSMB);
 
-  cb = newtCheckbox(-1, -1, _("Use Winbind Authentication"),
+  winbindauth = cb = newtCheckbox(-1, -1, _("Use Winbind Authentication"),
 		    authInfo->enableWinbindAuth ? '*' : ' ',
-		    NULL, &winbindauth);
+		    NULL, NULL);
   newtComponentAddCallback(cb, warnCallback, &warnWinbindAuth);
   newtGridSetField(authGrid, 0, 6, NEWT_GRID_COMPONENT, cb,
 		   1, 0, 0, 0, NEWT_ANCHOR_LEFT, NEWT_GRID_FLAG_GROWX);
@@ -651,17 +654,17 @@ getMainChoices(int back, gboolean nisAvail, gboolean ldapAvail,
   comp = newtRunForm(form);
 
   if (comp != cancel) {
-    authInfo->enableCache = (cache == '*');
-    authInfo->enableHesiod = (hesiod == '*');
-    authInfo->enableLDAP = (ldap == '*');
-    authInfo->enableNIS = (nis == '*');
-    authInfo->enableWinbind = (winbind == '*');
-    authInfo->enableShadow = (shadow == '*');
-    authInfo->enableMD5 = (md5 == '*');
-    authInfo->enableLDAPAuth = (ldapa == '*');
-    authInfo->enableKerberos = (krb5 == '*');
-    authInfo->enableSMB = (smb == '*');
-    authInfo->enableWinbindAuth = (winbindauth == '*');
+    authInfo->enableCache = (newtCheckboxGetValue(cache) == '*');
+    authInfo->enableHesiod = (newtCheckboxGetValue(hesiod) == '*');
+    authInfo->enableLDAP = (newtCheckboxGetValue(ldap) == '*');
+    authInfo->enableNIS = (newtCheckboxGetValue(nis) == '*');
+    authInfo->enableWinbind = (newtCheckboxGetValue(winbind) == '*');
+    authInfo->enableShadow = (newtCheckboxGetValue(shadow) == '*');
+    authInfo->enableMD5 = (newtCheckboxGetValue(md5) == '*');
+    authInfo->enableLDAPAuth = (newtCheckboxGetValue(ldapa) == '*');
+    authInfo->enableKerberos = (newtCheckboxGetValue(krb5) == '*');
+    authInfo->enableSMB = (newtCheckboxGetValue(smb) == '*');
+    authInfo->enableWinbindAuth = (newtCheckboxGetValue(winbindauth) == '*');
   }
 
   newtFormDestroy(form);
