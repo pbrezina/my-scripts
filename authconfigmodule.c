@@ -422,7 +422,7 @@ authconfig_differs(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	struct authInfoObject *info, *other;
 	char *keywords[] = {"other", NULL};
-	gboolean equal;
+	gboolean differs;
 
 	if (!authInfoObject_Check(self)) {
 		return NULL;
@@ -443,8 +443,8 @@ authconfig_differs(PyObject *self, PyObject *args, PyObject *kwargs)
 	}
 
 	info = (struct authInfoObject *) self;
-	equal = authInfoDiffers(info->info, other->info);
-	if (equal) {
+	differs = authInfoDiffers(info->info, other->info);
+	if (!differs) {
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
