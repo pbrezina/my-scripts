@@ -3,9 +3,9 @@ UNFORMATTED=`mktemp /tmp/utf8.po.XXXXXX`
 CONVERTED=`mktemp /tmp/utf8.po.XXXXXX`
 
 for mo in $@ ; do
-	echo Converting $mo to UTF-8.
 	msgunfmt $mo > $UNFORMATTED
 	ENCODING=`grep 'Content-Type:.*text/plain;.*charset=' $UNFORMATTED | sed -e 's,.*charset=,,g' -e 's,[^A-Za-z0-9-].*,,g'`
+	echo Converting $mo from $ENCODING to UTF-8.
 	cat $UNFORMATTED | \
 	sed -e 's,Content-Type: *text/plain; *charset=.*\\n,Content-Type: text/plain; charset=UTF-8\\n,g' | \
 	iconv -f $ENCODING -t UTF-8 - > $CONVERTED
