@@ -24,7 +24,7 @@ authentication schemes.
 %package gtk
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}, pygtk2-libglade, rhpl
+Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.4.0, rhpl
 # It occurs that while text-mode authconfig warns about needed files not being
 # there, it's much simpler to just have the GUI require anything it might want
 # to use.
@@ -81,6 +81,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Dec  6 2004 Tomas Mraz <tmraz@redhat.com>
+- updated translations
+- winbind in authconfig-gtk.py was setting the nsswitch.conf on the auth tab
+- use GtkComboBox instead of deprecated GtkOptionMenu
+
 * Thu Nov 18 2004 Tomas Mraz <tmraz@redhat.com> - 4.6.6-1
 - merged patches from dist
 - fix versioning
