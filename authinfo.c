@@ -917,6 +917,42 @@ authInfoRead()
 void
 authInfoFree(struct authInfoType *info)
 {
+	if (info) {
+		if (info->hesiodLHS) {
+			free(info->hesiodLHS);
+		}
+		if (info->hesiodRHS) {
+			free(info->hesiodRHS);
+		}
+		if (info->ldapServer) {
+			free(info->ldapServer);
+		}
+		if (info->ldapBaseDN) {
+			free(info->ldapBaseDN);
+		}
+		if (info->kerberosRealm) {
+			free(info->kerberosRealm);
+		}
+		if (info->kerberosKDC) {
+			free(info->kerberosKDC);
+		}
+		if (info->kerberosAdminServer) {
+			free(info->kerberosAdminServer);
+		}
+		if (info->nisServer) {
+			free(info->nisServer);
+		}
+		if (info->nisDomain) {
+			free(info->nisDomain);
+		}
+		if (info->smbWorkgroup) {
+			free(info->smbWorkgroup);
+		}
+		if (info->smbServers) {
+			free(info->smbServers);
+		}
+		free(info);
+	}
 }
 
 struct authInfoType *
@@ -2162,8 +2198,12 @@ static struct {
 	 "unix",		NULL},
 	{TRUE,  account, 	LOGIC_SUFFICIENT,
 	 "localuser",		NULL},
-	{FALSE, account,	LOGIC_REQUIRED,
+	{FALSE, account,	LOGIC_SUFFICIENT,
 	 "ldap",		NULL},
+	{FALSE, account,	LOGIC_SUFFICIENT,
+	 "krb5",		NULL},
+	{TRUE,  account, 	LOGIC_REQUIRED,
+	 "deny",		NULL},
 
 #ifdef LOCAL_POLICIES
 	{FALSE, password,	LOGIC_REQUIRED,

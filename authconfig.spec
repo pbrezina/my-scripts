@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.2.4
+Version: 4.2.5
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -8,6 +8,7 @@ Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
 Requires: glibc >= 2.1, pam >= 0.73, glib2
+Conflicts: pam_krb5 < 1.49
 BuildPrereq: pam-devel >= 0.73, newt-devel, gtk2-devel, libglade2-devel, python
 
 %description 
@@ -75,6 +76,11 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 
 %changelog
+* Tue Feb 12 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.5-1
+- actually free authInfo structures when asked to
+- use pam_krb5's account management facilities
+- conflict with versions of pam_krb5 which don't offer account management
+
 * Mon Feb  4 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.4-1
 - add python bindings for the back-end
 - redo the gui so that it exercises the python bindings
