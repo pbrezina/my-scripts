@@ -7,7 +7,7 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.gz
-Requires: glibc >= 2.1, pam >= 0.73, glib2
+Requires: glibc >= 2.1, pam >= 0.73, glib2, pam >= 0.75-43
 Conflicts: pam_krb5 < 1.49
 BuildPrereq: pam-devel >= 0.73, newt-devel, glib2-devel, python, python-devel
 BuildPrereq: desktop-file-utils
@@ -68,10 +68,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Tue Oct 22 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3.1
+* Wed Oct 23 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3.1-1
+- require a version of PAM (0.75-43) which supports $ISA
+
+* Tue Oct 22 2002 Nalin Dahyabhai <nalin@redhat.com>
 - add $ISA to the name of the directory in which we expect PAMs to be stored
 
-* Fri Sep 20 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3
+* Fri Sep 20 2002 Nalin Dahyabhai <nalin@redhat.com> 4.3-1
 - build with -fPIC, necessary on some arches
 
 * Tue Sep  3 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.11-3
