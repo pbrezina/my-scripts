@@ -1,4 +1,4 @@
-#!/usr/bin/python2.2
+#!/usr/bin/python
 import authconfig, gettext, os, signal, sys
 from rhpl.translate import _, textdomain
 
