@@ -1,0 +1,16 @@
+#!/bin/sh
+# create hash links on all files in the specified directory
+#
+
+if [ ! -d $1 ] || ! cd $1 ; then
+    echo "'$1' must be a directory." >&2
+    exit 1
+fi
+
+
+for i in *
+do
+	if [ ! -h $i -a -r $i ] ; then
+    		hash=`openssl x509 -hash -noout -in $i` && ln -sf $i $hash.0
+	fi
+done
