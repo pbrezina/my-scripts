@@ -30,7 +30,7 @@ a system to be a client for certain networked user information and
 authentication schemes.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-%{release}
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -fPIC"; export CFLAGS
