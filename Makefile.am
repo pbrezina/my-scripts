@@ -31,7 +31,7 @@ install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(applnkdir)
 	mkdir -p $(DESTDIR)/$(startheredir)
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig
-	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
+	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/redhat-config-auth
 	$(INSTALL_DATA) $(srcdir)/authconfig.console $(DESTDIR)/$(consoledir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/authconfig-gtk
@@ -87,7 +87,7 @@ authconfigmodule_so_SOURCES = \
 	shvar.h
 authconfigmodule_so_LDFLAGS = -shared @GLIB_LIBS@ @LDFLAGS@
 
-EXTRA_DIST = authconfig.spec authconfig.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png
+EXTRA_DIST = authconfig.spec authconfig.pamd authconfig-gtk.pamd authconfig.console authconfig-gtk.console authconfig.desktop authconfig-gtk.py authconfig.glade man/en/authconfig.8 NOTES utf8ify-mo intltool-extract.in intltool-merge.in intltool-update.in user_auth.png
 
 CVSTAG=r-$(shell rpm -q --specfile authconfig.spec --queryformat '%{version}\n' | head -1 | sed 's,\.,-,g')
 tag:

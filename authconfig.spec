@@ -1,7 +1,7 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
 Version: 4.2.10
-Release: 2
+Release: 3
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -21,7 +21,7 @@ authentication schemes.
 %package gtk
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}, pygtk2-libglade
+Requires: %{name} = %{version}-%{release}, pygtk2-libglade, pam >= 0.75-37
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
@@ -61,13 +61,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
 %{_datadir}/%{name}
-%config(noreplace) %{_sysconfdir}/X11/applnk/System
-%config(noreplace) %{_sysconfdir}/X11/sysconfig
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
+%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Jul 29 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.10-3
+- include the userhelper configuration file
+- require sufficiently-new pam package in the gui subpackage
+
 * Fri Jul 26 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.10-2
 - actually include the icon in the package
 - translation updates
