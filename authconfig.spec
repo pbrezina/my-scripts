@@ -81,7 +81,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Tue Jan 25 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.9-1
+* Thu Feb 10 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.9-1
+- improved the code that writes tls_cacertdir to ldap.conf
+
+* Tue Jan 25 2005 Tomas Mraz <tmraz@redhat.com>
 - renamed functions in authconfigmodule to be more clear
 - implemented cacertdir for LDAP with TLS
 

@@ -1759,6 +1759,7 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 	l += info->ldapServer ? strlen(info->ldapServer) : 0;
 	l += strlen("ssl start_tls\n");
 	l += strlen("pam_password cryptmd5\n");
+	l += strlen("tls_cacertdir \n") + strlen(info->ldapCacertDir);
 	obuf = g_malloc0((st.st_size + 1 + l) * 2);
 
 	p = ibuf;
@@ -1811,9 +1812,13 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		} else
 
 		/* If it's an 'tls_cacertdir' line, insert ours instead. */
-		if (writePadl && (strncmp("tls_cacertdir", p, 13)) == 0) {
+		if (g_ascii_strncasecmp("tls_cacertdir", p, 13) == 0) {
 			if (!wrotecacertdir) {
-				strcat(obuf, "tls_cacertdir");
+				if (writePadl) {
+					strcat(obuf, "tls_cacertdir");
+				} else {
+					strcat(obuf, "TLS_CACERTDIR");		
+				}		
 				strcat(obuf, " ");
 				strcat(obuf, info->ldapCacertDir);
 				strcat(obuf, "\n");
@@ -1867,8 +1872,12 @@ authInfoWriteLDAP2(struct authInfoType *info, const char *filename,
 		strcat(obuf, info->enableLDAPS ? "start_tls" : "no");
 		strcat(obuf, "\n");
 	}
-	if (writePadl && !wrotecacertdir) {
-		strcat(obuf, "tls_cacertdir");
+	if (!wrotecacertdir) {
+		if (writePadl) {
+			strcat(obuf, "tls_cacertdir");
+		} else {
+			strcat(obuf, "TLS_CACERTDIR");		
+		}		
 		strcat(obuf, " ");
 		strcat(obuf, info->ldapCacertDir);
 		strcat(obuf, "\n");
