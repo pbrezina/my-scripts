@@ -1138,7 +1138,8 @@ authInfoWriteKerberos(struct authInfoType *info)
 		if((section != NULL) &&
 		   (strcmp(section, "libdefaults") == 0) &&
 		   (strncmp(p, "default_realm", 13) == 0)) {
-			if(!wrotedefaultrealm) {
+			if(non_empty(info->kerberosRealm) &&
+			   !wrotedefaultrealm) {
 				strcat(obuf, " default_realm = ");
 				strcat(obuf, info->kerberosRealm);
 				strcat(obuf, "\n");
@@ -1156,6 +1157,7 @@ authInfoWriteKerberos(struct authInfoType *info)
 			 * see ours, write our realm out. */
 			if((section != NULL) &&
 			   (strcmp(section, "realms") == 0) &&
+			   (non_empty(info->kerberosRealm)) &&
 			   !wroterealm) {
 				write_realm(obuf, info);
 				wroterealm = TRUE;
@@ -1164,6 +1166,7 @@ authInfoWriteKerberos(struct authInfoType *info)
 			 * didn't see a "default_realm", write it out. */
 			if((section != NULL) &&
 			   (strcmp(section, "libdefaults") == 0) &&
+			   (non_empty(info->kerberosRealm)) &&
 			   !wrotedefaultrealm) {
 				strcat(obuf, " default_realm = ");
 				strcat(obuf, info->kerberosRealm);
