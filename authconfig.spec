@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords
 Name: authconfig
-%define version	1.0
+%define version	1.1
 Version: %{version}
 Release: 1
 Copyright: GPL

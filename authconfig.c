@@ -556,7 +556,7 @@ int main(int argc, char **argv) {
     { "back", '\0', 0, &back, 0},
     { "test", '\0', 0, &test, 0},
     { "nostart", '\0', 0, &nostart, 0},
-    { "ks", '\0', 0, &kickstart, 0},
+    { "kickstart", '\0', 0, &kickstart, 0},
     { "enablenis", '\0', 0, &enablenis, 0},
     { "nisdomain", '\0', POPT_ARG_STRING, nisDomain, 0},
     { "nisserver", '\0', POPT_ARG_STRING, nisServer, 0},
