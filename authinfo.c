@@ -623,6 +623,7 @@ gboolean authInfoWriteNIS(struct authInfoType *info)
 				}
 				strcat(obuf, "\n");
 
+				if(non_empty(info->nisServer))
 				if(strchr(info->nisServer, ',')) {
 					p = strchr(info->nisServer, ',') + 1;
 					while(strchr(p, ',')) {
@@ -1091,7 +1092,7 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	char buf[LINE_MAX] = "";
 	gboolean wrotepasswd = FALSE, wrotegroup = FALSE, wroteshadow = FALSE,
 		 wroteservices = FALSE, wroteprotocols = FALSE,
-		 wroteautomount = FALSE;
+		 wrotenetgroup = FALSE, wroteautomount = FALSE;
 
 	fd = open(SYSCONFDIR "/nsswitch.conf", O_RDWR|O_CREAT, 0644);
 	if(fd == -1) {
@@ -1118,14 +1119,15 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	    strlen("group:      \n") +
 	    strlen("services:   \n") +
 	    strlen("protocols:  \n") +
+	    strlen("netgroup:   \n") +
 	    strlen("automount:  \n");
-	l += strlen(NSS_DEFAULT) * 6;
-	l += strlen(" files") * 6;
-	l += strlen(" hesiod") * 6;
-	l += strlen(" ldap") * 6;
-	l += strlen(" nis") * 6;
+	l += strlen(NSS_DEFAULT) * 7;
+	l += strlen(" files") * 7;
+	l += strlen(" hesiod") * 7;
+	l += strlen(" ldap") * 7;
+	l += strlen(" nis") * 7;
 	l += strlen(" dns");
-	l += strlen(" winbind") * 6;
+	l += strlen(" winbind") * 7;
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	/* Determine what we want in that file. */
@@ -1201,6 +1203,16 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 			}
 		} else
 
+		/* If it's a 'netgroup' line, insert ours instead. */
+		if(strncmp("netgroup:", p, 9) == 0) {
+			if(!wrotenetgroup) {
+				strcat(obuf, "netgroup:   ");
+				strcat(obuf, buf);
+				strcat(obuf, "\n");
+				wrotenetgroup = TRUE;
+			}
+		} else
+
 		/* If it's a 'automount' line, insert ours instead. */
 		if(strncmp("automount:", p, 10) == 0) {
 			if(!wroteautomount) {
@@ -1239,6 +1251,11 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	}
 	if(!wroteservices) {
 		strcat(obuf, "services:   ");
+		strcat(obuf, buf);
+		strcat(obuf, "\n");
+	}
+	if(!wrotenetgroup) {
+		strcat(obuf, "netgroup:   ");
 		strcat(obuf, buf);
 		strcat(obuf, "\n");
 	}
