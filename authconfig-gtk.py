@@ -5,6 +5,7 @@ class childWindow:
 	def __init__(self):
 		gettext.bindtextdomain("authconfig", "/usr/share/locale")
 		gettext.textdomain("authconfig")
+		gtk.glade.bindtextdomain("authconfig")
 		self.runPriority = 45
 		self.moduleName = "Authentication"
 		self.moduleClass = "reconfig"
