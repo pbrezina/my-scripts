@@ -1414,6 +1414,129 @@ authInfoWriteLDAP(struct authInfoType *info)
 }
 
 static void
+write_cryptstyle(char *obuf, struct authInfoType *info)
+{
+	strcat(obuf, "crypt_style = ");
+	if (info->enableMD5) {
+		strcat(obuf, "md5");
+	} else {
+		strcat(obuf, "des");
+	}
+	strcat(obuf, "\n");
+}
+
+/* Write libuser's md5 setting to /etc/libuser.conf, */
+gboolean
+authInfoWriteLibuser(struct authInfoType *info)
+{
+	char *ibuf = NULL, *obuf = NULL, *p, *q;
+	int fd, l;
+	struct stat st;
+	struct flock lock;
+	gboolean wrotecryptstyle = FALSE;
+	gboolean wrotedefaults = FALSE;
+	char *section = NULL;
+
+	fd = open(SYSCONFDIR "/libuser.conf", O_RDWR | O_CREAT, 0644);
+	if (fd == -1) {
+		return FALSE;
+	}
+
+	memset(&lock, 0, sizeof(lock));
+	lock.l_type = F_WRLCK;
+	if (fcntl(fd, F_SETLKW, &lock) == -1) {
+		return FALSE;
+	}
+
+	if (fstat(fd, &st) == -1) {
+		return FALSE;
+	}
+
+	/* Read in the old file. */
+	ibuf = g_malloc0(st.st_size + 1);
+	read(fd, ibuf, st.st_size);
+
+	/* Determine the maximum length of the new file. */
+	l = strlen("[defaults]\n crypt_style = md5\n\n\n\n");
+	obuf = g_malloc0(st.st_size + 1 + l);
+
+	p = ibuf;
+	while (*p != '\0') {
+		/* Isolate a single line. */
+		char *l = p;
+		for (q = p; (*q != '\0') && (*q != '\n'); q++);
+		if (*q != '\0') q++;
+
+		/* Skip over any whitespace. */
+		for (;isspace(*p) && (*p != '\0') && (*p != '\n'); p++);
+
+		/* If this is the "crypt_style" in the defaults section,
+		 * replace it with the values we now have. */
+		if ((section != NULL) &&
+		    (strcmp(section, "defaults") == 0) &&
+		    (strncmp(p, "crypt_style", 11) == 0)) {
+			write_cryptstyle(obuf, info);
+			wrotecryptstyle = TRUE;
+			p = q;
+			continue;
+		}
+
+		/* If it's the beginning of a section, record its name. */
+		if (strncmp("[", p, 1) == 0) {
+			char *q;
+			p++;
+			/* If the previous section was "defaults", and we didn't
+			 * see the crypt_style setting , write it out. */
+			if ((section != NULL) &&
+			    (strcmp(section, "defaults") == 0) &&
+			    !wrotecryptstyle) {
+				write_cryptstyle(obuf, info);
+				wrotecryptstyle = TRUE;
+			}
+			for (q = p; ((*q != ']') && (*q != '\0')); q++) ;
+			if (section) {
+				g_free(section);
+			}
+			section = g_strndup(p, q - p);
+			if (strcmp(section, "defaults") == 0) {
+				wrotedefaults = TRUE;
+			}
+		}
+
+		/* Otherwise, just copy the current line out. */
+		strncat(obuf, l, q - l);
+		p = q;
+	}
+
+	/* If we haven't encountered a defaults section yet... */
+	if (!wrotedefaults) {
+		strcat(obuf, "[defaults]\n");
+		write_cryptstyle(obuf, info);
+		wrotedefaults = TRUE;
+		wrotecryptstyle = TRUE;
+	}
+
+	/* Write it out and close it. */
+	ftruncate(fd, 0);
+	lseek(fd, 0, SEEK_SET);
+	write(fd, obuf, strlen(obuf));
+	close(fd);
+
+	/* Clean up. */
+	if (ibuf) {
+		g_free(ibuf);
+	}
+	if (obuf) {
+		g_free(obuf);
+	}
+	if (section) {
+		g_free(section);
+	}
+
+	return TRUE;
+}
+
+static void
 write_kdc(char *obuf, struct authInfoType *info)
 {
 	char *p = info->kerberosKDC;
@@ -2481,6 +2604,7 @@ gboolean
 authInfoWrite(struct authInfoType *authInfo)
 {
 	gboolean ret;
+	ret = authInfoWriteLibuser(authInfo);
 	ret = authInfoWriteCache(authInfo);
 	if (authInfo->enableHesiod)
 		ret = ret && authInfoWriteHesiod(authInfo);

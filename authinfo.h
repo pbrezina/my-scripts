@@ -154,6 +154,7 @@ gboolean authInfoReadWinbind(struct authInfoType *info);
 
 gboolean authInfoWriteCache(struct authInfoType *info);
 gboolean authInfoWriteHesiod(struct authInfoType *info);
+gboolean authInfoWriteLibuser(struct authInfoType *info);
 gboolean authInfoWriteNIS(struct authInfoType *info);
 gboolean authInfoWriteSMB(struct authInfoType *info);
 gboolean authInfoWriteLDAP(struct authInfoType *info);

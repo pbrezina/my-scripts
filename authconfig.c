@@ -1094,6 +1094,11 @@ main(int argc, const char **argv)
       fprintf(stderr, ": %s\n", strerror(errno));
       return 2;
     }
+    if (authInfoWriteLibuser(authInfo) == FALSE) {
+      fprintf(stderr, _("%s: critical error writing %s/%s"),
+	      PACKAGE, SYSCONFDIR, "libuser.conf");
+      fprintf(stderr, ": %s\n", strerror(errno));
+    }
     if (authInfoWriteNIS(authInfo) == FALSE) {
       fprintf(stderr, _("%s: critical error writing %s/%s"),
 	      PACKAGE, SYSCONFDIR, "yp.conf");
