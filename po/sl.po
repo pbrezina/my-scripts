@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 7.1\n"
 "POT-Creation-Date: 2001-08-22 18:57-0400\n"
-"PO-Revision-Date: 2001-08-18 17:50+0200\n"
+"PO-Revision-Date: 2001-09-02 01:03+0200\n"
 "Last-Translator: Roman Maurer <roman.maurer@amis.net>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,8 @@ msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.  Install the %s package, which provides this file."
 msgstr ""
-"Datoteke %s ni moè najti, je pa potrebna za pravilno delovanje podpore za %"
-"s.  Namestite paket %s, ki priskrbi to datoteko."
+"Datoteke %s ni moè najti, je pa potrebna za pravilno delovanje podpore "
+"za %s.  Namestite paket %s, ki priskrbi to datoteko."
 
 #: ../authconfig.c:199
 msgid "Warning"
@@ -67,17 +67,16 @@ msgstr "Skrbni¹ki stre¾nik:"
 
 #: ../authconfig.c:318
 msgid "Workgroup:"
-msgstr ""
+msgstr "Delovna skupina:"
 
 #: ../authconfig.c:319
-#, fuzzy
 msgid "Servers:"
-msgstr "Stre¾nik:"
+msgstr "Stre¾niki:"
 
 #. NSCD
 #: ../authconfig.c:359
 msgid "Cache Information"
-msgstr ""
+msgstr "Predpomni podatke"
 
 #. NSS modules: NIS.
 #: ../authconfig.c:367
@@ -130,9 +129,8 @@ msgid "Use Kerberos 5"
 msgstr "Uporabi Kerberos 5"
 
 #: ../authconfig.c:636
-#, fuzzy
 msgid "Use SMB Authentication"
-msgstr "Nastavitev avtentifikacije LDAP"
+msgstr "Uporabi avtentifikacijo SMB"
 
 #: ../authconfig.c:706
 msgid "Authentication Configuration"
@@ -237,63 +235,59 @@ msgstr "privzeto kerberos realm\n"
 
 #: ../authconfig.c:894
 msgid "<realm>"
-msgstr ""
+msgstr "<realm>"
 
 #: ../authconfig.c:897
-#, fuzzy
 msgid "enable SMB authentication by default"
-msgstr "privzeto omogoèi avtentifikacijo kerberos"
+msgstr "privzeto omogoèi avtentifikacijo SMB"
 
 #: ../authconfig.c:899
-#, fuzzy
 msgid "disable SMB authentication by default"
-msgstr "privzeto onemogoèi LDAP za avtentifikacijo"
+msgstr "privzeto onemogoèi avtentifikacijo SMB"
 
 #: ../authconfig.c:901
 msgid "workgroup authentication servers are in"
-msgstr ""
+msgstr "avtentifikacijski stre¾niki delovne skupine so v"
 
 #: ../authconfig.c:901
 msgid "<workgroup>"
-msgstr ""
+msgstr "<delovna skupina>"
 
 #: ../authconfig.c:903
 msgid "names of servers to authenticate against\n"
-msgstr ""
+msgstr "imena stre¾nikov, ki jih je treba avtentificirati\n"
 
 #: ../authconfig.c:906
 msgid "enable hesiod for user information by default"
-msgstr ""
+msgstr "privzeto omogoèi hesiod za uporabni¹ke podatke"
 
 #: ../authconfig.c:908
 msgid "disable hesiod for user information by default"
-msgstr ""
+msgstr "privzeto onemogoèi hesiod za uporabni¹ke podatke"
 
 #: ../authconfig.c:910
 msgid "default hesiod LHS"
-msgstr ""
+msgstr "privzeti hesiod LHS"
 
 #: ../authconfig.c:910
 msgid "<lhs>"
-msgstr ""
+msgstr "<lhs>"
 
 #: ../authconfig.c:912
 msgid "default hesiod RHS\n"
-msgstr ""
+msgstr "privzeti hesiod RHS\n"
 
 #: ../authconfig.c:912
 msgid "<rhs>"
-msgstr ""
+msgstr "<rhs>"
 
 #: ../authconfig.c:915
-#, fuzzy
 msgid "enable caching of user information by default"
-msgstr "privzeto omogoèi uporabni¹ke podatke prek LDAP"
+msgstr "privzeto omogoèi predpomnjenje uporabni¹kih podatkov"
 
 #: ../authconfig.c:917
-#, fuzzy
 msgid "disable caching of user information by default\n"
-msgstr "privzeto onemogoèi uporabni¹ke podatke prek LDAP"
+msgstr "privzeto onemogoèi predpomnjenje uporabni¹kih podatkov\n"
 
 #: ../authconfig.c:924
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -305,7 +299,7 @@ msgstr "ne prika¾i uporabni¹kega vmesnika"
 
 #: ../authconfig.c:928
 msgid "probe network for defaults and print them"
-msgstr ""
+msgstr "preskusi mre¾o za privzete vrednosti in jih izpi¹i"
 
 #: ../authconfig.c:931
 msgid "use locally-defined policies"
@@ -323,7 +317,7 @@ msgstr "%s: slab argument %s: %s\n"
 #: ../authconfig.c:953
 #, c-format
 msgid "%s: attempting to continue\n"
-msgstr ""
+msgstr "%s: posku¹a nadaljevati\n"
 
 #: ../authconfig.c:957
 #, c-format
@@ -343,16 +337,15 @@ msgid "%s: critical error reading %s/%s"
 msgstr "%s: kritièna napaka pri branju %s/%s"
 
 #: ../authconfig.c:1042
-#, fuzzy, c-format
+#, c-format
 msgid "%s: unable to read caching configuration"
-msgstr "Nastavitev podatkov o uporabnikih"
+msgstr "%s: ni moè brati nastavitve predpomnjenja"
 
 #: ../authconfig.c:1118
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-"<Tab>/<Alt-Tab> med elementi  |  <presl.> izbere   |  <F12> naslednji zaslon"
+msgstr "<Tab>/<Alt-Tab> med elementi  |  <presl.> izbere   |  <F12> naslednji zaslon"
 
 #: ../authconfig.c:1121
 msgid "(c) 1999-2001 Red Hat, Inc."
@@ -363,9 +356,9 @@ msgid "dialog was cancelled\n"
 msgstr "pogovor je bil preklican\n"
 
 #: ../authconfig.c:1195
-#, fuzzy, c-format
+#, c-format
 msgid "%s: critical error recording caching setting"
-msgstr "%s: kritièna napaka pri branju %s/%s"
+msgstr "%s: kritièna napaka pri pisanju nastavitve predpomnjenja"
 
 #: ../authconfig.c:1201 ../authconfig.c:1207 ../authconfig.c:1213
 #: ../authconfig.c:1219 ../authconfig.c:1225 ../authconfig.c:1230
@@ -375,6 +368,6 @@ msgid "%s: critical error writing %s/%s"
 msgstr "%s: kritièna napaka pri pisanju %s/%s"
 
 #: ../localpol.h:9
-#, fuzzy
 msgid "Use Local Policies"
-msgstr "uporabi krajevno doloèene politike"
+msgstr "Uporabi krajevne politike"
+
