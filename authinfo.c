@@ -272,8 +272,8 @@ authInfoReadLDAP(struct authInfoType *info)
 					if(isspace(*p)) {
 						if((p > info->ldapServer) &&
 						   (p[-1] == ',')) {
-							memmove(p - 1, p,
-								strlen(p) + 1);
+							memmove(p, p + 1,
+								strlen(p));
 							p--;
 						} else {
 							*p = ',';
