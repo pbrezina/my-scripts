@@ -40,6 +40,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Fri Aug 17 2001 Nalin Dahyabhai <nalin@redhat.com>
+- update translations from CVS, fixing #51873
+
 * Thu Aug 16 2001 Nalin Dahyabhai <nalin@redhat.com>
 - set "pam_password crypt" in ldap.conf if not previously set
 - update translations

@@ -17,12 +17,8 @@ Probing:
       _ldap._tcp.<DOMAIN> = priority weight port server (see RFC 2782)
       Convert <DOMAIN> to base DN using DC components in the way just
       about everything does (example.com -> "dc=example,dc=com")
-    - Use TXT RRs for host-to-realm mapping:
-      _kerberos.localhost
-      _kerberos.FQDN
-      _kerberos.<search-list-entry>
-      I assume these would contain the name of the realm the host belongs to,
-      but I haven't stepped through the code.
+    - Use TXT RRs for host-to-realm mapping (see latest
+      draft-ietf-krb-wg-krb-dns-locate at http://www.ietf.org/internet-drafts/)
     - Use SRV RRs for Kerberos realms, a la locate_kdc.c:
       _kerberos._udp.<REALM> = priority weight port server (see RFC 2782)
       We have the realm, a server name, and the port number.  Use all of them.
