@@ -41,6 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
+find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Thu Apr 18 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.8-4
 - add missing translations back in
+- convert .mo files at install-time
 
 * Mon Apr 15 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.8-3
 - refresh translations
