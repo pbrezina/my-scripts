@@ -66,6 +66,9 @@ struct authInfoType {
 	gboolean enableShadow;
 	gboolean enableKerberos;
 	gboolean enableLDAPAuth;
+#ifdef LOCAL_POLICIES
+	gboolean enableLocal;
+#endif
 };
 
 struct authInfoType *authInfoRead();

@@ -1,6 +1,6 @@
 /*
  * Authconfig - authentication configuration program
- * Author: Preston Brown <pbrown@redhat.com>
+ * Author: Nalin Dahyabhai <nalin@redhat.com>
  * Copyright (c) 1999, 2000 Red Hat, Inc.
  *
  * This program is licensed under the terms of the GPL.
@@ -21,6 +21,9 @@
 #include <libgen.h>
 #include <glib.h>
 #include "authinfo.h"
+#ifdef LOCAL_POLICIES
+#include "localpol.h"
+#endif
 
 static char *progName;
 
@@ -418,7 +421,7 @@ int getPAMChoices(int back,
 	          struct authInfoType *authInfo)
 {
   newtComponent form, ok, backb = NULL, cancel = NULL, comp, cb;
-  int rc = 0;
+  int rc = 0, window_height = 16;
 
   struct ldap_cb ldap;
   struct krb5_cb krb5;
@@ -429,8 +432,13 @@ int getPAMChoices(int back,
   char *kerberosRealm = NULL, *kerberosKDC = NULL, *kerberosAdmin = NULL;
   char *winBindDomain = NULL;
 
+#ifdef LOCAL_POLICIES
+  char local = ' ';
+  window_height += 2;
+#endif
+
   /* Create the window and a form to put into it. */
-  newtCenteredWindow(72, 16, i18n("Authentication Configuration"));
+  newtCenteredWindow(72, window_height, i18n("Authentication Configuration"));
   form = newtForm(NULL, NULL, 0);
 
   /* PAM setup. */
@@ -504,15 +512,21 @@ int getPAMChoices(int back,
 			krb5.kadminEntry,
 			NULL);
 
+#ifdef LOCAL_POLICIES
+  cb = newtCheckbox(1,  12, i18n(LOCAL_POLICY_COMMENT),
+		    authInfo->enableLocal ? '*' : ' ', NULL, &local);
+  newtFormAddComponent(form, cb);
+#endif
+
   /* Create the buttons. */
   if (back == FALSE) {
-    ok = newtButton(14, 12, i18n("Ok"));
-    backb = newtButton(44, 12, i18n("Back"));
-    cancel = newtButton(27, 12, i18n("Cancel"));
+    ok = newtButton(14, window_height - 4, i18n("Ok"));
+    backb = newtButton(44, window_height - 4, i18n("Back"));
+    cancel = newtButton(27, window_height - 4, i18n("Cancel"));
     newtFormAddComponents(form, ok, cancel, backb, NULL);
   } else {
-    ok = newtButton(20, 12, i18n("Ok"));
-    backb = newtButton(38, 12, i18n("Back"));
+    ok = newtButton(20, window_height - 4, i18n("Ok"));
+    backb = newtButton(38, window_height - 4, i18n("Back"));
     newtFormAddComponents(form, ok, backb, NULL);
   }
 
@@ -537,6 +551,9 @@ int getPAMChoices(int back,
     setString(&authInfo->winBindDomain, winBindDomain);
 #endif
     authInfo->enableKerberos = (krb5.pam_krb5 == '*');
+#ifdef LOCAL_POLICIES
+    authInfo->enableLocal = (local == '*');
+#endif
     setString(&authInfo->kerberosRealm, kerberosRealm);
     setString(&authInfo->kerberosKDC, kerberosKDC);
     setString(&authInfo->kerberosAdminServer, kerberosAdmin);
@@ -600,43 +617,48 @@ int getChoices(int back,
 }
 
 void usage(void) {
-    fprintf(stderr, i18n("Usage: %s [options]\n\n"
-			 "     --useshadow\n"
-			 "     --enableshadow             enable shadow passwords by default\n"
-			 "     --disableshadow            disable shadow passwords by default\n"
-			 "     --enablemd5                enable MD5 passwords by default\n"
-			 "     --disablemd5               disable MD5 passwords by default\n"
-			 "\n"
-			 "     --enablenis                enable NIS\n"
-			 "     --disablenis               disable NIS\n"
-			 "     --nisdomain <domain>       default NIS domain\n"
-			 "     --nisserver <server>       default NIS server\n"
-			 "\n"
+    fprintf(stderr, gettext("Usage: %s [options]\n\n"
+			    "     --useshadow\n"
+			    "     --enableshadow             enable shadow passwords by default\n"
+			    "     --disableshadow            disable shadow passwords by default\n"
+			    "     --enablemd5                enable MD5 passwords by default\n"
+			    "     --disablemd5               disable MD5 passwords by default\n"
+			    "\n"
+			    "     --enablenis                enable NIS\n"
+			    "     --disablenis               disable NIS\n"
+			    "     --nisdomain <domain>       default NIS domain\n"
+			    "     --nisserver <server>       default NIS server\n"
+			    "\n"
+   
+			    "     --enableldap               enable ldap for user information by default\n"
+			    "     --disableldap              disable ldap for user information by default\n"
+			    "     --enableldapauth           enable ldap for authentication by default\n"
+			    "     --disableldapauth          disable ldap for authentication by default\n"
+			    "     --ldapserver <server>      default LDAP server\n"
+			    "     --ldapbasedn <dn>          default LDAP base DN\n"
+			    "\n"
 
-			 "     --enableldap               enable ldap for user information by default\n"
-			 "     --disableldap              disable ldap for user information by default\n"
-			 "     --enableldapauth           enable ldap for authentication by default\n"
-			 "     --disableldapauth          disable ldap for authentication by default\n"
-			 "     --ldapserver <server>      default LDAP server\n"
-			 "     --ldapbasedn <dn>          default LDAP base DN\n"
-			 "\n"
+			    "     --enablekrb5               enable kerberos authentication by default\n"
+			    "     --disablekrb5              disable kerberos authentication by default\n"
+			    "     --krb5kdc <server>         default kerberos KDC\n"
+			    "     --krb5adminserver <server> default kerberos admin server\n"
+			    "     --krb5realm <realm>        default kerberos realm\n"
+			    "\n"
+   
+			    "     --enablehesiod             enable hesiod for user information by default\n"
+			    "     --disablehesiod            disable hesiod for user information by default\n"
+			    "     --hesiodlhs <lhs>          default hesiod LHS\n"
+			    "     --hesiodrhs <rhs>          default hesiod RHS\n"
+#ifdef LOCAL_POLICIES
+			    "\n"
+			    "     --enablelocal              use locally-defined policy " LOCAL_POLICY_NAME "\n"
+			    "     --disablelocal             don't use locally-defined policy " LOCAL_POLICY_NAME "\n"
+#endif
+			    "\n"
 
-			 "     --enablekrb5               enable kerberos authentication by default\n"
-			 "     --disablekrb5              disable kerberos authentication by default\n"
-			 "     --krb5kdc <server>         default kerberos KDC\n"
-			 "     --krb5adminserver <server> default kerberos admin server\n"
-			 "     --krb5realm <realm>        default kerberos realm\n"
-			 "\n"
-
-			 "     --enablehesiod             enable hesiod for user information by default\n"
-			 "     --disablehesiod            disable hesiod for user information by default\n"
-			 "     --hesiodlhs <lhs>          default hesiod LHS\n"
-			 "     --hesiodrhs <rhs>          default hesiod RHS\n"
-			 "\n"
-
-			 "     --nostart                  do not start/stop ypbind\n"
-			 "     --kickstart                don't display user interface\n"
-			 "     --help                     show this screen\n"),
+			    "     --nostart                  do not start/stop ypbind\n"
+			    "     --kickstart                don't display user interface\n"
+			    "     --help                     show this screen\n"),
 	    progName);
 
     exit(0);
@@ -678,12 +700,20 @@ int main(int argc, const char **argv)
   int enableKrb5 = 0, disableKrb5 = 0;
   char *krb5Realm = NULL, *krb5KDC = NULL, *krb5AdminServer = NULL;
 
+#ifdef LOCAL_POLICIES
+  int enableLocal = 0, disableLocal = 0;
+#endif
+
   poptContext optCon;
   const struct poptOption options[] = {
     { "back", '\0', POPT_ARG_NONE, &back, 0, NULL, NULL},
     { "test", '\0', POPT_ARG_NONE, &test, 0, NULL, NULL},
     { "nostart", '\0', POPT_ARG_NONE, &nostart, 0, NULL, NULL},
     { "kickstart", '\0', POPT_ARG_NONE, &kickstart, 0, NULL, NULL},
+#ifdef LOCAL_POLICIES
+    { "enablelocal", '\0', POPT_ARG_NONE, &enableLocal, 0, NULL, NULL},
+    { "disablelocal", '\0', POPT_ARG_NONE, &disableLocal, 0, NULL, NULL},
+#endif
 
     { "useshadow", '\0', POPT_ARG_NONE, &enableShadow, 0, NULL, NULL},
     { "enableshadow", '\0', POPT_ARG_NONE, &enableShadow, 0, NULL, NULL},
@@ -840,6 +870,10 @@ int main(int argc, const char **argv)
     winBindAvail = TRUE;
   }
 
+#ifdef LOCAL_POLICIES
+  overrideBoolean(&authInfo->enableLocal, enableLocal, disableLocal);
+#endif
+
   overrideBoolean(&authInfo->enableShadow, enableShadow, disableShadow);
   overrideBoolean(&authInfo->enableMD5, enableMD5, disableMD5);
 
@@ -914,6 +948,10 @@ int main(int argc, const char **argv)
 	   authInfo->enableWinBind ? "enabled" : "disabled");
     printf(" winbind domain = \"%s\"\n",
 	   authInfo->winBindDomain ? authInfo->winBindDomain : "");
+#endif
+#ifdef LOCAL_POLICIES
+    printf("local policies are %s\n",
+	   authInfo->enableLocal ? "enabled" : "disabled");
 #endif
     printf("pam_unix is always enabled\n");
     printf(" shadow passwords are %s\n",

@@ -22,6 +22,10 @@
 #include "shvar.h"
 #include "authinfo.h"
 
+#ifdef LOCAL_POLICIES
+#include "localpol.h"
+#endif
+
 /* Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvar
  * can read it just fine. */
 gboolean authInfoReadHesiod(struct authInfoType *info)
@@ -449,6 +453,12 @@ gboolean authInfoReadPAM(struct authInfoType *authInfo)
 				authInfo->enableLDAPAuth = TRUE;
 				continue;
 			}
+#ifdef LOCAL_POLICIES
+			if(strstr(module, "pam_stack")) {
+				authInfo->enableLocal = TRUE;
+				continue;
+			}
+#endif
 		}
 
 		for(p = q; isspace(*p) && (*p != '\0'); p++);
@@ -1079,7 +1089,9 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	struct stat st;
 	struct flock lock;
 	char buf[LINE_MAX] = "";
-	gboolean wrotepasswd = FALSE, wrotegroup = FALSE, wroteshadow = FALSE;
+	gboolean wrotepasswd = FALSE, wrotegroup = FALSE, wroteshadow = FALSE,
+		 wroteservices = FALSE, wroteprotocols = FALSE,
+		 wroteautomount = FALSE;
 
 	fd = open(SYSCONFDIR "/nsswitch.conf", O_RDWR|O_CREAT, 0644);
 	if(fd == -1) {
@@ -1103,13 +1115,17 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 	/* Determine the maximum length of the new file. */
 	l = strlen("passwd:     \n") +
 	    strlen("shadow:     \n") +
-	    strlen("group:      \n");
-	l += strlen(NSS_DEFAULT) * 3;
-	l += strlen(" files") * 3;
-	l += strlen(" hesiod") * 3;
-	l += strlen(" ldap") * 3;
-	l += strlen(" nis") * 3;
-	l += strlen(" winbind") * 3;
+	    strlen("group:      \n") +
+	    strlen("services:   \n") +
+	    strlen("protocols:  \n") +
+	    strlen("automount:  \n");
+	l += strlen(NSS_DEFAULT) * 6;
+	l += strlen(" files") * 6;
+	l += strlen(" hesiod") * 6;
+	l += strlen(" ldap") * 6;
+	l += strlen(" nis") * 6;
+	l += strlen(" dns");
+	l += strlen(" winbind") * 6;
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	/* Determine what we want in that file. */
@@ -1165,6 +1181,36 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 			}
 		} else
 
+		/* If it's a 'services' line, insert ours instead. */
+		if(strncmp("services:", p, 9) == 0) {
+			if(!wroteservices) {
+				strcat(obuf, "services:   ");
+				strcat(obuf, buf);
+				strcat(obuf, "\n");
+				wroteservices = TRUE;
+			}
+		} else
+
+		/* If it's a 'protocols' line, insert ours instead. */
+		if(strncmp("protocols:", p, 10) == 0) {
+			if(!wroteprotocols) {
+				strcat(obuf, "protocols:  ");
+				strcat(obuf, buf);
+				strcat(obuf, "\n");
+				wroteprotocols = TRUE;
+			}
+		} else
+
+		/* If it's a 'automount' line, insert ours instead. */
+		if(strncmp("automount:", p, 10) == 0) {
+			if(!wroteautomount) {
+				strcat(obuf, "automount:  ");
+				strcat(obuf, buf);
+				strcat(obuf, "\n");
+				wroteautomount = TRUE;
+			}
+		} else
+
 		/* Otherwise, just copy the current line out. */
 		strncat(obuf, p, q - p);
 		p = q;
@@ -1186,6 +1232,21 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 		strcat(obuf, buf);
 		strcat(obuf, "\n");
 	}
+	if(!wroteprotocols) {
+		strcat(obuf, "protocols:  ");
+		strcat(obuf, buf);
+		strcat(obuf, "\n");
+	}
+	if(!wroteservices) {
+		strcat(obuf, "services:   ");
+		strcat(obuf, buf);
+		strcat(obuf, "\n");
+	}
+	if(!wroteautomount) {
+		strcat(obuf, "automount:  ");
+		strcat(obuf, buf);
+		strcat(obuf, "\n");
+	}
 
 	/* Write it out and close it. */
 	ftruncate(fd, 0);
@@ -1200,6 +1261,13 @@ gboolean authInfoWriteNSS(struct authInfoType *info)
 }
 
 /* Mandatory arguments for the various modules. */
+#ifdef LOCAL_POLICIES
+static const char *argv_local_all[] = {
+	"service=" LOCAL_POLICY_NAME,
+	NULL,
+};
+#endif
+
 static const char *argv_unix_auth[] = {
 	"likeauth",
 	"nullok",
@@ -1274,6 +1342,9 @@ static struct {
 	const char *name;
 	const char **argv;
 } standard_pam_modules[] = {
+#ifdef LOCAL_POLICIES
+	{FALSE, auth,		required,	"stack",	argv_local_all},
+#endif
 	{TRUE,  auth,		sufficient,	"unix",		argv_unix_auth},
 	{FALSE, auth,		sufficient,	"krb5",		argv_krb5_auth},
 	{FALSE, auth,		sufficient,	"krb5afs",	argv_krb5afs_auth},
@@ -1281,10 +1352,16 @@ static struct {
 	{FALSE, auth,		sufficient,	"winbind",	argv_winbind_auth},
 	{TRUE,  auth,		required,	"deny",		NULL},
 
+#ifdef LOCAL_POLICIES
+	{FALSE, account,	required,	"stack",	argv_local_all},
+#endif
 	{TRUE,  account,	sufficient,	"unix",		NULL},
 	{FALSE, account,	sufficient,	"ldap",		NULL},
 	{TRUE,  account,	required,	"deny",		NULL},
 
+#ifdef LOCAL_POLICIES
+	{FALSE, password,	required,	"stack",	argv_local_all},
+#endif
 	{TRUE,  password,	required,	"cracklib",
 	 argv_cracklib_password},
 	{TRUE,  password,	sufficient,	"unix",
@@ -1298,6 +1375,9 @@ static struct {
 	{FALSE, password,	sufficient,	"winbind",	argv_winbind_password},
 	{TRUE,  password,	required,	"deny",		NULL},
 
+#ifdef LOCAL_POLICIES
+	{FALSE, session,	required,	"stack",	argv_local_all},
+#endif
 	{TRUE,  session,	required,	"limits",	NULL},
 	{TRUE,  session,	required,	"unix",		NULL},
 	{FALSE, session,	optional,	"krb5",		NULL},
@@ -1422,6 +1502,10 @@ gboolean authInfoWritePAM(struct authInfoType *authInfo)
 #ifdef WINBIND
 		   (authInfo->enableWinBindAuth &&
 		    (strcmp("winbind", standard_pam_modules[i].name) == 0)) ||
+#endif
+#ifdef LOCAL_POLICIES
+		   (authInfo->enableLocal &&
+		    (strcmp("stack", standard_pam_modules[i].name) == 0)) ||
 #endif
 		   (authInfo->enableLDAPAuth &&
 		    (strcmp("ldap", standard_pam_modules[i].name) == 0))) {
