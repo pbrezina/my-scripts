@@ -198,7 +198,7 @@ void ldapToggle(newtComponent cb, void *data)
   struct ldap_cb *ldap = (struct ldap_cb*) data;
   newtLabelSetText(ldap->serverLabel, i18n("  Server:"));
   newtLabelSetText(ldap->baseDnLabel, i18n(" Base DN:"));
-  if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*') || (ldap->tls == '*')) {
+  if((ldap->nss_ldap == '*') || (ldap->pam_ldap == '*')) {
     if(ldap->nss_ldap == '*') {
       checkWarn(PATH_LIBNSS_LDAP, "LDAP", "nss_ldap");
     } else {
@@ -638,56 +638,6 @@ int getChoices(int back,
   return rc;
 }
 
-void usage(void) {
-    fprintf(stderr, gettext("Usage: %s [options]\n\n"
-			    "     --useshadow\n"
-			    "     --enableshadow             enable shadow passwords by default\n"
-			    "     --disableshadow            disable shadow passwords by default\n"
-			    "     --enablemd5                enable MD5 passwords by default\n"
-			    "     --disablemd5               disable MD5 passwords by default\n"
-			    "\n"
-			    "     --enablenis                enable NIS\n"
-			    "     --disablenis               disable NIS\n"
-			    "     --nisdomain <domain>       default NIS domain\n"
-			    "     --nisserver <server>       default NIS server\n"
-			    "\n"
-   
-			    "     --enableldap               enable ldap for user information by default\n"
-			    "     --disableldap              disable ldap for user information by default\n"
-			    "     --enableldaptls            enable use of TLS with ldap\n"
-			    "     --disableldaptls           disable use of TLS with ldap\n"
-			    "     --enableldapauth           enable ldap for authentication by default\n"
-			    "     --disableldapauth          disable ldap for authentication by default\n"
-			    "     --ldapserver <server>      default LDAP server\n"
-			    "     --ldapbasedn <dn>          default LDAP base DN\n"
-			    "\n"
-
-			    "     --enablekrb5               enable kerberos authentication by default\n"
-			    "     --disablekrb5              disable kerberos authentication by default\n"
-			    "     --krb5kdc <server>         default kerberos KDC\n"
-			    "     --krb5adminserver <server> default kerberos admin server\n"
-			    "     --krb5realm <realm>        default kerberos realm\n"
-			    "\n"
-   
-			    "     --enablehesiod             enable hesiod for user information by default\n"
-			    "     --disablehesiod            disable hesiod for user information by default\n"
-			    "     --hesiodlhs <lhs>          default hesiod LHS\n"
-			    "     --hesiodrhs <rhs>          default hesiod RHS\n"
-			    "\n"
-
-			    "     --nostart                  do not start/stop ypbind\n"
-			    "     --kickstart                don't display user interface\n"
-			    "     --help                     show this screen\n"),
-	    progName);
-#ifdef LOCAL_POLICIES
-    fprintf(stderr, gettext("\n"
-			    "     --enablelocal              use locally-defined policy " LOCAL_POLICY_NAME "\n"
-			    "     --disablelocal             don't use locally-defined policy " LOCAL_POLICY_NAME "\n"));
-#endif
-
-    exit(0);
-}
-
 gboolean fileInaccessible(const char *path, int perms)
 {
   struct stat st;
@@ -705,7 +655,7 @@ int main(int argc, const char **argv)
   struct authInfoType *authInfo = NULL;
   gboolean nisAvail = FALSE, kerberosAvail = FALSE, ldapAvail = FALSE;
 
-  int back = 0, test = 0, nostart = 0, kickstart = 0, help = 0;
+  int back = 0, test = 0, nostart = 0, kickstart = 0;
 
   int enableShadow = 0, disableShadow = 0, enableMD5 = 0, disableMD5 = 0;
 
@@ -727,63 +677,98 @@ int main(int argc, const char **argv)
 #endif
 
   poptContext optCon;
-  const struct poptOption options[] = {
-    { "back", '\0', POPT_ARG_NONE, &back, 0, NULL, NULL},
-    { "test", '\0', POPT_ARG_NONE, &test, 0, NULL, NULL},
-    { "nostart", '\0', POPT_ARG_NONE, &nostart, 0, NULL, NULL},
-    { "kickstart", '\0', POPT_ARG_NONE, &kickstart, 0, NULL, NULL},
-#ifdef LOCAL_POLICIES
-    { "enablelocal", '\0', POPT_ARG_NONE, &enableLocal, 0, NULL, NULL},
-    { "disablelocal", '\0', POPT_ARG_NONE, &disableLocal, 0, NULL, NULL},
-#endif
-
-    { "useshadow", '\0', POPT_ARG_NONE, &enableShadow, 0, NULL, NULL},
-    { "enableshadow", '\0', POPT_ARG_NONE, &enableShadow, 0, NULL, NULL},
-    { "disableshadow", '\0', POPT_ARG_NONE, &disableShadow, 0, NULL, NULL},
-    { "enablemd5", '\0', POPT_ARG_NONE, &enableMD5, 0, NULL, NULL},
-    { "disablemd5", '\0', POPT_ARG_NONE, &disableMD5, 0, NULL, NULL},
-
-    { "enablehesiod", '\0', POPT_ARG_NONE, &enableHesiod, 0, NULL, NULL},
-    { "disablehesiod", '\0', POPT_ARG_NONE, &disableHesiod, 0, NULL, NULL},
-    { "hesiodlhs", '\0', POPT_ARG_STRING, &hesiodLHS, 0, NULL, NULL},
-    { "hesiodrhs", '\0', POPT_ARG_STRING, &hesiodRHS, 0, NULL, NULL},
-
-    { "enableldap", '\0', POPT_ARG_NONE, &enableLDAP, 0, NULL, NULL},
-    { "disableldap", '\0', POPT_ARG_NONE, &disableLDAP, 0, NULL, NULL},
-    { "enableldaptls", '\0', POPT_ARG_NONE, &enableLDAPS, 0, NULL, NULL},
-    { "disableldaptls", '\0', POPT_ARG_NONE, &disableLDAPS, 0, NULL, NULL},
-    { "enableldapauth", '\0', POPT_ARG_NONE, &enableLDAPAuth, 0, NULL, NULL},
-    { "disableldapauth", '\0', POPT_ARG_NONE, &disableLDAPAuth, 0, NULL, NULL},
-    { "ldapserver", '\0', POPT_ARG_STRING, &ldapServer, 0, NULL, NULL},
-    { "ldapbasedn", '\0', POPT_ARG_STRING, &ldapBaseDN, 0, NULL, NULL},
-
-    { "enablekrb5", '\0', POPT_ARG_NONE, &enableKrb5, 0, NULL, NULL},
-    { "disablekrb5", '\0', POPT_ARG_NONE, &disableKrb5, 0, NULL, NULL},
-    { "krb5realm", '\0', POPT_ARG_STRING, &krb5Realm, 0, NULL, NULL},
-    { "krb5kdc", '\0', POPT_ARG_STRING, &krb5KDC, 0, NULL, NULL},
-    { "krb5adminserver", '\0', POPT_ARG_STRING, &krb5AdminServer, 0, NULL, NULL},
-
-    { "enablenis", '\0', POPT_ARG_NONE, &enableNIS, 0, NULL, NULL},
-    { "disablenis", '\0', POPT_ARG_NONE, &disableNIS, 0, NULL, NULL},
-    { "nisserver", '\0', POPT_ARG_STRING, &nisServer, 0, NULL, NULL},
-    { "nisdomain", '\0', POPT_ARG_STRING, &nisDomain, 0, NULL, NULL},
-
-    { "help", 'h', 0, &help, 0, NULL, NULL},
-    { 0, 0, 0, 0, 0, 0 },
-  };
-
-  progName = basename((char*)argv[0]);
 
   /* first set up our locale info for gettext. */
   setlocale(LC_ALL, "");
   bindtextdomain("authconfig", "/usr/share/locale");
   textdomain("authconfig");
+
+  progName = basename((char*)argv[0]);
+
+  {
+    const struct poptOption options[] = {
+      { "useshadow", '\0', POPT_ARG_NONE, &enableShadow, 0,
+	NULL, NULL},
+      { "enableshadow", '\0', POPT_ARG_NONE, &enableShadow, 0,
+	i18n("enable shadowed passwords by default"), NULL},
+      { "disableshadow", '\0', POPT_ARG_NONE, &disableShadow, 0,
+	i18n("disable shadowed passwords by default"), NULL},
+      { "usemd5", '\0', POPT_ARG_NONE, &enableMD5, 0,
+	NULL, NULL},
+      { "enablemd5", '\0', POPT_ARG_NONE, &enableMD5, 0,
+	i18n("enable MD5 passwords by default"), NULL},
+      { "disablemd5", '\0', POPT_ARG_NONE, &disableMD5, 0,
+	i18n("disable MD5 passwords by default\n"), NULL},
+
+      { "enablenis", '\0', POPT_ARG_NONE, &enableNIS, 0,
+	i18n("enable NIS"), NULL},
+      { "disablenis", '\0', POPT_ARG_NONE, &disableNIS, 0,
+	i18n("disable NIS"), NULL},
+      { "nisdomain", '\0', POPT_ARG_STRING, &nisDomain, 0,
+	i18n("default NIS domain"), i18n("<domain>")},
+      { "nisserver", '\0', POPT_ARG_STRING, &nisServer, 0,
+	i18n("default NIS server\n"), i18n("<server>")},
+
+      { "enableldap", '\0', POPT_ARG_NONE, &enableLDAP, 0,
+	i18n("enable LDAP for user information by default"), NULL},
+      { "disableldap", '\0', POPT_ARG_NONE, &disableLDAP, 0,
+	i18n("disable LDAP for user information by default"), NULL},
+      { "enableldaptls", '\0', POPT_ARG_NONE, &enableLDAPS, 0,
+	i18n("enable use of TLS with LDAP"), NULL},
+      { "disableldaptls", '\0', POPT_ARG_NONE, &disableLDAPS, 0,
+	i18n("disable use of TLS with LDAP"), NULL},
+      { "enableldapauth", '\0', POPT_ARG_NONE, &enableLDAPAuth, 0,
+	i18n("enable LDAP for authentication by default"), NULL},
+      { "disableldapauth", '\0', POPT_ARG_NONE, &disableLDAPAuth, 0,
+	i18n("disable LDAP for authentication by default"), NULL},
+      { "ldapserver", '\0', POPT_ARG_STRING, &ldapServer, 0,
+	i18n("default LDAP server"), i18n("<server>")},
+      { "ldapbasedn", '\0', POPT_ARG_STRING, &ldapBaseDN, 0,
+	i18n("default LDAP base DN\n"), i18n("<dn>")},
+
+      { "enablekrb5", '\0', POPT_ARG_NONE, &enableKrb5, 0,
+	i18n("enable kerberos authentication by default"), NULL},
+      { "disablekrb5", '\0', POPT_ARG_NONE, &disableKrb5, 0,
+	i18n("disable kerberos authentication by default"), NULL},
+      { "krb5kdc", '\0', POPT_ARG_STRING, &krb5KDC, 0,
+	i18n("default kerberos KDC"), i18n("<server>")},
+      { "krb5adminserver", '\0', POPT_ARG_STRING, &krb5AdminServer, 0,
+	i18n("default kerberos admin server"), i18n("<server>")},
+      { "krb5realm", '\0', POPT_ARG_STRING, &krb5Realm, 0,
+	i18n("default kerberos realm\n"), i18n("<realm>")},
+
+      { "enablehesiod", '\0', POPT_ARG_NONE, &enableHesiod, 0,
+	i18n("enable hesiod for user information by default"), NULL},
+      { "disablehesiod", '\0', POPT_ARG_NONE, &disableHesiod, 0,
+	i18n("disable hesiod for user information by default"), NULL},
+      { "hesiodlhs", '\0', POPT_ARG_STRING, &hesiodLHS, 0,
+	i18n("default hesiod LHS"), i18n("<lhs>")},
+      { "hesiodrhs", '\0', POPT_ARG_STRING, &hesiodRHS, 0,
+	i18n("default hesiod RHS\n"), i18n("<rhs>")},
+
+      { "back", '\0', POPT_ARG_NONE | POPT_ARGFLAG_DOC_HIDDEN, &back, 0,
+	NULL, NULL},
+      { "test", '\0', POPT_ARG_NONE | POPT_ARGFLAG_DOC_HIDDEN, &test, 0,
+	NULL, NULL},
+      { "nostart", '\0', POPT_ARG_NONE, &nostart, 0,
+	i18n("do not start/stop portmap, ypbind, and nscd"), NULL},
+      { "kickstart", '\0', POPT_ARG_NONE, &kickstart, 0,
+	i18n("don't display user interface"), NULL},
+#ifdef LOCAL_POLICIES
+      { "enablelocal", '\0', POPT_ARG_NONE, &enableLocal, 0,
+	i18n("use locally-defined policies"), NULL},
+      { "disablelocal", '\0', POPT_ARG_NONE, &disableLocal, 0,
+	i18n("don't use locally-defined policies"), NULL},
+#endif
+      POPT_AUTOHELP { 0, 0, 0, 0, 0, 0 },
+    };
   
-  /* next, process cmd. line options */
-  optCon = poptGetContext("authconfig", argc, argv, options, 0);
-  poptReadDefaultConfig(optCon, 1);
-  
-  if ((rc = poptGetNextOpt(optCon)) < -1) {
+    /* next, process cmd. line options */
+    optCon = poptGetContext("authconfig", argc, argv, options, 0);
+    poptReadDefaultConfig(optCon, 1);
+  }
+
+  if ((rc = poptGetNextOpt(optCon)) != -1) {
     fprintf(stderr, i18n("%s: bad argument %s: %s\n"),
 	    progName, poptBadOption(optCon, POPT_BADOPTION_NOALIAS),
 	    poptStrerror(rc));
@@ -798,9 +783,6 @@ int main(int argc, const char **argv)
 
   poptFreeContext(optCon);
 
-  if (help)
-      usage();
- 
   /* if the test parameter wasn't passed, give an error if not root */
   if (!test && getuid()) {
     fprintf(stderr, i18n("%s: can only be run as root\n"),

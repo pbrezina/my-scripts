@@ -1,6 +1,6 @@
 Summary: Text-mode tool for setting up NIS and shadow passwords.
 Name: authconfig
-Version: 4.0.22
+Version: 4.0.23
 Release: 1
 License: GPL
 ExclusiveOS: Linux
@@ -34,6 +34,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root)%{_datadir}/locale/*/LC_MESSAGES/authconfig.mo
 
 %changelog
+* Fri Dec 29 2000 Nalin Dahyabhai <nalin@redhat.com>
+- split the one big help message into multiple help messages
+
 * Wed Dec 12 2000 Nalin Dahyabhai <nalin@redhat.com>
 - don't write out configuration files for NIS, LDAP, Kerberos, Hesiod unless
   they're enabled when the user quits (we always write NSS, PAM, network)
