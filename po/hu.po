@@ -4,9 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
-"POT-Creation-Date: 1999-03-17 12:37-0500\n"
+"POT-Creation-Date: 1999-04-01 16:48-0500\n"
 "PO-Revision-Date: 1999-03-20 14:50+0100\n"
-"Last-Translator: L\341szl\363 N\351meth <nemeth@qwertynet.hu>\n"
+"Last-Translator: László Németh <nemeth@qwertynet.hu>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-2\n"
@@ -14,13 +14,15 @@ msgstr ""
 
 # , c-format
 #: ../authconfig.c:36 ../authconfig.c:386
+#, c-format
 msgid "%s: cannot open /etc/sysconfig/network: %s\n"
-msgstr "%s: /etc/sysconfig/network nem megnyithat\363: %s\n"
+msgstr "%s: /etc/sysconfig/network nem megnyitható: %s\n"
 
 # , c-format
 #: ../authconfig.c:96 ../authconfig.c:468
+#, c-format
 msgid "%s: cannot open /etc/yp.conf: %s\n"
-msgstr "%s: /etc/yp.conf nem megnyithat\363: %s\n"
+msgstr "%s: /etc/yp.conf nem megnyitható: %s\n"
 
 #.
 #. * NIS stuff.
@@ -31,11 +33,11 @@ msgstr "NIS szerver:"
 
 #: ../authconfig.c:216
 msgid "Request via broadcast"
-msgstr "Lek\351r\351s broadcast-tal"
+msgstr "Lekérés broadcast-tal"
 
 #: ../authconfig.c:233
 msgid "Enable NIS"
-msgstr "NIS enged\351lyez\351se"
+msgstr "NIS engedélyezése"
 
 #: ../authconfig.c:235
 msgid "NIS Domain:"
@@ -44,11 +46,11 @@ msgstr "NIS domain"
 #. Shadow Stuff
 #: ../authconfig.c:271
 msgid "Use Shadow Passwords"
-msgstr "Shadow jelsz\363k haszn\341lata"
+msgstr "Shadow jelszók használata"
 
 #: ../authconfig.c:273
 msgid "Enable MD5 Passwords"
-msgstr "MD5 jelsz\363k haszn\341lata"
+msgstr "MD5 jelszók használata"
 
 #: ../authconfig.c:280 ../authconfig.c:347 ../authconfig.c:354
 msgid "Ok"
@@ -60,11 +62,11 @@ msgstr "Vissza"
 
 #: ../authconfig.c:281
 msgid "Cancel"
-msgstr "M\351gsem"
+msgstr "Mégsem"
 
 #: ../authconfig.c:298
 msgid "(NIS not installed)"
-msgstr "(NIS nincs telep\355tve)"
+msgstr "(NIS nincs telepítve)"
 
 #: ../authconfig.c:312
 msgid "or use:"
@@ -72,7 +74,7 @@ msgstr "vagy:"
 
 #: ../authconfig.c:334
 msgid "Authentication Configuration"
-msgstr "Azonos\355t\341s be\341ll\355t\341s"
+msgstr "Azonosítás beállítás"
 
 #: ../authconfig.c:347 ../authconfig.c:354
 msgid "Error"
@@ -80,7 +82,7 @@ msgstr "Hiba"
 
 #: ../authconfig.c:348
 msgid "You must enter a NIS server or request via broadcast."
-msgstr "Adjon meg egy NIS szervert, vagy k\351rje le broadcast-tal."
+msgstr "Adjon meg egy NIS szervert, vagy kérje le broadcast-tal."
 
 #: ../authconfig.c:355
 msgid "You must enter a NIS domain."
@@ -88,25 +90,29 @@ msgstr "Adjon meg egy NIS domain-t."
 
 # , c-format
 #: ../authconfig.c:393
+#, c-format
 msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
-msgstr "%s: /etc/sysconfig/network- ir\341sra nem nyithat\363 meg: %s\n"
+msgstr "%s: /etc/sysconfig/network- irásra nem nyitható meg: %s\n"
 
 # , c-format
 #: ../authconfig.c:475
+#, c-format
 msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
-msgstr "%s: /etc/yp.conf- \355r\341sra nem nyithat\363 meg: %s\n"
+msgstr "%s: /etc/yp.conf- írásra nem nyitható meg: %s\n"
 
 # , c-format
-#: ../authconfig.c:652
+#: ../authconfig.c:657
+#, c-format
 msgid "%s: error opening %s\n"
-msgstr "%s: hiba %s megnyit\341s\341n\341l\n"
+msgstr "%s: hiba %s megnyitásánál\n"
 
 # , c-format
-#: ../authconfig.c:686
+#: ../authconfig.c:691
+#, fuzzy, c-format
 msgid ""
 "Usage: %s [options]\n"
 "\n"
-"     --nostart            no not start/stop yp\n"
+"     --nostart            do not start/stop yp\n"
 "     --enablenis          enable nis by default\n"
 "     --nisdomain <domain> default NIS domain\n"
 "     --nisserver <server> default NIS server\n"
@@ -117,75 +123,92 @@ msgid ""
 msgstr ""
 "Usage: %s [options]\n"
 "\n"
-"     --nostart            ne ind\355tsa/\341ll\355tsa le az yp-t\n"
-"     --enablenis          nis enged\351lyez\351se alap\351rt.\n"
-"     --nisdomain <domain> alap\351rt. NIS domain\n"
-"     --nisserver <server> alap\351rt. NIS server\n"
-"     --useshadow          shadow jelsz\363k haszn\341lata\n"
-"     --enablemd5          MD5 jelsz\363k haszn\341lata\n"
-"     --kickstart          felhaszn\341l\363i fel\374let nelk\374l\n"
-"     --help               ezt a k\351perny\365t jelen\355ti meg\n"
+"     --nostart            ne indítsa/állítsa le az yp-t\n"
+"     --enablenis          nis engedélyezése alapért.\n"
+"     --nisdomain <domain> alapért. NIS domain\n"
+"     --nisserver <server> alapért. NIS server\n"
+"     --useshadow          shadow jelszók használata\n"
+"     --enablemd5          MD5 jelszók használata\n"
+"     --kickstart          felhasználói felület nelkül\n"
+"     --help               ezt a képernyõt jeleníti meg\n"
 
 # , c-format
-#: ../authconfig.c:740
+#: ../authconfig.c:745
+#, c-format
 msgid "%s: bad argument %s: %s\n"
-msgstr "%s: hib\341s argumentum %s: %s\n"
+msgstr "%s: hibás argumentum %s: %s\n"
 
 # , c-format
-#: ../authconfig.c:747
+#: ../authconfig.c:752
+#, c-format
 msgid "%s: unexpected argument\n"
-msgstr "%s: v\341ratlan argumentum\n"
+msgstr "%s: váratlan argumentum\n"
 
 # , c-format
-#: ../authconfig.c:759
+#: ../authconfig.c:764
+#, c-format
 msgid "%s: can only be run as root\n"
-msgstr "%s: csak root-k\351nt futtathat\363\n"
+msgstr "%s: csak root-ként futtatható\n"
 
 # , c-format
-#: ../authconfig.c:774
+#: ../authconfig.c:779
+#, c-format
 msgid "%s: critical error reading /etc/sysconfig/network"
-msgstr "%s: kritikus hiba az /etc/sysconfig/network olvas\341sakor"
+msgstr "%s: kritikus hiba az /etc/sysconfig/network olvasásakor"
 
 # , c-format
-#: ../authconfig.c:787
+#: ../authconfig.c:792
+#, c-format
 msgid "%s: critical error reading /etc/yp.conf"
-msgstr "%s: kritikus hiba az /etc/yp.conf olvas\341sakor"
+msgstr "%s: kritikus hiba az /etc/yp.conf olvasásakor"
 
 # , c-format
-#: ../authconfig.c:804
+#: ../authconfig.c:809
+#, c-format
 msgid "%s: critical error reading /etc/pam.d/passwd\n"
-msgstr "%s: kritikus hiba az /etc/pam.d/passwd olvas\341sakor\n"
+msgstr "%s: kritikus hiba az /etc/pam.d/passwd olvasásakor\n"
 
-#: ../authconfig.c:813
-msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
-msgstr " <Tab>/<Alt-Tab> elemek k\366z\366tt    |   <Space> kiv\341laszt   |    <F12> k\366vetkez\365"
+#: ../authconfig.c:818
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> elemek között    |   <Space> kiválaszt   |    <F12> "
+"következõ"
 
 # , c-format
-#: ../authconfig.c:824
+#: ../authconfig.c:829
+#, c-format
 msgid "%s: nis domain was set to %s, but dialog was cancelled\n"
-msgstr "%s: a nis domain %s -re volt \341ll\355tva, de a be\341ll\355t\341s nem lett befejezve\n"
+msgstr ""
+"%s: a nis domain %s -re volt állítva, de a beállítás nem lett befejezve\n"
 
 # , c-format
-#: ../authconfig.c:837
+#: ../authconfig.c:842
+#, c-format
 msgid "return values: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
-msgstr "be\341ll\355t\341sok: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
+msgstr "beállítások: nis: %c, nisdomain: %s, shadow: %c, md5: %c\n"
 
 # , c-format
-#: ../authconfig.c:845
+#: ../authconfig.c:850
+#, c-format
 msgid "%s: critical error writing /etc/sysconfig/network\n"
-msgstr "%s: kritikus hiba az /etc/sysconfig/network \355r\341sakor\n"
+msgstr "%s: kritikus hiba az /etc/sysconfig/network írásakor\n"
 
 # , c-format
-#: ../authconfig.c:853
+#: ../authconfig.c:858
+#, c-format
 msgid "%s: critical error writing /etc/yp.conf\n"
-msgstr "%s: kritikus hiba az /etc/yp.conf \355r\341sakor\n"
+msgstr "%s: kritikus hiba az /etc/yp.conf írásakor\n"
 
 # , c-format
-#: ../authconfig.c:861
+#: ../authconfig.c:866
+#, c-format
 msgid "%s: critical error turning on NIS service\n"
-msgstr "%s: kritikus hiba a NIS szolg\341ltat\341s ind\355t\341s\341n\341l\n"
+msgstr "%s: kritikus hiba a NIS szolgáltatás indításánál\n"
 
 # , c-format
-#: ../authconfig.c:868
+#: ../authconfig.c:873
+#, c-format
 msgid "%s: critical error with shadow password manipulation\n"
-msgstr "%s: kritikus hiba a shadow jelsz\363k manipul\341l\341s\341n\341l\n"
+msgstr "%s: kritikus hiba a shadow jelszók manipulálásánál\n"
