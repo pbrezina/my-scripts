@@ -205,9 +205,9 @@ class childWindow:
 		for candidate in entry[2]:
 			dependent = xml.get_widget(candidate[0])
 			if option in candidate[1]:
-				dependent.set_sensitive(gtk.TRUE)
+				dependent.set_sensitive(True)
 			else:
-				dependent.set_sensitive(gtk.FALSE)
+				dependent.set_sensitive(False)
 
 	# Create a vbox or dialog using the file, and return it. */
 	def run_on_button(self, button, top, mapname, parent=None, responses=()):
@@ -264,8 +264,8 @@ class childWindow:
 								map[entry][0]))
 		if parent:
 			dialog.set_transient_for(parent)
-			parent.set_sensitive(gtk.FALSE)
-		dialog.set_resizable(gtk.FALSE)
+			parent.set_sensitive(False)
+		dialog.set_resizable(False)
 		response = None
 		while ((response != gtk.RESPONSE_OK) and
 		       (response != gtk.RESPONSE_CANCEL) and
@@ -277,7 +277,7 @@ class childWindow:
 			    self.ldap_cacerts_test()
 		dialog.destroy()
 		if parent:
-			parent.set_sensitive(gtk.TRUE)
+			parent.set_sensitive(True)
 		return response
 
 	# Create a vbox with the right controls and return the vbox.
@@ -287,7 +287,7 @@ class childWindow:
 				    gtk.DIALOG_NO_SEPARATOR,
 				    (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
 				     gtk.STOCK_OK, gtk.RESPONSE_OK))
-		dialog.set_resizable(gtk.FALSE)
+		dialog.set_resizable(False)
 		# Construct the XML object.
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
 				    'vbox', "authconfig")
