@@ -2,19 +2,20 @@
 # Copyright © 2004 Red Hat, Inc.
 # Németh László <nemeth@qwertynet.hu>, 2000.
 # Sulyok Péter <sp@elte.hu>, 2004.
-# Arpad Biro <biro_arpad@yahoo.com>, 2004.
+# Arpad Biro <biro_arpad@yahoo.com>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-02-10 17:30+0100\n"
-"PO-Revision-Date: 2004-10-05 14:49+0200\n"
-"Last-Translator: Tamas Szanto <tszanto@mol.hu>\n"
+"PO-Revision-Date: 2005-04-14 16:48+0200\n"
+"Last-Translator: Arpad Biro <biro_arpad@yahoo.com>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
 
 #: authconfig.c:285
 msgid "LHS:"
@@ -175,6 +176,8 @@ msgstr "Tartományhoz való csatlakozás:"
 msgid "Warning"
 msgstr "Figyelem"
 
+# PEM: egyfajta formátum
+#  http://tirian.magd.ox.ac.uk/~nick/openssl-certs/general.shtml
 #: authconfig.c:492 authconfig-gtk.py:355
 #, c-format, python-format
 msgid ""
@@ -183,6 +186,10 @@ msgid ""
 "directory.\n"
 "Then press OK."
 msgstr ""
+"Ahhoz, hogy kapcsolódhasson egy LDAP-kiszolgálóhoz TLS-sel, át kell "
+"másolnia a(z) \"%s\" könyvtárba azon PEM formátumú CA tanúsítványt, "
+"amellyel a kiszolgáló tanúsítványa alá lett írva.\n"
+"Ezt követően nyomja meg az OK gombot."
 
 #: authconfig.c:511
 msgid "caching"
@@ -274,7 +281,7 @@ msgstr "Winbind-azonosítás használata"
 
 #: authconfig.c:639
 msgid "Local authorization is sufficient"
-msgstr ""
+msgstr "A helyi azonosítás elegendő"
 
 #: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
 msgid "Authentication Configuration"
@@ -423,13 +430,11 @@ msgstr "az azonosítást végző kiszolgálók nevei\n"
 
 #: authconfig.c:922
 msgid "enable winbind for user information by default"
-msgstr ""
-"a Winbind engedélyezése felhasználói adatok lekérdezéséhez alapértelmezésben"
+msgstr "a Winbind engedélyezése felhasználói adatok lekérdezéséhez alapértelmezésben"
 
 #: authconfig.c:925
 msgid "disable winbind for user information by default"
-msgstr ""
-"a Winbind letiltása felhasználói adatok lekérdezéséhez alapértelmezésben"
+msgstr "a Winbind letiltása felhasználói adatok lekérdezéséhez alapértelmezésben"
 
 #: authconfig.c:928
 msgid "enable winbindauth for authentication by default"
@@ -508,8 +513,7 @@ msgstr ""
 
 #: authconfig.c:968
 msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr ""
-"csatlakozás a Winbind-tartományhoz vagy ADS-realmhez e rendszergazdaként\n"
+msgstr "csatlakozás a Winbind-tartományhoz vagy ADS-realmhez e rendszergazdaként\n"
 
 #: authconfig.c:972
 msgid "enable wins for hostname resolution"
@@ -553,8 +557,7 @@ msgstr "felhasználói információk gyorstárazása alapértelmezésben"
 
 #: authconfig.c:988
 msgid "disable caching of user information by default\n"
-msgstr ""
-"felhasználói információk gyorstárazásának kikapcsolása alapértelmezésben\n"
+msgstr "felhasználói információk gyorstárazásának kikapcsolása alapértelmezésben\n"
 
 #: authconfig.c:995
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -578,11 +581,11 @@ msgstr "a helyben megadott szabályok ne legyenek felhasználva"
 
 #: authconfig.c:1007
 msgid "local authorization is sufficient for local users"
-msgstr ""
+msgstr "helyi felhasználók számára elegendő a helyi azonosítás"
 
 #: authconfig.c:1009
 msgid "authorize local users also through remote service"
-msgstr ""
+msgstr "a helyi felhasználók azonosítása távoli szolgáltatással"
 
 #: authconfig.c:1019
 #, c-format
@@ -871,7 +874,7 @@ msgstr "_KDC-k"
 
 #: authconfig.glade.h:61
 msgid "_Local authorization is sufficient for local users"
-msgstr ""
+msgstr "_Helyi felhasználók számára elegendő a helyi azonosítás"
 
 #: authconfig.glade.h:62
 msgid "_Password"
@@ -879,7 +882,7 @@ msgstr "_Jelszó"
 
 #: authconfig.glade.h:63
 msgid "_Realm"
-msgstr "_Realm"
+msgstr "R_ealm"
 
 #: authconfig.glade.h:64
 msgid "_Security Model"
@@ -903,3 +906,4 @@ msgstr "Helyi szabályok használata"
 
 #~ msgid "(c) 1999-2003 Red Hat, Inc."
 #~ msgstr "© 1999-2004 Red Hat, Inc."
+
