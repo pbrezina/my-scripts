@@ -1610,6 +1610,14 @@ authInfoWriteNIS(struct authInfoType *info)
 	l = strlen(" domain ") + strlen(" broadcast ");
 	l += info->nisDomain ? strlen(info->nisDomain) : 0;
 	l += info->nisServer ? strlen(info->nisServer) : 0;
+	/* we need space for all the NIS servers */
+	if (non_empty(info->nisServer)) {
+		p = info->nisServer;
+		while ((p=strchr(p, ',')) != NULL) {
+			l += strlen("ypserver ") + 1;
+			p++;
+		}
+	}
 	obuf = g_malloc0(st.st_size + 1 + l);
 
 	p = ibuf;
@@ -1689,22 +1697,39 @@ authInfoWriteNIS(struct authInfoType *info)
 
 	/* If we haven't encountered a domain line yet... */
 	if (!written) {
+		p = info->nisServer;
 		if (non_empty(info->nisDomain)) {
 			strcat(obuf, "domain ");
 			strcat(obuf, info->nisDomain);
-			if (non_empty(info->nisServer)) {
+			if (non_empty(p)) {
 				strcat(obuf, " server ");
-				strcat(obuf, info->nisServer);
+				if (strchr(p, ',')) {
+					char *q;
+					q = strchr(p, ',');
+					strncat(obuf, p, q - p);
+					p = q + 1;
+				} else {
+					strcat(obuf, p);
+					p = NULL;
+				}
 			} else {
 				strcat(obuf, " broadcast");
 			}
 			strcat(obuf, "\n");
-		} else {
-			if (non_empty(info->nisServer)) {
+		}
+		
+		if (non_empty(p)) {
+			while (strchr(p, ',')) {
+				char *q;
+				q = strchr(p, ',');
 				strcat(obuf, "ypserver ");
-				strcat(obuf, info->nisServer);
+				strncat(obuf, p, q - p);
 				strcat(obuf, "\n");
+				p = q + 1;
 			}
+			strcat(obuf, "ypserver ");
+			strcat(obuf, p);
+			strcat(obuf, "\n");
 		}
 	}
 

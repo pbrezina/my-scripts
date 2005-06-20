@@ -81,6 +81,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Jun 20 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.13-1
+- set domain and ypserver option correctly when multiple servers
+  specified in kickstart (#159214)
+
 * Tue Apr 12 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.12-1
 - replaced deprecated gtk.TRUE/FALSE (#153034)
 - updated translations
