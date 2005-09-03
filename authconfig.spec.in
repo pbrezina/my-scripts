@@ -64,11 +64,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 %{_libdir}/python*/site-packages/acutilmodule.so
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/authconfig.py
-%{_datadir}/%{name}/authconfig-tui.py
-%{_datadir}/%{name}/authinfo.py
-%{_datadir}/%{name}/shvfile.py
-%{_datadir}/%{name}/dnsclient.py
+%{_datadir}/%{name}/authconfig.py*
+%{_datadir}/%{name}/authconfig-tui.py*
+%{_datadir}/%{name}/authinfo.py*
+%{_datadir}/%{name}/shvfile.py*
+%{_datadir}/%{name}/dnsclient.py*
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-tui
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/authconfig-gtk
 %{_bindir}/system-config-authentication
 %{_datadir}/%{name}/authconfig.glade
-%{_datadir}/%{name}/authconfig-gtk.py
+%{_datadir}/%{name}/authconfig-gtk.py*
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/pam.d/system-config-authentication
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
