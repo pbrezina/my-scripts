@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 17:30+0100\n"
+"POT-Creation-Date: 2005-09-03 13:35+0200\n"
 "PO-Revision-Date: 2005-01-27 00:14+0900\n"
 "Last-Translator: Hirofumi Saito <hi_saito@yk.rim.or.jp>\n"
 "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
@@ -18,130 +18,626 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.2\n"
 
+#: ../authconfig.py:52
+#, python-format
+msgid "usage: %s [options]"
+msgstr ""
+
+# ../authconfig.c:708
+#: ../authconfig.py:59
+msgid "enable shadowed passwords by default"
+msgstr "シャドウパスワードをデフォルトで有効にする"
+
+# ../authconfig.c:710
+#: ../authconfig.py:61
+msgid "disable shadowed passwords by default"
+msgstr "シャドウパスワードをデフォルトで無効にする"
+
+# ../authconfig.c:714
+#: ../authconfig.py:63
+msgid "enable MD5 passwords by default"
+msgstr "MD5 パスワードをデフォルトで有効にする"
+
+# ../authconfig.c:716
+#: ../authconfig.py:65
+#, fuzzy
+msgid "disable MD5 passwords by default"
+msgstr "MD5 パスワードをデフォルトで無効にする\n"
+
+# ../authconfig.c:728
+#: ../authconfig.py:68
+#, fuzzy
+msgid "enable NIS for user information by default"
+msgstr "ユーザー情報に関して LDAP をデフォルトで有効にする"
+
+# ../authconfig.c:730
+#: ../authconfig.py:70
+#, fuzzy
+msgid "disable NIS for user information by default"
+msgstr "ユーザー情報に関して LDAP をデフォルトで無効にする"
+
+# ../authconfig.c:723
+#: ../authconfig.py:71
+msgid "<domain>"
+msgstr "<ドメイン>"
+
+# ../authconfig.c:723
+#: ../authconfig.py:72
+msgid "default NIS domain"
+msgstr "デフォルトの NIS ドメイン"
+
+# ../authconfig.c:725 ../authconfig.c:740 ../authconfig.c:749
+# ../authconfig.c:751
+#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:97
+#: ../authconfig.py:99
+msgid "<server>"
+msgstr "<サーバー>"
+
+# ../authconfig.c:725
+#: ../authconfig.py:74
+#, fuzzy
+msgid "default NIS server"
+msgstr "デフォルトの NIS サーバー\n"
+
+# ../authconfig.c:728
+#: ../authconfig.py:77
+msgid "enable LDAP for user information by default"
+msgstr "ユーザー情報に関して LDAP をデフォルトで有効にする"
+
+# ../authconfig.c:730
+#: ../authconfig.py:79
+msgid "disable LDAP for user information by default"
+msgstr "ユーザー情報に関して LDAP をデフォルトで無効にする"
+
+# ../authconfig.c:736
+#: ../authconfig.py:81
+msgid "enable LDAP for authentication by default"
+msgstr "LDAP 認証をデフォルトで有効にする"
+
+# ../authconfig.c:738
+#: ../authconfig.py:83
+msgid "disable LDAP for authentication by default"
+msgstr "LDAP 認証をデフォルトで無効にする"
+
+# ../authconfig.c:740
+#: ../authconfig.py:85
+msgid "default LDAP server"
+msgstr "デフォルトの LDAP サーバー"
+
+# ../authconfig.c:742
+#: ../authconfig.py:86
+msgid "<dn>"
+msgstr "<dn>"
+
+# ../authconfig.c:742
+#: ../authconfig.py:87
+#, fuzzy
+msgid "default LDAP base DN"
+msgstr "デフォルトの LDAP ベース DN\n"
+
+# ../authconfig.c:732
+#: ../authconfig.py:89
+msgid "enable use of TLS with LDAP"
+msgstr "TLS と LDAP の併用を有効にする"
+
+# ../authconfig.c:734
+#: ../authconfig.py:91
+msgid "disable use of TLS with LDAP"
+msgstr "TLS と LDAP の併用を無効にする"
+
+# ../authconfig.c:745
+#: ../authconfig.py:94
+msgid "enable kerberos authentication by default"
+msgstr "Kerberos 認証をデフォルトで有効にする"
+
+# ../authconfig.c:747
+#: ../authconfig.py:96
+msgid "disable kerberos authentication by default"
+msgstr "Kerberos 認証をデフォルトで無効にする"
+
+# ../authconfig.c:749
+#: ../authconfig.py:98
+msgid "default kerberos KDC"
+msgstr "デフォルトの Kerberos KDC"
+
+# ../authconfig.c:751
+#: ../authconfig.py:100
+msgid "default kerberos admin server"
+msgstr "デフォルトの Kerberos 管理サーバー"
+
+# ../authconfig.c:753
+#: ../authconfig.py:101 ../authconfig.py:131
+msgid "<realm>"
+msgstr "<レルム>"
+
+# ../authconfig.c:753
+#: ../authconfig.py:102
+#, fuzzy
+msgid "default kerberos realm"
+msgstr "デフォルトの Kerberos レルム(realm)\n"
+
+#: ../authconfig.py:104
+msgid "enable use of DNS to find kerberos KDCs"
+msgstr "kerberos KDC 検索用の DNS 使用を有効にする"
+
+#: ../authconfig.py:106
+msgid "disable use of DNS to find kerberos KDCs"
+msgstr "kerberos KDC 検索用の DNS 使用を無効にする"
+
+#: ../authconfig.py:108
+msgid "enable use of DNS to find kerberos realms"
+msgstr "kerberos レルム検索用の DNS 使用を有効にする"
+
+# ../authconfig.c:753
+#: ../authconfig.py:110
+#, fuzzy
+msgid "disable use of DNS to find kerberos realms"
+msgstr "Kerberos レルム(realm)検索用の DNS 使用を無効にする \n"
+
+# ../authconfig.c:745
+#: ../authconfig.py:113
+msgid "enable SMB authentication by default"
+msgstr "SMB 認証をデフォルトで有効にする"
+
+# ../authconfig.c:738
+#: ../authconfig.py:115
+msgid "disable SMB authentication by default"
+msgstr "SMB 認証をデフォルトで無効にする"
+
+# ../authconfig.c:725 ../authconfig.c:740 ../authconfig.c:749
+# ../authconfig.c:751
+#: ../authconfig.py:116
+#, fuzzy
+msgid "<servers>"
+msgstr "<サーバー>"
+
+#: ../authconfig.py:117
+#, fuzzy
+msgid "names of servers to authenticate against"
+msgstr "認証する対象のサーバー名\n"
+
+#: ../authconfig.py:118
+msgid "<workgroup>"
+msgstr "<ワークグループ>"
+
+#: ../authconfig.py:119
+msgid "workgroup authentication servers are in"
+msgstr "ワークグループ認証サーバー"
+
+# ../authconfig.c:756
+#: ../authconfig.py:122
+msgid "enable winbind for user information by default"
+msgstr "ユーザー情報に関して winbind をデフォルトで有効にする"
+
+# ../authconfig.c:758
+#: ../authconfig.py:124
+msgid "disable winbind for user information by default"
+msgstr "ユーザー情報に関して winbind をデフォルトで無効にする"
+
+# ../authconfig.c:736
+#: ../authconfig.py:126
+#, fuzzy
+msgid "enable winbind for authentication by default"
+msgstr "認証で winbindauth をデフォルトで有効にする"
+
+# ../authconfig.c:738
+#: ../authconfig.py:128
+#, fuzzy
+msgid "disable winbind for authentication by default"
+msgstr "認証で winbindauth をデフォルトで無効にする"
+
+#: ../authconfig.py:130
+msgid "security mode to use for samba and winbind"
+msgstr "samba と winbind 用に使用するセキュリティモード"
+
+#: ../authconfig.py:132
+msgid "default realm for samba and winbind when security=ads"
+msgstr ""
+"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
+
+#: ../authconfig.py:133 ../authconfig.py:135
+msgid "<lowest-highest>"
+msgstr "<最低-最高>"
+
+#: ../authconfig.py:134
+msgid "uid range winbind will assign to domain or ads users"
+msgstr "winbind が domain 又は ads ユーザーに割り当てる uid の範囲"
+
+#: ../authconfig.py:136
+msgid "gid range winbind will assign to domain or ads users"
+msgstr "winbind が domain 又は ads ユーザーに割り当てる gid の範囲"
+
+#: ../authconfig.py:138
+msgid ""
+"the character which will be used to separate the domain and user part of "
+"winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr ""
+"winbindusedefaultdomain が有効でない場合に、winbind 作成のユーザー名内でドメ"
+"インとユーザーの部分を分離するのに使用する文字。"
+
+#: ../authconfig.py:140
+msgid "the directory which winbind-created users will have as home directories"
+msgstr "ユーザーがホームディレクトリとして持つ winbind 作成のディレクトリ"
+
+#: ../authconfig.py:142
+msgid "the group which winbind-created users will have as their primary group"
+msgstr "ユーザーがそのプライマリグループとして持つ winbind 作成のグループ"
+
+#: ../authconfig.py:144
+msgid "the shell which winbind-created users will have as their login shell"
+msgstr "ユーザーがそのログインシェルとして持つ winbind 作成のシェル"
+
+#: ../authconfig.py:146
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are domain users"
+msgstr ""
+"ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定するように"
+"winbind を設定する"
+
+#: ../authconfig.py:148
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are not domain users"
+msgstr ""
+"ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定しない様に"
+"winbind を設定する"
+
+#: ../authconfig.py:150
+#, fuzzy
+msgid "join the winbind domain or ads realm now as this administrator"
+msgstr "管理者として今 winbind ドメイン か又は ads realm に参加する\n"
+
+#: ../authconfig.py:153
+msgid "enable wins for hostname resolution"
+msgstr "ホスト名解決用の wins を有効にする"
+
+#: ../authconfig.py:155
+#, fuzzy
+msgid "disable wins for hostname resolution"
+msgstr "ホスト名解決用の wins を無効にする\n"
+
+# ../authconfig.c:756
+#: ../authconfig.py:158
+msgid "enable hesiod for user information by default"
+msgstr "ユーザー情報に関して hesiod をデフォルトで有効にする"
+
+# ../authconfig.c:758
+#: ../authconfig.py:160
+msgid "disable hesiod for user information by default"
+msgstr "ユーザー情報に関して hesiod をデフォルトで無効にする"
+
+# ../authconfig.c:760
+#: ../authconfig.py:162
+msgid "default hesiod LHS"
+msgstr "デフォルトの hesiod LHS"
+
+# ../authconfig.c:762
+#: ../authconfig.py:164
+#, fuzzy
+msgid "default hesiod RHS"
+msgstr "デフォルトの hesiod RHS\n"
+
+# ../authconfig.c:756
+#: ../authconfig.py:167
+msgid "enable caching of user information by default"
+msgstr "ユーザー情報のキャッシュをデフォルトで有効にする"
+
+# ../authconfig.c:758
+#: ../authconfig.py:169
+#, fuzzy
+msgid "disable caching of user information by default"
+msgstr "ユーザー情報のキャッシュをデフォルトでは無効にする\n"
+
+#: ../authconfig.py:172
+msgid "local authorization is sufficient for local users"
+msgstr "ローカル認証はローカルユーザー用として問題ありません"
+
+#: ../authconfig.py:174
+msgid "authorize local users also through remote service"
+msgstr "リモートサービスを通してのローカルユーザーを認証"
+
+# ../authconfig.c:769
+#: ../authconfig.py:177
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "portmap、ypbind、nscd を起動/停止しない"
+
+#: ../authconfig.py:180
+msgid "do not update the configuration files, only print new settings"
+msgstr ""
+
+#: ../authconfig.py:184
+msgid "display Back instead of Cancel in the main dialog of the TUI"
+msgstr ""
+
+# ../authconfig.c:771
+#: ../authconfig.py:186
+#, fuzzy
+msgid "do not display the deprecated text user interface"
+msgstr "ユーザーインタフェースを表示しない"
+
+#: ../authconfig.py:189
+msgid "opposite of --test, update the configuration files"
+msgstr ""
+
+#: ../authconfig.py:192
+msgid "probe network for defaults and print them"
+msgstr "デフォルトのネットワークを検出し、表示する"
+
+# ../authconfig.c:794
+#: ../authconfig.py:197
+#, fuzzy
+msgid "unexpected argument"
+msgstr "%s: 予期しない引数\n"
+
+# ../authconfig.c:803
+#: ../authconfig.py:307
+#, fuzzy
+msgid "can only be run as root"
+msgstr "%s: root としてのみ実行できます。\n"
+
+# ../authconfig.c:922
+#: ../authconfig.py:314
+#, fuzzy
+msgid "dialog was cancelled"
+msgstr "ダイアログはキャンセルされました。\n"
+
+# ../authconfig.c:150
+#: ../authconfig.py:337
+#, fuzzy, python-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.\n"
+"Install the %s package, which provides this file."
+msgstr ""
+"%s ファイルが見つかりません。このファイルは %s サポートを正しく機能させるため"
+"に必要です。このファイルを含む %s パッケージをインストールしてください。"
+
+# ../authconfig.c:154
+#: ../authconfig.py:339 ../authconfig.py:691
+msgid "Warning"
+msgstr "警告"
+
+# ../authconfig.c:154 ../authconfig.c:550 ../authconfig.c:563
+#: ../authconfig.py:339 ../authconfig.py:552 ../authconfig.py:559
+#: ../authconfig.py:565 ../authconfig.py:574 ../authconfig.py:581
+#: ../authconfig.py:589 ../authconfig.py:630 ../authconfig.py:691
+msgid "Ok"
+msgstr "OK"
+
+#: ../authconfig.py:343
+msgid "caching"
+msgstr "キャッシュ化"
+
+# ../authconfig.c:500
+#: ../authconfig.py:344 ../authconfig.glade.h:28
+msgid "Kerberos"
+msgstr "Kerberos"
+
+# ../authconfig.c:462
+#: ../authconfig.py:345
+msgid "LDAP authentication"
+msgstr "LDAP 認証"
+
+# ../authconfig.c:305
+#: ../authconfig.py:346 ../authconfig.glade.h:31
+msgid "LDAP"
+msgstr "LDAP"
+
+# ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
+#: ../authconfig.py:347 ../authconfig.glade.h:35
+msgid "NIS"
+msgstr "NIS"
+
+# ../authconfig.c:450
+#: ../authconfig.py:348
+msgid "shadow password"
+msgstr "シャドウパスワード"
+
+# ../authconfig.c:462
+#: ../authconfig.py:349
+msgid "SMB authentication"
+msgstr "SMB 認証"
+
+#: ../authconfig.py:350 ../authconfig.py:352 ../authconfig.glade.h:51
+msgid "Winbind"
+msgstr "Winbind"
+
+# ../authconfig.c:462
+#: ../authconfig.py:351
+msgid "Winbind authentication"
+msgstr "Winbind 認証"
+
+#: ../authconfig.py:357 ../authconfig.glade.h:50
+msgid "User Information"
+msgstr "ユーザー情報"
+
+#: ../authconfig.py:360
+msgid "Cache Information"
+msgstr "キャッシュ情報"
+
+# ../authconfig.c:344
+#: ../authconfig.py:364
+msgid "Use Hesiod"
+msgstr "Hesiod を使用"
+
+# ../authconfig.c:305
+#: ../authconfig.py:367
+msgid "Use LDAP"
+msgstr "LDAP を使用"
+
+# ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
+#: ../authconfig.py:371
+msgid "Use NIS"
+msgstr "NIS を使用"
+
+#: ../authconfig.py:375
+msgid "Use Winbind"
+msgstr "Winbind を使用"
+
+# ../authconfig.c:462
+#: ../authconfig.py:381 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:3
+msgid "Authentication"
+msgstr "認証"
+
+# ../authconfig.c:455
+#: ../authconfig.py:384
+msgid "Use MD5 Passwords"
+msgstr "MD5 パスワードを使用"
+
+# ../authconfig.c:450
+#: ../authconfig.py:387
+msgid "Use Shadow Passwords"
+msgstr "シャドウパスワードを使用"
+
+# ../authconfig.c:462
+#: ../authconfig.py:391
+msgid "Use LDAP Authentication"
+msgstr "LDAP 認証を使用"
+
+# ../authconfig.c:500
+#: ../authconfig.py:395
+msgid "Use Kerberos"
+msgstr "Kerberos 5 を使用"
+
+# ../authconfig.c:462
+#: ../authconfig.py:399
+msgid "Use SMB Authentication"
+msgstr "SMB 認証を使用"
+
+# ../authconfig.c:462
+#: ../authconfig.py:403
+msgid "Use Winbind Authentication"
+msgstr "Winbind 認証を使用"
+
+#: ../authconfig.py:407
+msgid "Local authorization is sufficient"
+msgstr "ローカル認証は十分です"
+
+# ../authconfig.c:375 ../authconfig.c:551 ../authconfig.c:564
+#: ../authconfig.py:417 ../authconfig.py:552 ../authconfig.py:559
+#: ../authconfig.py:565 ../authconfig.py:574 ../authconfig.py:581
+#: ../authconfig.py:630
+msgid "Back"
+msgstr "戻る"
+
+# ../authconfig.c:375 ../authconfig.c:552
+#: ../authconfig.py:417 ../authconfig.py:589
+msgid "Cancel"
+msgstr "取り消し"
+
+# ../authconfig.c:374
+#: ../authconfig.py:418 ../authconfig.py:552 ../authconfig.py:559
+#: ../authconfig.py:565 ../authconfig.py:574 ../authconfig.py:581
+#: ../authconfig.py:630
+msgid "Next"
+msgstr "次"
+
+# ../authconfig.c:580
+#: ../authconfig.py:429 ../authconfig-gtk.py:309 ../authconfig.glade.h:4
+msgid "Authentication Configuration"
+msgstr "認証の設定"
+
 # ../authconfig.c:182
-#: authconfig.c:285
+#: ../authconfig.py:549
 msgid "LHS:"
 msgstr "LHS:"
 
 # ../authconfig.c:183
-#: authconfig.c:287
+#: ../authconfig.py:550
 msgid "RHS:"
 msgstr "RHS:"
 
-#: authconfig.c:290 authconfig.glade.h:23
+#: ../authconfig.py:551 ../authconfig.glade.h:23
 msgid "Hesiod Settings"
 msgstr "Hesiod 設定"
 
-# ../authconfig.c:375 ../authconfig.c:551 ../authconfig.c:564
-#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:654
-msgid "Back"
-msgstr "戻る"
-
-# ../authconfig.c:374
-#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:655
-msgid "Next"
-msgstr "次"
-
-# ../authconfig.c:154 ../authconfig.c:550 ../authconfig.c:563
-#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:479
-#: authconfig.c:496
-msgid "Ok"
-msgstr "OK"
-
 # ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
-#: authconfig.c:299
+#: ../authconfig.py:555
 msgid "Use TLS"
 msgstr "TLS を使用"
 
 # ../authconfig.c:163 ../authconfig.c:201
-#: authconfig.c:301 authconfig.c:317
+#: ../authconfig.py:556 ../authconfig.py:563
 msgid "Server:"
 msgstr "サーバー:"
 
 # ../authconfig.c:202
-#: authconfig.c:303
+#: ../authconfig.py:557
 msgid "Base DN:"
 msgstr "ベース DN:"
 
-#: authconfig.c:306 authconfig.glade.h:33
+#: ../authconfig.py:558 ../authconfig.glade.h:33
 msgid "LDAP Settings"
 msgstr "LDAP 設定"
 
 # ../authconfig.c:162
-#: authconfig.c:315 authconfig.c:432
+#: ../authconfig.py:562 ../authconfig.py:624
 msgid "Domain:"
 msgstr "ドメイン:"
 
-#: authconfig.c:320 authconfig.glade.h:36
+#: ../authconfig.py:564 ../authconfig.glade.h:36
 msgid "NIS Settings"
 msgstr "NIS 設定"
 
 # ../authconfig.c:234
-#: authconfig.c:329
+#: ../authconfig.py:568
 msgid "Realm:"
 msgstr "レルム(Realm):"
 
 # ../authconfig.c:235
-#: authconfig.c:331
+#: ../authconfig.py:569
 msgid "KDC:"
 msgstr "KDC:"
 
 # ../authconfig.c:236
-#: authconfig.c:333
+#: ../authconfig.py:570
 msgid "Admin Server:"
 msgstr "管理サーバー:"
 
-#: authconfig.c:335
+#: ../authconfig.py:571
 msgid "Use DNS to resolve hosts to realms"
 msgstr "DNS を使用してレルムのホストを解決する"
 
-#: authconfig.c:337
+#: ../authconfig.py:572
 msgid "Use DNS to locate KDCs for realms"
 msgstr "DNS を使用してレルム用の KDC を見付ける"
 
-#: authconfig.c:340 authconfig.glade.h:29
+#: ../authconfig.py:573 ../authconfig.glade.h:29
 msgid "Kerberos Settings"
 msgstr "Kerberos 設定"
 
-#: authconfig.c:349
+#: ../authconfig.py:577
 msgid "Workgroup:"
 msgstr "ワークグループ:"
 
 # ../authconfig.c:163 ../authconfig.c:201
-#: authconfig.c:351
+#: ../authconfig.py:578
 msgid "Servers:"
 msgstr "サーバー:"
 
-#: authconfig.c:353
+#: ../authconfig.py:579
 msgid "Shell:"
 msgstr "シェル:"
 
-#: authconfig.c:356 authconfig.glade.h:41
+#: ../authconfig.py:580 ../authconfig.glade.h:41
 msgid "SMB Settings"
 msgstr "SMB 設定"
 
-#: authconfig.c:366
+#: ../authconfig.py:584
 msgid "Domain Administrator:"
 msgstr "ドメインアドミニストレータ:"
 
 # ../authconfig.c:455
-#: authconfig.c:368
+#: ../authconfig.py:585
 msgid "Password:"
 msgstr "パスワード:"
 
-#: authconfig.c:375
+#: ../authconfig.py:588
 msgid "Join Settings"
 msgstr "Join 設定"
 
-# ../authconfig.c:375 ../authconfig.c:552
-#: authconfig.c:377 authconfig.c:654
-msgid "Cancel"
-msgstr "取り消し"
-
-#: authconfig.c:394 authconfig.glade.h:43
+#: ../authconfig.py:598 ../authconfig.glade.h:43
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -151,51 +647,48 @@ msgstr ""
 "保存しない場合、ドメインに参加する操作が失敗することがあります。 変更を保存し"
 "ますか?"
 
-#: authconfig.c:400
+#: ../authconfig.py:605
 msgid "Save Settings"
 msgstr "設定の保存"
 
-#: authconfig.c:402
+#: ../authconfig.py:606
 msgid "No"
 msgstr "いいえ"
 
-#: authconfig.c:402
+#: ../authconfig.py:606
 msgid "Yes"
 msgstr "はい"
 
-#: authconfig.c:430
+#. Why does your favorite shell not show up in the list?  Because it won't
+#. fit, that's why!
+#: ../authconfig.py:623
 msgid "Security Model:"
 msgstr "セキュリティモデル:"
 
-#: authconfig.c:434
+#: ../authconfig.py:625
 msgid "Domain Controllers:"
 msgstr "ドメインコントローラ:"
 
 # ../authconfig.c:234
-#: authconfig.c:436
+#: ../authconfig.py:626
 msgid "ADS Realm:"
 msgstr "ADS レルム(Realm):"
 
-#: authconfig.c:438
+#: ../authconfig.py:627
 msgid "Template Shell:"
 msgstr "テンプレートシェル:"
 
-#: authconfig.c:456 authconfig.glade.h:54
+#: ../authconfig.py:629 ../authconfig.glade.h:54
 msgid "Winbind Settings"
 msgstr "Winbind 設定"
 
 # ../authconfig.c:162
-#: authconfig.c:458
+#: ../authconfig.py:631
 msgid "Join Domain"
 msgstr "ドメイン参加"
 
-# ../authconfig.c:154
-#: authconfig.c:479 authconfig.c:496
-msgid "Warning"
-msgstr "警告"
-
-#: authconfig.c:492 authconfig-gtk.py:355
-#, c-format, python-format
+#: ../authconfig.py:689 ../authconfig-gtk.py:379
+#, python-format
 msgid ""
 "To properly connect to a LDAP server using TLS you need to copy the PEM form "
 "CA certificate which signed your server's certificate to the '%s' "
@@ -206,625 +699,112 @@ msgstr ""
 "s' ディレクトリに署名する CA 証明から PEM をコピーする必要があります。\n"
 "そして OK を押します。"
 
-#: authconfig.c:511
-msgid "caching"
-msgstr "キャッシュ化"
-
-# ../authconfig.c:500
-#: authconfig.c:515 authconfig.glade.h:28
-msgid "Kerberos"
-msgstr "Kerberos"
-
-# ../authconfig.c:462
-#: authconfig.c:519
-msgid "LDAP authentication"
-msgstr "LDAP 認証"
-
-# ../authconfig.c:305
-#: authconfig.c:523 authconfig.glade.h:31
-msgid "LDAP"
-msgstr "LDAP"
-
-# ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
-#: authconfig.c:527 authconfig.glade.h:35
-msgid "NIS"
-msgstr "NIS"
-
-# ../authconfig.c:450
-#: authconfig.c:531
-msgid "shadow password"
-msgstr "シャドウパスワード"
-
-# ../authconfig.c:462
-#: authconfig.c:535
-msgid "SMB authentication"
-msgstr "SMB 認証"
-
-#: authconfig.c:539 authconfig.c:547 authconfig.glade.h:51
-msgid "Winbind"
-msgstr "Winbind"
-
-# ../authconfig.c:462
-#: authconfig.c:543
-msgid "Winbind authentication"
-msgstr "Winbind 認証"
-
-#: authconfig.c:553 authconfig.glade.h:50
-msgid "User Information"
-msgstr "ユーザー情報"
-
-#: authconfig.c:557
-msgid "Cache Information"
-msgstr "キャッシュ情報"
-
-# ../authconfig.c:344
-#: authconfig.c:564
-msgid "Use Hesiod"
-msgstr "Hesiod を使用"
-
-# ../authconfig.c:305
-#: authconfig.c:570
-msgid "Use LDAP"
-msgstr "LDAP を使用"
-
-# ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
-#: authconfig.c:577
-msgid "Use NIS"
-msgstr "NIS を使用"
-
-#: authconfig.c:584
-msgid "Use Winbind"
-msgstr "Winbind を使用"
-
-# ../authconfig.c:462
-#: authconfig.c:594 authconfig.desktop.in.h:1 authconfig.glade.h:3
-msgid "Authentication"
-msgstr "認証"
-
-# ../authconfig.c:455
-#: authconfig.c:598
-msgid "Use MD5 Passwords"
-msgstr "MD5 パスワードを使用"
-
-# ../authconfig.c:450
-#: authconfig.c:604
-msgid "Use Shadow Passwords"
-msgstr "シャドウパスワードを使用"
-
-# ../authconfig.c:462
-#: authconfig.c:611
-msgid "Use LDAP Authentication"
-msgstr "LDAP 認証を使用"
-
-# ../authconfig.c:500
-#: authconfig.c:618
-msgid "Use Kerberos"
-msgstr "Kerberos 5 を使用"
-
-# ../authconfig.c:462
-#: authconfig.c:625
-msgid "Use SMB Authentication"
-msgstr "SMB 認証を使用"
-
-# ../authconfig.c:462
-#: authconfig.c:632
-msgid "Use Winbind Authentication"
-msgstr "Winbind 認証を使用"
-
-#: authconfig.c:639
-msgid "Local authorization is sufficient"
-msgstr "ローカル認証は十分です"
-
-# ../authconfig.c:580
-#: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
-msgid "Authentication Configuration"
-msgstr "認証の設定"
-
-# ../authconfig.c:708
-#: authconfig.c:849
-msgid "enable shadowed passwords by default"
-msgstr "シャドウパスワードをデフォルトで有効にする"
-
-# ../authconfig.c:710
-#: authconfig.c:851
-msgid "disable shadowed passwords by default"
-msgstr "シャドウパスワードをデフォルトで無効にする"
-
-# ../authconfig.c:714
-#: authconfig.c:855
-msgid "enable MD5 passwords by default"
-msgstr "MD5 パスワードをデフォルトで有効にする"
-
-# ../authconfig.c:716
-#: authconfig.c:857
-msgid "disable MD5 passwords by default\n"
-msgstr "MD5 パスワードをデフォルトで無効にする\n"
-
-# ../authconfig.c:719
-#: authconfig.c:860
-msgid "enable NIS"
-msgstr "NIS を有効にする"
-
-# ../authconfig.c:721
-#: authconfig.c:862
-msgid "disable NIS"
-msgstr "NIS を無効にする"
-
-# ../authconfig.c:723
-#: authconfig.c:864
-msgid "default NIS domain"
-msgstr "デフォルトの NIS ドメイン"
-
-# ../authconfig.c:723
-#: authconfig.c:864
-msgid "<domain>"
-msgstr "<ドメイン>"
-
-# ../authconfig.c:725
-#: authconfig.c:866
-msgid "default NIS server\n"
-msgstr "デフォルトの NIS サーバー\n"
-
-# ../authconfig.c:725 ../authconfig.c:740 ../authconfig.c:749
-# ../authconfig.c:751
-#: authconfig.c:866 authconfig.c:888 authconfig.c:897 authconfig.c:899
-#: authconfig.c:919
-msgid "<server>"
-msgstr "<サーバー>"
-
-# ../authconfig.c:728
-#: authconfig.c:869
-msgid "enable LDAP for user information by default"
-msgstr "ユーザー情報に関して LDAP をデフォルトで有効にする"
-
-# ../authconfig.c:730
-#: authconfig.c:871
-msgid "disable LDAP for user information by default"
-msgstr "ユーザー情報に関して LDAP をデフォルトで無効にする"
-
-# ../authconfig.c:732
-#: authconfig.c:873 authconfig.c:879
-msgid "enable use of TLS with LDAP"
-msgstr "TLS と LDAP の併用を有効にする"
-
-# ../authconfig.c:734
-#: authconfig.c:875 authconfig.c:881
-msgid "disable use of TLS with LDAP"
-msgstr "TLS と LDAP の併用を無効にする"
-
-# ../authconfig.c:736
-#: authconfig.c:884
-msgid "enable LDAP for authentication by default"
-msgstr "LDAP 認証をデフォルトで有効にする"
-
-# ../authconfig.c:738
-#: authconfig.c:886
-msgid "disable LDAP for authentication by default"
-msgstr "LDAP 認証をデフォルトで無効にする"
-
-# ../authconfig.c:740
-#: authconfig.c:888
-msgid "default LDAP server"
-msgstr "デフォルトの LDAP サーバー"
-
-# ../authconfig.c:742
-#: authconfig.c:890
-msgid "default LDAP base DN\n"
-msgstr "デフォルトの LDAP ベース DN\n"
-
-# ../authconfig.c:742
-#: authconfig.c:890
-msgid "<dn>"
-msgstr "<dn>"
-
-# ../authconfig.c:745
-#: authconfig.c:893
-msgid "enable kerberos authentication by default"
-msgstr "Kerberos 認証をデフォルトで有効にする"
-
-# ../authconfig.c:747
-#: authconfig.c:895
-msgid "disable kerberos authentication by default"
-msgstr "Kerberos 認証をデフォルトで無効にする"
-
-# ../authconfig.c:749
-#: authconfig.c:897
-msgid "default kerberos KDC"
-msgstr "デフォルトの Kerberos KDC"
-
-# ../authconfig.c:751
-#: authconfig.c:899
-msgid "default kerberos admin server"
-msgstr "デフォルトの Kerberos 管理サーバー"
-
-# ../authconfig.c:753
-#: authconfig.c:901
-msgid "default kerberos realm\n"
-msgstr "デフォルトの Kerberos レルム(realm)\n"
-
-# ../authconfig.c:753
-#: authconfig.c:901
-msgid "<realm>"
-msgstr "<レルム>"
-
-#: authconfig.c:904
-msgid "enable use of DNS to find kerberos KDCs"
-msgstr "kerberos KDC 検索用の DNS 使用を有効にする"
-
-#: authconfig.c:906
-msgid "disable use of DNS to find kerberos KDCs"
-msgstr "kerberos KDC 検索用の DNS 使用を無効にする"
-
-#: authconfig.c:908
-msgid "enable use of DNS to find kerberos realms"
-msgstr "kerberos レルム検索用の DNS 使用を有効にする"
-
-# ../authconfig.c:753
-#: authconfig.c:910
-msgid "disable use of DNS to find kerberos realms\n"
-msgstr "Kerberos レルム(realm)検索用の DNS 使用を無効にする \n"
-
-# ../authconfig.c:745
-#: authconfig.c:913
-msgid "enable SMB authentication by default"
-msgstr "SMB 認証をデフォルトで有効にする"
-
-# ../authconfig.c:738
-#: authconfig.c:915
-msgid "disable SMB authentication by default"
-msgstr "SMB 認証をデフォルトで無効にする"
-
-#: authconfig.c:917
-msgid "workgroup authentication servers are in"
-msgstr "ワークグループ認証サーバー"
-
-#: authconfig.c:917
-msgid "<workgroup>"
-msgstr "<ワークグループ>"
-
-#: authconfig.c:919
-msgid "names of servers to authenticate against\n"
-msgstr "認証する対象のサーバー名\n"
-
-# ../authconfig.c:756
-#: authconfig.c:922
-msgid "enable winbind for user information by default"
-msgstr "ユーザー情報に関して winbind をデフォルトで有効にする"
-
-# ../authconfig.c:758
-#: authconfig.c:925
-msgid "disable winbind for user information by default"
-msgstr "ユーザー情報に関して winbind をデフォルトで無効にする"
-
-# ../authconfig.c:736
-#: authconfig.c:928
-msgid "enable winbindauth for authentication by default"
-msgstr "認証で winbindauth をデフォルトで有効にする"
-
-# ../authconfig.c:738
-#: authconfig.c:931
-msgid "disable winbindauth for authentication by default"
-msgstr "認証で winbindauth をデフォルトで無効にする"
-
-#: authconfig.c:934
-msgid "security mode to use for samba and winbind"
-msgstr "samba と winbind 用に使用するセキュリティモード"
-
-#: authconfig.c:936
-msgid "default realm for samba and winbind when security=ads"
-msgstr ""
-"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
-
-#: authconfig.c:938
-msgid "uid range winbind will assign to domain or ads users"
-msgstr "winbind が domain 又は ads ユーザーに割り当てる uid の範囲"
-
-#: authconfig.c:939 authconfig.c:942
-msgid "<lowest-highest>"
-msgstr "<最低-最高>"
-
-#: authconfig.c:941
-msgid "gid range winbind will assign to domain or ads users"
-msgstr "winbind が domain 又は ads ユーザーに割り当てる gid の範囲"
-
-#: authconfig.c:945
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"winbindusedefaultdomain が有効でない場合に、winbind 作成のユーザー名内でドメ"
-"インとユーザーの部分を分離するのに使用する文字。"
-
-#: authconfig.c:949
-msgid "the directory which winbind-created users will have as home directories"
-msgstr "ユーザーがホームディレクトリとして持つ winbind 作成のディレクトリ"
-
-#: authconfig.c:953
-msgid "the group which winbind-created users will have as their primary group"
-msgstr "ユーザーがそのプライマリグループとして持つ winbind 作成のグループ"
-
-#: authconfig.c:956
-msgid "the shell which winbind-created users will have as their login shell"
-msgstr "ユーザーがそのログインシェルとして持つ winbind 作成のシェル"
-
-#: authconfig.c:960
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定するように"
-"winbind を設定する"
-
-#: authconfig.c:964
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定しない様に"
-"winbind を設定する"
-
-#: authconfig.c:968
-msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr "管理者として今 winbind ドメイン か又は ads realm に参加する\n"
-
-#: authconfig.c:972
-msgid "enable wins for hostname resolution"
-msgstr "ホスト名解決用の wins を有効にする"
-
-#: authconfig.c:974
-msgid "disable wins for hostname resolution\n"
-msgstr "ホスト名解決用の wins を無効にする\n"
-
-# ../authconfig.c:756
-#: authconfig.c:977
-msgid "enable hesiod for user information by default"
-msgstr "ユーザー情報に関して hesiod をデフォルトで有効にする"
-
-# ../authconfig.c:758
-#: authconfig.c:979
-msgid "disable hesiod for user information by default"
-msgstr "ユーザー情報に関して hesiod をデフォルトで無効にする"
-
-# ../authconfig.c:760
-#: authconfig.c:981
-msgid "default hesiod LHS"
-msgstr "デフォルトの hesiod LHS"
-
-# ../authconfig.c:760
-#: authconfig.c:981
-msgid "<lhs>"
-msgstr "<lhs>"
-
-# ../authconfig.c:762
-#: authconfig.c:983
-msgid "default hesiod RHS\n"
-msgstr "デフォルトの hesiod RHS\n"
-
-# ../authconfig.c:762
-#: authconfig.c:983
-msgid "<rhs>"
-msgstr "<rhs>"
-
-# ../authconfig.c:756
-#: authconfig.c:986
-msgid "enable caching of user information by default"
-msgstr "ユーザー情報のキャッシュをデフォルトで有効にする"
-
-# ../authconfig.c:758
-#: authconfig.c:988
-msgid "disable caching of user information by default\n"
-msgstr "ユーザー情報のキャッシュをデフォルトでは無効にする\n"
-
-# ../authconfig.c:769
-#: authconfig.c:995
-msgid "do not start/stop portmap, ypbind, and nscd"
-msgstr "portmap、ypbind、nscd を起動/停止しない"
-
-# ../authconfig.c:771
-#: authconfig.c:997
-msgid "don't display user interface"
-msgstr "ユーザーインタフェースを表示しない"
-
-#: authconfig.c:999
-msgid "probe network for defaults and print them"
-msgstr "デフォルトのネットワークを検出し、表示する"
-
-# ../authconfig.c:774
-#: authconfig.c:1002
-msgid "use locally-defined policies"
-msgstr "ローカル定義のポリシーを使用する"
-
-# ../authconfig.c:776
-#: authconfig.c:1004
-msgid "don't use locally-defined policies"
-msgstr "ローカル定義のポリシーを使用しない"
-
-#: authconfig.c:1007
-msgid "local authorization is sufficient for local users"
-msgstr "ローカル認証はローカルユーザー用として問題ありません"
-
-#: authconfig.c:1009
-msgid "authorize local users also through remote service"
-msgstr "リモートサービスを通してのローカルユーザーを認証"
-
-# ../authconfig.c:787
-#: authconfig.c:1019
-#, c-format
-msgid "%s: bad argument %s: %s\n"
-msgstr "%s: 不適切な引数 %s: %s\n"
-
-#: authconfig.c:1028
-#, c-format
-msgid "%s: attempting to continue\n"
-msgstr "%s: 継続を試行中\n"
-
-# ../authconfig.c:794
-#: authconfig.c:1032
-#, c-format
-msgid "%s: unexpected argument\n"
-msgstr "%s: 予期しない引数\n"
-
-# ../authconfig.c:803
-#: authconfig.c:1064
-#, c-format
-msgid "%s: can only be run as root\n"
-msgstr "%s: root としてのみ実行できます。\n"
-
-# ../authconfig.c:814 ../authconfig.c:822 ../authconfig.c:830
-# ../authconfig.c:838 ../authconfig.c:846 ../authconfig.c:854
-# ../authconfig.c:862
-#: authconfig.c:1075 authconfig.c:1083 authconfig.c:1091 authconfig.c:1099
-#: authconfig.c:1107 authconfig.c:1115 authconfig.c:1123 authconfig.c:1136
-#: authconfig.c:1144
-#, c-format
-msgid "%s: critical error reading %s/%s"
-msgstr "%s: %s/%s の読み込み中に重大なエラーです。"
-
-# ../authconfig.c:394
-#: authconfig.c:1130
-#, c-format
-msgid "%s: unable to read caching configuration"
-msgstr "%s: キャッシュ設定を読み取れません。"
-
 # ../authconfig.c:912
-#: authconfig.c:1231
+#. FIXME - version
+#: ../authconfig.py:700
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr "<Tab>/<Alt-Tab> 項目間の移動   |   <Space> 選択   |  <F12> 次の画面"
 
-# ../authconfig.c:922
-#: authconfig.c:1240
-#, c-format
-msgid "dialog was cancelled\n"
-msgstr "ダイアログはキャンセルされました。\n"
-
-# ../authconfig.c:814 ../authconfig.c:822 ../authconfig.c:830
-# ../authconfig.c:838 ../authconfig.c:846 ../authconfig.c:854
-# ../authconfig.c:862
-#: authconfig.c:1261
-#, c-format
-msgid "%s: critical error recording caching setting"
-msgstr "%s: キャッシュ設定の記録中に重大なエラーです。"
-
-# ../authconfig.c:982 ../authconfig.c:988 ../authconfig.c:994
-# ../authconfig.c:1000 ../authconfig.c:1006 ../authconfig.c:1011
-# ../authconfig.c:1017
-#: authconfig.c:1267 authconfig.c:1273 authconfig.c:1279 authconfig.c:1285
-#: authconfig.c:1290 authconfig.c:1296 authconfig.c:1301 authconfig.c:1306
-#: authconfig.c:1311 authconfig.c:1317
-#, c-format
-msgid "%s: critical error writing %s/%s"
-msgstr "%s: %s/%s の書き込み中に重大なエラーです。"
-
-#: authconfig.desktop.in.h:2
+#: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "ログインしようとするユーザーをシステムが確証する方法を制御する"
 
-# ../authconfig.c:150
-#: authinfo.h:71
-#, c-format
-msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.  Install the %s package, which provides this file."
-msgstr ""
-"%s ファイルが見つかりません。このファイルは %s サポートを正しく機能させるため"
-"に必要です。このファイルを含む %s パッケージをインストールしてください。"
-
-#: authconfig.glade.h:1
+#: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
-#: authconfig.glade.h:2
+#: ../authconfig.glade.h:2
 msgid "Alert"
 msgstr "忠告"
 
-#: authconfig.glade.h:5
+#: ../authconfig.glade.h:5
 msgid "Cache User _Information"
 msgstr "キャッシュユーザー情報(_C)"
 
-#: authconfig.glade.h:6
+#: ../authconfig.glade.h:6
 msgid "Con_figure SMB..."
 msgstr "SMB の設定(_C)..."
 
-#: authconfig.glade.h:7
+#: ../authconfig.glade.h:7
 msgid "Configure H_esiod..."
 msgstr "Hesiod. の設定(_C)..."
 
-#: authconfig.glade.h:8
+#: ../authconfig.glade.h:8
 msgid "Configure K_erberos..."
 msgstr "Kerberos の設定(_C)..."
 
-#: authconfig.glade.h:9
+#: ../authconfig.glade.h:9
 msgid "Configure L_DAP..."
 msgstr "LDAPの設定(_C)..."
 
-#: authconfig.glade.h:10
+#: ../authconfig.glade.h:10
 msgid "Configure NI_S..."
 msgstr "NISの設定(_C)..."
 
-#: authconfig.glade.h:11
+#: ../authconfig.glade.h:11
 msgid "Configure Win_bind..."
 msgstr "Winbind の設定(_C)..."
 
-#: authconfig.glade.h:12
+#: ../authconfig.glade.h:12
 msgid "Do_n't Save"
 msgstr "保存しない(_N)"
 
 # ../authconfig.c:162
-#: authconfig.glade.h:13
+#: ../authconfig.glade.h:13
 msgid "Domain"
 msgstr "ドメイン"
 
-#: authconfig.glade.h:14
+#: ../authconfig.glade.h:14
 msgid "Domain _Administrator"
 msgstr "ドメインアドミニストレータ(_A)"
 
-#: authconfig.glade.h:15
+#: ../authconfig.glade.h:15
 msgid "EXAMPLE.COM"
 msgstr "EXAMPLE.COM"
 
-#: authconfig.glade.h:16
+#: ../authconfig.glade.h:16
 msgid "Enable SMB S_upport"
 msgstr "SMB サポートを有効にする(_S)"
 
-#: authconfig.glade.h:17
+#: ../authconfig.glade.h:17
 msgid "Enable _Hesiod Support"
 msgstr "Hesiod サポートを有効にする(_H)"
 
-#: authconfig.glade.h:18
+#: ../authconfig.glade.h:18
 msgid "Enable _Kerberos Support"
 msgstr "Kerberos サポートを有効にする(_K)"
 
-#: authconfig.glade.h:19
+#: ../authconfig.glade.h:19
 msgid "Enable _LDAP Support"
 msgstr "LDAPサポートを有効にする(_L)"
 
 # ../authconfig.c:719
-#: authconfig.glade.h:20
+#: ../authconfig.glade.h:20
 msgid "Enable _NIS Support"
 msgstr "NIS サポートを有効にする(_N)"
 
-#: authconfig.glade.h:21
+#: ../authconfig.glade.h:21
 msgid "Enable _Winbind Support"
 msgstr "Winbind サポートを有効にする(_W)"
 
 # ../authconfig.c:344
-#: authconfig.glade.h:22
+#: ../authconfig.glade.h:22
 msgid "Hesiod"
 msgstr "Hesiod"
 
 # ../authconfig.c:760
-#: authconfig.glade.h:24
+#: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
 msgstr "Hesiod LHS(_L)"
 
 # ../authconfig.c:762
-#: authconfig.glade.h:25
+#: ../authconfig.glade.h:25
 msgid "Hesiod _RHS"
 msgstr "Hesiod RHS(_R)"
 
-#: authconfig.glade.h:26
+#: ../authconfig.glade.h:26
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -832,11 +812,11 @@ msgstr ""
 "Hesiod はシステム管理者が DNS でユーザーとグループの情報を発行できるようにし"
 "ます。 これは時として大規模なネットワークで使用されます。"
 
-#: authconfig.glade.h:27
+#: ../authconfig.glade.h:27
 msgid "Joining Winbind Domain"
 msgstr "Winbind ドメインに参加"
 
-#: authconfig.glade.h:30
+#: ../authconfig.glade.h:30
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -844,26 +824,26 @@ msgstr ""
 "Kerberos は一般的に中規模から大規模のネットワークで使用される、信用できるサー"
 "ドパーティ認証システムです。"
 
-#: authconfig.glade.h:32
+#: ../authconfig.glade.h:32
 msgid "LDAP Search _Base DN"
 msgstr "LDAP 検索  ベースDN(_B)"
 
 # ../authconfig.c:740
-#: authconfig.glade.h:34
+#: ../authconfig.glade.h:34
 msgid "LDAP _Server"
 msgstr "LDAP サーバー(_S)"
 
 # ../authconfig.c:162
-#: authconfig.glade.h:37
+#: ../authconfig.glade.h:37
 msgid "NIS _Domain"
 msgstr "NIS ドメイン(_D)"
 
 # ../authconfig.c:163 ../authconfig.c:201
-#: authconfig.glade.h:38
+#: ../authconfig.glade.h:38
 msgid "NIS _Server"
 msgstr "NIS サーバー(_S)"
 
-#: authconfig.glade.h:39
+#: ../authconfig.glade.h:39
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
@@ -871,11 +851,11 @@ msgstr ""
 "NIS とはネットワークインフォメーションサービスのことです。一般的に小から中サ"
 "イズのネットワークで使用されます。"
 
-#: authconfig.glade.h:40
+#: ../authconfig.glade.h:40
 msgid "SMB"
 msgstr "SMB"
 
-#: authconfig.glade.h:42
+#: ../authconfig.glade.h:42
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -883,7 +863,7 @@ msgstr ""
 "SMB 認証は SMB (system message block)プロトコルセットを使用するサーバーに接続"
 "してユーザーパスワードを確証します。"
 
-#: authconfig.glade.h:44
+#: ../authconfig.glade.h:44
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -893,42 +873,42 @@ msgstr ""
 "るディレクトリを検索する標準的な手段です。LDAP は小規模から大規模なネットワー"
 "クでの使用が増加しています。"
 
-#: authconfig.glade.h:45
+#: ../authconfig.glade.h:45
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "DNS を使用してレルム用の KDC を見付ける(_l)"
 
-#: authconfig.glade.h:46
+#: ../authconfig.glade.h:46
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "DNS を使用してレルムのホストを解決する(_D)"
 
 # ../authconfig.c:455
-#: authconfig.glade.h:47
+#: ../authconfig.glade.h:47
 msgid "Use _MD5 Passwords"
 msgstr "MD5 パスワードを使用(_M)"
 
 # ../authconfig.c:450
-#: authconfig.glade.h:48
+#: ../authconfig.glade.h:48
 msgid "Use _Shadow Passwords"
 msgstr "シャドウパスワードを使用(_S)"
 
-#: authconfig.glade.h:49
+#: ../authconfig.glade.h:49
 msgid "Use _TLS to encrypt connections"
 msgstr "TLS を使用して接続を暗号化する(_T)"
 
-#: authconfig.glade.h:52
+#: ../authconfig.glade.h:52
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS Realm(_R)"
 
-#: authconfig.glade.h:53
+#: ../authconfig.glade.h:53
 msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind ドメインコントローラ(_n)"
 
 # ../authconfig.c:162
-#: authconfig.glade.h:55
+#: ../authconfig.glade.h:55
 msgid "Winbind _Domain"
 msgstr "Winbind ドメイン(_D)"
 
-#: authconfig.glade.h:56
+#: ../authconfig.glade.h:56
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -939,54 +919,106 @@ msgstr ""
 "ワークで使用されます。"
 
 # ../authconfig.c:236
-#: authconfig.glade.h:57
+#: ../authconfig.glade.h:57
 msgid "_Admin Servers"
 msgstr "管理 サーバー(_A)"
 
-#: authconfig.glade.h:58
+#: ../authconfig.glade.h:58
 msgid "_Domain Controllers"
 msgstr "ドメインコントローラ(_D)"
 
 # ../authconfig.c:162
-#: authconfig.glade.h:59
+#: ../authconfig.glade.h:59
 msgid "_Join Domain"
 msgstr "ドメインに参加(_J)"
 
 # ../authconfig.c:235
-#: authconfig.glade.h:60
+#: ../authconfig.glade.h:60
 msgid "_KDCs"
 msgstr "KDCs(_K)"
 
-#: authconfig.glade.h:61
+#: ../authconfig.glade.h:61
 msgid "_Local authorization is sufficient for local users"
 msgstr "ローカル認証はローカルユーザー用として十分(_L)"
 
 # ../authconfig.c:455
-#: authconfig.glade.h:62
+#: ../authconfig.glade.h:62
 msgid "_Password"
 msgstr "パスワード(_P)"
 
 # ../authconfig.c:234
-#: authconfig.glade.h:63
+#: ../authconfig.glade.h:63
 msgid "_Realm"
 msgstr "Realm(_R)"
 
-#: authconfig.glade.h:64
+#: ../authconfig.glade.h:64
 msgid "_Security Model"
 msgstr "セキュリティモデル(_S)"
 
-#: authconfig.glade.h:65
+#: ../authconfig.glade.h:65
 msgid "_Template Shell"
 msgstr "テンプレートシェル(_T)"
 
-#: authconfig.glade.h:66
+#: ../authconfig.glade.h:66
 msgid "_Workgroup"
 msgstr "ワークグループ(_W)"
 
+# ../authconfig.c:719
+#~ msgid "enable NIS"
+#~ msgstr "NIS を有効にする"
+
+# ../authconfig.c:721
+#~ msgid "disable NIS"
+#~ msgstr "NIS を無効にする"
+
+# ../authconfig.c:760
+#~ msgid "<lhs>"
+#~ msgstr "<lhs>"
+
+# ../authconfig.c:762
+#~ msgid "<rhs>"
+#~ msgstr "<rhs>"
+
 # ../authconfig.c:774
-#: localpol.h:9
-msgid "Use Local Policies"
-msgstr "ローカルポリシーを使用"
+#~ msgid "use locally-defined policies"
+#~ msgstr "ローカル定義のポリシーを使用する"
+
+# ../authconfig.c:776
+#~ msgid "don't use locally-defined policies"
+#~ msgstr "ローカル定義のポリシーを使用しない"
+
+# ../authconfig.c:787
+#~ msgid "%s: bad argument %s: %s\n"
+#~ msgstr "%s: 不適切な引数 %s: %s\n"
+
+#~ msgid "%s: attempting to continue\n"
+#~ msgstr "%s: 継続を試行中\n"
+
+# ../authconfig.c:814 ../authconfig.c:822 ../authconfig.c:830
+# ../authconfig.c:838 ../authconfig.c:846 ../authconfig.c:854
+# ../authconfig.c:862
+#~ msgid "%s: critical error reading %s/%s"
+#~ msgstr "%s: %s/%s の読み込み中に重大なエラーです。"
+
+# ../authconfig.c:394
+#~ msgid "%s: unable to read caching configuration"
+#~ msgstr "%s: キャッシュ設定を読み取れません。"
+
+# ../authconfig.c:814 ../authconfig.c:822 ../authconfig.c:830
+# ../authconfig.c:838 ../authconfig.c:846 ../authconfig.c:854
+# ../authconfig.c:862
+#~ msgid "%s: critical error recording caching setting"
+#~ msgstr "%s: キャッシュ設定の記録中に重大なエラーです。"
+
+# ../authconfig.c:982 ../authconfig.c:988 ../authconfig.c:994
+# ../authconfig.c:1000 ../authconfig.c:1006 ../authconfig.c:1011
+# ../authconfig.c:1017
+#~ msgid "%s: critical error writing %s/%s"
+#~ msgstr "%s: %s/%s の書き込み中に重大なエラーです。"
+
+# ../authconfig.c:774
+#~ msgid "Use Local Policies"
+#~ msgstr "ローカルポリシーを使用"
 
 #, fuzzy
 #~ msgid "Information"

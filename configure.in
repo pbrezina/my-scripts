@@ -1,4 +1,4 @@
-AC_INIT(authconfig,4.6.13)
+AC_INIT(authconfig,5.0.0)
 AM_INIT_AUTOMAKE([dist-bzip2 no-dist-gzip])
 AC_PREFIX_DEFAULT(/usr)
 AC_PROG_CC
@@ -6,12 +6,9 @@ ALL_LINGUAS="ar bg bn bs ca cs cy da de el en_GB es et fa fi fr gl gu he hi hr h
 AM_GLIB_GNU_GETTEXT
 AM_PROG_LIBTOOL
 AC_PROG_INTLTOOL
-PKG_CHECK_MODULES(GLIB,glib-2.0)
 
 GETTEXT_PACKAGE='$(PACKAGE)'
 AC_SUBST(GETTEXT_PACKAGE)
-
-AC_CHECK_FUNC(forkpty,,[AC_CHECK_LIB(util,forkpty)])
 
 libs="$LIBS"
 AC_CHECK_FUNC(poptGetContext,,[AC_CHECK_LIB(popt,poptGetContext)])

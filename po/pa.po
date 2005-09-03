@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 17:30+0100\n"
+"POT-Creation-Date: 2005-09-03 13:35+0200\n"
 "PO-Revision-Date: 2005-02-12 16:42+0530\n"
 "Last-Translator: Amanpreet Singh Alam <amanpreetalam@yahoo.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
@@ -26,115 +26,544 @@ msgstr ""
 "\n"
 "\n"
 
-#: authconfig.c:285
-msgid "LHS:"
-msgstr "LHS:"
+#: ../authconfig.py:52
+#, python-format
+msgid "usage: %s [options]"
+msgstr ""
 
-#: authconfig.c:287
-msgid "RHS:"
-msgstr "RHS:"
+#: ../authconfig.py:59
+msgid "enable shadowed passwords by default"
+msgstr "ਮੂਲ ਹੀ ਪ੍ਰਛਾਵਾਂ ਗੁਪਤ-ਕੋਡ ਯੋਗ ਕਰੋ"
 
-#: authconfig.c:290 authconfig.glade.h:23
-msgid "Hesiod Settings"
-msgstr "ਹੀਸਓਡ ਵਿਵਸਥਾ"
+#: ../authconfig.py:61
+msgid "disable shadowed passwords by default"
+msgstr "ਮੂਲ ਪ੍ਰਛਾਵਾਂ ਗੁਪਤ-ਕੋਡ ਅਯੋਗ ਕਰੋ"
 
-#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:654
-msgid "Back"
-msgstr "ਪਿੱਛੇ"
+#: ../authconfig.py:63
+msgid "enable MD5 passwords by default"
+msgstr "ਮੂਲ ਹੀ MD5 ਗੁਪਤ-ਕੋਡ ਯੋਗ ਕਰੋ"
 
-#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:459 authconfig.c:655
-msgid "Next"
-msgstr "ਅੱਗੇ"
+#: ../authconfig.py:65
+#, fuzzy
+msgid "disable MD5 passwords by default"
+msgstr "ਮੂਲ ਹੀ MD5 ਗੁਪਤ-ਕੋਡ ਅਯੋਗ ਕਰੋ\n"
 
-#: authconfig.c:292 authconfig.c:308 authconfig.c:322 authconfig.c:342
-#: authconfig.c:358 authconfig.c:377 authconfig.c:459 authconfig.c:479
-#: authconfig.c:496
+#: ../authconfig.py:68
+#, fuzzy
+msgid "enable NIS for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ ਲਈ LDAP ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:70
+#, fuzzy
+msgid "disable NIS for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ ਲਈ LDAP ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:71
+msgid "<domain>"
+msgstr "<domain>"
+
+#: ../authconfig.py:72
+msgid "default NIS domain"
+msgstr "ਮੂਲ NIS ਡੋਮੇਨ"
+
+#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:97
+#: ../authconfig.py:99
+msgid "<server>"
+msgstr "<server>"
+
+#: ../authconfig.py:74
+#, fuzzy
+msgid "default NIS server"
+msgstr "ਮੂਲ NIS ਸਰਵਰ\n"
+
+#: ../authconfig.py:77
+msgid "enable LDAP for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ ਲਈ LDAP ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:79
+msgid "disable LDAP for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ ਲਈ LDAP ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:81
+msgid "enable LDAP for authentication by default"
+msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ LDAP ਮੂਲ ਹੀ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:83
+msgid "disable LDAP for authentication by default"
+msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ LDAP ਮੂਲ ਹੀ ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:85
+msgid "default LDAP server"
+msgstr "ਮੂਲ LDAP ਸਰਵਰ"
+
+#: ../authconfig.py:86
+msgid "<dn>"
+msgstr "<dn>"
+
+#: ../authconfig.py:87
+#, fuzzy
+msgid "default LDAP base DN"
+msgstr "ਮੂਲ LDAP ਮੁੱਢਲਾ DN\n"
+
+#: ../authconfig.py:89
+msgid "enable use of TLS with LDAP"
+msgstr "LDAP ਨਾਲ TLS ਦੀ ਵਰਤੋਂ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:91
+msgid "disable use of TLS with LDAP"
+msgstr "LDAP ਨਾਲ TLS ਦੀ ਵਰਤੋਂ ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:94
+msgid "enable kerberos authentication by default"
+msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਪ੍ਰਮਾਣਕਿਤਾ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:96
+msgid "disable kerberos authentication by default"
+msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਪ੍ਰਮਾਣਕਿਤਾ ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:98
+msgid "default kerberos KDC"
+msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ KDC"
+
+#: ../authconfig.py:100
+msgid "default kerberos admin server"
+msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਪ੍ਰਬੰਧਕ ਸਰਵਰ"
+
+#: ../authconfig.py:101 ../authconfig.py:131
+msgid "<realm>"
+msgstr "<realm>"
+
+#: ../authconfig.py:102
+#, fuzzy
+msgid "default kerberos realm"
+msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਸੀਮਾ-ਖੇਤਰ\n"
+
+#: ../authconfig.py:104
+msgid "enable use of DNS to find kerberos KDCs"
+msgstr "ਕੀਰਬੀਰੋਸ KDCs ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:106
+msgid "disable use of DNS to find kerberos KDCs"
+msgstr "ਕੀਰਬੀਰੋਸ KDCs ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:108
+msgid "enable use of DNS to find kerberos realms"
+msgstr "ਕੀਰਬੀਰੋਸ ਸੀਮਾ-ਖੇਤਰ ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:110
+#, fuzzy
+msgid "disable use of DNS to find kerberos realms"
+msgstr "ਕੀਰਬੀਰੋਸ ਸੀਮਾ-ਖੇਤਰ ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਅਯੋਗ ਕਰੋ\n"
+
+#: ../authconfig.py:113
+msgid "enable SMB authentication by default"
+msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ ਮੂਲ ਹੀ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:115
+msgid "disable SMB authentication by default"
+msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ ਮੂਲ ਹੀ ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:116
+#, fuzzy
+msgid "<servers>"
+msgstr "<server>"
+
+#: ../authconfig.py:117
+#, fuzzy
+msgid "names of servers to authenticate against"
+msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਦੇ ਅੱਗੇ ਸਰਵਰਾਂ ਦਾ ਨਾਂ\n"
+
+#: ../authconfig.py:118
+msgid "<workgroup>"
+msgstr "<workgroup>"
+
+#: ../authconfig.py:119
+msgid "workgroup authentication servers are in"
+msgstr "ਵਰਕਗਰੁੱਪ ਪ੍ਰਮਾਣਕਿਤਾ ਸਰਵਰ ਹਨ, ਵਿੱਚ"
+
+#: ../authconfig.py:122
+msgid "enable winbind for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ winbind ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:124
+msgid "disable winbind for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ winbind ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:126
+#, fuzzy
+msgid "enable winbind for authentication by default"
+msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ winbindauth ਮੂਲ ਹੀ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:128
+#, fuzzy
+msgid "disable winbind for authentication by default"
+msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ winbindauth ਮੂਲ ਹੀ ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:130
+msgid "security mode to use for samba and winbind"
+msgstr "ਸਾਂਬਾ ਅਤੇ ਵਿਨਬਾਈਂਡ ਲਈ ਵਰਤਣ ਲਈ ਸੁਰੱਖਿਆ ਮੋਡ"
+
+#: ../authconfig.py:132
+msgid "default realm for samba and winbind when security=ads"
+msgstr "ਸਾਂਬਾ ਅਤੇ ਵਿਨਬਾਈਂਡ ਲਈ ਸੀਮਾ-ਖੇਤਰ ਮੂਲ ਕਰੋ, ਜਦੋ ਕਿ ਸੁਰੱਖਿਆ=ads"
+
+#: ../authconfig.py:133 ../authconfig.py:135
+msgid "<lowest-highest>"
+msgstr "<lowest-highest>"
+
+#: ../authconfig.py:134
+msgid "uid range winbind will assign to domain or ads users"
+msgstr "uid ਸੀਮਾ ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਨੂੰ ਦੇ ਦਿੱਤੀ ਜਾਵੇਗੀ ਜਾਂ ਉਪਭੋਗਤਾ ਜੋੜੇਗੀ"
+
+#: ../authconfig.py:136
+msgid "gid range winbind will assign to domain or ads users"
+msgstr "gid ਸੀਮਾ ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਨੂੰ ਦੇ ਦਿੱਤੀ ਜਾਵੇਗੀ ਜਾਂ ਉਪਭੋਗਤਾ ਜੋੜੇਗੀ"
+
+#: ../authconfig.py:138
+msgid ""
+"the character which will be used to separate the domain and user part of "
+"winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr ""
+"ਜੇਕਰ winbindusedefaultdomain ਨੂੰ ਯੋਗ ਨਾ ਕੀਤਾ ਤਾਂ ਅੱਖਰ, ਜੋ ਕਿ ਡੋਮੇਨ ਅਤੇ ਵਿਨਬਾਈਂਡ ਉਪਭੋਗਤਾ "
+"ਨਾਂ ਨੂੰ ਵੱਖਰਾ ਕਰਨ ਦੇ ਕੰਮ ਕੰਮ ਵਰਤਿਆ ਜਾਵੇਗਾ।"
+
+#: ../authconfig.py:140
+msgid "the directory which winbind-created users will have as home directories"
+msgstr "ਡਾਇਰੈਕਟਰੀ, ਜੋ ਕਿ ਵਿਨਬਾਈਂਡ-ਕਰੀਏਟਡ ਉਪਭੋਗਤਾ ਘਰ-ਡਾਇਰੈਕਟਰੀ ਦੇ ਰੂਪ ਵਿੱਚ ਵਰਤਣਗੇ"
+
+#: ../authconfig.py:142
+msgid "the group which winbind-created users will have as their primary group"
+msgstr "ਸਮੂਹ, ਜੋ ਕਿ ਵਿਨਬਾਈਂਡ-ਕਰੀਏਟਡ ਉਪਭੋਗਤਾ ਆਪਣੇ ਮੂਲ ਸਮੂਹ ਦੇ ਰੂਪ ਵਿੱਚ ਵਰਤਣਗੇ"
+
+#: ../authconfig.py:144
+msgid "the shell which winbind-created users will have as their login shell"
+msgstr "ਸ਼ੈਲ, ਜਿਸ ਨੂੰ ਵਿਨਬਾਈਂਡ-ਕਰੀਏਟਡ ਉਪਭੋਗਤਾ ਆਪਣੇ ਲਾਗਇਨ ਸ਼ੈਲ ਦੇ ਰੂਪ ਵਿੱਚ ਵਰਤਣਗੇ"
+
+#: ../authconfig.py:146
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are domain users"
+msgstr ""
+"ਵਿਨ-ਬਾਈ ਨੂੰ ਸੰਰਚਿਤ ਕਰੋ ਕਿ ਉਪਭੋਗਤਾ, ਜਿਹਨਾਂ ਦੀ ਕੋਈ ਡੋਮੇਨ ਨਹੀ ਹੈ, ਆਪਣੇ ਨਾਂ ਨਾਲ ਡੋਮੇਨ ਉਪਭੋਗਤਾ "
+"ਵਿੱਚ ਮੰਨੇ ਜਾਣਗੇ"
+
+#: ../authconfig.py:148
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are not domain users"
+msgstr ""
+"ਵਿਨ-ਬਾਈ ਨੂੰ ਸੰਰਚਿਤ ਕਰੋ ਕਿ ਉਪਭੋਗਤਾ, ਜਿਹਨਾਂ ਦੀ ਕੋਈ ਡੋਮੇਨ ਨਹੀ ਹੈ, ਆਪਣੇ ਨਾਂ ਨਾਲ ਡੋਮੇਨ ਉਪਭੋਗਤਾ "
+"ਵਿੱਚ ਨਹੀ ਮੰਨੇ ਜਾਣਗੇ"
+
+#: ../authconfig.py:150
+#, fuzzy
+msgid "join the winbind domain or ads realm now as this administrator"
+msgstr "ਵਿਨ-ਬਾਈ ਡੋਮੇਨ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਵੇ ਜਾਂ ਇਸ ਪ੍ਰਬੰਧਕ ਦੇ ਤੌਰ ਤੇ ਸੀਮਾ-ਖੇਤਰ ਸ਼ਾਮਿਲ ਕਰੋ\n"
+
+#: ../authconfig.py:153
+msgid "enable wins for hostname resolution"
+msgstr "ਮੇਜ਼ਬਾਨ-ਨਾਂ ਹੱਲ ਲਈ ਵਿਨਸ ਨੂੰ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:155
+#, fuzzy
+msgid "disable wins for hostname resolution"
+msgstr "ਮੇਜ਼ਬਾਨ-ਨਾਂ ਹੱਲ ਲਈ ਵਿਨਸ ਨੂੰ ਅਯੋਗ ਕਰੋ\n"
+
+#: ../authconfig.py:158
+msgid "enable hesiod for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਹਸੀਓਡ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:160
+msgid "disable hesiod for user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਹਸੀਓਡ ਅਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:162
+msgid "default hesiod LHS"
+msgstr "ਮੂਲ ਹਸੀਓਡ LHS"
+
+#: ../authconfig.py:164
+#, fuzzy
+msgid "default hesiod RHS"
+msgstr "ਮੂਲ ਹਸੀਓਡ RHS\n"
+
+#: ../authconfig.py:167
+msgid "enable caching of user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਦੀ ਕੈਸ਼ਿੰਗ ਯੋਗ ਕਰੋ"
+
+#: ../authconfig.py:169
+#, fuzzy
+msgid "disable caching of user information by default"
+msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਦੀ ਕੈਚਿੰਗ ਅਯੋਗ ਕਰੋ\n"
+
+#: ../authconfig.py:172
+msgid "local authorization is sufficient for local users"
+msgstr "ਸਥਾਨਿਕ ਉਪਭੋਗਤਾਵਾਂ ਲਈ ਸਥਾਨਿਕ ਪ੍ਰਮਾਣਕਿਤਾ ਹੀ ਕਾਫੀ ਹੈ"
+
+#: ../authconfig.py:174
+msgid "authorize local users also through remote service"
+msgstr "ਰਿਮੋਟ ਸੇਵਾ ਰਾਹੀ ਸਥਾਨਿਕ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਵੀ ਪ੍ਰਮਾਣਿਤ ਕਰੋ"
+
+#: ../authconfig.py:177
+msgid "do not start/stop portmap, ypbind, and nscd"
+msgstr "ਪੋਰਟਮੈਪ, ypbind, ਅਤੇ nscd ਨੂੰ ਸ਼ੁਰੂ/ਸਮਾਪਤ ਨਾ ਕਰੋ"
+
+#: ../authconfig.py:180
+msgid "do not update the configuration files, only print new settings"
+msgstr ""
+
+#: ../authconfig.py:184
+msgid "display Back instead of Cancel in the main dialog of the TUI"
+msgstr ""
+
+#: ../authconfig.py:186
+#, fuzzy
+msgid "do not display the deprecated text user interface"
+msgstr "ਉਪਭੋਗੀ ਇੰਟਰਫੇਸ ਨਾ ਵੇਖਾਉ"
+
+#: ../authconfig.py:189
+msgid "opposite of --test, update the configuration files"
+msgstr ""
+
+#: ../authconfig.py:192
+msgid "probe network for defaults and print them"
+msgstr "ਮੂਲ ਲਈ ਨੈੱਟਵਰਕ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਇਹਨਾਂ ਨੂੰ ਛਾਪੋ"
+
+#: ../authconfig.py:197
+#, fuzzy
+msgid "unexpected argument"
+msgstr "%s: ਬੇਲੋੜੀਂਦਾ ਆਰਗੂਮਿੰਟ \n"
+
+#: ../authconfig.py:307
+#, fuzzy
+msgid "can only be run as root"
+msgstr "%s: ਸਿਰਫ ਪ੍ਰਬੰਧਕ(root) ਹੀ ਚਲਾ ਸਕਦਾ ਹੈ\n"
+
+#: ../authconfig.py:314
+#, fuzzy
+msgid "dialog was cancelled"
+msgstr "ਵਾਰਤਾਲਾਪ ਰੱਦ ਕੀਤਾ ਗਿਆ\n"
+
+#: ../authconfig.py:337
+#, fuzzy, python-format
+msgid ""
+"The %s file was not found, but it is required for %s support to work "
+"properly.\n"
+"Install the %s package, which provides this file."
+msgstr ""
+"ਫਾਇਲ %s ਨਹੀ ਲੱਭੀ ਹੈ, ਪਰ ਇਹ %s ਦੇ ਠੀਕ ਕੰਮ ਕਰਨ ਲਈ ਲੋੜੀਦੀ ਹੈ।ਪੈਕੇਜ %s ਇੰਸਟਾਲ ਕਰੋ, ਜੋ ਕਿ ਇਹ "
+"ਫਾਇਲ ਉਪਲੱਬਧ ਕਰਵਾ ਸਕੇਗਾ।"
+
+#: ../authconfig.py:339 ../authconfig.py:691
+msgid "Warning"
+msgstr "ਚੇਤਵਾਨੀ"
+
+#: ../authconfig.py:339 ../authconfig.py:552 ../authconfig.py:559
+#: ../authconfig.py:565 ../authconfig.py:574 ../authconfig.py:581
+#: ../authconfig.py:589 ../authconfig.py:630 ../authconfig.py:691
 msgid "Ok"
 msgstr "ਠੀਕ ਹੈ"
 
-#: authconfig.c:299
-msgid "Use TLS"
-msgstr "TLS ਵਰਤੋਂ"
+#: ../authconfig.py:343
+msgid "caching"
+msgstr "ਕੈਚਿੰਗ"
 
-#: authconfig.c:301 authconfig.c:317
-msgid "Server:"
-msgstr "ਸਰਵਰ:"
+#: ../authconfig.py:344 ../authconfig.glade.h:28
+msgid "Kerberos"
+msgstr "ਕੀਰਬੀਰੋਸ"
 
-#: authconfig.c:303
-msgid "Base DN:"
-msgstr "ਮੁੱਢਲਾ DN:"
+#: ../authconfig.py:345
+msgid "LDAP authentication"
+msgstr "LDAP ਪ੍ਰਮਾਣਕਿਤਾ"
 
-#: authconfig.c:306 authconfig.glade.h:33
-msgid "LDAP Settings"
-msgstr "LDAP ਵਿਵਸਥਾ"
+#: ../authconfig.py:346 ../authconfig.glade.h:31
+msgid "LDAP"
+msgstr "LDAP"
 
-#: authconfig.c:315 authconfig.c:432
-msgid "Domain:"
-msgstr "ਡੋਮੇਨ:"
+#: ../authconfig.py:347 ../authconfig.glade.h:35
+msgid "NIS"
+msgstr "NIS"
 
-#: authconfig.c:320 authconfig.glade.h:36
-msgid "NIS Settings"
-msgstr "NIS ਵਿਵਸਥਾ"
+#: ../authconfig.py:348
+msgid "shadow password"
+msgstr "shadow ਗੁਪਤ-ਕੋਡ"
 
-#: authconfig.c:329
-msgid "Realm:"
-msgstr "ਸੀਮਾ ਖੇਤਰ:"
+#: ../authconfig.py:349
+msgid "SMB authentication"
+msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ"
 
-#: authconfig.c:331
-msgid "KDC:"
-msgstr "ਕੇਡੀਸੀ:"
+#: ../authconfig.py:350 ../authconfig.py:352 ../authconfig.glade.h:51
+msgid "Winbind"
+msgstr "ਵਿਨਬਾਈਂਡ"
 
-#: authconfig.c:333
-msgid "Admin Server:"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਰਵਰ:"
+#: ../authconfig.py:351
+msgid "Winbind authentication"
+msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਕਿਤਾ"
 
-#: authconfig.c:335
-msgid "Use DNS to resolve hosts to realms"
-msgstr "ਮੇਜ਼ਬਾਨਾਂ ਦੇ ਸੀਮਾ-ਖੇਤਰ ਲਈ DNS ਵਰਤੋਂ"
+#: ../authconfig.py:357 ../authconfig.glade.h:50
+msgid "User Information"
+msgstr "ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ"
 
-#: authconfig.c:337
-msgid "Use DNS to locate KDCs for realms"
-msgstr "ਸੀਮਾ-ਖੇਤਰ ਲਈ KDC ਸਥਿਤ ਕਰਨ ਲਈ DNS ਵਰਤੋਂ"
+#: ../authconfig.py:360
+msgid "Cache Information"
+msgstr "ਕੈਸ਼ੇ ਜਾਣਕਾਰੀ"
 
-#: authconfig.c:340 authconfig.glade.h:29
-msgid "Kerberos Settings"
-msgstr "ਕੀਰਬੀਰੋਸ ਵਿਵਸਥਾ"
+#: ../authconfig.py:364
+msgid "Use Hesiod"
+msgstr "ਹਸੀਓਡ ਵਰਤੋਂ"
 
-#: authconfig.c:349
-msgid "Workgroup:"
-msgstr "ਵਰਕ-ਸਮੂਹ:"
+#: ../authconfig.py:367
+msgid "Use LDAP"
+msgstr "LDAP ਵਰਤੋਂ"
 
-#: authconfig.c:351
-msgid "Servers:"
-msgstr "ਸਰਵਰ:"
+#: ../authconfig.py:371
+msgid "Use NIS"
+msgstr "NIS ਵਰਤੋਂ"
 
-#: authconfig.c:353
-msgid "Shell:"
-msgstr "ਸ਼ੈੱਲ:"
+#: ../authconfig.py:375
+msgid "Use Winbind"
+msgstr "ਵਿਨਬਾਈਂਡ ਵਰਤੋਂ"
 
-#: authconfig.c:356 authconfig.glade.h:41
-msgid "SMB Settings"
-msgstr "SMB ਵਿਵਸਥਾ"
+#: ../authconfig.py:381 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:3
+msgid "Authentication"
+msgstr "ਪ੍ਰਮਾਣਕਿਤਾ"
 
-#: authconfig.c:366
-msgid "Domain Administrator:"
-msgstr "ਡੋਮੇਨ ਪ੍ਰਬੰਧਕ:"
+#: ../authconfig.py:384
+msgid "Use MD5 Passwords"
+msgstr "MD5 ਗੁਪਤ-ਕੋਡ ਵਰਤੋਂ"
 
-#: authconfig.c:368
-msgid "Password:"
-msgstr "ਗੁਪਤ-ਕੋਡ:"
+#: ../authconfig.py:387
+msgid "Use Shadow Passwords"
+msgstr "ਪ੍ਰਛਾਵਾਂ ਗੁਪਤ-ਕੋਡ ਵਰਤੋਂ"
 
-#: authconfig.c:375
-msgid "Join Settings"
-msgstr "ਜੋੜ(ਜੁਆਇਨ) ਵਿਵਸਥਾ"
+#: ../authconfig.py:391
+msgid "Use LDAP Authentication"
+msgstr "LDAP ਪ੍ਰਮਾਣਕਿਤਾ ਵਰਤੋਂ"
 
-#: authconfig.c:377 authconfig.c:654
+#: ../authconfig.py:395
+msgid "Use Kerberos"
+msgstr "ਕੀਰਬੀਰੋਸ ਵਰਤੋਂ"
+
+#: ../authconfig.py:399
+msgid "Use SMB Authentication"
+msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ ਵਰਤੋਂ"
+
+#: ../authconfig.py:403
+msgid "Use Winbind Authentication"
+msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਕਿਤਾ ਵਰਤੋਂ"
+
+#: ../authconfig.py:407
+msgid "Local authorization is sufficient"
+msgstr "ਸਥਾਨਿਕ ਪ੍ਰਮਾਣਕਿਤਾ ਹੀ ਕਾਫੀ ਹੈ"
+
+#: ../authconfig.py:417 ../authconfig.py:552 ../authconfig.py:559
+#: ../authconfig.py:565 ../authconfig.py:574 ../authconfig.py:581
+#: ../authconfig.py:630
+msgid "Back"
+msgstr "ਪਿੱਛੇ"
+
+#: ../authconfig.py:417 ../authconfig.py:589
 msgid "Cancel"
 msgstr "ਰੱਦ ਕਰੋ"
 
-#: authconfig.c:394 authconfig.glade.h:43
+#: ../authconfig.py:418 ../authconfig.py:552 ../authconfig.py:559
+#: ../authconfig.py:565 ../authconfig.py:574 ../authconfig.py:581
+#: ../authconfig.py:630
+msgid "Next"
+msgstr "ਅੱਗੇ"
+
+#: ../authconfig.py:429 ../authconfig-gtk.py:309 ../authconfig.glade.h:4
+msgid "Authentication Configuration"
+msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਸੰਰਚਨਾ"
+
+#: ../authconfig.py:549
+msgid "LHS:"
+msgstr "LHS:"
+
+#: ../authconfig.py:550
+msgid "RHS:"
+msgstr "RHS:"
+
+#: ../authconfig.py:551 ../authconfig.glade.h:23
+msgid "Hesiod Settings"
+msgstr "ਹੀਸਓਡ ਵਿਵਸਥਾ"
+
+#: ../authconfig.py:555
+msgid "Use TLS"
+msgstr "TLS ਵਰਤੋਂ"
+
+#: ../authconfig.py:556 ../authconfig.py:563
+msgid "Server:"
+msgstr "ਸਰਵਰ:"
+
+#: ../authconfig.py:557
+msgid "Base DN:"
+msgstr "ਮੁੱਢਲਾ DN:"
+
+#: ../authconfig.py:558 ../authconfig.glade.h:33
+msgid "LDAP Settings"
+msgstr "LDAP ਵਿਵਸਥਾ"
+
+#: ../authconfig.py:562 ../authconfig.py:624
+msgid "Domain:"
+msgstr "ਡੋਮੇਨ:"
+
+#: ../authconfig.py:564 ../authconfig.glade.h:36
+msgid "NIS Settings"
+msgstr "NIS ਵਿਵਸਥਾ"
+
+#: ../authconfig.py:568
+msgid "Realm:"
+msgstr "ਸੀਮਾ ਖੇਤਰ:"
+
+#: ../authconfig.py:569
+msgid "KDC:"
+msgstr "ਕੇਡੀਸੀ:"
+
+#: ../authconfig.py:570
+msgid "Admin Server:"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਰਵਰ:"
+
+#: ../authconfig.py:571
+msgid "Use DNS to resolve hosts to realms"
+msgstr "ਮੇਜ਼ਬਾਨਾਂ ਦੇ ਸੀਮਾ-ਖੇਤਰ ਲਈ DNS ਵਰਤੋਂ"
+
+#: ../authconfig.py:572
+msgid "Use DNS to locate KDCs for realms"
+msgstr "ਸੀਮਾ-ਖੇਤਰ ਲਈ KDC ਸਥਿਤ ਕਰਨ ਲਈ DNS ਵਰਤੋਂ"
+
+#: ../authconfig.py:573 ../authconfig.glade.h:29
+msgid "Kerberos Settings"
+msgstr "ਕੀਰਬੀਰੋਸ ਵਿਵਸਥਾ"
+
+#: ../authconfig.py:577
+msgid "Workgroup:"
+msgstr "ਵਰਕ-ਸਮੂਹ:"
+
+#: ../authconfig.py:578
+msgid "Servers:"
+msgstr "ਸਰਵਰ:"
+
+#: ../authconfig.py:579
+msgid "Shell:"
+msgstr "ਸ਼ੈੱਲ:"
+
+#: ../authconfig.py:580 ../authconfig.glade.h:41
+msgid "SMB Settings"
+msgstr "SMB ਵਿਵਸਥਾ"
+
+#: ../authconfig.py:584
+msgid "Domain Administrator:"
+msgstr "ਡੋਮੇਨ ਪ੍ਰਬੰਧਕ:"
+
+#: ../authconfig.py:585
+msgid "Password:"
+msgstr "ਗੁਪਤ-ਕੋਡ:"
+
+#: ../authconfig.py:588
+msgid "Join Settings"
+msgstr "ਜੋੜ(ਜੁਆਇਨ) ਵਿਵਸਥਾ"
+
+#: ../authconfig.py:598 ../authconfig.glade.h:43
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -144,48 +573,46 @@ msgstr ""
 "ਜੇਕਰ ਤੁਸੀਂ ਇਸ ਤਰਾਂ ਨਾ ਕੀਤਾ ਤਾਂ ਡੋਮੇਨ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਣ ਦਾ ਤੁਹਾਡਾ ਯਤਨ ਅਸਫਲ ਹੋ ਸਕਦਾ ਹੈ। "
 "ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੀਆਂ ਹਨ?"
 
-#: authconfig.c:400
+#: ../authconfig.py:605
 msgid "Save Settings"
 msgstr "ਵਿਸਸਥਾ ਸੰਭਾਲੋ"
 
-#: authconfig.c:402
+#: ../authconfig.py:606
 msgid "No"
 msgstr "ਨਹੀਂ"
 
-#: authconfig.c:402
+#: ../authconfig.py:606
 msgid "Yes"
 msgstr "ਹਾਂ"
 
-#: authconfig.c:430
+#. Why does your favorite shell not show up in the list?  Because it won't
+#. fit, that's why!
+#: ../authconfig.py:623
 msgid "Security Model:"
 msgstr "ਸੁਰੱਖਿਆ ਮਾਡਲ:"
 
-#: authconfig.c:434
+#: ../authconfig.py:625
 msgid "Domain Controllers:"
 msgstr "ਡੋਮੇਨ ਕੰਟਰੋਲਰ"
 
-#: authconfig.c:436
+#: ../authconfig.py:626
 msgid "ADS Realm:"
 msgstr "ADS ਸੀਮਾ-ਖੇਤਰ:"
 
-#: authconfig.c:438
+#: ../authconfig.py:627
 msgid "Template Shell:"
 msgstr "ਨਮੂਨਾ ਸ਼ੈੱਲ:"
 
-#: authconfig.c:456 authconfig.glade.h:54
+#: ../authconfig.py:629 ../authconfig.glade.h:54
 msgid "Winbind Settings"
 msgstr "ਵਿਨਬਾਈਂਡ ਵਿਵਸਥਾ"
 
-#: authconfig.c:458
+#: ../authconfig.py:631
 msgid "Join Domain"
 msgstr "ਡੋਮੇਨ ਸ਼ਾਮਿਲ"
 
-#: authconfig.c:479 authconfig.c:496
-msgid "Warning"
-msgstr "ਚੇਤਵਾਨੀ"
-
-#: authconfig.c:492 authconfig-gtk.py:355
-#, c-format, python-format
+#: ../authconfig.py:689 ../authconfig-gtk.py:379
+#, python-format
 msgid ""
 "To properly connect to a LDAP server using TLS you need to copy the PEM form "
 "CA certificate which signed your server's certificate to the '%s' "
@@ -196,540 +623,106 @@ msgstr ""
 "ਨਕਲ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਕਿ ਤੁਹਾਡੇ ਸਰਵਰ ਦੀ '%s' ਡਾਇਰੈਕਟਰੀ ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਕਰੇ।\n"
 "ਇਸ ਉਪਰੰਤ ਠੀਕ ਹੈ ਦਬਾਉ।"
 
-#: authconfig.c:511
-msgid "caching"
-msgstr "ਕੈਚਿੰਗ"
-
-#: authconfig.c:515 authconfig.glade.h:28
-msgid "Kerberos"
-msgstr "ਕੀਰਬੀਰੋਸ"
-
-#: authconfig.c:519
-msgid "LDAP authentication"
-msgstr "LDAP ਪ੍ਰਮਾਣਕਿਤਾ"
-
-#: authconfig.c:523 authconfig.glade.h:31
-msgid "LDAP"
-msgstr "LDAP"
-
-#: authconfig.c:527 authconfig.glade.h:35
-msgid "NIS"
-msgstr "NIS"
-
-#: authconfig.c:531
-msgid "shadow password"
-msgstr "shadow ਗੁਪਤ-ਕੋਡ"
-
-#: authconfig.c:535
-msgid "SMB authentication"
-msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ"
-
-#: authconfig.c:539 authconfig.c:547 authconfig.glade.h:51
-msgid "Winbind"
-msgstr "ਵਿਨਬਾਈਂਡ"
-
-#: authconfig.c:543
-msgid "Winbind authentication"
-msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਕਿਤਾ"
-
-#: authconfig.c:553 authconfig.glade.h:50
-msgid "User Information"
-msgstr "ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ"
-
-#: authconfig.c:557
-msgid "Cache Information"
-msgstr "ਕੈਸ਼ੇ ਜਾਣਕਾਰੀ"
-
-#: authconfig.c:564
-msgid "Use Hesiod"
-msgstr "ਹਸੀਓਡ ਵਰਤੋਂ"
-
-#: authconfig.c:570
-msgid "Use LDAP"
-msgstr "LDAP ਵਰਤੋਂ"
-
-#: authconfig.c:577
-msgid "Use NIS"
-msgstr "NIS ਵਰਤੋਂ"
-
-#: authconfig.c:584
-msgid "Use Winbind"
-msgstr "ਵਿਨਬਾਈਂਡ ਵਰਤੋਂ"
-
-#: authconfig.c:594 authconfig.desktop.in.h:1 authconfig.glade.h:3
-msgid "Authentication"
-msgstr "ਪ੍ਰਮਾਣਕਿਤਾ"
-
-#: authconfig.c:598
-msgid "Use MD5 Passwords"
-msgstr "MD5 ਗੁਪਤ-ਕੋਡ ਵਰਤੋਂ"
-
-#: authconfig.c:604
-msgid "Use Shadow Passwords"
-msgstr "ਪ੍ਰਛਾਵਾਂ ਗੁਪਤ-ਕੋਡ ਵਰਤੋਂ"
-
-#: authconfig.c:611
-msgid "Use LDAP Authentication"
-msgstr "LDAP ਪ੍ਰਮਾਣਕਿਤਾ ਵਰਤੋਂ"
-
-#: authconfig.c:618
-msgid "Use Kerberos"
-msgstr "ਕੀਰਬੀਰੋਸ ਵਰਤੋਂ"
-
-#: authconfig.c:625
-msgid "Use SMB Authentication"
-msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ ਵਰਤੋਂ"
-
-#: authconfig.c:632
-msgid "Use Winbind Authentication"
-msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਕਿਤਾ ਵਰਤੋਂ"
-
-#: authconfig.c:639
-msgid "Local authorization is sufficient"
-msgstr "ਸਥਾਨਿਕ ਪ੍ਰਮਾਣਕਿਤਾ ਹੀ ਕਾਫੀ ਹੈ"
-
-#: authconfig.c:670 authconfig-gtk.py:285 authconfig.glade.h:4
-msgid "Authentication Configuration"
-msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਸੰਰਚਨਾ"
-
-#: authconfig.c:849
-msgid "enable shadowed passwords by default"
-msgstr "ਮੂਲ ਹੀ ਪ੍ਰਛਾਵਾਂ ਗੁਪਤ-ਕੋਡ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:851
-msgid "disable shadowed passwords by default"
-msgstr "ਮੂਲ ਪ੍ਰਛਾਵਾਂ ਗੁਪਤ-ਕੋਡ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:855
-msgid "enable MD5 passwords by default"
-msgstr "ਮੂਲ ਹੀ MD5 ਗੁਪਤ-ਕੋਡ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:857
-msgid "disable MD5 passwords by default\n"
-msgstr "ਮੂਲ ਹੀ MD5 ਗੁਪਤ-ਕੋਡ ਅਯੋਗ ਕਰੋ\n"
-
-#: authconfig.c:860
-msgid "enable NIS"
-msgstr "NIS ਵਰਤੋਂ"
-
-#: authconfig.c:862
-msgid "disable NIS"
-msgstr "NIS ਅਯੋਗ"
-
-#: authconfig.c:864
-msgid "default NIS domain"
-msgstr "ਮੂਲ NIS ਡੋਮੇਨ"
-
-#: authconfig.c:864
-msgid "<domain>"
-msgstr "<domain>"
-
-#: authconfig.c:866
-msgid "default NIS server\n"
-msgstr "ਮੂਲ NIS ਸਰਵਰ\n"
-
-#: authconfig.c:866 authconfig.c:888 authconfig.c:897 authconfig.c:899
-#: authconfig.c:919
-msgid "<server>"
-msgstr "<server>"
-
-#: authconfig.c:869
-msgid "enable LDAP for user information by default"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ ਲਈ LDAP ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:871
-msgid "disable LDAP for user information by default"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ ਲਈ LDAP ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:873 authconfig.c:879
-msgid "enable use of TLS with LDAP"
-msgstr "LDAP ਨਾਲ TLS ਦੀ ਵਰਤੋਂ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:875 authconfig.c:881
-msgid "disable use of TLS with LDAP"
-msgstr "LDAP ਨਾਲ TLS ਦੀ ਵਰਤੋਂ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:884
-msgid "enable LDAP for authentication by default"
-msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ LDAP ਮੂਲ ਹੀ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:886
-msgid "disable LDAP for authentication by default"
-msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ LDAP ਮੂਲ ਹੀ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:888
-msgid "default LDAP server"
-msgstr "ਮੂਲ LDAP ਸਰਵਰ"
-
-#: authconfig.c:890
-msgid "default LDAP base DN\n"
-msgstr "ਮੂਲ LDAP ਮੁੱਢਲਾ DN\n"
-
-#: authconfig.c:890
-msgid "<dn>"
-msgstr "<dn>"
-
-#: authconfig.c:893
-msgid "enable kerberos authentication by default"
-msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਪ੍ਰਮਾਣਕਿਤਾ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:895
-msgid "disable kerberos authentication by default"
-msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਪ੍ਰਮਾਣਕਿਤਾ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:897
-msgid "default kerberos KDC"
-msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ KDC"
-
-#: authconfig.c:899
-msgid "default kerberos admin server"
-msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਪ੍ਰਬੰਧਕ ਸਰਵਰ"
-
-#: authconfig.c:901
-msgid "default kerberos realm\n"
-msgstr "ਮੂਲ ਕੀਰਬੀਰੋਸ ਸੀਮਾ-ਖੇਤਰ\n"
-
-#: authconfig.c:901
-msgid "<realm>"
-msgstr "<realm>"
-
-#: authconfig.c:904
-msgid "enable use of DNS to find kerberos KDCs"
-msgstr "ਕੀਰਬੀਰੋਸ KDCs ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:906
-msgid "disable use of DNS to find kerberos KDCs"
-msgstr "ਕੀਰਬੀਰੋਸ KDCs ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:908
-msgid "enable use of DNS to find kerberos realms"
-msgstr "ਕੀਰਬੀਰੋਸ ਸੀਮਾ-ਖੇਤਰ ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:910
-msgid "disable use of DNS to find kerberos realms\n"
-msgstr "ਕੀਰਬੀਰੋਸ ਸੀਮਾ-ਖੇਤਰ ਦੀ ਖੋਜ ਲਈ DNS ਦੀ ਵਰਤੋਂ ਅਯੋਗ ਕਰੋ\n"
-
-#: authconfig.c:913
-msgid "enable SMB authentication by default"
-msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ ਮੂਲ ਹੀ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:915
-msgid "disable SMB authentication by default"
-msgstr "SMB ਪ੍ਰਮਾਣਕਿਤਾ ਮੂਲ ਹੀ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:917
-msgid "workgroup authentication servers are in"
-msgstr "ਵਰਕਗਰੁੱਪ ਪ੍ਰਮਾਣਕਿਤਾ ਸਰਵਰ ਹਨ, ਵਿੱਚ"
-
-#: authconfig.c:917
-msgid "<workgroup>"
-msgstr "<workgroup>"
-
-#: authconfig.c:919
-msgid "names of servers to authenticate against\n"
-msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਦੇ ਅੱਗੇ ਸਰਵਰਾਂ ਦਾ ਨਾਂ\n"
-
-#: authconfig.c:922
-msgid "enable winbind for user information by default"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ winbind ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:925
-msgid "disable winbind for user information by default"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ winbind ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:928
-msgid "enable winbindauth for authentication by default"
-msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ winbindauth ਮੂਲ ਹੀ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:931
-msgid "disable winbindauth for authentication by default"
-msgstr "ਪ੍ਰਮਾਣਕਿਤਾ ਲਈ winbindauth ਮੂਲ ਹੀ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:934
-msgid "security mode to use for samba and winbind"
-msgstr "ਸਾਂਬਾ ਅਤੇ ਵਿਨਬਾਈਂਡ ਲਈ ਵਰਤਣ ਲਈ ਸੁਰੱਖਿਆ ਮੋਡ"
-
-#: authconfig.c:936
-msgid "default realm for samba and winbind when security=ads"
-msgstr "ਸਾਂਬਾ ਅਤੇ ਵਿਨਬਾਈਂਡ ਲਈ ਸੀਮਾ-ਖੇਤਰ ਮੂਲ ਕਰੋ, ਜਦੋ ਕਿ ਸੁਰੱਖਿਆ=ads"
-
-#: authconfig.c:938
-msgid "uid range winbind will assign to domain or ads users"
-msgstr "uid ਸੀਮਾ ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਨੂੰ ਦੇ ਦਿੱਤੀ ਜਾਵੇਗੀ ਜਾਂ ਉਪਭੋਗਤਾ ਜੋੜੇਗੀ"
-
-#: authconfig.c:939 authconfig.c:942
-msgid "<lowest-highest>"
-msgstr "<lowest-highest>"
-
-#: authconfig.c:941
-msgid "gid range winbind will assign to domain or ads users"
-msgstr "gid ਸੀਮਾ ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਨੂੰ ਦੇ ਦਿੱਤੀ ਜਾਵੇਗੀ ਜਾਂ ਉਪਭੋਗਤਾ ਜੋੜੇਗੀ"
-
-#: authconfig.c:945
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"ਜੇਕਰ winbindusedefaultdomain ਨੂੰ ਯੋਗ ਨਾ ਕੀਤਾ ਤਾਂ ਅੱਖਰ, ਜੋ ਕਿ ਡੋਮੇਨ ਅਤੇ ਵਿਨਬਾਈਂਡ ਉਪਭੋਗਤਾ "
-"ਨਾਂ ਨੂੰ ਵੱਖਰਾ ਕਰਨ ਦੇ ਕੰਮ ਕੰਮ ਵਰਤਿਆ ਜਾਵੇਗਾ।"
-
-#: authconfig.c:949
-msgid "the directory which winbind-created users will have as home directories"
-msgstr "ਡਾਇਰੈਕਟਰੀ, ਜੋ ਕਿ ਵਿਨਬਾਈਂਡ-ਕਰੀਏਟਡ ਉਪਭੋਗਤਾ ਘਰ-ਡਾਇਰੈਕਟਰੀ ਦੇ ਰੂਪ ਵਿੱਚ ਵਰਤਣਗੇ"
-
-#: authconfig.c:953
-msgid "the group which winbind-created users will have as their primary group"
-msgstr "ਸਮੂਹ, ਜੋ ਕਿ ਵਿਨਬਾਈਂਡ-ਕਰੀਏਟਡ ਉਪਭੋਗਤਾ ਆਪਣੇ ਮੂਲ ਸਮੂਹ ਦੇ ਰੂਪ ਵਿੱਚ ਵਰਤਣਗੇ"
-
-#: authconfig.c:956
-msgid "the shell which winbind-created users will have as their login shell"
-msgstr "ਸ਼ੈਲ, ਜਿਸ ਨੂੰ ਵਿਨਬਾਈਂਡ-ਕਰੀਏਟਡ ਉਪਭੋਗਤਾ ਆਪਣੇ ਲਾਗਇਨ ਸ਼ੈਲ ਦੇ ਰੂਪ ਵਿੱਚ ਵਰਤਣਗੇ"
-
-#: authconfig.c:960
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"ਵਿਨ-ਬਾਈ ਨੂੰ ਸੰਰਚਿਤ ਕਰੋ ਕਿ ਉਪਭੋਗਤਾ, ਜਿਹਨਾਂ ਦੀ ਕੋਈ ਡੋਮੇਨ ਨਹੀ ਹੈ, ਆਪਣੇ ਨਾਂ ਨਾਲ ਡੋਮੇਨ ਉਪਭੋਗਤਾ "
-"ਵਿੱਚ ਮੰਨੇ ਜਾਣਗੇ"
-
-#: authconfig.c:964
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"ਵਿਨ-ਬਾਈ ਨੂੰ ਸੰਰਚਿਤ ਕਰੋ ਕਿ ਉਪਭੋਗਤਾ, ਜਿਹਨਾਂ ਦੀ ਕੋਈ ਡੋਮੇਨ ਨਹੀ ਹੈ, ਆਪਣੇ ਨਾਂ ਨਾਲ ਡੋਮੇਨ ਉਪਭੋਗਤਾ "
-"ਵਿੱਚ ਨਹੀ ਮੰਨੇ ਜਾਣਗੇ"
-
-#: authconfig.c:968
-msgid "join the winbind domain or ads realm now as this administrator\n"
-msgstr "ਵਿਨ-ਬਾਈ ਡੋਮੇਨ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਵੇ ਜਾਂ ਇਸ ਪ੍ਰਬੰਧਕ ਦੇ ਤੌਰ ਤੇ ਸੀਮਾ-ਖੇਤਰ ਸ਼ਾਮਿਲ ਕਰੋ\n"
-
-#: authconfig.c:972
-msgid "enable wins for hostname resolution"
-msgstr "ਮੇਜ਼ਬਾਨ-ਨਾਂ ਹੱਲ ਲਈ ਵਿਨਸ ਨੂੰ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:974
-msgid "disable wins for hostname resolution\n"
-msgstr "ਮੇਜ਼ਬਾਨ-ਨਾਂ ਹੱਲ ਲਈ ਵਿਨਸ ਨੂੰ ਅਯੋਗ ਕਰੋ\n"
-
-#: authconfig.c:977
-msgid "enable hesiod for user information by default"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਹਸੀਓਡ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:979
-msgid "disable hesiod for user information by default"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਹਸੀਓਡ ਅਯੋਗ ਕਰੋ"
-
-#: authconfig.c:981
-msgid "default hesiod LHS"
-msgstr "ਮੂਲ ਹਸੀਓਡ LHS"
-
-#: authconfig.c:981
-msgid "<lhs>"
-msgstr "<lhs>"
-
-#: authconfig.c:983
-msgid "default hesiod RHS\n"
-msgstr "ਮੂਲ ਹਸੀਓਡ RHS\n"
-
-#: authconfig.c:983
-msgid "<rhs>"
-msgstr "<rhs>"
-
-#: authconfig.c:986
-msgid "enable caching of user information by default"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਦੀ ਕੈਸ਼ਿੰਗ ਯੋਗ ਕਰੋ"
-
-#: authconfig.c:988
-msgid "disable caching of user information by default\n"
-msgstr "ਮੂਲ ਹੀ ਉਪਭੋਗੀ ਜਾਣਕਾਰੀ ਦੀ ਕੈਚਿੰਗ ਅਯੋਗ ਕਰੋ\n"
-
-#: authconfig.c:995
-msgid "do not start/stop portmap, ypbind, and nscd"
-msgstr "ਪੋਰਟਮੈਪ, ypbind, ਅਤੇ nscd ਨੂੰ ਸ਼ੁਰੂ/ਸਮਾਪਤ ਨਾ ਕਰੋ"
-
-#: authconfig.c:997
-msgid "don't display user interface"
-msgstr "ਉਪਭੋਗੀ ਇੰਟਰਫੇਸ ਨਾ ਵੇਖਾਉ"
-
-#: authconfig.c:999
-msgid "probe network for defaults and print them"
-msgstr "ਮੂਲ ਲਈ ਨੈੱਟਵਰਕ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਇਹਨਾਂ ਨੂੰ ਛਾਪੋ"
-
-#: authconfig.c:1002
-msgid "use locally-defined policies"
-msgstr "ਸਥਾਨਿਕ-ਪ੍ਰਭਾਸ਼ਿਤ ਨੀਤੀਆਂ ਵਰਤੋਂ"
-
-#: authconfig.c:1004
-msgid "don't use locally-defined policies"
-msgstr "ਸਥਾਨਿਕ-ਪ੍ਰਭਾਸ਼ਿਤ ਨੀਤੀਆਂ ਨਾ ਵਰਤੋਂ"
-
-#: authconfig.c:1007
-msgid "local authorization is sufficient for local users"
-msgstr "ਸਥਾਨਿਕ ਉਪਭੋਗਤਾਵਾਂ ਲਈ ਸਥਾਨਿਕ ਪ੍ਰਮਾਣਕਿਤਾ ਹੀ ਕਾਫੀ ਹੈ"
-
-#: authconfig.c:1009
-msgid "authorize local users also through remote service"
-msgstr "ਰਿਮੋਟ ਸੇਵਾ ਰਾਹੀ ਸਥਾਨਿਕ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਵੀ ਪ੍ਰਮਾਣਿਤ ਕਰੋ"
-
-#: authconfig.c:1019
-#, c-format
-msgid "%s: bad argument %s: %s\n"
-msgstr "%s: ਗਲਤ ਆਰਗੂਮਿੰਟ %s: %s\n"
-
-#: authconfig.c:1028
-#, c-format
-msgid "%s: attempting to continue\n"
-msgstr "%s: ਜਾਰੀ ਰੱਖਣ ਦੀ ਕੋਸ਼ਿਸ \n"
-
-#: authconfig.c:1032
-#, c-format
-msgid "%s: unexpected argument\n"
-msgstr "%s: ਬੇਲੋੜੀਂਦਾ ਆਰਗੂਮਿੰਟ \n"
-
-#: authconfig.c:1064
-#, c-format
-msgid "%s: can only be run as root\n"
-msgstr "%s: ਸਿਰਫ ਪ੍ਰਬੰਧਕ(root) ਹੀ ਚਲਾ ਸਕਦਾ ਹੈ\n"
-
-#: authconfig.c:1075 authconfig.c:1083 authconfig.c:1091 authconfig.c:1099
-#: authconfig.c:1107 authconfig.c:1115 authconfig.c:1123 authconfig.c:1136
-#: authconfig.c:1144
-#, c-format
-msgid "%s: critical error reading %s/%s"
-msgstr "%s: ਘਾਤਕ ਗਲਤੀ ਪੜਨ ਵਿੱਚ %s/%s"
-
-#: authconfig.c:1130
-#, c-format
-msgid "%s: unable to read caching configuration"
-msgstr "%s: ਕੈਚਿੰਗ ਸੰਰਚਨਾ ਪੜਨ ਵਿੱਚ ਅਸਫਲ"
-
-#: authconfig.c:1231
+#. FIXME - version
+#: ../authconfig.py:700
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
 msgstr " <Tab>/<Alt-Tab> ਇਕਾਈ ਵਿੱਚ   ।    <Space> ਚੋਣ    ।     <F12> ਅਗਲਾ ਪਰਦਾ"
 
-#: authconfig.c:1240
-#, c-format
-msgid "dialog was cancelled\n"
-msgstr "ਵਾਰਤਾਲਾਪ ਰੱਦ ਕੀਤਾ ਗਿਆ\n"
-
-#: authconfig.c:1261
-#, c-format
-msgid "%s: critical error recording caching setting"
-msgstr "%s: ਕੈਚਿੰਗ ਵਿਵਸਥਾ ਰਿਕਾਰਡ ਕਰਨ ਵਿੱਚ ਘਾਤਕ ਗਲਤੀ"
-
-#: authconfig.c:1267 authconfig.c:1273 authconfig.c:1279 authconfig.c:1285
-#: authconfig.c:1290 authconfig.c:1296 authconfig.c:1301 authconfig.c:1306
-#: authconfig.c:1311 authconfig.c:1317
-#, c-format
-msgid "%s: critical error writing %s/%s"
-msgstr "%s: ਘਾਤਕ ਗਲਤੀ ਲਿਖਣ ਦੌਰਾਨ %s/%s"
-
-#: authconfig.desktop.in.h:2
+#: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "ਕੰਟਰੋਲ ਕਰੋ ਕਿ ਸਿਸਟਮ ਇੱਕ ਉਪਭੋਗਤਾ ਦੇ ਲਾਗਆਨ ਕਰਨ ਸਮੇਂ ਕਿਵੇਂ ਜਾਂਚ ਕਰੇ"
 
-#: authinfo.h:71
-#, c-format
-msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.  Install the %s package, which provides this file."
-msgstr ""
-"ਫਾਇਲ %s ਨਹੀ ਲੱਭੀ ਹੈ, ਪਰ ਇਹ %s ਦੇ ਠੀਕ ਕੰਮ ਕਰਨ ਲਈ ਲੋੜੀਦੀ ਹੈ।ਪੈਕੇਜ %s ਇੰਸਟਾਲ ਕਰੋ, ਜੋ ਕਿ ਇਹ "
-"ਫਾਇਲ ਉਪਲੱਬਧ ਕਰਵਾ ਸਕੇਗਾ।"
-
-#: authconfig.glade.h:1
+#: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
-#: authconfig.glade.h:2
+#: ../authconfig.glade.h:2
 msgid "Alert"
 msgstr "ਸਾਵਧਾਨੀ"
 
-#: authconfig.glade.h:5
+#: ../authconfig.glade.h:5
 msgid "Cache User _Information"
 msgstr "ਉਪਭੋਗਤਾ ਜਾਣਕਾਰੀ ਕੈਸ਼ੇ(_C)"
 
-#: authconfig.glade.h:6
+#: ../authconfig.glade.h:6
 msgid "Con_figure SMB..."
 msgstr "SMB ਸੰਰਚਨਾ(_C)..."
 
-#: authconfig.glade.h:7
+#: ../authconfig.glade.h:7
 msgid "Configure H_esiod..."
 msgstr "ਹਸੀਓਡ ਸੰਰਚਨਾ(_C)..."
 
-#: authconfig.glade.h:8
+#: ../authconfig.glade.h:8
 msgid "Configure K_erberos..."
 msgstr "ਕੀਰਬੀਰੋਸ ਸੰਰਚਨਾ(_C)..."
 
-#: authconfig.glade.h:9
+#: ../authconfig.glade.h:9
 msgid "Configure L_DAP..."
 msgstr "LDAP ਸੰਰਚਨਾ(_C)..."
 
-#: authconfig.glade.h:10
+#: ../authconfig.glade.h:10
 msgid "Configure NI_S..."
 msgstr "NIS ਸੰਰਚਨਾ(_C)..."
 
-#: authconfig.glade.h:11
+#: ../authconfig.glade.h:11
 msgid "Configure Win_bind..."
 msgstr "ਵਿਨਬਾਇਡ ਸੰਰਚਨਾ(_C)..."
 
-#: authconfig.glade.h:12
+#: ../authconfig.glade.h:12
 msgid "Do_n't Save"
 msgstr "ਨਾ ਸੰਭਾਲੋ (_n)"
 
-#: authconfig.glade.h:13
+#: ../authconfig.glade.h:13
 msgid "Domain"
 msgstr "ਡੋਮੇਨ"
 
-#: authconfig.glade.h:14
+#: ../authconfig.glade.h:14
 msgid "Domain _Administrator"
 msgstr "ਡੋਮੇਨ ਪ੍ਰਬੰਧਕ(_A)"
 
-#: authconfig.glade.h:15
+#: ../authconfig.glade.h:15
 msgid "EXAMPLE.COM"
 msgstr "EXAMPLE.COM"
 
-#: authconfig.glade.h:16
+#: ../authconfig.glade.h:16
 msgid "Enable SMB S_upport"
 msgstr "_SMB ਸਹਿਯੋਗ ਯੋਗ"
 
-#: authconfig.glade.h:17
+#: ../authconfig.glade.h:17
 msgid "Enable _Hesiod Support"
 msgstr "ਹਸੀਓਡ ਸਹਿਯੋਗ ਯੋਗ(_H) "
 
-#: authconfig.glade.h:18
+#: ../authconfig.glade.h:18
 msgid "Enable _Kerberos Support"
 msgstr "ਕੀਰਬੀਰੋਸ ਸਹਿਯੋਗ ਯੋਗ(_K)"
 
-#: authconfig.glade.h:19
+#: ../authconfig.glade.h:19
 msgid "Enable _LDAP Support"
 msgstr "_LDAP ਸਹਿਯੋਗ ਯੋਗ"
 
-#: authconfig.glade.h:20
+#: ../authconfig.glade.h:20
 msgid "Enable _NIS Support"
 msgstr "_NIS ਸਹਿਯੋਗ ਯੋਗ "
 
-#: authconfig.glade.h:21
+#: ../authconfig.glade.h:21
 msgid "Enable _Winbind Support"
 msgstr "ਵਿਨਬਾਈਂਡ ਸਹਿਯੋਗ ਯੋਗ(_W)"
 
-#: authconfig.glade.h:22
+#: ../authconfig.glade.h:22
 msgid "Hesiod"
 msgstr "ਹਸੀਓਡ"
 
-#: authconfig.glade.h:24
+#: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
 msgstr "ਹਸੀਓਡ _LHS"
 
-#: authconfig.glade.h:25
+#: ../authconfig.glade.h:25
 msgid "Hesiod _RHS"
 msgstr "ਹਸੀਓਡ _RHS"
 
-#: authconfig.glade.h:26
+#: ../authconfig.glade.h:26
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -737,11 +730,11 @@ msgstr ""
 "ਹਸੀਓਡ ਸਿਸਟਮ ਪ੍ਰਬੰਧਕ ਨੂੰ DNS ਵਿੱਚ ਉਪਭੋਗਤਾ ਤੇ ਸਮੂਹ ਜਾਣਕਾਰੀ ਨੂੰ ਲਿਖਣ ਵਿੱਚ ਸਹਾਇਕ ਹੈ। ਇਹ ਆਮ "
 "ਤੌਰ ਤੇ ਬਹੁਤ ਵੱਡੇ ਨੈੱਟਵਰਕਾਂ ਵਿੱਚ ਵਰਤਿਆ ਜਾਦਾ ਹੈ।"
 
-#: authconfig.glade.h:27
+#: ../authconfig.glade.h:27
 msgid "Joining Winbind Domain"
 msgstr "ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਜੁੜ ਰਹੀ ਹੈ"
 
-#: authconfig.glade.h:30
+#: ../authconfig.glade.h:30
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -749,34 +742,34 @@ msgstr ""
 "ਕੀਰਬੀਰੋਸ ਇੱਕ ਭਰੋਸੇਯੋਗ ਤੀਜਾ-ਧਿਰ ਪ੍ਰਮਾਣਕਿਤਾ ਸਿਸਟਮ ਹੈ, ਜੋ ਕਿ ਮੱਧਮ ਤੋ ਵੱਡੇ ਨੈੱਟਵਰਕਾਂ ਵਿੱਚ ਆਮ "
 "ਵਰਤਿਆ ਜਾਦਾ ਹੈ।"
 
-#: authconfig.glade.h:32
+#: ../authconfig.glade.h:32
 msgid "LDAP Search _Base DN"
 msgstr "LDAP ਖੋਜ ਅਧਾਰ DN(_B)"
 
-#: authconfig.glade.h:34
+#: ../authconfig.glade.h:34
 msgid "LDAP _Server"
 msgstr "LDAP ਸਰਵਰ(_S)"
 
-#: authconfig.glade.h:37
+#: ../authconfig.glade.h:37
 msgid "NIS _Domain"
 msgstr "NIS ਡੋਮੇਨ(_D)"
 
-#: authconfig.glade.h:38
+#: ../authconfig.glade.h:38
 msgid "NIS _Server"
 msgstr "NI_S ਸਰਵਰ"
 
-#: authconfig.glade.h:39
+#: ../authconfig.glade.h:39
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr ""
 "NIS ਇੱਕ ਨੈੱਟਵਰਕ ਜਾਣਕਾਰੀ ਸੇਵਾ ਹੈ। ਇਹ ਆਮ ਤੌਰ ਤੇ ਛੋਟੇ ਤੋ ਮੱਧਮ ਪੱਧਰ ਦੇ ਨੈੱਟਵਰਕਾਂ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।"
 
-#: authconfig.glade.h:40
+#: ../authconfig.glade.h:40
 msgid "SMB"
 msgstr "SMB"
 
-#: authconfig.glade.h:42
+#: ../authconfig.glade.h:42
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -784,7 +777,7 @@ msgstr ""
 "SMB ਪ੍ਰਮਾਣਕਿਤਾ ਉਪਭੋਗਤਾ ਗੁਪਤ-ਕੋਡਾਂ ਨੂੰ ਸਰਵਰ ਨਾਲ ਜੁੜ ਕੇ ਜਾਂਚਦੀ ਹੈ, ਜੋ ਕਿ SMB (ਸਿਸਟਮ ਮੈਸਇਜ਼ "
 "ਬਲਾਕ) ਪ੍ਰੋਟੋਕੋਲ ਵਰਤਦਾ ਹੈ।"
 
-#: authconfig.glade.h:44
+#: ../authconfig.glade.h:44
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
@@ -793,39 +786,39 @@ msgstr ""
 "LDAP (ਲਾਈਵੇਟ ਡਾਇਰੈਕਟਰੀ ਅਸੈਸ ਪਰੋਟੋਕੋਲ) ਡਾਇਰੈਕਟਰੀ ਦੀ ਖੋਜ ਕਰਨ ਦਾ ਮਿਆਰੀ ਤਰੀਕਾ ਹੈ, ਜੋ ਕਿ "
 "ਇਖਤਿਆਰੀ ਡਾਟਾ ਨੂੰ ਲੜੀ ਵਿੱਚ ਸੰਭਾਲਦਾ ਹੈ। LDAP ਛੋਟੇ ਤੋ ਵੱਡੇ। ਨੈੱਟਵਰਕਾਂ ਵਿੱਚ ਆਮ ਇਸਤੇਮਾਲ ਹੋਣ ਲੱਗਾ ਹੈ।"
 
-#: authconfig.glade.h:45
+#: ../authconfig.glade.h:45
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "ਸੀਮਾ-ਖੇਤਰ ਲਈ KD_C ਸਥਿਤ ਕਰਨ ਲਈ DNS ਵਰਤੋਂ"
 
-#: authconfig.glade.h:46
+#: ../authconfig.glade.h:46
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "ਮੇਜ਼ਬਾਨਾਂ ਦੇ ਸੀਮਾ-ਖੇਤਰ ਲਈ _DNS ਵਰਤੋਂ"
 
-#: authconfig.glade.h:47
+#: ../authconfig.glade.h:47
 msgid "Use _MD5 Passwords"
 msgstr "_MD5 ਗੁਪਤ-ਕੋਡ"
 
-#: authconfig.glade.h:48
+#: ../authconfig.glade.h:48
 msgid "Use _Shadow Passwords"
 msgstr "_Shadow ਗੁਪਤ-ਕੋਡ"
 
-#: authconfig.glade.h:49
+#: ../authconfig.glade.h:49
 msgid "Use _TLS to encrypt connections"
 msgstr "ਇੰਕਰਿਪਟਿੰਡ ਕੁਨੈਕਸ਼ਨ ਲਈ _TLS ਵਰਤੋਂ"
 
-#: authconfig.glade.h:52
+#: ../authconfig.glade.h:52
 msgid "Winbind ADS _Realm"
 msgstr "ਵਿਨਬਾਈਂਡ ADS ਸੀਮਾ-ਖੇਤਰ(_R)"
 
-#: authconfig.glade.h:53
+#: ../authconfig.glade.h:53
 msgid "Winbind Domain Co_ntrollers"
 msgstr "ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਕੰਟਰੋਲਰ(_n)"
 
-#: authconfig.glade.h:55
+#: ../authconfig.glade.h:55
 msgid "Winbind _Domain"
 msgstr "ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ(_D)"
 
-#: authconfig.glade.h:56
+#: ../authconfig.glade.h:56
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -835,46 +828,81 @@ msgstr ""
 "ਜਾਂ ADS ਸਰਵਰ ਵਿੱਚ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਦੇ ਅਧਾਰ ਤੇ ਪ੍ਰਮਾਣਿਤ ਕਰਦਾ ਹੈ। ਇਹ ਛੋਟੇ ਤੋਂ ਵੱਡੇ ਪੱਧਰ ਦੇ "
 "ਨੈੱਟਵਰਕਾਂ ਵਿੱਚ ਵਰਤਿਆ ਜਾਦਾ ਹੈ।"
 
-#: authconfig.glade.h:57
+#: ../authconfig.glade.h:57
 msgid "_Admin Servers"
 msgstr "ਪ੍ਰਬੰਧਕੀ ਸਰਵਰ(_A)"
 
-#: authconfig.glade.h:58
+#: ../authconfig.glade.h:58
 msgid "_Domain Controllers"
 msgstr "ਡੋਮੇਨ ਕੰਟਰੋਲਰ(_D)"
 
-#: authconfig.glade.h:59
+#: ../authconfig.glade.h:59
 msgid "_Join Domain"
 msgstr "ਡੋਮੇਨ ਸ਼ਾਮਿਲ(_J)"
 
-#: authconfig.glade.h:60
+#: ../authconfig.glade.h:60
 msgid "_KDCs"
 msgstr "_KDC"
 
-#: authconfig.glade.h:61
+#: ../authconfig.glade.h:61
 msgid "_Local authorization is sufficient for local users"
 msgstr "ਸਥਾਨਿਕ ਉਪਭੋਗਤਾਵਾਂ ਲਈ ਸਥਾਨਿਕ ਪ੍ਰਮਾਣਕਿਤਾ ਕਾਫੀ ਹੈ(_L)"
 
-#: authconfig.glade.h:62
+#: ../authconfig.glade.h:62
 msgid "_Password"
 msgstr "ਗੁਪਤ-ਕੋਡ"
 
-#: authconfig.glade.h:63
+#: ../authconfig.glade.h:63
 msgid "_Realm"
 msgstr "ਸੀਮਾ-ਖੇਤਰ(_R)"
 
-#: authconfig.glade.h:64
+#: ../authconfig.glade.h:64
 msgid "_Security Model"
 msgstr "ਸੁਰੱਖਿਆ ਮਾਡਲ(_S)"
 
-#: authconfig.glade.h:65
+#: ../authconfig.glade.h:65
 msgid "_Template Shell"
 msgstr "ਨਮੂਨਾ ਸ਼ੈੱਲ(_T):"
 
-#: authconfig.glade.h:66
+#: ../authconfig.glade.h:66
 msgid "_Workgroup"
 msgstr "ਵਰਕਗਰੁੱਪ(_W)"
 
-#: localpol.h:9
-msgid "Use Local Policies"
-msgstr "ਸਥਾਨਿਕ ਨੀਤੀਆਂ ਵਰਤੋਂ"
+#~ msgid "enable NIS"
+#~ msgstr "NIS ਵਰਤੋਂ"
+
+#~ msgid "disable NIS"
+#~ msgstr "NIS ਅਯੋਗ"
+
+#~ msgid "<lhs>"
+#~ msgstr "<lhs>"
+
+#~ msgid "<rhs>"
+#~ msgstr "<rhs>"
+
+#~ msgid "use locally-defined policies"
+#~ msgstr "ਸਥਾਨਿਕ-ਪ੍ਰਭਾਸ਼ਿਤ ਨੀਤੀਆਂ ਵਰਤੋਂ"
+
+#~ msgid "don't use locally-defined policies"
+#~ msgstr "ਸਥਾਨਿਕ-ਪ੍ਰਭਾਸ਼ਿਤ ਨੀਤੀਆਂ ਨਾ ਵਰਤੋਂ"
+
+#~ msgid "%s: bad argument %s: %s\n"
+#~ msgstr "%s: ਗਲਤ ਆਰਗੂਮਿੰਟ %s: %s\n"
+
+#~ msgid "%s: attempting to continue\n"
+#~ msgstr "%s: ਜਾਰੀ ਰੱਖਣ ਦੀ ਕੋਸ਼ਿਸ \n"
+
+#~ msgid "%s: critical error reading %s/%s"
+#~ msgstr "%s: ਘਾਤਕ ਗਲਤੀ ਪੜਨ ਵਿੱਚ %s/%s"
+
+#~ msgid "%s: unable to read caching configuration"
+#~ msgstr "%s: ਕੈਚਿੰਗ ਸੰਰਚਨਾ ਪੜਨ ਵਿੱਚ ਅਸਫਲ"
+
+#~ msgid "%s: critical error recording caching setting"
+#~ msgstr "%s: ਕੈਚਿੰਗ ਵਿਵਸਥਾ ਰਿਕਾਰਡ ਕਰਨ ਵਿੱਚ ਘਾਤਕ ਗਲਤੀ"
+
+#~ msgid "%s: critical error writing %s/%s"
+#~ msgstr "%s: ਘਾਤਕ ਗਲਤੀ ਲਿਖਣ ਦੌਰਾਨ %s/%s"
+
+#~ msgid "Use Local Policies"
+#~ msgstr "ਸਥਾਨਿਕ ਨੀਤੀਆਂ ਵਰਤੋਂ"

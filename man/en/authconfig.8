@@ -4,9 +4,9 @@
 .TH AUTHCONFIG 8 "6 February 2004" "Red Hat, Inc."
 .UC 4
 .SH NAME
-authconfig \- an interface for configuring system authentication resources
+authconfig, authconfig-tui \- an interface for configuring system authentication resources
 .SH SYNOPSIS
-\fBauthconfig\fR [--back] [--test] [--nostart] [--kickstart] [--probe]
+\fBauthconfig\fR [--nostart] 
 [--enablecache] [--disablecache]
 [--enablenis [--nisdomain <domain>] [--nisserver <nisserver[,nisserver...]>] ]
 [--disablenis]
@@ -30,22 +30,25 @@ authconfig \- an interface for configuring system authentication resources
 [--enablewinbindusedefaultdomain]
 [--disablewinbindusedefaultdomain]
 [--winbindjoin <admin>] [--enablewins] [--disablewins]
+<--test|--update|--probe>
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and
 /etc/shadow, the files used for shadow password support.  Basic LDAP,
 Kerberos 5, and SMB (authentication) client configuration is also provided.
 
-The authconfig window contains a \fBCancel\fR button by default. If
-\fB--back\fR is specified at run time, a \fBBack\fR button is presented
-instead. If \fB--test\fR is specified, \fBauthconfig\fR can be run by
-users other then root, and any configuration changes are not saved. If
-\fB--nostart\fR is specified (which is what the install program does),
-ypbind will not be started or stopped immediately following program
-execution, but only enabled to start or stop at boot time. if
-\fB--kickstart\fR is specified, no interactive screens will be seen.
-The values the program will use will be those specified by the other
-options (\fB--enablemd5\fR, \fB--enableshadow\fR, etc.).
+If \fB--test\fR action is specified, \fBauthconfig\fR can be run by
+users other then root, and any configuration changes are not saved but printed
+instead.
+If \fB--update\fR action is specified, \fBauthconfig\fR must be run by
+root (or through console helper), and configuration changes are saved.
+The \fB--probe\fP action instructs \fBauthconfig\fP to use DNS and other means
+to guess at configuration information for the current host, print its guesses
+if it finds them to standard output, and exit.
+
+If \fB--nostart\fR is specified (which is what the install program does),
+ypbind or other daemons will not be started or stopped immediately following
+program execution, but only enabled to start or stop at boot time. 
 
 The \fB--enablenis\fP, \fB--enableldap\fP, \fB--enablewinbind\fP,
 and \fB--enablehesiod\fP options
@@ -59,16 +62,24 @@ authentication functions via \fB/etc/pam.d/system-auth\fP.  Each
 if it is already enabled. The respective services have parameters which configure
 their server names etc.
 
-The \fB--probe\fP flag instructs \fBauthconfig\fP to use DNS and other means
-to guess at configuration information for the current host, print its guesses
-if it finds them to standard output, and exit.
+The \fBauthconfig-tui\fR supports all options of authconfig but it implies
+\fB--update\fR as the default action. Its window contains a \fBCancel\fR
+button by default. If \fB--back\fR option is specified at run time, a \fBBack\fR
+button is presented instead. If \fB--kickstart\fR is specified, no interactive
+screens will be seen. The values the program will use will be those specified by
+the other options (\fB--enablemd5\fR, \fB--enableshadow\fR, etc.).
 
-The default in kickstart mode (i.e. without any additional options) is to
-not change the current settings.
+.PD
+.SH NOTES
+The \fBauthconfig-tui\fR is deprecated. No new configuration settings will be
+supported by its text user interface. Use \fBsystem-config-authentication\fR GUI
+application or the command line options instead.
 
 .PD
 .SH "RETURN CODES"
-\fBauthconfig\fR returns 0 on success, 2 on error, and 1 if the user cancelled
+\fBauthconfig\fR returns 0 on success, 2 on error.
+
+\fBauthconfig-tui\fR returns 0 on success, 2 on error, and 1 if the user cancelled
 the program (by using either the \fBCancel\fR or \fBBack\fR button).
 
 .PD
@@ -117,9 +128,11 @@ Used to configure PAM for system services via pam_stack(8).
 
 .PD
 .SH "SEE ALSO"
-passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8), nsswitch.conf(5), smb.conf(5)
+passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8),
+nsswitch.conf(5), smb.conf(5)
 
 .SH AUTHORS
 .nf
-Nalin Dahyabhai <nalin@redhat.com>, Preston Brown <pbrown@redhat.com>, Matt Wilson <msw@redhat.com>
+Nalin Dahyabhai <nalin@redhat.com>, Preston Brown <pbrown@redhat.com>,
+Matt Wilson <msw@redhat.com>, Tomas Mraz <tmraz@redhat.com>
 .fi

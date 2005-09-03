@@ -1,5 +1,29 @@
 #!/usr/bin/python
-import authconfig, gettext, os, signal, sys
+#
+# Authconfig - client authentication configuration program
+# Copyright (c) 1999-2005 Red Hat, Inc.
+#
+# Original authors: Preston Brown <pbrown@redhat.com>
+#                   Nalin Dahyabhai <nalin@redhat.com>
+#                   Matt Wilson <msw@redhat.com>
+# Rewritten in Python by: Tomas Mraz <tmraz@redhat.com>
+#
+# This is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+import authinfo, acutil
+import gettext, os, signal, sys
 from rhpl.translate import _, textdomain
 
 firstbootservices = [
@@ -37,7 +61,7 @@ except RuntimeError, e:
 	else:
 		raise e
 
-class childWindow:
+class Authconfig:
 	def __init__(self):
 		self.runPriority = 45
 		self.moduleName = "Authentication"
@@ -126,7 +150,7 @@ class childWindow:
 			"security" : ("smbSecurity", ("ads", "domain", "server", "user"), (("realm", ("ads",)), ("shell", ("domain", "ads")), ("join", ("domain", "ads")))),
 			"realm" : ("smbRealm", ""),
 			"servers" : ("smbServers", ""),
-			"shell" : ("winbindTemplateShell", ["/bin/false"] + authconfig.getusershells(), ()),
+			"shell" : ("winbindTemplateShell", ["/bin/false"] + acutil.getusershells(), ()),
 			"join" : ("winbindjoin_maybe_launch", "")
 		}
 		self.launch_map = {
@@ -139,7 +163,7 @@ class childWindow:
 			"configwinbind": ("winbindsettings", "winbind_map"),
 			"configwinbindauth": ("winbindsettings", "winbind_map"),
 		}
-		self.info = authconfig.read()
+		self.info = authinfo.read()
 		return
 
 	def destroy_widget(self, button, widget):
@@ -148,7 +172,7 @@ class childWindow:
 
 	def winbindjoin_maybe_launch(self, button, map, xml, parent):
 		backup = self.info.copy()
-		pristine = authconfig.read()
+		pristine = authinfo.read()
 		self.info_apply(map, xml)
 		if self.info.differs(pristine):
 			response = self.run_on_button(self, "joinsave",
@@ -172,7 +196,7 @@ class childWindow:
 		response = self.run_on_button(self, "winbindjoin",
 					      "winbindjoin_map", parent)
 		if (response == gtk.RESPONSE_OK):
-			self.info.join()
+			self.info.joinDomain(True)
 		self.info.joinUser = None
 		self.info.joinPassword = None
 
@@ -288,11 +312,11 @@ class childWindow:
 				    (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
 				     gtk.STOCK_OK, gtk.RESPONSE_OK))
 		dialog.set_resizable(False)
+		dialog.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 		# Construct the XML object.
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
 				    'vbox', "authconfig")
 		box = xml.get_widget('vbox')
-		box.show_all
 		dialog.vbox.pack_start(box)
 
 		# Set up the pushbuttons to launch new dialogs.
@@ -312,8 +336,8 @@ class childWindow:
 			except:
 				widget.set_sensitive(False)
 			else:
-				widget.set_active(getattr(self.info,
-						  self.main_map[entry][0]))
+				widget.set_active(bool(getattr(self.info,
+						  self.main_map[entry][0])))
 			if hasattr(widget, "get_active"):
 				aliases = []
 				dependents = []
@@ -334,10 +358,10 @@ class childWindow:
 
 	# Save changes.
 	def apply(self, button = None):
-		self.ldap_cacerts_test()
-		self.info.ldapcacerts_rehash()
+		self.info.testLDAPCACerts()
+		self.info.rehashLDAPCACerts()
 		self.info.write()
-		self.info.post(1)
+		self.info.post(False)
 		if "--firstboot" in sys.argv:
 			for service in firstbootservices:
 				if os.access("/etc/init.d/" + service, os.X_OK):
@@ -350,7 +374,7 @@ class childWindow:
 				os.system("/etc/init.d/autofs " + cond + "restart")
 		return
 	def ldap_cacerts_test(self):
-		if self.info.ldapcacerts_test():
+		if self.info.enableLDAPS and self.info.testLDAPCACerts():
 		    msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
 			_("To properly connect to a LDAP server using TLS you need to copy the "
 			"PEM form CA certificate which signed your server's certificate to the "
@@ -363,7 +387,7 @@ if __name__ == '__main__':
 	signal.signal(signal.SIGINT, signal.SIG_DFL)
 	textdomain("authconfig")
 	gtk.glade.bindtextdomain("authconfig", "/usr/share/locale")
-	module = childWindow()
+	module = Authconfig()
 	dialog = module.get_main_widget()
 	if dialog.run() == gtk.RESPONSE_OK:
 		module.apply()

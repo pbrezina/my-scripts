@@ -9,10 +9,10 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.bz2
-Requires: glibc >= 2.1, glib2, pam >= 0.77-56
+Requires: rhpl, newt, pam >= 0.77-56, usermode
 Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]")
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
-BuildPrereq: pam-devel >= 0.77, newt-devel, glib2-devel, python, python-devel
+BuildPrereq: glib2-devel, python, python-devel
 BuildPrereq: desktop-file-utils, intltool, gettext, perl-XML-Parser
 
 %description 
@@ -25,10 +25,6 @@ authentication schemes.
 Summary: Graphical tool for setting up NIS and shadow passwords.
 Group: System Environment/Base
 Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.4.0, rhpl
-# It occurs that while text-mode authconfig warns about needed files not being
-# there, it's much simpler to just have the GUI require anything it might want
-# to use.
-Requires: usermode
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
@@ -47,8 +43,10 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/authconfigmodule.a
-rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/authconfigmodule.la
+rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutilmodule.a
+rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutilmodule.la
+rm $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
+ln -s authconfig.py $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
 
 %find_lang %{name}
 find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
@@ -58,21 +56,30 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc NOTES TODO README.samba3
+%doc COPYING NOTES TODO README.samba3
 %ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
 %{_bindir}/authconfig
-%{_sbindir}/authconfig
+%{_bindir}/authconfig-tui
 %{_sbindir}/cacertdir_rehash
 %{_mandir}/man8/*
-%{_libdir}/python*/site-packages/authconfigmodule.so
+%{_libdir}/python*/site-packages/acutilmodule.so
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/authconfig.py
+%{_datadir}/%{name}/authconfig-tui.py
+%{_datadir}/%{name}/authinfo.py
+%{_datadir}/%{name}/shvfile.py
+%{_datadir}/%{name}/dnsclient.py
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig
+%config(noreplace) %{_sysconfdir}/pam.d/authconfig-tui
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
+%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-tui
 
 %files gtk
 %defattr(-,root,root)
 %{_bindir}/authconfig-gtk
 %{_bindir}/system-config-authentication
-%{_datadir}/%{name}
+%{_datadir}/%{name}/authconfig.glade
+%{_datadir}/%{name}/authconfig-gtk.py
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
 %config(noreplace) %{_sysconfdir}/pam.d/system-config-authentication
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
@@ -81,6 +88,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Sat Sep  3 2005 Tomas Mraz <tmraz@redhat.com> - 5.0.0-1
+- C code completely rewritten in Python
+- some bugs fixed in the process (and no doubt new introduced)
+- TUI deprecated, opens only when run as authconfig-tui
+
 * Mon Jun 20 2005 Tomas Mraz <tmraz@redhat.com> - 4.6.13-1
 - set domain and ypserver option correctly when multiple servers
   specified in kickstart (#159214)
