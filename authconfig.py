@@ -204,17 +204,17 @@ class Authconfig:
 			parser.parse_args(["-h"])
 	
 	def probe(self):
-		authinfo = authinfo.AuthInfo()
-		authinfo.probe()
-		if authinfo.hesiodLHS and authinfo.hesiodRHS:
-			print "hesiod %s/%s" % (authinfo.hesiodLHS,
- 				authinfo.hesiodRHS)
-		if authinfo.ldapServer and authinfo.ldapBaseDN:
-			print "ldap %s/%s\n" % (authinfo.ldapServer,
-				authinfo.ldapBaseDN)
-		if authinfo.kerberosRealm:
-			print "krb5 %s/%s/%s\n" % (authinfo.kerberosRealm,
-				authinfo.kerberosKDC or "", authinfo.kerberosAdminServer or "")
+		info = authinfo.AuthInfo()
+		info.probe()
+		if info.hesiodLHS and info.hesiodRHS:
+			print "hesiod %s/%s" % (info.hesiodLHS,
+ 				info.hesiodRHS)
+		if info.ldapServer and info.ldapBaseDN:
+			print "ldap %s/%s\n" % (info.ldapServer,
+				info.ldapBaseDN)
+		if info.kerberosRealm:
+			print "krb5 %s/%s/%s\n" % (info.kerberosRealm,
+				info.kerberosKDC or "", info.kerberosAdminServer or "")
 	
 	def readAuthInfo(self):
 		self.info = authinfo.read()

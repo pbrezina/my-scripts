@@ -21,6 +21,7 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
+import os
 
 def read(filename):
 	shv = SHVFile()
@@ -98,7 +99,7 @@ class SHVFile:
 			except OSError:
 				return
 			try:
-				self.f = os.fdopen(f, "w")
+				self.f = os.fdopen(fd, "w")
 			except IOError:
 				os.close(fd)
 				return

@@ -257,7 +257,7 @@ class Authconfig:
 				option = getattr(self.info, map[entry][0])
 				if option not in options:
 					if option != '':
-						widget.prepend_text(item)
+						widget.prepend_text(option)
 						widget.set_active(0)
 						options.insert(0, option)
 				widget.set_data("option_list", options)

@@ -349,7 +349,7 @@ def dnsParseSRV(data, base):
 	rdata = DNSRData()
 	format = "HHH"
 	flen = struct.calcsize(format)
-	if len(rest) < flen:
+	if len(data) < flen:
 		return None
 		
 	(rdata.priority, rdata.weight, rdata.port) = struct.unpack(format, data[:flen])

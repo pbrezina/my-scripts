@@ -142,6 +142,7 @@ def checkNSS(configuration, candidate):
 		if start < len(configuration) and configuration[start].isalnum():
 			continue
 		return True
+	return False
 
 def openLocked(filename, perms):
 	fd = -1
@@ -1858,6 +1859,7 @@ class AuthInfo:
 		wrotetemplateh = False
 		wrotetemplatep = False
 		wrotetemplates = False
+		wroteusedefaultdomain = False
 		f = None
 		output = ""
 		try:
