@@ -2,7 +2,7 @@
 # translation of fr.po to french
 # Copyright (C) 2002 Red Hat, Inc.
 # Bettina De Monti <bdemonti@redhat.it>, 2001.
-# Audrey Simons <asimons@redhat.com>, 2003.
+# Audrey Simons <asimons@redhat.com>, 2003, 2005.
 # Jean-Paul Aubry <jpaubry@redhat.com>, 2003,2004, 2005.
 #
 msgid ""
@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-03 13:35+0200\n"
-"PO-Revision-Date: 2005-02-14 13:38+1000\n"
-"Last-Translator: Jean-Paul Aubry <jpaubry@redhat.com>\n"
+"PO-Revision-Date: 2005-09-05 11:35+1000\n"
+"Last-Translator: Audrey Simons <asimons@redhat.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: ../authconfig.py:52
 #, python-format
 msgid "usage: %s [options]"
-msgstr ""
+msgstr "utilisation : %s [options]"
 
 #: ../authconfig.py:59
 msgid "enable shadowed passwords by default"
@@ -36,19 +36,16 @@ msgid "enable MD5 passwords by default"
 msgstr "activer les mots de passe MD5 par défaut"
 
 #: ../authconfig.py:65
-#, fuzzy
 msgid "disable MD5 passwords by default"
-msgstr "désactiver les mots de passe MD5 par défaut\n"
+msgstr "désactiver les mots de passe MD5 par défaut"
 
 #: ../authconfig.py:68
-#, fuzzy
 msgid "enable NIS for user information by default"
-msgstr "activer LDAP pour les informations utilisateur par défaut"
+msgstr "activer NIS pour les informations utilisateur par défaut"
 
 #: ../authconfig.py:70
-#, fuzzy
 msgid "disable NIS for user information by default"
-msgstr "désactiver LDAP pour les informations utilisateur par défaut"
+msgstr "désactiver NIS pour les informations utilisateur par défaut"
 
 #: ../authconfig.py:71
 msgid "<domain>"
@@ -64,9 +61,8 @@ msgid "<server>"
 msgstr "<serveur>"
 
 #: ../authconfig.py:74
-#, fuzzy
 msgid "default NIS server"
-msgstr "serveur NIS par défaut\n"
+msgstr "serveur NIS par défaut"
 
 #: ../authconfig.py:77
 msgid "enable LDAP for user information by default"
@@ -93,9 +89,8 @@ msgid "<dn>"
 msgstr "<dn>"
 
 #: ../authconfig.py:87
-#, fuzzy
 msgid "default LDAP base DN"
-msgstr "DN de base LDAP par défaut\n"
+msgstr "DN de base LDAP par défaut"
 
 #: ../authconfig.py:89
 msgid "enable use of TLS with LDAP"
@@ -126,9 +121,8 @@ msgid "<realm>"
 msgstr "<zone>"
 
 #: ../authconfig.py:102
-#, fuzzy
 msgid "default kerberos realm"
-msgstr "zone kerberos par défaut\n"
+msgstr "zone kerberos par défaut"
 
 #: ../authconfig.py:104
 msgid "enable use of DNS to find kerberos KDCs"
@@ -143,9 +137,8 @@ msgid "enable use of DNS to find kerberos realms"
 msgstr "activer l'utilisation de DNS pour trouver les zones kerberos"
 
 #: ../authconfig.py:110
-#, fuzzy
 msgid "disable use of DNS to find kerberos realms"
-msgstr "désactiver l'utilisation de DNS pour trouver les zones kerberos\n"
+msgstr "désactiver l'utilisation de DNS pour trouver les zones kerberos"
 
 #: ../authconfig.py:113
 msgid "enable SMB authentication by default"
@@ -156,14 +149,12 @@ msgid "disable SMB authentication by default"
 msgstr "désactiver l'authentification SMB par défaut"
 
 #: ../authconfig.py:116
-#, fuzzy
 msgid "<servers>"
-msgstr "<serveur>"
+msgstr "<serveurs>"
 
 #: ../authconfig.py:117
-#, fuzzy
 msgid "names of servers to authenticate against"
-msgstr "noms des serveurs à authentifier contre\n"
+msgstr "noms des serveurs par rapport auxquels authentifier"
 
 #: ../authconfig.py:118
 msgid "<workgroup>"
@@ -182,14 +173,12 @@ msgid "disable winbind for user information by default"
 msgstr "désactiver winbind pour les informations utilisateur par défaut"
 
 #: ../authconfig.py:126
-#, fuzzy
 msgid "enable winbind for authentication by default"
-msgstr "activer winbindauth pour l'authentification par défaut"
+msgstr "activer winbind pour l'authentification par défaut"
 
 #: ../authconfig.py:128
-#, fuzzy
 msgid "disable winbind for authentication by default"
-msgstr "désactiver winbindauth pour l'authentification par défaut"
+msgstr "désactiver winbind pour l'authentification par défaut"
 
 #: ../authconfig.py:130
 msgid "security mode to use for samba and winbind"
@@ -205,13 +194,11 @@ msgstr "<les plus bas-le plus haut> "
 
 #: ../authconfig.py:134
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
-"gamme d'uid que Winbind assignera aux utilisateurs de domaines ou de ads"
+msgstr "gamme d'uid que Winbind assignera aux utilisateurs de domaines ou de ads"
 
 #: ../authconfig.py:136
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
-"gamme de gid que Winbind assignera aux utilisateurs de domaines ou de ads"
+msgstr "gamme de gid que Winbind assignera aux utilisateurs de domaines ou de ads"
 
 #: ../authconfig.py:138
 msgid ""
@@ -259,20 +246,16 @@ msgstr ""
 "de domaine"
 
 #: ../authconfig.py:150
-#, fuzzy
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr ""
-"joindre le domaine Winbind ou la zone ads maintenant en tant que cet "
-"administrateur\n"
+msgstr "joindre le domaine winbind ou la zone ads maintenant en tant que cet administrateur"
 
 #: ../authconfig.py:153
 msgid "enable wins for hostname resolution"
 msgstr "activer wins pour la résolution de nom d'hôte"
 
 #: ../authconfig.py:155
-#, fuzzy
 msgid "disable wins for hostname resolution"
-msgstr "désactiver wins pour la résolution de nom d'hôte\n"
+msgstr "désactiver wins pour la résolution de nom d'hôte"
 
 #: ../authconfig.py:158
 msgid "enable hesiod for user information by default"
@@ -287,18 +270,16 @@ msgid "default hesiod LHS"
 msgstr "LHS hesiod par défaut"
 
 #: ../authconfig.py:164
-#, fuzzy
 msgid "default hesiod RHS"
-msgstr "RHS hesiod par défaut\n"
+msgstr "RHS hesiod par défaut"
 
 #: ../authconfig.py:167
 msgid "enable caching of user information by default"
 msgstr "activer les informations utilisateur en cache par défaut"
 
 #: ../authconfig.py:169
-#, fuzzy
 msgid "disable caching of user information by default"
-msgstr "désactiver les informations utilisateur en cache par défaut\n"
+msgstr "désactiver les informations utilisateur en cache par défaut"
 
 #: ../authconfig.py:172
 msgid "local authorization is sufficient for local users"
@@ -306,8 +287,7 @@ msgstr "Une autorisation locale est suffisante pour les utilisateurs locaux"
 
 #: ../authconfig.py:174
 msgid "authorize local users also through remote service"
-msgstr ""
-"autoriser les utilisateurs locaux également à travers un service distant"
+msgstr "autoriser les utilisateurs locaux également à travers un service distant"
 
 #: ../authconfig.py:177
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -316,49 +296,47 @@ msgstr "ne pas lancer/arrêter portmap, ypbind et nscd"
 #: ../authconfig.py:180
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
+"ne pas mettre à jour les fichiers de configuration, imprimer uniquement "
+"les nouveaux paramètres"
 
 #: ../authconfig.py:184
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr ""
+msgstr "afficher Précédent au lieu d'Annuler dans le dialogue principal de l'interface"
 
 #: ../authconfig.py:186
-#, fuzzy
 msgid "do not display the deprecated text user interface"
-msgstr "ne pas afficher l'interface utilisateur"
+msgstr "ne pas afficher l'interface utilisateur texte déconseillée"
 
 #: ../authconfig.py:189
 msgid "opposite of --test, update the configuration files"
-msgstr ""
+msgstr "opposé de --test, mettre à jour les fichiers de configuration"
 
 #: ../authconfig.py:192
 msgid "probe network for defaults and print them"
 msgstr "analyser le réseau pour chercher les défauts et les imprimer"
 
 #: ../authconfig.py:197
-#, fuzzy
 msgid "unexpected argument"
-msgstr "%s : argument imprévu\n"
+msgstr "argument imprévu"
 
 #: ../authconfig.py:307
-#, fuzzy
 msgid "can only be run as root"
-msgstr "%s : ne peut être lancé qu'en tant que root\n"
+msgstr "ne peut être lancé qu'en tant que root"
 
 #: ../authconfig.py:314
-#, fuzzy
 msgid "dialog was cancelled"
-msgstr "dialogue annulé\n"
+msgstr "dialogue annulé"
 
 #: ../authconfig.py:337
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
 "Le fichier %s est introuvable mais il est requis pour que le support %s "
-"puisse fonctionner correctement. Installez le paquetage %s qui comprend ce "
-"fichier."
+"puisse fonctionner correctement.\n"
+"Installez le paquetage %s qui comprend ce fichier."
 
 #: ../authconfig.py:339 ../authconfig.py:691
 msgid "Warning"
@@ -964,3 +942,4 @@ msgstr "_Groupe de travail"
 
 #~ msgid "authconfig"
 #~ msgstr "authconfig"
+
