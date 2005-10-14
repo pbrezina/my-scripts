@@ -1,8 +1,0 @@
-#%PAM-1.0
-auth       sufficient	/lib/security/$ISA/pam_rootok.so
-auth       sufficient   /lib/security/$ISA/pam_timestamp.so
-auth       required	/lib/security/$ISA/pam_stack.so service=system-auth
-account    required	/lib/security/$ISA/pam_permit.so
-session    optional	/lib/security/$ISA/pam_xauth.so
-session    optional     /lib/security/$ISA/pam_timestamp.so
-session    required  	/lib/security/$ISA/pam_permit.so
