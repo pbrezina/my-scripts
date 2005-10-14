@@ -600,6 +600,7 @@ class AuthInfo:
 
 		self.nisServer = ""
 		self.nisDomain = ""
+		self.nisLocalDomain = ""
 
 		self.smbWorkgroup = ""
 		self.smbRealm = ""
@@ -710,7 +711,7 @@ class AuthInfo:
 
 			# Is it a "ypserver" statement?  If so, extract the server.
 			value = matchKey(line, "ypserver")
-			if value:
+			if value and self.nisLocalDomain:
 				# Save the server's name.
 				self.nisServer = commaAppend(self.nisServer, value)
 				continue
@@ -723,6 +724,8 @@ class AuthInfo:
 				value = value.split(None, 1)
 				if len(value) < 1:
 					continue
+				if self.nisLocalDomain and value[0] != self.nisLocalDomain:
+					continue
 				self.nisDomain = value[0]
 				if len(value) < 2:
 					continue
@@ -734,6 +737,10 @@ class AuthInfo:
 					self.nisServer = commaAppend(self.nisServer, value)
 
 		f.close()
+		if self.nisLocalDomain and not self.nisDomain:
+			self.nisDomain = self.nisLocalDomain
+		if self.nisDomain and not self.nisLocalDomain:
+			self.nisLocalDomain = self.nisDomain
 		return True
 
 	# Read LDAP setup from /etc/ldap.conf.
@@ -1184,7 +1191,7 @@ class AuthInfo:
 		
 		tmp = shv.getValue("NISDOMAIN")
 		if tmp:
-			self.nisDomain = tmp
+			self.nisLocalDomain = tmp
 
 		shv.close()
 
@@ -1207,6 +1214,7 @@ class AuthInfo:
 			       b.kerberosAdminServer, False) or
 		stringsDiffer(self.nisServer, b.nisServer, True) or
 		stringsDiffer(self.nisDomain, b.nisDomain, True) or
+		stringsDiffer(self.nisLocalDomain, b.nisLocalDomain, True) or
 
 		stringsDiffer(self.smbWorkgroup, b.smbWorkgroup, False) or
 		stringsDiffer(self.smbRealm, b.smbRealm, True) or
@@ -1284,13 +1292,13 @@ class AuthInfo:
 		self.readHesiod()
 		self.readSMB()
 		self.readWinbind()
+		self.readNetwork()
 		self.readNIS()
 		self.readLDAP()
 		self.readKerberos()
 		self.readNSS()
 		self.readCache()
 		self.readPAM()
-		self.readNetwork()
 
 		self.update()
 
@@ -1363,7 +1371,17 @@ class AuthInfo:
 			for line in f:
 				ls = line.strip()
 				
-				if matchLine(ls, "domain"):
+				value = matchKey(ls, "domain")
+				if value:
+					# Save the domain's name.  To do that, find its end.
+					value = value.split(None, 1)
+					if len(value) < 1:
+						continue
+					if value[0] != self.nisDomain and value[0] != self.nisLocalDomain:
+						# The domain name doesn't match current or previous domain
+						output += line
+						continue
+ 
 					if not written and self.nisDomain:
 						output += "domain " + self.nisDomain
 						# Take an empty server name to mean that we

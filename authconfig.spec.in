@@ -88,6 +88,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Oct 14 2005 Tomas Mraz <tmraz@redhat.com> - 5.0.2-1
+- authinfo-tui.py is now symlink
+- reword the CA certificate message (#154317)
+- use include instead of pam_stack in pam config
+- don't break yp.conf with multiple domains (#127306)
+
 * Mon Sep  5 2005 Tomas Mraz <tmraz@redhat.com> - 5.0.1-1
 - fixed a few errors catched by pychecker
 

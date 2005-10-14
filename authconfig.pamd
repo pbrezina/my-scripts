@@ -1,5 +1,4 @@
 #%PAM-1.0
-auth       sufficient	/lib/security/$ISA/pam_rootok.so
-auth       required	/lib/security/$ISA/pam_stack.so service=system-auth
-account    required	/lib/security/$ISA/pam_permit.so
-session    required  	/lib/security/$ISA/pam_permit.so
+auth		include		config-util
+account		include		config-util
+session		include		config-util

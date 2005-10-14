@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-03 13:35+0200\n"
+"POT-Creation-Date: 2005-10-14 13:23+0200\n"
 "PO-Revision-Date: 2005-09-05 22:14+0200\n"
 "Last-Translator: Tom Berner <tom@lodz.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -328,13 +328,13 @@ msgstr ""
 "obsługi %s.\n"
 "Zainstaluj zawierający ten plik pakiet %s."
 
-#: ../authconfig.py:339 ../authconfig.py:691
+#: ../authconfig.py:339 ../authconfig.py:694
 msgid "Warning"
 msgstr "Ostrzeżenie"
 
 #: ../authconfig.py:339 ../authconfig.py:552 ../authconfig.py:559
 #: ../authconfig.py:565 ../authconfig.py:574 ../authconfig.py:581
-#: ../authconfig.py:589 ../authconfig.py:630 ../authconfig.py:691
+#: ../authconfig.py:589 ../authconfig.py:630 ../authconfig.py:694
 msgid "Ok"
 msgstr "OK"
 
@@ -560,6 +560,8 @@ msgstr "Nie"
 msgid "Yes"
 msgstr "Tak"
 
+#. Why does your favorite shell not show up in the list?  Because it won't
+#. fit, that's why!
 #: ../authconfig.py:623
 msgid "Security Model:"
 msgstr "Model bezpieczeństwa:"
@@ -585,11 +587,11 @@ msgid "Join Domain"
 msgstr "Dołącz do domeny"
 
 #: ../authconfig.py:689 ../authconfig-gtk.py:379
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"To properly connect to a LDAP server using TLS you need to copy the PEM form "
-"CA certificate which signed your server's certificate to the '%s' "
-"directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed your server's certificate. Copy the certificate in "
+"the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
 "Aby połączyć się do serwera LDAP korzystając z TLS, musisz skopiować "
@@ -597,7 +599,8 @@ msgstr ""
 "folderu '%s'.\n"
 "Następnie naciśnij OK."
 
-#: ../authconfig.py:700
+#. FIXME - version
+#: ../authconfig.py:703
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -759,9 +762,9 @@ msgid ""
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"Lightweight Directory Access Protocol jest standardem przeszukiwania katalogu "
-"ułożonego w strukturze hierarchicznej. LDAP coraz częściej jest stosowany w "
-"każdej wielkości sieciach."
+"Lightweight Directory Access Protocol jest standardem przeszukiwania "
+"katalogu ułożonego w strukturze hierarchicznej. LDAP coraz częściej jest "
+"stosowany w każdej wielkości sieciach."
 
 #: ../authconfig.glade.h:45
 msgid "Use DNS to _locate KDCs for realms"

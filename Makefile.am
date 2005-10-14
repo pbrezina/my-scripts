@@ -12,7 +12,7 @@ applnkdir = $(sysconfdir)/X11/applnk/System
 startheredir = $(sysconfdir)/X11/sysconfig
 
 sbin_SCRIPTS = cacertdir_rehash
-pkgdata_SCRIPTS = authconfig-gtk.py authconfig.py authconfig-tui.py authinfo.py shvfile.py dnsclient.py
+pkgdata_SCRIPTS = authconfig-gtk.py authconfig.py authinfo.py shvfile.py dnsclient.py
 pkgdata_DATA = authconfig.glade
 pythonsite_LTLIBRARIES = acutilmodule.la
 pixmapdir = $(datadir)/pixmaps
@@ -31,14 +31,16 @@ install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(sysconfigdir)
 	mkdir -p $(DESTDIR)/$(applnkdir)
 	mkdir -p $(DESTDIR)/$(startheredir)
+	mkdir -p $(DESTDIR)/$(pkgdatadir)
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig-tui
-	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
-	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.pamd $(DESTDIR)/$(pamdir)/system-config-authentication
+	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
+	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/system-config-authentication
 	$(INSTALL_DATA) $(srcdir)/authconfig.console $(DESTDIR)/$(consoledir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig-tui.console $(DESTDIR)/$(consoledir)/authconfig-tui
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/authconfig-gtk
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/system-config-authentication
+	ln -sf authconfig.py $(DESTDIR)/$(pkgdatadir)/authconfig-tui.py
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
 	mkdir -p $(DESTDIR)/$(datadir)/applications
 	desktop-file-install --vendor redhat \
@@ -63,6 +65,7 @@ uninstall-local:
 	$(RM) $(DESTDIR)/$(consoledir)/system-config-authentication
 	$(RM) $(DESTDIR)/$(sysconfigdir)/authconfig
 	$(RM) $(DESTDIR)$(pkgdatadir)/*.pyc
+	$(RM) $(DESTDIR)$(pkgdatadir)/authconfig-tui.py
 	rmdir $(DESTDIR)/$(applnkdir)
 	rmdir $(DESTDIR)/$(startheredir)
 	rmdir $(DESTDIR)/$(bindir)
@@ -75,9 +78,9 @@ AM_CFLAGS = @CFLAGS@ @PYTHON_CFLAGS@ -Wall
 acutilmodule_la_SOURCES = acutilmodule.c
 acutilmodule_la_LDFLAGS = -module -avoid-version -export-dynamic @LDFLAGS@
 
-EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd authconfig-gtk.pamd \
+EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd \
 	authconfig.console authconfig-tui.console authconfig-gtk.console \
-	authconfig.desktop.in authconfig.py authconfig-tui.py authinfo.py \
+	authconfig.desktop.in authconfig.py authinfo.py \
 	shvfile.py dnsclient.py authconfig-gtk.py authconfig.glade \
 	man/en/authconfig.8 man/en/authconfig-tui.8 NOTES utf8ify-mo \
 	intltool-extract.in intltool-merge.in intltool-update.in \

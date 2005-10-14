@@ -204,17 +204,17 @@ class Authconfig:
 			parser.parse_args(["-h"])
 	
 	def probe(self):
-		info = authinfo.AuthInfo()
-		info.probe()
-		if info.hesiodLHS and info.hesiodRHS:
-			print "hesiod %s/%s" % (info.hesiodLHS,
- 				info.hesiodRHS)
-		if info.ldapServer and info.ldapBaseDN:
-			print "ldap %s/%s\n" % (info.ldapServer,
-				info.ldapBaseDN)
-		if info.kerberosRealm:
-			print "krb5 %s/%s/%s\n" % (info.kerberosRealm,
-				info.kerberosKDC or "", info.kerberosAdminServer or "")
+		authinfo = authinfo.AuthInfo()
+		authinfo.probe()
+		if authinfo.hesiodLHS and authinfo.hesiodRHS:
+			print "hesiod %s/%s" % (authinfo.hesiodLHS,
+ 				authinfo.hesiodRHS)
+		if authinfo.ldapServer and authinfo.ldapBaseDN:
+			print "ldap %s/%s\n" % (authinfo.ldapServer,
+				authinfo.ldapBaseDN)
+		if authinfo.kerberosRealm:
+			print "krb5 %s/%s/%s\n" % (authinfo.kerberosRealm,
+				authinfo.kerberosKDC or "", authinfo.kerberosAdminServer or "")
 	
 	def readAuthInfo(self):
 		self.info = authinfo.read()
@@ -686,7 +686,10 @@ class AuthconfigTUI(Authconfig):
 		return next == 8
 	
 	def displayCACertsMessage(self):
-		text = (_("To properly connect to a LDAP server using TLS you need to copy the PEM form CA certificate which signed your server's certificate to the '%s' directory.\nThen press OK.") %
+		text = (_("To connect to a LDAP server with TLS protocol enabled you need "
+                        "a CA certificate which signed your server's certificate. "
+                        "Copy the certificate in the PEM format to the '%s' directory.\n"
+                        "Then press OK.") %
 			self.info.ldapCacertDir)
 		snack.ButtonChoiceWindow(self.screen, _("Warning"), text, [_("Ok")])
 	

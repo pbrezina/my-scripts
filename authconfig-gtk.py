@@ -376,9 +376,10 @@ class Authconfig:
 	def ldap_cacerts_test(self):
 		if self.info.enableLDAPS and self.info.testLDAPCACerts():
 		    msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
-			_("To properly connect to a LDAP server using TLS you need to copy the "
-			"PEM form CA certificate which signed your server's certificate to the "
-		        "'%s' directory.\nThen press OK.") % self.info.ldapCacertDir)
+			_("To connect to a LDAP server with TLS protocol enabled you need "
+			"a CA certificate which signed your server's certificate. "
+		        "Copy the certificate in the PEM format to the '%s' directory.\n"
+			"Then press OK.") % self.info.ldapCacertDir)
 		    msg.run()
 		    msg.destroy()
 
