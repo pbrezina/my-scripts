@@ -20,6 +20,7 @@ pixmap_DATA = user_auth.png
 
 install-exec-local:
 	mkdir -p $(DESTDIR)/$(bindir)
+	mkdir -p $(DESTDIR)/$(sbindir)
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-tui
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-gtk
