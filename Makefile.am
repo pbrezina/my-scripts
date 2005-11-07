@@ -24,6 +24,10 @@ install-exec-local:
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-tui
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-gtk
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/system-config-authentication
+	ln -sf $(datadir)/authconfig.py $(DESTDIR)/$(sbindir)/authconfig
+	ln -sf $(datadir)/authconfig-tui.py $(DESTDIR)/$(sbindir)/authconfig-tui
+	ln -sf $(datadir)/authconfig-gtk.py $(DESTDIR)/$(sbindir)/authconfig-gtk
+	ln -sf $(datadir)/authconfig-gtk.py $(DESTDIR)/$(sbindir)/system-config-authentication
 
 install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(pamdir)

@@ -202,13 +202,7 @@ def matchLineSMB(line, key):
 	return False
 
 # Mandatory arguments for the various modules.
-argv_unix_auth = [
-	"likeauth",
-	"nullok" 
-]
-
 argv_unix_password = [
-	"nullok",
 	"use_authtok"
 ]
 
@@ -307,7 +301,7 @@ standard_pam_modules = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
-	 "unix",		argv_unix_auth],
+	 "unix",		[]],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "afs",			argv_afs_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
@@ -637,6 +631,7 @@ class AuthInfo:
 		self.enableAFS = None
 		self.enableAFSKerberos = None
 		self.enableBigCrypt = None
+		self.enableNullOk = True
 		self.enableCracklib = None
 		self.enableEPS = None
 		self.enableKerberos = None
@@ -1041,7 +1036,7 @@ class AuthInfo:
 				if args:
 					self.localuserArgs = args
 				continue
-			if stack == "auth":
+			if stack == "password":
 				if (module.startswith("pam_unix") or
 					module.startswith("pam_pwdb")):
 					self.enableMD5 = args.find("md5") >= 0
@@ -1051,6 +1046,10 @@ class AuthInfo:
 					except OSError:
 						self.enableShadow = False
 					self.enableBigCrypt = args.find("bigcrypt") >= 0
+			if stack == "auth":
+				if (module.startswith("pam_unix") or
+					module.startswith("pam_pwdb")):
+					self.enableNullOk = args.find("nullok") >= 0
 			if stack == "account":
 				if module.startswith("pam_unix"):
 					self.brokenShadow = args.find("broken_shadow") >= 0
@@ -1254,6 +1253,7 @@ class AuthInfo:
 		(self.enableAFS != b.enableAFS) or
 		(self.enableAFSKerberos != b.enableAFSKerberos) or
 		(self.enableBigCrypt != b.enableBigCrypt) or
+		(self.enableNullOk != b.enableNullOk) or
 		(self.enableCracklib != b.enableCracklib) or
 		(self.enableEPS != b.enableEPS) or
 		(self.enableKerberos != b.enableKerberos) or
@@ -2362,6 +2362,11 @@ class AuthInfo:
 						output += " nis"
 					if self.enableBigCrypt:
 						output += " bigcrypt"
+					if self.enableNullOk:
+						output += " nullok"
+				if stack == "auth":
+					if self.enableNullOk:
+						output += " nullok"
 				if stack == "account":
 					if (self.forceBrokenShadow or self.enableLDAPAuth or
 						self.enableKerberos or self.enableWinbindAuth):
