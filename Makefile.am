@@ -47,6 +47,7 @@ install-data-local: authconfig.desktop
 	$(INSTALL_DATA) $(srcdir)/authconfig-gtk.console $(DESTDIR)/$(consoledir)/system-config-authentication
 	ln -sf authconfig.py $(DESTDIR)/$(pkgdatadir)/authconfig-tui.py
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
+	touch $(DESTDIR)/$(sysconfdir)/system-auth-ac
 	mkdir -p $(DESTDIR)/$(datadir)/applications
 	desktop-file-install --vendor redhat \
 		--add-category=X-Red-Hat-Base \

@@ -252,6 +252,7 @@ class Authconfig:
 			"hesiodrhs":"hesiodRHS",
 			"ldapserver":"ldapServer",
 			"ldapbasedn":"ldapBaseDN",
+			"krb5realm":"kerberosRealm",
 			"krb5kdc":"kerberosKDC",
 			"krb5adminserver":"kerberosAdminServer",
 			"nisdomain":"nisDomain",

@@ -58,6 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc COPYING NOTES TODO README.samba3
 %ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
+%ghost %config(noreplace) %{_sysconfdir}/pam.d/system-auth-ac
 %{_bindir}/authconfig
 %{_bindir}/authconfig-tui
 %{_sbindir}/cacertdir_rehash
@@ -92,6 +93,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Dec  5 2005 Tomas Mraz <tmraz@redhat.com> - 5.0.4-1
+- don't ignore krb5realm command line option (#174838)
+- read dns_lookup_realm and dns_lookup_kdc values correctly
+- the PAM configuration is now written in system-auth-ac file
+  which is then symlinked from system-auth, the symlink is not
+  overwritten so local PAM configuration is now possible (#165342)
+
 * Mon Nov  7 2005 Tomas Mraz <tmraz@redhat.com> - 5.0.3-1
 - add symlinks to python scripts in sbindir
 - don't override nullok setting from system-auth (#96996)

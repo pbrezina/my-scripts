@@ -32,6 +32,7 @@ import errno
 
 SYSCONFDIR = "/etc"
 AUTH_PAM_SERVICE = "system-auth"
+AUTH_PAM_SERVICE_AC = "system-auth-ac"
 # AUTH_MODULE_DIR = "/lib/security/$ISA" # no longer desired
 AUTH_MODULE_DIR = ""
 PATH_PORTMAP = "/sbin/portmap"
@@ -801,11 +802,11 @@ class AuthInfo:
 				# Check for the DNS settings.
 				value = matchKeyEquals(line, "dns_lookup_kdc")
 				if value:
-					self.kerberosKDCviaDNS = bool(matchKey(value, "true"))
+					self.kerberosKDCviaDNS = matchKey(value, "true") == ""
 					continue
 				value = matchKeyEquals(line, "dns_lookup_realm")
 				if value:
-					self.kerberosRealmviaDNS = bool(matchKey(value, "true"))
+					self.kerberosRealmviaDNS = matchKey(value, "true") == ""
 					continue;
 
 			elif section == "realms":
@@ -957,9 +958,12 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE, "r")
+			f = open(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC, "r")
 		except IOError:
-			return False
+			try:
+				f = open(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE, "r")
+			except IOError:
+				return False
 
 		prevline = ""
 		for line in f:
@@ -2376,13 +2380,27 @@ class AuthInfo:
 		output += "\n"
 		return output
 
+	def linkPAMService(self, src, dest):
+		f = os.path.isfile(dest)
+		l = os.path.islink(dest)
+		if (f and not l) or (l and not f):
+			# Create the link only if it doesn't exist yet or is invalid
+			try:
+				os.unlink(dest)
+			except OSError:
+				pass
+			try:
+				os.symlink(src, dest)
+			except OSError:
+				pass
+	
 	# Write PAM setup to the control file.
 	def writePAM(self):
 		have_afs = False
 		f = None
 		output = ""
 		try:
-			f = openLocked(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE, 0644)
+			f = openLocked(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC, 0644)
 
 			output += "#%PAM-1.0\n"
 			output += "# This file is auto-generated.\n"
@@ -2421,6 +2439,8 @@ class AuthInfo:
 					f.close()
 			except IOError:
 				pass
+
+		self.linkPAMService(AUTH_PAM_SERVICE_AC, SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE)
 
 		try:
 			shv = shvfile.rcreate(SYSCONFDIR+"/sysconfig/authconfig")
