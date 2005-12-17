@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Sat Dec 17 2005 Tomas Mraz <tmraz@redhat.com> - 5.1.0-1
+- update only configuration files which settings were modified (#72290)
+
 * Mon Dec  5 2005 Tomas Mraz <tmraz@redhat.com> - 5.0.4-1
 - don't ignore krb5realm command line option (#174838)
 - read dns_lookup_realm and dns_lookup_kdc values correctly

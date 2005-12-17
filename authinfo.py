@@ -578,6 +578,22 @@ def read():
 	info.read()
 	return info
 
+class SaveGroup:
+	def __init__(self, savefunc, attrlist):
+		self.saveFunction = savefunc
+		self.attrlist = attrlist
+
+	def attrsDiffer(self, a, b):
+		ret = False
+		for (aname, atype) in self.attrlist:
+			if atype == "b":
+				ret = ret or getattr(a, aname) != getattr(b, aname)
+			elif atype == "c":
+				ret = ret or stringsDiffer(getattr(a, aname), getattr(b, aname), True)
+			elif atype == "i":
+				ret = ret or stringsDiffer(getattr(a, aname), getattr(b, aname), False)
+		return ret
+
 class AuthInfo:
 	def __init__(self):
 		# Service-specific settings.
@@ -1207,7 +1223,7 @@ class AuthInfo:
 		stringsDiffer(self.hesiodRHS, b.hesiodRHS, False) or
 
 		stringsDiffer(self.ldapServer, b.ldapServer, False) or
-		stringsDiffer(self.ldapBaseDN, b.ldapBaseDN, False) or
+		stringsDiffer(self.ldapBaseDN, b.ldapBaseDN, True) or
 
 		stringsDiffer(self.kerberosRealm, b.kerberosRealm, True) or
 		(self.kerberosRealmviaDNS != b.kerberosRealmviaDNS) or
@@ -1236,7 +1252,7 @@ class AuthInfo:
 			       b.winbindTemplateShell, True) or
 
 		(self.winbindUseDefaultDomain != b.winbindUseDefaultDomain) or
-		# (self.enableCache != b.enableCache) or
+		(self.enableCache != b.enableCache) or
 
 		(self.enableDB != b.enableDB) or
 		(self.enableDirectories != b.enableDirectories) or
@@ -2503,6 +2519,50 @@ class AuthInfo:
 			ret = ret and self.writeNSS()
 			ret = ret and self.writePAM()
 			ret = ret and self.writeNetwork()
+		except IOError:
+			return False
+		return ret
+
+	def writeChanged(self, ref):
+		save_groups = [
+	SaveGroup(self.writeCache, [("enableCache", "b")]),
+	SaveGroup(self.writeHesiod, [("hesiodLHS", "i"), ("hesiodRHS", "i")]),
+	SaveGroup(self.writeSMB, [("smbWorkgroup", "i"), ("smbServers", "i")]),
+	SaveGroup(self.writeNIS, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
+	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
+		("ldapCacertDir", "c"), ("enableMD5", "b")]),
+	SaveGroup(self.writeCache, [("enableCache", "b")]),
+	SaveGroup(self.writeLibuser, [("enableMD5", "b")]),
+	SaveGroup(self.writeKerberos5, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
+		("smbSecurity", "i"), ("smbRealm", "c"), ("smbServers", "i"),
+		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
+		("kerberosKDCviaDNS", "b")]),
+	SaveGroup(self.writeKerberos4, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
+		("kerberosAdminServer", "i")]),
+	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
+		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
+		("smbIdmapGid", "i"), ("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
+		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
+		("winbindUseDefaultDomain", "b")]),
+	SaveGroup(self.writeNSS, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
+		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
+		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
+		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
+		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b")]),
+	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"), ("localuserArgs", "c"),
+		("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"), ("enableBigCrypt", "b"),
+		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
+		("enableKerberos", "b"), ("enableWinbindAuth", "b"), ("enableAFS", "b"),
+		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
+		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"), ("enableLocAuthorize", "b")]),
+	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
+
+		self.update()
+		ret = True
+		try:
+			for group in save_groups:
+				if group.attrsDiffer(self, ref):
+					ret = ret and group.saveFunction()
 		except IOError:
 			return False
 		return ret

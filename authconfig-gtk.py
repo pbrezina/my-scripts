@@ -164,6 +164,7 @@ class Authconfig:
 			"configwinbindauth": ("winbindsettings", "winbind_map"),
 		}
 		self.info = authinfo.read()
+		self.pristineinfo = self.info.copy()
 		return
 
 	def destroy_widget(self, button, widget):
@@ -360,7 +361,10 @@ class Authconfig:
 	def apply(self, button = None):
 		self.info.testLDAPCACerts()
 		self.info.rehashLDAPCACerts()
-		self.info.write()
+		if "--updateall" in sys.argv:
+			self.info.write()
+		else:
+			self.info.writeChanged(self.pristineinfo)
 		self.info.post(False)
 		if "--firstboot" in sys.argv:
 			for service in firstbootservices:

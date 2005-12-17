@@ -186,7 +186,10 @@ class Authconfig:
 				help=_("do not display the deprecated text user interface"))
 		else:
 			parser.add_option("--update", "--kickstart", action="store_true",
-				help=_("opposite of --test, update the configuration files"))
+				help=_("opposite of --test, update configuration files with changed settings"))
+
+		parser.add_option("--updateall", action="store_true",
+			help=_("update all configuration files"))
 
 		parser.add_option("--probe", action="store_true",
 			help=_("probe network for defaults and print them"))
@@ -198,7 +201,7 @@ class Authconfig:
 			sys.exit(2)
 
 		if (not self.module() == "authconfig-tui" and not self.options.probe and
-			not self.options.test and not self.options.update):
+			not self.options.test and not self.options.update and not self.options.updateall):
 			# --update (== --kickstart) or --test or --probe must be specified
 			# this will print usage and call sys.exit()
 			parser.parse_args(["-h"])
@@ -219,6 +222,7 @@ class Authconfig:
 	def readAuthInfo(self):
 		self.info = authinfo.read()
 		# FIXME: what about printing critical errors reading individual configs?
+		self.pristineinfo = self.info.copy()
 
 	def testAvailableSubsys(self):
 		self.nis_avail = (os.access(authinfo.PATH_YPBIND, os.X_OK) and
@@ -294,7 +298,10 @@ class Authconfig:
 	def writeAuthInfo(self):
 		self.info.testLDAPCACerts()
 		self.info.rehashLDAPCACerts()
-		self.info.write()
+		if self.options.updateall:
+			self.info.write()
+		else:
+			self.info.writeChanged(self.pristineinfo)
 		# FIXME: what about printing critical errors writing individual configs?
 		self.joinDomain()		
 		self.info.post(self.options.nostart)
