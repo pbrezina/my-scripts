@@ -257,7 +257,7 @@ class Authconfig:
 					offset = offset + 1
 				option = getattr(self.info, map[entry][0])
 				if option not in options:
-					if option != '':
+					if option:
 						widget.prepend_text(option)
 						widget.set_active(0)
 						options.insert(0, option)
@@ -277,12 +277,12 @@ class Authconfig:
 								map[entry][0]))
 
 			if type(widget) == type(gtk.CheckButton()):
-				widget.set_active(getattr(self.info,
-							  map[entry][0]))
+				widget.set_active(bool(getattr(self.info,
+							  map[entry][0])))
 				if len(map[entry]) > 4:
 					button = xml.get_widget(map[entry][4])
-					button.set_sensitive(getattr(self.info,
-								     map[entry][0]))
+					button.set_sensitive(bool(getattr(self.info,
+								     map[entry][0])))
 			if type(widget) == type(gtk.Label()):
 				if getattr(self.info, map[entry][0]):
 					widget.set_text(getattr(self.info,
