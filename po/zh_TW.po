@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zh_TW\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-17 13:58+0100\n"
+"POT-Creation-Date: 2006-01-06 16:53+0100\n"
 "PO-Revision-Date: 2005-12-30 16:40+0800\n"
 "Last-Translator: Walter Cheuk <wwycheuk@netvigator.com>\n"
 "Language-Team: Chinese Traditional <zh_TW@li.org>\n"
@@ -206,7 +206,8 @@ msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
-"當停用 winbindusedefaultdomain 時，用來分隔由 winbind 建立之使用者名稱的網域與使用者部份的字元"
+"當停用 winbindusedefaultdomain 時，用來分隔由 winbind 建立之使用者名稱的網域"
+"與使用者部份的字元"
 
 #: ../authconfig.py:140
 msgid "the directory which winbind-created users will have as home directories"
@@ -444,7 +445,7 @@ msgstr "取消"
 msgid "Next"
 msgstr "下一步"
 
-#: ../authconfig.py:437 ../authconfig-gtk.py:310 ../authconfig.glade.h:4
+#: ../authconfig.py:437 ../authconfig-gtk.py:305 ../authconfig.glade.h:4
 msgid "Authentication Configuration"
 msgstr "認證設定"
 
@@ -583,7 +584,7 @@ msgstr "Winbind 設定"
 msgid "Join Domain"
 msgstr "結合網域"
 
-#: ../authconfig.py:697 ../authconfig-gtk.py:383
+#: ../authconfig.py:697 ../authconfig-gtk.py:378
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -591,8 +592,8 @@ msgid ""
 "the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"要使用 TLS 連上 LDAP 伺服器，您需要一個簽署您伺服器認證的 CA 認證。請將 "
-"PEM 格式的認證複製到『%s』目錄。\n"
+"要使用 TLS 連上 LDAP 伺服器，您需要一個簽署您伺服器認證的 CA 認證。請將 PEM "
+"格式的認證複製到『%s』目錄。\n"
 "然後按下「確定」。"
 
 #. FIXME - version
@@ -699,8 +700,8 @@ msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
 msgstr ""
-"Hesiod 允許系統管理者在名稱伺服器（DNS）中發佈使用者與群組的資訊。有時用"
-"於超大型的網路中。"
+"Hesiod 允許系統管理者在名稱伺服器（DNS）中發佈使用者與群組的資訊。有時用於超"
+"大型的網路中。"
 
 #: ../authconfig.glade.h:27
 msgid "Joining Winbind Domain"
@@ -743,8 +744,8 @@ msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
 msgstr ""
-"SMB 認證藉由連線至使用 SMB（系統訊息區塊）通訊協定組的伺服器，來查證使用者的密"
-"碼。"
+"SMB 認證藉由連線至使用 SMB（系統訊息區塊）通訊協定組的伺服器，來查證使用者的"
+"密碼。"
 
 #: ../authconfig.glade.h:44
 msgid ""
@@ -752,8 +753,8 @@ msgid ""
 "directory, which can hold arbitrary data in a structured hierarchy.  LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"輕巧目錄存取協定（LDAP）使用結構化、階層的方式貯存資料，"
-"是搜尋目錄的標準方法，已漸漸被用於小型至中型網路中。"
+"輕巧目錄存取協定（LDAP）使用結構化、階層的方式貯存資料，是搜尋目錄的標準方"
+"法，已漸漸被用於小型至中型網路中。"
 
 #: ../authconfig.glade.h:45
 msgid "Use DNS to _locate KDCs for realms"
@@ -835,3 +836,10 @@ msgstr "樣板 Shell(_T)"
 #: ../authconfig.glade.h:66
 msgid "_Workgroup"
 msgstr "工作群組(_W)"
+
+#: ../authinfo.py:2374
+#, python-format
+msgid ""
+"Authentication module %s/pam_%s.so is missing. Authentication process will "
+"not work correctly."
+msgstr ""

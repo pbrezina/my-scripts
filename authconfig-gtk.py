@@ -66,44 +66,39 @@ class Authconfig:
 		self.runPriority = 45
 		self.moduleName = "Authentication"
 		self.moduleClass = "reconfig"
-		self.lib = "/lib"
-		for item in sys.path:
-			for element in item.split("/"):
-				if element.startswith("lib"):
-					self.lib = "/" + element
 		# "checkbox/button name": authInfo field, file, generic name,
 		# package, names of widgets to disable if checkbox not active
 		self.main_map = {
 			"enablecache" :
-			("enableCache", "/usr/sbin/nscd",
+			("enableCache", authinfo.PATH_NSCD,
 			 "caching", "nscd", []),
 			"enablenis" :
-			("enableNIS", "/sbin/ypbind",
+			("enableNIS", authinfo.PATH_YPBIND,
 			 "NIS", "ypbind", ["confignis"]),
 			"enablehesiod" :
-			("enableHesiod", self.lib + "/libnss_hesiod.so.2",
+			("enableHesiod", authinfo.PATH_LIBNSS_HESIOD,
 			 "Hesiod", "glibc", ["confighesiod"]),
 			"enableldap" :
-			("enableLDAP", self.lib + "/libnss_ldap.so.2",
+			("enableLDAP", authinfo.PATH_LIBNSS_LDAP,
 			 "LDAP", "nss_ldap", ["configldap"]),
 			"enableldapauth" :
-			("enableLDAPAuth", self.lib + "/security/pam_ldap.so",
+			("enableLDAPAuth", authinfo.PATH_PAM_LDAP,
 			 "LDAP", "nss_ldap", ["configldapauth"]),
 			"enablekerberos" :
-			("enableKerberos", self.lib + "/security/pam_krb5.so",
+			("enableKerberos", authinfo.PATH_PAM_KRB5,
 			 "Kerberos", "pam_krb5", ["configkerberos"]),
 			"enablesmb" :
-			("enableSMB", self.lib + "/security/pam_smb_auth.so",
+			("enableSMB", authinfo.PATH_PAM_SMB,
 			 "SMB", "pam_smb", ["configsmb"]),
 			"enableshadow" :
 			("enableShadow", "", "", "", []),
 			"enablemd5" :
 			("enableMD5", "", "", "", []),
 			"enablewinbind" :
-			("enableWinbind", self.lib + "/libnss_winbind.so.2",
+			("enableWinbind", authinfo.PATH_LIBNSS_WINBIND,
 			 "winbind", "samba-client", ["configwinbind"]),
 			"enablewinbindauth" :
-			("enableWinbindAuth", self.lib + "/security/pam_winbind.so",
+			("enableWinbindAuth", authinfo.PATH_PAM_WINBIND,
 			 "winbind", "samba-client", ["configwinbindauth"]),
 			"enablelocauthorize" :
 			("enableLocAuthorize", "", "", "", []),
@@ -163,7 +158,7 @@ class Authconfig:
 			"configwinbind": ("winbindsettings", "winbind_map"),
 			"configwinbindauth": ("winbindsettings", "winbind_map"),
 		}
-		self.info = authinfo.read()
+		self.info = authinfo.read(self.message_callback)
 		self.pristineinfo = self.info.copy()
 		return
 
@@ -173,7 +168,7 @@ class Authconfig:
 
 	def winbindjoin_maybe_launch(self, button, map, xml, parent):
 		backup = self.info.copy()
-		pristine = authinfo.read()
+		pristine = authinfo.read(self.message_callback)
 		self.info_apply(map, xml)
 		if self.info.differs(pristine):
 			response = self.run_on_button(self, "joinsave",
@@ -376,7 +371,7 @@ class Authconfig:
 				else:
     					cond = "cond"
 				os.system("/etc/init.d/autofs " + cond + "restart")
-		return
+
 	def ldap_cacerts_test(self):
 		if self.info.enableLDAPS and self.info.testLDAPCACerts():
 		    msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
@@ -386,6 +381,12 @@ class Authconfig:
 			"Then press OK.") % self.info.ldapCacertDir)
 		    msg.run()
 		    msg.destroy()
+
+	def message_callback(self, text):
+		msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
+			gtk.BUTTONS_OK,	text)
+		msg.run()
+		msg.destroy()
 
 # Fake the firstboot setup.
 if __name__ == '__main__':

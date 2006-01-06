@@ -29,12 +29,20 @@ import shvfile
 import dnsclient
 import sys
 import errno
+import acutil
+from rhpl.translate import _
 
 SYSCONFDIR = "/etc"
 AUTH_PAM_SERVICE = "system-auth"
 AUTH_PAM_SERVICE_AC = "system-auth-ac"
-# AUTH_MODULE_DIR = "/lib/security/$ISA" # no longer desired
-AUTH_MODULE_DIR = ""
+
+if "lib64" in str(globals()["acutil"]):
+	LIBDIR = "/lib64"
+else:
+	LIBDIR = "/lib"	
+
+AUTH_MODULE_DIR = LIBDIR + "/security"
+
 PATH_PORTMAP = "/sbin/portmap"
 PATH_PWCONV = "/usr/sbin/pwconv"
 PATH_NSCD = "/usr/sbin/nscd"
@@ -55,22 +63,18 @@ PATH_YPBIND = "/sbin/ypbind"
 PATH_YPBIND_PID = "/var/run/ypbind.pid"
 PATH_SEBOOL = "/usr/sbin/setsebool"
 
-if "/lib64/" in sys.path:
-	LIBDIR = "/lib64"
-else:
-	LIBDIR = "/lib"
-
 PATH_LIBNSS_DB = LIBDIR + "/libnss_db.so.2"
 PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
 PATH_LIBNSS_NIS = LIBDIR + "/libnss_nis.so.2"
+PATH_LIBNSS_HESIOD = LIBDIR + "/libnss_hesiod.so.2"
 PATH_LIBNSS_ODBCBIND = LIBDIR + "/libnss_odbcbind.so.2"
 PATH_LIBNSS_WINBIND = LIBDIR + "/libnss_winbind.so.2"
 PATH_LIBNSS_WINS = LIBDIR + "/libnss_wins.so.2"
 
-PATH_PAM_KRB5 = LIBDIR + "/security/pam_krb5.so"
-PATH_PAM_LDAP = LIBDIR + "/security/pam_ldap.so"
-PATH_PAM_SMB = LIBDIR + "/security/pam_smb_auth.so"
-PATH_PAM_WINBIND = LIBDIR + "/security/pam_winbind.so"
+PATH_PAM_KRB5 = AUTH_MODULE_DIR + "/pam_krb5.so"
+PATH_PAM_LDAP = AUTH_MODULE_DIR + "/pam_ldap.so"
+PATH_PAM_SMB = AUTH_MODULE_DIR + "/pam_smb_auth.so"
+PATH_PAM_WINBIND = AUTH_MODULE_DIR + "/pam_winbind.so"
 
 PATH_WINBIND_NET = "/usr/bin/net"
 
@@ -573,8 +577,8 @@ def isEmptyDir(path):
 			pass
 	return True
 
-def read():
-	info = AuthInfo()
+def read(msgcb):
+	info = AuthInfo(msgcb)
 	info.read()
 	return info
 
@@ -595,7 +599,9 @@ class SaveGroup:
 		return ret
 
 class AuthInfo:
-	def __init__(self):
+	def __init__(self, msgcb):
+		self.messageCB = msgcb
+
 		# Service-specific settings.
 		self.hesiodLHS = ""
 		self.hesiodRHS = ""
@@ -2361,8 +2367,13 @@ class AuthInfo:
 		logic = module[LOGIC]
 		output = ""
 		if stack and logic:
-			output += "%-12s%-13s %spam_%s.so" % (stack, logic,
-				 AUTH_MODULE_DIR, module[NAME])
+			output += "%-12s%-13s pam_%s.so" % (stack, logic,
+				module[NAME])
+			if not module[NAME] in self.module_missing and not os.access("%s/pam_%s.so"
+				% (AUTH_MODULE_DIR, module[NAME]), os.X_OK):
+				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly." %
+					(AUTH_MODULE_DIR, module[NAME])))				
+				self.module_missing[module[NAME]] = True
 			args = ""
 			if module[NAME] == "cracklib":
 				args = self.cracklibArgs
@@ -2414,6 +2425,7 @@ class AuthInfo:
 	def writePAM(self):
 		have_afs = False
 		f = None
+		self.module_missing = {}
 		output = ""
 		try:
 			f = openLocked(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC, 0644)

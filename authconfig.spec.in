@@ -93,7 +93,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
-* Fri Dec 23 2005 Tomas Mraz <tmraz@redhat.com> - 5.1.1-1
+* Fri Jan  6 2006 Tomas Mraz <tmraz@redhat.com> - 5.1.1-1
+- print warning if PAM module is missing when the PAM configuration
+  is saved (#168880)
+
+* Fri Dec 23 2005 Tomas Mraz <tmraz@redhat.com>
 - make child dialog preset code more robust (#176462)
 
 * Sat Dec 17 2005 Tomas Mraz <tmraz@redhat.com> - 5.1.0-1

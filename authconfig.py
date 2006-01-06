@@ -207,7 +207,7 @@ class Authconfig:
 			parser.parse_args(["-h"])
 	
 	def probe(self):
-		authinfo = authinfo.AuthInfo()
+		authinfo = authinfo.AuthInfo(self.printError)
 		authinfo.probe()
 		if authinfo.hesiodLHS and authinfo.hesiodRHS:
 			print "hesiod %s/%s" % (authinfo.hesiodLHS,
@@ -220,7 +220,7 @@ class Authconfig:
 				authinfo.kerberosKDC or "", authinfo.kerberosAdminServer or "")
 	
 	def readAuthInfo(self):
-		self.info = authinfo.read()
+		self.info = authinfo.read(self.printError)
 		# FIXME: what about printing critical errors reading individual configs?
 		self.pristineinfo = self.info.copy()
 
@@ -469,7 +469,7 @@ class AuthconfigTUI(Authconfig):
 		widgets = []
 		for (t, desc, attr, val) in items:
 			if t == "tfvalue":
-      				cb = snack.Checkbox(desc, getattr(self.info, attr))
+      				cb = snack.Checkbox(desc, bool(getattr(self.info, attr)))
       				widgets.append(cb)
 				questionGrid.setField(snack.Label(""), 0, row, anchorRight=1)
 				questionGrid.setField(cb, 1, row, anchorLeft=1)
@@ -605,7 +605,7 @@ class AuthconfigTUI(Authconfig):
 		questions = [("lvalue",
 			 _("Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"),
 			  None, None)]
-		orig_info = authinfo.read()
+		orig_info = authinfo.read(self.printError)
 		orig_info.update()
 		self.info.update()
 		ret = False
