@@ -2470,6 +2470,9 @@ class AuthInfo:
 
 		self.linkPAMService(AUTH_PAM_SERVICE_AC, SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE)
 
+		return True
+
+	def writeSysconfig(self):
 		try:
 			shv = shvfile.rcreate(SYSCONFDIR+"/sysconfig/authconfig")
 		except IOError:
@@ -2530,6 +2533,7 @@ class AuthInfo:
 				ret = ret and self.writeWinbind()
 			ret = ret and self.writeNSS()
 			ret = ret and self.writePAM()
+			ret = ret and self.writeSysconfig()
 			ret = ret and self.writeNetwork()
 		except IOError:
 			return False
@@ -2567,6 +2571,11 @@ class AuthInfo:
 		("enableKerberos", "b"), ("enableWinbindAuth", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"), ("enableLocAuthorize", "b")]),
+	SaveGroup(self.writeSysconfig, [("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"),
+		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
+		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
+		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
+		("enableSMB", "b"), ("enableLocAuthorize", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 		self.update()

@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Jan  9 2006 Tomas Mraz <tmraz@redhat.com> - 5.1.2-1
+- fixed regression when saving nsswitch.conf
+
 * Fri Jan  6 2006 Tomas Mraz <tmraz@redhat.com> - 5.1.1-1
 - print warning if PAM module is missing when the PAM configuration
   is saved (#168880)
