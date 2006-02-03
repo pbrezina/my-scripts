@@ -2466,7 +2466,7 @@ class AuthInfo:
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
-					(self.enableLocAuthorize and module[NAME] == "localuser")) or
+					(self.enableLocAuthorize and module[NAME] == "localuser") or
 					(not self.enableSysNetAuth and module[NAME] == "succeed_if")):
 					output += self.formatPAMModule(module)
 
