@@ -88,7 +88,8 @@ EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd \
 	authconfig.console authconfig-tui.console authconfig-gtk.console \
 	authconfig.desktop.in authconfig.py authinfo.py \
 	shvfile.py dnsclient.py authconfig-gtk.py authconfig.glade \
-	man/en/authconfig.8 man/en/authconfig-tui.8 NOTES utf8ify-mo \
+	man/en/authconfig.8 man/en/authconfig-tui.8 man/en/system-auth-ac.5 \
+	NOTES utf8ify-mo \
 	intltool-extract.in intltool-merge.in intltool-update.in \
 	user_auth.png README.samba3 mkinstalldirs authconfig.glade.h \
 	cacertdir_rehash
