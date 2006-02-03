@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-06 22:06+0200\n"
+"PO-Revision-Date: 2006-02-03 22:46+0200\n"
 "Last-Translator: Tom Berner <tom@lodz.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -283,11 +283,11 @@ msgstr "upoważniaj lokalnych użytkowników także przez zdalne usługi"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "upoważnij konta systemowe przez usługi sieciowe"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "upoważnij konta systemowe tylko przez lokalne pliki"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -633,7 +633,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Opcje</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -708,6 +708,9 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"Dla kont użytkowników zarządzanych w lokalnym systemie plików /etc/passwd "
+"nie będzie sprawdzane upoważnienie z usług sieciowych, takich jak LDAP lub "
+"Kerberos."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -770,15 +773,14 @@ msgstr ""
 "używa SMB (System Message Block)."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
 "Lightweight Directory Access Protocol jest standardem przeszukiwania "
-"katalogu ułożonego w strukturze hierarchicznej. LDAP coraz częściej jest "
-"stosowany w każdej wielkości sieciach."
+"katalogu przechowującego dane w strukturze hierarchicznej. LDAP jest coraz "
+"częściej używany w małych i dużych sieciach."
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
@@ -805,6 +807,8 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"Gdy jest włączone, pozwala usługom sieciowym takim jak LDAP lub Kerberos na "
+"upoważnianie kont systemowych tego komputera, w tym roota."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -834,7 +838,7 @@ msgstr "Serwer _administracyjny"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "Upow_ażnij konta systemowe przez usługi sieciowe"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -880,21 +884,3 @@ msgid ""
 msgstr ""
 "Brak modułu uwierzytelniania %s/pam_%s.so. Proces uwierzytelniania nie\n"
 "będzie poprawny."
-
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "PRZYKŁAD.COM"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
