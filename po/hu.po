@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: hu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-02-01 07:58+0100\n"
+"PO-Revision-Date: 2006-02-03 23:24+0100\n"
 "Last-Translator: Szentiványi Gábor <szentivanyi.gabor@ulx.hu>\n"
 "Language-Team: hungarian\n"
 "MIME-Version: 1.0\n"
@@ -119,11 +119,11 @@ msgstr "Kerberos-azonosítás tiltása alapértelmezésben"
 
 #: ../authconfig.py:98
 msgid "default kerberos KDC"
-msgstr "alapértelmezett Kerberos-KDC"
+msgstr "alapértelmezett Kerberos KDC"
 
 #: ../authconfig.py:100
 msgid "default kerberos admin server"
-msgstr "alapértelmezett Kerberos-rendszergazda-kiszolgáló"
+msgstr "alapértelmezett Kerberos rendszergazda kiszolgáló"
 
 #: ../authconfig.py:101 ../authconfig.py:131
 msgid "<realm>"
@@ -175,13 +175,11 @@ msgstr "munkacsoport-azonosítási kiszolgálók a következőben:"
 
 #: ../authconfig.py:122
 msgid "enable winbind for user information by default"
-msgstr ""
-"a Winbind engedélyezése alapértelmezésben felhasználói adatok lekérdezéséhez"
+msgstr "a Winbind engedélyezése alapértelmezésben felhasználói adatok lekérdezéséhez"
 
 #: ../authconfig.py:124
 msgid "disable winbind for user information by default"
-msgstr ""
-"a Winbind letiltása alapértelmezésben felhasználói adatok lekérdezéséhez"
+msgstr "a Winbind letiltása alapértelmezésben felhasználói adatok lekérdezéséhez"
 
 #: ../authconfig.py:126
 msgid "enable winbind for authentication by default"
@@ -197,7 +195,7 @@ msgstr "biztonsági mód a Samba és a Winbind használatához"
 
 #: ../authconfig.py:132
 msgid "default realm for samba and winbind when security=ads"
-msgstr "alapértelmezett realm a Sambához és a Winbindhoz security=ads esetén"
+msgstr "alapértelmezett Kerberos tartomány a Sambához és a Winbindhoz security=ads esetén"
 
 #: ../authconfig.py:133 ../authconfig.py:135
 msgid "<lowest-highest>"
@@ -294,29 +292,27 @@ msgstr "alapértelmezett Hesiod RHS"
 
 #: ../authconfig.py:167
 msgid "enable caching of user information by default"
-msgstr ""
-"felhasználói információk gyorstárazásának engedélyezése alapértelmezésben"
+msgstr "felhasználói információk gyorstárazásának engedélyezése alapértelmezésben"
 
 #: ../authconfig.py:169
 msgid "disable caching of user information by default"
-msgstr ""
-"felhasználói információk gyorstárazásának kikapcsolása alapértelmezésben"
+msgstr "felhasználói információk gyorstárazásának kikapcsolása alapértelmezésben"
 
 #: ../authconfig.py:172
 msgid "local authorization is sufficient for local users"
-msgstr "helyi felhasználók számára elegendő a helyi azonosítás"
+msgstr "helyi felhasználók számára elegendő a helyi jogosultság ellenőrzés"
 
 #: ../authconfig.py:174
 msgid "authorize local users also through remote service"
-msgstr "a helyi felhasználók azonosítása távoli szolgáltatással"
+msgstr "helyi felhasználók jogosultságait is távoli szolgáltatással ellenőrizze"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "a rendszerfelhasználókat hálózati szolgáltatásokkal azonosítsa"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "rendszerfelhasználókat csak helyi fájlokkal azonosítsa"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -324,8 +320,7 @@ msgstr "a portmap, az ypbind és az nscd ne legyen elindítva/leállítva"
 
 #: ../authconfig.py:185
 msgid "do not update the configuration files, only print new settings"
-msgstr ""
-"ne frissítse a konfigurációs fájlokat, csak nyomtassa ki az új beállításokat"
+msgstr "ne frissítse a konfigurációs fájlokat, csak nyomtassa ki az új beállításokat"
 
 #: ../authconfig.py:189
 msgid "display Back instead of Cancel in the main dialog of the TUI"
@@ -347,8 +342,7 @@ msgstr "minden konfigurációs fájl frissítése"
 
 #: ../authconfig.py:200
 msgid "probe network for defaults and print them"
-msgstr ""
-"hálózat szondázása az alapértelmezett beállításokért, majd azok nyomtatása"
+msgstr "hálózat szondázása az alapértelmezett beállításokért, majd azok nyomtatása"
 
 #: ../authconfig.py:205
 msgid "unexpected argument"
@@ -533,7 +527,7 @@ msgstr "NIS-beállítás"
 
 #: ../authconfig.py:582
 msgid "Realm:"
-msgstr "Realm:"
+msgstr "Tartomány:"
 
 # Key Distribution Center
 #: ../authconfig.py:583
@@ -542,7 +536,7 @@ msgstr "KDC:"
 
 #: ../authconfig.py:584
 msgid "Admin Server:"
-msgstr "Rendszergazda-kiszolgáló:"
+msgstr "Rendszergazda kiszolgáló:"
 
 #: ../authconfig.py:585
 msgid "Use DNS to resolve hosts to realms"
@@ -550,7 +544,7 @@ msgstr "DNS használata a gépek realmhez való rendelésére"
 
 #: ../authconfig.py:586
 msgid "Use DNS to locate KDCs for realms"
-msgstr "DNS használata a realm-KDC-k keresésére"
+msgstr "DNS használata a tartományi KDC-k keresésére"
 
 #: ../authconfig.py:587 ../authconfig.glade.h:28
 msgid "Kerberos Settings"
@@ -618,7 +612,7 @@ msgstr "Tartományvezérlők:"
 
 #: ../authconfig.py:640
 msgid "ADS Realm:"
-msgstr "ADS-realm:"
+msgstr "ADS tartomány:"
 
 #: ../authconfig.py:641
 msgid "Template Shell:"
@@ -666,7 +660,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Opciók</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -702,7 +696,7 @@ msgstr "Win_bind beállítása..."
 
 #: ../authconfig.glade.h:13
 msgid "Do_n't Save"
-msgstr "Me_ntés elhagyása"
+msgstr "Me_ntés kihagyása"
 
 #: ../authconfig.glade.h:14
 msgid "Domain"
@@ -741,14 +735,16 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"A helyi /etc/passwd fájlban kezelt felhasználók jogosultságait a rendszer nem "
+"fogja hálózati szolgáltatásokkal mint LDAP vagy Kerberos ellenőrizni"
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
-msgstr "Hesiod-_LHS"
+msgstr "Hesiod _LHS"
 
 #: ../authconfig.glade.h:25
 msgid "Hesiod _RHS"
-msgstr "Hesiod-_RHS"
+msgstr "Hesiod _RHS"
 
 #: ../authconfig.glade.h:26
 msgid ""
@@ -761,7 +757,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:27
 msgid "Joining Winbind Domain"
-msgstr "Csatlakozás a Winbind-tartományhoz"
+msgstr "Csatlakozás a Winbind tartományhoz"
 
 #: ../authconfig.glade.h:29
 msgid ""
@@ -804,24 +800,22 @@ msgstr ""
 "használó kiszolgálóhoz csatlakozva ellenőrzi a felhasználói jelszavakat."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"A Lightweight Directory Access Protocol egy olyan katalógusban való keresés "
-"szabványos módja, amely katalógus tetszőleges adatokat tartalmazhat "
-"strukturált hierarchiában. Az LDAP használata kis és nagy hálózatokban is "
-"egyre növekszik."
+"A Lightweight Directory Access Protocol egy szabványos kereseési mód egy olyan címtárban, "
+"amelyben tetszőleges adatok tárolhatók egy strukturált hierarchiában. Az LDAP "
+"használata kis és nagy hálózatokban is egyre növekszik."
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "_DNS használata a realm-KDC-k kereséséhez"
+msgstr "_DNS használata a Kerberos tartomány KDC-jeinek kereséséhez"
 
 #: ../authconfig.glade.h:42
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "DNS _használata a gépek realmhez rendelésére"
+msgstr "DNS _használata a gépek Kerberos tartományhoz rendelésére"
 
 #: ../authconfig.glade.h:43
 msgid "Use _MD5 Passwords"
@@ -840,10 +834,13 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"Ha engedélyezve van, akkor lehetővé teszi az LDAP-nak vagy "
+"a Kerberosnak, hogy rendszerfelhasználókat, beleértve a root-ot ezen a "
+"gépen azonosítsanak."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
-msgstr "Winbind-os ADS-_realm"
+msgstr "Winbind ADS _tartomány"
 
 #: ../authconfig.glade.h:49
 msgid "Winbind Domain Co_ntrollers"
@@ -866,11 +863,11 @@ msgstr ""
 
 #: ../authconfig.glade.h:53
 msgid "_Admin Servers"
-msgstr "_Rendszergazda-kiszolgálók"
+msgstr "_Rendszergazda kiszolgálók"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "Rendszerfelhasználók _azonosítása hálózati szolgáltatásokkal"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -886,7 +883,7 @@ msgstr "_KDC-k"
 
 #: ../authconfig.glade.h:58
 msgid "_Local authorization is sufficient for local users"
-msgstr "_Helyi felhasználók számára elegendő a helyi azonosítás"
+msgstr "_Helyi felhasználók számára elegendő a helyi jogosultság ellenőrzés"
 
 #: ../authconfig.glade.h:59
 msgid "_Password"
@@ -894,7 +891,7 @@ msgstr "_Jelszó"
 
 #: ../authconfig.glade.h:60
 msgid "_Realm"
-msgstr "R_ealm"
+msgstr "_Kerberos tartomány"
 
 #: ../authconfig.glade.h:61
 msgid "_Security Model"
@@ -917,20 +914,3 @@ msgstr ""
 "Az azonosítást végző %s/pam_%s.so modul hiányzik. Az azonosítási folyamat "
 "nem fog megfelelően működni."
 
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "PELDA.HU"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
