@@ -272,8 +272,13 @@ argv_smb_auth = [
 	"nolocal"
 ]
 
+argv_succeed_if_auth = [
+	"uid >= 500",
+	"quiet"
+]
+
 argv_succeed_if_account = [
-	"uid < 100",
+	"uid < 500",
 	"quiet"
 ]
 
@@ -299,14 +304,15 @@ LOGIC = 2
 NAME = 3
 ARGV = 4
 
-# The list of stacks, module flags, and arguments, if there are any.  Here
-# we put pam_unix first, and the rest in alphabetic order.
+# The list of stacks, module flags, and arguments, if there are any.
 # [ MANDATORY, STACK, LOGIC, NAME, ARGV ]
 standard_pam_modules = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		[]],
+	[False, AUTH,		LOGIC_REQUISITE,
+	 "succeed_if",		argv_succeed_if_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "afs",			argv_afs_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
@@ -666,6 +672,7 @@ class AuthInfo:
 		self.enableSMB = None
 		self.enableWinbindAuth = None
 		self.enableLocAuthorize = None
+		self.enableSysNetAuth = None
 
 		self.brokenShadow = None
 		self.forceBrokenShadow = None
@@ -1188,6 +1195,10 @@ class AuthInfo:
 				self.enableLocAuthorize = shv.getBoolValue("USELOCAUTHORIZE")
 			except ValueError:
 				pass
+			try:
+				self.enableSysNetAuth = shv.getBoolValue("USESYSNETAUTH")
+			except ValueError:
+				pass
 			shv.close()
 		except IOError:
 			pass
@@ -1290,6 +1301,7 @@ class AuthInfo:
 		(self.enableShadow != b.enableShadow) or
 		(self.enableSMB != b.enableSMB) or
 		(self.enableLocAuthorize != b.enableLocAuthorize) or
+		(self.enableSysNetAuth != b.enableSysNetAuth) or
 		(self.brokenShadow != b.brokenShadow) or
 		(self.forceBrokenShadow != b.forceBrokenShadow) or
 
@@ -2454,7 +2466,8 @@ class AuthInfo:
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
-					(self.enableLocAuthorize and module[NAME] == "localuser")):
+					(self.enableLocAuthorize and module[NAME] == "localuser")) or
+					(not self.enableSysNetAuth and module[NAME] == "succeed_if")):
 					output += self.formatPAMModule(module)
 
 			# Write it out and close it.
@@ -2492,6 +2505,7 @@ class AuthInfo:
 		shv.setBoolValue("USESMBAUTH", self.enableSMB)
 		shv.setBoolValue("USEWINBINDAUTH", self.enableWinbindAuth)
 		shv.setBoolValue("USELOCAUTHORIZE", self.enableLocAuthorize)
+		shv.setBoolValue("USESYSNETAUTH", self.enableSysNetAuth)
 
 		shv.write(0644)
 		shv.close()
@@ -2570,12 +2584,13 @@ class AuthInfo:
 		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
 		("enableKerberos", "b"), ("enableWinbindAuth", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
-		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"), ("enableLocAuthorize", "b")]),
+		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
+		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b")]),
 	SaveGroup(self.writeSysconfig, [("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
-		("enableSMB", "b"), ("enableLocAuthorize", "b")]),
+		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enableSysNetAuth", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 		self.update()
@@ -2724,6 +2739,7 @@ class AuthInfo:
 			self.passwdqcArgs)
 		print "Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),
 			self.localuserArgs)
+		print "Authenticate system accounts against network services is %s" % formatBool(self.enableLocAuthorize)
 
 	def toggleShadow(self):
 		# now, do file manipulation on the password files themselves.

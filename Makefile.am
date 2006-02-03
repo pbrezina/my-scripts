@@ -98,6 +98,12 @@ VERSION=@PACKAGE_VERSION@
 TAG=$(shell echo r-$(VERSION) | sed 's,\.,-,g')
 distdir=$(PACKAGE)-$(VERSION)
 
+authconfig.glade.h: authconfig.glade
+	$(INTLTOOL_EXTRACT) --type=gettext/glade $<
+
+update-po: authconfig.glade.h
+	$(MAKE) -C po update-po
+
 tag:
 	cvs tag -cR $(TAG)
 

@@ -173,6 +173,11 @@ class Authconfig:
  		parser.add_option("--disablelocauthorize", action="store_true",
 			help=_("authorize local users also through remote service"))
 
+		parser.add_option("--enablesysnetauth", action="store_true",
+			help=_("authenticate system accounts by network services"))
+ 		parser.add_option("--disablesysnetauth", action="store_true",
+			help=_("authenticate system accounts by local files only"))
+
 		parser.add_option("--nostart", action="store_true",
 			help=_("do not start/stop portmap, ypbind, and nscd"))
 
@@ -237,6 +242,7 @@ class Authconfig:
 		bool_settings = {"shadow":"enableShadow",
 			"md5":"enableMD5",
 			"locauthorize":"enableLocAuthorize",
+			"sysnetauth":"enableSysNetAuth",
 			"cache":"enableCache",
 			"hesiod":"enableHesiod",
 			"ldap":"enableLDAP",

@@ -102,6 +102,8 @@ class Authconfig:
 			 "winbind", "samba-client", ["configwinbindauth"]),
 			"enablelocauthorize" :
 			("enableLocAuthorize", "", "", "", []),
+			"enablesysnetauth" :
+			("enableSysNetAuth", "", "", "", []),
 		}
 		# entry or label / button / checkbox / option menu :
 		# entry (or label): authInfo field
