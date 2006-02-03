@@ -3,14 +3,14 @@
 # Copyright (C) 2002 Red Hat, Inc.
 # James Hashida <khashida@redhat.com>, 2002.
 # Tadashi Jokagi <fedora@elf.no-ip.org>, 2004.
-# Hirofumi Saito <hi_saito@yk.rim.or.jp>, 2004, 2005.
+# Hirofumi Saito <hi_saito@yk.rim.or.jp>, 2004, 2005, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2005-11-27 20:49+0900\n"
+"PO-Revision-Date: 2006-02-04 03:09+0900\n"
 "Last-Translator: Hirofumi Saito <hi_saito@yk.rim.or.jp>\n"
 "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -324,11 +324,11 @@ msgstr "リモートサービスを通してのローカルユーザーを認証
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "ネットワークサービスによる認証システムアカウント"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "ローカルファイルだけによる認証システムアカウント"
 
 # ../authconfig.c:769
 #: ../authconfig.py:182
@@ -349,14 +349,12 @@ msgid "do not display the deprecated text user interface"
 msgstr "不適切なテキストユーザーインタフェースを表示しない"
 
 #: ../authconfig.py:194
-#, fuzzy
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "--test の反対、設定ファイルのアップデート"
+msgstr "--test の反対、変更された設定に対する設定ファイルのアップデート"
 
 #: ../authconfig.py:197
-#, fuzzy
 msgid "update all configuration files"
-msgstr "--test の反対、設定ファイルのアップデート"
+msgstr "全ての設定ファイルのアップデート"
 
 #: ../authconfig.py:200
 msgid "probe network for defaults and print them"
@@ -714,7 +712,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>オプション</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -791,6 +789,8 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"ローカルの /etc/passwd ファイルシステムでメンテナンスされたユーザーアカウント"
+"は LDAP や Kerberos のようなネットワークサービスからの認証チェックをされません。"
 
 # ../authconfig.c:760
 #: ../authconfig.glade.h:24
@@ -858,15 +858,14 @@ msgstr ""
 "してユーザーパスワードを確証します。"
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"Lightweight Directory Access Protocol とは階級構成の中の随意のデータを保持す"
-"るディレクトリを検索する標準的な手段です。LDAP は小規模から大規模なネットワー"
-"クでの使用が増加しています。"
+"Lightweight Directory Access Protocol とは階級構成の中の随意のデータを保持"
+"するディレクトリを検索する標準的な手段です。LDAP は小規模から大規模なネット"
+"ワークでの使用が増加しています。"
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
@@ -895,6 +894,8 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"有効になれば、このマシンの root を含むシステムアカウントを認証する "
+"LDAP や Kerberos のようなネットワークサービスが許可されます。"
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -926,7 +927,7 @@ msgstr "管理 サーバー(_A)"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "ネットワークサービスによる認証システムアカウント(_A)"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -974,20 +975,22 @@ msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr ""
+"認証モジュール %s/pam_%s.so が見つかりません。認証プロセスは正常に動作しま"
+"せん。"
 
 # ../authconfig.c:344
 #, fuzzy
 #~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
+#~ msgstr "<b>Hesiod</b>"
 
 # ../authconfig.c:500
 #, fuzzy
 #~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
+#~ msgstr "<b>Kerberos</b>"
 
 #, fuzzy
 #~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
+#~ msgstr "<b>Winbind</b>"
 
 #~ msgid "EXAMPLE.COM"
 #~ msgstr "EXAMPLE.COM"
