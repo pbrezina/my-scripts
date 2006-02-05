@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-08 18:14+0100\n"
+"PO-Revision-Date: 2006-02-06 00:02+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -285,11 +285,14 @@ msgstr "auktorisera lokala användare även genom fjärrtjänst"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "autentisera systemkonton genom nätverkstjänster"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "autentisera systemkonton endast genom lokala filer"
+
+msgid "Authenticate system accounts by local files only"
+msgstr "Autentisera systemkonton endast genom lokala filer"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -638,7 +641,10 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Alternativ</b>"
+
+msgid "Options"
+msgstr "Alternativ"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -708,11 +714,16 @@ msgstr "Aktivera stöd för _NIS"
 msgid "Enable _Winbind Support"
 msgstr "Aktivera stöd för _Winbind"
 
+# Detta borde buggrapporteras!
+#
 #: ../authconfig.glade.h:22
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"För användarkonton som underhålls i den lokala /etc/passwd-filen kommer "
+"systemet inte att kontrollera auktorisering från nätverkstjänster som "
+"exempelvis LDAP eller Kerberos."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -775,14 +786,13 @@ msgstr ""
 "en server som använder protokolluppsättningen SMB (System Message Block)."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
 "LDAP (Lightweight Directory Access Protocol) är ett standardsätt för att "
-"genomsöka en katalog som kan innehålla godtycklig data i en strukturerad "
+"genomsöka en katalog som kan innehålla godtyckliga data i en strukturerad "
 "hierarki. LDAP används mer och mer i små till stora nätverk."
 
 #: ../authconfig.glade.h:41
@@ -810,6 +820,8 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"När detta är aktiverat tillåts nätverkstjänster som exempelvis LDAP eller "
+"Kerberos att autentisera systemkonton inklusive root på denna maskin."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -839,7 +851,10 @@ msgstr "_Administrationsservrar"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Autentisera systemkonton genom nätverkstjänster"
+
+msgid "Authenticate system accounts by network services"
+msgstr "Autentisera systemkonton genom nätverkstjänster"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -889,17 +904,11 @@ msgstr ""
 "Autentiseringsmodulen %s/pam_%s.so saknas. Autentiseringsprocessen kommer "
 "inte att fungera korrekt."
 
-#, fuzzy
 #~ msgid "<b>Hesiod</b>"
+#~ msgstr "<b>Hesiod</b>"
+
+#~ msgid "Hesiod"
 #~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
 
 #~ msgid "EXAMPLE.COM"
 #~ msgstr "EXEMPEL.SE"
