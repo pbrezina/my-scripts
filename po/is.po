@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: authconfig 1.25\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-10 01:05+0000\n"
+"PO-Revision-Date: 2006-02-06 01:05+0000\n"
 "Last-Translator: Richard Allen <ra@ra.is>\n"
 "Language-Team: Icelandic <kde-isl@molar.is>\n"
 "MIME-Version: 1.0\n"
@@ -279,11 +279,11 @@ msgstr "auðkenna staðbundna notendur einnig við fjartengda vél"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "auðkenna kerfisnotendur úr netþjónustum"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "auðkenna kerfisnotendur úr staðbundnum skrám eingöngu"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -623,11 +623,11 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Rofar</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
-msgstr "Alvörun"
+msgstr "Aðvörun"
 
 #: ../authconfig.glade.h:6
 msgid "Cache User _Information"
@@ -698,6 +698,8 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"Kerfið mun ekki nota netþjónustur eins og LDAP eða Kerberos fyrir notendur "
+"sem eru í /etc/passwd skránni á þessari vél."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -759,7 +761,6 @@ msgstr ""
 "sem notar SMB (system message block) prótókollana."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -794,6 +795,8 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"Þegar þetta er virkt má nota þjónustur eins og LDAP og Kerberos "
+"til að auðkenna kerfisnotendur eins og root á þessari vél."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -823,7 +826,7 @@ msgstr "_Stjórnþjónn"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Auðkenna kerfisnotendur eftir netþjónustum"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -867,21 +870,3 @@ msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr "Eininguna %s/pam_%s.so vantar. Auðkenningaferlið mun ekki virka rétt."
-
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "DAEMI.IS"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
