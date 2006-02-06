@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-18 22:49+0100\n"
+"PO-Revision-Date: 2006-02-06 23:19+0100\n"
 "Last-Translator: Xavier Conde Rueda <xaviconde@eremas.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -302,11 +302,11 @@ msgstr "també autoritza usuaris locals a través del servei remot"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "autentica els comptes del sistema a través de serveis de xarxa"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "autentica els comptes del sistema només a través de fitxers locals"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -650,7 +650,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Opcions</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -725,6 +725,9 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"Si un compte es manté a través del fitxer /etc/passwd del sistema de fitxers "
+"local, no es comprovarà l'autenticació en serveis de xarxa com ara LDAP o "
+"Kerberos."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -789,7 +792,6 @@ msgstr ""
 "sistema)."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -825,6 +827,9 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"Quan estigui habilitat, permetrà a serveis com ara LDAP o Kerberos "
+"autenticar els comptes del sistema d'aquesta màquina, incloent-hi el "
+"superusuari."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -854,7 +859,7 @@ msgstr "Servidors d'_administració"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Autentica els comptes del sistema a través de serveis de xarxa"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -901,18 +906,6 @@ msgstr ""
 "Manca el mòdul d'autenticació %s/pam_%s.so. El procés d'autenticació no "
 "funcionarà correctament."
 
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
 #~ msgid "EXAMPLE.COM"
 #~ msgstr "exemple.com"
 
@@ -958,10 +951,6 @@ msgstr ""
 
 #~ msgid "Use Local Policies"
 #~ msgstr "Usa polítiques locals"
-
-#, fuzzy
-#~ msgid "Information"
-#~ msgstr "Informació"
 
 #~ msgid "(c) 1999-2003 Red Hat, Inc."
 #~ msgstr "(c) 1999-2003 Red Hat, Inc."
