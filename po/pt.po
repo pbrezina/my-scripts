@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-08 13:12+0000\n"
+"PO-Revision-Date: 2006-02-08 10:05+0000\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <morais@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-POFile-SpellExtra: test Shadow ADS winbind CA kerberos portmap caching\n"
 "X-POFile-SpellExtra: LHS Directory shadow info MD Hesiod Protocol\n"
 "X-POFile-SpellExtra: winbindusedefaultdomain wins RHS KDCs Lightweight\n"
-"X-POFile-SpellExtra: nscd inform Adminstrador ads so pam\n"
+"X-POFile-SpellExtra: nscd inform Adminstrador ads so pam passwd\n"
 "X-POFile-IgnoreConsistency: User Information\n"
 
 #: ../authconfig.py:52
@@ -286,11 +286,11 @@ msgstr "autorizar os utilizadores locais também através de serviço remoto"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "autenticar as contas do sistema com os serviços da rede"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "autenticar as contas do sistema apenas com os ficheiros locais"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -634,7 +634,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Opções</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -708,7 +708,7 @@ msgstr "Activar Suporte _Winbind"
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
-msgstr ""
+msgstr "Para as contas do utilizador mantidas no ficheiro /etc/passwd local, não será feita a autorização dos serviços de rede, como o LDAP ou o Kerberos."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -772,7 +772,6 @@ msgstr ""
 "um servidor que utilize o conjunto de protocolos SMB."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -806,7 +805,7 @@ msgstr "Utilizar _TLS para cifrar ligações"
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
-msgstr ""
+msgstr "Quando estiver activo, permite aos serviços de rede, como o LDAP ou o Kerberos, autenticarem as contas do sistema, incluindo o 'root', nesta máquina."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -836,7 +835,7 @@ msgstr "Servidores _Admin"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Autenticar as contas do sistema com os serviços de rede"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -883,59 +882,3 @@ msgstr ""
 "Falta o módulo de autenticação %s/pam_%s.so. O processo de autenticação não "
 "irá funcionar correctamente."
 
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "EXEMPLO.COM"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
-
-#~ msgid "enable NIS"
-#~ msgstr "activar NIS"
-
-#~ msgid "disable NIS"
-#~ msgstr "desactivar NIS"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "utilizar políticas definidas localmente"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "não utilizar políticas definidas localmente"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: argumento inválido %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: a tentar continuar\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: erro crítico ao ler %s/%s"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: não consegui ler configuração do cache"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: erro crítico ao gravar configuração do cache"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: erro crítico ao escrever %s/%s"
-
-#~ msgid "Use Local Policies"
-#~ msgstr "Utilizar Políticas Locais"
