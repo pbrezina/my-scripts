@@ -1,17 +1,17 @@
-# translation of ru.po to 
+# translation of ru.po to
 # translation of ru.po to Russian
 # Leonid Kanter <leon@geon.donetsk.ua>, 2003.
 # Leonid Kanter <leon@asplinux.ru>, 2003, 2004.
-# Andrew Martynov <andrewm@inventa.ru>, 2004, 2005.
+# Andrew Martynov <andrewm@inventa.ru>, 2004, 2005, 2006.
 # Yuliya Poyarkova <ypoyarko@brisbane.redhat.com>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-09 09:27+1000\n"
-"Last-Translator: Yuliya Poyarkova <ypoyarko@brisbane.redhat.com>\n"
-"Language-Team:  <ru@li.org>\n"
+"PO-Revision-Date: 2006-02-16 02:23+0300\n"
+"Last-Translator: Andrew Martynov <andrewm@inventa.ru>\n"
+"Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -290,11 +290,13 @@ msgstr "авторизовать локальных пользователей �
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "проверять подлинность системных уч. записей сетевыми службами"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
 msgstr ""
+"проверять подлинность системных уч. записей только при помощи локальных "
+"файлов"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -637,7 +639,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Параметры</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -712,6 +714,9 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"Для учетных записей пользователей указанных в локальном файле /etc/passwd "
+"система не будет проверять их подлинность при помощи сетевых служб, таких "
+"как LDAP или Kerberos."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -774,15 +779,14 @@ msgstr ""
 "который использует протокол SMB (system message block)."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
 "LDAP (Lightweight Directory Access Protocol) - стандартный способ поиска "
-"каталогов, которые могут содержать данные в структурированной иерархии. LDAP "
-"все более широко используется в средних и больших сетях."
+"в каталогах, которые могут содержать данные в структурированной иерархии. "
+"LDAP все более широко используется в средних и больших сетях."
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
@@ -813,6 +817,9 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"При включении разрешает сетевым службам, таким как LDAP или Kerberos, "
+"проводить проверку подлинности системных учетных записей, включая root, на "
+"этой машине."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -842,7 +849,7 @@ msgstr "Сервера _управления"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Аутентификация системных уч. записей сетевыми службами"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
