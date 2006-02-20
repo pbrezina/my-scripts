@@ -1,4 +1,5 @@
 # translation of fr.po to 
+# translation of fr.po to
 # translation of fr.po to French
 # translation of fr.po to french
 # Copyright (C) 2002 Red Hat, Inc.
@@ -11,7 +12,7 @@ msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-09 15:36+1000\n"
+"PO-Revision-Date: 2006-02-20 15:31+1000\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -195,13 +196,11 @@ msgstr "<les plus bas-le plus haut> "
 
 #: ../authconfig.py:134
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
-"gamme d'uid que Winbind assignera aux utilisateurs de domaines ou de ads"
+msgstr "gamme d'uid que Winbind assignera aux utilisateurs de domaines ou de ads"
 
 #: ../authconfig.py:136
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
-"gamme de gid que Winbind assignera aux utilisateurs de domaines ou de ads"
+msgstr "gamme de gid que Winbind assignera aux utilisateurs de domaines ou de ads"
 
 #: ../authconfig.py:138
 msgid ""
@@ -292,16 +291,15 @@ msgstr "Une autorisation locale est suffisante pour les utilisateurs locaux"
 
 #: ../authconfig.py:174
 msgid "authorize local users also through remote service"
-msgstr ""
-"autoriser les utilisateurs locaux également à travers un service distant"
+msgstr "autoriser les utilisateurs locaux également à travers un service distant"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "authentifier les comptes de système par les services réseau"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "authentifier les comptes de système uniquement par les fichiers locaux"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -654,7 +652,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Options</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -729,6 +727,9 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"Pour les comptes d'utilisateurs maintenus dans le fichier local "
+"/etc/passwd, le système ne vérifiera pas l'authorisation de "
+"services réseau comme LDAP ou Kerberos."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -793,16 +794,15 @@ msgstr ""
 "Message Block)"
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
 "LDAP (Lightweight Directory Access Protocol) représente une technique "
-"standard de recherche des répertoires et peut contenir des données "
-"arbitraires dans une hiérarchie structurée. LDAP est aussi bien utilisé par "
-"les petits que par les grands réseaux."
+"standard de recherche de répertoires et peut contenir des données "
+"arbitraires dans une hiérarchie structurée. LDAP est de plus en plus "
+"utilisé dans des petits et des grands réseaux."
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
@@ -829,6 +829,8 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"Une fois activé, permet aux services réseau comme LDAP ou Kerberos d'authentifier "
+"les comptes de systèmes, y compris root sur cette machine."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -859,7 +861,7 @@ msgstr "Serveurs _Admin"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Authentifier les comptes de système par les services réseau"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -906,20 +908,3 @@ msgstr ""
 "Le module d'authentification %s/pam_%s.so n'est pas présent. Le processus "
 "d'authentification ne fonctionnera pas correctement."
 
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "EXAMPLE.COM"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
