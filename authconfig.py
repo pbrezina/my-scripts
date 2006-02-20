@@ -371,22 +371,22 @@ class AuthconfigTUI(Authconfig):
 		comp = snack.Label(_("User Information"))
 		infoGrid.setField(comp, 0, 0, anchorLeft=1, growx=1)
 
-		cache = cb = snack.Checkbox(_("Cache Information"), self.info.enableCache)
+		cache = cb = snack.Checkbox(_("Cache Information"), bool(self.info.enableCache))
 		infoGrid.setField(cb, 0, 1, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnCache))
 
-		hesiod = cb =	snack.Checkbox(_("Use Hesiod"), self.info.enableHesiod)
+		hesiod = cb =	snack.Checkbox(_("Use Hesiod"), bool(self.info.enableHesiod))
 		infoGrid.setField(cb, 0, 2, anchorLeft=1, growx=1)
 
-		ldap = cb = snack.Checkbox(_("Use LDAP"), self.info.enableLDAP)
+		ldap = cb = snack.Checkbox(_("Use LDAP"), bool(self.info.enableLDAP))
 		infoGrid.setField(cb, 0, 3, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnLDAP))
 
-		nis = cb = snack.Checkbox(_("Use NIS"), self.info.enableNIS)
+		nis = cb = snack.Checkbox(_("Use NIS"), bool(self.info.enableNIS))
 		infoGrid.setField(cb, 0, 4, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnNIS))
 
-		winbind = cb = snack.Checkbox(_("Use Winbind"), self.info.enableWinbind)
+		winbind = cb = snack.Checkbox(_("Use Winbind"), bool(self.info.enableWinbind))
 		infoGrid.setField(cb, 0, 5, anchorLeft=1, growx=1)
 
 		# Authentication
@@ -395,30 +395,30 @@ class AuthconfigTUI(Authconfig):
 		comp = snack.Label(_("Authentication"))
 		authGrid.setField(comp, 0, 0, anchorLeft=1, growx=1)
 
-		md5 = cb = snack.Checkbox(_("Use MD5 Passwords"), self.info.enableMD5)
+		md5 = cb = snack.Checkbox(_("Use MD5 Passwords"), bool(self.info.enableMD5))
 		authGrid.setField(cb, 0, 1, anchorLeft=1, growx=1)
 
-		shadow = cb = snack.Checkbox(_("Use Shadow Passwords"), self.info.enableShadow)
+		shadow = cb = snack.Checkbox(_("Use Shadow Passwords"), bool(self.info.enableShadow))
 		authGrid.setField(cb, 0, 2, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnShadow))
 
-		ldapa = cb = snack.Checkbox(_("Use LDAP Authentication"), self.info.enableLDAPAuth)
+		ldapa = cb = snack.Checkbox(_("Use LDAP Authentication"), bool(self.info.enableLDAPAuth))
 		authGrid.setField(cb, 0, 3, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnLDAPAuth))
 
-		krb5 = cb = snack.Checkbox(_("Use Kerberos"), self.info.enableKerberos)
+		krb5 = cb = snack.Checkbox(_("Use Kerberos"), bool(self.info.enableKerberos))
 		authGrid.setField(cb, 0, 4, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnKerberos))
 
-		smb = cb = snack.Checkbox(_("Use SMB Authentication"), self.info.enableSMB)
+		smb = cb = snack.Checkbox(_("Use SMB Authentication"), bool(self.info.enableSMB))
 		authGrid.setField(cb, 0, 5, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnSMB))
 
-		winbindauth = cb = snack.Checkbox(_("Use Winbind Authentication"), self.info.enableWinbindAuth)
+		winbindauth = cb = snack.Checkbox(_("Use Winbind Authentication"), bool(self.info.enableWinbindAuth))
 		authGrid.setField(cb, 0, 6, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnWinbindAuth))
 
-		locauthorize = cb = snack.Checkbox(_("Local authorization is sufficient"), self.info.enableLocAuthorize)
+		locauthorize = cb = snack.Checkbox(_("Local authorization is sufficient"), bool(self.info.enableLocAuthorize))
 		authGrid.setField(cb, 0, 7, anchorLeft=1, growx=1)
 
 		# Control grid
