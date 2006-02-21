@@ -1,3 +1,4 @@
+# translation of zh_TW.po to Chinese, Traditional
 # translation of zh_TW.po to Chinese Traditional
 # Translation of authconfig to Traditional Chinese
 # This file is distributed under the same license as the PACKAGE package.
@@ -12,9 +13,9 @@ msgstr ""
 "Project-Id-Version: zh_TW\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-01-11 14:39+1000\n"
+"PO-Revision-Date: 2006-02-21 15:45+1000\n"
 "Last-Translator: Chester Cheng <ccheng@redhat.com>\n"
-"Language-Team: Chinese Traditional <zh_TW@li.org>\n"
+"Language-Team: Chinese, Traditional <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -280,11 +281,11 @@ msgstr "本機使用者也要通過遠端服務認證"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "網路服務用的認證系統帳號"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "僅供本機檔案使用的認證系統帳號"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -622,7 +623,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>選項</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -696,7 +697,7 @@ msgstr "啟用 _Winbind 支援"
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
-msgstr ""
+msgstr "在本機檔案 /etc/passwd 中維護的使用者帳號，將不會由網路服務（例如 LDAP 或 Kerberos）檢查身份認證"
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -755,14 +756,13 @@ msgstr ""
 "密碼。"
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"輕巧目錄存取協定（LDAP）使用結構化、階層的方式貯存資料，是搜尋目錄的標準方"
-"法，已漸漸被用於小型至中型網路中。"
+"輕型目錄存取協定（LDAP）使用結構化、階層的方式貯存資料，是搜尋目錄的標準方"
+"法，已漸漸被用於小型至大型網路中。"
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
@@ -788,7 +788,7 @@ msgstr "使用 _TLS 為連線加密"
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
-msgstr ""
+msgstr "當啟用這功能時，可允許網路服務（例如 LDAP 或 Kerberos）對包括本機的 root 使用者，進行帳號認證"
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -817,7 +817,7 @@ msgstr "管理伺服器(_A)"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "由網路服務進行認證系統帳號(_A)"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -862,20 +862,3 @@ msgid ""
 "not work correctly."
 msgstr "找不到認證模組 %s/pam_%s.so。認證過程無法正確地運作。"
 
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "EXAMPLE.COM"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
