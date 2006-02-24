@@ -2,7 +2,7 @@
 # translation of authconfig.po to
 # translation of de.po to Deutsch
 # Copyright (C) 2002 Red Hat, Inc.
-# Ronny Buchmann <ronny-vlug@vlugnet.org> 2004, 2005
+# Ronny Buchmann <ronny-vlug@vlugnet.org> 2004, 2005, 2006
 # Claudia Krug <fhonig@redhat.it>, 2001.
 # Bernd Groh <bgroh@redhat.com>, 2003,2004.
 # Severin Heiniger <severinheiniger@gmail.com>, 2005.
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2005-10-03 20:46+0200\n"
-"Last-Translator: Severin Heiniger <severinheiniger@gmail.com>\n"
+"PO-Revision-Date: 2006-02-24 20:43+0100\n"
+"Last-Translator: Ronny Buchmann <ronny-vlug@vlugnet.org>\n"
 "Language-Team: German / Deutsch <fedora-i18n-list@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +95,6 @@ msgid "<dn>"
 msgstr "<dn>"
 
 #: ../authconfig.py:87
-#, fuzzy
 msgid "default LDAP base DN"
 msgstr "Standard LDAP Basis-DN"
 
@@ -162,7 +161,6 @@ msgid "<servers>"
 msgstr "<Server>"
 
 #: ../authconfig.py:117
-#, fuzzy
 msgid "names of servers to authenticate against"
 msgstr "Namen der Server, gegen die authentifiziert wird"
 
@@ -251,10 +249,9 @@ msgstr ""
 "Domänen-Benutzer sind"
 
 #: ../authconfig.py:150
-#, fuzzy
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr ""
-"nun der Winbind-Domäne oder ADS-Realm als dieser Administrator beitreten"
+"jetzt der Winbind-Domäne oder ADS-Realm als dieser Administrator beitreten"
 
 #: ../authconfig.py:153
 msgid "enable wins for hostname resolution"
@@ -298,11 +295,11 @@ msgstr "autorisiere lokale Benutzer auch über Fernzugriff"
 
 #: ../authconfig.py:177
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "authentifiziere Systembenutzer über Netzwerkdienste"
 
 #: ../authconfig.py:179
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "authentifiziere Systembenutzer nur über lokale Dateien"
 
 #: ../authconfig.py:182
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -319,19 +316,16 @@ msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "'Zurück' anstelle von 'Abbrechen' im Hauptdialog des TUI anzeigen"
 
 #: ../authconfig.py:191
-#, fuzzy
 msgid "do not display the deprecated text user interface"
-msgstr "Benutzerinterface nicht anzeigen"
+msgstr "das veraltete Text-Benutzerinterface nicht anzeigen"
 
 #: ../authconfig.py:194
-#, fuzzy
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "Gegenteil von --test, die Konfigurationsdateien aktualisieren"
+msgstr "Gegenteil von --test, die Konfigurationsdateien mit geänderten Einstellungen aktualisieren"
 
 #: ../authconfig.py:197
-#, fuzzy
 msgid "update all configuration files"
-msgstr "Gegenteil von --test, die Konfigurationsdateien aktualisieren"
+msgstr "alle Konfigurationsdateien aktualisieren"
 
 #: ../authconfig.py:200
 msgid "probe network for defaults and print them"
@@ -657,16 +651,16 @@ msgid "Join Domain"
 msgstr "Domänenmitglied werden"
 
 #: ../authconfig.py:703 ../authconfig-gtk.py:380
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed your server's certificate. Copy the certificate in "
 "the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Um sich richtig mit einem LDAP-Server mit TLS zu verbinden, müssen Sie das "
-"CA-Zertifikat, mit dem Ihr Server-Zertifikat signiert ist, im PEM-Format in "
-"das Verzeichnis '%s' kopieren.\n"
+"Um sich mit einem LDAP-Server mit aktiviertem TLS-Protokoll zu verbinden, "
+"benötigen Sie ein CA-Zertifikat, mit dem Ihr Server-Zertifikat signiert ist. "
+"Kopieren Sie dieses Zertifikat im PEM-Format in das Verzeichnis '%s'.\n"
 "Drücken Sie danach OK."
 
 # ../authconfig.c:872
@@ -690,7 +684,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Optionen</b>"
 
 #: ../authconfig.glade.h:3
 msgid "Alert"
@@ -766,6 +760,9 @@ msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
+"Für Benutzerkonten, die in der lokalen /etc/passwd-Datei verwaltet werden, wird "
+"das System keine Prüfung der Autorisierung über Netzwerkdienste wie LDAP oder "
+"Kerberos durchführen."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -798,9 +795,8 @@ msgstr ""
 "verwendet."
 
 #: ../authconfig.glade.h:30
-#, fuzzy
 msgid "LDAP Search _Base DN"
-msgstr "LDAP Search _Basis-DN"
+msgstr "LDAP Suche _Basis-DN"
 
 #: ../authconfig.glade.h:32
 msgid "LDAP _Server"
@@ -834,16 +830,14 @@ msgstr ""
 "Block) Protokoll-Suite verwendet."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"Das Lightweight Directory Access Protocol wird standardmäßig zum Suchen in "
-"Verzeichnissen verwendet, die beliebige Daten in einer strukturierten "
-"Hierarchie enthalten können.  LDAP wird zunehmend in kleinen bis großen "
-"Netzwerken verwendet. "
+"Das Lightweight Directory Access Protocol ist ein Standard zum Suchen in "
+"Verzeichnissen, die beliebige Daten in einer strukturierten Hierarchie "
+"enthalten können. LDAP wird zunehmend in kleinen bis großen Netzwerken verwendet."
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
@@ -872,6 +866,8 @@ msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
+"Wenn aktiviert, können Systembenutzer (inklusive root) auf diesem Rechner"
+"gegenüber Netzwerkdiensten wie LDAP oder Kerberos authentifiziert werden."
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -903,7 +899,7 @@ msgstr "_Admin-Server"
 
 #: ../authconfig.glade.h:54
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Authentifiziere Systembenutzer über Netzwerkdienste"
 
 #: ../authconfig.glade.h:55
 msgid "_Domain Controllers"
@@ -949,6 +945,8 @@ msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr ""
+"Das Authentifizierungsmodul %s/pam_%s.so fehlt. Der Authentifizierungsprozess "
+"wird nicht korrekt arbeiten."
 
 # ../authconfig.c:349
 #, fuzzy
