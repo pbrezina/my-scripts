@@ -94,6 +94,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Fen 27 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.2-1
+- add try_first_pass option to pam_unix for better integration
+  with individual service configurations (#182350)
+- updated translations
+
 * Mon Feb 20 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.1-1
 - don't crash in TUI when some options aren't set (#182151)
 

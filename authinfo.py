@@ -207,7 +207,12 @@ def matchLineSMB(line, key):
 	return False
 
 # Mandatory arguments for the various modules.
+argv_unix_auth = [
+	"try_first_pass"
+]
+
 argv_unix_password = [
+	"try_first_pass",
 	"use_authtok"
 ]
 
@@ -224,6 +229,7 @@ argv_afs_password = [
 ]
 
 argv_cracklib_password = [
+	"try_first_pass",
 	"retry=3",
 	"type="
 ]
@@ -310,7 +316,7 @@ standard_pam_modules = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
-	 "unix",		[]],
+	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
 	 "succeed_if",		argv_succeed_if_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
