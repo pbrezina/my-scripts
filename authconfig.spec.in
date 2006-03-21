@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Mar 21 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.3-1
+- make smb.conf and krb5.conf loading more robust (#185766)
+
 * Mon Feb 27 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.2-1
 - add try_first_pass option to pam_unix for better integration
   with individual service configurations (#182350)

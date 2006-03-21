@@ -812,6 +812,7 @@ class AuthInfo:
 
 	# Read Kerberos setup from /etc/krb5.conf.
 	def readKerberos(self):
+		section = ""
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
@@ -870,6 +871,7 @@ class AuthInfo:
 	# Read Samba setup from /etc/samba/smb.conf.
 	def readWinbindGlobal(self, key):
 		result = ""
+		section = ""
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
