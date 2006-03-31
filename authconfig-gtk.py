@@ -27,6 +27,7 @@ import gettext, os, signal, sys
 from rhpl.translate import _, textdomain
 
 firstbootservices = [
+	"crond",
 	"dovecot",
 	"messagebus",
 	"postfix",
