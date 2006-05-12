@@ -986,8 +986,8 @@ class AuthInfo:
 
 	# Read whether or not caching is enabled.
 	def readCache(self):
-		self.enableCache = os.spawnlp(os.P_WAIT, "/sbin/chkconfig",
-					"chkconfig", "nscd") == 0
+		rv = os.system("/sbin/chkconfig nscd >/dev/null 2>&1")
+		self.enableCache = os.WIFEXITED(rv) and os.WEXITSTATUS(rv) == 0
 		return True
 
 	# Read hints from the PAM control file.

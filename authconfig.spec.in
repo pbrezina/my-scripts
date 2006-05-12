@@ -94,7 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri May 12 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.4-1
 - added crond to the services restarted after firstboot (#187334)
+- when checking nscd status redirect output to /dev/null (#188555)
 
 * Tue Mar 21 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.3-1
 - make smb.conf and krb5.conf loading more robust (#185766)
