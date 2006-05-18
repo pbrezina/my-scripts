@@ -94,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu May 18 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.5-1
+- write ldap servers as URIs and not HOSTs (#191842)
+- fix a typo in --test output
+
 * Fri May 12 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.4-1
 - added crond to the services restarted after firstboot (#187334)
 - when checking nscd status redirect output to /dev/null (#188555)

@@ -774,9 +774,21 @@ class AuthInfo:
 			self.nisLocalDomain = self.nisDomain
 		return True
 
+	def ldapHostsToURIs(self, s):
+		l = s.split(",")
+		ret = ""
+		for item in l:
+			if item:
+				if "://" in item:
+					ret += "," + item
+				else:
+					ret += ",ldap://" + item + "/"
+		return ret
+
 	# Read LDAP setup from /etc/ldap.conf.
 	def readLDAP(self):
 		self.ldapCacertDir = PATH_LDAP_CACERTS
+		self.ldapServer = ""
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
@@ -797,7 +809,13 @@ class AuthInfo:
 			value = matchKey(line, "host")
 			if value:
 				# Save the host name or IP.
-				self.ldapServer = cleanList(value)
+				self.ldapServer += value
+				continue
+			# Is it a "uri" statement?
+			value = matchKey(line, "uri")
+			if value:
+				# Save the host name or IP.
+				self.ldapServer += value
 				continue
 			# Is it a "ssl" statement?
 			value = matchKey(line, "ssl")
@@ -807,6 +825,7 @@ class AuthInfo:
 			# We'll pull MD5/DES crypt ("pam_password") from the config
 		 	# file, or from the pam_unix PAM config lines.
 
+		self.ldapServer = self.ldapHostsToURIs(cleanList(self.ldapServer))
 		f.close()
 		return True
 
@@ -1490,7 +1509,7 @@ class AuthInfo:
 		return True
 
 	# Write LDAP setup to an ldap.conf using host and base as keys.
-	def writeLDAP2(self, filename, host, base, writePadl):
+	def writeLDAP2(self, filename, uri, host, base, writePadl):
 		wrotebasedn = False
 		wroteserver = False
 		wrotessl = False
@@ -1504,13 +1523,17 @@ class AuthInfo:
 			# Read in the old file.
 			for line in f:
 				ls = line.strip()
-				# If it's a 'host' line, insert ours instead.
-				if matchLine(ls, host):
+				# If it's a 'uri' line, insert ours instead.
+				if matchLine(ls, uri):
 					if not wroteserver and self.ldapServer:
-						output += host + " " 
-						output += " ".join(self.ldapServer.split(","))
+						output += uri + " " 
+						output += " ".join(self.ldapHostsToURIs(self.ldapServer).split(","))
 						output += "\n"
 						wroteserver = True
+				# If it's a 'host' line, comment it out.
+				elif matchLine(ls, host):
+					if self.ldapServer:
+						output += "#" + line 
 				elif matchLine(ls, base):
 					# If it's a 'base' line, insert ours instead.
 					if not wrotebasedn and self.ldapBaseDN:
@@ -1596,11 +1619,11 @@ class AuthInfo:
 
 	def writeLDAP(self):
 		ret = self.writeLDAP2(SYSCONFDIR+"/ldap.conf",
-					 "host", "base", True)
+					 "uri", "host", "base", True)
 		if ret:
 			# Ignore errors here.
 			self.writeLDAP2(SYSCONFDIR+"/openldap/ldap.conf",
-				   "HOST", "BASE", False)
+				   "URI", "HOST", "BASE", False)
 		return ret
 
 	def cryptStyle(self):
@@ -2747,7 +2770,7 @@ class AuthInfo:
 			self.passwdqcArgs)
 		print "Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),
 			self.localuserArgs)
-		print "Authenticate system accounts against network services is %s" % formatBool(self.enableLocAuthorize)
+		print "Authenticate system accounts against network services is %s" % formatBool(self.enableSysNetAuth)
 
 	def toggleShadow(self):
 		# now, do file manipulation on the password files themselves.
