@@ -1,4 +1,4 @@
-Summary: Text-mode tool for setting up NIS and shadow passwords.
+Summary: Command line tool for setting up authentication from network services
 Name: authconfig
 Version: @PACKAGE_VERSION@
 # Don't change release in elvis CVS, up version after merging all patches
@@ -12,19 +12,20 @@ Source: %{name}-%{version}.tar.bz2
 Requires: rhpl, newt, pam >= 0.77-56, usermode
 Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]")
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
-BuildPrereq: glib2-devel, python, python-devel
-BuildPrereq: desktop-file-utils, intltool, gettext, perl-XML-Parser
+BuildRequires: glib2-devel, python, python-devel
+BuildRequires: desktop-file-utils, intltool, gettext, perl-XML-Parser
 
 %description 
-Authconfig is a terminal mode program which can configure a workstation
+Authconfig is a command line utility which can configure a workstation
 to use shadow (more secure) passwords.  Authconfig can also configure a
 system to be a client for certain networked user information and
 authentication schemes.
 
 %package gtk
-Summary: Graphical tool for setting up NIS and shadow passwords.
+Summary: Graphical tool for setting up authentication from network services
 Group: System Environment/Base
 Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.4.0, rhpl
+Requires: usermode-gtk
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
@@ -97,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 * Thu May 18 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.5-1
 - write ldap servers as URIs and not HOSTs (#191842)
 - fix a typo in --test output
+- updated summary, converted changelog to UTF-8
 
 * Fri May 12 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.4-1
 - added crond to the services restarted after firstboot (#187334)
@@ -359,7 +361,7 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Sep  3 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.11-3
 - update translations
 
-* Thu Aug 29 2002 Trond Eivind Glomsrød <teg@redhat.com> 4.2.12-2
+* Thu Aug 29 2002 Trond Eivind GlomsrÃ¸d <teg@redhat.com> 4.2.12-2
 - Update translations
 
 * Fri Aug 23 2002 Nalin Dahyabhai <nalin@redhat.com> 4.2.11-1

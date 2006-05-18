@@ -779,10 +779,12 @@ class AuthInfo:
 		ret = ""
 		for item in l:
 			if item:
+				if ret:
+					ret += ","
 				if "://" in item:
-					ret += "," + item
+					ret += item
 				else:
-					ret += ",ldap://" + item + "/"
+					ret += "ldap://" + item + "/"
 		return ret
 
 	# Read LDAP setup from /etc/ldap.conf.
@@ -1577,8 +1579,8 @@ class AuthInfo:
 
 			# If we haven't encountered either of the config lines yet...
 			if not wroteserver and self.ldapServer:
-				output += host + " " 
-				output += " ".join(self.ldapServer.split(","))
+				output += uri + " " 
+				output += " ".join(self.ldapHostsToURIs(self.ldapServer).split(","))
 				output += "\n"
 			if not wrotebasedn and self.ldapBaseDN:
 				output += base + " "

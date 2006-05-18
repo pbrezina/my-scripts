@@ -12,8 +12,8 @@ applnkdir = $(sysconfdir)/X11/applnk/System
 startheredir = $(sysconfdir)/X11/sysconfig
 
 sbin_SCRIPTS = cacertdir_rehash
-pkgdata_SCRIPTS = authconfig-gtk.py authconfig.py authinfo.py shvfile.py dnsclient.py
-pkgdata_DATA = authconfig.glade
+pkgdata_SCRIPTS = authconfig-gtk.py authconfig.py
+pkgdata_DATA = authconfig.glade authinfo.py shvfile.py dnsclient.py
 pythonsite_LTLIBRARIES = acutilmodule.la
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = user_auth.png
