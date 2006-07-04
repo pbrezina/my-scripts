@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-03 18:30+0100\n"
-"PO-Revision-Date: 2006-07-04 04:35+0100\n"
+"PO-Revision-Date: 2006-07-04 04:56+0100\n"
 "Last-Translator: Dimitris Glezos <dimitris@glezos.com>\n"
 "Language-Team: Greek <fedora-trans-el@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -327,12 +327,13 @@ msgstr "ο διάλογος ακυρώθηκε"
 
 #: ../authconfig.py:351
 #, python-format
-#, fuzzy
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.\n"
 "Install the %s package, which provides this file."
-msgstr "s αρχείο not είναι απαιτούμενο για s προς εργασία s πακέτο παρέχει αρχείο."
+msgstr ""
+"Το αρχείο %s δε βρέθηκε, αλλά είναι απαραίτητο ώστε η υποστήριξη %s να λειτουργεί κανονικά.\n"
+"Εγκαταστήστε το πακέτο %s, το οποίο παρέχει αυτό το αρχείο."
 
 #: ../authconfig.py:353 ../authconfig.py:708
 msgid "Warning"
@@ -548,12 +549,11 @@ msgid "Join Settings"
 msgstr "Συνένωση ρυθμίσεων"
 
 #: ../authconfig.py:612 ../authconfig.glade.h:39
-#, fuzzy
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr "από προς δίσκος πριν Αν not αποθήκευση προς Αποθήκευση?"
+msgstr "Κάποιες από τις αλλαγές ρυθμίσεων που έγιναν πρέπει να αποθηκευτούν στο δίσκο πριν συνεχίσετε.  Αν δεν τις αποθηκεύσετε, τότε η προσπάθεια σας για σύνδεση στον τομέα μπορεί να αποτύχει.  Αποθήκευση αλλαγών;"
 
 #: ../authconfig.py:619
 msgid "Save Settings"
@@ -595,13 +595,12 @@ msgstr "Συνένωση τομέα"
 
 #: ../authconfig.py:703 ../authconfig-gtk.py:380
 #, python-format
-#, fuzzy
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed your server's certificate. Copy the certificate in "
 "the PEM format to the '%s' directory.\n"
 "Then press OK."
-msgstr "Προς σύνδεση προς a LDAP διακομιστής με TLS ενεργοποιημένο a Καναδάς διακομιστής s Αντιγραφή σε διαμόρφωση προς s κατάλογος πάτημα Εντάξει."
+msgstr ""
 
 #. FIXME - version
 #: ../authconfig.py:717
@@ -693,11 +692,10 @@ msgid "Enable _Winbind Support"
 msgstr "Ενεργοποίηση Υποστήριξης _Winbind"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
-msgstr "Για χρήστης σε τοπικό αρχείο σύστημα θα not από LDAP ή Kerberos."
+msgstr "Δε θα γίνει έλεγχος πιστοποίησης από δικτυακές υπηρεσίες όπως το LDAP ή το Kerberos, για λογαριασμούς χρηστών που υπάρχουν στο αρχείο /etc/passwd του τοπικού συστήματος αρχείων."
 
 #: ../authconfig.glade.h:24
 msgid "Hesiod _LHS"
@@ -708,22 +706,20 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
 #: ../authconfig.glade.h:26
-#, fuzzy
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
-msgstr "Hesiod a σύστημα προς δημοσίευση χρήστης και ομάδα σε DNS είναι μερικές φορές σε μεγάλο."
+msgstr "Το Hesiod επιτρέπει σε ένα διαχειριστή συστήματος να δημοσιεύσει τις πληροφορίες χρηστών και ομάδων στο DNS.  Χρησιμοποιείται μερικές φορές σε πολύ μεγάλα δίκτυα."
 
 #: ../authconfig.glade.h:27
 msgid "Joining Winbind Domain"
 msgstr "Σύνδεση σε τομέα Winbind"
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
-msgstr "Kerberos είναι a τρίτη πιστοποίηση σύστημα είναι σε μεσαίο προς μεγάλο."
+msgstr "Το Kerberos είναι ένα third-party σύστημα πιστοποίησης το οποίο χρησιμοποιείται συχνά σε μεσαίου προς μεγάλου μεγέθους δίκτυα."
 
 #: ../authconfig.glade.h:30
 msgid "LDAP Search _Base DN"
@@ -742,26 +738,23 @@ msgid "NIS _Server"
 msgstr "Εξυπηρετητής _NIS"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
-msgstr "NIS είναι Δίκτυο Πληροφορίες Υπηρεσία είναι ενεργό μικρό προς μεσαίο."
+msgstr "Το NIS είναι μια υπηρεσία Πληροφοριών Δικτύου.  Χρησιμοποιείται συχνά σε μικρού προς μεσαίου μεγέθους δίκτυα."
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
-msgstr "SMB πιστοποίηση χρήστης προς σύνδεση προς a διακομιστής SMB σύστημα μήνυμα τμήμα."
+msgstr "Η αναγνώριση SMB πιστοποιεί κωδικούς χρήστη προσπαθώντας να συνδεθεί σε ένα εξυπηρετητή ο οποίος χρησιμοποιεί τη σουίτα πρωτοκόλλων SMB (system message block)."
 
 #: ../authconfig.glade.h:40
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
-msgstr "Κατάλογος Πρόσβαση Πρωτόκολλο είναι a από a κατάλογος δεδομένα σε a LDAP είναι σε μικρό προς μεγάλο."
+msgstr ""
 
 #: ../authconfig.glade.h:41
 msgid "Use DNS to _locate KDCs for realms"
@@ -785,11 +778,10 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Χρήση _TLS για κρυπτογράφηση συνδέσεων"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
-msgstr "Πότε ενεργοποιημένο LDAP ή Kerberos προς σύστημα αρχικός ενεργό."
+msgstr ""
 
 #: ../authconfig.glade.h:48
 msgid "Winbind ADS _Realm"
@@ -804,12 +796,11 @@ msgid "Winbind _Domain"
 msgstr "_Τομέας Winbind"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
 "It is used in small to large networks."
-msgstr "Winbind a σύστημα προς περί χρήστες και προς χρήστες σε ή ADS διακομιστής είναι σε μικρό προς μεγάλο."
+msgstr ""
 
 #: ../authconfig.glade.h:53
 msgid "_Admin Servers"
@@ -858,9 +849,8 @@ msgstr "_Ομάδα Εργασίας"
 
 #: ../authinfo.py:2386
 #, python-format
-#, fuzzy
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
-msgstr "Πιστοποίηση μονάδα λογισμικού πυρήνα s s είναι Πιστοποίηση θα not εργασία."
+msgstr ""
 
