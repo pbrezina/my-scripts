@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zh_TW\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-03 18:30+0100\n"
+"POT-Creation-Date: 2006-07-07 16:39+0200\n"
 "PO-Revision-Date: 2006-02-21 15:45+1000\n"
 "Last-Translator: Chester Cheng <ccheng@redhat.com>\n"
 "Language-Team: Chinese, Traditional <zh_TW@li.org>\n"
@@ -58,8 +58,8 @@ msgstr "<網域>"
 msgid "default NIS domain"
 msgstr "預設 NIS 網域"
 
-#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:97
-#: ../authconfig.py:99
+#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:120
+#: ../authconfig.py:122
 msgid "<server>"
 msgstr "<伺服器>"
 
@@ -104,106 +104,138 @@ msgid "disable use of TLS with LDAP"
 msgstr "LDAP 不使用 TLS"
 
 #: ../authconfig.py:94
+#, fuzzy
+msgid "enable authentication with Smartcard by default"
+msgstr "預設啟用 SMB 認證"
+
+#: ../authconfig.py:96
+#, fuzzy
+msgid "disable authentication with Smartcard by default"
+msgstr "預設停用 SMB 認證"
+
+#: ../authconfig.py:98
+#, fuzzy
+msgid "require Smartcard for authentication by default"
+msgstr "預設啟用 LDAP 認證"
+
+#: ../authconfig.py:100
+#, fuzzy
+msgid "do not require Smartcard for authentication by default"
+msgstr "預設停用 LDAP 認證"
+
+#: ../authconfig.py:101
+msgid "<module>"
+msgstr ""
+
+#: ../authconfig.py:102
+msgid "default Smartcard module to use"
+msgstr ""
+
+#: ../authconfig.py:114
+msgid "action to be taken on Smartcard removal"
+msgstr ""
+
+#: ../authconfig.py:117
 msgid "enable kerberos authentication by default"
 msgstr "預設啟用 kerberos 認證"
 
-#: ../authconfig.py:96
+#: ../authconfig.py:119
 msgid "disable kerberos authentication by default"
 msgstr "預設停用 kerberos 認證"
 
-#: ../authconfig.py:98
+#: ../authconfig.py:121
 msgid "default kerberos KDC"
 msgstr "預設的 kerberos KDC"
 
-#: ../authconfig.py:100
+#: ../authconfig.py:123
 msgid "default kerberos admin server"
 msgstr "預設的 kerberos 管理主控台"
 
-#: ../authconfig.py:101 ../authconfig.py:131
+#: ../authconfig.py:124 ../authconfig.py:154
 msgid "<realm>"
 msgstr "<領域>"
 
-#: ../authconfig.py:102
+#: ../authconfig.py:125
 msgid "default kerberos realm"
 msgstr "預設的 kerberos 領域"
 
-#: ../authconfig.py:104
+#: ../authconfig.py:127
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "使用 DNS 搜尋 kerberos KDC"
 
-#: ../authconfig.py:106
+#: ../authconfig.py:129
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "不使用 DNS 搜尋 kerberos KDC"
 
-#: ../authconfig.py:108
+#: ../authconfig.py:131
 msgid "enable use of DNS to find kerberos realms"
 msgstr "使用 DNS 搜尋 kerberos 領域"
 
-#: ../authconfig.py:110
+#: ../authconfig.py:133
 msgid "disable use of DNS to find kerberos realms"
 msgstr "不使用 DNS 搜尋 kerberos 領域"
 
-#: ../authconfig.py:113
+#: ../authconfig.py:136
 msgid "enable SMB authentication by default"
 msgstr "預設啟用 SMB 認證"
 
-#: ../authconfig.py:115
+#: ../authconfig.py:138
 msgid "disable SMB authentication by default"
 msgstr "預設停用 SMB 認證"
 
-#: ../authconfig.py:116
+#: ../authconfig.py:139
 msgid "<servers>"
 msgstr "<伺服器>"
 
-#: ../authconfig.py:117
+#: ../authconfig.py:140
 msgid "names of servers to authenticate against"
 msgstr "用來對照認證的伺服器名稱"
 
-#: ../authconfig.py:118
+#: ../authconfig.py:141
 msgid "<workgroup>"
 msgstr "<工作群組>"
 
-#: ../authconfig.py:119
+#: ../authconfig.py:142
 msgid "workgroup authentication servers are in"
 msgstr "工作群組認證伺服器是在"
 
-#: ../authconfig.py:122
+#: ../authconfig.py:145
 msgid "enable winbind for user information by default"
 msgstr "預設啟用 winbind 作為使用者資訊來源"
 
-#: ../authconfig.py:124
+#: ../authconfig.py:147
 msgid "disable winbind for user information by default"
 msgstr "預設停用 winbind 作為使用者資訊來源"
 
-#: ../authconfig.py:126
+#: ../authconfig.py:149
 msgid "enable winbind for authentication by default"
 msgstr "預設啟用 winbind 認證"
 
-#: ../authconfig.py:128
+#: ../authconfig.py:151
 msgid "disable winbind for authentication by default"
 msgstr "預設停用 winbind 認證"
 
-#: ../authconfig.py:130
+#: ../authconfig.py:153
 msgid "security mode to use for samba and winbind"
 msgstr "用於 samba 與 winbind 的安全性模式"
 
-#: ../authconfig.py:132
+#: ../authconfig.py:155
 msgid "default realm for samba and winbind when security=ads"
 msgstr "當 security=ads 時 samba 與 winbind 的預設領域"
 
-#: ../authconfig.py:133 ../authconfig.py:135
+#: ../authconfig.py:156 ../authconfig.py:158
 msgid "<lowest-highest>"
 msgstr "<最低-最高>"
 
-#: ../authconfig.py:134
+#: ../authconfig.py:157
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "uid 範圍的 winbind 將會指派給網域或 ads 的使用者"
 
-#: ../authconfig.py:136
+#: ../authconfig.py:159
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "gid 範圍的 winbind 將會指派給網域或 ads 的使用者"
 
-#: ../authconfig.py:138
+#: ../authconfig.py:161
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -211,123 +243,123 @@ msgstr ""
 "當停用 winbindusedefaultdomain 時，用來分隔由 winbind 建立之使用者名稱的網域"
 "與使用者部份的字元"
 
-#: ../authconfig.py:140
+#: ../authconfig.py:163
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "將成為由 winbind 所建立之使用者的家目錄"
 
-#: ../authconfig.py:142
+#: ../authconfig.py:165
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "將成為由 winbind 所建立之使用者所屬的主要群組"
 
-#: ../authconfig.py:144
+#: ../authconfig.py:167
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr "將成為由 winbind 所建立之使用者的登入 shell"
 
-#: ../authconfig.py:146
+#: ../authconfig.py:169
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr "設定 winbind 以假設使用者名稱不含網域資訊的使用者為網域的使用者"
 
-#: ../authconfig.py:148
+#: ../authconfig.py:171
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr "設定 winbind 以假設使用者名稱不含網域資訊的使用者非為網域的使用者"
 
-#: ../authconfig.py:150
+#: ../authconfig.py:173
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr "現在以管理員身份加入 winbind 網域或 ads 領域"
 
-#: ../authconfig.py:153
+#: ../authconfig.py:176
 msgid "enable wins for hostname resolution"
 msgstr "啟用 wins 作主機名稱解析 "
 
-#: ../authconfig.py:155
+#: ../authconfig.py:178
 msgid "disable wins for hostname resolution"
 msgstr "停用 wins 作主機名稱解析"
 
-#: ../authconfig.py:158
+#: ../authconfig.py:181
 msgid "enable hesiod for user information by default"
 msgstr "預設啟用 hesiod 作為使用者資訊來源"
 
-#: ../authconfig.py:160
+#: ../authconfig.py:183
 msgid "disable hesiod for user information by default"
 msgstr "預設停用 hesiod 作為使用者資訊來源"
 
-#: ../authconfig.py:162
+#: ../authconfig.py:185
 msgid "default hesiod LHS"
 msgstr "預設的 hesiod LHS"
 
-#: ../authconfig.py:164
+#: ../authconfig.py:187
 msgid "default hesiod RHS"
 msgstr "預設的 hesiod RHS"
 
-#: ../authconfig.py:167
+#: ../authconfig.py:190
 msgid "enable caching of user information by default"
 msgstr "預設啟用使用者資訊緩衝貯存"
 
-#: ../authconfig.py:169
+#: ../authconfig.py:192
 msgid "disable caching of user information by default"
 msgstr "預設停用使用者資訊緩衝貯存"
 
-#: ../authconfig.py:172
+#: ../authconfig.py:195
 msgid "local authorization is sufficient for local users"
 msgstr "對本機使用者使用本機認證即已足夠"
 
-#: ../authconfig.py:174
+#: ../authconfig.py:197
 msgid "authorize local users also through remote service"
 msgstr "本機使用者也要通過遠端服務認證"
 
-#: ../authconfig.py:177
+#: ../authconfig.py:200
 msgid "authenticate system accounts by network services"
 msgstr "網路服務用的認證系統帳號"
 
-#: ../authconfig.py:179
+#: ../authconfig.py:202
 msgid "authenticate system accounts by local files only"
 msgstr "僅供本機檔案使用的認證系統帳號"
 
-#: ../authconfig.py:182
+#: ../authconfig.py:205
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "請勿啟用/停用 portmap、 ypbind 和 nscd"
 
-#: ../authconfig.py:185
+#: ../authconfig.py:208
 msgid "do not update the configuration files, only print new settings"
 msgstr "不要更新設定檔，只列出新的設定"
 
-#: ../authconfig.py:189
+#: ../authconfig.py:212
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "在文字用戶介面的主對話窗視顯示『上一步』而非『取消』"
 
-#: ../authconfig.py:191
+#: ../authconfig.py:214
 msgid "do not display the deprecated text user interface"
 msgstr "不要顯示已過時的文字介面"
 
-#: ../authconfig.py:194
+#: ../authconfig.py:217
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "與 --test 選項相反，將改動更新到設定檔"
 
-#: ../authconfig.py:197
+#: ../authconfig.py:220
 msgid "update all configuration files"
 msgstr "更新所有設定檔"
 
-#: ../authconfig.py:200
+#: ../authconfig.py:223
 msgid "probe network for defaults and print them"
 msgstr "偵測預設的網路然後列出來"
 
-#: ../authconfig.py:205
+#: ../authconfig.py:228
 msgid "unexpected argument"
 msgstr "非預期的參數"
 
-#: ../authconfig.py:321
+#: ../authconfig.py:355
 msgid "can only be run as root"
 msgstr "只能由系統管理者 (root) 執行"
 
-#: ../authconfig.py:328
+#: ../authconfig.py:362
 msgid "dialog was cancelled"
 msgstr "對話窗已取消"
 
-#: ../authconfig.py:351
+#: ../authconfig.py:385
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -337,217 +369,217 @@ msgstr ""
 "找不到 %s 檔案，不過 %s 需要它才能順利執行。\n"
 "請安裝提供此檔案的 %s 套件。。"
 
-#: ../authconfig.py:353 ../authconfig.py:708
+#: ../authconfig.py:387 ../authconfig.py:742
 msgid "Warning"
 msgstr "警告"
 
-#: ../authconfig.py:353 ../authconfig.py:566 ../authconfig.py:573
-#: ../authconfig.py:579 ../authconfig.py:588 ../authconfig.py:595
-#: ../authconfig.py:603 ../authconfig.py:644 ../authconfig.py:708
+#: ../authconfig.py:387 ../authconfig.py:600 ../authconfig.py:607
+#: ../authconfig.py:613 ../authconfig.py:622 ../authconfig.py:629
+#: ../authconfig.py:637 ../authconfig.py:678 ../authconfig.py:742
 msgid "Ok"
 msgstr "確定"
 
-#: ../authconfig.py:357
+#: ../authconfig.py:391
 msgid "caching"
 msgstr "快取"
 
-#: ../authconfig.py:358
+#: ../authconfig.py:392
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:359
+#: ../authconfig.py:393
 msgid "LDAP authentication"
 msgstr "LDAP 認證"
 
-#: ../authconfig.py:360
+#: ../authconfig.py:394
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:361
+#: ../authconfig.py:395
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:362
+#: ../authconfig.py:396
 msgid "shadow password"
 msgstr "shadow 密碼"
 
-#: ../authconfig.py:363
+#: ../authconfig.py:397
 msgid "SMB authentication"
 msgstr "SMB 認證"
 
-#: ../authconfig.py:364 ../authconfig.py:366
+#: ../authconfig.py:398 ../authconfig.py:400
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:365
+#: ../authconfig.py:399
 msgid "Winbind authentication"
 msgstr "Winbind 認證"
 
-#: ../authconfig.py:371 ../authconfig.glade.h:46
+#: ../authconfig.py:405 ../authconfig.glade.h:51
 msgid "User Information"
 msgstr "使用者資訊"
 
-#: ../authconfig.py:374
+#: ../authconfig.py:408
 msgid "Cache Information"
 msgstr "緩衝區資訊"
 
-#: ../authconfig.py:378
+#: ../authconfig.py:412
 msgid "Use Hesiod"
 msgstr "使用 Hesiod"
 
-#: ../authconfig.py:381
+#: ../authconfig.py:415
 msgid "Use LDAP"
 msgstr "使用 LDAP"
 
-#: ../authconfig.py:385
+#: ../authconfig.py:419
 msgid "Use NIS"
 msgstr "使用 NIS"
 
-#: ../authconfig.py:389
+#: ../authconfig.py:423
 msgid "Use Winbind"
 msgstr "使用 Winbind"
 
-#: ../authconfig.py:395 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:4
+#: ../authconfig.py:429 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:4
 msgid "Authentication"
 msgstr "認證"
 
-#: ../authconfig.py:398
+#: ../authconfig.py:432
 msgid "Use MD5 Passwords"
 msgstr "使用 MD5 密碼"
 
-#: ../authconfig.py:401
+#: ../authconfig.py:435
 msgid "Use Shadow Passwords"
 msgstr "使用 Shadow 密碼"
 
-#: ../authconfig.py:405
+#: ../authconfig.py:439
 msgid "Use LDAP Authentication"
 msgstr "使用 LDAP 認證"
 
-#: ../authconfig.py:409
+#: ../authconfig.py:443
 msgid "Use Kerberos"
 msgstr "使用 Kerberos"
 
-#: ../authconfig.py:413
+#: ../authconfig.py:447
 msgid "Use SMB Authentication"
 msgstr "使用 SMB 認證"
 
-#: ../authconfig.py:417
+#: ../authconfig.py:451
 msgid "Use Winbind Authentication"
 msgstr "使用 Winbind 認證"
 
-#: ../authconfig.py:421
+#: ../authconfig.py:455
 msgid "Local authorization is sufficient"
 msgstr "本機認證即可"
 
-#: ../authconfig.py:431 ../authconfig.py:566 ../authconfig.py:573
-#: ../authconfig.py:579 ../authconfig.py:588 ../authconfig.py:595
-#: ../authconfig.py:644
+#: ../authconfig.py:465 ../authconfig.py:600 ../authconfig.py:607
+#: ../authconfig.py:613 ../authconfig.py:622 ../authconfig.py:629
+#: ../authconfig.py:678
 msgid "Back"
 msgstr "上一步"
 
-#: ../authconfig.py:431 ../authconfig.py:603
+#: ../authconfig.py:465 ../authconfig.py:637
 msgid "Cancel"
 msgstr "取消"
 
-#: ../authconfig.py:432 ../authconfig.py:566 ../authconfig.py:573
-#: ../authconfig.py:579 ../authconfig.py:588 ../authconfig.py:595
-#: ../authconfig.py:644
+#: ../authconfig.py:466 ../authconfig.py:600 ../authconfig.py:607
+#: ../authconfig.py:613 ../authconfig.py:622 ../authconfig.py:629
+#: ../authconfig.py:678
 msgid "Next"
 msgstr "下一步"
 
-#: ../authconfig.py:443 ../authconfig-gtk.py:307 ../authconfig.glade.h:5
+#: ../authconfig.py:477 ../authconfig-gtk.py:317 ../authconfig.glade.h:5
 msgid "Authentication Configuration"
 msgstr "認證設定"
 
-#: ../authconfig.py:563
+#: ../authconfig.py:597
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:564
+#: ../authconfig.py:598
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:565 ../authconfig.glade.h:23
+#: ../authconfig.py:599 ../authconfig.glade.h:26
 msgid "Hesiod Settings"
 msgstr "Hesiod 設定"
 
-#: ../authconfig.py:569
+#: ../authconfig.py:603
 msgid "Use TLS"
 msgstr "使用 TLS"
 
-#: ../authconfig.py:570 ../authconfig.py:577
+#: ../authconfig.py:604 ../authconfig.py:611
 msgid "Server:"
 msgstr "伺服器:"
 
-#: ../authconfig.py:571
+#: ../authconfig.py:605
 msgid "Base DN:"
 msgstr "基底 DN:"
 
-#: ../authconfig.py:572 ../authconfig.glade.h:31
+#: ../authconfig.py:606 ../authconfig.glade.h:34
 msgid "LDAP Settings"
 msgstr "LDAP 設定"
 
-#: ../authconfig.py:576 ../authconfig.py:638
+#: ../authconfig.py:610 ../authconfig.py:672
 msgid "Domain:"
 msgstr "網域:"
 
-#: ../authconfig.py:578 ../authconfig.glade.h:33
+#: ../authconfig.py:612 ../authconfig.glade.h:36
 msgid "NIS Settings"
 msgstr "NIS 設定"
 
-#: ../authconfig.py:582
+#: ../authconfig.py:616
 msgid "Realm:"
 msgstr "領域:"
 
-#: ../authconfig.py:583
+#: ../authconfig.py:617
 msgid "KDC:"
 msgstr "Kerberos 機碼配送中心(KDC):"
 
-#: ../authconfig.py:584
+#: ../authconfig.py:618
 msgid "Admin Server:"
 msgstr "管理伺服器:"
 
-#: ../authconfig.py:585
+#: ../authconfig.py:619
 msgid "Use DNS to resolve hosts to realms"
 msgstr "使用 DNS 將主機解析為領域"
 
-#: ../authconfig.py:586
+#: ../authconfig.py:620
 msgid "Use DNS to locate KDCs for realms"
 msgstr "使用 DNS 找出領域中的 KDC"
 
-#: ../authconfig.py:587 ../authconfig.glade.h:28
+#: ../authconfig.py:621 ../authconfig.glade.h:31
 msgid "Kerberos Settings"
 msgstr "Kerberos 設定"
 
-#: ../authconfig.py:591
+#: ../authconfig.py:625
 msgid "Workgroup:"
 msgstr "工作群組:"
 
-#: ../authconfig.py:592
+#: ../authconfig.py:626
 msgid "Servers:"
 msgstr "伺服器:"
 
-#: ../authconfig.py:593
+#: ../authconfig.py:627
 msgid "Shell:"
 msgstr "Shell:"
 
-#: ../authconfig.py:594 ../authconfig.glade.h:37
+#: ../authconfig.py:628 ../authconfig.glade.h:40
 msgid "SMB Settings"
 msgstr "SMB 設定"
 
-#: ../authconfig.py:598
+#: ../authconfig.py:632
 msgid "Domain Administrator:"
 msgstr "網域管理員："
 
-#: ../authconfig.py:599
+#: ../authconfig.py:633
 msgid "Password:"
 msgstr "密碼："
 
-#: ../authconfig.py:602
+#: ../authconfig.py:636
 msgid "Join Settings"
 msgstr "結合設定"
 
-#: ../authconfig.py:612 ../authconfig.glade.h:39
+#: ../authconfig.py:646 ../authconfig.glade.h:44
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -556,45 +588,45 @@ msgstr ""
 "在繼續之前，必須儲存您所做的設定變更到磁碟中，假如不儲存的話，當您試著加入網"
 "域時將會失敗。 是否要儲存變更？"
 
-#: ../authconfig.py:619
+#: ../authconfig.py:653
 msgid "Save Settings"
 msgstr "儲存設定"
 
-#: ../authconfig.py:620
+#: ../authconfig.py:654
 msgid "No"
 msgstr "否"
 
-#: ../authconfig.py:620
+#: ../authconfig.py:654
 msgid "Yes"
 msgstr "是"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:637
+#: ../authconfig.py:671
 msgid "Security Model:"
 msgstr "安全模式："
 
-#: ../authconfig.py:639
+#: ../authconfig.py:673
 msgid "Domain Controllers:"
 msgstr "網域控制器："
 
-#: ../authconfig.py:640
+#: ../authconfig.py:674
 msgid "ADS Realm:"
 msgstr "ADS 領域:"
 
-#: ../authconfig.py:641
+#: ../authconfig.py:675
 msgid "Template Shell:"
 msgstr "樣板 Shell:"
 
-#: ../authconfig.py:643 ../authconfig.glade.h:50
+#: ../authconfig.py:677 ../authconfig.glade.h:55
 msgid "Winbind Settings"
 msgstr "Winbind 設定"
 
-#: ../authconfig.py:645
+#: ../authconfig.py:679
 msgid "Join Domain"
 msgstr "結合網域"
 
-#: ../authconfig.py:703 ../authconfig-gtk.py:380
+#: ../authconfig.py:737 ../authconfig-gtk.py:394
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -607,7 +639,7 @@ msgstr ""
 "然後按下「確定」。"
 
 #. FIXME - version
-#: ../authconfig.py:717
+#: ../authconfig.py:751
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -634,66 +666,80 @@ msgid "Cache User _Information"
 msgstr "緩衝貯存使用者資訊(_I)"
 
 #: ../authconfig.glade.h:7
+msgid "Card Removal _Action"
+msgstr ""
+
+#: ../authconfig.glade.h:8
 msgid "Con_figure SMB..."
 msgstr "設定 SMB(_F)..."
 
-#: ../authconfig.glade.h:8
+#: ../authconfig.glade.h:9
 msgid "Configure H_esiod..."
 msgstr "設定 H_esiod..."
 
-#: ../authconfig.glade.h:9
+#: ../authconfig.glade.h:10
 msgid "Configure K_erberos..."
 msgstr "設定 K_erberos..."
 
-#: ../authconfig.glade.h:10
+#: ../authconfig.glade.h:11
 msgid "Configure L_DAP..."
 msgstr "設定 L_DAP..."
 
-#: ../authconfig.glade.h:11
+#: ../authconfig.glade.h:12
 msgid "Configure NI_S..."
 msgstr "設定 NI_S..."
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:13
+#, fuzzy
+msgid "Configure Sma_rtcard..."
+msgstr "設定 K_erberos..."
+
+#: ../authconfig.glade.h:14
 msgid "Configure Win_bind..."
 msgstr "設定 Win_bind..."
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:15
 msgid "Do_n't Save"
 msgstr "不儲存(_N)"
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:16
 msgid "Domain"
 msgstr "網域"
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:17
 msgid "Domain _Administrator"
 msgstr "網域管理員(_A)"
 
-#: ../authconfig.glade.h:16
+#: ../authconfig.glade.h:18
 msgid "Enable SMB S_upport"
 msgstr "啟用 SMB 支援(_U)"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:19
+#, fuzzy
+msgid "Enable Smart_card Support"
+msgstr "啟用 SMB 支援(_U)"
+
+#: ../authconfig.glade.h:20
 msgid "Enable _Hesiod Support"
 msgstr "啟用 _Hesiod 支援"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:21
 msgid "Enable _Kerberos Support"
 msgstr "啟用 _Kerberos 支援"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:22
 msgid "Enable _LDAP Support"
 msgstr "啟用 _LDAP 支援"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:23
 msgid "Enable _NIS Support"
 msgstr "啟用 _NIS 支援"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:24
 msgid "Enable _Winbind Support"
 msgstr "啟用 _Winbind 支援"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:25
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
@@ -701,15 +747,15 @@ msgstr ""
 "在本機檔案 /etc/passwd 中維護的使用者帳號，將不會由網路服務（例如 LDAP 或 "
 "Kerberos）檢查身份認證"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:27
 msgid "Hesiod _LHS"
 msgstr "Hesiod _LHS"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:28
 msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:29
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -717,39 +763,39 @@ msgstr ""
 "Hesiod 允許系統管理者在名稱伺服器（DNS）中發佈使用者與群組的資訊。有時用於超"
 "大型的網路中。"
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:30
 msgid "Joining Winbind Domain"
 msgstr "正在加入 Winbind 網域"
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:32
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr "Kerberos 是個獲信賴的第三者認證系統, 常用於中型至大型網路。"
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:33
 msgid "LDAP Search _Base DN"
 msgstr "LDAP 查詢 _Base DN"
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:35
 msgid "LDAP _Server"
 msgstr "LDAP 伺服器(_S)"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:37
 msgid "NIS _Domain"
 msgstr "NIS 網域(_D)"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:38
 msgid "NIS _Server"
 msgstr "NIS 伺服器(_S)"
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:39
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr "NIS 代表網路資訊服務，常用於小型至中型網路。"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:41
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -757,7 +803,18 @@ msgstr ""
 "SMB 認證藉由連線至使用 SMB（系統訊息區塊）通訊協定組的伺服器，來查證使用者的"
 "密碼。"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:42
+msgid ""
+"Smartcard authentication allows you to log in using a certificate and key "
+"associated with a smart card."
+msgstr ""
+
+#: ../authconfig.glade.h:43
+#, fuzzy
+msgid "Smartcard settings"
+msgstr "儲存設定"
+
+#: ../authconfig.glade.h:45
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -766,27 +823,27 @@ msgstr ""
 "輕型目錄存取協定（LDAP）使用結構化、階層的方式貯存資料，是搜尋目錄的標準方"
 "法，已漸漸被用於小型至大型網路中。"
 
-#: ../authconfig.glade.h:41
+#: ../authconfig.glade.h:46
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "使用 DNS 來找出領域中的 KDC(_L)"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:47
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "使用 _DNS 將主機解析為領域"
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:48
 msgid "Use _MD5 Passwords"
 msgstr "使用 _MD5 密碼"
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:49
 msgid "Use _Shadow Passwords"
 msgstr "使用 _Shadow 密碼"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:50
 msgid "Use _TLS to encrypt connections"
 msgstr "使用 _TLS 為連線加密"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:52
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
@@ -794,19 +851,19 @@ msgstr ""
 "當啟用這功能時，可允許網路服務（例如 LDAP 或 Kerberos）對包括本機的 root 使用"
 "者，進行帳號認證"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:53
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS 領域(_R)"
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:54
 msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind 網域控制器(_N)"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:56
 msgid "Winbind _Domain"
 msgstr "Winbind 網域(_D)"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:57
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -815,51 +872,71 @@ msgstr ""
 "Winbind 使得系統可以擷取關於使用者的資訊，並且使用儲存在 NTDOM 或 ADS 伺服器"
 "的資訊來認證使用者，通常用於小型至大型的網路中。"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:58
 msgid "_Admin Servers"
 msgstr "管理伺服器(_A)"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:59
 msgid "_Authenticate system accounts by network services"
 msgstr "由網路服務進行認證系統帳號(_A)"
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:60
+msgid "_Disallow logins without a Smartcard"
+msgstr ""
+
+#: ../authconfig.glade.h:61
 msgid "_Domain Controllers"
 msgstr "網域控制器(_D)"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:62
 msgid "_Join Domain"
 msgstr "加入網域(_J)"
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:63
 msgid "_KDCs"
 msgstr "_KDCs"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:64
 msgid "_Local authorization is sufficient for local users"
 msgstr "對本機使用者使用本機認證已經足夠(_L)"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:65
 msgid "_Password"
 msgstr "密碼(_P)"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:66
 msgid "_Realm"
 msgstr "領域(_R)"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:67
 msgid "_Security Model"
 msgstr "安全模式(_S)"
 
-#: ../authconfig.glade.h:62
+#: ../authconfig.glade.h:68
+msgid "_Smartcard Type"
+msgstr ""
+
+#: ../authconfig.glade.h:69
 msgid "_Template Shell"
 msgstr "樣板 Shell(_T)"
 
-#: ../authconfig.glade.h:63
+#: ../authconfig.glade.h:70
 msgid "_Workgroup"
 msgstr "工作群組(_W)"
 
-#: ../authinfo.py:2386
+#: ../authinfo.py:634 ../authinfo.py:960 ../authinfo.py:2067
+msgid "Logout"
+msgstr ""
+
+#: ../authinfo.py:634 ../authinfo.py:962 ../authinfo.py:2071
+msgid "Lock"
+msgstr ""
+
+#: ../authinfo.py:634 ../authinfo.py:964
+msgid "Ignore"
+msgstr ""
+
+#: ../authinfo.py:2561
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "

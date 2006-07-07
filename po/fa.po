@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-03 18:30+0100\n"
+"POT-Creation-Date: 2006-07-07 16:39+0200\n"
 "PO-Revision-Date: 2006-04-08 18:46+0330\n"
 "Last-Translator: Meelad Zakaria <meelad@farsiweb.info>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -52,8 +52,8 @@ msgstr "<domain>"
 msgid "default NIS domain"
 msgstr "دامنهٔ پیش‌فرض NIS"
 
-#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:97
-#: ../authconfig.py:99
+#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:120
+#: ../authconfig.py:122
 msgid "<server>"
 msgstr "<server>"
 
@@ -98,106 +98,138 @@ msgid "disable use of TLS with LDAP"
 msgstr "از کار انداختن استفاده از TLS با LDAP"
 
 #: ../authconfig.py:94
-msgid "enable kerberos authentication by default"
-msgstr "به کار انداختن تأیید هویت kerberos به صورت پیش‌فرض"
-
-#: ../authconfig.py:96
-msgid "disable kerberos authentication by default"
-msgstr "به کار انداختن تأیید هویت kerberos به صورت پیش‌فرض"
-
-#: ../authconfig.py:98
-msgid "default kerberos KDC"
-msgstr "kerberos KDC پیش‌فرض"
-
-#: ../authconfig.py:100
-msgid "default kerberos admin server"
-msgstr "کارگزار مدیریت پیش‌فرض kerberos"
-
-#: ../authconfig.py:101 ../authconfig.py:131
-msgid "<realm>"
-msgstr "<realm>"
-
-#: ../authconfig.py:102
-msgid "default kerberos realm"
-msgstr ""
-
-#: ../authconfig.py:104
-msgid "enable use of DNS to find kerberos KDCs"
-msgstr "به کار انداختن استفاده از DNS برای پیدا کردن kerberos KDCs"
-
-#: ../authconfig.py:106
-msgid "disable use of DNS to find kerberos KDCs"
-msgstr "از کار انداختن استفاده از DNS برای پیدا کردن kerberos KDCs"
-
-#: ../authconfig.py:108
-msgid "enable use of DNS to find kerberos realms"
-msgstr "به کار انداختن استفاده از DNS برای پیدا کردن kerberos realms"
-
-#: ../authconfig.py:110
-msgid "disable use of DNS to find kerberos realms"
-msgstr ""
-
-#: ../authconfig.py:113
-msgid "enable SMB authentication by default"
+#, fuzzy
+msgid "enable authentication with Smartcard by default"
 msgstr "به کار انداختن تأیید هویت SMB به صورت پیش‌فرض"
 
-#: ../authconfig.py:115
-msgid "disable SMB authentication by default"
+#: ../authconfig.py:96
+#, fuzzy
+msgid "disable authentication with Smartcard by default"
 msgstr "از کار انداختن تأیید هویت SMB به طور پیش‌فرض"
 
-#: ../authconfig.py:116
-msgid "<servers>"
+#: ../authconfig.py:98
+#, fuzzy
+msgid "require Smartcard for authentication by default"
+msgstr "به کار انداختن LDAP برای تأیید هویت به صورت پیش‌فرض"
+
+#: ../authconfig.py:100
+#, fuzzy
+msgid "do not require Smartcard for authentication by default"
+msgstr "از کار انداختن LDAP برای تأیید هویت به صورت پیش‌فرض"
+
+#: ../authconfig.py:101
+msgid "<module>"
+msgstr ""
+
+#: ../authconfig.py:102
+msgid "default Smartcard module to use"
+msgstr ""
+
+#: ../authconfig.py:114
+msgid "action to be taken on Smartcard removal"
 msgstr ""
 
 #: ../authconfig.py:117
+msgid "enable kerberos authentication by default"
+msgstr "به کار انداختن تأیید هویت kerberos به صورت پیش‌فرض"
+
+#: ../authconfig.py:119
+msgid "disable kerberos authentication by default"
+msgstr "به کار انداختن تأیید هویت kerberos به صورت پیش‌فرض"
+
+#: ../authconfig.py:121
+msgid "default kerberos KDC"
+msgstr "kerberos KDC پیش‌فرض"
+
+#: ../authconfig.py:123
+msgid "default kerberos admin server"
+msgstr "کارگزار مدیریت پیش‌فرض kerberos"
+
+#: ../authconfig.py:124 ../authconfig.py:154
+msgid "<realm>"
+msgstr "<realm>"
+
+#: ../authconfig.py:125
+msgid "default kerberos realm"
+msgstr ""
+
+#: ../authconfig.py:127
+msgid "enable use of DNS to find kerberos KDCs"
+msgstr "به کار انداختن استفاده از DNS برای پیدا کردن kerberos KDCs"
+
+#: ../authconfig.py:129
+msgid "disable use of DNS to find kerberos KDCs"
+msgstr "از کار انداختن استفاده از DNS برای پیدا کردن kerberos KDCs"
+
+#: ../authconfig.py:131
+msgid "enable use of DNS to find kerberos realms"
+msgstr "به کار انداختن استفاده از DNS برای پیدا کردن kerberos realms"
+
+#: ../authconfig.py:133
+msgid "disable use of DNS to find kerberos realms"
+msgstr ""
+
+#: ../authconfig.py:136
+msgid "enable SMB authentication by default"
+msgstr "به کار انداختن تأیید هویت SMB به صورت پیش‌فرض"
+
+#: ../authconfig.py:138
+msgid "disable SMB authentication by default"
+msgstr "از کار انداختن تأیید هویت SMB به طور پیش‌فرض"
+
+#: ../authconfig.py:139
+msgid "<servers>"
+msgstr ""
+
+#: ../authconfig.py:140
 msgid "names of servers to authenticate against"
 msgstr ""
 
-#: ../authconfig.py:118
+#: ../authconfig.py:141
 msgid "<workgroup>"
 msgstr "<workgroup>"
 
-#: ../authconfig.py:119
+#: ../authconfig.py:142
 msgid "workgroup authentication servers are in"
 msgstr "کارگزارهای تأیید هویت گروه‌کاری موجود در"
 
-#: ../authconfig.py:122
+#: ../authconfig.py:145
 msgid "enable winbind for user information by default"
 msgstr "به کار انداختن winbind برای اطلاعات کاربر به طور پیش‌فرض"
 
-#: ../authconfig.py:124
+#: ../authconfig.py:147
 msgid "disable winbind for user information by default"
 msgstr "از کار انداختن winbind برای اطلاعات کاربر به طور پیش‌فرض"
 
-#: ../authconfig.py:126
+#: ../authconfig.py:149
 msgid "enable winbind for authentication by default"
 msgstr ""
 
-#: ../authconfig.py:128
+#: ../authconfig.py:151
 msgid "disable winbind for authentication by default"
 msgstr ""
 
-#: ../authconfig.py:130
+#: ../authconfig.py:153
 msgid "security mode to use for samba and winbind"
 msgstr "حالت امنیتی برای استفاده در سامبا و winbind"
 
-#: ../authconfig.py:132
+#: ../authconfig.py:155
 msgid "default realm for samba and winbind when security=ads"
 msgstr "پیش‌فرض realm برای سامبا و winbind وقتی security=ads"
 
-#: ../authconfig.py:133 ../authconfig.py:135
+#: ../authconfig.py:156 ../authconfig.py:158
 msgid "<lowest-highest>"
 msgstr "<lowest-highest>"
 
-#: ../authconfig.py:134
+#: ../authconfig.py:157
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "محدودهٔ شناسهٔ کاربر که winbind به دامنه یا کاربرهای ads تخصیص خواهد داد"
 
-#: ../authconfig.py:136
+#: ../authconfig.py:159
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "محدودهٔ شناسهٔ گروه که winbind به دامنه یا کاربرهای ads تخصیص خواهد داد"
 
-#: ../authconfig.py:138
+#: ../authconfig.py:161
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -205,19 +237,19 @@ msgstr ""
 "نویسه‌ای که اگر winbindusedefaultdomain به کار نیافتاده باشد برای جدا کردن "
 "قسمت‌های دامنه و کاربر نام‌های کاربری ایجاد شده توسط winbind استفاده خواهد شد."
 
-#: ../authconfig.py:140
+#: ../authconfig.py:163
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "شاخهٔ آغازهٔ کاربرهای ایجاد شده توسط winbind"
 
-#: ../authconfig.py:142
+#: ../authconfig.py:165
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "گروه اصلی کاربرهای ایجاد شده توسط winbind"
 
-#: ../authconfig.py:144
+#: ../authconfig.py:167
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr "پوستهٔ ورود به سیستم کاربرهای ایجاد شده توسط winbind"
 
-#: ../authconfig.py:146
+#: ../authconfig.py:169
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
@@ -225,7 +257,7 @@ msgstr ""
 "پیکربندی winbind طوری که فرض کند کاربرهایی در نام کاربری آنها نام دامنه وجود "
 "ندارد، کاربر این دامنه هستند"
 
-#: ../authconfig.py:148
+#: ../authconfig.py:171
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
@@ -233,99 +265,99 @@ msgstr ""
 "پیکربندی winbind طوری که فرض کند کاربرهایی که در نام کاربری آنها نام دامنه "
 "وجود ندارد کاربر این دامنه نیستند"
 
-#: ../authconfig.py:150
+#: ../authconfig.py:173
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr ""
 
-#: ../authconfig.py:153
+#: ../authconfig.py:176
 msgid "enable wins for hostname resolution"
 msgstr "به کار انداختن wins برای دریافت نام میزبان"
 
-#: ../authconfig.py:155
+#: ../authconfig.py:178
 msgid "disable wins for hostname resolution"
 msgstr ""
 
-#: ../authconfig.py:158
+#: ../authconfig.py:181
 msgid "enable hesiod for user information by default"
 msgstr "به کار انداختن hesiod برای اطلاعات کاربر به طور پیش‌فرض"
 
-#: ../authconfig.py:160
+#: ../authconfig.py:183
 msgid "disable hesiod for user information by default"
 msgstr "از کار انداختن hesiod برای اطلاعات کاربر به طور پیش‌فرض"
 
-#: ../authconfig.py:162
+#: ../authconfig.py:185
 msgid "default hesiod LHS"
 msgstr "پیش‌فرض hesiod LHS"
 
-#: ../authconfig.py:164
+#: ../authconfig.py:187
 msgid "default hesiod RHS"
 msgstr ""
 
-#: ../authconfig.py:167
+#: ../authconfig.py:190
 msgid "enable caching of user information by default"
 msgstr "به کار انداختن ذخیره‌سازی اطلاعات کاربر در حافظهٔ نهان به طور پیش‌فرض"
 
-#: ../authconfig.py:169
+#: ../authconfig.py:192
 msgid "disable caching of user information by default"
 msgstr ""
 
-#: ../authconfig.py:172
+#: ../authconfig.py:195
 msgid "local authorization is sufficient for local users"
 msgstr "تعیین سطح اختیارات محلی برای کاربران محلی کافی است"
 
-#: ../authconfig.py:174
+#: ../authconfig.py:197
 msgid "authorize local users also through remote service"
 msgstr "سطح اختیارات کاربران محلی هم از طریق سرویس دوردست تأیید شود"
 
-#: ../authconfig.py:177
+#: ../authconfig.py:200
 msgid "authenticate system accounts by network services"
 msgstr ""
 
-#: ../authconfig.py:179
+#: ../authconfig.py:202
 msgid "authenticate system accounts by local files only"
 msgstr ""
 
-#: ../authconfig.py:182
+#: ../authconfig.py:205
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "‏portmap, ypbind, و nscd آغاز/متوقف نشوند"
 
-#: ../authconfig.py:185
+#: ../authconfig.py:208
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
 
-#: ../authconfig.py:189
+#: ../authconfig.py:212
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr ""
 
-#: ../authconfig.py:191
+#: ../authconfig.py:214
 msgid "do not display the deprecated text user interface"
 msgstr ""
 
-#: ../authconfig.py:194
+#: ../authconfig.py:217
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 
-#: ../authconfig.py:197
+#: ../authconfig.py:220
 msgid "update all configuration files"
 msgstr ""
 
-#: ../authconfig.py:200
+#: ../authconfig.py:223
 msgid "probe network for defaults and print them"
 msgstr "کاوش در شبکه به دنبال پیش‌فرض‌ها و چاپ آنها"
 
-#: ../authconfig.py:205
+#: ../authconfig.py:228
 msgid "unexpected argument"
 msgstr ""
 
-#: ../authconfig.py:321
+#: ../authconfig.py:355
 msgid "can only be run as root"
 msgstr ""
 
-#: ../authconfig.py:328
+#: ../authconfig.py:362
 msgid "dialog was cancelled"
 msgstr ""
 
-#: ../authconfig.py:351
+#: ../authconfig.py:385
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -333,217 +365,217 @@ msgid ""
 "Install the %s package, which provides this file."
 msgstr ""
 
-#: ../authconfig.py:353 ../authconfig.py:708
+#: ../authconfig.py:387 ../authconfig.py:742
 msgid "Warning"
 msgstr "اخطار"
 
-#: ../authconfig.py:353 ../authconfig.py:566 ../authconfig.py:573
-#: ../authconfig.py:579 ../authconfig.py:588 ../authconfig.py:595
-#: ../authconfig.py:603 ../authconfig.py:644 ../authconfig.py:708
+#: ../authconfig.py:387 ../authconfig.py:600 ../authconfig.py:607
+#: ../authconfig.py:613 ../authconfig.py:622 ../authconfig.py:629
+#: ../authconfig.py:637 ../authconfig.py:678 ../authconfig.py:742
 msgid "Ok"
 msgstr "تأیید"
 
-#: ../authconfig.py:357
+#: ../authconfig.py:391
 msgid "caching"
 msgstr "در حال ذخیره در حافظهٔ نهان"
 
-#: ../authconfig.py:358
+#: ../authconfig.py:392
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:359
+#: ../authconfig.py:393
 msgid "LDAP authentication"
 msgstr "تأیید هویت LDAP"
 
-#: ../authconfig.py:360
+#: ../authconfig.py:394
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:361
+#: ../authconfig.py:395
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:362
+#: ../authconfig.py:396
 msgid "shadow password"
 msgstr "گذرواژهٔ سایه"
 
-#: ../authconfig.py:363
+#: ../authconfig.py:397
 msgid "SMB authentication"
 msgstr "تأیید هویت SMB"
 
-#: ../authconfig.py:364 ../authconfig.py:366
+#: ../authconfig.py:398 ../authconfig.py:400
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:365
+#: ../authconfig.py:399
 msgid "Winbind authentication"
 msgstr "تأیید هویت Winbind"
 
-#: ../authconfig.py:371 ../authconfig.glade.h:46
+#: ../authconfig.py:405 ../authconfig.glade.h:51
 msgid "User Information"
 msgstr "اطلاعات کاربر"
 
-#: ../authconfig.py:374
+#: ../authconfig.py:408
 msgid "Cache Information"
 msgstr "اطلاعات حافظهٔ نهان"
 
-#: ../authconfig.py:378
+#: ../authconfig.py:412
 msgid "Use Hesiod"
 msgstr "استفاده از Hesiod"
 
-#: ../authconfig.py:381
+#: ../authconfig.py:415
 msgid "Use LDAP"
 msgstr "استفاده از LDAP"
 
-#: ../authconfig.py:385
+#: ../authconfig.py:419
 msgid "Use NIS"
 msgstr "استفاده از NIS"
 
-#: ../authconfig.py:389
+#: ../authconfig.py:423
 msgid "Use Winbind"
 msgstr "استفاده از Winbind"
 
-#: ../authconfig.py:395 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:4
+#: ../authconfig.py:429 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:4
 msgid "Authentication"
 msgstr "تأیید هویت"
 
-#: ../authconfig.py:398
+#: ../authconfig.py:432
 msgid "Use MD5 Passwords"
 msgstr "استفاده از گذرواژه‌های MD5"
 
-#: ../authconfig.py:401
+#: ../authconfig.py:435
 msgid "Use Shadow Passwords"
 msgstr "استفاده از گذرواژه‌های سایه"
 
-#: ../authconfig.py:405
+#: ../authconfig.py:439
 msgid "Use LDAP Authentication"
 msgstr "استفاده از تأیید هویت LDAP"
 
-#: ../authconfig.py:409
+#: ../authconfig.py:443
 msgid "Use Kerberos"
 msgstr "استفاده از Kerberos"
 
-#: ../authconfig.py:413
+#: ../authconfig.py:447
 msgid "Use SMB Authentication"
 msgstr "استفاده از تأیید هویت SMB"
 
-#: ../authconfig.py:417
+#: ../authconfig.py:451
 msgid "Use Winbind Authentication"
 msgstr "استفاده از تأیید هویت Winbind"
 
-#: ../authconfig.py:421
+#: ../authconfig.py:455
 msgid "Local authorization is sufficient"
 msgstr "تأیید اختیارات محلی کافی است"
 
-#: ../authconfig.py:431 ../authconfig.py:566 ../authconfig.py:573
-#: ../authconfig.py:579 ../authconfig.py:588 ../authconfig.py:595
-#: ../authconfig.py:644
+#: ../authconfig.py:465 ../authconfig.py:600 ../authconfig.py:607
+#: ../authconfig.py:613 ../authconfig.py:622 ../authconfig.py:629
+#: ../authconfig.py:678
 msgid "Back"
 msgstr "عقب"
 
-#: ../authconfig.py:431 ../authconfig.py:603
+#: ../authconfig.py:465 ../authconfig.py:637
 msgid "Cancel"
 msgstr "انصراف"
 
-#: ../authconfig.py:432 ../authconfig.py:566 ../authconfig.py:573
-#: ../authconfig.py:579 ../authconfig.py:588 ../authconfig.py:595
-#: ../authconfig.py:644
+#: ../authconfig.py:466 ../authconfig.py:600 ../authconfig.py:607
+#: ../authconfig.py:613 ../authconfig.py:622 ../authconfig.py:629
+#: ../authconfig.py:678
 msgid "Next"
 msgstr "بعد"
 
-#: ../authconfig.py:443 ../authconfig-gtk.py:307 ../authconfig.glade.h:5
+#: ../authconfig.py:477 ../authconfig-gtk.py:317 ../authconfig.glade.h:5
 msgid "Authentication Configuration"
 msgstr "پیکربندی تأیید هویت"
 
-#: ../authconfig.py:563
+#: ../authconfig.py:597
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:564
+#: ../authconfig.py:598
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:565 ../authconfig.glade.h:23
+#: ../authconfig.py:599 ../authconfig.glade.h:26
 msgid "Hesiod Settings"
 msgstr "تنظیمات Hesiod"
 
-#: ../authconfig.py:569
+#: ../authconfig.py:603
 msgid "Use TLS"
 msgstr "استفاده از TLS"
 
-#: ../authconfig.py:570 ../authconfig.py:577
+#: ../authconfig.py:604 ../authconfig.py:611
 msgid "Server:"
 msgstr "کارگزار:"
 
-#: ../authconfig.py:571
+#: ../authconfig.py:605
 msgid "Base DN:"
 msgstr "DN پایه:"
 
-#: ../authconfig.py:572 ../authconfig.glade.h:31
+#: ../authconfig.py:606 ../authconfig.glade.h:34
 msgid "LDAP Settings"
 msgstr "تنظیمات LDAP"
 
-#: ../authconfig.py:576 ../authconfig.py:638
+#: ../authconfig.py:610 ../authconfig.py:672
 msgid "Domain:"
 msgstr "دامنه:"
 
-#: ../authconfig.py:578 ../authconfig.glade.h:33
+#: ../authconfig.py:612 ../authconfig.glade.h:36
 msgid "NIS Settings"
 msgstr "تنظیمات NIS"
 
-#: ../authconfig.py:582
+#: ../authconfig.py:616
 msgid "Realm:"
 msgstr "Realm:"
 
-#: ../authconfig.py:583
+#: ../authconfig.py:617
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:584
+#: ../authconfig.py:618
 msgid "Admin Server:"
 msgstr "کارگزار مدیریت:"
 
-#: ../authconfig.py:585
+#: ../authconfig.py:619
 msgid "Use DNS to resolve hosts to realms"
 msgstr "استفاده از DNS برای بازیافت میزبان‌ها به realms"
 
-#: ../authconfig.py:586
+#: ../authconfig.py:620
 msgid "Use DNS to locate KDCs for realms"
 msgstr "استفاده از DNS برای جایابی KDCs برای realms"
 
-#: ../authconfig.py:587 ../authconfig.glade.h:28
+#: ../authconfig.py:621 ../authconfig.glade.h:31
 msgid "Kerberos Settings"
 msgstr "تنظیمات Kerberos"
 
-#: ../authconfig.py:591
+#: ../authconfig.py:625
 msgid "Workgroup:"
 msgstr "گروه‌کاری:"
 
-#: ../authconfig.py:592
+#: ../authconfig.py:626
 msgid "Servers:"
 msgstr "کارگزارها:"
 
-#: ../authconfig.py:593
+#: ../authconfig.py:627
 msgid "Shell:"
 msgstr "پوسته:"
 
-#: ../authconfig.py:594 ../authconfig.glade.h:37
+#: ../authconfig.py:628 ../authconfig.glade.h:40
 msgid "SMB Settings"
 msgstr "تنظیمات SNB"
 
-#: ../authconfig.py:598
+#: ../authconfig.py:632
 msgid "Domain Administrator:"
 msgstr "مدیر دامنه:"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:633
 msgid "Password:"
 msgstr "گذرواژه:"
 
-#: ../authconfig.py:602
+#: ../authconfig.py:636
 msgid "Join Settings"
 msgstr "تنظیمات پیوستن"
 
-#: ../authconfig.py:612 ../authconfig.glade.h:39
+#: ../authconfig.py:646 ../authconfig.glade.h:44
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -553,45 +585,45 @@ msgstr ""
 "را ذخیره نکنید ممکن است اقدام شما در پیوستن به دامنه با شکست مواجه شود. آیا "
 "تغییرات ذخیره شوند؟"
 
-#: ../authconfig.py:619
+#: ../authconfig.py:653
 msgid "Save Settings"
 msgstr "ذخیرهٔ تنظیمات"
 
-#: ../authconfig.py:620
+#: ../authconfig.py:654
 msgid "No"
 msgstr "نه"
 
-#: ../authconfig.py:620
+#: ../authconfig.py:654
 msgid "Yes"
 msgstr "بله"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:637
+#: ../authconfig.py:671
 msgid "Security Model:"
 msgstr "مدل امنیت:"
 
-#: ../authconfig.py:639
+#: ../authconfig.py:673
 msgid "Domain Controllers:"
 msgstr "کنترل کننده‌های دامنه:"
 
-#: ../authconfig.py:640
+#: ../authconfig.py:674
 msgid "ADS Realm:"
 msgstr "ADS Realm:"
 
-#: ../authconfig.py:641
+#: ../authconfig.py:675
 msgid "Template Shell:"
 msgstr "قالب پوسته:"
 
-#: ../authconfig.py:643 ../authconfig.glade.h:50
+#: ../authconfig.py:677 ../authconfig.glade.h:55
 msgid "Winbind Settings"
 msgstr "تنظیمات Winbind"
 
-#: ../authconfig.py:645
+#: ../authconfig.py:679
 msgid "Join Domain"
 msgstr "پیوستن به دامنه"
 
-#: ../authconfig.py:703 ../authconfig-gtk.py:380
+#: ../authconfig.py:737 ../authconfig-gtk.py:394
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -601,7 +633,7 @@ msgid ""
 msgstr ""
 
 #. FIXME - version
-#: ../authconfig.py:717
+#: ../authconfig.py:751
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -629,80 +661,94 @@ msgid "Cache User _Information"
 msgstr "_ذخیرهٔ اطلاعات کاربر در حافظهٔ نهان"
 
 #: ../authconfig.glade.h:7
+msgid "Card Removal _Action"
+msgstr ""
+
+#: ../authconfig.glade.h:8
 msgid "Con_figure SMB..."
 msgstr "_پیکربندی SMB..."
 
-#: ../authconfig.glade.h:8
+#: ../authconfig.glade.h:9
 msgid "Configure H_esiod..."
 msgstr "_پیکربندی Hesiod..."
 
-#: ../authconfig.glade.h:9
+#: ../authconfig.glade.h:10
 msgid "Configure K_erberos..."
 msgstr "_پیکربندی Kerberos..."
 
-#: ../authconfig.glade.h:10
+#: ../authconfig.glade.h:11
 msgid "Configure L_DAP..."
 msgstr "پیکر_بندی LDAP..."
 
-#: ../authconfig.glade.h:11
+#: ../authconfig.glade.h:12
 msgid "Configure NI_S..."
 msgstr "_پیکربندی NIS..."
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:13
+#, fuzzy
+msgid "Configure Sma_rtcard..."
+msgstr "_پیکربندی Kerberos..."
+
+#: ../authconfig.glade.h:14
 msgid "Configure Win_bind..."
 msgstr "_پیکربندی Winbind..."
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:15
 msgid "Do_n't Save"
 msgstr "ذخیره _نشود"
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:16
 msgid "Domain"
 msgstr "دامنه"
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:17
 msgid "Domain _Administrator"
 msgstr "_مدیر دامنه"
 
-#: ../authconfig.glade.h:16
+#: ../authconfig.glade.h:18
 msgid "Enable SMB S_upport"
 msgstr "_به کار انداختن پشتیبانی SMB"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:19
+#, fuzzy
+msgid "Enable Smart_card Support"
+msgstr "_به کار انداختن پشتیبانی SMB"
+
+#: ../authconfig.glade.h:20
 msgid "Enable _Hesiod Support"
 msgstr "به کا_ر انداختن پشتیبانی"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:21
 msgid "Enable _Kerberos Support"
 msgstr "به کار اندا_ختن پشتیبانی Kerberos"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:22
 msgid "Enable _LDAP Support"
 msgstr "به کار انداختن _پشتیبانی LDAP"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:23
 msgid "Enable _NIS Support"
 msgstr "به _کار انداختن پشتیبانی NIS"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:24
 msgid "Enable _Winbind Support"
 msgstr "به کار _انداختن پشتیبانی Winbind"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:25
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:27
 msgid "Hesiod _LHS"
 msgstr "Hesiod _LHS"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:28
 msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:29
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -710,11 +756,11 @@ msgstr ""
 "‏Hesiod به مدیر سیستم اجازه می‌دهد اطلاعات کاربر و گروه را در DNS منتشر کند.از "
 "این امکانات گاهی اوقات در شبکه‌های بسیار بزرگ استفاده می‌شود."
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:30
 msgid "Joining Winbind Domain"
 msgstr "در حال پیوستن به دامنهٔ Winbind"
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:32
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -722,23 +768,23 @@ msgstr ""
 "‏Kerberos یک سیستم تأیید هویت طرف سومی مورد اعتماد است که عموماً در شبکه‌های "
 "متوسط تا بزرگ استفاده می‌شود."
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:33
 msgid "LDAP Search _Base DN"
 msgstr "جستجوی LDAP پا_یه DN"
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:35
 msgid "LDAP _Server"
 msgstr "کا_رگزار LDAP"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:37
 msgid "NIS _Domain"
 msgstr "_دامنهٔ NIS"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:38
 msgid "NIS _Server"
 msgstr "_کارگزار NIS"
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:39
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
@@ -746,7 +792,7 @@ msgstr ""
 "‏NIS سرویس اطلاعات شبکه است. این سرویس معمولاً در شبکه‌های کوچک تا متوسط "
 "استفاده می‌شود."
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:41
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -754,52 +800,63 @@ msgstr ""
 "تأیید هویت SMB اعتبار گذرواژه‌های کاربر را با اتصال به یک کارگزار که از "
 "مجموعه قرارداد SMB (بلوک پیغام سیستم) استفاده می‌کند می‌سنجد."
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:42
+msgid ""
+"Smartcard authentication allows you to log in using a certificate and key "
+"associated with a smart card."
+msgstr ""
+
+#: ../authconfig.glade.h:43
+#, fuzzy
+msgid "Smartcard settings"
+msgstr "ذخیرهٔ تنظیمات"
+
+#: ../authconfig.glade.h:45
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
 
-#: ../authconfig.glade.h:41
+#: ../authconfig.glade.h:46
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "استفاده از DNS برای یافتن KDC برای realms"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:47
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "استفاده از DNS برای تحویل نام میزبان‌ها به realms"
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:48
 msgid "Use _MD5 Passwords"
 msgstr "استفاده از _گذرواژه‌های MD5"
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:49
 msgid "Use _Shadow Passwords"
 msgstr "استفاده از گذرواژه‌های _سایه"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:50
 msgid "Use _TLS to encrypt connections"
 msgstr "استفاده از TLS برای _رمز کردن اتصالات"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:52
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:53
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS Realm (_ق)"
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:54
 msgid "Winbind Domain Co_ntrollers"
 msgstr "_کنترل کننده‌های دامنهٔ Winbind"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:56
 msgid "Winbind _Domain"
 msgstr "_دامنهٔ Winbind"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:57
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -809,54 +866,73 @@ msgstr ""
 "اختیارات کاربران را با استفاده از اطلاعات ذخیره شده در یک NTDOM یا کارگزار "
 "ADS تعیین کند. از این امکانات در شبکه‌های کوچک تا بزرگ استفاده می‌شود."
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:58
 msgid "_Admin Servers"
 msgstr "کارگزارهای _مدیریت"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:59
 msgid "_Authenticate system accounts by network services"
 msgstr ""
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:60
+msgid "_Disallow logins without a Smartcard"
+msgstr ""
+
+#: ../authconfig.glade.h:61
 msgid "_Domain Controllers"
 msgstr "کنترل کننده‌های _دامنه"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:62
 msgid "_Join Domain"
 msgstr "_پیوند دادن دامنه"
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:63
 msgid "_KDCs"
 msgstr "_KDCs"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:64
 msgid "_Local authorization is sufficient for local users"
 msgstr "تعیین سطح اختیارات م_حلی برای کاربران محلی کافی است"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:65
 msgid "_Password"
 msgstr "_گذرواژه"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:66
 msgid "_Realm"
 msgstr "_Realm"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:67
 msgid "_Security Model"
 msgstr "مدل _امنیت"
 
-#: ../authconfig.glade.h:62
+#: ../authconfig.glade.h:68
+msgid "_Smartcard Type"
+msgstr ""
+
+#: ../authconfig.glade.h:69
 msgid "_Template Shell"
 msgstr "_قالب پوسته:"
 
-#: ../authconfig.glade.h:63
+#: ../authconfig.glade.h:70
 msgid "_Workgroup"
 msgstr "گر_وه‌کاری"
 
-#: ../authinfo.py:2386
+#: ../authinfo.py:634 ../authinfo.py:960 ../authinfo.py:2067
+msgid "Logout"
+msgstr ""
+
+#: ../authinfo.py:634 ../authinfo.py:962 ../authinfo.py:2071
+msgid "Lock"
+msgstr ""
+
+#: ../authinfo.py:634 ../authinfo.py:964
+msgid "Ignore"
+msgstr ""
+
+#: ../authinfo.py:2561
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr ""
-
