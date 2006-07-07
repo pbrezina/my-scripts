@@ -88,6 +88,9 @@ class Authconfig:
 			"enablekerberos" :
 			("enableKerberos", authinfo.PATH_PAM_KRB5,
 			 "Kerberos", "pam_krb5", ["configkerberos"]),
+			"enablesmartcard":
+			("enableSmartcard", authinfo.PATH_PAM_PKCS11,
+			 "Smartcard", "pam_pkcs11", ["configsmartcard"]),
 			"enablesmb" :
 			("enableSMB", authinfo.PATH_PAM_SMB,
 			 "SMB", "pam_smb", ["configsmb"]),
@@ -130,6 +133,11 @@ class Authconfig:
 			"basedn" : ("ldapBaseDN", ""),
 			"server" : ("ldapServer", ""),
 		}
+		self.smartcard_map = {
+			"module" : ("smartcardModule", authinfo.getSmartcardModules(),()),
+			"action" : ("smartcardAction", authinfo.getSmartcardActions(),()),
+			"forcesmartcard" : ("forceSmartcard", ""),
+		}
 		self.hesiod_map = {
 			"lhs" : ("hesiodLHS", ""),
 			"rhs" : ("hesiodRHS", ""),
@@ -158,6 +166,7 @@ class Authconfig:
 			"confighesiod": ("hesiodsettings", "hesiod_map"),
 			"configsmb": ("smbsettings", "smb_map"),
 			"configkerberos": ("kerberossettings", "kerberos_map"),
+			"configsmartcard": ("smartcardsettings", "smartcard_map"),
 			"configwinbind": ("winbindsettings", "winbind_map"),
 			"configwinbindauth": ("winbindsettings", "winbind_map"),
 		}
@@ -353,6 +362,10 @@ class Authconfig:
 						   self.main_map[entry][0],
 						   aliases,
 						   dependents)
+			# if not tokens are installed, don't enable smartcard
+			# login
+			if entry == "enablesmartcard" and len(authinfo.getSmartcardModules()) == 0:
+				widget.set_sensitive(False)
 		return dialog
 
 	# Save changes.

@@ -29,6 +29,7 @@ import shvfile
 import dnsclient
 import sys
 import errno
+from subprocess import *
 import acutil
 from rhpl.translate import _
 
@@ -62,6 +63,9 @@ PATH_WINBIND_PID = "/var/run/winbindd.pid"
 PATH_YPBIND = "/sbin/ypbind"
 PATH_YPBIND_PID = "/var/run/ypbind.pid"
 PATH_SEBOOL = "/usr/sbin/setsebool"
+PATH_SCEVENTD = "/usr/bin/pkcs11_eventmgr"
+PATH_SCEVENTD_PID = "/var/run/sceventd.pid"
+PATH_SCSETUP = "/usr/bin/pkcs11_setup"
 
 PATH_LIBNSS_DB = LIBDIR + "/libnss_db.so.2"
 PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
@@ -75,6 +79,7 @@ PATH_PAM_KRB5 = AUTH_MODULE_DIR + "/pam_krb5.so"
 PATH_PAM_LDAP = AUTH_MODULE_DIR + "/pam_ldap.so"
 PATH_PAM_SMB = AUTH_MODULE_DIR + "/pam_smb_auth.so"
 PATH_PAM_WINBIND = AUTH_MODULE_DIR + "/pam_winbind.so"
+PATH_PAM_PKCS11 = AUTH_MODULE_DIR + "/pam_pkcs11.so"
 
 PATH_WINBIND_NET = "/usr/bin/net"
 
@@ -85,6 +90,9 @@ LOGIC_REQUISITE	= "requisite"
 LOGIC_SUFFICIENT = "sufficient"
 LOGIC_OPTIONAL = "optional"
 LOGIC_IGNORE_UNKNOWN = "[default=bad success=ok user_unknown=ignore]"
+LOGIC_PKCS11 = "[success=done cred_insufficient=die default=ignore]"
+LOGIC_FORCE_PKCS11 = "[success=done default=die]"
+LOGIC_SKIPNEXT = "[success=1 default=ignore]"
 
 # Snip off line terminators and final whitespace from a passed-in string.
 def snipString(s):
@@ -246,6 +254,10 @@ argv_eps_password = [
 	"use_authtok"
 ]
 
+argv_pkcs11_auth = [
+	"card_only"
+]
+
 argv_krb5_auth = [
 	"use_first_pass"
 ]
@@ -267,6 +279,10 @@ argv_ldap_password = [
 	"use_authtok"
 ]
 
+argv_pkcs11_auth = [
+	"card_only"
+]
+
 # This probably won't work straight-off because pam_unix won't give the right
 # challenge, but what the heck.
 argv_otp_auth = [
@@ -285,6 +301,11 @@ argv_succeed_if_auth = [
 
 argv_succeed_if_account = [
 	"uid < 500",
+	"quiet"
+]
+
+argv_succeed_if_nonlogin = [
+	"service notin login:gdm:xdm:kdm",
 	"quiet"
 ]
 
@@ -315,6 +336,10 @@ ARGV = 4
 standard_pam_modules = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[False,  AUTH,      LOGIC_SKIPNEXT,
+	 "succeed_if",		argv_succeed_if_nonlogin],
+	[False,  AUTH,      LOGIC_PKCS11,
+	 "pkcs11",		argv_pkcs11_auth],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
@@ -589,6 +614,25 @@ def isEmptyDir(path):
 			pass
 	return True
 
+def callPKCS11Setup(options):
+	try:
+		child = Popen([PATH_SCSETUP] + options, stdout=PIPE)
+		lst = child.communicate()[0].split("\n")
+		if child.returncode != 0:
+			return None
+		if lst[-1] == '':
+			del lst[-1:]
+	except OSError:
+		return None
+	return lst		
+
+def getSmartcardModules():
+	mods = callPKCS11Setup(["list_modules"])
+	return mods
+
+def getSmartcardActions():
+	return [_("Logout"), _("Lock"), _("Ignore")]
+		
 def read(msgcb):
 	info = AuthInfo(msgcb)
 	info.read()
@@ -643,6 +687,9 @@ class AuthInfo:
 		self.winbindTemplatePrimaryGroup = ""
 		self.winbindTemplateShell = ""
 		self.winbindUseDefaultDomain = None
+		
+		self.smartcardModule = ""
+		self.smartcardAction = ""
 
 		# NSSwitch setup.  Files is always in there.
 		self.enableCache = None
@@ -679,9 +726,11 @@ class AuthInfo:
 		self.enableWinbindAuth = None
 		self.enableLocAuthorize = None
 		self.enableSysNetAuth = None
+		self.enableSmartcard = None
 
 		self.brokenShadow = None
 		self.forceBrokenShadow = None
+		self.forceSmartcard = None
 
 		# Not really options.
 		self.joinUser = ""
@@ -877,7 +926,10 @@ class AuthInfo:
 				else:
 					if line[0:1] == "}":
 						subsection = ""
-					elif subsection == self.kerberosRealm:
+						continue
+					if not self.kerberosRealm:
+						self.kerberosRealm = subsection
+					if subsection == self.kerberosRealm:
 						# See if this is a key we care about.
 						value = matchKeyEquals(line, "kdc")
 						if value:
@@ -889,6 +941,29 @@ class AuthInfo:
 		f.close()
 		return True
 
+	def readSmartcard(self):
+		logout = False
+		lock = False
+		self.smartcardModule = callPKCS11Setup(["use_module"])
+		if self.smartcardModule == None:
+			return False
+		self.smartcardModule = self.smartcardModule[0]
+   		rmactions = callPKCS11Setup(["rm_action"])
+   		if rmactions == None:
+   			return False
+   		for action in rmactions:
+   			if "gdm-restart" in action:
+   				logout = True
+   			if "lockhelper.sh" in action:
+   				lock = True
+		if logout:
+   			self.smartcardAction = _("Logout")
+   		elif lock:
+   			self.smartcardAction = _("Lock")
+   		else:
+   			self.smartcardAction = _("Ignore")
+   		return True
+   		
 	# Read Samba setup from /etc/samba/smb.conf.
 	def readWinbindGlobal(self, key):
 		result = ""
@@ -1059,6 +1134,10 @@ class AuthInfo:
 			
 			if lst[0] == "include":
 				continue
+				
+			control = lst[0]
+			if control.startswith("["):
+				control += "]"
 
 			line = lst[1]
 
@@ -1081,6 +1160,13 @@ class AuthInfo:
 				continue
 			if module.startswith("pam_ldap"):
 				self.enableLDAPAuth = True
+				continue
+			if module.startswith("pam_pkcs11"):
+				self.enableSmartcard = True
+				if control == LOGIC_FORCE_PKCS11:
+					self.forceSmartcard = True
+				else:
+					self.forceSmartcard = False
 				continue
 			if module.startswith("pam_passwdqc"):
 				self.enablePasswdQC = True
@@ -1177,6 +1263,14 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
+				self.enableSmartcard = shv.getBoolValue("USESMARTCARD")
+			except ValueError:
+				pass
+			try:
+				self.forceSmartcard = shv.getBoolValue("FORCESMARTCARD")
+			except ValueError:
+				pass
+			try:
 				self.enableLDAPbind = shv.getBoolValue("USELDAPBIND")
 			except ValueError:
 				pass
@@ -1241,7 +1335,8 @@ class AuthInfo:
 	
 		# Special handling for broken_shadow option
 		if (self.brokenShadow and not self.enableLDAPAuth and
-			not self.enableKerberos and not self.enableWinbindAuth):
+			not self.enableKerberos and not self.enableWinbindAuth and
+			not self.enableSmartcard):
 			self.forceBrokenShadow = True
 			    	
 		return True
@@ -1280,6 +1375,9 @@ class AuthInfo:
 		stringsDiffer(self.nisServer, b.nisServer, True) or
 		stringsDiffer(self.nisDomain, b.nisDomain, True) or
 		stringsDiffer(self.nisLocalDomain, b.nisLocalDomain, True) or
+
+		stringsDiffer(self.smartcardModule, b.smartcardModule, True) or
+		stringsDiffer(self.smartcardAction, b.smartcardAction, True) or
 
 		stringsDiffer(self.smbWorkgroup, b.smbWorkgroup, False) or
 		stringsDiffer(self.smbRealm, b.smbRealm, True) or
@@ -1324,6 +1422,8 @@ class AuthInfo:
 		(self.enableEPS != b.enableEPS) or
 		(self.enableKerberos != b.enableKerberos) or
 		(self.enableLDAPAuth != b.enableLDAPAuth) or
+		(self.enableSmartcard != b.enableSmartcard) or
+		(self.forceSmartcard != b.forceSmartcard) or
 		(self.enableMD5 != b.enableMD5) or
 		(self.enableOTP != b.enableOTP) or
 		(self.enablePasswdQC != b.enablePasswdQC) or
@@ -1361,8 +1461,9 @@ class AuthInfo:
 		self.readWinbind()
 		self.readNetwork()
 		self.readNIS()
-		self.readLDAP()
+		self.readLDAP()		
 		self.readKerberos()
+		self.readSmartcard()
 		self.readNSS()
 		self.readCache()
 		self.readPAM()
@@ -1701,6 +1802,9 @@ class AuthInfo:
 		wrotedefaultrealm = False
 		wrotednsrealm = False
 		wrotednskdc = False
+		wroteourdomrealm = False
+		wrotedomrealm = False
+		wrotedomrealm2 = False
 		section = ""
 		subsection = ""
 		f = None
@@ -1793,6 +1897,12 @@ class AuthInfo:
 						output += "\n"
 						wrotednskdc = True
 					continue
+				# don't change the domain_realm mapping if it's already there
+				if section == "domain_realm" and self.kerberosRealm and (matchLine(ls, self.kerberosRealm.lower())
+					or matchLine(ls, "."+self.kerberosRealm.lower())):
+					output += line
+					wroteourdomrealm = True
+					continue
 				# If it's the beginning of a section, record its name.
 				if matchLine(ls, "["):
 					# If the previous section was "realms", and we didn't
@@ -1828,16 +1938,29 @@ class AuthInfo:
 							output += str(bool(self.kerberosKDCviaDNS)).lower()
 							output += "\n"
 							wrotednskdc = True
+					if section == "domain_realm":
+						if self.kerberosRealm and not wroteourdomrealm:
+							output += " " + self.kerberosRealm.lower()
+							output += " = " + self.kerberosRealm
+							output +=  "\n"
+							output += " ." + self.kerberosRealm.lower()
+							output += " = " + self.kerberosRealm
+							output +=  "\n"
+							wroteourdomrealm = True
 					if section:
 						if section == "realms":
 							wroterealms2 = True
 						elif section == "libdefaults":
 							wrotelibdefaults2 = True
+						elif section == "domain_realm":
+							wrotedomrealm2 = True
 					section = ls[1:].split("]", 1)[0]
 					if section == "realms":
 						wroterealms = True
 					elif section == "libdefaults":
 						wrotelibdefaults = True
+					elif section == "domain_realm":
+						wrotedomrealm = True
 
 				# Otherwise, just copy the current line out.
 				output += line
@@ -1858,10 +1981,6 @@ class AuthInfo:
 					output += " dns_lookup_kdc = "
 					output += str(bool(self.kerberosKDCviaDNS)).lower()
 					output += "\n"
-				if self.kerberosRealm:
-					output += " default_realm = "
-					output += self.kerberosRealm
-					output +=  "\n"
 			# If we haven't encountered a realms section yet...
 			if not wroterealms2:
 				if not wroterealms:
@@ -1871,6 +1990,16 @@ class AuthInfo:
 						self.kerberosAdminServer)
 				if not wrotesmbrealm:
 					output += krbRealm(self.smbRealm, self.smbServers, "")
+			if not wrotedomrealm2:
+				if not wrotedomrealm:
+					output += "[domain_realm]\n"
+				if self.kerberosRealm and not wroteourdomrealm:
+					output += " " + self.kerberosRealm.lower()
+					output += " = " + self.kerberosRealm
+					output +=  "\n"
+					output += " ." + self.kerberosRealm.lower()
+					output += " = " + self.kerberosRealm
+					output +=  "\n"
 
 			# Write it out and close it.
 			f.seek(0)
@@ -1932,6 +2061,19 @@ class AuthInfo:
 		if ret:
 			self.writeKerberos4()
 		return ret;
+
+	def writeSmartcard(self):
+		insact = "/usr/sbin/gdm-safe-restart"
+		if self.smartcardAction == _("Logout"):
+			rmact = "/usr/sbin/gdm-restart"
+		else:
+			rmact = "/usr/sbin/gdm-safe-restart"
+		if self.smartcardAction == _("Lock"):
+			insact += ",/etc/pkcs11/lockhelper.sh -lock"
+			rmact += ",/etc/pkcs11/lockhelper.sh -deactivate"
+		
+		callPKCS11Setup(["use_module="+self.smartcardModule,
+			"ins_action="+insact, "rm_action="+rmact])
 
 	# Write winbind settings to /etc/smb/samba.conf.
 	def writeWinbind(self):
@@ -2495,12 +2637,21 @@ class AuthInfo:
 					(self.enableKerberos and not have_afs and module[NAME] == "krb5") or
 					(self.enableKerberos and have_afs and module[NAME] == "krb5afs") or
 					(self.enableLDAPAuth and module[NAME] == "ldap") or
+					(self.enableSmartcard and module[LOGIC] == LOGIC_SKIPNEXT and
+						module[NAME] == "succeed_if") or
+					(self.enableSmartcard and module[NAME] == "pkcs11") or 
 					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
-					(not self.enableSysNetAuth and module[NAME] == "succeed_if")):
+					(not self.enableSysNetAuth and module[LOGIC] == LOGIC_REQUISITE and
+						module[NAME] == "succeed_if")):
+					if self.enableSmartcard and module[NAME] == "pkcs11":
+						if self.forceSmartcard:
+							module[LOGIC] = LOGIC_FORCE_PKCS11
+						else:
+							module[LOGIC] = LOGIC_PKCS11
 					output += self.formatPAMModule(module)
 
 			# Write it out and close it.
@@ -2533,6 +2684,8 @@ class AuthInfo:
 		shv.setBoolValue("USEWINBIND", self.enableWinbind)
 		shv.setBoolValue("USEKERBEROS", self.enableKerberos)
 		shv.setBoolValue("USELDAPAUTH", self.enableLDAPAuth)
+		shv.setBoolValue("USESMARTCARD", self.enableSmartcard)
+		shv.setBoolValue("FORCESMARTCARD", self.forceSmartcard)
 		shv.setBoolValue("USEMD5", self.enableMD5)
 		shv.setBoolValue("USESHADOW", self.enableShadow)
 		shv.setBoolValue("USESMBAUTH", self.enableSMB)
@@ -2572,6 +2725,8 @@ class AuthInfo:
 				(self.enableWinbindAuth and
 				self.smbSecurity == "ads")):
 				ret = ret and self.writeKerberos()
+			if self.enableSmartcard:
+				ret = ret and self.writeSmartcard()
 			if self.enableNIS:
 				ret = ret and self.writeNIS()
 			if self.enableSMB:
@@ -2602,6 +2757,7 @@ class AuthInfo:
 		("kerberosKDCviaDNS", "b")]),
 	SaveGroup(self.writeKerberos4, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
 		("kerberosAdminServer", "i")]),
+	SaveGroup(self.writeSmartcard, [("smartcardAction", "i"), ("smartcardModule", "c")]),
 	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
 		("smbIdmapGid", "i"), ("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
@@ -2615,12 +2771,14 @@ class AuthInfo:
 	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"), ("localuserArgs", "c"),
 		("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"), ("enableBigCrypt", "b"),
 		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
-		("enableKerberos", "b"), ("enableWinbindAuth", "b"), ("enableAFS", "b"),
+		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
+		("enableWinbindAuth", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b")]),
 	SaveGroup(self.writeSysconfig, [("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
+		("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
 		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enableSysNetAuth", "b")]),
@@ -2758,6 +2916,10 @@ class AuthInfo:
 		print " LDAP+TLS is %s" % formatBool(self.enableLDAPS)
 		print " LDAP server = \"%s\"" % self.ldapServer
 		print " LDAP base DN = \"%s\"" % self.ldapBaseDN
+		print "pam_pkcs11 is %s\n" % formatBool(self.enableSmartcard)
+		print " use only smartcard for login is %s" % formatBool(self.forceSmartcard)
+		print " smartcard module = \"%s\"" % self.smartcardModule
+		print " smartcard removal action = \"%s\"" % self.smartcardAction
 		print "pam_smb_auth is %s" % formatBool(self.enableSMB)
 		print " SMB workgroup = \"%s\"" % self.smbWorkgroup
 		print " SMB servers = \"%s\"" % self.smbServers
@@ -2828,6 +2990,9 @@ class AuthInfo:
 		toggleSplatbindService(self.enableOdbcbind,
 			PATH_ODBCBIND, PATH_ODBCBIND_PID,
 			"odbcbind", nostart)
+		toggleSplatbindService(self.enableSmartcard,
+			PATH_SCEVENTD, PATH_SCEVENTD_PID,
+			"sceventd", nostart)
 		toggleCachingService(self.enableCache, nostart)
 
 	def testLDAPCACerts(self):
@@ -2840,7 +3005,6 @@ class AuthInfo:
 		
 			return isEmptyDir(self.ldapCacertDir)
 		return False
-
 
 	def rehashLDAPCACerts(self):
 		if ((self.enableLDAP or self.enableLDAPAuth) and

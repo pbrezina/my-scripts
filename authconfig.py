@@ -90,6 +90,29 @@ class Authconfig:
  		parser.add_option("--disableldaptls",  "--disableldapssl", action="store_true",
 			help=_("disable use of TLS with LDAP"))
 
+		parser.add_option("--enablesmartcard", action="store_true",
+			help=_("enable authentication with Smartcard by default"))
+ 		parser.add_option("--disablesmartcard", action="store_true",
+			help=_("disable authentication with Smartcard by default"))
+		parser.add_option("--enablerequiresmartcard", action="store_true",
+			help=_("require Smartcard for authentication by default"))
+ 		parser.add_option("--disablerequiresmartcard", action="store_true",
+			help=_("do not require Smartcard for authentication by default"))
+ 		parser.add_option("--smartcardmodule", metavar=_("<module>"),
+ 			help=_("default Smartcard module to use"))
+ 			
+ 		acts = authinfo.getSmartcardActions()
+ 		idx = 0
+ 		actshelp = "<"
+ 		for act in acts:
+ 			if idx > 0:
+ 				actshelp += "|"
+			actshelp += str(idx) + "=" + act
+			idx += 1
+		actshelp += ">"
+ 		parser.add_option("--smartcardaction", metavar=actshelp,
+ 			help=_("action to be taken on Smartcard removal"))
+
 		parser.add_option("--enablekrb5", action="store_true",
 			help=_("enable kerberos authentication by default"))
  		parser.add_option("--disablekrb5", action="store_true",
@@ -252,6 +275,8 @@ class Authconfig:
 			"nis":"enableNIS",
 			"krb5kdcdns":"kerberosKDCviaDNS",
 			"krb5realmdns":"kerberosRealmviaDNS",
+			"smartcard":"enableSmartcard",
+			"requiresmartcard":"forceSmartcard",
 			"smbauth":"enableSMB",
 			"winbind":"enableWinbind",
 			"winbindauth":"enableWinbindAuth",
@@ -265,6 +290,8 @@ class Authconfig:
 			"krb5realm":"kerberosRealm",
 			"krb5kdc":"kerberosKDC",
 			"krb5adminserver":"kerberosAdminServer",
+			"smartcardmodule":"smartcardModule",
+			"smartcardaction":"smartcardAction",
 			"nisdomain":"nisDomain",
 			"nisserver":"nisServer",
 			"smbworkgroup":"smbWorkgroup",
@@ -293,6 +320,13 @@ class Authconfig:
 			self.info.joinUser = lst[0]
 			if len(lst) > 1:
 				self.info.joinPassword = lst[1]
+		
+		if self.options.smartcardaction:
+			try:
+				idx = int(self.options.smartcardaction)
+				self.info.smartcardAction = self.info.getSmartcardActions()[idx]
+			except ValueError, IndexError:
+				self.info.smartcardAction = ""
 
 	def doUI(self):
 		return True

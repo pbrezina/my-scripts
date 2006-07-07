@@ -95,6 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Jul  7 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.0-1
+- added support for smartcard authentication
+- fixed parsing kerberos realms
+
 * Thu May 18 2006 Tomas Mraz <tmraz@redhat.com> - 5.2.5-1
 - write ldap servers as URIs and not HOSTs (#191842)
 - fix a typo in --test output
