@@ -4,19 +4,20 @@
 # James Hashida <khashida@redhat.com>, 2002.
 # Tadashi Jokagi <fedora@elf.no-ip.org>, 2004.
 # Hirofumi Saito <hi_saito@yk.rim.or.jp>, 2004, 2005, 2006.
+# Kiyoto James Hashida <khashida@redhat.com>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-07 16:39+0200\n"
-"PO-Revision-Date: 2006-02-04 03:09+0900\n"
-"Last-Translator: Hirofumi Saito <hi_saito@yk.rim.or.jp>\n"
-"Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
+"PO-Revision-Date: 2006-07-11 12:13\n"
+"Last-Translator: Kiyoto James Hashida <khashida@redhat.com>\n"
+"Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.2\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: ../authconfig.py:52
 #, python-format
@@ -122,39 +123,35 @@ msgstr "TLS と LDAP の併用を無効にする"
 
 # ../authconfig.c:745
 #: ../authconfig.py:94
-#, fuzzy
 msgid "enable authentication with Smartcard by default"
-msgstr "SMB 認証をデフォルトで有効にする"
+msgstr "Smartcard 認証をデフォルトで有効にする"
 
 # ../authconfig.c:738
 #: ../authconfig.py:96
-#, fuzzy
 msgid "disable authentication with Smartcard by default"
-msgstr "SMB 認証をデフォルトで無効にする"
+msgstr "Smartcard 認証をデフォルトで無効にする"
 
 # ../authconfig.c:736
 #: ../authconfig.py:98
-#, fuzzy
 msgid "require Smartcard for authentication by default"
-msgstr "LDAP 認証をデフォルトで有効にする"
+msgstr "認証用 Smartcard をデフォルトで要求する"
 
 # ../authconfig.c:738
 #: ../authconfig.py:100
-#, fuzzy
 msgid "do not require Smartcard for authentication by default"
-msgstr "LDAP 認証をデフォルトで無効にする"
+msgstr "認証用 Smartcard をデフォルトで要求しない"
 
 #: ../authconfig.py:101
 msgid "<module>"
-msgstr ""
+msgstr "<module>"
 
 #: ../authconfig.py:102
 msgid "default Smartcard module to use"
-msgstr ""
+msgstr "デフォルトで使用する Smartcard モジュール"
 
 #: ../authconfig.py:114
 msgid "action to be taken on Smartcard removal"
-msgstr ""
+msgstr "Smartcard の削除でなすべきアクション"
 
 # ../authconfig.c:745
 #: ../authconfig.py:117
@@ -257,8 +254,7 @@ msgstr "samba と winbind 用に使用するセキュリティモード"
 
 #: ../authconfig.py:155
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
-"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
+msgstr "セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
 
 #: ../authconfig.py:156 ../authconfig.py:158
 msgid "<lowest-highest>"
@@ -760,7 +756,7 @@ msgstr "キャッシュユーザー情報(_C)"
 
 #: ../authconfig.glade.h:7
 msgid "Card Removal _Action"
-msgstr ""
+msgstr "カード削除のアクション(_A)"
 
 #: ../authconfig.glade.h:8
 msgid "Con_figure SMB..."
@@ -780,12 +776,11 @@ msgstr "LDAPの設定(_C)..."
 
 #: ../authconfig.glade.h:12
 msgid "Configure NI_S..."
-msgstr "NISの設定(_C)..."
+msgstr "NISの設定(_S)..."
 
 #: ../authconfig.glade.h:13
-#, fuzzy
 msgid "Configure Sma_rtcard..."
-msgstr "Kerberos の設定(_C)..."
+msgstr "Smartcard の設定(_R)..."
 
 #: ../authconfig.glade.h:14
 msgid "Configure Win_bind..."
@@ -809,9 +804,8 @@ msgid "Enable SMB S_upport"
 msgstr "SMB サポートを有効にする(_S)"
 
 #: ../authconfig.glade.h:19
-#, fuzzy
 msgid "Enable Smart_card Support"
-msgstr "SMB サポートを有効にする(_S)"
+msgstr "Smartcard サポートを有効にする(_C)"
 
 #: ../authconfig.glade.h:20
 msgid "Enable _Hesiod Support"
@@ -913,11 +907,12 @@ msgid ""
 "Smartcard authentication allows you to log in using a certificate and key "
 "associated with a smart card."
 msgstr ""
+"Smartcard 認証を使用すると、smartcard に関連した証明証とキーを使用してログインする"
+"ことができます。"
 
 #: ../authconfig.glade.h:43
-#, fuzzy
 msgid "Smartcard settings"
-msgstr "設定の保存"
+msgstr "Smartcard の設定"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -993,7 +988,7 @@ msgstr "ネットワークサービスによる認証システムアカウント
 
 #: ../authconfig.glade.h:60
 msgid "_Disallow logins without a Smartcard"
-msgstr ""
+msgstr "Smartcard のないログインを拒否する(_D)"
 
 #: ../authconfig.glade.h:61
 msgid "_Domain Controllers"
@@ -1029,7 +1024,7 @@ msgstr "セキュリティモデル(_S)"
 
 #: ../authconfig.glade.h:68
 msgid "_Smartcard Type"
-msgstr ""
+msgstr "Smartcard タイプ(_S)"
 
 #: ../authconfig.glade.h:69
 msgid "_Template Shell"
@@ -1041,15 +1036,15 @@ msgstr "ワークグループ(_W)"
 
 #: ../authinfo.py:634 ../authinfo.py:960 ../authinfo.py:2067
 msgid "Logout"
-msgstr ""
+msgstr "ログアウト"
 
 #: ../authinfo.py:634 ../authinfo.py:962 ../authinfo.py:2071
 msgid "Lock"
-msgstr ""
+msgstr "ロック"
 
 #: ../authinfo.py:634 ../authinfo.py:964
 msgid "Ignore"
-msgstr ""
+msgstr "無視"
 
 #: ../authinfo.py:2561
 #, python-format
@@ -1060,85 +1055,3 @@ msgstr ""
 "認証モジュール %s/pam_%s.so が見つかりません。認証プロセスは正常に動作しませ"
 "ん。"
 
-# ../authconfig.c:344
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "<b>Hesiod</b>"
-
-# ../authconfig.c:500
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "<b>Kerberos</b>"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "<b>Winbind</b>"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "EXAMPLE.COM"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
-
-# ../authconfig.c:719
-#~ msgid "enable NIS"
-#~ msgstr "NIS を有効にする"
-
-# ../authconfig.c:721
-#~ msgid "disable NIS"
-#~ msgstr "NIS を無効にする"
-
-# ../authconfig.c:760
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-# ../authconfig.c:762
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-# ../authconfig.c:774
-#~ msgid "use locally-defined policies"
-#~ msgstr "ローカル定義のポリシーを使用する"
-
-# ../authconfig.c:776
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "ローカル定義のポリシーを使用しない"
-
-# ../authconfig.c:787
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: 不適切な引数 %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: 継続を試行中\n"
-
-# ../authconfig.c:814 ../authconfig.c:822 ../authconfig.c:830
-# ../authconfig.c:838 ../authconfig.c:846 ../authconfig.c:854
-# ../authconfig.c:862
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: %s/%s の読み込み中に重大なエラーです。"
-
-# ../authconfig.c:394
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: キャッシュ設定を読み取れません。"
-
-# ../authconfig.c:814 ../authconfig.c:822 ../authconfig.c:830
-# ../authconfig.c:838 ../authconfig.c:846 ../authconfig.c:854
-# ../authconfig.c:862
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: キャッシュ設定の記録中に重大なエラーです。"
-
-# ../authconfig.c:982 ../authconfig.c:988 ../authconfig.c:994
-# ../authconfig.c:1000 ../authconfig.c:1006 ../authconfig.c:1011
-# ../authconfig.c:1017
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: %s/%s の書き込み中に重大なエラーです。"
-
-# ../authconfig.c:774
-#~ msgid "Use Local Policies"
-#~ msgstr "ローカルポリシーを使用"
-
-#~ msgid "Information"
-#~ msgstr "情報"
-
-#~ msgid "(c) 1999-2003 Red Hat, Inc."
-#~ msgstr "(c) 1999-2003 Red Hat, Inc."
