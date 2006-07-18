@@ -636,6 +636,8 @@ def callPKCS11Setup(options):
 
 def getSmartcardModules():
 	mods = callPKCS11Setup(["list_modules"])
+	if mods == None:
+		return []
 	return mods
 
 def getSmartcardActions():
