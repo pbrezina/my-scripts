@@ -9,7 +9,7 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.bz2
-Requires: rhpl, newt, pam >= 0.77-56, usermode
+Requires: rhpl, newt, pam >= 0.99.5.0-2, usermode
 Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]")
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 BuildRequires: glib2-devel, python, python-devel
@@ -95,6 +95,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Jul 18 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.1-1
+- screensavers should be authenticated by smartcard too
+- add feature to download a CA certificate for LDAP from 
+  an URL (#197103)
+- add pam_keyinit session module to the PAM configuration (#198638)
+
 * Fri Jul  7 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.0-1
 - added support for smartcard authentication
 - fixed parsing kerberos realms

@@ -89,6 +89,8 @@ class Authconfig:
 			help=_("enable use of TLS with LDAP"))
  		parser.add_option("--disableldaptls",  "--disableldapssl", action="store_true",
 			help=_("disable use of TLS with LDAP"))
+ 		parser.add_option("--ldaploadcacert", metavar=_("<URL>"),
+ 			help=_("load CA certificate from the URL"))
 
 		parser.add_option("--enablesmartcard", action="store_true",
 			help=_("enable authentication with Smartcard by default"))
@@ -287,6 +289,7 @@ class Authconfig:
 			"hesiodrhs":"hesiodRHS",
 			"ldapserver":"ldapServer",
 			"ldapbasedn":"ldapBaseDN",
+			"ldaploadcacert":"ldapCacertURL",
 			"krb5realm":"kerberosRealm",
 			"krb5kdc":"kerberosKDC",
 			"krb5adminserver":"kerberosAdminServer",
@@ -337,13 +340,15 @@ class Authconfig:
 	
 	def writeAuthInfo(self):
 		self.info.testLDAPCACerts()
+		if self.info.ldapCacertURL:
+			self.info.downloadLDAPCACert()
 		self.info.rehashLDAPCACerts()
 		if self.options.updateall:
 			self.info.write()
 		else:
 			self.info.writeChanged(self.pristineinfo)
 		# FIXME: what about printing critical errors writing individual configs?
-		self.joinDomain()		
+		self.joinDomain()
 		self.info.post(self.options.nostart)
 				
 	def run(self):

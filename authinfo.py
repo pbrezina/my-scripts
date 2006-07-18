@@ -1,4 +1,4 @@
-#
+#s
 # Authconfig - client authentication configuration program
 # Copyright (c) 1999-2005 Red Hat, Inc.
 #
@@ -29,6 +29,7 @@ import shvfile
 import dnsclient
 import sys
 import errno
+import urllib2
 from subprocess import *
 import acutil
 from rhpl.translate import _
@@ -84,6 +85,7 @@ PATH_PAM_PKCS11 = AUTH_MODULE_DIR + "/pam_pkcs11.so"
 PATH_WINBIND_NET = "/usr/bin/net"
 
 PATH_LDAP_CACERTS = "/etc/openldap/cacerts"
+LDAP_CACERT_DOWNLOADED = "authconfig_downloaded.pem"
 
 LOGIC_REQUIRED = "required"
 LOGIC_REQUISITE	= "requisite"
@@ -305,7 +307,7 @@ argv_succeed_if_account = [
 ]
 
 argv_succeed_if_nonlogin = [
-	"service notin login:gdm:xdm:kdm",
+	"service notin login:gdm:xdm:kdm:xscreensaver:gnome-screensaver:kscreensaver",
 	"quiet"
 ]
 
@@ -315,6 +317,10 @@ argv_winbind_auth = [
 
 argv_winbind_password = [
 	"use_authtok"
+]
+
+argv_keyinit_session = [
+	"revoke"
 ]
 
 # Enumerations for PAM control flags and stack names.
@@ -420,6 +426,8 @@ standard_pam_modules = [
 	[True,  PASSWORD,	LOGIC_REQUIRED,
 	 "deny",		[]],
 
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "limits",		[]],
 	[True,  SESSION,	LOGIC_REQUIRED,
@@ -739,6 +747,7 @@ class AuthInfo:
 		self.passwdqcArgs = ""
 		self.localuserArgs = ""
 		self.ldapCacertDir = ""
+		self.ldapCacertURL = ""
 		
 	# Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvfile
 	# can read it just fine.
@@ -3010,3 +3019,19 @@ class AuthInfo:
 		if ((self.enableLDAP or self.enableLDAPAuth) and
 			self.enableLDAPS):
 			os.system("/usr/sbin/cacertdir_rehash " + self.ldapCacertDir)
+
+	def downloadLDAPCACert(self):
+		if not self.ldapCacertURL:
+			return False
+		self.testLDAPCACerts()
+		try:
+			readf = urllib2.urlopen(self.ldapCacertURL)
+			writef = openLocked(self.ldapCacertDir + "/" + LDAP_CACERT_DOWNLOADED, 0644)
+			writef.write(readf.read())
+			readf.close()
+			writef.close()
+		except IOError:
+			self.messageCB(_("Error downloading CA certificate"))
+			return False
+		self.rehashLDAPCACerts()
+		return True

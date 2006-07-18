@@ -129,9 +129,13 @@ class Authconfig:
 			"dnskdc" : ("kerberosKDCviaDNS", ""),
 		}
 		self.ldap_map = {
-			"tls" : ("enableLDAPS", ""),
+			"tls" : ("enableLDAPS", "", "", "", "downloadcacert"),
+			"downloadcacert" : ("ldap_cacert_download", ""),
 			"basedn" : ("ldapBaseDN", ""),
 			"server" : ("ldapServer", ""),
+		}
+		self.ldapcacert_map = {
+			"cacerturl" : ("ldapCacertURL", ""),
 		}
 		self.smartcard_map = {
 			"module" : ("smartcardModule", authinfo.getSmartcardModules(),()),
@@ -288,8 +292,10 @@ class Authconfig:
 							  map[entry][0])))
 				if len(map[entry]) > 4:
 					button = xml.get_widget(map[entry][4])
-					button.set_sensitive(bool(getattr(self.info,
-								     map[entry][0])))
+					widget.connect("toggled", self.toggleboolean,
+						entry, [], [button])
+					self.toggleboolean(widget,
+						entry, [], [button])
 			if type(widget) == type(gtk.Label()):
 				if getattr(self.info, map[entry][0]):
 					widget.set_text(getattr(self.info,
@@ -395,12 +401,19 @@ class Authconfig:
 			"a CA certificate which signed your server's certificate. "
 		        "Copy the certificate in the PEM format to the '%s' directory.\n"
 			"Then press OK.") % self.info.ldapCacertDir)
+		    msg.set_title(_("LDAP CA Certificate Check"))
 		    msg.run()
 		    msg.destroy()
 
+	def ldap_cacert_download(self, button, map, xml, parent):
+		response = self.run_on_button(self, "ldapcacertdownload",
+					      "ldapcacert_map", parent)
+		if (response == gtk.RESPONSE_OK):
+			self.info.downloadLDAPCACert()
+
 	def message_callback(self, text):
-		msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
-			gtk.BUTTONS_OK,	text)
+		msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING, gtk.BUTTONS_OK, text)
+		msg.set_title(_("Authentication Configuration"))
 		msg.run()
 		msg.destroy()
 
