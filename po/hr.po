@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: authconfig 0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-18 14:42+0200\n"
-"PO-Revision-Date: 2006-07-09 10:53+0100\n"
+"PO-Revision-Date: 2006-07-19 01:10+0100\n"
 "Last-Translator: Renato Pavicic <renato@translator-shop.org>\n"
 "Language-Team: Croatian <renato@translator-shop.org>\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,9 @@ msgstr "<domena>"
 msgid "default NIS domain"
 msgstr "Zadana NIS domena"
 
-#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:122
+#: ../authconfig.py:73
+#: ../authconfig.py:84
+#: ../authconfig.py:122
 #: ../authconfig.py:124
 msgid "<server>"
 msgstr "<poslužitelj>"
@@ -98,11 +100,11 @@ msgstr "Onemogući upotrebu TLS uz LDAP"
 
 #: ../authconfig.py:92
 msgid "<URL>"
-msgstr ""
+msgstr "<URL>"
 
 #: ../authconfig.py:93
 msgid "load CA certificate from the URL"
-msgstr ""
+msgstr "učitaj CA potvrdu iz URL adrese"
 
 #: ../authconfig.py:96
 msgid "enable authentication with Smartcard by default"
@@ -118,8 +120,7 @@ msgstr "Zahtjevaj Smartcard za provjeru autentičnosti u obliku zadane postavke"
 
 #: ../authconfig.py:102
 msgid "do not require Smartcard for authentication by default"
-msgstr ""
-"Ne zahtjevaj Smartcard za provjeru autentičnosti u obliku zadane postavke"
+msgstr "Ne zahtjevaj Smartcard za provjeru autentičnosti u obliku zadane postavke"
 
 #: ../authconfig.py:103
 msgid "<module>"
@@ -149,7 +150,8 @@ msgstr "Zadani Kerberos KDC"
 msgid "default kerberos admin server"
 msgstr "Zadani Kerberos administrativni poslužitelj"
 
-#: ../authconfig.py:126 ../authconfig.py:156
+#: ../authconfig.py:126
+#: ../authconfig.py:156
 msgid "<realm>"
 msgstr "<područje>"
 
@@ -221,7 +223,8 @@ msgstr "Sigurnosni način za upotrebu uz Sambu i Winbind"
 msgid "default realm for samba and winbind when security=ads"
 msgstr "Zadano područje za Sambu i Winbind dok je postavljeno 'security=ads'"
 
-#: ../authconfig.py:158 ../authconfig.py:160
+#: ../authconfig.py:158
+#: ../authconfig.py:160
 msgid "<lowest-highest>"
 msgstr "<najmanje-najveće>"
 
@@ -234,47 +237,28 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "GID Winbind raspon dodijelit će se domeni ili adm. korisnicima"
 
 #: ../authconfig.py:163
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"Znak koji će se upotrebljavati za odvajanje domene i korisničkog dijela u "
-"imenima korisnika, a koja su izrađena pomoću winbind-a, ukoliko nije "
-"omogućeno winbindusedefaultdomain"
+msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr "Znak koji će se upotrebljavati za odvajanje domene i korisničkog dijela u imenima korisnika, a koja su izrađena pomoću winbind-a, ukoliko nije omogućeno winbindusedefaultdomain"
 
 #: ../authconfig.py:165
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"Mapa koju će korisnici, izrađeni pomoću winbind-a, upotrebljavati kao svoju "
-"početnu mapu"
+msgstr "Mapa koju će korisnici, izrađeni pomoću winbind-a, upotrebljavati kao svoju početnu mapu"
 
 #: ../authconfig.py:167
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
-"Grupa koju će korisnici, izrađeni pomoću winbind-a, upotrebljavati kao svoju "
-"osnovnu grupu"
+msgstr "Grupa koju će korisnici, izrađeni pomoću winbind-a, upotrebljavati kao svoju osnovnu grupu"
 
 #: ../authconfig.py:169
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"Korisnička ljuska koju će korisnici, izrađeni pomoću winbind-a, "
-"upotrebljavat kao svoju ljusku prijave"
+msgstr "Korisnička ljuska koju će korisnici, izrađeni pomoću winbind-a, upotrebljavat kao svoju ljusku prijave"
 
 #: ../authconfig.py:171
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"Konfigurira winbind tako da pretpostavi kako korisnici bez domene u svojim "
-"imenima, jesu korisnicima ove domene"
+msgid "configures winbind to assume that users with no domain in their user names are domain users"
+msgstr "Konfigurira winbind tako da pretpostavi kako korisnici bez domene u svojim imenima, jesu korisnicima ove domene"
 
 #: ../authconfig.py:173
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"Konfigurira winbind tako da pretpostavi kako korisnici bez domene u svojim "
-"imenima, nisu korisnici ove domene"
+msgid "configures winbind to assume that users with no domain in their user names are not domain users"
+msgstr "Konfigurira winbind tako da pretpostavi kako korisnici bez domene u svojim imenima, nisu korisnici ove domene"
 
 #: ../authconfig.py:175
 msgid "join the winbind domain or ads realm now as this administrator"
@@ -346,9 +330,7 @@ msgstr "Ne prikazuj zanemarena tekstualna korisnička sučelja"
 
 #: ../authconfig.py:219
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr ""
-"Suprotno od --test, ažuriraj konfiguracijske datoteka s izmijenjenim "
-"postavkama"
+msgstr "Suprotno od --test, ažuriraj konfiguracijske datoteka s izmijenjenim postavkama"
 
 #: ../authconfig.py:222
 msgid "update all configuration files"
@@ -373,20 +355,26 @@ msgstr "Dijalog je otkazan"
 #: ../authconfig.py:390
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
 "Datoteka %s nije pronađena, li je potrebna za ispravan rad podrške %s.\n"
 "Instalirajte paket %s s kojim dolazi ova datoteka."
 
-#: ../authconfig.py:392 ../authconfig.py:747
+#: ../authconfig.py:392
+#: ../authconfig.py:747
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: ../authconfig.py:392 ../authconfig.py:605 ../authconfig.py:612
-#: ../authconfig.py:618 ../authconfig.py:627 ../authconfig.py:634
-#: ../authconfig.py:642 ../authconfig.py:683 ../authconfig.py:747
+#: ../authconfig.py:392
+#: ../authconfig.py:605
+#: ../authconfig.py:612
+#: ../authconfig.py:618
+#: ../authconfig.py:627
+#: ../authconfig.py:634
+#: ../authconfig.py:642
+#: ../authconfig.py:683
+#: ../authconfig.py:747
 msgid "Ok"
 msgstr "U redu"
 
@@ -418,7 +406,8 @@ msgstr "Lozinka u sjeni"
 msgid "SMB authentication"
 msgstr "SMB provjera autentičnosti"
 
-#: ../authconfig.py:403 ../authconfig.py:405
+#: ../authconfig.py:403
+#: ../authconfig.py:405
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -426,7 +415,8 @@ msgstr "Winbind"
 msgid "Winbind authentication"
 msgstr "Winbind provjera autentičnosti"
 
-#: ../authconfig.py:410 ../authconfig.glade.h:53
+#: ../authconfig.py:410
+#: ../authconfig.glade.h:53
 msgid "User Information"
 msgstr "Korisnički podaci"
 
@@ -450,7 +440,9 @@ msgstr "Upotrijebi NIS"
 msgid "Use Winbind"
 msgstr "Upotrijebi Winbind"
 
-#: ../authconfig.py:434 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:4
+#: ../authconfig.py:434
+#: ../authconfig.desktop.in.h:1
+#: ../authconfig.glade.h:4
 msgid "Authentication"
 msgstr "Provjera vjerodostojnosti"
 
@@ -482,23 +474,34 @@ msgstr "Upotrijebi Winbind provjeru autentičnosti"
 msgid "Local authorization is sufficient"
 msgstr "Dovoljna je lokalna provjera autentičnosti"
 
-#: ../authconfig.py:470 ../authconfig.py:605 ../authconfig.py:612
-#: ../authconfig.py:618 ../authconfig.py:627 ../authconfig.py:634
+#: ../authconfig.py:470
+#: ../authconfig.py:605
+#: ../authconfig.py:612
+#: ../authconfig.py:618
+#: ../authconfig.py:627
+#: ../authconfig.py:634
 #: ../authconfig.py:683
 msgid "Back"
 msgstr "Nazad"
 
-#: ../authconfig.py:470 ../authconfig.py:642
+#: ../authconfig.py:470
+#: ../authconfig.py:642
 msgid "Cancel"
 msgstr "Odustani"
 
-#: ../authconfig.py:471 ../authconfig.py:605 ../authconfig.py:612
-#: ../authconfig.py:618 ../authconfig.py:627 ../authconfig.py:634
+#: ../authconfig.py:471
+#: ../authconfig.py:605
+#: ../authconfig.py:612
+#: ../authconfig.py:618
+#: ../authconfig.py:627
+#: ../authconfig.py:634
 #: ../authconfig.py:683
 msgid "Next"
 msgstr "Dalje"
 
-#: ../authconfig.py:482 ../authconfig-gtk.py:322 ../authconfig-gtk.py:415
+#: ../authconfig.py:482
+#: ../authconfig-gtk.py:322
+#: ../authconfig-gtk.py:415
 #: ../authconfig.glade.h:5
 msgid "Authentication Configuration"
 msgstr "Konfiguracija autentičnosti"
@@ -511,7 +514,8 @@ msgstr "LHS:"
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:604 ../authconfig.glade.h:28
+#: ../authconfig.py:604
+#: ../authconfig.glade.h:28
 msgid "Hesiod Settings"
 msgstr "Hesiod postavke"
 
@@ -519,7 +523,8 @@ msgstr "Hesiod postavke"
 msgid "Use TLS"
 msgstr "Upotrijebi TLS"
 
-#: ../authconfig.py:609 ../authconfig.py:616
+#: ../authconfig.py:609
+#: ../authconfig.py:616
 msgid "Server:"
 msgstr "Poslužitelj:"
 
@@ -527,15 +532,18 @@ msgstr "Poslužitelj:"
 msgid "Base DN:"
 msgstr "Osnovni DN:"
 
-#: ../authconfig.py:611 ../authconfig.glade.h:36
+#: ../authconfig.py:611
+#: ../authconfig.glade.h:36
 msgid "LDAP Settings"
 msgstr "LDAP postavke"
 
-#: ../authconfig.py:615 ../authconfig.py:677
+#: ../authconfig.py:615
+#: ../authconfig.py:677
 msgid "Domain:"
 msgstr "Domena:"
 
-#: ../authconfig.py:617 ../authconfig.glade.h:38
+#: ../authconfig.py:617
+#: ../authconfig.glade.h:38
 msgid "NIS Settings"
 msgstr "NIS postavke"
 
@@ -559,7 +567,8 @@ msgstr "Upotrijebi DNS za razrješavanje računala prema područjima"
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Upotrijebi DNS za razrješavanje KDC-ova za područja"
 
-#: ../authconfig.py:626 ../authconfig.glade.h:33
+#: ../authconfig.py:626
+#: ../authconfig.glade.h:33
 msgid "Kerberos Settings"
 msgstr "Kerberos postavke"
 
@@ -575,7 +584,8 @@ msgstr "Poslužitelji:"
 msgid "Shell:"
 msgstr "Ljuska:"
 
-#: ../authconfig.py:633 ../authconfig.glade.h:42
+#: ../authconfig.py:633
+#: ../authconfig.glade.h:42
 msgid "SMB Settings"
 msgstr "SMB postavke"
 
@@ -591,15 +601,10 @@ msgstr "Lozinka:"
 msgid "Join Settings"
 msgstr "Postavke pridruživanja"
 
-#: ../authconfig.py:651 ../authconfig.glade.h:46
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
-msgstr ""
-"Neke od izmjena unesenih u konfiguraciju bilo bi potrebno spremiti na disk "
-"prije nastavljanja. Ukoliko ih ne spremite vaš pokušaj pridruživanja domeni "
-"neće biti uspješan. Spremiti izmjene?"
+#: ../authconfig.py:651
+#: ../authconfig.glade.h:46
+msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
+msgstr "Neke od izmjena unesenih u konfiguraciju bilo bi potrebno spremiti na disk prije nastavljanja. Ukoliko ih ne spremite vaš pokušaj pridruživanja domeni neće biti uspješan. Spremiti izmjene?"
 
 #: ../authconfig.py:658
 msgid "Save Settings"
@@ -631,7 +636,8 @@ msgstr "ADS područje"
 msgid "Template Shell:"
 msgstr "Predložak ljuske:"
 
-#: ../authconfig.py:682 ../authconfig.glade.h:57
+#: ../authconfig.py:682
+#: ../authconfig.glade.h:57
 msgid "Winbind Settings"
 msgstr "Winbind postavke"
 
@@ -639,27 +645,20 @@ msgstr "Winbind postavke"
 msgid "Join Domain"
 msgstr "Pridruživanje domeni"
 
-#: ../authconfig.py:742 ../authconfig-gtk.py:399
+#: ../authconfig.py:742
+#: ../authconfig-gtk.py:399
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Da biste se pomoću TLS protokola povezali s LDAP poslužiteljem potreban vam "
-"je certifikat autentičnosti (CA) koji je potpisao CA vašeg poslužitelja. "
-"Certifikat u PEM obliku kopirajte u mapu '%s'.\n"
+"Da biste se pomoću TLS protokola povezali s LDAP poslužiteljem potreban vam je provjera autentičnosti (CA) koji je potpisao CA vašeg poslužitelja. Certifikat u PEM obliku kopirajte u mapu '%s'.\n"
 "Po završetku kliknite 'U redu'."
 
 #. FIXME - version
 #: ../authconfig.py:756
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
-" <Tab>/<Alt-Tab> između elemenata  | <razmaknica> odabir  | <F12> sljedeći "
-"zaslon"
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
+msgstr " <Tab>/<Alt-Tab> između elemenata  | <razmaknica> odabir  | <F12> sljedeći zaslon"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -667,7 +666,7 @@ msgstr "Nadzor sistemske provjere korisnika koji se namjeravaju prijaviti"
 
 #: ../authconfig-gtk.py:403
 msgid "LDAP CA Certificate Check"
-msgstr ""
+msgstr "LDAP CA provjera potvrde"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -691,7 +690,7 @@ msgstr "_Aktivnost pri uklanjanju kartice"
 
 #: ../authconfig.glade.h:8
 msgid "Certificate _URL"
-msgstr ""
+msgstr "_URL potvrde"
 
 #: ../authconfig.glade.h:9
 msgid "Con_figure SMB..."
@@ -735,7 +734,7 @@ msgstr "_Administrator domene:"
 
 #: ../authconfig.glade.h:19
 msgid "Download CA Certificate"
-msgstr ""
+msgstr "Preuzimanje CA potvrde"
 
 #: ../authconfig.glade.h:20
 msgid "Enable SMB S_upport"
@@ -766,12 +765,8 @@ msgid "Enable _Winbind Support"
 msgstr "Omogući podršku za _Winbind"
 
 #: ../authconfig.glade.h:27
-msgid ""
-"For user accounts maintained in local /etc/passwd file system will not check "
-"authorization from network services such as LDAP or Kerberos."
-msgstr ""
-"Sustav neće provjeravati autentičnost korisničkih naloga održavanih unutar "
-"datoteke /etc/passwd, od mrežnih usluga poput LDAP ili Kerberos."
+msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
+msgstr "Sustav neće provjeravati autentičnost korisničkih naloga održavanih unutar datoteke /etc/passwd, od mrežnih usluga poput LDAP ili Kerberos."
 
 #: ../authconfig.glade.h:29
 msgid "Hesiod _LHS"
@@ -782,24 +777,16 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
 #: ../authconfig.glade.h:31
-msgid ""
-"Hesiod allows a system administrator to publish user and group information "
-"in DNS.  It is sometimes used in very large networks."
-msgstr ""
-"Hesiod omogućuje administratoru sustava objavljivanje podataka o korisnicima "
-"i grupama unutar DNS-a. Ponekad se upotrebljava u vrlo velikim mrežama."
+msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
+msgstr "Hesiod omogućuje administratoru sustava objavljivanje podataka o korisnicima i grupama unutar DNS-a. Ponekad se upotrebljava u vrlo velikim mrežama."
 
 #: ../authconfig.glade.h:32
 msgid "Joining Winbind Domain"
 msgstr "Pridruživanje Winbind domeni"
 
 #: ../authconfig.glade.h:34
-msgid ""
-"Kerberos is a trusted third-party authentication system which is commonly "
-"used in medium to large networks."
-msgstr ""
-"Kerberos je nezavisni sustav provjere autentičnosti koji se uobičajeno "
-"upotrebljva u srednjim i velikim mrežama."
+msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
+msgstr "Kerberos je nezavisni sustav provjere autentičnosti koji se uobičajeno upotrebljva u srednjim i velikim mrežama."
 
 #: ../authconfig.glade.h:35
 msgid "LDAP Search _Base DN"
@@ -818,43 +805,24 @@ msgid "NIS _Server"
 msgstr "NIS _poslužitelj"
 
 #: ../authconfig.glade.h:41
-msgid ""
-"NIS is the Network Information Service.  It is commonly used on small to "
-"medium networks."
-msgstr ""
-"NIS označava uslugu mrežnim podataka (Network Information Service). "
-"Uobičajeno se upotrebljava u malim i srednjim mrežama."
+msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
+msgstr "NIS označava uslugu mrežnim podataka (Network Information Service). Uobičajeno se upotrebljava u malim i srednjim mrežama."
 
 #: ../authconfig.glade.h:43
-msgid ""
-"SMB authentication verifies user passwords by attempting to connect to a "
-"server which uses the SMB (system message block) protocol suite."
-msgstr ""
-"SMB provjera autentičnosti ispituje korisničke lozinke pokušavajući se "
-"povezati s poslužiteljem koji upotrebljava SMB (system message blok - blok "
-"sistemskih poruka) protokol."
+msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
+msgstr "SMB provjera autentičnosti ispituje korisničke lozinke pokušavajući se povezati s poslužiteljem koji upotrebljava SMB (system message blok - blok sistemskih poruka) protokol."
 
 #: ../authconfig.glade.h:44
-msgid ""
-"Smartcard authentication allows you to log in using a certificate and key "
-"associated with a smart card."
-msgstr ""
-"Provjera autentičnosti pomoću Smartcarda omogućuje vam prijavljivanje pomoću "
-"potvrde i ključa pridruženih kartici."
+msgid "Smartcard authentication allows you to log in using a certificate and key associated with a smart card."
+msgstr "Provjera autentičnosti pomoću Smartcarda omogućuje vam prijavljivanje pomoću potvrde i ključa pridruženih kartici."
 
 #: ../authconfig.glade.h:45
 msgid "Smartcard settings"
 msgstr "Smartcard postavke"
 
 #: ../authconfig.glade.h:47
-msgid ""
-"The Lightweight Directory Access Protocol is a standard way of searching a "
-"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
-"increasingly being used in small to large networks."
-msgstr ""
-"LDAP (Lightweight Directory Access Protocol) standardni je način "
-"pretraživanja mapa, koji može sadržavati hijerarhijski ustrojene arbitrarne "
-"podatke. LDAP se sve više upotrebljava u malim i u velikim mrežama."
+msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
+msgstr "LDAP (Lightweight Directory Access Protocol) standardni je način pretraživanja mapa, koji može sadržavati hijerarhijski ustrojene arbitrarne podatke. LDAP se sve više upotrebljava u malim i u velikim mrežama."
 
 #: ../authconfig.glade.h:48
 msgid "Use DNS to _locate KDCs for realms"
@@ -877,12 +845,8 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Za šifriranje veza upotrijebi _TSL"
 
 #: ../authconfig.glade.h:54
-msgid ""
-"When enabled allows network services such as LDAP or Kerberos to "
-"authenticate system accounts including root on this machine."
-msgstr ""
-"Ako je omogućeno dopušta mrežnim uslugama kao što su LDAP ili Kerberos "
-"provjeru autentičnosti sistemskih naloga,"
+msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
+msgstr "Ako je omogućeno dopušta mrežnim uslugama kao što su LDAP ili Kerberos provjeru autentičnosti sistemskih naloga,"
 
 #: ../authconfig.glade.h:55
 msgid "Winbind ADS _Realm"
@@ -897,14 +861,8 @@ msgid "Winbind _Domain"
 msgstr "Winbind _domena"
 
 #: ../authconfig.glade.h:59
-msgid ""
-"Winbind allows a system to retrieve information about users and to "
-"authenticate users by using information stored in an NTDOM or ADS server.  "
-"It is used in small to large networks."
-msgstr ""
-"Winbind dopušta sustavu dohvaćanje podataka o korisnicima i provjerava "
-"autentičnost korisnika upotrebljavajući podatke spremljene na NTDOM ili ADS "
-"poslužiteljima. Upotrebljava ne malim i velikim mrežama."
+msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
+msgstr "Winbind dopušta sustavu dohvaćanje podataka o korisnicima i provjerava autentičnost korisnika upotrebljavajući podatke spremljene na NTDOM ili ADS poslužiteljima. Upotrebljava ne malim i velikim mrežama."
 
 #: ../authconfig.glade.h:60
 msgid "_Admin Servers"
@@ -958,27 +916,29 @@ msgstr "_Predložak ljuske:"
 msgid "_Workgroup"
 msgstr "_Radna grupa"
 
-#: ../authinfo.py:642 ../authinfo.py:969 ../authinfo.py:2076
+#: ../authinfo.py:642
+#: ../authinfo.py:969
+#: ../authinfo.py:2076
 msgid "Logout"
 msgstr "Odjava"
 
-#: ../authinfo.py:642 ../authinfo.py:971 ../authinfo.py:2080
+#: ../authinfo.py:642
+#: ../authinfo.py:971
+#: ../authinfo.py:2080
 msgid "Lock"
 msgstr "Zaključaj"
 
-#: ../authinfo.py:642 ../authinfo.py:973
+#: ../authinfo.py:642
+#: ../authinfo.py:973
 msgid "Ignore"
 msgstr "Ignoriraj"
 
 #: ../authinfo.py:2570
 #, python-format
-msgid ""
-"Authentication module %s/pam_%s.so is missing. Authentication process will "
-"not work correctly."
-msgstr ""
-"Nedostaje modul provjere autentičnosti %s/pam_%s.so. Postupak provjere neće "
-"biti ispravno izveden."
+msgid "Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly."
+msgstr "Nedostaje modul provjere autentičnosti %s/pam_%s.so. Postupak provjere neće biti ispravno izveden."
 
 #: ../authinfo.py:3034
 msgid "Error downloading CA certificate"
-msgstr ""
+msgstr "Pogreška pri preuzimanju CA potvrde"
+
