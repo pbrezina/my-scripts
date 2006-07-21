@@ -95,6 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Jul 21 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.3-1
+- don't start sceventd when smartcard login is enabled
+- improve pam config for smartcard login
+
 * Tue Jul 18 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.2-1
 - don't require pam_pkcs11 to run
 

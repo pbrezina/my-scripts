@@ -92,7 +92,7 @@ LOGIC_REQUISITE	= "requisite"
 LOGIC_SUFFICIENT = "sufficient"
 LOGIC_OPTIONAL = "optional"
 LOGIC_IGNORE_UNKNOWN = "[default=bad success=ok user_unknown=ignore]"
-LOGIC_PKCS11 = "[success=done cred_insufficient=die default=ignore]"
+LOGIC_PKCS11 = "[success=done authinfo_unavail=ignore default=die]"
 LOGIC_FORCE_PKCS11 = "[success=done default=die]"
 LOGIC_SKIPNEXT = "[success=1 default=ignore]"
 
@@ -3001,9 +3001,6 @@ class AuthInfo:
 		toggleSplatbindService(self.enableOdbcbind,
 			PATH_ODBCBIND, PATH_ODBCBIND_PID,
 			"odbcbind", nostart)
-		toggleSplatbindService(self.enableSmartcard,
-			PATH_SCEVENTD, PATH_SCEVENTD_PID,
-			"sceventd", nostart)
 		toggleCachingService(self.enableCache, nostart)
 
 	def testLDAPCACerts(self):
