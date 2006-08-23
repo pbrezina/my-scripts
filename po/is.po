@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: authconfig 1.25\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-18 14:42+0200\n"
-"PO-Revision-Date: 2006-02-06 01:05+0000\n"
+"PO-Revision-Date: 2006-08-23 01:05+0000\n"
 "Last-Translator: Richard Allen <ra@ra.is>\n"
 "Language-Team: Icelandic <kde-isl@molar.is>\n"
 "MIME-Version: 1.0\n"
@@ -99,43 +99,39 @@ msgstr "ekki nota TLS ásamt LDAP"
 
 #: ../authconfig.py:92
 msgid "<URL>"
-msgstr ""
+msgstr "<Slóð>"
 
 #: ../authconfig.py:93
 msgid "load CA certificate from the URL"
-msgstr ""
+msgstr "sækja CA skírteini frá slóð"
 
 #: ../authconfig.py:96
-#, fuzzy
 msgid "enable authentication with Smartcard by default"
-msgstr "nota sjálfgefið SMB auðkenningu"
+msgstr "virkja sjálfgefið snjallkort til auðkenninga"
 
 #: ../authconfig.py:98
-#, fuzzy
 msgid "disable authentication with Smartcard by default"
-msgstr "Ekki nota SMB auðkenningu sjálfgefið"
+msgstr "ekki virkja snjallkort til auðkenninga sjálfgefið"
 
 #: ../authconfig.py:100
-#, fuzzy
 msgid "require Smartcard for authentication by default"
-msgstr "Nota sjálfgefið LDAP auðkenningu"
+msgstr "Nota sjálfgefið snjallkort til auðkenninga"
 
 #: ../authconfig.py:102
-#, fuzzy
 msgid "do not require Smartcard for authentication by default"
-msgstr "Ekki nota LDAP auðkenningu sjálfgefið"
+msgstr "Ekki nota snjallkort til auðkenninga sjálfgefið"
 
 #: ../authconfig.py:103
 msgid "<module>"
-msgstr ""
+msgstr "<eining>"
 
 #: ../authconfig.py:104
 msgid "default Smartcard module to use"
-msgstr ""
+msgstr "sjálfgefin snjallkortaeining"
 
 #: ../authconfig.py:116
 msgid "action to be taken on Smartcard removal"
-msgstr ""
+msgstr "aðgerð þegar snjallkort er fjarlægt"
 
 #: ../authconfig.py:119
 msgid "enable kerberos authentication by default"
@@ -660,7 +656,7 @@ msgstr "Stýrir hvernig kerfið auðkennir notendur sem reyna að tengjast"
 
 #: ../authconfig-gtk.py:403
 msgid "LDAP CA Certificate Check"
-msgstr ""
+msgstr "Kanna LDAP CA skilríki"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -680,11 +676,11 @@ msgstr "_Notandaupplýsingar í biðminni"
 
 #: ../authconfig.glade.h:7
 msgid "Card Removal _Action"
-msgstr ""
+msgstr "Aðgerð er kort er fjarlægt"
 
 #: ../authconfig.glade.h:8
 msgid "Certificate _URL"
-msgstr ""
+msgstr "S_lóð skilríkis"
 
 #: ../authconfig.glade.h:9
 msgid "Con_figure SMB..."
@@ -707,9 +703,8 @@ msgid "Configure NI_S..."
 msgstr "_Stilla NIS..."
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Configure Sma_rtcard..."
-msgstr "_Stilla Kerberos..."
+msgstr "Stilla sn_jallkort..."
 
 #: ../authconfig.glade.h:15
 msgid "Configure Win_bind..."
@@ -729,16 +724,15 @@ msgstr "_Lénstjórar"
 
 #: ../authconfig.glade.h:19
 msgid "Download CA Certificate"
-msgstr ""
+msgstr "Sækja CA skírteini"
 
 #: ../authconfig.glade.h:20
 msgid "Enable SMB S_upport"
 msgstr "Virkja _SMB stuðning"
 
 #: ../authconfig.glade.h:21
-#, fuzzy
 msgid "Enable Smart_card Support"
-msgstr "Virkja _SMB stuðning"
+msgstr "Virkja S_njallkortastuðning"
 
 #: ../authconfig.glade.h:22
 msgid "Enable _Hesiod Support"
@@ -832,11 +826,12 @@ msgid ""
 "Smartcard authentication allows you to log in using a certificate and key "
 "associated with a smart card."
 msgstr ""
+"Snjallkortaauðkenning gerir þér kleyft að tengjast með því að nota skilríki "
+"tengdu snjallkorti."
 
 #: ../authconfig.glade.h:45
-#, fuzzy
 msgid "Smartcard settings"
-msgstr "Vista stillingum"
+msgstr "Stillingar snjallkorta"
 
 #: ../authconfig.glade.h:47
 msgid ""
@@ -908,7 +903,7 @@ msgstr "_Auðkenna kerfisnotendur eftir netþjónustum"
 
 #: ../authconfig.glade.h:62
 msgid "_Disallow logins without a Smartcard"
-msgstr ""
+msgstr "_Banna tengingar án snjallkorta"
 
 #: ../authconfig.glade.h:63
 msgid "_Domain Controllers"
@@ -940,7 +935,7 @@ msgstr "Ö_ryggisstillingar"
 
 #: ../authconfig.glade.h:70
 msgid "_Smartcard Type"
-msgstr ""
+msgstr "_Snjallkortagerð"
 
 #: ../authconfig.glade.h:71
 msgid "_Template Shell"
@@ -952,15 +947,15 @@ msgstr "_Vinnuhópur"
 
 #: ../authinfo.py:642 ../authinfo.py:969 ../authinfo.py:2076
 msgid "Logout"
-msgstr ""
+msgstr "Kveðja"
 
 #: ../authinfo.py:642 ../authinfo.py:971 ../authinfo.py:2080
 msgid "Lock"
-msgstr ""
+msgstr "Læsa"
 
 #: ../authinfo.py:642 ../authinfo.py:973
 msgid "Ignore"
-msgstr ""
+msgstr "Hunsa"
 
 #: ../authinfo.py:2570
 #, python-format
@@ -971,4 +966,4 @@ msgstr "Eininguna %s/pam_%s.so vantar. Auðkenningaferlið mun ekki virka rétt.
 
 #: ../authinfo.py:3034
 msgid "Error downloading CA certificate"
-msgstr ""
+msgstr "Villa við að sækja CA skírteini"
