@@ -95,6 +95,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Aug 24 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.4-1
+- pass options given to authconfig-gtk to authconfig (#203955)
+
+* Sun Jul 23 2006 Ray Strode <rstrode@redhat.com> - 5.3.3-2
+- write out new "wait_for_card" config option if we're
+  forcing smart card authentication
+- add "use_uid" option to smart card pam_succeed_if line to
+  work around bug where pam_succeed_if checks user information
+  even in cases where the conditional doesn't depend on it.
+- remove unimplemented "logout" smart card removal action from
+  settings
+- remove unnecessary "card_only" argument
+
 * Fri Jul 21 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.3-1
 - don't start sceventd when smartcard login is enabled
 - improve pam config for smartcard login

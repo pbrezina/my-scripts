@@ -257,7 +257,10 @@ argv_eps_password = [
 ]
 
 argv_pkcs11_auth = [
-	"card_only"
+]
+
+argv_force_pkcs11_auth = [
+	"wait_for_card"
 ]
 
 argv_krb5_auth = [
@@ -279,10 +282,6 @@ argv_ldap_auth = [
 
 argv_ldap_password = [
 	"use_authtok"
-]
-
-argv_pkcs11_auth = [
-	"card_only"
 ]
 
 # This probably won't work straight-off because pam_unix won't give the right
@@ -308,7 +307,8 @@ argv_succeed_if_account = [
 
 argv_succeed_if_nonlogin = [
 	"service notin login:gdm:xdm:kdm:xscreensaver:gnome-screensaver:kscreensaver",
-	"quiet"
+	"quiet",
+	"use_uid",
 ]
 
 argv_winbind_auth = [
@@ -641,7 +641,7 @@ def getSmartcardModules():
 	return mods
 
 def getSmartcardActions():
-	return [_("Logout"), _("Lock"), _("Ignore")]
+	return [_("Lock"), _("Ignore")]
 		
 def read(msgcb):
 	info = AuthInfo(msgcb)
@@ -953,7 +953,6 @@ class AuthInfo:
 		return True
 
 	def readSmartcard(self):
-		logout = False
 		lock = False
 		self.smartcardModule = callPKCS11Setup(["use_module"])
 		if self.smartcardModule == None:
@@ -963,13 +962,9 @@ class AuthInfo:
    		if rmactions == None:
    			return False
    		for action in rmactions:
-   			if "gdm-restart" in action:
-   				logout = True
    			if "lockhelper.sh" in action:
    				lock = True
-		if logout:
-   			self.smartcardAction = _("Logout")
-   		elif lock:
+   		if lock:
    			self.smartcardAction = _("Lock")
    		else:
    			self.smartcardAction = _("Ignore")
@@ -2075,10 +2070,7 @@ class AuthInfo:
 
 	def writeSmartcard(self):
 		insact = "/usr/sbin/gdm-safe-restart"
-		if self.smartcardAction == _("Logout"):
-			rmact = "/usr/sbin/gdm-restart"
-		else:
-			rmact = "/usr/sbin/gdm-safe-restart"
+		rmact = "/usr/sbin/gdm-safe-restart"
 		if self.smartcardAction == _("Lock"):
 			insact += ",/etc/pkcs11/lockhelper.sh -lock"
 			rmact += ",/etc/pkcs11/lockhelper.sh -deactivate"
@@ -2661,8 +2653,10 @@ class AuthInfo:
 					if self.enableSmartcard and module[NAME] == "pkcs11":
 						if self.forceSmartcard:
 							module[LOGIC] = LOGIC_FORCE_PKCS11
+							module[ARGV] = argv_force_pkcs11_auth 
 						else:
 							module[LOGIC] = LOGIC_PKCS11
+							module[ARGV] = argv_pkcs11_auth 
 					output += self.formatPAMModule(module)
 
 			# Write it out and close it.

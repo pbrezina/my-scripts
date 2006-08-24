@@ -48,7 +48,8 @@ firstbootservices = [
 ]
 
 if "--nox" in sys.argv:
-	os.execv('/usr/bin/authconfig',('authconfig',))
+	sys.argv.remove('--nox')
+	os.execv('/usr/bin/authconfig', ['authconfig']+sys.argv[1:])
 	sys.exit(1)
 
 try:
@@ -57,7 +58,7 @@ except RuntimeError, e:
 	if (os.isatty(sys.stdin.fileno()) and
 	    os.isatty(sys.stdout.fileno()) and
 	    os.isatty(sys.stderr.fileno())):
-		os.execv('/usr/bin/authconfig',('authconfig',))
+		os.execv('/usr/bin/authconfig', ['authconfig']+sys.argv[1:])
 		sys.exit(1)
 	else:
 		raise e
