@@ -764,7 +764,7 @@
 	      <child>
 		<widget class="GtkLabel" id="smartcard_label">
 		  <property name="visible">True</property>
-		  <property name="label">&lt;b&gt;Smartcard&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;Smart Card&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -807,9 +807,9 @@
 		      <child>
 			<widget class="GtkCheckButton" id="enablesmartcard">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Smartcard authentication allows you to log in using a certificate and key associated with a smart card.</property>
+			  <property name="tooltip" translatable="yes">Smart card authentication allows you to log in using a certificate and key associated with a smart card.</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable Smart_card Support</property>
+			  <property name="label" translatable="yes">Enable Smart _Card Support</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -828,7 +828,7 @@
 			<widget class="GtkButton" id="configsmartcard">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Configure Sma_rtcard...</property>
+			  <property name="label" translatable="yes">Configure Sma_rt Card...</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -3083,7 +3083,7 @@
 
 <widget class="GtkDialog" id="smartcardsettings">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Smartcard settings</property>
+  <property name="title" translatable="yes">Smart Card Settings</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">True</property>
@@ -3146,7 +3146,7 @@
 	<widget class="GtkTable" id="table20">
 	  <property name="border_width">12</property>
 	  <property name="visible">True</property>
-	  <property name="n_rows">3</property>
+	  <property name="n_rows">2</property>
 	  <property name="n_columns">2</property>
 	  <property name="homogeneous">False</property>
 	  <property name="row_spacing">12</property>
@@ -3174,27 +3174,10 @@
 	    <packing>
 	      <property name="left_attach">0</property>
 	      <property name="right_attach">1</property>
-	      <property name="top_attach">1</property>
-	      <property name="bottom_attach">2</property>
-	      <property name="x_options">fill</property>
-	      <property name="y_options"></property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkComboBox" id="module">
-	      <property name="visible">True</property>
-	      <property name="items" translatable="yes">*</property>
-	      <property name="add_tearoffs">False</property>
-	      <property name="focus_on_click">True</property>
-	    </widget>
-	    <packing>
-	      <property name="left_attach">1</property>
-	      <property name="right_attach">2</property>
 	      <property name="top_attach">0</property>
 	      <property name="bottom_attach">1</property>
 	      <property name="x_options">fill</property>
-	      <property name="y_options">fill</property>
+	      <property name="y_options"></property>
 	    </packing>
 	  </child>
 
@@ -3208,8 +3191,8 @@
 	    <packing>
 	      <property name="left_attach">1</property>
 	      <property name="right_attach">2</property>
-	      <property name="top_attach">1</property>
-	      <property name="bottom_attach">2</property>
+	      <property name="top_attach">0</property>
+	      <property name="bottom_attach">1</property>
 	      <property name="x_options">fill</property>
 	      <property name="y_options">fill</property>
 	    </packing>
@@ -3219,7 +3202,7 @@
 	    <widget class="GtkCheckButton" id="forcesmartcard">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">_Disallow logins without a Smartcard</property>
+	      <property name="label" translatable="yes">_Require smart card for login</property>
 	      <property name="use_underline">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
@@ -3230,41 +3213,13 @@
 	    <packing>
 	      <property name="left_attach">0</property>
 	      <property name="right_attach">2</property>
-	      <property name="top_attach">2</property>
-	      <property name="bottom_attach">3</property>
+	      <property name="top_attach">1</property>
+	      <property name="bottom_attach">2</property>
 	      <property name="x_options">fill</property>
 	      <property name="y_options"></property>
 	    </packing>
 	  </child>
 
-	  <child>
-	    <widget class="GtkLabel" id="label42">
-	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Smartcard Type</property>
-	      <property name="use_underline">True</property>
-	      <property name="use_markup">False</property>
-	      <property name="justify">GTK_JUSTIFY_LEFT</property>
-	      <property name="wrap">False</property>
-	      <property name="selectable">False</property>
-	      <property name="xalign">0</property>
-	      <property name="yalign">0.5</property>
-	      <property name="xpad">0</property>
-	      <property name="ypad">0</property>
-	      <property name="mnemonic_widget">module</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
-	    </widget>
-	    <packing>
-	      <property name="left_attach">0</property>
-	      <property name="right_attach">1</property>
-	      <property name="top_attach">0</property>
-	      <property name="bottom_attach">1</property>
-	      <property name="x_options">fill</property>
-	      <property name="y_options"></property>
-	    </packing>
-	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>

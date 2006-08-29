@@ -95,6 +95,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Aug 29 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.5-1
+- improve smart card related UI strings
+- removed possibility to set smart card type from authconfig-gtk
+  as only coolkey will be supported for now
+
 * Thu Aug 24 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.4-1
 - pass options given to authconfig-gtk to authconfig (#203955)
 

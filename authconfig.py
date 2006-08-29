@@ -93,15 +93,15 @@ class Authconfig:
  			help=_("load CA certificate from the URL"))
 
 		parser.add_option("--enablesmartcard", action="store_true",
-			help=_("enable authentication with Smartcard by default"))
+			help=_("enable authentication with smart card by default"))
  		parser.add_option("--disablesmartcard", action="store_true",
-			help=_("disable authentication with Smartcard by default"))
+			help=_("disable authentication with smart card by default"))
 		parser.add_option("--enablerequiresmartcard", action="store_true",
-			help=_("require Smartcard for authentication by default"))
+			help=_("require smart card for authentication by default"))
  		parser.add_option("--disablerequiresmartcard", action="store_true",
-			help=_("do not require Smartcard for authentication by default"))
+			help=_("do not require smart card for authentication by default"))
  		parser.add_option("--smartcardmodule", metavar=_("<module>"),
- 			help=_("default Smartcard module to use"))
+ 			help=_("default smart card module to use"))
  			
  		acts = authinfo.getSmartcardActions()
  		idx = 0
@@ -113,7 +113,7 @@ class Authconfig:
 			idx += 1
 		actshelp += ">"
  		parser.add_option("--smartcardaction", metavar=actshelp,
- 			help=_("action to be taken on Smartcard removal"))
+ 			help=_("action to be taken on smart card removal"))
 
 		parser.add_option("--enablekrb5", action="store_true",
 			help=_("enable kerberos authentication by default"))
