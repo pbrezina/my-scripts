@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: zh_CN\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-29 11:37+0200\n"
-"PO-Revision-Date: 2006-07-31 10:30+1000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2006-08-31 21:51+1000\n"
+"Last-Translator: x <x@gmail.com>\n"
 "Language-Team:  <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,9 @@ msgstr "<domain>"
 msgid "default NIS domain"
 msgstr "默认的 NIS 域"
 
-#: ../authconfig.py:73 ../authconfig.py:84 ../authconfig.py:122
+#: ../authconfig.py:73
+#: ../authconfig.py:84
+#: ../authconfig.py:122
 #: ../authconfig.py:124
 msgid "<server>"
 msgstr "<server>"
@@ -113,22 +115,18 @@ msgid "load CA certificate from the URL"
 msgstr "从这个 URL 加载 CA 证书"
 
 #: ../authconfig.py:96
-#, fuzzy
 msgid "enable authentication with smart card by default"
-msgstr "默认启用智能卡验证"
+msgstr "默认状态为启用智能卡验证"
 
 #: ../authconfig.py:98
-#, fuzzy
 msgid "disable authentication with smart card by default"
 msgstr "默认禁用智能卡验证"
 
 #: ../authconfig.py:100
-#, fuzzy
 msgid "require smart card for authentication by default"
 msgstr "默认需要使用验证智能卡验证"
 
 #: ../authconfig.py:102
-#, fuzzy
 msgid "do not require smart card for authentication by default"
 msgstr "默认不需要使用智能卡验证"
 
@@ -137,12 +135,10 @@ msgid "<module>"
 msgstr "<module>"
 
 #: ../authconfig.py:104
-#, fuzzy
 msgid "default smart card module to use"
 msgstr "默认使用的智能卡模块"
 
 #: ../authconfig.py:116
-#, fuzzy
 msgid "action to be taken on smart card removal"
 msgstr "删除智能卡时进行的操作"
 
@@ -162,7 +158,8 @@ msgstr "默认的 kerberos KDC"
 msgid "default kerberos admin server"
 msgstr "默认的 kerberos 管理服务器"
 
-#: ../authconfig.py:126 ../authconfig.py:156
+#: ../authconfig.py:126
+#: ../authconfig.py:156
 msgid "<realm>"
 msgstr "<realm>"
 
@@ -234,7 +231,8 @@ msgstr "samba 和 winbind 使用的安全模式"
 msgid "default realm for samba and winbind when security=ads"
 msgstr "当 security=ads 时，samba 和 winbind 的默认域"
 
-#: ../authconfig.py:158 ../authconfig.py:160
+#: ../authconfig.py:158
+#: ../authconfig.py:160
 msgid "<lowest-highest>"
 msgstr "<lowest-highest>"
 
@@ -247,12 +245,8 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "winbind 分配域或 ads 用户的 gid 范围"
 
 #: ../authconfig.py:163
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"如果没有启用 winbindusedefaultdomain，用来分隔 winbind 创建的用户名中域和用户"
-"部分的字符"
+msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr "如果没有启用 winbindusedefaultdomain，用来分隔 winbind 创建的用户名中域和用户部分的字符"
 
 #: ../authconfig.py:165
 msgid "the directory which winbind-created users will have as home directories"
@@ -267,15 +261,11 @@ msgid "the shell which winbind-created users will have as their login shell"
 msgstr "winbind 创建的用户将会作为登录 shell 的 shell"
 
 #: ../authconfig.py:171
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
+msgid "configures winbind to assume that users with no domain in their user names are domain users"
 msgstr "配置 winbind 以假定在用户名中没有域的用户是域用户"
 
 #: ../authconfig.py:173
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
+msgid "configures winbind to assume that users with no domain in their user names are not domain users"
 msgstr "配置 winbind 以假定在用户名中没有域的用户不是域用户"
 
 #: ../authconfig.py:175
@@ -373,20 +363,26 @@ msgstr "对话被取消"
 #: ../authconfig.py:390
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
 "没有找到 %s 文件。%s 需要这个文件。\n"
 "安装提供该文件的 %s 软件包。"
 
-#: ../authconfig.py:392 ../authconfig.py:747
+#: ../authconfig.py:392
+#: ../authconfig.py:747
 msgid "Warning"
 msgstr "警告"
 
-#: ../authconfig.py:392 ../authconfig.py:605 ../authconfig.py:612
-#: ../authconfig.py:618 ../authconfig.py:627 ../authconfig.py:634
-#: ../authconfig.py:642 ../authconfig.py:683 ../authconfig.py:747
+#: ../authconfig.py:392
+#: ../authconfig.py:605
+#: ../authconfig.py:612
+#: ../authconfig.py:618
+#: ../authconfig.py:627
+#: ../authconfig.py:634
+#: ../authconfig.py:642
+#: ../authconfig.py:683
+#: ../authconfig.py:747
 msgid "Ok"
 msgstr "确定"
 
@@ -418,7 +414,8 @@ msgstr "屏蔽口令"
 msgid "SMB authentication"
 msgstr "SMB 验证"
 
-#: ../authconfig.py:403 ../authconfig.py:405
+#: ../authconfig.py:403
+#: ../authconfig.py:405
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -426,7 +423,8 @@ msgstr "Winbind"
 msgid "Winbind authentication"
 msgstr "Winbind 验证"
 
-#: ../authconfig.py:410 ../authconfig.glade.h:54
+#: ../authconfig.py:410
+#: ../authconfig.glade.h:54
 msgid "User Information"
 msgstr "用户信息"
 
@@ -450,7 +448,9 @@ msgstr "使用 NIS"
 msgid "Use Winbind"
 msgstr "使用 Winbind"
 
-#: ../authconfig.py:434 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:5
+#: ../authconfig.py:434
+#: ../authconfig.desktop.in.h:1
+#: ../authconfig.glade.h:5
 msgid "Authentication"
 msgstr "验证"
 
@@ -482,23 +482,34 @@ msgstr "使用 Winbind 验证"
 msgid "Local authorization is sufficient"
 msgstr "使用本地授权"
 
-#: ../authconfig.py:470 ../authconfig.py:605 ../authconfig.py:612
-#: ../authconfig.py:618 ../authconfig.py:627 ../authconfig.py:634
+#: ../authconfig.py:470
+#: ../authconfig.py:605
+#: ../authconfig.py:612
+#: ../authconfig.py:618
+#: ../authconfig.py:627
+#: ../authconfig.py:634
 #: ../authconfig.py:683
 msgid "Back"
 msgstr "后退"
 
-#: ../authconfig.py:470 ../authconfig.py:642
+#: ../authconfig.py:470
+#: ../authconfig.py:642
 msgid "Cancel"
 msgstr "取消"
 
-#: ../authconfig.py:471 ../authconfig.py:605 ../authconfig.py:612
-#: ../authconfig.py:618 ../authconfig.py:627 ../authconfig.py:634
+#: ../authconfig.py:471
+#: ../authconfig.py:605
+#: ../authconfig.py:612
+#: ../authconfig.py:618
+#: ../authconfig.py:627
+#: ../authconfig.py:634
 #: ../authconfig.py:683
 msgid "Next"
 msgstr "下一步"
 
-#: ../authconfig.py:482 ../authconfig-gtk.py:324 ../authconfig-gtk.py:417
+#: ../authconfig.py:482
+#: ../authconfig-gtk.py:324
+#: ../authconfig-gtk.py:417
 #: ../authconfig.glade.h:6
 msgid "Authentication Configuration"
 msgstr "验证配置"
@@ -511,7 +522,8 @@ msgstr "LHS："
 msgid "RHS:"
 msgstr "RHS："
 
-#: ../authconfig.py:604 ../authconfig.glade.h:29
+#: ../authconfig.py:604
+#: ../authconfig.glade.h:29
 msgid "Hesiod Settings"
 msgstr "Hesiod 设置"
 
@@ -519,7 +531,8 @@ msgstr "Hesiod 设置"
 msgid "Use TLS"
 msgstr "使用 TLS"
 
-#: ../authconfig.py:609 ../authconfig.py:616
+#: ../authconfig.py:609
+#: ../authconfig.py:616
 msgid "Server:"
 msgstr "服务器："
 
@@ -527,15 +540,18 @@ msgstr "服务器："
 msgid "Base DN:"
 msgstr "基本 DN："
 
-#: ../authconfig.py:611 ../authconfig.glade.h:37
+#: ../authconfig.py:611
+#: ../authconfig.glade.h:37
 msgid "LDAP Settings"
 msgstr "LDAP 设置"
 
-#: ../authconfig.py:615 ../authconfig.py:677
+#: ../authconfig.py:615
+#: ../authconfig.py:677
 msgid "Domain:"
 msgstr "域："
 
-#: ../authconfig.py:617 ../authconfig.glade.h:39
+#: ../authconfig.py:617
+#: ../authconfig.glade.h:39
 msgid "NIS Settings"
 msgstr "NIS 设置"
 
@@ -559,7 +575,8 @@ msgstr "使用 DNS 将主机解析到域"
 msgid "Use DNS to locate KDCs for realms"
 msgstr "通过 DNS 查找域的 KDC"
 
-#: ../authconfig.py:626 ../authconfig.glade.h:34
+#: ../authconfig.py:626
+#: ../authconfig.glade.h:34
 msgid "Kerberos Settings"
 msgstr "Kerberos 设置"
 
@@ -575,7 +592,8 @@ msgstr "服务器："
 msgid "Shell:"
 msgstr "Shell:"
 
-#: ../authconfig.py:633 ../authconfig.glade.h:43
+#: ../authconfig.py:633
+#: ../authconfig.glade.h:43
 msgid "SMB Settings"
 msgstr "SMB 设置"
 
@@ -591,14 +609,10 @@ msgstr "口令："
 msgid "Join Settings"
 msgstr "加入设置"
 
-#: ../authconfig.py:651 ../authconfig.glade.h:47
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
-msgstr ""
-"在继续之前，您应该把所做改变保存到磁盘上。如果您不保存它们，那么您加入域的尝"
-"试就会失败。保存改变吗？"
+#: ../authconfig.py:651
+#: ../authconfig.glade.h:47
+msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
+msgstr "在继续之前，您应该把所做改变保存到磁盘上。如果您不保存它们，那么您加入域的尝试就会失败。保存改变吗？"
 
 #: ../authconfig.py:658
 msgid "Save Settings"
@@ -630,7 +644,8 @@ msgstr "ADS 域："
 msgid "Template Shell:"
 msgstr "模板 Shell："
 
-#: ../authconfig.py:682 ../authconfig.glade.h:58
+#: ../authconfig.py:682
+#: ../authconfig.glade.h:58
 msgid "Winbind Settings"
 msgstr "Winbind 设置"
 
@@ -638,23 +653,19 @@ msgstr "Winbind 设置"
 msgid "Join Domain"
 msgstr "加入域"
 
-#: ../authconfig.py:742 ../authconfig-gtk.py:401
+#: ../authconfig.py:742
+#: ../authconfig-gtk.py:401
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"要正确连接到使用 TLS 的 LDAP 服务器，您需要用来签署您的服务器证书的 CA 证书。"
-"把这个证书以 PEM 的格式复制到“%s”目录中。\n"
+"要正确连接到使用 TLS 的 LDAP 服务器，您需要用来签署您的服务器证书的 CA 证书。把这个证书以 PEM 的格式复制到“%s”目录中。\n"
 "然后按“确定”按钮。"
 
 #. FIXME - version
 #: ../authconfig.py:756
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
 msgstr "<Tab>/<Alt-Tab> 在元素间切换   |   <Space> 选择   |  <F12> 下一屏幕"
 
 #: ../authconfig.desktop.in.h:2
@@ -675,7 +686,7 @@ msgstr "<b>选项</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Smart Card</b>"
-msgstr ""
+msgstr "<b>智能卡</b>"
 
 #: ../authconfig.glade.h:4
 msgid "Alert"
@@ -714,7 +725,6 @@ msgid "Configure NI_S..."
 msgstr "配置 NIS (_S)..."
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Configure Sma_rt Card..."
 msgstr "配置智能卡(_r)..."
 
@@ -743,7 +753,6 @@ msgid "Enable SMB S_upport"
 msgstr "启用 SMB 支持 (_u)"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Enable Smart _Card Support"
 msgstr "启用智能卡支持(_c)"
 
@@ -768,12 +777,8 @@ msgid "Enable _Winbind Support"
 msgstr "启用 Winbind 支持(_W)"
 
 #: ../authconfig.glade.h:28
-msgid ""
-"For user accounts maintained in local /etc/passwd file system will not check "
-"authorization from network services such as LDAP or Kerberos."
-msgstr ""
-"使用本地 /etc/passwd 文件维护的用户账号不使用网络服务（如 LDAP 或 Kerberos）"
-"进行验证。"
+msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
+msgstr "使用本地 /etc/passwd 文件维护的用户账号不使用网络服务（如 LDAP 或 Kerberos）进行验证。"
 
 #: ../authconfig.glade.h:30
 msgid "Hesiod _LHS"
@@ -784,21 +789,15 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod RHS (_R)"
 
 #: ../authconfig.glade.h:32
-msgid ""
-"Hesiod allows a system administrator to publish user and group information "
-"in DNS.  It is sometimes used in very large networks."
-msgstr ""
-"Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时在非常大型的网络中使"
-"用。"
+msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
+msgstr "Hesiod 允许系统管理员在 DNS 中公布用户及组群信息。它有时在非常大型的网络中使用。"
 
 #: ../authconfig.glade.h:33
 msgid "Joining Winbind Domain"
 msgstr "加入 Winbind 域"
 
 #: ../authconfig.glade.h:35
-msgid ""
-"Kerberos is a trusted third-party authentication system which is commonly "
-"used in medium to large networks."
+msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
 msgstr "Kerberos 是信任的第三方验证系统。它在大中型网络中普遍使用。"
 
 #: ../authconfig.glade.h:36
@@ -818,38 +817,24 @@ msgid "NIS _Server"
 msgstr "NIS 服务器(_S)"
 
 #: ../authconfig.glade.h:42
-msgid ""
-"NIS is the Network Information Service.  It is commonly used on small to "
-"medium networks."
+msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
 msgstr "NIS 是网络信息服务。它在中小型网络系统中普遍使用。"
 
 #: ../authconfig.glade.h:44
-msgid ""
-"SMB authentication verifies user passwords by attempting to connect to a "
-"server which uses the SMB (system message block) protocol suite."
-msgstr ""
-"SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
+msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
+msgstr "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
 
 #: ../authconfig.glade.h:45
-#, fuzzy
 msgid "Smart Card Settings"
 msgstr "智能卡设置"
 
 #: ../authconfig.glade.h:46
-#, fuzzy
-msgid ""
-"Smart card authentication allows you to log in using a certificate and key "
-"associated with a smart card."
+msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
 msgstr "智能卡认证允许您使用一个证书和一个与智能卡相连的密钥进行登录。"
 
 #: ../authconfig.glade.h:48
-msgid ""
-"The Lightweight Directory Access Protocol is a standard way of searching a "
-"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
-"increasingly being used in small to large networks."
-msgstr ""
-"轻量级目录访问协议（LDAP）是搜索目录的标准方法。这些目录可以用结构化的层次包"
-"括任意数据。LDAP 在小型到大型网络中被越来越广泛地使用。"
+msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
+msgstr "轻量级目录访问协议（LDAP）是搜索目录的标准方法。这些目录可以用结构化的层次包括任意数据。LDAP 在小型到大型网络中被越来越广泛地使用。"
 
 #: ../authconfig.glade.h:49
 msgid "Use DNS to _locate KDCs for realms"
@@ -872,12 +857,8 @@ msgid "Use _TLS to encrypt connections"
 msgstr "使用 TLS 来加密连接 (_T)"
 
 #: ../authconfig.glade.h:55
-msgid ""
-"When enabled allows network services such as LDAP or Kerberos to "
-"authenticate system accounts including root on this machine."
-msgstr ""
-"在启动时，允许 LDAP 或者 Kerberos 等网络服务器去认证系统帐号（包含此机器的根"
-"帐号）。"
+msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
+msgstr "在启动时，允许 LDAP 或者 Kerberos 等网络服务器去认证系统帐号（包含此机器的根帐号）。"
 
 #: ../authconfig.glade.h:56
 msgid "Winbind ADS _Realm"
@@ -892,13 +873,8 @@ msgid "Winbind _Domain"
 msgstr "Winbind 域 (_D)"
 
 #: ../authconfig.glade.h:60
-msgid ""
-"Winbind allows a system to retrieve information about users and to "
-"authenticate users by using information stored in an NTDOM or ADS server.  "
-"It is used in small to large networks."
-msgstr ""
-"Winbind 允许系统检索关于用户的信息，并通过贮存在 NTDOM 或 ADS 服务器中的信息"
-"来验证用户。它被用在小型到大型的网络中。"
+msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
+msgstr "Winbind 允许系统检索关于用户的信息，并通过贮存在 NTDOM 或 ADS 服务器中的信息来验证用户。它被用在小型到大型的网络中。"
 
 #: ../authconfig.glade.h:61
 msgid "_Admin Servers"
@@ -934,7 +910,7 @@ msgstr "域(_R)"
 
 #: ../authconfig.glade.h:69
 msgid "_Require smart card for login"
-msgstr ""
+msgstr "要求使用智能卡登录（_R）"
 
 #: ../authconfig.glade.h:70
 msgid "_Security Model"
@@ -948,19 +924,20 @@ msgstr "模板 Shell (_T)"
 msgid "_Workgroup"
 msgstr "工作组 (_W)"
 
-#: ../authinfo.py:644 ../authinfo.py:968 ../authinfo.py:2074
+#: ../authinfo.py:644
+#: ../authinfo.py:968
+#: ../authinfo.py:2074
 msgid "Lock"
 msgstr "锁定"
 
-#: ../authinfo.py:644 ../authinfo.py:970
+#: ../authinfo.py:644
+#: ../authinfo.py:970
 msgid "Ignore"
 msgstr "忽略"
 
 #: ../authinfo.py:2564
 #, python-format
-msgid ""
-"Authentication module %s/pam_%s.so is missing. Authentication process will "
-"not work correctly."
+msgid "Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly."
 msgstr "缺少验证模块 %s/pam_%s.so。验证无法正常进行。"
 
 #: ../authinfo.py:3027
@@ -969,9 +946,8 @@ msgstr "下载 CA 证书错误"
 
 #~ msgid "_Disallow logins without a Smartcard"
 #~ msgstr "禁止非智能卡登陆(_D)"
-
 #~ msgid "_Smartcard Type"
 #~ msgstr "智能卡类型(_S)"
-
 #~ msgid "Logout"
 #~ msgstr "登出"
+
