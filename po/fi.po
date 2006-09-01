@@ -1,26 +1,29 @@
+# translation of fi.po to Finnish
 # Finnish translation for authconfig.
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+#
 # Lauri Nurmi <lanurmi@iki.fi>, 2004.
 # Mikko Ikola <ikola@iki.fi>, 2004, 2005.
-#
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig\n"
+"Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-29 11:37+0200\n"
-"PO-Revision-Date: 2005-02-23 22:36+0200\n"
-"Last-Translator: Mikko Ikola <ikola@iki.fi>\n"
-"Language-Team:  <kde-i18n-fi-discussion@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2006-09-01 18:08+0300\n"
+"Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
+"Language-Team: Finnish <Laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../authconfig.py:52
 #, python-format
 msgid "usage: %s [options]"
-msgstr ""
+msgstr "käyttö: %s [valitsimet]"
 
 #: ../authconfig.py:59
 msgid "enable shadowed passwords by default"
@@ -35,9 +38,8 @@ msgid "enable MD5 passwords by default"
 msgstr "käytä MD5-salasanoja oletuksena"
 
 #: ../authconfig.py:65
-#, fuzzy
 msgid "disable MD5 passwords by default"
-msgstr "älä käytä MD5-salasanoja oletuksena\n"
+msgstr "älä käytä MD5-salasanoja oletuksena"
 
 #: ../authconfig.py:68
 #, fuzzy
@@ -63,9 +65,8 @@ msgid "<server>"
 msgstr "<palvelin>"
 
 #: ../authconfig.py:74
-#, fuzzy
 msgid "default NIS server"
-msgstr "oletus NIS-palvelin\n"
+msgstr "oletus-NIS-palvelin"
 
 #: ../authconfig.py:77
 msgid "enable LDAP for user information by default"
@@ -94,7 +95,7 @@ msgstr "<dn>"
 #: ../authconfig.py:87
 #, fuzzy
 msgid "default LDAP base DN"
-msgstr "oletus LDAP base DN\n"
+msgstr "oletus LDAP base DN"
 
 #: ../authconfig.py:89
 msgid "enable use of TLS with LDAP"
@@ -109,40 +110,42 @@ msgid "<URL>"
 msgstr ""
 
 #: ../authconfig.py:93
+#, fuzzy
 msgid "load CA certificate from the URL"
-msgstr ""
+msgstr "lataa CA-sertifikaatti osoitteesta"
 
 #: ../authconfig.py:96
 #, fuzzy
 msgid "enable authentication with smart card by default"
-msgstr "käytä SMD-todennusta oletuksena"
+msgstr "käytä älykorttitodennusta oletuksena"
 
 #: ../authconfig.py:98
 #, fuzzy
 msgid "disable authentication with smart card by default"
-msgstr "älä käytä SMD-todennusta oletuksena"
+msgstr "älä käytä älykorttitodennusta oletuksena"
 
 #: ../authconfig.py:100
 #, fuzzy
 msgid "require smart card for authentication by default"
-msgstr "käytä LDAP:ia todennukseen oletuksena"
+msgstr "vaadi älykortti todennukseen oletuksena"
 
 #: ../authconfig.py:102
 #, fuzzy
 msgid "do not require smart card for authentication by default"
-msgstr "älä käytä LDAP:ia todennukseen oletuksena"
+msgstr "älä vaadi älykorttia todennukseen oletuksena"
 
 #: ../authconfig.py:103
 msgid "<module>"
-msgstr ""
+msgstr "<moduuli>"
 
 #: ../authconfig.py:104
 msgid "default smart card module to use"
-msgstr ""
+msgstr "oletuksena käytettävä älykorttimoduuli"
 
 #: ../authconfig.py:116
+#, fuzzy
 msgid "action to be taken on smart card removal"
-msgstr ""
+msgstr "älykortin irrotuksen yhteydessä tehtävä toiminto"
 
 #: ../authconfig.py:119
 msgid "enable kerberos authentication by default"
@@ -195,14 +198,12 @@ msgid "disable SMB authentication by default"
 msgstr "älä käytä SMD-todennusta oletuksena"
 
 #: ../authconfig.py:141
-#, fuzzy
 msgid "<servers>"
-msgstr "<palvelin>"
+msgstr "<palvelimet>"
 
 #: ../authconfig.py:142
-#, fuzzy
 msgid "names of servers to authenticate against"
-msgstr "todennuspalvelimien nimet\n"
+msgstr "todennuspalvelimien nimet"
 
 #: ../authconfig.py:143
 msgid "<workgroup>"
@@ -260,8 +261,7 @@ msgstr ""
 
 #: ../authconfig.py:165
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"hakemisto, joka tulee olemaan kotihakemisto winbindillä luoduille käyttäjille"
+msgstr "hakemisto, joka tulee olemaan kotihakemisto winbindillä luoduille käyttäjille"
 
 #: ../authconfig.py:167
 msgid "the group which winbind-created users will have as their primary group"
@@ -338,66 +338,68 @@ msgid "authorize local users also through remote service"
 msgstr "todenna myös paikalliset käyttäjät etäpalvelun kautta"
 
 #: ../authconfig.py:202
+#, fuzzy
 msgid "authenticate system accounts by network services"
-msgstr ""
+msgstr "todenna järjestelmätilit verkkopalvelujen avulla"
 
 #: ../authconfig.py:204
+#, fuzzy
 msgid "authenticate system accounts by local files only"
-msgstr ""
+msgstr "todenna järjestelmätilit vain paikallisten tiedostojen avulla"
 
 #: ../authconfig.py:207
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "älä käynnistä/sammuta portmappia, ypbindiä ja nscd:tä"
 
 #: ../authconfig.py:210
+#, fuzzy
 msgid "do not update the configuration files, only print new settings"
-msgstr ""
+msgstr "älä päivitä asetustiedostoja, ainoastaan tulosta uudet asetukset"
 
 #: ../authconfig.py:214
+#, fuzzy
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr ""
+msgstr "näytä komento Takaisin komennon Peru sijasta tekstikäyttöliittymän päänäytössä"
 
 #: ../authconfig.py:216
-#, fuzzy
 msgid "do not display the deprecated text user interface"
-msgstr "älä näytä käyttöliittymää"
+msgstr "älä näytä vanhentunutta tekstikäyttöliittymää"
 
 #: ../authconfig.py:219
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr ""
+msgstr "--test-valitsimen vastakohta, päivitä asetustiedostot muuttuneilla asetuksilla"
 
 #: ../authconfig.py:222
 msgid "update all configuration files"
-msgstr ""
+msgstr "päivitä kaikki asetustiedostot"
 
 #: ../authconfig.py:225
 msgid "probe network for defaults and print them"
 msgstr "Tutki verkosta oletukset ja näytä ne"
 
 #: ../authconfig.py:230
-#, fuzzy
 msgid "unexpected argument"
-msgstr "%s: odottamaton argumentti\n"
+msgstr "odottamaton argumentti"
 
 #: ../authconfig.py:360
-#, fuzzy
 msgid "can only be run as root"
-msgstr "%s: voidaan suorittaa vain pääkäyttäjänä\n"
+msgstr "voidaan suorittaa vain pääkäyttäjänä"
 
 #: ../authconfig.py:367
 #, fuzzy
 msgid "dialog was cancelled"
-msgstr "ikkuna peruutettiin\n"
+msgstr "ikkuna peruutettiin"
 
 #: ../authconfig.py:390
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
 "Tiedostoa %s ei löytynyt, mutta se on tarvitaan, että %s-tuki toimisi "
-"oikein. Asenna paketti %s, joka sisältää tämän tiedoston."
+"oikein.\n "
+"Asenna paketti %s, joka sisältää tämän tiedoston."
 
 #: ../authconfig.py:392 ../authconfig.py:747
 msgid "Warning"
@@ -676,8 +678,7 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> siirry   |   <Välilyönti> valitse   |  <F12> seuraava ruutu"
+msgstr " <Tab>/<Alt-Tab> siirry   |   <Välilyönti> valitse   |  <F12> seuraava ruutu"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -686,8 +687,9 @@ msgstr ""
 "käyttäjät"
 
 #: ../authconfig-gtk.py:405
+#, fuzzy
 msgid "LDAP CA Certificate Check"
-msgstr ""
+msgstr "LDAP CA-sertifikaatin tarkastus"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -695,11 +697,11 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Valinnat</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Smart Card</b>"
-msgstr ""
+msgstr "<b>Älykortti</b>"
 
 #: ../authconfig.glade.h:4
 msgid "Alert"
@@ -710,12 +712,13 @@ msgid "Cache User _Information"
 msgstr "_Tallenna käyttäjätiedot välimuistiin"
 
 #: ../authconfig.glade.h:8
+#, fuzzy
 msgid "Card Removal _Action"
-msgstr ""
+msgstr "_Toimenpide korttia poistettaessa"
 
 #: ../authconfig.glade.h:9
 msgid "Certificate _URL"
-msgstr ""
+msgstr "Sertifikaatin _osoite"
 
 #: ../authconfig.glade.h:10
 msgid "Con_figure SMB..."
@@ -738,9 +741,8 @@ msgid "Configure NI_S..."
 msgstr "_Aseta NIS..."
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Configure Sma_rt Card..."
-msgstr "_Aseta Kerberos..."
+msgstr "Aseta _älykortti"
 
 #: ../authconfig.glade.h:16
 msgid "Configure Win_bind..."
@@ -760,16 +762,15 @@ msgstr "Verkko_alueen ylläpitäjä"
 
 #: ../authconfig.glade.h:20
 msgid "Download CA Certificate"
-msgstr ""
+msgstr "Lataa CA-sertifikaatti"
 
 #: ../authconfig.glade.h:21
 msgid "Enable SMB S_upport"
 msgstr "Käytä _SMB-tukea"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Enable Smart _Card Support"
-msgstr "Käytä _SMB-tukea"
+msgstr "Käytä _älykorttitukea"
 
 #: ../authconfig.glade.h:23
 msgid "Enable _Hesiod Support"
@@ -792,10 +793,11 @@ msgid "Enable _Winbind Support"
 msgstr "Käytä _Winbind-tukea"
 
 #: ../authconfig.glade.h:28
+#, fuzzy
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
-msgstr ""
+msgstr "Järjestelmä ei tarkasta oikeuksia käyttäjätunnuksille, jotka pidetään paikallisessa /etc/passwd-tiedostossa verkkopalveluista kuten LDAP tai Kerberos ."
 
 #: ../authconfig.glade.h:30
 msgid "Hesiod _LHS"
@@ -858,15 +860,14 @@ msgstr ""
 "(system message block) käyttävälle palvelimelle."
 
 #: ../authconfig.glade.h:45
-#, fuzzy
 msgid "Smart Card Settings"
-msgstr "Tallenna asetukset"
+msgstr "Älykortin asetukset"
 
 #: ../authconfig.glade.h:46
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
-msgstr ""
+msgstr "Älykorttivarmennus mahdollistaa sisäänkirjautumisen käyttämällä älykorttiin liitettyä sertifikaattia ja avainta."
 
 #: ../authconfig.glade.h:48
 #, fuzzy
@@ -901,10 +902,11 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Käytä _TLS:ää yhteyksien salaamiseen"
 
 #: ../authconfig.glade.h:55
+#, fuzzy
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
-msgstr ""
+msgstr "Kun käytössä, mahdollistaa verkkopalvelujen kuten LDAP:in ja Kerberoksen varmentaa tämän koneen käyttäjätunnuksia, mukaanlukien root."
 
 #: ../authconfig.glade.h:56
 msgid "Winbind ADS _Realm"
@@ -933,8 +935,9 @@ msgid "_Admin Servers"
 msgstr "_Pääpalvelimet"
 
 #: ../authconfig.glade.h:62
+#, fuzzy
 msgid "_Authenticate system accounts by network services"
-msgstr ""
+msgstr "_Varmenna järjestelmän käyttäjätunnuksia verkkopalveluiden avulla"
 
 #: ../authconfig.glade.h:63
 msgid "_Domain Controllers"
@@ -962,7 +965,7 @@ msgstr "_Realm"
 
 #: ../authconfig.glade.h:69
 msgid "_Require smart card for login"
-msgstr ""
+msgstr "_Vaadi älykortti sisäänkirjautumiseen"
 
 #: ../authconfig.glade.h:70
 msgid "_Security Model"
@@ -977,77 +980,22 @@ msgid "_Workgroup"
 msgstr "_Työryhmä"
 
 #: ../authinfo.py:644 ../authinfo.py:968 ../authinfo.py:2074
+#, fuzzy
 msgid "Lock"
-msgstr ""
+msgstr "Lukitse"
 
 #: ../authinfo.py:644 ../authinfo.py:970
 msgid "Ignore"
-msgstr ""
+msgstr "Ohita"
 
 #: ../authinfo.py:2564
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
-msgstr ""
+msgstr "Todennusmoduuli %s/pam_%s.so puuttuu. Todennusprosessi ei toimi oikein."
 
 #: ../authinfo.py:3027
 msgid "Error downloading CA certificate"
-msgstr ""
+msgstr "Virhe ladattaessa CA-sertifikaattia"
 
-#, fuzzy
-#~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
-
-#, fuzzy
-#~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
-
-#, fuzzy
-#~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
-
-#~ msgid "EXAMPLE.COM"
-#~ msgstr "EXAMPLE.COM"
-
-#~ msgid "SMB"
-#~ msgstr "SMB"
-
-#~ msgid "enable NIS"
-#~ msgstr "käytä NIS:iä."
-
-#~ msgid "disable NIS"
-#~ msgstr "älä käytä NIS:iä"
-
-#~ msgid "<lhs>"
-#~ msgstr "<lhs>"
-
-#~ msgid "<rhs>"
-#~ msgstr "<rhs>"
-
-#~ msgid "use locally-defined policies"
-#~ msgstr "käytä paikallisesti määriteltyjä käytäntöjä"
-
-#~ msgid "don't use locally-defined policies"
-#~ msgstr "älä käytä paikallisesti määriteltyjä käytäntöjä"
-
-#~ msgid "%s: bad argument %s: %s\n"
-#~ msgstr "%s: virheellinen argumentti %s: %s\n"
-
-#~ msgid "%s: attempting to continue\n"
-#~ msgstr "%s: yritetään jatkaa\n"
-
-#~ msgid "%s: critical error reading %s/%s"
-#~ msgstr "%s: kriittinen virhe luettaessa %s/%s"
-
-#~ msgid "%s: unable to read caching configuration"
-#~ msgstr "%s: välimuistiasetusten lukeminen ei onnistu"
-
-#~ msgid "%s: critical error recording caching setting"
-#~ msgstr "%s: krittinen virhe tallennettaessa välimuistiasetuksia"
-
-#~ msgid "%s: critical error writing %s/%s"
-#~ msgstr "%s: kriittinen virhe kirjoitettaessa %s/%s"
-
-#~ msgid "Use Local Policies"
-#~ msgstr "Käytä paikallisia käytäntöjä"
