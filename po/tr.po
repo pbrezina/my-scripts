@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-29 11:37+0200\n"
-"PO-Revision-Date: 2006-07-16 15:30+0300\n"
+"PO-Revision-Date: 2006-09-02 18:12+0300\n"
 "Last-Translator: Ismail ASCI <ismail.asci@fedora-tr.org>\n"
 "Language-Team: Turkish <fedora-trans-tr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -110,22 +110,18 @@ msgid "load CA certificate from the URL"
 msgstr ""
 
 #: ../authconfig.py:96
-#, fuzzy
 msgid "enable authentication with smart card by default"
 msgstr "kimlik denetimi öntanımlı olarak Akıllıkart ile yapılsın"
 
 #: ../authconfig.py:98
-#, fuzzy
 msgid "disable authentication with smart card by default"
 msgstr "kimlik denetimleri öntanımlı olarak Akıllıkart ile yapılmasın"
 
 #: ../authconfig.py:100
-#, fuzzy
 msgid "require smart card for authentication by default"
 msgstr "öntanımlı kimlik denetimi için Akıllıkart talep et"
 
 #: ../authconfig.py:102
-#, fuzzy
 msgid "do not require smart card for authentication by default"
 msgstr "kimlik denetimi için öntanımlı olarak Akıllıkart talep edilmesin"
 
@@ -134,9 +130,8 @@ msgid "<module>"
 msgstr "<modül>"
 
 #: ../authconfig.py:104
-#, fuzzy
 msgid "default smart card module to use"
-msgstr "kullanım için öntanımlı Akıllıkart"
+msgstr "kullanım için öntanımlı Akıllıkart modülü"
 
 #: ../authconfig.py:116
 msgid "action to be taken on smart card removal"
@@ -248,7 +243,7 @@ msgid ""
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
 "winbindusedefaultdomain yapılandırılmadığında, sunucu ve winbind'in "
-"yarattıpı kullanıcı isimlerini ayırmak için kullanılacak karakter"
+"yarattığı kullanıcı isimlerini ayırmak için kullanılacak karakter"
 
 #: ../authconfig.py:165
 msgid "the directory which winbind-created users will have as home directories"
@@ -373,13 +368,13 @@ msgid "dialog was cancelled"
 msgstr "diyalog iptal edildi"
 
 #: ../authconfig.py:390
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
 "properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"%s dosyası bulunamadı, %s'in doğru çalışması için gerekiyor. Lütfen bu "
+"%s dosyası bulunamadı, %s desteğinin doğru çalışması için gerekiyor. Lütfen bu "
 "dosyayı içeren %s paketini kurun."
 
 #: ../authconfig.py:392 ../authconfig.py:747
@@ -642,16 +637,16 @@ msgid "Join Domain"
 msgstr "Alanları Birleştir"
 
 #: ../authconfig.py:742 ../authconfig-gtk.py:401
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed your server's certificate. Copy the certificate in "
 "the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Bir LDAP sunucusuna doğru bir çekilde TLS kullanarak bağlanabilmek için, "
-"sunucunuzun sertifikasını imzalayan CA sertifikasının PEM'ini, %s dizinine "
-"kopyalamanız gerekmektedir.\n"
+"Bir LDAP sunucusuna doğru bir şekilde TLS kullanarak bağlanabilmek için, "
+"sunucunuzun sertifikasını imzalayan CA sertifikası gerekmektedir. Sertifikayı "
+"PEM biçeminde %s dizinine kopyalayınız.\n"
 "Sonra Tamam'a basın."
 
 #. FIXME - version
@@ -720,13 +715,12 @@ msgid "Configure NI_S..."
 msgstr "NIS'i _Yapılandır..."
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Configure Sma_rt Card..."
-msgstr "Akıllı_kart'ı yapılandır..."
+msgstr "Akıllıka_rt'ı Yapılandır..."
 
 #: ../authconfig.glade.h:16
 msgid "Configure Win_bind..."
-msgstr "Winbind'i _Yapılandır..."
+msgstr "Win_bind'i Yapılandır..."
 
 #: ../authconfig.glade.h:17
 msgid "Do_n't Save"
@@ -749,7 +743,6 @@ msgid "Enable SMB S_upport"
 msgstr "_SMB Desteği Etkinleştirilsin"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Enable Smart _Card Support"
 msgstr "Akıllı_kart desteğini etkinleştir"
 
@@ -840,9 +833,8 @@ msgstr ""
 "sunucuya bağlanmaya çalışarak kullanıcı parolalarını doğrular."
 
 #: ../authconfig.glade.h:45
-#, fuzzy
 msgid "Smart Card Settings"
-msgstr "Akıllıkart ayarları"
+msgstr "Akıllıkart Ayarları"
 
 #: ../authconfig.glade.h:46
 msgid ""
@@ -851,15 +843,15 @@ msgid ""
 msgstr ""
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
 "Hafif Dizin Erişim Protokolü, yapısal bir hiyerarşi içinde çeşitli "
-"bilgilerin tutulduğu bir dizini aramak için kullanılır. LDAP, küçük-büyük "
-"her türlü ağ tarafından giderek artan bir yoğunlukta kullanılmaktadır."
+"bilgilerin tutulduğu bir dizinde arama için standart bir yöntemdir. LDAP "
+"küçük büyük her türlü ağ tarafından giderek artan bir yoğunlukta "
+"kullanılmaktadır."
 
 #: ../authconfig.glade.h:49
 msgid "Use DNS to _locate KDCs for realms"
@@ -987,17 +979,14 @@ msgstr ""
 #~ msgid "Logout"
 #~ msgstr "Çıkış"
 
-#, fuzzy
 #~ msgid "<b>Hesiod</b>"
-#~ msgstr "Hesiod"
+#~ msgstr "<b>Hesiod</b>"
 
-#, fuzzy
 #~ msgid "<b>Kerberos</b>"
-#~ msgstr "Kerberos"
+#~ msgstr "<b>Kerberos</b>"
 
-#, fuzzy
 #~ msgid "<b>Winbind</b>"
-#~ msgstr "Winbind"
+#~ msgstr "<b>Winbind</b>"
 
 #~ msgid "EXAMPLE.COM"
 #~ msgstr "ÖRNEK.COM"
@@ -1044,9 +1033,8 @@ msgstr ""
 #~ msgid "Use Local Policies"
 #~ msgstr "Yerel Önlemler Kullanılsın"
 
-#, fuzzy
 #~ msgid "Information"
-#~ msgstr "Kullanıcı Bilgileri"
+#~ msgstr "Bilgi"
 
 #~ msgid "(c) 1999-2003 Red Hat, Inc."
 #~ msgstr "(c) 1999-2003 Red Hat, Inc."
