@@ -9,7 +9,7 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.bz2
-Requires: rhpl, newt, pam >= 0.99.5.0-2, usermode
+Requires: rhpl, newt, pam >= 0.99.6.2, usermode
 Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]")
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 BuildRequires: glib2-devel, python, python-devel
@@ -95,6 +95,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Sep  4 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.6-1
+- skip pam_unix for session for crond service
+- fixed a bug in saving when smartcard settings changed (#204838)
+- removed allow_ypbind setsebool as it is now handled in ypbind
+
 * Tue Aug 29 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.5-1
 - improve smart card related UI strings
 - removed possibility to set smart card type from authconfig-gtk

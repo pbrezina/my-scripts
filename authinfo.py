@@ -305,10 +305,16 @@ argv_succeed_if_account = [
 	"quiet"
 ]
 
+argv_succeed_if_session = [
+	"service in crond",
+	"quiet",
+	"use_uid"
+]
+
 argv_succeed_if_nonlogin = [
 	"service notin login:gdm:xdm:kdm:xscreensaver:gnome-screensaver:kscreensaver",
 	"quiet",
-	"use_uid",
+	"use_uid"
 ]
 
 argv_winbind_auth = [
@@ -342,9 +348,9 @@ ARGV = 4
 standard_pam_modules = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
-	[False,  AUTH,      LOGIC_SKIPNEXT,
+	[False,  AUTH,          LOGIC_SKIPNEXT,
 	 "succeed_if",		argv_succeed_if_nonlogin],
-	[False,  AUTH,      LOGIC_PKCS11,
+	[False,  AUTH,          LOGIC_PKCS11,
 	 "pkcs11",		argv_pkcs11_auth],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
@@ -430,6 +436,8 @@ standard_pam_modules = [
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "limits",		[]],
+	[True,  SESSION,	LOGIC_SKIPNEXT,
+	 "succeed_if",		argv_succeed_if_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -479,8 +487,6 @@ def toggleNisService(enableNis, nisDomain, nostart):
 			os.stat(PATH_YPBIND)
 			os.system("/sbin/chkconfig --add ypbind")
 			os.system("/sbin/chkconfig --level 345 ypbind on")
-			if os.access(PATH_SEBOOL, os.R_OK | os.X_OK):
-				os.system(PATH_SEBOOL + " -P allow_ypbind 1")
 			if not nostart:
 				try:
 					os.stat(PATH_YPBIND_PID)
@@ -500,8 +506,6 @@ def toggleNisService(enableNis, nisDomain, nostart):
 				except OSError:
 					pass
 			os.system("/sbin/chkconfig --level 345 ypbind off")
-			if os.access(PATH_SEBOOL, os.R_OK | os.X_OK):
-				os.system(PATH_SEBOOL + " -P allow_ypbind 0")
 		except OSError:
 			pass
 	return True
@@ -2066,7 +2070,7 @@ class AuthInfo:
 		ret = self.writeKerberos5()
 		if ret:
 			self.writeKerberos4()
-		return ret;
+		return ret
 
 	def writeSmartcard(self):
 		insact = "/usr/sbin/gdm-safe-restart"
@@ -2077,6 +2081,7 @@ class AuthInfo:
 		
 		callPKCS11Setup(["use_module="+self.smartcardModule,
 			"ins_action="+insact, "rm_action="+rmact])
+		return True
 
 	# Write winbind settings to /etc/smb/samba.conf.
 	def writeWinbind(self):
@@ -2640,7 +2645,7 @@ class AuthInfo:
 					(self.enableKerberos and not have_afs and module[NAME] == "krb5") or
 					(self.enableKerberos and have_afs and module[NAME] == "krb5afs") or
 					(self.enableLDAPAuth and module[NAME] == "ldap") or
-					(self.enableSmartcard and module[LOGIC] == LOGIC_SKIPNEXT and
+					(self.enableSmartcard and module[STACK] == AUTH and
 						module[NAME] == "succeed_if") or
 					(self.enableSmartcard and module[NAME] == "pkcs11") or 
 					(self.enableOTP and module[NAME] == "otp") or
@@ -2648,7 +2653,7 @@ class AuthInfo:
 					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
-					(not self.enableSysNetAuth and module[LOGIC] == LOGIC_REQUISITE and
+					(not self.enableSysNetAuth and module[STACK] == ACCOUNT and
 						module[NAME] == "succeed_if")):
 					if self.enableSmartcard and module[NAME] == "pkcs11":
 						if self.forceSmartcard:
