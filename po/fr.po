@@ -2,25 +2,26 @@
 # translation of fr.po to
 # translation of fr.po to French
 # Copyright (C) 2002 Red Hat, Inc.
-#
-#
 # Bettina De Monti <bdemonti@redhat.it>, 2001.
 # Audrey Simons <asimons@redhat.com>, 2003, 2005.
 # Jean-Paul Aubry <jpaubry@redhat.com>, 2003,2004, 2005, 2006.
 # Thomas Canniot <thomas.canniot@laposte.net>, 2006.
 # Damien Durand	<splinux@fedoraproject.org>, 2006.
+# Decroux Fabien <fdecroux@redhat.com>, 2006.
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-29 11:37+0200\n"
-"PO-Revision-Date: 2006-08-31 11:26+0100\n"
-"Last-Translator: \n"
-"Language-Team: French\n"
+"PO-Revision-Date: 2006-09-13 11:08+1000\n"
+"Last-Translator: Decroux Fabien <fdecroux@redhat.com>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: ../authconfig.py:52
 #, python-format
@@ -112,7 +113,7 @@ msgstr "<URL>"
 
 #: ../authconfig.py:93
 msgid "load CA certificate from the URL"
-msgstr "Chargement du certificat depuis l'URL"
+msgstr "Chargement du certificat CA depuis l'URL"
 
 #: ../authconfig.py:96
 msgid "enable authentication with smart card by default"
@@ -197,7 +198,7 @@ msgstr "<serveurs>"
 
 #: ../authconfig.py:142
 msgid "names of servers to authenticate against"
-msgstr "noms des serveurs par rapport auxquels authentifier"
+msgstr "noms des serveurs par rapport auxquels s'authentifier"
 
 #: ../authconfig.py:143
 msgid "<workgroup>"
@@ -229,12 +230,12 @@ msgstr "mode de sécurité à utiliser pour Samba et Windbind"
 
 #: ../authconfig.py:157
 msgid "default realm for samba and winbind when security=ads"
-msgstr "zone par défaut pour Samba et Winbindlorsque sécurité=ads"
+msgstr "zone par défaut pour Samba et Winbind lorsque sécurité=ads"
 
 #: ../authconfig.py:158
 #: ../authconfig.py:160
 msgid "<lowest-highest>"
-msgstr "<les plus bas-le plus haut> "
+msgstr "<le plus bas-le plus haut> "
 
 #: ../authconfig.py:159
 msgid "uid range winbind will assign to domain or ads users"
@@ -258,7 +259,7 @@ msgstr "le groupe que les utilisateurs créés par Winbind se verront assigné c
 
 #: ../authconfig.py:169
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "le shell que les utilisateurs créés par Winbind auront comme shell de connexion "
+msgstr "le shell que les utilisateurs créés par Winbind auront comme shell de connexion"
 
 #: ../authconfig.py:171
 msgid "configures winbind to assume that users with no domain in their user names are domain users"
@@ -342,7 +343,7 @@ msgstr "opposé de --test, mettre à jour les fichiers de configuration avec les
 
 #: ../authconfig.py:222
 msgid "update all configuration files"
-msgstr "mettre à jour les fichiers de configuration"
+msgstr "mettre à jour tous les fichiers de configuration"
 
 #: ../authconfig.py:225
 msgid "probe network for defaults and print them"
@@ -516,7 +517,7 @@ msgstr "Configuration de l'authentification"
 
 #: ../authconfig.py:602
 msgid "LHS:"
-msgstr "LHS : "
+msgstr "LHS :"
 
 #: ../authconfig.py:603
 msgid "RHS:"
@@ -612,11 +613,11 @@ msgstr "Paramètres pour joindre "
 #: ../authconfig.py:651
 #: ../authconfig.glade.h:47
 msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
-msgstr "Certaines des modifications de configuration que vous avez effectuées devraient être sauvegardées sur disque avant de poursuivre.  Si vous ne les sauvegardez pas, il se peut que votre tentative de joindre le domaine échoue.  Sauvegardez les changements ?"
+msgstr "Certaines des modifications de configuration que vous avez effectuées devraient être sauvegardées sur le disque avant de poursuivre.  Si vous ne les sauvegardez pas, il se peut que votre tentative de joindre le domaine échoue.  Sauvegardez les changements ?"
 
 #: ../authconfig.py:658
 msgid "Save Settings"
-msgstr "Sauvegarder les paramètres "
+msgstr "Sauvegarder les paramètres"
 
 #: ../authconfig.py:659
 msgid "No"
@@ -666,7 +667,7 @@ msgstr ""
 #. FIXME - version
 #: ../authconfig.py:756
 msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
-msgstr "<Tab>/<Alt-Tab> Changer d'élément  |  <Espace> Sélectionner  |  <F12> Écran suivant"
+msgstr " <Tab>/<Alt-Tab> entre les éléments   |   <Espace> Sélectionner   |  <F12> Écran suivant"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -674,7 +675,7 @@ msgstr "Contrôler la manière dont le système vérifie les utilisateurs qui ve
 
 #: ../authconfig-gtk.py:405
 msgid "LDAP CA Certificate Check"
-msgstr "Vérification du certificat LDAP"
+msgstr "Vérification du certificat CA LDAP"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -746,7 +747,7 @@ msgstr "_Administrateur de domaine"
 
 #: ../authconfig.glade.h:20
 msgid "Download CA Certificate"
-msgstr "Récupération du Certificat"
+msgstr "Récupération du Certificat CA"
 
 #: ../authconfig.glade.h:21
 msgid "Enable SMB S_upport"
@@ -782,7 +783,7 @@ msgstr "Pour les comptes d'utilisateurs maintenus dans le fichier local /etc/pas
 
 #: ../authconfig.glade.h:30
 msgid "Hesiod _LHS"
-msgstr "_LHS Hesiod "
+msgstr "_LHS Hesiod"
 
 #: ../authconfig.glade.h:31
 msgid "Hesiod _RHS"
@@ -790,7 +791,7 @@ msgstr "_RHS Hesiod"
 
 #: ../authconfig.glade.h:32
 msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
-msgstr "Heliod permet aux administrateurs système de publier des informations sur des utilisateurs ou les groupes en DNS. Il est parfois utilisé dans des réseaux de très grande envergure."
+msgstr "Hesiod permet aux administrateurs système de publier des informations sur des utilisateurs ou les groupes dans DNS. Il est parfois utilisé dans des réseaux de très grande envergure."
 
 #: ../authconfig.glade.h:33
 msgid "Joining Winbind Domain"
@@ -798,7 +799,7 @@ msgstr "Adhésion au domaine Winbind en cours"
 
 #: ../authconfig.glade.h:35
 msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
-msgstr "Kerberos est un système sécurisé d'authentification qui est habituellement utilisé par les réseaux de grande envergure."
+msgstr "Kerberos est un système sécurisé d'authentification qui est habituellement utilisé par les réseaux de moyenne et grande envergure."
 
 #: ../authconfig.glade.h:36
 msgid "LDAP Search _Base DN"
@@ -810,11 +811,11 @@ msgstr "_Serveur LDAP"
 
 #: ../authconfig.glade.h:40
 msgid "NIS _Domain"
-msgstr "_Domaine NIS :"
+msgstr "_Domaine NIS"
 
 #: ../authconfig.glade.h:41
 msgid "NIS _Server"
-msgstr "_Serveur NIS :"
+msgstr "_Serveur NIS"
 
 #: ../authconfig.glade.h:42
 msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
@@ -822,7 +823,7 @@ msgstr "NIS est le service d'informations sur le réseau. Il est habituellement 
 
 #: ../authconfig.glade.h:44
 msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
-msgstr "L'authentification SMB vérifie les mots de passe des utilisateurs en se connectant à un serveur qui utilise la série de protocoles SMB (System Message Block)"
+msgstr "L'authentification SMB vérifie les mots de passe des utilisateurs en se connectant à un serveur qui utilise la série de protocoles SMB (System Message Block)."
 
 #: ../authconfig.glade.h:45
 msgid "Smart Card Settings"
@@ -830,7 +831,7 @@ msgstr "Paramètres Smart Card"
 
 #: ../authconfig.glade.h:46
 msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
-msgstr "L'authentification par Smart card vous permet de vous connecter en utilisant un certificat et une clé associée avec un smart card."
+msgstr "L'authentification par Smart card vous permet de vous connecter en utilisant un certificat et une clé associé avec un smart card."
 
 #: ../authconfig.glade.h:48
 msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
@@ -898,7 +899,7 @@ msgstr "_KDC"
 
 #: ../authconfig.glade.h:66
 msgid "_Local authorization is sufficient for local users"
-msgstr "Une autorisation _Locale est suffisante pour tous les utilisateurs"
+msgstr "Une autorisation _Locale est suffisante pour les utilisateurs locaux"
 
 #: ../authconfig.glade.h:67
 msgid "_Password"
@@ -918,7 +919,7 @@ msgstr "Modèle de _Sécurité"
 
 #: ../authconfig.glade.h:71
 msgid "_Template Shell"
-msgstr "Shell _modèle :"
+msgstr "Shell _modèle"
 
 #: ../authconfig.glade.h:72
 msgid "_Workgroup"
@@ -942,12 +943,5 @@ msgstr "Le module d'authentification %s/pam_%s.so n'est pas présent. Le process
 
 #: ../authinfo.py:3027
 msgid "Error downloading CA certificate"
-msgstr "Erreur lors de la récupération du certificat"
-
-#~ msgid "_Disallow logins without a Smartcard"
-#~ msgstr "_Interdire l'authentification sans Smartcard"
-#~ msgid "_Smartcard Type"
-#~ msgstr "Modèle de _Smarcard"
-#~ msgid "Logout"
-#~ msgstr "Clore la session"
+msgstr "Erreur lors de la récupération du certificat CA"
 
