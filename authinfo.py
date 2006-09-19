@@ -1,4 +1,4 @@
-#s
+#
 # Authconfig - client authentication configuration program
 # Copyright (c) 1999-2005 Red Hat, Inc.
 #
@@ -92,9 +92,12 @@ LOGIC_REQUISITE	= "requisite"
 LOGIC_SUFFICIENT = "sufficient"
 LOGIC_OPTIONAL = "optional"
 LOGIC_IGNORE_UNKNOWN = "[default=bad success=ok user_unknown=ignore]"
-LOGIC_PKCS11 = "[success=done authinfo_unavail=ignore default=die]"
-LOGIC_FORCE_PKCS11 = "[success=done default=die]"
+LOGIC_PKCS11 = "[success=done authinfo_unavail=ignore ignore=ignore default=die]"
+LOGIC_FORCE_PKCS11 = "[success=done ignore=ignore default=die]"
+LOGIC_PKCS11_KRB5 = "[success=ok authinfo_unavail=2 ignore=2 default=die]"
+LOGIC_FORCE_PKCS11_KRB5 = "[success=ok ignore=2 default=die]"
 LOGIC_SKIPNEXT = "[success=1 default=ignore]"
+LOGIC_SKIPNEXT3 = "[success=3 default=ignore]"
 
 # Snip off line terminators and final whitespace from a passed-in string.
 def snipString(s):
@@ -267,6 +270,11 @@ argv_krb5_auth = [
 	"use_first_pass"
 ]
 
+argv_krb5_sc_auth = [
+	"use_first_pass",
+	"no_subsequent_prompt"
+]
+
 argv_krb5_password = [
 	"use_authtok"
 ]
@@ -352,6 +360,10 @@ standard_pam_modules = [
 	 "succeed_if",		argv_succeed_if_nonlogin],
 	[False,  AUTH,          LOGIC_PKCS11,
 	 "pkcs11",		argv_pkcs11_auth],
+	[False, AUTH,		LOGIC_OPTIONAL,
+	 "krb5",		argv_krb5_sc_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "permit",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
@@ -409,6 +421,8 @@ standard_pam_modules = [
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "permit",		[]],
 
+	[False,  PASSWORD,	LOGIC_OPTIONAL,
+	 "pkcs11",		[]],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
 	 "cracklib",		argv_cracklib_password],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
@@ -2562,6 +2576,20 @@ class AuthInfo:
 		logic = module[LOGIC]
 		output = ""
 		if stack and logic:
+			args = ""
+			if module[NAME] == "pkcs11":
+				if self.forceSmartcard:
+					if self.enableKerberos:
+						logic = LOGIC_FORCE_PKCS11_KRB5
+					else:
+						logic = LOGIC_FORCE_PKCS11
+					args = " ".join(argv_force_pkcs11_auth)
+				else:
+					if self.enableKerberos:
+						logic = LOGIC_PKCS11_KRB5
+			if module[NAME] == "succeed_if" and stack == "auth" and logic == LOGIC_SKIPNEXT:
+				if self.enableKerberos:
+					logic = LOGIC_SKIPNEXT3
 			output += "%-12s%-13s pam_%s.so" % (stack, logic,
 				module[NAME])
 			if not module[NAME] in self.module_missing and not os.access("%s/pam_%s.so"
@@ -2569,7 +2597,6 @@ class AuthInfo:
 				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly." %
 					(AUTH_MODULE_DIR, module[NAME])))				
 				self.module_missing[module[NAME]] = True
-			args = ""
 			if module[NAME] == "cracklib":
 				args = self.cracklibArgs
 			if module[NAME] == "passwdqc":
@@ -2642,26 +2669,23 @@ class AuthInfo:
 					(self.enableAFSKerberos and module[NAME] == "afs.krb") or
 					(self.enableCracklib and module[NAME] == "cracklib") or
 					(self.enableEPS and module[NAME] == "eps") or
-					(self.enableKerberos and not have_afs and module[NAME] == "krb5") or
+					(self.enableKerberos and not have_afs and module[NAME] == "krb5" and
+						not module[ARGV] == argv_krb5_sc_auth) or
 					(self.enableKerberos and have_afs and module[NAME] == "krb5afs") or
+					(self.enableKerberos and self.enableSmartcard and
+					    ((module[NAME] == "krb5" and module[ARGV] == argv_krb5_sc_auth) or
+					    (module[NAME] == "permit" and module[STACK] == AUTH))) or
 					(self.enableLDAPAuth and module[NAME] == "ldap") or
 					(self.enableSmartcard and module[STACK] == AUTH and
-						module[NAME] == "succeed_if") or
+						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_SKIPNEXT) or
 					(self.enableSmartcard and module[NAME] == "pkcs11") or 
 					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
-					(not self.enableSysNetAuth and module[STACK] == ACCOUNT and
-						module[NAME] == "succeed_if")):
-					if self.enableSmartcard and module[NAME] == "pkcs11":
-						if self.forceSmartcard:
-							module[LOGIC] = LOGIC_FORCE_PKCS11
-							module[ARGV] = argv_force_pkcs11_auth 
-						else:
-							module[LOGIC] = LOGIC_PKCS11
-							module[ARGV] = argv_pkcs11_auth 
+					(not self.enableSysNetAuth and module[STACK] == AUTH and
+						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_REQUISITE)):
 					output += self.formatPAMModule(module)
 
 			# Write it out and close it.

@@ -95,6 +95,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Sep 19 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.7-1
+- improve PAM setup for smart card login
+- support smart card login with kerberos (PKINIT)
+- add pam_pkcs11 to password PAM stack
+
 * Mon Sep  4 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.6-1
 - skip pam_unix for session for crond service
 - fixed a bug in saving when smartcard settings changed (#204838)
