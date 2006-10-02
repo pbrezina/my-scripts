@@ -1540,9 +1540,11 @@ class AuthInfo:
 			servers = servers.split(None)
 			
 			if len(servers) > 0:
-				f.write(servers[0]+"\n")
+				f.write(servers[0])
+			f.write("\n")
 			if len(servers) > 1:
-				f.write(servers[1]+"\n")
+				f.write(servers[1])
+			f.write("\n")
 		finally:
 			try:
 				if f:
