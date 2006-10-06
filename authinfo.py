@@ -2579,7 +2579,7 @@ class AuthInfo:
 		output = ""
 		if stack and logic:
 			args = ""
-			if module[NAME] == "pkcs11":
+			if module[NAME] == "pkcs11" and stack == "auth":
 				if self.forceSmartcard:
 					if self.enableKerberos:
 						logic = LOGIC_FORCE_PKCS11_KRB5

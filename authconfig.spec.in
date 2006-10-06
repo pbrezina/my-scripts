@@ -95,6 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Oct  6 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.10-1
+- fixed passwd PAM stack when PKCS11 enabled (#195960)
+- make authconfig --probe work again (#209676)
+
 * Mon Oct  2 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.9-1
 - updated translations (#207095)
 - correctly write pam_smb.conf with only one server specified (#208365)
