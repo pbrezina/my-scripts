@@ -3,7 +3,7 @@ Name: authconfig
 Version: @PACKAGE_VERSION@
 # Don't change release in elvis CVS, up version after merging all patches
 # from dist CVS instead.
-Release: 1
+Release: 1{%?dist}
 License: GPL
 ExclusiveOS: Linux
 Group: System Environment/Base
@@ -95,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Oct 20 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.11-1
+- fixed --smartcardaction command line option (#211552)
+
 * Fri Oct  6 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.10-1
 - fixed passwd PAM stack when PKCS11 enabled (#195960)
 - make authconfig --probe work again (#209676)

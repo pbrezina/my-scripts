@@ -327,8 +327,9 @@ class Authconfig:
 		if self.options.smartcardaction:
 			try:
 				idx = int(self.options.smartcardaction)
-				self.info.smartcardAction = self.info.getSmartcardActions()[idx]
-			except ValueError, IndexError:
+				self.info.smartcardAction = authinfo.getSmartcardActions()[idx]
+			except (ValueError, IndexError):
+				self.printError(_("Bad smart card removal action specified."))
 				self.info.smartcardAction = ""
 
 	def doUI(self):
