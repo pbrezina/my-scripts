@@ -40,6 +40,7 @@ char *s = N_("NIS Settings");
 char *s = N_("NIS _Domain");
 char *s = N_("NIS _Server");
 char *s = N_("NIS is the Network Information Service.  It is commonly used on small to medium networks.");
+char *s = N_("Options");
 char *s = N_("SMB Settings");
 char *s = N_("SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite.");
 char *s = N_("Smart Card Settings");
