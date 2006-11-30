@@ -95,6 +95,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Nov 29 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.12-1
+- when pam_krb5 auth fails with smartcard login don't enforce it
+  in the account stack (#214931)
+- updated translations (#216570)
+- winbind should be added only to user tables (#216862)
+
 * Fri Oct 20 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.11-1
 - fixed --smartcardaction command line option (#211552)
 

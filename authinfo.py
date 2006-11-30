@@ -92,6 +92,7 @@ LOGIC_REQUISITE	= "requisite"
 LOGIC_SUFFICIENT = "sufficient"
 LOGIC_OPTIONAL = "optional"
 LOGIC_IGNORE_UNKNOWN = "[default=bad success=ok user_unknown=ignore]"
+LOGIC_IGNORE_AUTH_ERR = "[default=bad success=ok auth_err=ignore user_unknown=ignore ignore=ignore]"
 LOGIC_PKCS11 = "[success=done authinfo_unavail=ignore ignore=ignore default=die]"
 LOGIC_FORCE_PKCS11 = "[success=done ignore=ignore default=die]"
 LOGIC_PKCS11_KRB5 = "[success=ok authinfo_unavail=2 ignore=2 default=die]"
@@ -2423,8 +2424,6 @@ class AuthInfo:
 			normal += " files"
 			if self.enableDirectories:
 				normal += " directories"
-			if self.enableWinbind:
-				normal += " winbind"
 			if self.enableOdbcbind:
 				normal += " odbcbind"
 			if self.enableNIS3:
@@ -2451,6 +2450,9 @@ class AuthInfo:
 				users = normal.replace("files", "compat")
 			else:
 				users = normal
+
+			if self.enableWinbind:
+				users += " winbind"
 
 			# Hostnames we treat specially.
 			hosts += " files"
@@ -2589,6 +2591,11 @@ class AuthInfo:
 				else:
 					if self.enableKerberos:
 						logic = LOGIC_PKCS11_KRB5
+			if module[NAME] == "krb5" and stack == "account":
+				if self.enableSmartcard:
+					logic = LOGIC_IGNORE_AUTH_ERR
+				else:
+					logic = LOGIC_IGNORE_UNKNOWN
 			if module[NAME] == "succeed_if" and stack == "auth" and logic == LOGIC_SKIPNEXT:
 				if self.enableKerberos:
 					logic = LOGIC_SKIPNEXT3
