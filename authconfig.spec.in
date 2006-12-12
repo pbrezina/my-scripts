@@ -95,6 +95,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Dec 12 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.13-1
+- another traceback in --probe and other fixes (#218874)
+- make smbRealm a default realm when appropriate (#219300)
+- added missing languages in LINGUAS
+
 * Wed Nov 29 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.12-1
 - when pam_krb5 auth fails with smartcard login don't enforce it
   in the account stack (#214931)

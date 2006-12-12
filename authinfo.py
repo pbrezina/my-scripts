@@ -1836,6 +1836,15 @@ class AuthInfo:
 		subsection = ""
 		f = None
 		output = ""
+		if self.enableKerberos and self.kerberosRealm:
+			defaultrealm = self.kerberosRealm
+		elif (self.enableWinbind or 
+			self.enableWinbindAuth) and self.smbSecurity == "ads" and self.smbRealm:
+			defaultrealm = self.smbRealm
+		else:
+			defaultrealm = self.kerberosRealm	
+		if self.kerberosRealm == self.smbRealm:
+			wrotesmbrealm = True
 		try:
 			f = openLocked(SYSCONFDIR+"/krb5.conf", 0644)
 
@@ -1904,9 +1913,9 @@ class AuthInfo:
 				# If we're in the libdefaults section, and this is the
 				# default_realm keyword, replace it with ours.
 				if section == "libdefaults" and matchLine(ls, "default_realm"):
-					if self.kerberosRealm and not wrotedefaultrealm:
+					if defaultrealm and not wrotedefaultrealm:
 						output += " default_realm = "
-						output += self.kerberosRealm
+						output += defaultrealm
 						output += "\n"
 						wrotedefaultrealm = True
 					continue
@@ -1950,9 +1959,9 @@ class AuthInfo:
 					# If the previous section was "libdefaults", and we
 					# didn't see a "default_realm", write it out.
 					if section == "libdefaults":
-						if self.kerberosRealm and not wrotedefaultrealm:
+						if defaultrealm and not wrotedefaultrealm:
 							output += " default_realm = "
-							output += self.kerberosRealm
+							output += defaultrealm
 							output +=  "\n"
 							wrotedefaultrealm = True
 						if not wrotednsrealm:
@@ -1996,9 +2005,9 @@ class AuthInfo:
 			if not wrotelibdefaults2:
 				if not wrotelibdefaults:
 					output += "[libdefaults]\n"
-				if self.kerberosRealm and not wrotedefaultrealm:
+				if defaultrealm and not wrotedefaultrealm:
 					output += " default_realm = "
-					output += self.kerberosRealm
+					output += defaultrealm
 					output +=  "\n"
 				if not wrotednsrealm:
 					output += " dns_lookup_realm = "					
@@ -2860,13 +2869,12 @@ class AuthInfo:
 
 		# first, check for an LDAP server for the local domain
 		domain = hostname[hostname.find("."):]
-		qname = "_ldap._tcp"+hostname[hostname.find("."):]
+		qname = "_ldap._tcp" + domain
 		results = dnsclient.query(qname, dnsclient.DNS_C_IN, dnsclient.DNS_T_SRV)
 
 		for result in results:
 			if result.dns_type == dnsclient.DNS_T_SRV:
-				self.ldapServer = result.srv.server
-				self.ldapServer = self.ldapServer.rstrip(".")
+				self.ldapServer = result.rdata.server.rstrip(".")
 				self.ldapBaseDN = domain2dn(domain)
 
 		# now, check for a Kerberos realm the local host or domain is in
@@ -2888,7 +2896,7 @@ class AuthInfo:
 			results = dnsclient.query(qname, dnsclient.DNS_C_IN, dnsclient.DNS_T_SRV)
 			for result in results:
 				if result.dns_type == dnsclient.DNS_T_SRV:
-					qname = result.rdata.server
+					qname = result.rdata.server.rstrip(".")
 					if result.rdata.port:
 						qname += ":" + result.rdata.port
 					if self.kerberosKDC:
@@ -2901,7 +2909,7 @@ class AuthInfo:
 			results = dnsclient.query(qname, dnsclient.DNS_C_IN, dnsclient.DNS_T_SRV)
 			for result in results:
 				if result.dns_type == dnsclient.DNS_T_SRV:
-					qname = result.rdata.server
+					qname = result.rdata.server.rstrip(".")
 					if result.rdata.port:
 						qname += ":" + result.rdata.port
 					if self.kerberosAdminServer:
