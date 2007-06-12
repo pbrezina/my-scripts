@@ -9,8 +9,7 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-root
 Source: %{name}-%{version}.tar.bz2
-Requires: rhpl, newt, pam >= 0.99.6.2, usermode
-Requires: python >= %(%{__python} -c "import sys; print sys.version[:3]" || echo 2.3)
+Requires: rhpl, newt, pam >= 0.99.6.2, usermode, python
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 BuildRequires: glib2-devel, python, python-devel
 BuildRequires: desktop-file-utils, intltool, gettext, perl-XML-Parser
@@ -95,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+- authconfig.8 synopsis fixed (patch by Eric Raymond) (#220574)
+- drop explicit requirement on python version as it is now 
+  generated automatically
+
 * Tue Dec 12 2006 Tomas Mraz <tmraz@redhat.com> - 5.3.13-1
 - another traceback in --probe and other fixes (#218874)
 - make smbRealm a default realm when appropriate (#219300)

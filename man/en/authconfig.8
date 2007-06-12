@@ -6,31 +6,68 @@
 .SH NAME
 authconfig, authconfig-tui \- an interface for configuring system authentication resources
 .SH SYNOPSIS
-\fBauthconfig\fR [--nostart] 
+\fBauthconfig\fR
+.in +7
+[--nostart]
+.br
 [--enablecache] [--disablecache]
-[--enablenis [--nisdomain <domain>] [--nisserver <nisserver[,nisserver...]>] ]
+.br
+[--enablenis 
+.br
+	[--nisdomain \fIdomain\fR] [--nisserver \fInamelist\fR] ]
+.br
 [--disablenis]
+.br
 [--enableshadow] [--disableshadow]
-[--enablemd5] ] [--disablemd5] ]
-[--enableldap] [--enableldapauth] [--enableldaptls]
-[--ldapserver <ldapserver[,ldapserver,...]>] [--ldapbasedn <basedn>]
+.br
+[--enablemd5] [--disablemd5]
+.br
+[--enableldap 
+.br
+	[--enableldapauth] [--enableldaptls]
+	[--ldapserver \fInamelist\fR] [--ldapbasedn \fIbasedn\fR]]
+.br
 [--disableldap] [--disableldapauth]
-[--enablekrb5 [ --krb5realm <realm> ] [--krb5kdc <hostname[,hostname,...]>]
-[--krb5adminserver <hostname[,hostname,...]>] [--enablekrb5kdcdns] 
-[--disablekrb5kdcdns] [--enablekrb5realmdns] [--disablekrb5realmdns] ]
+.br
+[--enablekrb5 
+.br
+	[ --krb5realm \fIrealm\fR ] [--krb5kdc \fInamelist\fR]
+	[--krb5adminserver \fInamelist\fR] [--enablekrb5kdcdns] 
+	[--disablekrb5kdcdns] [--enablekrb5realmdns] [--disablekrb5realmdns] ]
+.br
 [--disablekrb5]
-[--enablehesiod [--hesiodlhs <lhs>] [--hesiodrhs <rhs>] ] [--disablehesiod]
-[--enablesmbauth] [--smbworkgroup <workgroup>] [--smbservers <server[,server]>]
+.br
+[--enablehesiod
+.br 
+	[--hesiodlhs \fIlhs\fR] [--hesiodrhs \fIrhs\fR] ] 
+[--disablehesiod]
+.br
+[--enablesmbauth
+.br 
+	[--smbworkgroup \fIworkgroup\fR] 
+	[--smbservers \fInamelist\fR]]
 [--disablesmbauth]
-[--enablewinbind [--enablewinbindauth] [--smbsecurity <user|server|domain|ads>]
-[--smbrealm <realm>] [--smbidmapuid=<range>] [--smbidmapgid=<range>]
-[--winbindseparator=<\\>] [--winbindtemplateprimarygroup=<group>]
-[--winbindtemplatehomedir=<directory>] [--winbindtemplateshell=<path>] ]
+.br
+[--enablewinbind 
+.br
+	[--enablewinbindauth] [--smbsecurity {user|server|domain|ads}]
+	[--smbrealm \fIrealm\fR] 
+	[--smbidmapuid=\fIrange\fR] [--smbidmapgid=\fIrange\fR]
+	[--winbindseparator=\fI\e\fR] 
+	[--winbindtemplateprimarygroup=\fIgroup\fR]
+	[--winbindtemplatehomedir=\fIdirectory\fR] 
+	[--winbindtemplateshell=\fIpath\fR] ]
+.br
 [--disablewinbind] [--disablewinbindauth]
+.br
 [--enablewinbindusedefaultdomain]
+.br
 [--disablewinbindusedefaultdomain]
-[--winbindjoin <admin>] [--enablewins] [--disablewins]
-<--test|--update|--probe>
+.br
+[--winbindjoin \fIadmin\fR] [--enablewins] [--disablewins]
+.br
+{--test|--update|--probe}
+.in -7
 .SH DESCRIPTION
 \fBauthconfig\fR provides a simple method of configuring
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and
@@ -69,6 +106,8 @@ button is presented instead. If \fB--kickstart\fR is specified, no interactive
 screens will be seen. The values the program will use will be those specified by
 the other options (\fB--enablemd5\fR, \fB--enableshadow\fR, etc.).
 
+For \fInamelist\R you may substitute either a single name or a 
+comma-separated list of names.
 .PD
 .SH NOTES
 The \fBauthconfig-tui\fR is deprecated. No new configuration settings will be
