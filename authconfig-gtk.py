@@ -177,6 +177,8 @@ class Authconfig:
 		}
 		self.info = authinfo.read(self.message_callback)
 		self.pristineinfo = self.info.copy()
+		if self.info.enableLocAuthorize == None:
+			self.info.enableLocAuthorize = True # ON by default
 		return
 
 	def destroy_widget(self, button, widget):

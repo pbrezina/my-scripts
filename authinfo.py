@@ -70,7 +70,7 @@ PATH_SCEVENTD_PID = "/var/run/sceventd.pid"
 PATH_SCSETUP = "/usr/bin/pkcs11_setup"
 
 PATH_LIBNSS_DB = LIBDIR + "/libnss_db.so.2"
-PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
+PATH_LIBNSS_LDAP = "/usr" + LIBDIR + "/libnss_ldap.so.2"
 PATH_LIBNSS_NIS = LIBDIR + "/libnss_nis.so.2"
 PATH_LIBNSS_HESIOD = LIBDIR + "/libnss_hesiod.so.2"
 PATH_LIBNSS_ODBCBIND = LIBDIR + "/libnss_odbcbind.so.2"
@@ -835,9 +835,8 @@ class AuthInfo:
 				value = value.split(None, 1)
 				if len(value) < 1:
 					continue
-				if self.nisLocalDomain and value[0] != self.nisLocalDomain:
+				if value[0] != self.nisLocalDomain:
 					continue
-				self.nisDomain = value[0]
 				if len(value) < 2:
 					continue
 				value = value[1]
@@ -848,10 +847,6 @@ class AuthInfo:
 					self.nisServer = commaAppend(self.nisServer, value)
 
 		f.close()
-		if self.nisLocalDomain and not self.nisDomain:
-			self.nisDomain = self.nisLocalDomain
-		if self.nisDomain and not self.nisLocalDomain:
-			self.nisLocalDomain = self.nisDomain
 		return True
 
 	def ldapHostsToURIs(self, s):
@@ -1380,6 +1375,9 @@ class AuthInfo:
 			self.nisLocalDomain = tmp
 
 		shv.close()
+
+		if self.nisLocalDomain:
+			self.nisDomain = self.nisLocalDomain
 
 		return True
 

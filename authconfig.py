@@ -253,6 +253,8 @@ class Authconfig:
 		self.info = authinfo.read(self.printError)
 		# FIXME: what about printing critical errors reading individual configs?
 		self.pristineinfo = self.info.copy()
+		if self.info.enableLocAuthorize == None:
+			self.info.enableLocAuthorize = True # ON by default
 
 	def testAvailableSubsys(self):
 		self.nis_avail = (os.access(authinfo.PATH_YPBIND, os.X_OK) and
