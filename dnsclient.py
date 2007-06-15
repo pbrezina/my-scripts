@@ -44,7 +44,7 @@ DNS_T_ANY = 255
 DEBUG_DNSCLIENT = False
 
 class DNSQueryHeader:
-	FORMAT = "HBBHHHH"
+	FORMAT = "!HBBHHHH"
 	def __init__(self):
 		self.dns_id = 0
 		self.dns_rd = 0
@@ -62,7 +62,7 @@ class DNSQueryHeader:
 
 	def pack(self):
 		return struct.pack(DNSQueryHeader.FORMAT,
-			socket.htons(self.dns_id),
+			self.dns_id,
 			(self.dns_rd & 1) |
 			(self.dns_tc & 1) << 1 |
 			(self.dns_aa & 1) << 2 |
@@ -71,19 +71,14 @@ class DNSQueryHeader:
 			(self.dns_rcode & 15) |
 			(self.dns_z & 7) << 4 |
 			(self.dns_ra & 1) << 7,
-			socket.htons(self.dns_qdcount),
-			socket.htons(self.dns_ancount),
-			socket.htons(self.dns_nscount),
-			socket.htons(self.dns_arcount))
+			self.dns_qdcount,
+			self.dns_ancount,
+			self.dns_nscount,
+			self.dns_arcount)
 
 	def unpack(self, data):
 		(self.dns_id, byte1, byte2, self.dns_qdcount, self.dns_ancount,
 			self.dns_nscount, self.dns_arcount) = struct.unpack(DNSQueryHeader.FORMAT, data[0:self.size()])
-		self.dns_id = socket.ntohs(self.dns_id)
-		self.dns_qdcount = socket.ntohs(self.dns_qdcount)
-		self.dns_ancount = socket.ntohs(self.dns_ancount)
-		self.dns_nscount = socket.ntohs(self.dns_nscount)
-		self.dns_arcount = socket.ntohs(self.dns_arcount)
 		self.dns_rd = byte1 & 1
 		self.dns_tc = (byte1 >> 1) & 1
 		self.dns_aa = (byte1 >> 2) & 1
@@ -102,8 +97,8 @@ def unpackQueryHeader(data):
 	return header
 
 class DNSResult:
-	FORMAT = "HHIH"
-	QFORMAT = "HH"
+	FORMAT = "!HHIH"
+	QFORMAT = "!HH"
 	def __init__(self):
 		self.dns_name = ""
 		self.dns_type = 0
@@ -115,15 +110,9 @@ class DNSResult:
 	def unpack(self, data):
 		(self.dns_type, self.dns_class, self.dns_ttl,
 			self.dns_rlength) = struct.unpack(DNSResult.FORMAT, data[0:self.size()])
-		self.dns_type = socket.ntohs(self.dns_type)
-		self.dns_class = socket.ntohs(self.dns_class)
-		self.dns_ttl = socket.ntohl(self.dns_ttl)
-		self.dns_rlength = socket.ntohs(self.dns_rlength)
 			
 	def qunpack(self, data):
 		(self.dns_type, self.dns_class) = struct.unpack(DNSResult.QFORMAT, data[0:self.qsize()])
-		self.dns_type = socket.ntohs(self.dns_type)
-		self.dns_class = socket.ntohs(self.dns_class)
 
 	def size(self):
 		return struct.calcsize(DNSResult.FORMAT)
@@ -275,7 +264,7 @@ def dnsParseCNAME(data, base):
 
 def dnsParseSOA(data, base):
 	rdata = DNSRData()
-	format = "IIIII"
+	format = "!IIIII"
 	
 	(rest, rdata.mname) = dnsParseLabel(data, base)
 	if rdata.mname is None:
@@ -288,11 +277,6 @@ def dnsParseSOA(data, base):
 
 	(rdata.serial, rdata.refresh, rdata.retry, rdata.expire,
 		rdata.minimum) = struct.unpack(format, rest[:struct.calcsize(format)])
-	rdata.serial = socket.ntohl(rdata.serial)
-	rdata.refresh = socket.ntohl(rdata.refresh)
-	rdata.retry = socket.ntohl(rdata.retry)
-	rdata.expire = socket.ntohl(rdata.expire)
-	rdata.minimum = socket.ntohl(rdata.minimum)
 	
 	if DEBUG_DNSCLIENT:
 		print "SOA(mname) = \"%s\"." % rdata.mname
@@ -347,7 +331,7 @@ def dnsParsePTR(data, base):
 
 def dnsParseSRV(data, base):
 	rdata = DNSRData()
-	format = "HHH"
+	format = "!HHH"
 	flen = struct.calcsize(format)
 	if len(data) < flen:
 		return None
@@ -375,13 +359,14 @@ def dnsParseResults(results):
 
 	rest = results[header.size():]
 	
-	rr = DNSResult()
 	rrlist = []
 
 	for i in xrange(header.dns_qdcount):
 		if not rest:
 			return []
 		
+		rr = DNSResult()
+
 		(rest, label) = dnsParseLabel(rest, results)
 		if label is None:
 			return []
@@ -401,6 +386,8 @@ def dnsParseResults(results):
 		(rest, label) = dnsParseLabel(rest, results)
 		if label is None:
 			return []
+
+		rr = DNSResult()
 
 		rr.dns_name = label
 
