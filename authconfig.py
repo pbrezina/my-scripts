@@ -339,7 +339,7 @@ class Authconfig:
 	
 	def joinDomain(self):
 		if self.options.winbindjoin:
-			self.info.joinDomain()
+			self.info.joinDomain(True)
 	
 	def writeAuthInfo(self):
 		self.info.testLDAPCACerts()
@@ -381,7 +381,7 @@ class AuthconfigTUI(Authconfig):
 	def joinDomain(self):
 		# join domain only on kickstart
 		if self.options.kickstart and self.options.winbindjoin:
-			self.info.joinDomain()
+			self.info.joinDomain(True)
 
 	def warnCallback(self, data):
 		(comp, warning) = data

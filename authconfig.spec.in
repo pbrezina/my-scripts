@@ -98,7 +98,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Jul 18 2007 Tomas Mraz <tmraz@redhat.com> - 5.3.15-1
 - dnsclient fixes by Simo Sorce
+- add Categories to .desktop file (#245868)
+- fixed traceback when calling joinDomain (#245374)
+- disable smart card action setting when gnome-screensaver
+  not installed (#209643)
+- do not change protocols and services in nsswitch.conf (#236669)
 
 * Tue Jun 12 2007 Tomas Mraz <tmraz@redhat.com> - 5.3.14-1
 - authconfig.8 synopsis fixed (patch by Eric Raymond) (#220574)

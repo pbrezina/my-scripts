@@ -2266,8 +2266,6 @@ class AuthInfo:
 		wrotepasswd = False
 		wrotegroup = False
 		wroteshadow = False
-		wroteservices = False
-		wroteprotocols = False
 		wrotenetgroup = False
 		wroteautomount = False
 		wrotehosts = False
@@ -2350,20 +2348,6 @@ class AuthInfo:
 						output += users
 						output += "\n"
 						wrotegroup = True
-				# If it's a 'services' line, insert ours instead.
-				elif matchLine(ls, "services:"):
-					if not wroteservices:
-						output += "services:  "
-						output += normal
-						output += "\n"
-						wroteservices = True
-				# If it's a 'protocols' line, insert ours instead.
-				elif matchLine(ls, "protocols:"):
-					if not wroteprotocols:
-						output += "protocols: "
-						output += normal
-						output += "\n"
-						wroteprotocols = True
 				# If it's a 'netgroup' line, insert ours instead.
 				elif matchLine(ls, "netgroup:"):
 					if not wrotenetgroup:
@@ -2401,14 +2385,6 @@ class AuthInfo:
 			if not wrotegroup:
 				output += "group:     "
 				output += users
-				output += "\n"
-			if not wroteservices:
-				output += "services:  "
-				output += normal
-				output += "\n"
-			if not wroteprotocols:
-				output += "protocols: "
-				output += normal
 				output += "\n"
 			if not wrotenetgroup:
 				output += "netgroup:  "

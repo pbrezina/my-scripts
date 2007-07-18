@@ -255,6 +255,10 @@ class Authconfig:
 		map = getattr(self, mapname)
 		dialog = xml.get_widget(top)
 		self.info.update()
+		if mapname == "smartcard_map":
+			widget = xml.get_widget("action")
+			if not os.access("/usr/bin/gnome-screensaver", os.X_OK):
+				widget.set_sensitive(False)
 		for entry in map.keys():
 			widget = xml.get_widget(entry)			
 			if type(widget) == type(gtk.ComboBox()):
