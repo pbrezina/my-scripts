@@ -162,6 +162,7 @@ class Authconfig:
 			"realm" : ("smbRealm", ""),
 			"servers" : ("smbServers", ""),
 			"shell" : ("winbindTemplateShell", ["/bin/false"] + acutil.getusershells(), ()),
+			"offline" : ("winbindOffline", ""),
 			"join" : ("winbindjoin_maybe_launch", "")
 		}
 		self.launch_map = {

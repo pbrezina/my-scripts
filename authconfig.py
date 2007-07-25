@@ -170,7 +170,11 @@ class Authconfig:
 		parser.add_option("--enablewinbindusedefaultdomain", action="store_true",
 			help=_("configures winbind to assume that users with no domain in their user names are domain users"))
  		parser.add_option("--disablewinbindusedefaultdomain", action="store_true",
-			help=_("configures winbind to assume that users with no domain in their user names are not domain users"))		
+			help=_("configures winbind to assume that users with no domain in their user names are not domain users"))
+		parser.add_option("--enablewinbindoffline", action="store_true",
+			help=_("configures winbind to allow offline login"))
+ 		parser.add_option("--disablewinbindoffline", action="store_true",
+			help=_("configures winbind to prevent offline login"))
  		parser.add_option("--winbindjoin", metavar="<Administrator>",
 			help=_("join the winbind domain or ads realm now as this administrator"))		
 
@@ -285,6 +289,7 @@ class Authconfig:
 			"winbind":"enableWinbind",
 			"winbindauth":"enableWinbindAuth",
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
+			"winbindoffline":"winbindOffline",
 			"wins":"enableWINS"}
 			
 		string_settings = {"hesiodlhs":"hesiodLHS",

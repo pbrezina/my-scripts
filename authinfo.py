@@ -717,6 +717,7 @@ class AuthInfo:
 		self.winbindTemplatePrimaryGroup = ""
 		self.winbindTemplateShell = ""
 		self.winbindUseDefaultDomain = None
+		self.winbindOffline = None
 		
 		self.smartcardModule = ""
 		self.smartcardAction = ""
@@ -1017,6 +1018,15 @@ class AuthInfo:
 				result = res
 		f.close()
 		return result
+	
+	def readWinbindGlobalBool(self, key):
+		tmp = self.readWinbindGlobal(key)
+		if tmp:
+			if tmp.lower() == "yes" or tmp.lower() == "true" or tmp == "1":
+				return True
+			else:
+				return False
+		return None
 
 	# Read winbind settings from /etc/smb/samba.conf.
 	def readWinbind(self):
@@ -1062,12 +1072,12 @@ class AuthInfo:
 			self.winbindTemplateShell = tmp
 		if not self.winbindTemplateShell:
 			self.winbindTemplateShell = "/bin/false"
-		tmp = self.readWinbindGlobal("winbind use default domain")
-		if tmp:
-			if tmp.lower() == "yes" or tmp.lower() == "true" or tmp == "1":
-				self.winbindUseDefaultDomain = True
-			else:
-				self.winbindUseDefaultDomain = False
+		tmp = self.readWinbindGlobalBool("winbind use default domain")
+		if tmp != None:
+			self.winbindUseDefaultDomain = tmp
+		tmp = self.readWinbindGlobalBool("winbind offline logon")
+		if tmp != None:
+			self.winbindOffline = tmp
 
 		return True
 
@@ -1420,6 +1430,7 @@ class AuthInfo:
 			       b.winbindTemplateShell, True) or
 
 		(self.winbindUseDefaultDomain != b.winbindUseDefaultDomain) or
+		(self.winbindOffline != b.winbindOffline) or
 		(self.enableCache != b.enableCache) or
 
 		(self.enableDB != b.enableDB) or
@@ -2169,6 +2180,9 @@ class AuthInfo:
 		output += "   winbind use default domain = "
 		output += str(bool(self.winbindUseDefaultDomain)).lower()
 		output += "\n"
+		output += "   winbind offline logon = "
+		output += str(bool(self.winbindOffline)).lower()
+		output += "\n"
 
 		output += "\n"
 		output += "#--authconfig--end-line--\n"
@@ -2196,7 +2210,8 @@ class AuthInfo:
 			   "domain logons", "domain master",
 			   "idmap uid", "idmap gid", "winbind separator",
 			   "template homedir", "template primary group",
-			   "template shell", "winbind use default domain"]
+			   "template shell", "winbind use default domain",
+			   "winbind offline logon"]
 		f = None
 		output = ""
 		try:
@@ -2450,6 +2465,8 @@ class AuthInfo:
 				args = self.localuserArgs
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
+			if module[NAME] == "winbind" and self.winbindOffline:
+				output += " cached_login"
 			if module[NAME] == "unix":
 				if stack == "password":
 					if self.enableMD5:
@@ -2641,7 +2658,7 @@ class AuthInfo:
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
 		("smbIdmapGid", "i"), ("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
 		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
-		("winbindUseDefaultDomain", "b")]),
+		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b")]),
 	SaveGroup(self.writeNSS, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
@@ -2654,7 +2671,7 @@ class AuthInfo:
 		("enableWinbindAuth", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
-		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b")]),
+		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b")]),
 	SaveGroup(self.writeSysconfig, [("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
