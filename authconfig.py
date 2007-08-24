@@ -278,6 +278,7 @@ class Authconfig:
 		bool_settings = {"shadow":"enableShadow",
 			"md5":"enableMD5",
 			"locauthorize":"enableLocAuthorize",
+			"pamaccess":"enablePAMAccess",
 			"sysnetauth":"enableSysNetAuth",
 			"cache":"enableCache",
 			"hesiod":"enableHesiod",
