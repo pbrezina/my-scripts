@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 4.0.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-12 21:06+0100\n"
+"POT-Creation-Date: 2007-08-24 14:02+0200\n"
 "PO-Revision-Date: 2006-11-26 16:50+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
@@ -265,104 +265,120 @@ msgstr ""
 "er domenebrukere"
 
 #: ../authconfig.py:175
+msgid "configures winbind to allow offline login"
+msgstr ""
+
+#: ../authconfig.py:177
+msgid "configures winbind to prevent offline login"
+msgstr ""
+
+#: ../authconfig.py:179
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr ""
 "bli medlem i winbind-domene eller ads-område som denne administratoren nå"
 
-#: ../authconfig.py:178
+#: ../authconfig.py:182
 msgid "enable wins for hostname resolution"
 msgstr "aktiver wins for oppslag av vertsnavn"
 
-#: ../authconfig.py:180
+#: ../authconfig.py:184
 msgid "disable wins for hostname resolution"
 msgstr "deaktiver wins for oppslag av vertsnavn"
 
-#: ../authconfig.py:183
+#: ../authconfig.py:187
 msgid "enable hesiod for user information by default"
 msgstr "bruk hesiod som standard for brukerinformasjon"
 
-#: ../authconfig.py:185
+#: ../authconfig.py:189
 msgid "disable hesiod for user information by default"
 msgstr "ikke bruk hesiod som standard for brukerinformasjon"
 
-#: ../authconfig.py:187
+#: ../authconfig.py:191
 msgid "default hesiod LHS"
 msgstr "forvalgt LHS for hesiod"
 
-#: ../authconfig.py:189
+#: ../authconfig.py:193
 msgid "default hesiod RHS"
 msgstr "forvalgt RHS for hesiod"
 
-#: ../authconfig.py:192
+#: ../authconfig.py:196
 msgid "enable caching of user information by default"
 msgstr "bruk mellomlagring av brukerinformasjon som standard"
 
-#: ../authconfig.py:194
+#: ../authconfig.py:198
 msgid "disable caching of user information by default"
 msgstr "deaktiver mellomlagring av brukerinformasjon som standard"
 
-#: ../authconfig.py:197
+#: ../authconfig.py:201
 msgid "local authorization is sufficient for local users"
 msgstr "lokal autorisasjon er tilstrekkelig for lokale brukere"
 
-#: ../authconfig.py:199
+#: ../authconfig.py:203
 msgid "authorize local users also through remote service"
 msgstr "autoriser lokale brukere gjennom ekstern tjeneste også"
 
-#: ../authconfig.py:202
+#: ../authconfig.py:206
+msgid "check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.py:208
+msgid "do not check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.py:211
 msgid "authenticate system accounts by network services"
 msgstr "autentiser systemkontoer via nettverkstjenester"
 
-#: ../authconfig.py:204
+#: ../authconfig.py:213
 msgid "authenticate system accounts by local files only"
 msgstr "autentiser systemkontoer kun via lokale filer"
 
-#: ../authconfig.py:207
+#: ../authconfig.py:216
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "ikke start/stopp portmap, ypbind og nscd"
 
-#: ../authconfig.py:210
+#: ../authconfig.py:219
 msgid "do not update the configuration files, only print new settings"
 msgstr "ikke oppdater konfigurasjonsfilene, skriv kun ut nye innstillinger"
 
-#: ../authconfig.py:214
+#: ../authconfig.py:223
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr ""
 "vis Tilbake i stedet for Avbryt i hovedvinduet i tekstbasert grensesnitt"
 
-#: ../authconfig.py:216
+#: ../authconfig.py:225
 msgid "do not display the deprecated text user interface"
 msgstr "ikke vis tekstbasert brukergrensesnitt"
 
-#: ../authconfig.py:219
+#: ../authconfig.py:228
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "motsatt av --test, oppdater konfigurasjonsfilene med endringene"
 
-#: ../authconfig.py:222
+#: ../authconfig.py:231
 msgid "update all configuration files"
 msgstr "oppdater alle konfigurasjonsfiler"
 
-#: ../authconfig.py:225
+#: ../authconfig.py:234
 msgid "probe network for defaults and print them"
 msgstr "søk nettverk etter standardverdier og skriv dem ut"
 
-#: ../authconfig.py:230
+#: ../authconfig.py:239
 msgid "unexpected argument"
 msgstr "uventet argument"
 
-#: ../authconfig.py:332
+#: ../authconfig.py:344
 msgid "Bad smart card removal action specified."
 msgstr "Ugyldig handling spesifisert ved fjerning av smart card."
 
-#: ../authconfig.py:361
+#: ../authconfig.py:373
 msgid "can only be run as root"
 msgstr "kan bare kjøres av root"
 
-#: ../authconfig.py:368
+#: ../authconfig.py:380
 msgid "dialog was cancelled"
 msgstr "dialogen ble avbrutt"
 
-#: ../authconfig.py:391
+#: ../authconfig.py:403
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -373,218 +389,218 @@ msgstr ""
 "riktig.\n"
 "Installer pakken %s, som inneholder denne filen."
 
-#: ../authconfig.py:393 ../authconfig.py:748
+#: ../authconfig.py:405 ../authconfig.py:760
 msgid "Warning"
 msgstr "Advarsel"
 
-#: ../authconfig.py:393 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:643 ../authconfig.py:684 ../authconfig.py:748
+#: ../authconfig.py:405 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:655 ../authconfig.py:696 ../authconfig.py:760
 msgid "Ok"
 msgstr "Ok"
 
-#: ../authconfig.py:397
+#: ../authconfig.py:409
 msgid "caching"
 msgstr "mellomlagring"
 
-#: ../authconfig.py:398
+#: ../authconfig.py:410
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:399
+#: ../authconfig.py:411
 msgid "LDAP authentication"
 msgstr "LDAP-autentisering"
 
-#: ../authconfig.py:400
+#: ../authconfig.py:412
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:401
+#: ../authconfig.py:413
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:402
+#: ../authconfig.py:414
 msgid "shadow password"
 msgstr "skyggepassord"
 
-#: ../authconfig.py:403
+#: ../authconfig.py:415
 msgid "SMB authentication"
 msgstr "SMB-autentisering"
 
-#: ../authconfig.py:404 ../authconfig.py:406
+#: ../authconfig.py:416 ../authconfig.py:418
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:405
+#: ../authconfig.py:417
 msgid "Winbind authentication"
 msgstr "Winbind-autentisering"
 
-#: ../authconfig.py:411 ../authconfig.glade.h:55
+#: ../authconfig.py:423 ../authconfig.glade.h:56
 msgid "User Information"
 msgstr "Informasjon om bruker"
 
-#: ../authconfig.py:414
+#: ../authconfig.py:426
 msgid "Cache Information"
 msgstr "Informasjon om buffer"
 
-#: ../authconfig.py:418
+#: ../authconfig.py:430
 msgid "Use Hesiod"
 msgstr "Bruk Hesiod"
 
-#: ../authconfig.py:421
+#: ../authconfig.py:433
 msgid "Use LDAP"
 msgstr "Bruk LDAP"
 
-#: ../authconfig.py:425
+#: ../authconfig.py:437
 msgid "Use NIS"
 msgstr "Bruk NIS"
 
-#: ../authconfig.py:429
+#: ../authconfig.py:441
 msgid "Use Winbind"
 msgstr "Bruk Winbind"
 
-#: ../authconfig.py:435 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:5
+#: ../authconfig.py:447 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:6
 msgid "Authentication"
 msgstr "Autentisering"
 
-#: ../authconfig.py:438
+#: ../authconfig.py:450
 msgid "Use MD5 Passwords"
 msgstr "Bruk MD5-passord"
 
-#: ../authconfig.py:441
+#: ../authconfig.py:453
 msgid "Use Shadow Passwords"
 msgstr "Bruk skyggepassord"
 
-#: ../authconfig.py:445
+#: ../authconfig.py:457
 msgid "Use LDAP Authentication"
 msgstr "Bruk LDAP-autentisering"
 
-#: ../authconfig.py:449
+#: ../authconfig.py:461
 msgid "Use Kerberos"
 msgstr "Bruk Kerberos"
 
-#: ../authconfig.py:453
+#: ../authconfig.py:465
 msgid "Use SMB Authentication"
 msgstr "Bruk SMB-autentisering"
 
-#: ../authconfig.py:457
+#: ../authconfig.py:469
 msgid "Use Winbind Authentication"
 msgstr "Bruk Winbind-autentisering"
 
-#: ../authconfig.py:461
+#: ../authconfig.py:473
 msgid "Local authorization is sufficient"
 msgstr "Lokal autorisasjon er tilstrekkelig"
 
-#: ../authconfig.py:471 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:684
+#: ../authconfig.py:483 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:696
 msgid "Back"
 msgstr "Tilbake"
 
-#: ../authconfig.py:471 ../authconfig.py:643
+#: ../authconfig.py:483 ../authconfig.py:655
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../authconfig.py:472 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:684
+#: ../authconfig.py:484 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:696
 msgid "Next"
 msgstr "Neste"
 
-#: ../authconfig.py:483 ../authconfig-gtk.py:324 ../authconfig-gtk.py:417
-#: ../authconfig.glade.h:6
+#: ../authconfig.py:495 ../authconfig-gtk.py:331 ../authconfig-gtk.py:424
+#: ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "Autentiseringskonfigurasjon"
 
-#: ../authconfig.py:603
+#: ../authconfig.py:615
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:604
+#: ../authconfig.py:616
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:605 ../authconfig.glade.h:29
+#: ../authconfig.py:617 ../authconfig.glade.h:30
 msgid "Hesiod Settings"
 msgstr "Innstillinger for Hesiod"
 
-#: ../authconfig.py:609
+#: ../authconfig.py:621
 msgid "Use TLS"
 msgstr "Bruk TLS"
 
-#: ../authconfig.py:610 ../authconfig.py:617
+#: ../authconfig.py:622 ../authconfig.py:629
 msgid "Server:"
 msgstr "Tjener:"
 
-#: ../authconfig.py:611
+#: ../authconfig.py:623
 msgid "Base DN:"
 msgstr "Basis DN:"
 
-#: ../authconfig.py:612 ../authconfig.glade.h:37
+#: ../authconfig.py:624 ../authconfig.glade.h:38
 msgid "LDAP Settings"
 msgstr "Instillinger for LDAP"
 
-#: ../authconfig.py:616 ../authconfig.py:678
+#: ../authconfig.py:628 ../authconfig.py:690
 msgid "Domain:"
 msgstr "Domene:"
 
-#: ../authconfig.py:618 ../authconfig.glade.h:39
+#: ../authconfig.py:630 ../authconfig.glade.h:40
 msgid "NIS Settings"
 msgstr "NIS-innstillinger"
 
-#: ../authconfig.py:622
+#: ../authconfig.py:634
 msgid "Realm:"
 msgstr "Område:"
 
-#: ../authconfig.py:623
+#: ../authconfig.py:635
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:624
+#: ../authconfig.py:636
 msgid "Admin Server:"
 msgstr "Admin-tjener:"
 
-#: ../authconfig.py:625
+#: ../authconfig.py:637
 msgid "Use DNS to resolve hosts to realms"
 msgstr "Bruk DNS for oppslag av verter til områder"
 
-#: ../authconfig.py:626
+#: ../authconfig.py:638
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Bruk DNS for å lokalisere KDCer for områder"
 
-#: ../authconfig.py:627 ../authconfig.glade.h:34
+#: ../authconfig.py:639 ../authconfig.glade.h:35
 msgid "Kerberos Settings"
 msgstr "Innstillinger for Kerberos"
 
-#: ../authconfig.py:631
+#: ../authconfig.py:643
 msgid "Workgroup:"
 msgstr "Arbeidsgruppe:"
 
-#: ../authconfig.py:632
+#: ../authconfig.py:644
 msgid "Servers:"
 msgstr "Tjenere:"
 
-#: ../authconfig.py:633
+#: ../authconfig.py:645
 msgid "Shell:"
 msgstr "Skall:"
 
-#: ../authconfig.py:634 ../authconfig.glade.h:44
+#: ../authconfig.py:646 ../authconfig.glade.h:45
 msgid "SMB Settings"
 msgstr "Innstillinger for SMB"
 
-#: ../authconfig.py:638
+#: ../authconfig.py:650
 msgid "Domain Administrator:"
 msgstr "Domeneadministrator:"
 
-#: ../authconfig.py:639
+#: ../authconfig.py:651
 msgid "Password:"
 msgstr "Passord:"
 
-#: ../authconfig.py:642
+#: ../authconfig.py:654
 msgid "Join Settings"
 msgstr "Innstillinger for innmelding"
 
-#: ../authconfig.py:652 ../authconfig.glade.h:48
+#: ../authconfig.py:664 ../authconfig.glade.h:49
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -594,45 +610,45 @@ msgstr ""
 "fortsetter. Hvis du ikke lagrer dem vil ditt forsøk på å bli medlem av "
 "domenet feile. Lagre endringene?"
 
-#: ../authconfig.py:659
+#: ../authconfig.py:671
 msgid "Save Settings"
 msgstr "Lagre innstillinger"
 
-#: ../authconfig.py:660
+#: ../authconfig.py:672
 msgid "No"
 msgstr "Nei"
 
-#: ../authconfig.py:660
+#: ../authconfig.py:672
 msgid "Yes"
 msgstr "Ja"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:677
+#: ../authconfig.py:689
 msgid "Security Model:"
 msgstr "Sikkerhetsmodell:"
 
-#: ../authconfig.py:679
+#: ../authconfig.py:691
 msgid "Domain Controllers:"
 msgstr "Domenekontrollere:"
 
-#: ../authconfig.py:680
+#: ../authconfig.py:692
 msgid "ADS Realm:"
 msgstr "ADS-område:"
 
-#: ../authconfig.py:681
+#: ../authconfig.py:693
 msgid "Template Shell:"
 msgstr "Mal-_skall:"
 
-#: ../authconfig.py:683 ../authconfig.glade.h:59
+#: ../authconfig.py:695 ../authconfig.glade.h:60
 msgid "Winbind Settings"
 msgstr "Innstillinger for Winbind"
 
-#: ../authconfig.py:685
+#: ../authconfig.py:697
 msgid "Join Domain"
 msgstr "Meld inn i domene"
 
-#: ../authconfig.py:743 ../authconfig-gtk.py:401
+#: ../authconfig.py:755 ../authconfig-gtk.py:408
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -646,7 +662,7 @@ msgstr ""
 "Trykk OK etter å ha gjort dette."
 
 #. FIXME - version
-#: ../authconfig.py:757
+#: ../authconfig.py:769
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -658,7 +674,7 @@ msgstr ""
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "Kontroller hvordan systemet verifiserer brukere som prøver å logge inn"
 
-#: ../authconfig-gtk.py:405
+#: ../authconfig-gtk.py:412
 msgid "LDAP CA Certificate Check"
 msgstr "LDAP CA sjekk av sertifikat"
 
@@ -678,91 +694,95 @@ msgstr "<b>Smart Card</b>"
 msgid "Alert"
 msgstr "Varsel"
 
-#: ../authconfig.glade.h:7
+#: ../authconfig.glade.h:5
+msgid "Allow offline login"
+msgstr ""
+
+#: ../authconfig.glade.h:8
 msgid "Cache User _Information"
 msgstr "_Bufre informasjon om bruker"
 
-#: ../authconfig.glade.h:8
+#: ../authconfig.glade.h:9
 msgid "Card Removal _Action"
 msgstr "H_andling ved fjerning av kort"
 
-#: ../authconfig.glade.h:9
+#: ../authconfig.glade.h:10
 msgid "Certificate _URL"
 msgstr "_URL for sertifikat"
 
-#: ../authconfig.glade.h:10
+#: ../authconfig.glade.h:11
 msgid "Con_figure SMB..."
 msgstr "_Konfigurer SMB..."
 
-#: ../authconfig.glade.h:11
+#: ../authconfig.glade.h:12
 msgid "Configure H_esiod..."
 msgstr "_Konfigurer Hesiod..."
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:13
 msgid "Configure K_erberos..."
 msgstr "_Konfigurer Kerberos..."
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:14
 msgid "Configure L_DAP..."
 msgstr "_Konfigurer LDAP..."
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:15
 msgid "Configure NI_S..."
 msgstr "_Konfigurer NIS..."
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:16
 msgid "Configure Sma_rt Card..."
 msgstr "Konfigurer Sma_rtcard..."
 
-#: ../authconfig.glade.h:16
+#: ../authconfig.glade.h:17
 msgid "Configure Win_bind..."
 msgstr "_Konfigurer Winbind..."
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:18
 msgid "Do_n't Save"
 msgstr "Ikke _lagre"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:19
 msgid "Domain"
 msgstr "Domene"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:20
 msgid "Domain _Administrator"
 msgstr "Domene_administrator"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:21
 msgid "Download CA Certificate"
 msgstr "Last ned CA-sertifikat"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:22
 msgid "Enable SMB S_upport"
 msgstr "Aktiver støtte for _SMB"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:23
 msgid "Enable Smart _Card Support"
 msgstr "Aktiver støtte for Smart_card"
 
-#: ../authconfig.glade.h:23
+#: ../authconfig.glade.h:24
 msgid "Enable _Hesiod Support"
 msgstr "Aktiver støtte for _Hesiod"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:25
 msgid "Enable _Kerberos Support"
 msgstr "Aktiver støtte for _Kerberos"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:26
 msgid "Enable _LDAP Support"
 msgstr "Aktiver støtte for _LDAP"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:27
 msgid "Enable _NIS Support"
 msgstr "Aktiver støtte for _NIS"
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:28
 msgid "Enable _Winbind Support"
 msgstr "Aktiver støtte for _Winbind"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:29
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
@@ -770,15 +790,15 @@ msgstr ""
 "For brukerkontoer som håndteres i lokal /etc/passwd fil vil ikke systemet "
 "sjekke autorisering fra nettverkstjenester som LDAP eller Kerberos."
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:31
 msgid "Hesiod _LHS"
 msgstr "_LHS for hesiod"
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:32
 msgid "Hesiod _RHS"
 msgstr "_RHS for hesiod"
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:33
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -786,11 +806,11 @@ msgstr ""
 "Hesiod lar en systemadministrator publisere bruker- og gruppeinformasjon i "
 "DNS. Det brukes av og til i meget store nettverk."
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:34
 msgid "Joining Winbind Domain"
 msgstr "Blir med i Winbind-domene"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:36
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -798,23 +818,23 @@ msgstr ""
 "Kerberos er et autentiseringssystem basert på tiltrodd tredjepart som "
 "vanligvis brukes i mellomstore til store nettverk"
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:37
 msgid "LDAP Search _Base DN"
 msgstr "_Base DN for LDAP-søk"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:39
 msgid "LDAP _Server"
 msgstr "LDAP-_tjener"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:41
 msgid "NIS _Domain"
 msgstr "NIS-_domene"
 
-#: ../authconfig.glade.h:41
+#: ../authconfig.glade.h:42
 msgid "NIS _Server"
 msgstr "NIS-_tjener"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:43
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
@@ -822,11 +842,11 @@ msgstr ""
 "NIS er Name Information Service. Det er mye brukt i små eller middels store "
 "nettverk."
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:44
 msgid "Options"
 msgstr "Alternativer"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -834,11 +854,11 @@ msgstr ""
 "SMB-autentisering verifiserer brukerpassord ved å forsøke å koble til en "
 "tjener som bruker SMB (system message block) protokollene."
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:47
 msgid "Smart Card Settings"
 msgstr "Innstillinger for Smart Card"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:48
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -846,7 +866,7 @@ msgstr ""
 "Autentisering med Smart Card lar deg logge inn ved bruk av et sertifikat og "
 "en nøkkel assosiert med et Smartcard."
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:50
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -856,27 +876,27 @@ msgstr ""
 "som kan inneholde vilkårlige data i et strukturert hierarki. LDAP brukes i "
 "økende grad i mindre og større nettverk."
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:51
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Bruk DNS for å _lokalisere KDCer for områder"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:52
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "Bruk _DNS for oppslag fra verter til områder"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:53
 msgid "Use _MD5 Passwords"
 msgstr "Bruk _MD5-passord"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:54
 msgid "Use _Shadow Passwords"
 msgstr "Bruk _skyggepassord"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:55
 msgid "Use _TLS to encrypt connections"
 msgstr "Bruk _TLS for å kryptere tilkoblinger"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:57
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
@@ -884,19 +904,19 @@ msgstr ""
 "Lar nettverkstjenester som LDAP eller Kerberos autentisere systemkontoer, "
 "inkludert root, på denne maskinen når aktivert."
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:58
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS-om_råde"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:59
 msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind-domeneko_ntrollere"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:61
 msgid "Winbind _Domain"
 msgstr "Winbind-_domene"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:62
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -906,63 +926,67 @@ msgstr ""
 "ved bruk av informasjon lagret på en NTDOM eller ADS-tjener. Brukes i små og "
 "store nettverk."
 
-#: ../authconfig.glade.h:62
+#: ../authconfig.glade.h:63
 msgid "_Admin Servers"
 msgstr "_Admin-tjenere"
 
-#: ../authconfig.glade.h:63
+#: ../authconfig.glade.h:64
 msgid "_Authenticate system accounts by network services"
 msgstr "_Autentiser systemkontoer via nettverkstjenester"
 
-#: ../authconfig.glade.h:64
+#: ../authconfig.glade.h:65
+msgid "_Check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.glade.h:66
 msgid "_Domain Controllers"
 msgstr "_Domenekontrollere"
 
-#: ../authconfig.glade.h:65
+#: ../authconfig.glade.h:67
 msgid "_Join Domain"
 msgstr "_Meld inn i domene"
 
-#: ../authconfig.glade.h:66
+#: ../authconfig.glade.h:68
 msgid "_KDCs"
 msgstr "_KDCer"
 
-#: ../authconfig.glade.h:67
+#: ../authconfig.glade.h:69
 msgid "_Local authorization is sufficient for local users"
 msgstr "_Lokal autorisasjon er tilstrekkelig for lokale brukere"
 
-#: ../authconfig.glade.h:68
+#: ../authconfig.glade.h:70
 msgid "_Password"
 msgstr "_Passord"
 
-#: ../authconfig.glade.h:69
+#: ../authconfig.glade.h:71
 msgid "_Realm"
 msgstr "Om_råde:"
 
-#: ../authconfig.glade.h:70
+#: ../authconfig.glade.h:72
 msgid "_Require smart card for login"
 msgstr "K_rev Smart Card for pålogging"
 
-#: ../authconfig.glade.h:71
+#: ../authconfig.glade.h:73
 msgid "_Security Model"
 msgstr "_Sikkerhetsmodell"
 
-#: ../authconfig.glade.h:72
+#: ../authconfig.glade.h:74
 msgid "_Template Shell"
 msgstr "Skall for _mal"
 
-#: ../authconfig.glade.h:73
+#: ../authconfig.glade.h:75
 msgid "_Workgroup"
 msgstr "_Arbeidsgruppe:"
 
-#: ../authinfo.py:663 ../authinfo.py:987 ../authinfo.py:2104
+#: ../authinfo.py:653 ../authinfo.py:975 ../authinfo.py:2115
 msgid "Lock"
 msgstr "Lås"
 
-#: ../authinfo.py:663 ../authinfo.py:989
+#: ../authinfo.py:653 ../authinfo.py:977
 msgid "Ignore"
 msgstr "Ignorer"
 
-#: ../authinfo.py:2615
+#: ../authinfo.py:2458
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -971,6 +995,6 @@ msgstr ""
 "Autentiseringsmodul %s/pam_%s.so mangler. Autentiseringsprosessen vil ikke "
 "fungere."
 
-#: ../authinfo.py:3073
+#: ../authinfo.py:2922
 msgid "Error downloading CA certificate"
 msgstr "Feil ved nedlasting av CA-sertifikat"

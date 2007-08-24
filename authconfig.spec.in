@@ -4,7 +4,7 @@ Version: @PACKAGE_VERSION@
 # Don't change release in elvis CVS, up version after merging all patches
 # from dist CVS instead.
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+
 ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -12,7 +12,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: http://rhlinux.redhat.com/
 # The project doesn't have http site with downloadable tarballs yet.
 Source: %{name}-%{version}.tar.bz2
-Requires: rhpl, newt, pam >= 0.99.6.2, usermode, python
+Requires: rhpl, newt-python, pam >= 0.99.6.2, usermode, python
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 Conflicts: nss_ldap < 254
 BuildRequires: glib2-devel, python, python-devel
@@ -98,6 +98,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Aug 24 2007 Tomas Mraz <tmraz@redhat.com> - 5.3.17-1
+- remove obsolete pam_krb5afs support (#250704)
+- add support for pam_access (#251360)
+- update translations
+
+* Tue Aug 21 2007 Tomas Mraz <tmraz@redhat.com> - 5.3.16-3
+- license tag fix
+
+* Thu Aug  9 2007 Tomas Mraz <tmraz@redhat.com> - 5.3.16-2
+- require newt-python (#251359)
+
 * Wed Jul 25 2007 Tomas Mraz <tmraz@redhat.com> - 5.3.16-1
 - add support for winbind offline login (#232955)
 

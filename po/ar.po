@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-12 21:06+0100\n"
+"POT-Creation-Date: 2007-08-24 14:02+0200\n"
 "PO-Revision-Date: 2004-10-04 22:12+0200\n"
 "Last-Translator: Hicham Amaoui <amaoui@altern.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -297,110 +297,126 @@ msgstr ""
 "مستخدمي نطاق"
 
 #: ../authconfig.py:175
+msgid "configures winbind to allow offline login"
+msgstr ""
+
+#: ../authconfig.py:177
+msgid "configures winbind to prevent offline login"
+msgstr ""
+
+#: ../authconfig.py:179
 #, fuzzy
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr "انضمّ إلى نطاق winbind أو مملكة خدمة الدّليل النّشط (ads) الآن كمُدير\n"
 
-#: ../authconfig.py:178
+#: ../authconfig.py:182
 msgid "enable wins for hostname resolution"
 msgstr "مكّن wins لحلّ اسم المضيف"
 
-#: ../authconfig.py:180
+#: ../authconfig.py:184
 #, fuzzy
 msgid "disable wins for hostname resolution"
 msgstr "عطّل wins لحلّ اسم المضيف\n"
 
-#: ../authconfig.py:183
+#: ../authconfig.py:187
 msgid "enable hesiod for user information by default"
 msgstr "مكّن hesiod لمعلومات المستخدمين بشكل افتراضي"
 
-#: ../authconfig.py:185
+#: ../authconfig.py:189
 msgid "disable hesiod for user information by default"
 msgstr "عطّل hesiod لمعلومات المستخدمين بشكل افتراضي"
 
-#: ../authconfig.py:187
+#: ../authconfig.py:191
 msgid "default hesiod LHS"
 msgstr "Hesiod LHS الافتراضي"
 
-#: ../authconfig.py:189
+#: ../authconfig.py:193
 #, fuzzy
 msgid "default hesiod RHS"
 msgstr "Hesiod RHS الافتراضي\n"
 
-#: ../authconfig.py:192
+#: ../authconfig.py:196
 msgid "enable caching of user information by default"
 msgstr "مكّن التّخبئة لمعلومات المستخدمين بشكل افتراضيّ"
 
-#: ../authconfig.py:194
+#: ../authconfig.py:198
 #, fuzzy
 msgid "disable caching of user information by default"
 msgstr "عطّل التّخبئة لمعلومات المستخدمين بشكل افتراضيّ\n"
 
-#: ../authconfig.py:197
+#: ../authconfig.py:201
 msgid "local authorization is sufficient for local users"
 msgstr ""
 
-#: ../authconfig.py:199
+#: ../authconfig.py:203
 msgid "authorize local users also through remote service"
 msgstr ""
 
-#: ../authconfig.py:202
+#: ../authconfig.py:206
+msgid "check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.py:208
+msgid "do not check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.py:211
 msgid "authenticate system accounts by network services"
 msgstr ""
 
-#: ../authconfig.py:204
+#: ../authconfig.py:213
 msgid "authenticate system accounts by local files only"
 msgstr ""
 
-#: ../authconfig.py:207
+#: ../authconfig.py:216
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "لا تقم بتشغيل/إيقاف portmap، ypbind، وnscd"
 
-#: ../authconfig.py:210
+#: ../authconfig.py:219
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
 
-#: ../authconfig.py:214
+#: ../authconfig.py:223
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr ""
 
-#: ../authconfig.py:216
+#: ../authconfig.py:225
 #, fuzzy
 msgid "do not display the deprecated text user interface"
 msgstr "لا تُظهر واجهة المستخدم"
 
-#: ../authconfig.py:219
+#: ../authconfig.py:228
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 
-#: ../authconfig.py:222
+#: ../authconfig.py:231
 msgid "update all configuration files"
 msgstr ""
 
-#: ../authconfig.py:225
+#: ../authconfig.py:234
 msgid "probe network for defaults and print them"
 msgstr "جسّ الشّبكة للافتراضيّات واطبعها"
 
-#: ../authconfig.py:230
+#: ../authconfig.py:239
 #, fuzzy
 msgid "unexpected argument"
 msgstr "%s: مُعطى غير متوقّع\n"
 
-#: ../authconfig.py:332
+#: ../authconfig.py:344
 msgid "Bad smart card removal action specified."
 msgstr ""
 
-#: ../authconfig.py:361
+#: ../authconfig.py:373
 #, fuzzy
 msgid "can only be run as root"
 msgstr "%s: يمكن تشغيله فقط من قبل المستخدم root\n"
 
-#: ../authconfig.py:368
+#: ../authconfig.py:380
 #, fuzzy
 msgid "dialog was cancelled"
 msgstr "تمّ إلغاء الحوار\n"
 
-#: ../authconfig.py:391
+#: ../authconfig.py:403
 #, fuzzy, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -410,218 +426,218 @@ msgstr ""
 "لم يُعثر على الملفّ %s، إلّا أنّه مطلوب لدعم %s كي يعملبشكل سليم.  قم بتثبيت "
 "الحزمة %s، التّي تُوفّر هذا الملفّ."
 
-#: ../authconfig.py:393 ../authconfig.py:748
+#: ../authconfig.py:405 ../authconfig.py:760
 msgid "Warning"
 msgstr "تحذير"
 
-#: ../authconfig.py:393 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:643 ../authconfig.py:684 ../authconfig.py:748
+#: ../authconfig.py:405 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:655 ../authconfig.py:696 ../authconfig.py:760
 msgid "Ok"
 msgstr "موافق"
 
-#: ../authconfig.py:397
+#: ../authconfig.py:409
 msgid "caching"
 msgstr "التّخبئة"
 
-#: ../authconfig.py:398
+#: ../authconfig.py:410
 msgid "Kerberos"
 msgstr "كربِروس"
 
-#: ../authconfig.py:399
+#: ../authconfig.py:411
 msgid "LDAP authentication"
 msgstr "توثيق البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.py:400
+#: ../authconfig.py:412
 msgid "LDAP"
 msgstr "البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.py:401
+#: ../authconfig.py:413
 msgid "NIS"
 msgstr "خدمة معلومات الشّبكة (NIS)"
 
-#: ../authconfig.py:402
+#: ../authconfig.py:414
 msgid "shadow password"
 msgstr "كلمة المرور المُظلّلة"
 
-#: ../authconfig.py:403
+#: ../authconfig.py:415
 msgid "SMB authentication"
 msgstr "توثيق كتلة رسائل النّظام (SMB)"
 
-#: ../authconfig.py:404 ../authconfig.py:406
+#: ../authconfig.py:416 ../authconfig.py:418
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:405
+#: ../authconfig.py:417
 msgid "Winbind authentication"
 msgstr "توثيق Winbind"
 
-#: ../authconfig.py:411 ../authconfig.glade.h:55
+#: ../authconfig.py:423 ../authconfig.glade.h:56
 msgid "User Information"
 msgstr "معلومات المستخدم"
 
-#: ../authconfig.py:414
+#: ../authconfig.py:426
 msgid "Cache Information"
 msgstr "تخبئة المعلومات"
 
-#: ../authconfig.py:418
+#: ../authconfig.py:430
 msgid "Use Hesiod"
 msgstr "استخدم Hesiod"
 
-#: ../authconfig.py:421
+#: ../authconfig.py:433
 msgid "Use LDAP"
 msgstr "استخدم البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.py:425
+#: ../authconfig.py:437
 msgid "Use NIS"
 msgstr "استخدم خدمة معلومات الشّبكة (NIS)"
 
-#: ../authconfig.py:429
+#: ../authconfig.py:441
 msgid "Use Winbind"
 msgstr "استخدم Winbind"
 
-#: ../authconfig.py:435 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:5
+#: ../authconfig.py:447 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:6
 msgid "Authentication"
 msgstr "التّوثيق"
 
-#: ../authconfig.py:438
+#: ../authconfig.py:450
 msgid "Use MD5 Passwords"
 msgstr "استخدم كلمات مرور MD5"
 
-#: ../authconfig.py:441
+#: ../authconfig.py:453
 msgid "Use Shadow Passwords"
 msgstr "استخدم كلمات المرور المُظلّلة"
 
-#: ../authconfig.py:445
+#: ../authconfig.py:457
 msgid "Use LDAP Authentication"
 msgstr "استخدم توثيق البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.py:449
+#: ../authconfig.py:461
 msgid "Use Kerberos"
 msgstr "استخدم كربِروس"
 
-#: ../authconfig.py:453
+#: ../authconfig.py:465
 msgid "Use SMB Authentication"
 msgstr "استخدم توثيق كتلة رسائل النّظام (SMB)"
 
-#: ../authconfig.py:457
+#: ../authconfig.py:469
 msgid "Use Winbind Authentication"
 msgstr "استخدم توثيق Winbind"
 
-#: ../authconfig.py:461
+#: ../authconfig.py:473
 msgid "Local authorization is sufficient"
 msgstr ""
 
-#: ../authconfig.py:471 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:684
+#: ../authconfig.py:483 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:696
 msgid "Back"
 msgstr "سابق"
 
-#: ../authconfig.py:471 ../authconfig.py:643
+#: ../authconfig.py:483 ../authconfig.py:655
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: ../authconfig.py:472 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:684
+#: ../authconfig.py:484 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:696
 msgid "Next"
 msgstr "تالي"
 
-#: ../authconfig.py:483 ../authconfig-gtk.py:324 ../authconfig-gtk.py:417
-#: ../authconfig.glade.h:6
+#: ../authconfig.py:495 ../authconfig-gtk.py:331 ../authconfig-gtk.py:424
+#: ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "تهيئة التّوثيق"
 
-#: ../authconfig.py:603
+#: ../authconfig.py:615
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:604
+#: ../authconfig.py:616
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:605 ../authconfig.glade.h:29
+#: ../authconfig.py:617 ../authconfig.glade.h:30
 msgid "Hesiod Settings"
 msgstr "إعدادات Hesiod"
 
-#: ../authconfig.py:609
+#: ../authconfig.py:621
 msgid "Use TLS"
 msgstr "استخدم TLS"
 
-#: ../authconfig.py:610 ../authconfig.py:617
+#: ../authconfig.py:622 ../authconfig.py:629
 msgid "Server:"
 msgstr "الخادم:"
 
-#: ../authconfig.py:611
+#: ../authconfig.py:623
 msgid "Base DN:"
 msgstr "الاسم المُميّز (DN) الأساسي:"
 
-#: ../authconfig.py:612 ../authconfig.glade.h:37
+#: ../authconfig.py:624 ../authconfig.glade.h:38
 msgid "LDAP Settings"
 msgstr "إعدادات البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.py:616 ../authconfig.py:678
+#: ../authconfig.py:628 ../authconfig.py:690
 msgid "Domain:"
 msgstr "النّطاق:"
 
-#: ../authconfig.py:618 ../authconfig.glade.h:39
+#: ../authconfig.py:630 ../authconfig.glade.h:40
 msgid "NIS Settings"
 msgstr "إعدادات خدمة معلومات الشّبكة (NIS)"
 
-#: ../authconfig.py:622
+#: ../authconfig.py:634
 msgid "Realm:"
 msgstr "المملكة:"
 
-#: ../authconfig.py:623
+#: ../authconfig.py:635
 msgid "KDC:"
 msgstr "مركز توزيع كِربيروس (KDC):"
 
-#: ../authconfig.py:624
+#: ../authconfig.py:636
 msgid "Admin Server:"
 msgstr "خادم الإدارة:"
 
-#: ../authconfig.py:625
+#: ../authconfig.py:637
 msgid "Use DNS to resolve hosts to realms"
 msgstr "استخدم DNS لتحويل المضيفين إلى مملكات"
 
-#: ../authconfig.py:626
+#: ../authconfig.py:638
 msgid "Use DNS to locate KDCs for realms"
 msgstr "استخدم DNS للعثور على مراكز توزيع كِربيروس (KDC) للملكات"
 
-#: ../authconfig.py:627 ../authconfig.glade.h:34
+#: ../authconfig.py:639 ../authconfig.glade.h:35
 msgid "Kerberos Settings"
 msgstr "إعدادات كربِروس"
 
-#: ../authconfig.py:631
+#: ../authconfig.py:643
 msgid "Workgroup:"
 msgstr "مجموعة العمل:"
 
-#: ../authconfig.py:632
+#: ../authconfig.py:644
 msgid "Servers:"
 msgstr "الخوادم:"
 
-#: ../authconfig.py:633
+#: ../authconfig.py:645
 msgid "Shell:"
 msgstr "الصّدفة:"
 
-#: ../authconfig.py:634 ../authconfig.glade.h:44
+#: ../authconfig.py:646 ../authconfig.glade.h:45
 msgid "SMB Settings"
 msgstr "إعدادات كتلة رسائل النّظام (SMB)"
 
-#: ../authconfig.py:638
+#: ../authconfig.py:650
 msgid "Domain Administrator:"
 msgstr "مُدير النّطاق:"
 
-#: ../authconfig.py:639
+#: ../authconfig.py:651
 msgid "Password:"
 msgstr "كلمة السّر:"
 
-#: ../authconfig.py:642
+#: ../authconfig.py:654
 msgid "Join Settings"
 msgstr "إعدادات الانضمام"
 
-#: ../authconfig.py:652 ../authconfig.glade.h:48
+#: ../authconfig.py:664 ../authconfig.glade.h:49
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -630,45 +646,45 @@ msgstr ""
 "يجب حفظ بعض تغييرات التّهيئة التي قمت بها إلى القرص قبل الاستمرار.  إن لم تقم "
 "بحفظها، فإنّ مُحاولتك الانضمام إلى النّطاق قد تفشل.  أحفظ التّغييرات؟"
 
-#: ../authconfig.py:659
+#: ../authconfig.py:671
 msgid "Save Settings"
 msgstr "احفظ الإعدادات"
 
-#: ../authconfig.py:660
+#: ../authconfig.py:672
 msgid "No"
 msgstr "لا"
 
-#: ../authconfig.py:660
+#: ../authconfig.py:672
 msgid "Yes"
 msgstr "نعم"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:677
+#: ../authconfig.py:689
 msgid "Security Model:"
 msgstr "مُخطّط الأمن:"
 
-#: ../authconfig.py:679
+#: ../authconfig.py:691
 msgid "Domain Controllers:"
 msgstr "مُتحكّمات النّطاق:"
 
-#: ../authconfig.py:680
+#: ../authconfig.py:692
 msgid "ADS Realm:"
 msgstr "مملكة خدمة الدّليل النّشط (ADS):"
 
-#: ../authconfig.py:681
+#: ../authconfig.py:693
 msgid "Template Shell:"
 msgstr "الصّدفة القالب:"
 
-#: ../authconfig.py:683 ../authconfig.glade.h:59
+#: ../authconfig.py:695 ../authconfig.glade.h:60
 msgid "Winbind Settings"
 msgstr "إعدادات Winbind"
 
-#: ../authconfig.py:685
+#: ../authconfig.py:697
 msgid "Join Domain"
 msgstr "انضمّ إلى النّطاق"
 
-#: ../authconfig.py:743 ../authconfig-gtk.py:401
+#: ../authconfig.py:755 ../authconfig-gtk.py:408
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -678,7 +694,7 @@ msgid ""
 msgstr ""
 
 #. FIXME - version
-#: ../authconfig.py:757
+#: ../authconfig.py:769
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -689,7 +705,7 @@ msgstr ""
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "تحكّم بكيفيّة تحقّق النّظام من المستخدمين الذي يحاولون تسجيل الدّخول"
 
-#: ../authconfig-gtk.py:405
+#: ../authconfig-gtk.py:412
 msgid "LDAP CA Certificate Check"
 msgstr ""
 
@@ -709,107 +725,111 @@ msgstr ""
 msgid "Alert"
 msgstr "إنذار"
 
-#: ../authconfig.glade.h:7
+#: ../authconfig.glade.h:5
+msgid "Allow offline login"
+msgstr ""
+
+#: ../authconfig.glade.h:8
 msgid "Cache User _Information"
 msgstr "ت_خبئة معلومات المستخدم"
 
-#: ../authconfig.glade.h:8
+#: ../authconfig.glade.h:9
 msgid "Card Removal _Action"
 msgstr ""
 
-#: ../authconfig.glade.h:9
+#: ../authconfig.glade.h:10
 msgid "Certificate _URL"
 msgstr ""
 
-#: ../authconfig.glade.h:10
+#: ../authconfig.glade.h:11
 msgid "Con_figure SMB..."
 msgstr "_تهيئة كتلة رسائل النّظام (SMB)..."
 
-#: ../authconfig.glade.h:11
+#: ../authconfig.glade.h:12
 msgid "Configure H_esiod..."
 msgstr "_تهيئة Hesiod..."
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:13
 msgid "Configure K_erberos..."
 msgstr "_تهيئة كِربيروس..."
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:14
 msgid "Configure L_DAP..."
 msgstr "_تهيئة البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)..."
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:15
 msgid "Configure NI_S..."
 msgstr "_تهيئة خدمة معلومات الشّبكة (NIS)..."
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:16
 #, fuzzy
 msgid "Configure Sma_rt Card..."
 msgstr "_تهيئة كِربيروس..."
 
-#: ../authconfig.glade.h:16
+#: ../authconfig.glade.h:17
 msgid "Configure Win_bind..."
 msgstr "_تهيئة Winbind..."
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:18
 msgid "Do_n't Save"
 msgstr "لا_ تحفظ"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:19
 msgid "Domain"
 msgstr "نطاق"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:20
 msgid "Domain _Administrator"
 msgstr "م_ُدير النّطاق"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:21
 msgid "Download CA Certificate"
 msgstr ""
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:22
 msgid "Enable SMB S_upport"
 msgstr "مك_ّن دعم كتلة رسائل النّظام (SMB)"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:23
 #, fuzzy
 msgid "Enable Smart _Card Support"
 msgstr "مك_ّن دعم كتلة رسائل النّظام (SMB)"
 
-#: ../authconfig.glade.h:23
+#: ../authconfig.glade.h:24
 msgid "Enable _Hesiod Support"
 msgstr "مكّن دع_م Hesiod"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:25
 msgid "Enable _Kerberos Support"
 msgstr "مكّن دعم _كِربيروس"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:26
 msgid "Enable _LDAP Support"
 msgstr "مكّن د_عم البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:27
 msgid "Enable _NIS Support"
 msgstr "مكّن _دعم خدمة معلومات الشّبكة (NIS)"
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:28
 msgid "Enable _Winbind Support"
 msgstr "مكّن دع_م Winbind"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:29
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
 msgstr ""
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:31
 msgid "Hesiod _LHS"
 msgstr "Hesiod _LHS"
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:32
 msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:33
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -817,11 +837,11 @@ msgstr ""
 "يُمكّن Hesiod مدير النّظام من نَشْر معلومات المستخدم والمجموعة في DNS.  يُستخدم "
 "بعض الأحيان في الشّبكات الكبيرة جدّاً."
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:34
 msgid "Joining Winbind Domain"
 msgstr "جاري الانضمام إلى نطاق Winbind"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:36
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -829,35 +849,35 @@ msgstr ""
 "كِربيروس هو نظام توثيق طرف ثالث موثوق يُستخدم بشكل عامّ في الشّبكات المُتوسّطة "
 "وكبيرة الحجم."
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:37
 msgid "LDAP Search _Base DN"
 msgstr ""
 "الاسم المُميّز (DN) الأساسي لبحث البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:39
 msgid "LDAP _Server"
 msgstr "_خادم البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:41
 msgid "NIS _Domain"
 msgstr "_نطاق خدمة معلومات الشّبكة (NIS)"
 
-#: ../authconfig.glade.h:41
+#: ../authconfig.glade.h:42
 msgid "NIS _Server"
 msgstr "خاد_م خدمة معلومات الشّبكة (NIS)"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:43
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr ""
 "NIS هي خدمة معلومات الشّبكة.  تُستخدم هذه عامّة على الشّبكات الصّغيرة والمتوسّطة."
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:44
 msgid "Options"
 msgstr ""
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -865,18 +885,18 @@ msgstr ""
 "توثيق SMB يتحقّق من كلمات مرور المستخدمين بمُحاولة الاتّصال بخادم يستخدم مجموعة "
 "بروتوكولات SMB (كتلة رسائل النّظام)."
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:47
 #, fuzzy
 msgid "Smart Card Settings"
 msgstr "احفظ الإعدادات"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:48
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
 msgstr ""
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:50
 #, fuzzy
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
@@ -887,45 +907,45 @@ msgstr ""
 "يمكنه تخزين بيانات كيفيّة في بُنية هَرَميّة.  يجري استخدام هذا البروتوكول بشكل "
 "متزايد في الشّبكات الصّغيرة والكبيرة."
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:51
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "استخدم DNS لل_عثور على مراكز توزيع كِربيروس (KDC) للملكات"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:52
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "استخدم DNS ل_تحويل المضيفين إلى مملكات"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:53
 msgid "Use _MD5 Passwords"
 msgstr "استخ_دم كلمات مرور MD5"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:54
 msgid "Use _Shadow Passwords"
 msgstr "است_خدم كلمات المرور المُظلّلة"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:55
 msgid "Use _TLS to encrypt connections"
 msgstr "استخدم TLS لتشفير الاتّصالات"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:57
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
 msgstr ""
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:58
 msgid "Winbind ADS _Realm"
 msgstr "مملكة خدمة الدّليل النّشط (ADS) لـwinbind"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:59
 msgid "Winbind Domain Co_ntrollers"
 msgstr "مُتحكّ_مات نطاق Winbind"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:61
 msgid "Winbind _Domain"
 msgstr "ن_طاق Winbind"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:62
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -935,70 +955,74 @@ msgstr ""
 "المعلومات المُخزّنة في نظاق ويندوز إن تي (NTDOM) أو خادم خدمة الدّليل النّشط"
 "(ADS). يُستخدم هذا في الشّبكات الصّغيرة والكبيرة."
 
-#: ../authconfig.glade.h:62
+#: ../authconfig.glade.h:63
 msgid "_Admin Servers"
 msgstr "خوادم الإدا_رة"
 
-#: ../authconfig.glade.h:63
+#: ../authconfig.glade.h:64
 msgid "_Authenticate system accounts by network services"
 msgstr ""
 
-#: ../authconfig.glade.h:64
+#: ../authconfig.glade.h:65
+msgid "_Check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.glade.h:66
 msgid "_Domain Controllers"
 msgstr "مُتح_كّمات النّطاق"
 
-#: ../authconfig.glade.h:65
+#: ../authconfig.glade.h:67
 msgid "_Join Domain"
 msgstr "الانضمام إلى _نطاق"
 
-#: ../authconfig.glade.h:66
+#: ../authconfig.glade.h:68
 msgid "_KDCs"
 msgstr "مراكز توزيع ك_ِربيروس (KDCs)"
 
-#: ../authconfig.glade.h:67
+#: ../authconfig.glade.h:69
 msgid "_Local authorization is sufficient for local users"
 msgstr ""
 
-#: ../authconfig.glade.h:68
+#: ../authconfig.glade.h:70
 msgid "_Password"
 msgstr "كلمة مر_ور"
 
-#: ../authconfig.glade.h:69
+#: ../authconfig.glade.h:71
 msgid "_Realm"
 msgstr "مم_لكة"
 
-#: ../authconfig.glade.h:70
+#: ../authconfig.glade.h:72
 msgid "_Require smart card for login"
 msgstr ""
 
-#: ../authconfig.glade.h:71
+#: ../authconfig.glade.h:73
 msgid "_Security Model"
 msgstr "مُخطّط الأ_من"
 
-#: ../authconfig.glade.h:72
+#: ../authconfig.glade.h:74
 msgid "_Template Shell"
 msgstr "الصّدفة ال_قالب:"
 
-#: ../authconfig.glade.h:73
+#: ../authconfig.glade.h:75
 msgid "_Workgroup"
 msgstr "م_جموعة العمل"
 
-#: ../authinfo.py:663 ../authinfo.py:987 ../authinfo.py:2104
+#: ../authinfo.py:653 ../authinfo.py:975 ../authinfo.py:2115
 msgid "Lock"
 msgstr ""
 
-#: ../authinfo.py:663 ../authinfo.py:989
+#: ../authinfo.py:653 ../authinfo.py:977
 msgid "Ignore"
 msgstr ""
 
-#: ../authinfo.py:2615
+#: ../authinfo.py:2458
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:3073
+#: ../authinfo.py:2922
 msgid "Error downloading CA certificate"
 msgstr ""
 

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-12 21:06+0100\n"
+"POT-Creation-Date: 2007-08-24 14:02+0200\n"
 "PO-Revision-Date: 2006-12-19 15:39+1000\n"
 "Last-Translator: Eunju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -278,102 +278,118 @@ msgstr ""
 "winbind를 설정"
 
 #: ../authconfig.py:175
+msgid "configures winbind to allow offline login"
+msgstr ""
+
+#: ../authconfig.py:177
+msgid "configures winbind to prevent offline login"
+msgstr ""
+
+#: ../authconfig.py:179
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr "지금 이 관리자로 winbind 도메인 또는 ads 관리 영역에 결합함"
 
-#: ../authconfig.py:178
+#: ../authconfig.py:182
 msgid "enable wins for hostname resolution"
 msgstr "호스트명 변환에 wins를 사용"
 
-#: ../authconfig.py:180
+#: ../authconfig.py:184
 msgid "disable wins for hostname resolution"
 msgstr "호스트명 변환에 wins를 사용하지 않음"
 
-#: ../authconfig.py:183
+#: ../authconfig.py:187
 msgid "enable hesiod for user information by default"
 msgstr "사용자 정보를 위한 hesiod를 기본적으로 사용함"
 
-#: ../authconfig.py:185
+#: ../authconfig.py:189
 msgid "disable hesiod for user information by default"
 msgstr "사용자 정보를 위한 hesiod를 기본적으로 사용하지 않음"
 
-#: ../authconfig.py:187
+#: ../authconfig.py:191
 msgid "default hesiod LHS"
 msgstr "기본 hesiod LHS"
 
-#: ../authconfig.py:189
+#: ../authconfig.py:193
 msgid "default hesiod RHS"
 msgstr "기본 hesiod RHS"
 
-#: ../authconfig.py:192
+#: ../authconfig.py:196
 msgid "enable caching of user information by default"
 msgstr "사용자 정보를 저장하는 것을 기본적으로 사용함"
 
-#: ../authconfig.py:194
+#: ../authconfig.py:198
 msgid "disable caching of user information by default"
 msgstr "사용자 정보를 저장하는 것을 기본적으로 사용하지 않음"
 
-#: ../authconfig.py:197
+#: ../authconfig.py:201
 msgid "local authorization is sufficient for local users"
 msgstr "로컬 사용자에겐 로컬 권한부여만으로 충분합니다"
 
-#: ../authconfig.py:199
+#: ../authconfig.py:203
 msgid "authorize local users also through remote service"
 msgstr "로컬 사용자가 원격 서비스도 사용할 수 있도록 인증"
 
-#: ../authconfig.py:202
+#: ../authconfig.py:206
+msgid "check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.py:208
+msgid "do not check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.py:211
 msgid "authenticate system accounts by network services"
 msgstr "네트워크 서비스에 의한 인증 시스템 계정"
 
-#: ../authconfig.py:204
+#: ../authconfig.py:213
 msgid "authenticate system accounts by local files only"
 msgstr "로컬 파일만에 의한 인증 시스템 계정"
 
-#: ../authconfig.py:207
+#: ../authconfig.py:216
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind, nscd 명령을 '시작/정지' 하지 않음"
 
-#: ../authconfig.py:210
+#: ../authconfig.py:219
 msgid "do not update the configuration files, only print new settings"
 msgstr "설정 파일을 업데이트하지않고, 새 설정만 출력함"
 
-#: ../authconfig.py:214
+#: ../authconfig.py:223
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "TUI의 주 대화창에 뒤로(Back) 대신 취소(Cancel)를 표시"
 
-#: ../authconfig.py:216
+#: ../authconfig.py:225
 msgid "do not display the deprecated text user interface"
 msgstr "사용되지 않는 텍스트 사용자 인터페이스를 표시하지 않음"
 
-#: ../authconfig.py:219
+#: ../authconfig.py:228
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--test의 반대, 설정이 변경된 설정 파일을 업데이트함"
 
-#: ../authconfig.py:222
+#: ../authconfig.py:231
 msgid "update all configuration files"
 msgstr "모든 설정 파일을 업데이트함"
 
-#: ../authconfig.py:225
+#: ../authconfig.py:234
 msgid "probe network for defaults and print them"
 msgstr "네트워크에서 기본값을 검색 후 프린트"
 
-#: ../authconfig.py:230
+#: ../authconfig.py:239
 msgid "unexpected argument"
 msgstr "예상외의 인수"
 
-#: ../authconfig.py:332
+#: ../authconfig.py:344
 msgid "Bad smart card removal action specified."
 msgstr "잘못된 smart card 삭제 작업이 지정됨."
 
-#: ../authconfig.py:361
+#: ../authconfig.py:373
 msgid "can only be run as root"
 msgstr "root 만이 실행할 수 있습니다"
 
-#: ../authconfig.py:368
+#: ../authconfig.py:380
 msgid "dialog was cancelled"
 msgstr "대화형 설정이 취소되었습니다"
 
-#: ../authconfig.py:391
+#: ../authconfig.py:403
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -383,218 +399,218 @@ msgstr ""
 "%s 파일을 찾을 수 없습니다. 이 파일은 %s (을)를 제대로 작동하도록 하기 위해서"
 "는 반드시 필요합니다.  이 파일이 포함되어 있는 %s 패키지를 설치해 주십시오."
 
-#: ../authconfig.py:393 ../authconfig.py:748
+#: ../authconfig.py:405 ../authconfig.py:760
 msgid "Warning"
 msgstr "경고"
 
-#: ../authconfig.py:393 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:643 ../authconfig.py:684 ../authconfig.py:748
+#: ../authconfig.py:405 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:655 ../authconfig.py:696 ../authconfig.py:760
 msgid "Ok"
 msgstr "확인"
 
-#: ../authconfig.py:397
+#: ../authconfig.py:409
 msgid "caching"
 msgstr "캐싱"
 
-#: ../authconfig.py:398
+#: ../authconfig.py:410
 msgid "Kerberos"
 msgstr "커베로스"
 
-#: ../authconfig.py:399
+#: ../authconfig.py:411
 msgid "LDAP authentication"
 msgstr "LDAP 인증"
 
-#: ../authconfig.py:400
+#: ../authconfig.py:412
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:401
+#: ../authconfig.py:413
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:402
+#: ../authconfig.py:414
 msgid "shadow password"
 msgstr "섀도우 암호"
 
-#: ../authconfig.py:403
+#: ../authconfig.py:415
 msgid "SMB authentication"
 msgstr "SMB 인증"
 
-#: ../authconfig.py:404 ../authconfig.py:406
+#: ../authconfig.py:416 ../authconfig.py:418
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:405
+#: ../authconfig.py:417
 msgid "Winbind authentication"
 msgstr "Winbind 인증"
 
-#: ../authconfig.py:411 ../authconfig.glade.h:55
+#: ../authconfig.py:423 ../authconfig.glade.h:56
 msgid "User Information"
 msgstr "사용자 정보"
 
-#: ../authconfig.py:414
+#: ../authconfig.py:426
 msgid "Cache Information"
 msgstr "캐시(Cache) 정보"
 
-#: ../authconfig.py:418
+#: ../authconfig.py:430
 msgid "Use Hesiod"
 msgstr "Hesiod 사용"
 
-#: ../authconfig.py:421
+#: ../authconfig.py:433
 msgid "Use LDAP"
 msgstr "LDAP 사용"
 
-#: ../authconfig.py:425
+#: ../authconfig.py:437
 msgid "Use NIS"
 msgstr "NIS 사용"
 
-#: ../authconfig.py:429
+#: ../authconfig.py:441
 msgid "Use Winbind"
 msgstr "Winbind 사용"
 
-#: ../authconfig.py:435 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:5
+#: ../authconfig.py:447 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:6
 msgid "Authentication"
 msgstr "인증"
 
-#: ../authconfig.py:438
+#: ../authconfig.py:450
 msgid "Use MD5 Passwords"
 msgstr "MD5 암호 사용"
 
-#: ../authconfig.py:441
+#: ../authconfig.py:453
 msgid "Use Shadow Passwords"
 msgstr "섀도우 암호 사용"
 
-#: ../authconfig.py:445
+#: ../authconfig.py:457
 msgid "Use LDAP Authentication"
 msgstr "LDAP 인증 사용"
 
-#: ../authconfig.py:449
+#: ../authconfig.py:461
 msgid "Use Kerberos"
 msgstr "커베로스 사용"
 
-#: ../authconfig.py:453
+#: ../authconfig.py:465
 msgid "Use SMB Authentication"
 msgstr "SMB 인증 사용"
 
-#: ../authconfig.py:457
+#: ../authconfig.py:469
 msgid "Use Winbind Authentication"
 msgstr "Winbind 인증 사용"
 
-#: ../authconfig.py:461
+#: ../authconfig.py:473
 msgid "Local authorization is sufficient"
 msgstr "로컬 권한부여로 충분합니다"
 
-#: ../authconfig.py:471 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:684
+#: ../authconfig.py:483 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:696
 msgid "Back"
 msgstr "뒤로"
 
-#: ../authconfig.py:471 ../authconfig.py:643
+#: ../authconfig.py:483 ../authconfig.py:655
 msgid "Cancel"
 msgstr "취소"
 
-#: ../authconfig.py:472 ../authconfig.py:606 ../authconfig.py:613
-#: ../authconfig.py:619 ../authconfig.py:628 ../authconfig.py:635
-#: ../authconfig.py:684
+#: ../authconfig.py:484 ../authconfig.py:618 ../authconfig.py:625
+#: ../authconfig.py:631 ../authconfig.py:640 ../authconfig.py:647
+#: ../authconfig.py:696
 msgid "Next"
 msgstr "다음"
 
-#: ../authconfig.py:483 ../authconfig-gtk.py:324 ../authconfig-gtk.py:417
-#: ../authconfig.glade.h:6
+#: ../authconfig.py:495 ../authconfig-gtk.py:331 ../authconfig-gtk.py:424
+#: ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "인증 설정"
 
-#: ../authconfig.py:603
+#: ../authconfig.py:615
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:604
+#: ../authconfig.py:616
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:605 ../authconfig.glade.h:29
+#: ../authconfig.py:617 ../authconfig.glade.h:30
 msgid "Hesiod Settings"
 msgstr "Hesiod 설정"
 
-#: ../authconfig.py:609
+#: ../authconfig.py:621
 msgid "Use TLS"
 msgstr "TLS 사용"
 
-#: ../authconfig.py:610 ../authconfig.py:617
+#: ../authconfig.py:622 ../authconfig.py:629
 msgid "Server:"
 msgstr "서버:"
 
-#: ../authconfig.py:611
+#: ../authconfig.py:623
 msgid "Base DN:"
 msgstr "DN 기반:"
 
-#: ../authconfig.py:612 ../authconfig.glade.h:37
+#: ../authconfig.py:624 ../authconfig.glade.h:38
 msgid "LDAP Settings"
 msgstr "LDAP 설정"
 
-#: ../authconfig.py:616 ../authconfig.py:678
+#: ../authconfig.py:628 ../authconfig.py:690
 msgid "Domain:"
 msgstr "도메인:"
 
-#: ../authconfig.py:618 ../authconfig.glade.h:39
+#: ../authconfig.py:630 ../authconfig.glade.h:40
 msgid "NIS Settings"
 msgstr "NIS 설정"
 
-#: ../authconfig.py:622
+#: ../authconfig.py:634
 msgid "Realm:"
 msgstr "관리 영역:"
 
-#: ../authconfig.py:623
+#: ../authconfig.py:635
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:624
+#: ../authconfig.py:636
 msgid "Admin Server:"
 msgstr "관리 서버:"
 
-#: ../authconfig.py:625
+#: ../authconfig.py:637
 msgid "Use DNS to resolve hosts to realms"
 msgstr "DNS를 사용하여 호스트를 관리 영역으로 변환"
 
-#: ../authconfig.py:626
+#: ../authconfig.py:638
 msgid "Use DNS to locate KDCs for realms"
 msgstr "DNS를 사용하여 관리 영역으로 KDC를 배치"
 
-#: ../authconfig.py:627 ../authconfig.glade.h:34
+#: ../authconfig.py:639 ../authconfig.glade.h:35
 msgid "Kerberos Settings"
 msgstr "커베로스 설정"
 
-#: ../authconfig.py:631
+#: ../authconfig.py:643
 msgid "Workgroup:"
 msgstr "작업그룹:"
 
-#: ../authconfig.py:632
+#: ../authconfig.py:644
 msgid "Servers:"
 msgstr "서버:"
 
-#: ../authconfig.py:633
+#: ../authconfig.py:645
 msgid "Shell:"
 msgstr "쉘:"
 
-#: ../authconfig.py:634 ../authconfig.glade.h:44
+#: ../authconfig.py:646 ../authconfig.glade.h:45
 msgid "SMB Settings"
 msgstr "SMB 설정"
 
-#: ../authconfig.py:638
+#: ../authconfig.py:650
 msgid "Domain Administrator:"
 msgstr "도메인 관리자:"
 
-#: ../authconfig.py:639
+#: ../authconfig.py:651
 msgid "Password:"
 msgstr "암호:"
 
-#: ../authconfig.py:642
+#: ../authconfig.py:654
 msgid "Join Settings"
 msgstr "결합 설정"
 
-#: ../authconfig.py:652 ../authconfig.glade.h:48
+#: ../authconfig.py:664 ../authconfig.glade.h:49
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -603,45 +619,45 @@ msgstr ""
 "계속 진행하기 전에 변경하신 설정을 디스크에 저장하셔야 합니다. 지금 저장하지 "
 "않으시면 도메인 결합에 실패할 수도 있습니다.  변경 사항을 저장하시겠습니까?"
 
-#: ../authconfig.py:659
+#: ../authconfig.py:671
 msgid "Save Settings"
 msgstr "설정 저장"
 
-#: ../authconfig.py:660
+#: ../authconfig.py:672
 msgid "No"
 msgstr "아니오"
 
-#: ../authconfig.py:660
+#: ../authconfig.py:672
 msgid "Yes"
 msgstr "네"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:677
+#: ../authconfig.py:689
 msgid "Security Model:"
 msgstr "보안 모델:"
 
-#: ../authconfig.py:679
+#: ../authconfig.py:691
 msgid "Domain Controllers:"
 msgstr "도메인 제어기:"
 
-#: ../authconfig.py:680
+#: ../authconfig.py:692
 msgid "ADS Realm:"
 msgstr "ADS 관리 영역:"
 
-#: ../authconfig.py:681
+#: ../authconfig.py:693
 msgid "Template Shell:"
 msgstr "템플리트 쉘:"
 
-#: ../authconfig.py:683 ../authconfig.glade.h:59
+#: ../authconfig.py:695 ../authconfig.glade.h:60
 msgid "Winbind Settings"
 msgstr "Winbind 설정"
 
-#: ../authconfig.py:685
+#: ../authconfig.py:697
 msgid "Join Domain"
 msgstr "결합 도메인"
 
-#: ../authconfig.py:743 ../authconfig-gtk.py:401
+#: ../authconfig.py:755 ../authconfig-gtk.py:408
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -654,17 +670,18 @@ msgstr ""
 "복사를 마친 후 확인 버튼을 눌러주세요."
 
 #. FIXME - version
-#: ../authconfig.py:757
+#: ../authconfig.py:769
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr "      <Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
+msgstr ""
+"      <Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "시스템이 로그인 하려는 사용자를 인증하는 방식을 제어합니다."
 
-#: ../authconfig-gtk.py:405
+#: ../authconfig-gtk.py:412
 msgid "LDAP CA Certificate Check"
 msgstr "LDAP CA 인증서 확인"
 
@@ -684,91 +701,95 @@ msgstr "<b>Smart Card</b>"
 msgid "Alert"
 msgstr "주의"
 
-#: ../authconfig.glade.h:7
+#: ../authconfig.glade.h:5
+msgid "Allow offline login"
+msgstr ""
+
+#: ../authconfig.glade.h:8
 msgid "Cache User _Information"
 msgstr "캐시(Cache) 사용자 정보(_I)"
 
-#: ../authconfig.glade.h:8
+#: ../authconfig.glade.h:9
 msgid "Card Removal _Action"
 msgstr "카드 제거 명령 (_A)"
 
-#: ../authconfig.glade.h:9
+#: ../authconfig.glade.h:10
 msgid "Certificate _URL"
 msgstr "URL 인증서(_U)"
 
-#: ../authconfig.glade.h:10
+#: ../authconfig.glade.h:11
 msgid "Con_figure SMB..."
 msgstr "SMB 구성(_F)"
 
-#: ../authconfig.glade.h:11
+#: ../authconfig.glade.h:12
 msgid "Configure H_esiod..."
 msgstr "Hesiod 설정(_E)"
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:13
 msgid "Configure K_erberos..."
 msgstr "커베로스 설정(_E)"
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:14
 msgid "Configure L_DAP..."
 msgstr "LDAP 설정...(_D)"
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:15
 msgid "Configure NI_S..."
 msgstr "NIS 설정(_S)..."
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:16
 msgid "Configure Sma_rt Card..."
 msgstr "Smart Card 설정(_R)..."
 
-#: ../authconfig.glade.h:16
+#: ../authconfig.glade.h:17
 msgid "Configure Win_bind..."
 msgstr "Winbind 설정...(_B)"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:18
 msgid "Do_n't Save"
 msgstr "저장하지 않음(_N)"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:19
 msgid "Domain"
 msgstr "도메인"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:20
 msgid "Domain _Administrator"
 msgstr "도메인 관리자(_A)"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:21
 msgid "Download CA Certificate"
 msgstr "CA 인증서를 다운로드함"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:22
 msgid "Enable SMB S_upport"
 msgstr "SMB 지원 활성화(_U)"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:23
 msgid "Enable Smart _Card Support"
 msgstr "Smart Card 지원 활성화(_C)"
 
-#: ../authconfig.glade.h:23
+#: ../authconfig.glade.h:24
 msgid "Enable _Hesiod Support"
 msgstr "Hesiod 지원 활성화(_H)"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:25
 msgid "Enable _Kerberos Support"
 msgstr "커베로스 지원 활성화(_K)"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:26
 msgid "Enable _LDAP Support"
 msgstr "LDAP 지원 활성화(_L)"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:27
 msgid "Enable _NIS Support"
 msgstr "NIS를 지원 활성화(_N)"
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:28
 msgid "Enable _Winbind Support"
 msgstr "Winbind 지원 활성화(_W)"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:29
 msgid ""
 "For user accounts maintained in local /etc/passwd file system will not check "
 "authorization from network services such as LDAP or Kerberos."
@@ -776,15 +797,15 @@ msgstr ""
 "로컬 /etc/passwd 파일 시스템에서 관리되는 사용자 계정은 LDAP 이나 Keberos 와 "
 "같은 네트워크 서비스에서의 권한부여 과정을 거치지 않습니다"
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:31
 msgid "Hesiod _LHS"
 msgstr "Hesiod LHS(_L)"
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:32
 msgid "Hesiod _RHS"
 msgstr "Hesiod RHS(_R)"
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:33
 msgid ""
 "Hesiod allows a system administrator to publish user and group information "
 "in DNS.  It is sometimes used in very large networks."
@@ -792,11 +813,11 @@ msgstr ""
 "Hesiod는 시스템 관리자로 하여금 DNS에서 사용자와 그룹 정보를 출판하게 합니"
 "다. 이것은 때때로 매우 큰 네트위크 상에서도 사용됩니다."
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:34
 msgid "Joining Winbind Domain"
 msgstr "결합 Winbind 도메인"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:36
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -804,23 +825,23 @@ msgstr ""
 "커베로스는 신뢰되는 제삼자 인증 체제이며 보통 중간 규모나 큰 네트워크에서 사"
 "용됩니다."
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:37
 msgid "LDAP Search _Base DN"
 msgstr "LDAP 검색 기반 DN(_B)"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:39
 msgid "LDAP _Server"
 msgstr "LDAP 서버(_S)"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:41
 msgid "NIS _Domain"
 msgstr "NIS 도메인(_D)"
 
-#: ../authconfig.glade.h:41
+#: ../authconfig.glade.h:42
 msgid "NIS _Server"
 msgstr "NIS 서버(_S)"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:43
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
@@ -828,11 +849,11 @@ msgstr ""
 "NIS는 네트워크 정보 서비스(Network Information Service)로서 보통 중소 규모의 "
 "네트워크에서 사용됩니다."
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:44
 msgid "Options"
 msgstr "옵션"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -840,11 +861,11 @@ msgstr ""
 "SMB 인증은 SMB (system message block) 프로토콜 수트를 사용하는 서버에 접속하"
 "려 시도하는 사용자의 암호를 확인합니다."
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:47
 msgid "Smart Card Settings"
 msgstr "Smart Card 설정"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:48
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -852,7 +873,7 @@ msgstr ""
 "Smart card 인증을 통하여 smart card에 부합하는 인증서와 키를 사용함으로써 로"
 "그인할 수 있습니다."
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:50
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -862,27 +883,27 @@ msgstr ""
 "로 담고 있는 디렉토리를 찾는 전형적인 방법입니다. LDAP은 작고 큰 네트워크에"
 "서 급격히 사용량이 늘고 있습니다."
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:51
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "DNS를 사용하여 관리 영역으로 KDC를 배치(_L)"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:52
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "DNS를 사용하여 호스트를 관리 영역으로 변환(_D)"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:53
 msgid "Use _MD5 Passwords"
 msgstr "MD5 암호 사용(_M)"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:54
 msgid "Use _Shadow Passwords"
 msgstr "섀도우 암호 사용(_S)"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:55
 msgid "Use _TLS to encrypt connections"
 msgstr "TLS를 이용하여 접속을 암호화함(_T)"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:57
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
@@ -890,19 +911,19 @@ msgstr ""
 "활성화일때 이것은 LDAP나 Kerberos같은 네트워크 서비스가 이 장치의 루트를 포함"
 "한 시스템 계정을 인증하도록 허용합니다."
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:58
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS 관리 영역(_R)"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:59
 msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind 도메인 제어기(_N)"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:61
 msgid "Winbind _Domain"
 msgstr "Winbind 도메인(_D)"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:62
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -912,63 +933,67 @@ msgstr ""
 "정보를 검색하거나 사용자를 인증할 수 있게 해줍니다.  winbind는 중대형 네트워"
 "크에서 사용됩니다."
 
-#: ../authconfig.glade.h:62
+#: ../authconfig.glade.h:63
 msgid "_Admin Servers"
 msgstr "관리 서버(_A)"
 
-#: ../authconfig.glade.h:63
+#: ../authconfig.glade.h:64
 msgid "_Authenticate system accounts by network services"
 msgstr "네트워크 서비스에 의한 인증 시스템 계정 (_A)"
 
-#: ../authconfig.glade.h:64
+#: ../authconfig.glade.h:65
+msgid "_Check access.conf during account authorization"
+msgstr ""
+
+#: ../authconfig.glade.h:66
 msgid "_Domain Controllers"
 msgstr "도메인 제어기(_D)"
 
-#: ../authconfig.glade.h:65
+#: ../authconfig.glade.h:67
 msgid "_Join Domain"
 msgstr "결합 도메인(_J)"
 
-#: ../authconfig.glade.h:66
+#: ../authconfig.glade.h:68
 msgid "_KDCs"
 msgstr "KDC(_K)"
 
-#: ../authconfig.glade.h:67
+#: ../authconfig.glade.h:69
 msgid "_Local authorization is sufficient for local users"
 msgstr "로컬 사용자에겐 로컬 권한부여만으로 충분합니다(_L)"
 
-#: ../authconfig.glade.h:68
+#: ../authconfig.glade.h:70
 msgid "_Password"
 msgstr "암호(_P)"
 
-#: ../authconfig.glade.h:69
+#: ../authconfig.glade.h:71
 msgid "_Realm"
 msgstr "관리 영역(_R)"
 
-#: ../authconfig.glade.h:70
+#: ../authconfig.glade.h:72
 msgid "_Require smart card for login"
 msgstr "로그인하기 위해 smart card가 필요함(_R)"
 
-#: ../authconfig.glade.h:71
+#: ../authconfig.glade.h:73
 msgid "_Security Model"
 msgstr "보안 모델(_S)"
 
-#: ../authconfig.glade.h:72
+#: ../authconfig.glade.h:74
 msgid "_Template Shell"
 msgstr "템플리트 쉘(_T)"
 
-#: ../authconfig.glade.h:73
+#: ../authconfig.glade.h:75
 msgid "_Workgroup"
 msgstr "작업그룹(_W)"
 
-#: ../authinfo.py:663 ../authinfo.py:987 ../authinfo.py:2104
+#: ../authinfo.py:653 ../authinfo.py:975 ../authinfo.py:2115
 msgid "Lock"
 msgstr "잠금"
 
-#: ../authinfo.py:663 ../authinfo.py:989
+#: ../authinfo.py:653 ../authinfo.py:977
 msgid "Ignore"
 msgstr "무시"
 
-#: ../authinfo.py:2615
+#: ../authinfo.py:2458
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -977,7 +1002,6 @@ msgstr ""
 "%s/pam_%s.so  인증 모듈이 없습니다. 이 모듈이 없이는 인증 절차가 제대로 작동"
 "하지 않을 것입니다."
 
-#: ../authinfo.py:3073
+#: ../authinfo.py:2922
 msgid "Error downloading CA certificate"
 msgstr "CA 인증서를 다운로드 하는 도중 오류 발생"
-

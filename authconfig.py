@@ -202,6 +202,11 @@ class Authconfig:
  		parser.add_option("--disablelocauthorize", action="store_true",
 			help=_("authorize local users also through remote service"))
 
+		parser.add_option("--enablepamaccess", action="store_true",
+			help=_("check access.conf during account authorization"))
+ 		parser.add_option("--disablepamaccess", action="store_true",
+			help=_("do not check access.conf during account authorization"))
+
 		parser.add_option("--enablesysnetauth", action="store_true",
 			help=_("authenticate system accounts by network services"))
  		parser.add_option("--disablesysnetauth", action="store_true",

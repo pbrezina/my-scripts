@@ -281,11 +281,6 @@ argv_krb5_password = [
 	"use_authtok"
 ]
 
-argv_krb5afs_auth = [
-	"use_first_pass",
-	"tokens"
-]
-
 argv_ldap_auth = [
 	"use_first_pass"
 ]
@@ -379,8 +374,6 @@ standard_pam_modules = [
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "krb5afs",		argv_krb5afs_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "ldap",		argv_ldap_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "otp",			argv_otp_auth],
@@ -406,6 +399,8 @@ standard_pam_modules = [
 # Because we'd now be ending the stack with sufficient modules, and PAM's
 # behavior isn't defined if none of them return success, we add a
 # successful call to pam_permit at the end as a requirement.
+	[False, ACCOUNT,	LOGIC_REQUIRED,
+	 "access",		[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
@@ -416,8 +411,6 @@ standard_pam_modules = [
 	 "ldap",		[]],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5",		[]],
-	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
-	 "krb5afs",		[]],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "winbind",		[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
@@ -440,8 +433,6 @@ standard_pam_modules = [
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
-	 "krb5afs",		argv_krb5_password],
-	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "ldap",		argv_ldap_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_password],
@@ -462,8 +453,6 @@ standard_pam_modules = [
 	 "afs.krb",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "krb5afs",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "ldap",		[]],
 ]
@@ -756,6 +745,7 @@ class AuthInfo:
 		self.enableSMB = None
 		self.enableWinbindAuth = None
 		self.enableLocAuthorize = None
+		self.enablePAMAccess = None
 		self.enableSysNetAuth = None
 		self.enableSmartcard = None
 
@@ -769,6 +759,7 @@ class AuthInfo:
 		self.cracklibArgs = ""
 		self.passwdqcArgs = ""
 		self.localuserArgs = ""
+		self.pamAccessArgs = ""
 		self.ldapCacertDir = ""
 		self.ldapCacertURL = ""
 		
@@ -1210,6 +1201,11 @@ class AuthInfo:
 			if module.startswith("pam_winbind"):
 				self.enableWinbindAuth = True
 				continue
+			if module.startswith("pam_access"):
+				self.enablePAMAccess = True
+				if args:
+					self.pamAccessArgs = args
+				continue
 			if module.startswith("pam_localuser"):
 				self.enableLocAuthorize = True
 				if args:
@@ -1350,6 +1346,10 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
+				self.enablePAMAccess = shv.getBoolValue("USEPAMACCESS")
+			except ValueError:
+				pass
+			try:
 				self.enableSysNetAuth = shv.getBoolValue("USESYSNETAUTH")
 			except ValueError:
 				pass
@@ -1465,6 +1465,7 @@ class AuthInfo:
 		(self.enableShadow != b.enableShadow) or
 		(self.enableSMB != b.enableSMB) or
 		(self.enableLocAuthorize != b.enableLocAuthorize) or
+		(self.enablePAMAccess != b.enablePAMAccess) or
 		(self.enableSysNetAuth != b.enableSysNetAuth) or
 		(self.brokenShadow != b.brokenShadow) or
 		(self.forceBrokenShadow != b.forceBrokenShadow) or
@@ -2463,6 +2464,8 @@ class AuthInfo:
 				args = self.passwdqcArgs
 			if module[NAME] == "localuser":
 				args = self.localuserArgs
+			if module[NAME] == "access":
+				args = self.pamAccessArgs
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
 			if module[NAME] == "winbind" and self.winbindOffline:
@@ -2507,7 +2510,6 @@ class AuthInfo:
 	
 	# Write PAM setup to the control file.
 	def writePAM(self):
-		have_afs = False
 		f = None
 		self.module_missing = {}
 		output = ""
@@ -2519,8 +2521,6 @@ class AuthInfo:
 			output += "# User changes will be destroyed the next time "
 			output += "authconfig is run.\n"
 
-			have_afs = os.access("/afs", os.R_OK | os.X_OK)
-
 			prevmodule = []
 			for module in standard_pam_modules:
 				if prevmodule and module[STACK] != prevmodule[STACK]:
@@ -2531,9 +2531,8 @@ class AuthInfo:
 					(self.enableAFSKerberos and module[NAME] == "afs.krb") or
 					(self.enableCracklib and module[NAME] == "cracklib") or
 					(self.enableEPS and module[NAME] == "eps") or
-					(self.enableKerberos and not have_afs and module[NAME] == "krb5" and
+					(self.enableKerberos and module[NAME] == "krb5" and
 						not module[ARGV] == argv_krb5_sc_auth) or
-					(self.enableKerberos and have_afs and module[NAME] == "krb5afs") or
 					(self.enableKerberos and self.enableSmartcard and
 					    ((module[NAME] == "krb5" and module[ARGV] == argv_krb5_sc_auth) or
 					    (module[NAME] == "permit" and module[STACK] == AUTH))) or
@@ -2546,6 +2545,7 @@ class AuthInfo:
 					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
+					(self.enablePAMAccess and module[NAME] == "access") or
 					(not self.enableSysNetAuth and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_REQUISITE)):
 					output += self.formatPAMModule(module)
@@ -2587,6 +2587,7 @@ class AuthInfo:
 		shv.setBoolValue("USESMBAUTH", self.enableSMB)
 		shv.setBoolValue("USEWINBINDAUTH", self.enableWinbindAuth)
 		shv.setBoolValue("USELOCAUTHORIZE", self.enableLocAuthorize)
+		shv.setBoolValue("USEPAMACCESS", self.enablePAMAccess)
 		shv.setBoolValue("USESYSNETAUTH", self.enableSysNetAuth)
 
 		shv.write(0644)
@@ -2664,7 +2665,8 @@ class AuthInfo:
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
 		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
 		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b")]),
-	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"), ("localuserArgs", "c"),
+	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
+		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
 		("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"), ("enableBigCrypt", "b"),
 		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
 		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
@@ -2677,7 +2679,8 @@ class AuthInfo:
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
-		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enableSysNetAuth", "b")]),
+		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
+		("enableSysNetAuth", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 		self.update()
@@ -2827,6 +2830,8 @@ class AuthInfo:
 			self.cracklibArgs)
 		print "pam_passwdqc is %s (%s)" % (formatBool(self.enablePasswdQC),
 			self.passwdqcArgs)
+		print "pam_access is %s (%s)" % (formatBool(self.enablePAMAccess),
+			self.pamAccessArgs)
 		print "Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),
 			self.localuserArgs)
 		print "Authenticate system accounts against network services is %s" % formatBool(self.enableSysNetAuth)

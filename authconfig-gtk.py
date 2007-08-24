@@ -107,6 +107,8 @@ class Authconfig:
 			 "winbind", "samba-client", ["configwinbindauth"]),
 			"enablelocauthorize" :
 			("enableLocAuthorize", "", "", "", []),
+			"enablepamaccess" :
+			("enablePAMAccess", "", "", "", []),
 			"enablesysnetauth" :
 			("enableSysNetAuth", "", "", "", []),
 		}
