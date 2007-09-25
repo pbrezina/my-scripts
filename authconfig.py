@@ -326,9 +326,13 @@ class Authconfig:
 				setattr(self.info, aival, True)
 			if getattr(self.options, "disable"+opt):
 				setattr(self.info, aival, False)
-				
+
+		if self.options.krb5realm and self.options.krb5realm != self.info.kerberosRealm:
+			self.info.kerberosKDC = self.info.getKerberosKDC(self.options.krb5realm)
+			self.info.kerberosAdminServer = self.info.getKerberosAdminServer(self.options.krb5realm)
+
 		for opt, aival in string_settings.iteritems():
-			if getattr(self.options, opt):
+			if getattr(self.options, opt) != None:
 				setattr(self.info, aival, getattr(self.options, opt))			
 
 		if self.options.winbindjoin:

@@ -899,8 +899,22 @@ class AuthInfo:
 		return True
 
 	# Read Kerberos setup from /etc/krb5.conf.
+	def getKerberosKDC(self, realm):
+		try:
+			return self.allKerberosKDCs[realm]
+		except KeyError:
+			return ""
+
+	def getKerberosAdminServer(self, realm):
+		try:
+			return self.allKerberosAdminServers[realm]
+		except KeyError:
+			return ""
+
 	def readKerberos(self):
 		section = ""
+		self.allKerberosKDCs = {}
+		self.allKerberosAdminServers = {}		
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
@@ -947,15 +961,17 @@ class AuthInfo:
 						continue
 					if not self.kerberosRealm:
 						self.kerberosRealm = subsection
-					if subsection == self.kerberosRealm:
-						# See if this is a key we care about.
-						value = matchKeyEquals(line, "kdc")
-						if value:
-							self.kerberosKDC = commaAppend(self.kerberosKDC, value)
-							continue					
-						value = matchKeyEquals(line, "admin_server")
-						if value:
-							self.kerberosAdminServer = commaAppend(self.kerberosAdminServer, value)
+					# See if this is a key we care about.
+					value = matchKeyEquals(line, "kdc")
+					if value:
+						self.allKerberosKDCs[subsection] = commaAppend(self.getKerberosKDC(subsection), value)
+						continue					
+					value = matchKeyEquals(line, "admin_server")
+					if value:
+						self.allKerberosAdminServers[subsection] = commaAppend(self.getKerberosAdminServer(subsection), value)
+		if self.kerberosRealm:
+			self.kerberosKDC = self.getKerberosKDC(self.kerberosRealm)
+			self.kerberosAdminServer = self.getKerberosAdminServer(self.kerberosRealm)
 		f.close()
 		return True
 
