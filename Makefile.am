@@ -104,6 +104,7 @@ authconfig.glade.h: authconfig.glade
 
 update-po: authconfig.glade.h
 	$(MAKE) -C po update-po
+	cp po/sr@latin.po po/sr.latin.po
 
 tag:
 	cvs tag -cR $(TAG)
@@ -121,6 +122,7 @@ archive:
 	cd /tmp ; \
 	cvs -d "$$root" export -r $(TAG) -d $(PACKAGE) $(PACKAGE) ; \
 	cd $(PACKAGE) ; \
+	mv po/sr.latin.po po/sr@latin.po ; \
 	./autogen.sh ; \
 	./configure ; \
 	aclocal ; \
