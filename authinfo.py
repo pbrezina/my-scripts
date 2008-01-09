@@ -1,6 +1,12 @@
+# -*- coding: UTF-8 -*-
 #
 # Authconfig - client authentication configuration program
-# Copyright (c) 1999-2005 Red Hat, Inc.
+# Copyright (c) 1999-2008 Red Hat, Inc.
+#
+# Authors: Preston Brown <pbrown@redhat.com>
+#          Nalin Dahyabhai <nalin@redhat.com>
+#          Matt Wilson <msw@redhat.com>
+#          Tomas Mraz <tmraz@redhat.com>
 #
 # This is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -33,7 +39,8 @@ import urllib2
 import time
 from subprocess import *
 import acutil
-from rhpl.translate import _
+import gettext
+_ = gettext.lgettext
 
 SYSCONFDIR = "/etc"
 AUTH_PAM_SERVICE = "system-auth"
@@ -334,6 +341,9 @@ argv_keyinit_session = [
 	"revoke"
 ]
 
+# Password hashing algorithms.
+password_algorithms = ["descrypt", "bigcrypt", "md5", "sha256", "sha512"]
+
 # Enumerations for PAM control flags and stack names.
 AUTH = 0
 ACCOUNT = 1
@@ -443,6 +453,8 @@ standard_pam_modules = [
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "limits",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "mkhomedir",		[]],
 	[True,  SESSION,	LOGIC_SKIPNEXT,
 	 "succeed_if",		argv_succeed_if_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
@@ -739,6 +751,8 @@ class AuthInfo:
 		self.enableKerberos = None
 		self.enableLDAPAuth = None
 		self.enableMD5 = None
+		self.passwordAlgorithm = ""
+		self.algoRounds = ""
 		self.enableOTP = None
 		self.enablePasswdQC = None
 		self.enableShadow = None
@@ -747,6 +761,7 @@ class AuthInfo:
 		self.enableLocAuthorize = None
 		self.enablePAMAccess = None
 		self.enableSysNetAuth = None
+		self.enableMkHomeDir = None
 		self.enableSmartcard = None
 
 		self.brokenShadow = None
@@ -760,6 +775,7 @@ class AuthInfo:
 		self.passwdqcArgs = ""
 		self.localuserArgs = ""
 		self.pamAccessArgs = ""
+		self.mkhomedirArgs = ""
 		self.ldapCacertDir = ""
 		self.ldapCacertURL = ""
 		
@@ -1222,24 +1238,34 @@ class AuthInfo:
 				if args:
 					self.pamAccessArgs = args
 				continue
+			if module.startswith("pam_mkhomedir"):
+				self.enableMkHomeDir = True
+				if args:
+					self.mkhomedirArgs = args
+				continue
 			if module.startswith("pam_localuser"):
 				self.enableLocAuthorize = True
 				if args:
 					self.localuserArgs = args
 				continue
 			if stack == "password":
-				if (module.startswith("pam_unix") or
-					module.startswith("pam_pwdb")):
-					self.enableMD5 = args.find("md5") >= 0
+				if module.startswith("pam_unix"):
+					for algo in password_algorithms:
+						if args.find(algo) >= 0:
+							self.passwordAlgorithm = algo
+					try:
+						ridx = args.index("rounds=")
+						rounds = args[ridx+7:].split(None,1)
+						self.algoRounds = str(int(rounds[0]))
+					except (ValueError, IndexError):
+						pass
 					try:
 						os.stat("/etc/shadow")
 						self.enableShadow = True
 					except OSError:
 						self.enableShadow = False
-					self.enableBigCrypt = args.find("bigcrypt") >= 0
 			if stack == "auth":
-				if (module.startswith("pam_unix") or
-					module.startswith("pam_pwdb")):
+				if module.startswith("pam_unix"):
 					self.enableNullOk = args.find("nullok") >= 0
 			if stack == "account":
 				if module.startswith("pam_unix"):
@@ -1366,9 +1392,16 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
+				self.enableMkHomeDir = shv.getBoolValue("USEMKHOMEDIR")
+			except ValueError:
+				pass
+			try:
 				self.enableSysNetAuth = shv.getBoolValue("USESYSNETAUTH")
 			except ValueError:
 				pass
+			algo = shv.getValue("PASSWDALGORITHM")
+			if algo in password_algorithms:
+				self.passwordAlgorithm = algo
 			shv.close()
 		except IOError:
 			pass
@@ -1444,6 +1477,11 @@ class AuthInfo:
 			       b.winbindTemplatePrimaryGroup, True) or
 		stringsDiffer(self.winbindTemplateShell,
 			       b.winbindTemplateShell, True) or
+		
+		stringsDiffer(self.passwordAlgorithm,
+			       b.passwordAlgorithm, False) or
+		stringsDiffer(self.algoRounds,
+			       b.algoRounds, True) or
 
 		(self.winbindUseDefaultDomain != b.winbindUseDefaultDomain) or
 		(self.winbindOffline != b.winbindOffline) or
@@ -1482,6 +1520,7 @@ class AuthInfo:
 		(self.enableSMB != b.enableSMB) or
 		(self.enableLocAuthorize != b.enableLocAuthorize) or
 		(self.enablePAMAccess != b.enablePAMAccess) or
+		(self.enableMkHomeDir != b.enableMkHomeDir) or
 		(self.enableSysNetAuth != b.enableSysNetAuth) or
 		(self.brokenShadow != b.brokenShadow) or
 		(self.forceBrokenShadow != b.forceBrokenShadow) or
@@ -1506,6 +1545,12 @@ class AuthInfo:
 			# and we need to reflect that in the krb5.conf file.
 			if self.smbRealm:
 				self.smbRealm = self.smbRealm.upper()
+		self.passwordAlgorithm = self.passwordAlgorithm.lower()
+		if not self.passwordAlgorithm:
+			if self.enableMD5:
+				self.passwordAlgorithm = "md5"
+			elif self.enableBigCrypt:
+				self.passwordAlgorithm = "bigcrypt"
 
 	def read(self):
 		self.readHesiod()
@@ -1674,6 +1719,11 @@ class AuthInfo:
 		wrotecacertdir = False
 		f = None
 		output = ""
+		if (self.passwordAlgorithm and self.passwordAlgorithm != "descrypt" and
+			self.passwordAlgorithm != "bigcrypt"):
+			passalgo = "md5"
+		else: 
+			passalgo = "crypt"
 		try:
 			f = openLocked(filename, 0644)
 
@@ -1721,11 +1771,7 @@ class AuthInfo:
 				elif writePadl and matchLine(ls, "pam_password"):
 					# If it's a 'pam_password' line, write the correct setting.
 					if not wrotepass:
-						output += "pam_password "
-						if self.enableMD5:
-							output += "md5"
-						else: 
-							output += "crypt"
+						output += "pam_password " + passalgo
 						output += "\n"
 						wrotepass = True
 				else:
@@ -1756,11 +1802,7 @@ class AuthInfo:
 				output += " " + self.ldapCacertDir
 				output += "\n"
 			if writePadl and not wrotepass:
-				output += "pam_password "
-				if self.enableMD5:
-					output += "md5"
-				else: 
-					output += "crypt"
+				output += "pam_password " + passalgo
 				output += "\n"
 			# Write it out and close it.
 			f.seek(0)
@@ -1785,12 +1827,14 @@ class AuthInfo:
 
 	def cryptStyle(self):
 		ret = "crypt_style = "
-		if self.enableMD5:
+		if self.passwordAlgorithm == "md5":
 			return ret + "md5"
+		elif self.passwordAlgorithm == "sha256" or self.passwordAlgorithm == "sha512":
+			return ret + self.passwordAlgorithm
 		else:
 			return ret + "des"
 
-	# Write libuser's md5 setting to /etc/libuser.conf.
+	# Write libuser's password algo setting to /etc/libuser.conf.
 	def writeLibuser(self):
 		wrotecryptstyle = False
 		wrotedefaults = False
@@ -1830,6 +1874,59 @@ class AuthInfo:
 				output += self.cryptStyle() + "\n"
 				wrotedefaults = True
 				wrotecryptstyle = True
+			# Write it out and close it.
+			f.seek(0)
+			f.truncate(0)
+			f.write(output)
+		finally:
+			try:
+				if f:
+					f.close()
+			except IOError:
+				pass
+		return True
+
+	# Write shadow utils password algo setting to /etc/login.defs.
+	def writeLogindefs(self):
+		wrotemd5crypt = False
+		wroteencmethod = False
+		section = ""
+		f = None
+		output = ""
+
+		if self.passwordAlgorithm == "md5":
+			md5crypt = "MD5_CRYPT_ENAB yes\n"
+		else:
+			md5crypt = "MD5_CRYPT_ENAB no\n"
+
+		if self.passwordAlgorithm == "descrypt" or self.passwordAlgorithm =="bigcrypt":
+			encmethod = "ENCRYPT_METHOD DES\n"
+		else:
+			encmethod = "ENCRYPT_METHOD " + self.passwordAlgorithm.upper() + "\n"
+		try:
+			f = openLocked(SYSCONFDIR+"/login.defs", 0644)
+
+			# Read in the old file.
+			for line in f:
+				ls = line.strip()
+
+				if matchLine(ls, "MD5_CRYPT_ENAB"):
+					output += md5crypt
+					wrotemd5crypt = True
+					continue
+
+				if matchLine(ls, "ENCRYPT_METHOD"):
+					output += encmethod
+					wroteencmethod = True
+					continue
+
+				output += line
+
+			# If we haven't encountered a defaults section yet...
+			if not wrotemd5crypt:
+				output += md5crypt
+			if not wroteencmethod:
+				output += encmethod
 			# Write it out and close it.
 			f.seek(0)
 			f.truncate(0)
@@ -2482,20 +2579,22 @@ class AuthInfo:
 				args = self.localuserArgs
 			if module[NAME] == "access":
 				args = self.pamAccessArgs
+			if module[NAME] == "mkhomedir":
+				args = self.mkhomedirArgs
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
 			if module[NAME] == "winbind" and self.winbindOffline:
 				output += " cached_login"
 			if module[NAME] == "unix":
 				if stack == "password":
-					if self.enableMD5:
-						output += " md5"
+					if self.passwordAlgorithm and self.passwordAlgorithm != "descrypt":
+						output += " " + self.passwordAlgorithm
+					if self.algoRounds:
+						output += " rounds=" + self.algoRounds
 					if self.enableShadow:
 						output +=  " shadow"
 					if self.enableNIS:
 						output += " nis"
-					if self.enableBigCrypt:
-						output += " bigcrypt"
 					if self.enableNullOk:
 						output += " nullok"
 				if stack == "auth":
@@ -2562,6 +2661,7 @@ class AuthInfo:
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
 					(self.enablePAMAccess and module[NAME] == "access") or
+					(self.enableMkHomeDir and module[NAME] == "mkhomedir") or
 					(not self.enableSysNetAuth and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_REQUISITE)):
 					output += self.formatPAMModule(module)
@@ -2598,12 +2698,14 @@ class AuthInfo:
 		shv.setBoolValue("USELDAPAUTH", self.enableLDAPAuth)
 		shv.setBoolValue("USESMARTCARD", self.enableSmartcard)
 		shv.setBoolValue("FORCESMARTCARD", self.forceSmartcard)
-		shv.setBoolValue("USEMD5", self.enableMD5)
+		shv.setValue("PASSWDALGORITHM", self.passwordAlgorithm)
+		shv.setValue("USEMD5", None)
 		shv.setBoolValue("USESHADOW", self.enableShadow)
 		shv.setBoolValue("USESMBAUTH", self.enableSMB)
 		shv.setBoolValue("USEWINBINDAUTH", self.enableWinbindAuth)
 		shv.setBoolValue("USELOCAUTHORIZE", self.enableLocAuthorize)
 		shv.setBoolValue("USEPAMACCESS", self.enablePAMAccess)
+		shv.setBoolValue("USEMKHOMEDIR", self.enableMkHomeDir)
 		shv.setBoolValue("USESYSNETAUTH", self.enableSysNetAuth)
 
 		shv.write(0644)
@@ -2628,6 +2730,7 @@ class AuthInfo:
 		self.update()
 		try:
 			ret = self.writeLibuser()
+			ret = ret and self.writeLogindefs()
 			ret = ret and self.writeCache()
 
 			if self.enableHesiod:
@@ -2661,9 +2764,10 @@ class AuthInfo:
 	SaveGroup(self.writeSMB, [("smbWorkgroup", "i"), ("smbServers", "i")]),
 	SaveGroup(self.writeNIS, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
 	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
-		("ldapCacertDir", "c"), ("enableMD5", "b")]),
+		("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
 	SaveGroup(self.writeCache, [("enableCache", "b")]),
-	SaveGroup(self.writeLibuser, [("enableMD5", "b")]),
+	SaveGroup(self.writeLibuser, [("passwordAlgorithm", "i")]),
+	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]),
 	SaveGroup(self.writeKerberos5, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
 		("smbSecurity", "i"), ("smbRealm", "c"), ("smbServers", "i"),
 		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
@@ -2683,20 +2787,21 @@ class AuthInfo:
 		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b")]),
 	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
-		("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"), ("enableBigCrypt", "b"),
+		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
+		("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
 		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
-		("enableWinbindAuth", "b"), ("enableAFS", "b"),
+		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b")]),
-	SaveGroup(self.writeSysconfig, [("enableMD5", "b"), ("enableShadow", "b"), ("enableNIS", "b"),
+	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
 		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
-		("enableSysNetAuth", "b")]),
+		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 		self.update()
@@ -2819,7 +2924,7 @@ class AuthInfo:
 		print "nss_wins is %s" % formatBool(self.enableWINS)
 		print "pam_unix is always enabled"
 		print " shadow passwords are %s" % formatBool(self.enableShadow)
-		print " md5 passwords are %s" % formatBool(self.enableMD5)
+		print " password hashing algorithm is %s" % self.passwordAlgorithm
 		print "pam_krb5 is %s" % formatBool(self.enableKerberos)
 		print " krb5 realm = \"%s\"" % self.kerberosRealm
 		print " krb5 realm via dns is %s" % formatBool(self.kerberosRealmviaDNS)
@@ -2848,6 +2953,8 @@ class AuthInfo:
 			self.passwdqcArgs)
 		print "pam_access is %s (%s)" % (formatBool(self.enablePAMAccess),
 			self.pamAccessArgs)
+		print "pam_mkhomedir is %s (%s)" % (formatBool(self.enableMkHomeDir),
+			self.mkhomedirArgs)
 		print "Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),
 			self.localuserArgs)
 		print "Authenticate system accounts against network services is %s" % formatBool(self.enableSysNetAuth)
@@ -2934,7 +3041,7 @@ class AuthInfo:
 			writef.write(readf.read())
 			readf.close()
 			writef.close()
-		except IOError:
+		except (IOError, OSError, ValueError):
 			self.messageCB(_("Error downloading CA certificate"))
 			return False
 		self.rehashLDAPCACerts()

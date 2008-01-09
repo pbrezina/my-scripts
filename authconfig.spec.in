@@ -12,10 +12,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: http://rhlinux.redhat.com/
 # The project doesn't have http site with downloadable tarballs yet.
 Source: %{name}-%{version}.tar.bz2
-Requires: rhpl, newt-python, pam >= 0.99.6.2, usermode, python
+Requires: newt-python, pam >= 0.99.6.2, usermode, python
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 Conflicts: nss_ldap < 254
-BuildRequires: glib2-devel, python, python-devel
+BuildRequires: glib2-devel, python >= 2.4.1, python-devel
 BuildRequires: desktop-file-utils, intltool, gettext, perl-XML-Parser
 
 %description 
@@ -27,7 +27,7 @@ authentication schemes.
 %package gtk
 Summary: Graphical tool for setting up authentication from network services
 Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.4.0, rhpl
+Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.4.0
 Requires: usermode-gtk
 
 %description gtk
@@ -98,6 +98,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Jan  9 2008 Tomas Mraz <tmraz@redhat.com> - 5.3.19-1
+- support new sha256 and sha512 password hash algorithms
+- add support for pam_mkhomedir (#212790)
+- do not crash in authconfig --help (#237956) - thanks to Andy Shevchenko for
+  the idea how to fix that
+- setup password hash algorithm in /etc/login.defs (#218652)
+- update translations
+
 * Tue Sep 25 2007 Tomas Mraz <tmraz@redhat.com> - 5.3.18-1
 - improve krb5.conf handling (#238766)
 

@@ -1137,16 +1137,50 @@
 		  <property name="right_padding">0</property>
 
 		  <child>
-		    <widget class="GtkCheckButton" id="enablemd5">
+		    <widget class="GtkHBox" id="hbox20">
 		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">Use _MD5 Passwords</property>
-		      <property name="use_underline">True</property>
-		      <property name="relief">GTK_RELIEF_NORMAL</property>
-		      <property name="focus_on_click">True</property>
-		      <property name="active">False</property>
-		      <property name="inconsistent">False</property>
-		      <property name="draw_indicator">True</property>
+		      <property name="homogeneous">False</property>
+		      <property name="spacing">0</property>
+
+		      <child>
+			<widget class="GtkLabel" id="labelpasswordalgo">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">_Password hashing algorithm</property>
+			  <property name="use_underline">True</property>
+			  <property name="use_markup">False</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">passwordalgo</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+			  <property name="width_chars">-1</property>
+			  <property name="single_line_mode">False</property>
+			  <property name="angle">0</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkComboBox" id="passwordalgo">
+			  <property name="visible">True</property>
+			  <property name="items">*</property>
+			  <property name="add_tearoffs">False</property>
+			  <property name="focus_on_click">True</property>
+			</widget>
+			<packing>
+			  <property name="padding">12</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
 		    </widget>
 		  </child>
 		</widget>
@@ -1240,9 +1274,43 @@
 		  <child>
 		    <widget class="GtkCheckButton" id="enablepamaccess">
 		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine.</property>
+		      <property name="tooltip" translatable="yes">When enabled /etc/security/access.conf will be consulted for authorization of users access.</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">_Check access.conf during account authorization</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <property name="active">False</property>
+		      <property name="inconsistent">False</property>
+		      <property name="draw_indicator">True</property>
+		    </widget>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkAlignment" id="alignment34">
+		  <property name="visible">True</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xscale">1</property>
+		  <property name="yscale">1</property>
+		  <property name="top_padding">0</property>
+		  <property name="bottom_padding">0</property>
+		  <property name="left_padding">12</property>
+		  <property name="right_padding">0</property>
+
+		  <child>
+		    <widget class="GtkCheckButton" id="enablemkhomedir">
+		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">If the home directory of an user doesn't exist yet it will be created automatically on his first login.</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">Create _home directories on the first login</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -2698,7 +2766,7 @@
 	      <property name="border_width">5</property>
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">Allow offline login</property>
+	      <property name="label" translatable="yes">_Allow offline login</property>
 	      <property name="use_underline">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
@@ -3372,7 +3440,7 @@
 	<widget class="GtkTable" id="table21">
 	  <property name="border_width">12</property>
 	  <property name="visible">True</property>
-	  <property name="n_rows">1</property>
+	  <property name="n_rows">2</property>
 	  <property name="n_columns">2</property>
 	  <property name="homogeneous">False</property>
 	  <property name="row_spacing">12</property>
@@ -3400,8 +3468,8 @@
 	    <packing>
 	      <property name="left_attach">0</property>
 	      <property name="right_attach">1</property>
-	      <property name="top_attach">0</property>
-	      <property name="bottom_attach">1</property>
+	      <property name="top_attach">1</property>
+	      <property name="bottom_attach">2</property>
 	      <property name="x_options">fill</property>
 	      <property name="y_options"></property>
 	    </packing>
@@ -3423,8 +3491,36 @@
 	    <packing>
 	      <property name="left_attach">1</property>
 	      <property name="right_attach">2</property>
+	      <property name="top_attach">1</property>
+	      <property name="bottom_attach">2</property>
+	      <property name="y_options"></property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkLabel" id="label46">
+	      <property name="visible">True</property>
+	      <property name="label" translatable="yes">To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from.</property>
+	      <property name="use_underline">False</property>
+	      <property name="use_markup">False</property>
+	      <property name="justify">GTK_JUSTIFY_LEFT</property>
+	      <property name="wrap">True</property>
+	      <property name="selectable">False</property>
+	      <property name="xalign">0</property>
+	      <property name="yalign">0.5</property>
+	      <property name="xpad">0</property>
+	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	      <property name="width_chars">-1</property>
+	      <property name="single_line_mode">False</property>
+	      <property name="angle">0</property>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">0</property>
+	      <property name="right_attach">2</property>
 	      <property name="top_attach">0</property>
 	      <property name="bottom_attach">1</property>
+	      <property name="x_options"></property>
 	      <property name="y_options"></property>
 	    </packing>
 	  </child>

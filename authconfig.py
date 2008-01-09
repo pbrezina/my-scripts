@@ -1,12 +1,13 @@
 #!/usr/bin/python
+# -*- coding: UTF-8 -*-
 #
 # Authconfig - client authentication configuration program
-# Copyright (c) 1999-2005 Red Hat, Inc.
+# Copyright (c) 1999-2008 Red Hat, Inc.
 #
 # Original authors: Preston Brown <pbrown@redhat.com>
 #                   Nalin Dahyabhai <nalin@redhat.com>
 #                   Matt Wilson <msw@redhat.com>
-# Rewritten in Python by: Tomas Mraz <tmraz@redhat.com>
+# Python rewrite and further development by: Tomas Mraz <tmraz@redhat.com>
 #
 # This is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -25,14 +26,25 @@
 
 import authinfo, acutil
 import gettext, os, signal, sys
-from rhpl.translate import _, textdomain
+_ = gettext.lgettext
 from optparse import OptionParser
+import locale
+locale.setlocale(locale.LC_ALL, '')
 
 def runsAs(name):
 	return sys.argv[0].find(name) >= 0
 
 if runsAs("authconfig-tui"):
 	import snack
+
+class UnihelpOptionParser(OptionParser):
+	def print_help(self, file=None):
+		if file is None:
+			file = sys.stdout
+		encoding = self._get_encoding(file)
+		if encoding == "ascii":
+			encoding = locale.getpreferredencoding()
+		file.write(self.format_help().decode('UTF-8').encode(encoding, "replace"))
 	
 class Authconfig:
 	def __init__(self):
@@ -48,12 +60,25 @@ class Authconfig:
 	def printError(self, error):
 		sys.stderr.write("%s: %s\n" % (self.module(), error))
 
+	def listHelp(self, l, addidx):
+ 		idx = 0
+ 		help = "<"
+ 		for item in l:
+ 			if idx > 0:
+ 				help += "|"
+			if addidx:
+				help += str(idx) + "="
+			help += item
+			idx += 1
+		help += ">"
+		return help
+
 	def parseOptions(self):
 		usage = _("usage: %s [options]") % self.module()
 		if self.module() == "authconfig":
 			usage += " <--update|--test|--probe>"
 
-		parser = OptionParser(usage)
+		parser = UnihelpOptionParser(usage)
 
 		parser.add_option("--enableshadow", "--useshadow", action="store_true",
 			help=_("enable shadowed passwords by default"))
@@ -63,7 +88,10 @@ class Authconfig:
 			help=_("enable MD5 passwords by default"))
  		parser.add_option("--disablemd5", action="store_true",
 			help=_("disable MD5 passwords by default"))
-		
+		parser.add_option("--passalgo",
+			metavar=self.listHelp(authinfo.password_algorithms, False),
+			help=_("hash/crypt algorithm for new passwords"))
+
 		parser.add_option("--enablenis", action="store_true",
 			help=_("enable NIS for user information by default"))
  		parser.add_option("--disablenis", action="store_true",
@@ -102,16 +130,7 @@ class Authconfig:
 			help=_("do not require smart card for authentication by default"))
  		parser.add_option("--smartcardmodule", metavar=_("<module>"),
  			help=_("default smart card module to use"))
- 			
- 		acts = authinfo.getSmartcardActions()
- 		idx = 0
- 		actshelp = "<"
- 		for act in acts:
- 			if idx > 0:
- 				actshelp += "|"
-			actshelp += str(idx) + "=" + act
-			idx += 1
-		actshelp += ">"
+		actshelp = self.listHelp(authinfo.getSmartcardActions(), True)
  		parser.add_option("--smartcardaction", metavar=actshelp,
  			help=_("action to be taken on smart card removal"))
 
@@ -212,6 +231,11 @@ class Authconfig:
  		parser.add_option("--disablesysnetauth", action="store_true",
 			help=_("authenticate system accounts by local files only"))
 
+		parser.add_option("--enablemkhomedir", action="store_true",
+			help=_("create home directories for users on their first login"))
+ 		parser.add_option("--disablemkhomedir", action="store_true",
+			help=_("do not create home directories for users on their first login"))
+
 		parser.add_option("--nostart", action="store_true",
 			help=_("do not start/stop portmap, ypbind, and nscd"))
 
@@ -280,6 +304,7 @@ class Authconfig:
 			"locauthorize":"enableLocAuthorize",
 			"pamaccess":"enablePAMAccess",
 			"sysnetauth":"enableSysNetAuth",
+			"mkhomedir":"enableMkHomeDir",
 			"cache":"enableCache",
 			"hesiod":"enableHesiod",
 			"ldap":"enableLDAP",
@@ -298,7 +323,8 @@ class Authconfig:
 			"winbindoffline":"winbindOffline",
 			"wins":"enableWINS"}
 			
-		string_settings = {"hesiodlhs":"hesiodLHS",
+		string_settings = {"passalgo":"passwordAlgorithm",
+			"hesiodlhs":"hesiodLHS",
 			"hesiodrhs":"hesiodRHS",
 			"ldapserver":"ldapServer",
 			"ldapbasedn":"ldapBaseDN",
@@ -348,6 +374,11 @@ class Authconfig:
 			except (ValueError, IndexError):
 				self.printError(_("Bad smart card removal action specified."))
 				self.info.smartcardAction = ""
+
+		if self.options.passalgo:
+			if self.options.passalgo not in authinfo.password_algorithms:
+				self.printError(_("Unknown password hashing algorithm specified, using sha256."))
+				self.info.passwordAlgorithm = "sha256"
 
 	def doUI(self):
 		return True
@@ -786,7 +817,7 @@ class AuthconfigTUI(Authconfig):
 
 if __name__ == '__main__':
 	signal.signal(signal.SIGINT, signal.SIG_DFL)
-	textdomain("authconfig")
+	gettext.textdomain("authconfig")
 	if runsAs("authconfig-tui"):
 		# deprecated TUI
 		module = AuthconfigTUI()

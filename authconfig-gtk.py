@@ -1,12 +1,13 @@
 #!/usr/bin/python
+# -*- coding: UTF-8 -*-
 #
 # Authconfig - client authentication configuration program
-# Copyright (c) 1999-2005 Red Hat, Inc.
+# Copyright (c) 1999-2008 Red Hat, Inc.
 #
-# Original authors: Preston Brown <pbrown@redhat.com>
-#                   Nalin Dahyabhai <nalin@redhat.com>
-#                   Matt Wilson <msw@redhat.com>
-# Rewritten in Python by: Tomas Mraz <tmraz@redhat.com>
+# Authors: Preston Brown <pbrown@redhat.com>
+#          Nalin Dahyabhai <nalin@redhat.com>
+#          Matt Wilson <msw@redhat.com>
+#          Tomas Mraz <tmraz@redhat.com>
 #
 # This is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -24,7 +25,9 @@
 #
 import authinfo, acutil
 import gettext, os, signal, sys
-from rhpl.translate import _, textdomain
+_ = gettext.lgettext
+import locale
+locale.setlocale(locale.LC_ALL, '')
 
 firstbootservices = [
 	"crond",
@@ -97,8 +100,6 @@ class Authconfig:
 			 "SMB", "pam_smb", ["configsmb"]),
 			"enableshadow" :
 			("enableShadow", "", "", "", []),
-			"enablemd5" :
-			("enableMD5", "", "", "", []),
 			"enablewinbind" :
 			("enableWinbind", authinfo.PATH_LIBNSS_WINBIND,
 			 "winbind", "samba-client", ["configwinbind"]),
@@ -111,6 +112,11 @@ class Authconfig:
 			("enablePAMAccess", "", "", "", []),
 			"enablesysnetauth" :
 			("enableSysNetAuth", "", "", "", []),
+			"passwordalgo" :
+			("passwordAlgorithm", "", "", "",
+			 ["DESCRYPT", "BIGCRYPT", "MD5", "SHA256", "SHA512"]),
+			"enablemkhomedir" :
+			("enableMkHomeDir", "", "", "", []),
 		}
 		# entry or label / button / checkbox / option menu :
 		# entry (or label): authInfo field
@@ -251,6 +257,10 @@ class Authconfig:
 			else:
 				dependent.set_sensitive(False)
 
+	def combochanged(self, combo, entry):
+		option = entry[4][combo.get_active()]
+		setattr(self.info, entry[0], option)
+
 	# Create a vbox or dialog using the file, and return it. */
 	def run_on_button(self, button, top, mapname, parent=None, responses=()):
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
@@ -322,7 +332,7 @@ class Authconfig:
 		if (response == gtk.RESPONSE_OK):
 			self.info_apply(map, xml)
 			if (mapname == "ldap_map"):
-			    self.ldap_cacerts_test()
+			    self.ldap_cacerts_test(parent)
 		dialog.destroy()
 		if parent:
 			parent.set_sensitive(True)
@@ -362,7 +372,7 @@ class Authconfig:
 			else:
 				widget.set_active(bool(getattr(self.info,
 						  self.main_map[entry][0])))
-			if hasattr(widget, "get_active"):
+			if type(widget) == type(gtk.CheckButton()):
 				aliases = []
 				dependents = []
 				for candidate in self.main_map.keys():
@@ -378,6 +388,22 @@ class Authconfig:
 						   self.main_map[entry][0],
 						   aliases,
 						   dependents)
+			if type(widget) == type(gtk.ComboBox()):
+				widget.remove_text(0) # remove the bogus text necessary for glade
+				options = self.main_map[entry][4]
+				offset = 0
+				current = getattr(self.info, self.main_map[entry][0]).upper()
+				for option in options:
+					widget.append_text(option)
+					if option == current:
+						widget.set_active(offset)
+					offset = offset + 1
+				if current and current not in options:
+					widget.prepend_text(option)
+					widget.set_active(0)
+					options.insert(0, option)
+				widget.connect("changed", self.combochanged,
+					       self.main_map[entry])
 			# if not tokens are installed, don't enable smartcard
 			# login
 			if entry == "enablesmartcard" and len(authinfo.getSmartcardModules()) == 0:
@@ -404,16 +430,9 @@ class Authconfig:
     					cond = "cond"
 				os.system("/etc/init.d/autofs " + cond + "restart")
 
-	def ldap_cacerts_test(self):
+	def ldap_cacerts_test(self, parent):
 		if self.info.enableLDAPS and self.info.testLDAPCACerts():
-		    msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
-			_("To connect to a LDAP server with TLS protocol enabled you need "
-			"a CA certificate which signed your server's certificate. "
-		        "Copy the certificate in the PEM format to the '%s' directory.\n"
-			"Then press OK.") % self.info.ldapCacertDir)
-		    msg.set_title(_("LDAP CA Certificate Check"))
-		    msg.run()
-		    msg.destroy()
+		    self.ldap_cacert_download(None, None, None, parent)
 
 	def ldap_cacert_download(self, button, map, xml, parent):
 		response = self.run_on_button(self, "ldapcacertdownload",
@@ -430,7 +449,7 @@ class Authconfig:
 # Fake the firstboot setup.
 if __name__ == '__main__':
 	signal.signal(signal.SIGINT, signal.SIG_DFL)
-	textdomain("authconfig")
+	gettext.textdomain("authconfig")
 	gtk.glade.bindtextdomain("authconfig", "/usr/share/locale")
 	module = Authconfig()
 	dialog = module.get_main_widget()
