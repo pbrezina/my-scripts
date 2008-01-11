@@ -4,19 +4,18 @@
 #
 # Lauri Nurmi <lanurmi@iki.fi>, 2004, 2006.
 # Mikko Ikola <ikola@iki.fi>, 2004, 2005.
-# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2006, 2007.
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-09-14 23:31+0300\n"
+"PO-Revision-Date: 2008-01-11 22:31+0200\n"
 "Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../authconfig.py:77
@@ -42,7 +41,7 @@ msgstr "älä käytä MD5-salasanoja oletuksena"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "uusien salasanojen tiiviste-/salausalgoritmi"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -334,11 +333,11 @@ msgstr "todenna myös paikalliset käyttäjät etäpalvelun kautta"
 
 #: ../authconfig.py:225
 msgid "check access.conf during account authorization"
-msgstr ""
+msgstr "käytä access.conf-tiedostoa käyttäjätunnuksia todennettaessa"
 
 #: ../authconfig.py:227
 msgid "do not check access.conf during account authorization"
-msgstr ""
+msgstr "älä käytä access.conf-tiedostoa käyttäjätunnuksia todennettaessa"
 
 #: ../authconfig.py:230
 msgid "authenticate system accounts by network services"
@@ -350,11 +349,12 @@ msgstr "todenna järjestelmätilit vain paikallisten tiedostojen avulla"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "luo käyttäjille kotihakemistot ensimmäisen kirjautumisen yhteydessä"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
 msgstr ""
+"älä luo käyttäjille kotihakemistoja ensimmäisen kirjautumisen yhteydessä"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -398,7 +398,7 @@ msgstr "Virheellinen älykortin irrotustoiminto annettu."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Tuntematon salasanojen tiivistealgoritmi, käytetään sha256:tta."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -763,7 +763,7 @@ msgstr "_Aseta Winbind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Luo _kotihakemistot ensimmäisen kirjautumisen yhteydessä"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -839,6 +839,8 @@ msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"Jos käyttäjän kotihakemistoa ei ole vielä olemassa, se luodaan "
+"automaattisesti ensimmäisen kirjautumisen yhteydessä."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -912,16 +914,14 @@ msgstr ""
 "verkkoihin."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"Yhdistääksesi LDAP-palvelimelle käyttäen TLS-protokollaa tarvitset CA-"
-"sertifikaatin, joka allekirjoitti palvelimesi sertifikaatin. Kopioi "
-"sertifikaatti PEM-muodossa hakemistoon '%s'.\n"
-"Napsauta sitten OK."
+"Varmentaaksesi LDAP-palvelimen käyttäen TLS-protokollaa tarvitset CA-"
+"sertifikaatin, joka allekirjoitti palvelimen sertifikaatin. Syötä URL, josta "
+"PEM-muotoinen CA-sertifikaatti on ladattavissa."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -944,6 +944,8 @@ msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
+"Kun käytössä, tiedostoa /etc/security/access.conf käytetään käyttöoikeuksien "
+"todentamiseen."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -980,9 +982,8 @@ msgid "_Admin Servers"
 msgstr "_Pääpalvelimet"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Salli yhteydetön kirjautuminen"
+msgstr "_Salli yhteydetön kirjautuminen"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -990,7 +991,7 @@ msgstr "_Varmenna järjestelmän käyttäjätunnuksia verkkopalveluiden avulla"
 
 #: ../authconfig.glade.h:68
 msgid "_Check access.conf during account authorization"
-msgstr ""
+msgstr "_Käytä access.conf-tiedostoa käyttäjätunnuksia todennettaessa"
 
 #: ../authconfig.glade.h:69
 msgid "_Domain Controllers"
@@ -1014,7 +1015,7 @@ msgstr "_Salasana"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "_Salasanojen tiivistealgoritmi"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
