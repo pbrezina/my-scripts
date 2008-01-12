@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-08-24 21:58+0200\n"
+"PO-Revision-Date: 2008-01-12 11:57+0200\n"
 "Last-Translator: Tom Berner <tom@lodz.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "domyślnie wyłącz hasła MD5"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "algorytm hashowania/kodowania dla nowych haseł"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -346,11 +346,12 @@ msgstr "upoważnij konta systemowe tylko przez lokalne pliki"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "utwórz foldery domowe użytkowników podczas ich pierwszego logowania"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
 msgstr ""
+"nie twórz folderów domowych użytkowników podczas ich pierwszego logowania"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -392,7 +393,7 @@ msgstr "Określono błędną akcję usunięcia smart card."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Określono nieznany algorytm hashowania hasła, używanie SHA256."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -757,7 +758,7 @@ msgstr "Skonfiguruj win_bind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Utwórz foldery _domowe podczas pierwszego logowania"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -833,6 +834,8 @@ msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"Jeśli folder domowy użytkownika nie istnieje, zostanie automatycznie "
+"utworzony podczas pierwszego logowania."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -905,16 +908,14 @@ msgstr ""
 "częściej używany w małych i dużych sieciach."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"Aby połączyć się do serwera LDAP korzystając z TLS, musisz skopiować "
-"certyfikat CA centrum, które podpisało certyfikat serwera w formacie PEM do "
-"folderu \"%s\".\n"
-"Następnie naciśnij OK."
+"Aby sprawdzić serwer LDAP z włączonym protokołem TLS, musisz skopiować "
+"certyfikat CA, które podpisało certyfikat serwera. Podaj URL, z którego "
+"certyfikat CA w formacie PEM może zostać pobrany."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -937,6 +938,8 @@ msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
+"Jeśli jest włączone, upoważnienie dostępu użytkownika będzie sprawdzane w "
+"/etc/security/access.conf."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -973,9 +976,8 @@ msgid "_Admin Servers"
 msgstr "Serwer _administracyjny"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Pozwalaj ba logowanie offline"
+msgstr "Pozw_alaj na logowanie offline"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1007,7 +1009,7 @@ msgstr "_Hasło"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algorytm hashowania _hasła"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
@@ -1049,9 +1051,3 @@ msgstr ""
 #: ../authinfo.py:3045
 msgid "Error downloading CA certificate"
 msgstr "Błąd podczas pobierania certyfikatu CA"
-
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "Sprawdzanie certyfikatu CA LDAP"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Użyj haseł _MD5"
