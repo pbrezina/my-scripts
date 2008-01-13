@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-08-25 22:58+0900\n"
+"PO-Revision-Date: 2008-01-13 14:05+0900\n"
 "Last-Translator: Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>\n"
 "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "MD5 パスワードをデフォルトで無効にする"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "新しいパスワードのためのハッシュ/暗号化アルゴリズム"
 
 # ../authconfig.c:728
 #: ../authconfig.py:96
@@ -395,11 +395,11 @@ msgstr "ローカルファイルだけによる認証システムアカウント
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "利用者の最初のログイン時にホームディレクトリーを作成する"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "利用者の最初のログイン時にホームディレクトリーを作成しない"
 
 # ../authconfig.c:769
 #: ../authconfig.py:240
@@ -443,6 +443,7 @@ msgstr "不正なスマートカード取り出し動作が指定されました
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
+"不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
 
 # ../authconfig.c:803
 #: ../authconfig.py:409
@@ -804,7 +805,7 @@ msgstr "忠告"
 
 #: ../authconfig.glade.h:7
 msgid "Cache User _Information"
-msgstr "キャッシュユーザー情報(_C)"
+msgstr "キャッシュユーザー情報(_I)"
 
 #: ../authconfig.glade.h:8
 msgid "Card Removal _Action"
@@ -816,19 +817,19 @@ msgstr "証明書 URL (_U)"
 
 #: ../authconfig.glade.h:10
 msgid "Con_figure SMB..."
-msgstr "SMB の設定(_C)..."
+msgstr "SMB の設定(_F)..."
 
 #: ../authconfig.glade.h:11
 msgid "Configure H_esiod..."
-msgstr "Hesiod. の設定(_C)..."
+msgstr "Hesiod. の設定(_E)..."
 
 #: ../authconfig.glade.h:12
 msgid "Configure K_erberos..."
-msgstr "Kerberos の設定(_C)..."
+msgstr "Kerberos の設定(_E)..."
 
 #: ../authconfig.glade.h:13
 msgid "Configure L_DAP..."
-msgstr "LDAPの設定(_C)..."
+msgstr "LDAPの設定(_D)..."
 
 #: ../authconfig.glade.h:14
 msgid "Configure NI_S..."
@@ -840,11 +841,11 @@ msgstr "スマートカードの設定(_R)..."
 
 #: ../authconfig.glade.h:16
 msgid "Configure Win_bind..."
-msgstr "Winbind の設定(_C)..."
+msgstr "Win bind の設定..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "利用者の最初のログイン時にホームディレクトリーを作成する(_H)"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -924,6 +925,8 @@ msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"利用者のホームディレクトリーがなければ、最初のログイン時に自動的に作成"
+"されます。"
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -999,16 +1002,14 @@ msgstr ""
 "クでの使用が増加しています。"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
 "LDAP サーバーに TLS プロトコルを使って接続するには、あなたのサーバー認証の署"
-"名がある CA 認証が必要です。証明を '%s' ディレクトリに PEM フォーマットの認証"
-"をコピーしてください。\n"
-"そして OK を押します。"
+"名がある CA 認証が必要です。PEM フォーマットの CA 認証をダウンロード"
+"できる URL を記入してください。"
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -1032,6 +1033,8 @@ msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
+"有効ならば、/etc/security/access.conf がユーザーアクセスの許可のために利用"
+"されます。"
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -1070,7 +1073,6 @@ msgid "_Admin Servers"
 msgstr "管理 サーバー(_A)"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
 msgstr "オフラインログインを認める"
 
@@ -1107,7 +1109,7 @@ msgstr "パスワード(_P)"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "パスワードハッシュアルゴリズム"
 
 # ../authconfig.c:234
 #: ../authconfig.glade.h:75
