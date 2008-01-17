@@ -1,28 +1,28 @@
 # translation of es.po to Spanish
 # translation of es.po to
 # translation of es.po to
-# translation of es.po to Español
 # translation of es.po to
 # Copyright (C) 2002 Red Hat, Inc.
+#
 # Nuria Soriano <nsoriano@redhat.es>, 2001.
 # José Rodríguez Ruibal <jrodriguez@redhat.es>, 2001,.
 # Yelitza Louze <ylouze@redhat.com>, 2003, 2004.
 # Hernan Fernandez <uk@mitierra.cl>, 2004.
 # Hernán Fernández <uk@mitierra.cl>, 2004.
 # Manuel Ospina <mospina@redhat.com>, 2005, 2006.
-#
+# Domingo Becker <domingobecker@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-08-24 10:07-0300\n"
+"PO-Revision-Date: 2008-01-17 12:46-0200\n"
 "Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
-"Language-Team: Spanish <en@li.org>\n"
+"Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../authconfig.py:77
 #, python-format
@@ -47,7 +47,7 @@ msgstr "deshabilitar por defecto las contraseñas MD5"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "hash/algoritmo de encriptado para las nuevas contraseñas"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -263,13 +263,11 @@ msgstr ""
 
 #: ../authconfig.py:186
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
-"el grupo que los usuarios creados por winbind tendrán como grupo primario"
+msgstr "el grupo que los usuarios creados por winbind tendrán como grupo primario"
 
 #: ../authconfig.py:188
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"la shell que los usuarios creados por winbind tendrán para que inicien sesión"
+msgstr "la shell que los usuarios creados por winbind tendrán para que inicien sesión"
 
 #: ../authconfig.py:190
 msgid ""
@@ -357,11 +355,11 @@ msgstr "autentica las cuentas del sistema por archivos locales únicamente"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "crear el directorio de inicio de los usuarios al ingresar la primera vez"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "no crear los directorios de inicio de los usuarios al ingresar la primera vez"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -401,12 +399,11 @@ msgstr "argumento inesperado"
 
 #: ../authconfig.py:375
 msgid "Bad smart card removal action specified."
-msgstr ""
-"Se especificó una acción incorrecta de eliminación de tarjeta inteligente."
+msgstr "Se especificó una acción incorrecta de eliminación de tarjeta inteligente."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Se especificó un algoritmo de hash de contraseña desconocido, usando sha256."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -773,7 +770,7 @@ msgstr "Configurar Win_bind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Crear los directorios _home (de inicio) al ingresar la primera vez"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -848,7 +845,7 @@ msgstr ""
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
+msgstr "Si el directorio de inicio de un usuario no existe todavía, será creado automáticamente al ingresar la primera vez."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -922,16 +919,13 @@ msgstr ""
 "estructurada. LDAP se usa cada vez más en redes pequeñas y grandes."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
 "Para conectarse a un servidor LDAP con el protocolo TLS activado, usted debe "
-"tener un certificado CA, el cual firmará el certificado de su servidor. "
-"Copie el certificado en formato PEM en el directorio '%s'.\n"
-"Luego presione OK."
+"tener un certificado CA, el cual firmará el certificado de su servidor. Por favor, ponga la URL desde donde se puede descargar el certificado CA en formato PEM."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -954,7 +948,7 @@ msgstr "Utilizar _TLS para encriptar conexiones"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "Cuando está habilitado, se consultará /etc/security/access.conf para la autorización de acceso de los usuarios."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -992,9 +986,8 @@ msgid "_Admin Servers"
 msgstr "Servidores de _administración"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Permitir login fuera de línea"
+msgstr "_Permitir ingreso (login) fuera de líne_a"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1026,7 +1019,7 @@ msgstr "Contraseña"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algoritmo de hashing de la _contraseña"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
@@ -1069,8 +1062,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "Error al bajar el certificado CA"
 
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "Chequeo por LDAP del Certificado CA"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Utilizar encriptación _MD5"
