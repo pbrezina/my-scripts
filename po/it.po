@@ -1,3 +1,4 @@
+# translation of it.po to Italiano
 # translation of it.po to
 # Copyright (C) 2000 Red Hat Italia.
 #
@@ -7,20 +8,20 @@
 # Francesco Valente <fvalen@redhat.com>, 2004.
 # Lorenzo Stobbione <lorenzo.stobbione@clsengineering.it>, 2004.
 # Lorenzo Stobbione <lorenzo.stobbione@clsengineering.it>, 2005.
-# Francesco Tombolini <tombo@adamantio.net>, 2005, 2006, 2007.
+# Francesco Tombolini <tombo@adamantio.net>, 2005, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-08-25 21:56+0200\n"
+"PO-Revision-Date: 2008-01-17 02:34+0100\n"
 "Last-Translator: Francesco Tombolini <tombo@adamantio.net>\n"
-"Language-Team:  <fedora-trans-it@redhat.com>\n"
+"Language-Team: Italiano <fedora-trans-it@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../authconfig.py:77
 #, python-format
@@ -45,7 +46,7 @@ msgstr "disabilita per default password MD5"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "algoritmo hash/crypt per le nuove passwords"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -122,8 +123,7 @@ msgstr "abilita l'autenticazione con smart card per impostazione predefinita"
 
 #: ../authconfig.py:126
 msgid "disable authentication with smart card by default"
-msgstr ""
-"disabilita l'autenticazione con smart card per impostazione predefinita"
+msgstr "disabilita l'autenticazione con smart card per impostazione predefinita"
 
 #: ../authconfig.py:128
 msgid "require smart card for authentication by default"
@@ -293,8 +293,7 @@ msgstr "configura winbind per prevenire il login offline"
 
 #: ../authconfig.py:198
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr ""
-"unisce al dominio winbind o al realm ads ora, con questo amministratore"
+msgstr "unisce al dominio winbind o al realm ads ora, con questo amministratore"
 
 #: ../authconfig.py:201
 msgid "enable wins for hostname resolution"
@@ -354,11 +353,11 @@ msgstr "autentica gli account di sistema solo in base ai file locali"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "creare le home directory per gli utenti al loro primo login"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "non creare le home directory per gli utenti al loro  primo login"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -366,8 +365,7 @@ msgstr "non avviare/fermare portmap, ypbind e nscd"
 
 #: ../authconfig.py:243
 msgid "do not update the configuration files, only print new settings"
-msgstr ""
-"non aggiornare i file di configurazione, stampa solo le nuove impostazioni"
+msgstr "non aggiornare i file di configurazione, stampa solo le nuove impostazioni"
 
 #: ../authconfig.py:247
 msgid "display Back instead of Cancel in the main dialog of the TUI"
@@ -397,12 +395,11 @@ msgstr "argomento inaspettato"
 
 #: ../authconfig.py:375
 msgid "Bad smart card removal action specified."
-msgstr ""
-"È stata specificata un'azione errata per la rimozione della scheda smart."
+msgstr "È stata specificata un'azione errata per la rimozione della scheda smart."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "E' stato specificato un algoritmo di hashing della password sconosciuto, usando sha256."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -700,8 +697,7 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> tra gli elementi | <Spazio> seleziona | <F12> schermo succ."
+msgstr " <Tab>/<Alt-Tab> tra gli elementi | <Spazio> seleziona | <F12> schermo succ."
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -765,7 +761,7 @@ msgstr "Configura Win_bind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Creare le _home directory al primo login"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -840,7 +836,7 @@ msgstr ""
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
+msgstr "Se la home directory di un utente non esiste ancora sarà creata automaticamente al primo login."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -913,16 +909,11 @@ msgstr ""
 "LDAP è sempre più usato dalle piccole alle grandi reti."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Per connetersi ad un server LDAP con il protocollo TLS abilitato, è "
-"necessario il certificato CA che ha firmato il tuo certificato del server. "
-"Copia il certificato in formato PEM nella directory '%s'.\n"
-"Poi premi OK."
+msgstr "Per verificare il server LDAP con il protocollo TLS abilitato, è necessario un certificato CA che ha firmato il certificato del server. Immettere l'URL da cui può essere scaricato il certificato CA in formato PEM."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -944,7 +935,7 @@ msgstr "Usa _TLS per cifrare le connessioni"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "Quando abilitato /etc/security/access.conf sarà consultato per l'autorizzazione d'accesso utente."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -981,9 +972,8 @@ msgid "_Admin Servers"
 msgstr "Server _Admin"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Permetti il login offline"
+msgstr "_Permetti il login offline"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1015,7 +1005,7 @@ msgstr "_Password"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algoritmo di hashing della _password"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
@@ -1058,8 +1048,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "Errore di scaricamento certificato CA"
 
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "Controllo certificato CA LDAP"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Usa password _MD5"
