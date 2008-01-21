@@ -8,13 +8,13 @@
 # Damien Durand	<splinux@fedoraproject.org>, 2006.
 # Decroux Fabien <fdecroux@redhat.com>, 2006.
 # Alain PORTAL <aportal@univ-montp2.fr>, 2006.
-# Thomas Canniot <mrtom@fedoraproject.org>, 2006, 2007.
+# Thomas Canniot <mrtom@fedoraproject.org>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-09-10 23:27+0200\n"
+"PO-Revision-Date: 2008-01-17 22:26+0100\n"
 "Last-Translator: Thomas Canniot <mrtom@fedoraproject.org>\n"
 "Language-Team: Français <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "désactiver les mots de passe MD5 par défaut"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "algorithme de hachage/cryptage pour les nouveaux mots de passe"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -238,13 +238,11 @@ msgstr "<le plus bas-le plus haut>"
 
 #: ../authconfig.py:178
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
-"gamme d'UID que winbind attribuera aux utilisateurs de domaines NT ou ADS"
+msgstr "gamme d'UID que winbind attribuera aux utilisateurs de domaines NT ou ADS"
 
 #: ../authconfig.py:180
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
-"gamme de GID que winbind attribuera aux utilisateurs de domaines NT ou ADS"
+msgstr "gamme de GID que winbind attribuera aux utilisateurs de domaines NT ou ADS"
 
 #: ../authconfig.py:182
 msgid ""
@@ -343,8 +341,7 @@ msgstr "Une autorisation locale est suffisante pour les utilisateurs locaux"
 
 #: ../authconfig.py:222
 msgid "authorize local users also through remote service"
-msgstr ""
-"autoriser les utilisateurs locaux également à travers un service distant"
+msgstr "autoriser les utilisateurs locaux également à travers un service distant"
 
 #: ../authconfig.py:225
 msgid "check access.conf during account authorization"
@@ -364,11 +361,11 @@ msgstr "authentifier les comptes de système uniquement par les fichiers locaux"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "créer les répertoires personnels des utilisateurs lors de leur première connexion"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "ne pas créer les répertoires personnels des utilisateurs lors de leur première connexion"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -414,7 +411,7 @@ msgstr "Retrait de smart card inapproprié."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "L'algorithme spécifié pour hachage de mot de passe est inconnu. Utilisation de sha256."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -782,7 +779,7 @@ msgstr "Configurer Win_bind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Créer les répertoires _personnels lors de la première connexion"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -858,7 +855,7 @@ msgstr ""
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
+msgstr "Si le répertoire personnel d'un utilisateur n'existe pas encore, il sera créé automatiquement lors de sa première connexion."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -933,17 +930,11 @@ msgstr ""
 "grands réseaux."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Afin de pouvoir établir une connexion au serveur LDAP en utilisant le "
-"protocole TLS, vous devez copier dans le répertoire « %s» le certificat au "
-"format PEM donné par l'autorité de certification (CA) qui a signé le "
-"certificat de votre serveur.\n"
-"Appuyez ensuite sur OK."
+msgstr "Pour vérifier le serveur LDAP à l'aide du protocole TLS activé, vous avez besoin d'un certificat CA qui a signé le certificat du serveur. Merci de compléter l'URL pour indiquer l'emplacement depuis lequel télécharger le certificat CA au format PEM."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -965,7 +956,7 @@ msgstr "Utiliser _TLS pour crypter les connexions"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "Lorsqu'il sera activé, le fichier /etc/security/access.conf sera consulté pour autoriser l'accès des utilisateurs."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -1003,9 +994,8 @@ msgid "_Admin Servers"
 msgstr "Serveurs _Admin"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Autoriser la connexion hors ligne"
+msgstr "_Autoriser la connexion hors ligne"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1037,7 +1027,7 @@ msgstr "Mot de _passe"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algorithme de hachage du mot de _passe"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
@@ -1080,8 +1070,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "Erreur lors de la récupération du certificat CA"
 
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "Vérification du certificat CA LDAP"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Utiliser des mots de passe _MD5"
