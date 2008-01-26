@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-08-25 21:10-0000\n"
+"PO-Revision-Date: 2008-01-26 23:42-0000\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "podrazumevano isključi MD5 lozinke"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "algoritam heširanja/šifriranja za nove lozinke"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -222,7 +222,7 @@ msgstr "podrazumevano isključi winbindauth autentifikaciju"
 
 #: ../authconfig.py:174
 msgid "security mode to use for samba and winbind"
-msgstr "bezbednosni režim za upotrebu kod samba-e i winbind-a"
+msgstr "bezbednosni režim za upotrebu kod sambe i winbinda"
 
 #: ../authconfig.py:176
 msgid "default realm for samba and winbind when security=ads"
@@ -246,23 +246,23 @@ msgid ""
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
 "znak koji će biti upotrebljen da razdvoji delove za domen i korisnika u "
-"korisničkom imenu napravljenom winbind-om ako winbindusedefaultdomain nije "
+"korisničkom imenu napravljenom winbindom ako winbindusedefaultdomain nije "
 "uključen"
 
 #: ../authconfig.py:184
 msgid "the directory which winbind-created users will have as home directories"
 msgstr ""
-"direktorijum koji će korisnici napravljeni winbind-om imati kao lični "
+"direktorijum koji će korisnici napravljeni winbindom imati kao lični "
 "direktorijum"
 
 #: ../authconfig.py:186
 msgid "the group which winbind-created users will have as their primary group"
-msgstr "grupa koju će korisnici napravljeni winbind-om imati kao osnovnu grupu"
+msgstr "grupa koju će korisnici napravljeni winbindom imati kao osnovnu grupu"
 
 #: ../authconfig.py:188
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr ""
-"ljuska koju će korisnici napravljeni winbind-om imati kao ljusku kada se "
+"ljuska koju će korisnici napravljeni winbindom imati kao ljusku kada se "
 "prijave"
 
 #: ../authconfig.py:190
@@ -351,11 +351,12 @@ msgstr "autentifikuj sistemske naloge samo kroz lokalne datoteke"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "napravi lične direktorijume za korisnike pri njihovoj prvoj prijavi"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
 msgstr ""
+"nemoj praviti lične direktorijume za korisnike pri njihovoj prvoj prijavi"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -395,7 +396,7 @@ msgstr "Navedena je loša mera po uklanjanju inteligentne kartice."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Naveden je nepoznat algoritam heširanja lozinki, koristim sha256."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -759,7 +760,7 @@ msgstr "Podesi win_bind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Napravi _lične direktorijume pri prvoj prijavi"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -835,6 +836,8 @@ msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"Ako lični direktorijum za nekog korisnika još uvek ne postoji, biće "
+"samostalno napravljen pri njegovoj prvoj prijavi."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -905,19 +908,18 @@ msgid ""
 msgstr ""
 "Protokol laganog pristupa katalogu (Lightweight Directory Access Protocol) "
 "je standardan način pretraživanja kataloga, koji sadrži proizvoljne podatke "
-"u uređenoj hijerarhiji. LDAP se sve više koristi od malih do velikih mreža."
+"u uređenoj hijerarhiji. LDAP je sve više u upotrebi od malih do velikih "
+"mreža."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"Za povezivanje na LDAP server sa uključenim TLS protokolom potrebna je CA "
-"potvrda kojom je potpisana potvrda Vašeg servera. Prekopirajte potvrdu u PEM "
-"obliku u direktorijum „%s“.\n"
-"Potom pritisnite „U redu“."
+"Za proveru LDAP servera sa uključenim TLS protokolom potrebna je CA potvrda "
+"kojom je potpisana potvrda servera. Popunite URL odakle se može preuzeti CA "
+"potvrda u PEM obliku."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -925,7 +927,7 @@ msgstr "Koristi DNS za na_laženje KDC-a za carstva"
 
 #: ../authconfig.glade.h:54
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "Koristi _DNS da razrešimo domaćine u carstva"
+msgstr "Koristi _DNS za razrešavanje domaćina u carstva"
 
 #: ../authconfig.glade.h:55
 msgid "Use _Shadow Passwords"
@@ -940,6 +942,8 @@ msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
+"Kada je uključeno, /etc/security/access.conf će biti pregledan radi "
+"ovlašćenja korisnikovog pristupa."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -976,9 +980,8 @@ msgid "_Admin Servers"
 msgstr "_Admin. serveri"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Dozvoli prijavu bez veze"
+msgstr "_Dozvoli prijavu bez veze"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1010,7 +1013,7 @@ msgstr "_Lozinka"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algoritam heširanja _lozinki"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
@@ -1052,9 +1055,3 @@ msgstr ""
 #: ../authinfo.py:3045
 msgid "Error downloading CA certificate"
 msgstr "Greška pri preuzimanju CA potvrde"
-
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "Provera LDAP CA potvrde"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Koristi _MD5 lozinke"
