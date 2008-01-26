@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-08-25 21:10-0000\n"
+"PO-Revision-Date: 2008-01-26 23:42-0000\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "подразумевано искључи MD5 лозинке"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "алгоритам хеширања/шифрирања за нове лозинке"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -350,11 +350,12 @@ msgstr "аутентификуј системске налоге само кро
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "направи личне директоријуме за кориснике при њиховој првој пријави"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
 msgstr ""
+"немој правити личне директоријуме за кориснике при њиховој првој пријави"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -394,7 +395,7 @@ msgstr "Наведена је лоша мера по уклањању интел
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Наведен је непознат алгоритам хеширања лозинки, користим sha256."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -758,7 +759,7 @@ msgstr "Подеси win_bind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Направи _личне директоријуме при првој пријави"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -834,6 +835,8 @@ msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"Ако лични директоријум за неког корисника још увек не постоји, биће "
+"самостално направљен при његовој првој пријави."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -904,19 +907,17 @@ msgid ""
 msgstr ""
 "Протокол лаганог приступа каталогу (Lightweight Directory Access Protocol) "
 "је стандардан начин претраживања каталога, који садржи произвољне податке у "
-"уређеној хијерархији. LDAP се све више користи од малих до великих мрежа."
+"уређеној хијерархији. LDAP је све више у употреби од малих до великих мрежа."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"За повезивање на LDAP сервер са укљученим TLS протоколом потребна је CA "
-"потврда којом је потписана потврда Вашег сервера. Прекопирајте потврду у PEM "
-"облику у директоријум „%s“.\n"
-"Потом притисните „У реду“."
+"За проверу LDAP сервера са укљученим TLS протоколом потребна је CA потврда "
+"којом је потписана потврда сервера. Попуните УРЛ одакле се може преузети CA "
+"потврда у PEM облику."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -924,7 +925,7 @@ msgstr "Користи DNS за на_лажење KDC-а за царства"
 
 #: ../authconfig.glade.h:54
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "Користи _DNS да разрешимо домаћине у царства"
+msgstr "Користи _DNS за разрешавање домаћина у царства"
 
 #: ../authconfig.glade.h:55
 msgid "Use _Shadow Passwords"
@@ -939,6 +940,8 @@ msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
+"Када је укључено, /etc/security/access.conf ће бити прегледан ради овлашћења "
+"корисниковог приступа."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -975,9 +978,8 @@ msgid "_Admin Servers"
 msgstr "_Админ. сервери"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Дозволи пријаву без везе"
+msgstr "_Дозволи пријаву без везе"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1009,7 +1011,7 @@ msgstr "_Лозинка"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Алгоритам хеширања _лозинки"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
@@ -1051,9 +1053,3 @@ msgstr ""
 #: ../authinfo.py:3045
 msgid "Error downloading CA certificate"
 msgstr "Грешка при преузимању CA потврде"
-
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "Провера LDAP CA потврде"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "Користи _MD5 лозинке"
