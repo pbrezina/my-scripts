@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-09-02 06:32+0100\n"
+"PO-Revision-Date: 2008-01-26 15:37+0000\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <morais@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "desactivar senhas MD5 por omissão"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "algoritmo de encriptação/dispersão para as senhas novas"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -351,11 +351,11 @@ msgstr "autenticar as contas do sistema apenas com os ficheiros locais"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "criar as pastas pessoais dos utilizadores na sua primeira sessão"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "não criar as pastas pessoais dos utilizadores na sua primeira sessão"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -398,7 +398,7 @@ msgstr "Foi indicada uma acção inválida de remoção do 'smartcard'."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Foi indicado um algoritmo de dispersão de senhas; a usar o 'sha256'."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -760,7 +760,7 @@ msgstr "_Configurar Winbind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Criar as _pastas pessoais na primeira sessão"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -835,7 +835,7 @@ msgstr ""
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
+msgstr "Se a pasta pessoal de um utilizador ainda não existir, será criada automaticamente quando este se ligar pela primeira vez."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -908,16 +908,11 @@ msgstr ""
 "estruturada. O LDAP é cada vez mais utilizado em redes pequenas a grandes."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Para se ligar correctamente a um servidor LDAP com o protocolo TLS deve ter "
-"um certificado CA que assinou o certificado do seu servidor. Copie o "
-"certificado no formato PEM para a pasta '%s'.\n"
-"Depois carregue em OK."
+msgstr "Para verificar o servidor de LDAP com o protocolo TLS deve ter um certificado CA que assinou o certificado do seu servidor. Preencha por favor o URL onde se pode obter o certificado da CA no formato PEM."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -939,7 +934,7 @@ msgstr "Utilizar _TLS para cifrar ligações"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "Quando estiver activada a opção, o '/etc/security/access.conf' será consultado para saber a autorização de acesso dos utilizadores."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -977,9 +972,8 @@ msgid "_Admin Servers"
 msgstr "Servidores _Admin"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Permitir a autenticação desligada"
+msgstr "Permitir a _autenticação desligada"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1011,7 +1005,7 @@ msgstr "_Senha"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algoritmo de dis_persão de senhas"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
