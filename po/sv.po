@@ -1,14 +1,14 @@
 # Swedish messages for authconfig.
 # Copyright 2000, 2001, 2002, 2003, 2004, 2005, 2006 Christian Rose <menthos@menthos.com>.
 # Copyright 2006,2007 Magnus Larsson <fedoratrans@gmail.com>.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-09 21:30+0100\n"
-"PO-Revision-Date: 2007-09-22 22:55-0400\n"
+"PO-Revision-Date: 2008-01-27 01:58-0500\n"
 "Last-Translator: Magnus Larsson <fedoratrans@gmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "inaktivera MD5-lösenord som standard"
 
 #: ../authconfig.py:93
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "hash/krypto-algoritm för nya lösenord"
 
 #: ../authconfig.py:96
 msgid "enable NIS for user information by default"
@@ -349,11 +349,11 @@ msgstr "autentisera systemkonton endast genom lokala filer"
 
 #: ../authconfig.py:235
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "skapa hemkataloger för användare vid första inloggning"
 
 #: ../authconfig.py:237
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "skapa inte hemkataloger för användare vid första inloggning"
 
 #: ../authconfig.py:240
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -398,7 +398,7 @@ msgstr "Angiven åtgärd för uttag av smarta kort är dålig."
 
 #: ../authconfig.py:380
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Okänd hashningsalgoritm angiven för lösenordet, använder sha256."
 
 #: ../authconfig.py:409
 msgid "can only be run as root"
@@ -763,7 +763,7 @@ msgstr "_Konfigurera Winbind..."
 
 #: ../authconfig.glade.h:17
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Skapa _hemkataloger vid första inloggning"
 
 #: ../authconfig.glade.h:18
 msgid "Do_n't Save"
@@ -841,6 +841,8 @@ msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"Om hemkatalogen för en användare inte finns kommer den skapas automatiskt "
+"vid första inloggning."
 
 #: ../authconfig.glade.h:35
 msgid "Joining Winbind Domain"
@@ -913,7 +915,6 @@ msgstr ""
 "hierarki. LDAP används mer och mer i små till stora nätverk."
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
@@ -921,8 +922,8 @@ msgid ""
 msgstr ""
 "För att kunna ansluta korrekt till en LDAP-server med TLS-protokollet "
 "aktiverat måste du ha ett CA-certifikat som signerade din servers "
-"certifikat. Kopiera certifikatet i PEM-formatet till katalogen \"%s\".\n"
-"Tryck sedan OK."
+"certifikat. Ange den URL där CA-certifikatet i PEM-format kan laddas ner "
+"från."
 
 #: ../authconfig.glade.h:53
 msgid "Use DNS to _locate KDCs for realms"
@@ -945,6 +946,8 @@ msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
+"Om aktiverad kommer /etc/security/access.conf att rådfrågas vid "
+"autentisering av användares åtkomst."
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -981,9 +984,8 @@ msgid "_Admin Servers"
 msgstr "_Administrationsservrar"
 
 #: ../authconfig.glade.h:66
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Tillåt offline-inloggning"
+msgstr "_Tillåt offline-inloggning"
 
 #: ../authconfig.glade.h:67
 msgid "_Authenticate system accounts by network services"
@@ -1015,7 +1017,7 @@ msgstr "_Lösenord"
 
 #: ../authconfig.glade.h:74
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "_Hasningsalgoritm för lösenord"
 
 #: ../authconfig.glade.h:75
 msgid "_Realm"
