@@ -41,11 +41,12 @@ class UnihelpOptionParser(OptionParser):
 	def print_help(self, file=None):
 		if file is None:
 			file = sys.stdout
-		encoding = self._get_encoding(file)
-		if encoding == "ascii":
-			encoding = locale.getpreferredencoding()
-		file.write(self.format_help().decode('UTF-8').encode(encoding, "replace"))
-	
+		srcencoding = locale.getpreferredencoding()
+		encoding = getattr(file, "encoding", None)
+		if not encoding or encoding == "ascii":
+			encoding = srcencoding
+		file.write(self.format_help().decode(srcencoding).encode(encoding, "replace"))
+
 class Authconfig:
 	def __init__(self):
 		nis_avail = False
