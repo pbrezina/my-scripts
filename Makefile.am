@@ -106,23 +106,20 @@ update-po: authconfig.glade.h
 	$(MAKE) -C po update-po
 
 tag:
-	cvs tag -cR $(TAG)
+	hg tag $(TAG)
 
 force-tag forcetag:
-	cvs tag -cFR $(TAG)
+	hg tag --force $(TAG)
 
 authconfig.spec: authconfig.spec.in configure.in
 	./autogen.sh
 
 archive:
 	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.bz2
-	dir=`pwd` ; \
-	root=`cat CVS/Root` ; \
-	cd /tmp ; \
-	cvs -d "$$root" export -r $(TAG) -d $(PACKAGE) $(PACKAGE) ; \
-	cd $(PACKAGE) ; \
-	./autogen.sh ; \
-	./configure ; \
-	aclocal ; \
-	make dist ; \
-	mv $(distdir).tar.bz2 $$dir
+	mkdir /tmp/$(PACKAGE) && \
+	hg archive -r $(TAG) /tmp/$(PACKAGE)/$(distdir) && \
+	(cd /tmp/$(PACKAGE)/$(distdir) && \
+	./autogen.sh && \
+	./configure && \
+	make dist) && \
+	mv /tmp/$(PACKAGE)/$(distdir)/$(distdir).tar.bz2 .
