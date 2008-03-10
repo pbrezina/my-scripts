@@ -95,6 +95,8 @@ PATH_WINBIND_NET = "/usr/bin/net"
 PATH_LDAP_CACERTS = "/etc/openldap/cacerts"
 LDAP_CACERT_DOWNLOADED = "authconfig_downloaded.pem"
 
+PATH_CONFIG_BACKUPS = "/var/lib/authconfig"
+
 LOGIC_REQUIRED = "required"
 LOGIC_REQUISITE	= "requisite"
 LOGIC_SUFFICIENT = "sufficient"
@@ -171,12 +173,14 @@ def checkNSS(configuration, candidate):
 		return True
 	return False
 
-def openLocked(filename, perms):
+def openfdLocked(filename, mode, perms):
 	fd = -1
 	try:
-		fd = os.open(filename, os.O_RDWR | os.O_CREAT, perms)
-		
-		fcntl.lockf(fd, fcntl.LOCK_EX)
+		fd = os.open(filename, mode, perms)
+		if mode == os.O_RDONLY:
+			fcntl.lockf(fd, fcntl.LOCK_SH)
+		else:
+			fcntl.lockf(fd, fcntl.LOCK_EX)
 	except OSError, (errno, strerr):
 		if fd != -1:
 			try:
@@ -184,7 +188,11 @@ def openLocked(filename, perms):
 			except OSError:
 				pass
 		raise IOError(errno, strerr)
-	return os.fdopen(fd, "r+")
+	return fd
+
+def openLocked(filename, perms):
+	return os.fdopen(openfdLocked(filename, os.O_RDWR | os.O_CREAT, perms),
+		"r+")
 
 def krbKdc(kdclist):
 	output = ""
@@ -345,18 +353,11 @@ argv_keyinit_session = [
 password_algorithms = ["descrypt", "bigcrypt", "md5", "sha256", "sha512"]
 
 # Enumerations for PAM control flags and stack names.
-AUTH = 0
-ACCOUNT = 1
-SESSION = 2
-PASSWORD = 3
+(AUTH, ACCOUNT, SESSION, PASSWORD) = range(0,4)
 
 pam_stacks = ["auth", "account", "session", "password"]
 
-MANDATORY = 0
-STACK = 1
-LOGIC = 2
-NAME = 3
-ARGV = 4
+(MANDATORY, STACK, LOGIC, NAME, ARGV) = range(0,5)
 
 # The list of stacks, module flags, and arguments, if there are any.
 # [ MANDATORY, STACK, LOGIC, NAME, ARGV ]
@@ -685,9 +686,176 @@ class SaveGroup:
 				ret = ret or stringsDiffer(getattr(a, aname), getattr(b, aname), False)
 		return ret
 
+class FileBackup:
+	def __init__(self, backupname, origpath):
+		self.backupName = backupname
+		self.origPath = origpath
+
+	def safeCopy(self, src, dest):
+		err = 0
+		rv = True
+		srcfd = None
+		destfd = None
+		try:
+			destfd = openfdLocked(dest,
+				os.O_RDWR | os.O_CREAT, 0644)
+			srcfd = openfdLocked(src, os.O_RDONLY, 0)			
+		except IOError, (err, strerr):
+			rv = False
+		try:
+			while rv:
+				b = os.read(srcfd, 4096)
+				if not b:
+					rv = True
+					break
+				os.write(destfd, b)
+		except (IOError, OSError):
+			rv = False
+		if err == errno.ENOENT:
+			rv = True
+		try:
+			if srcfd:
+				os.close(srcfd)
+		except (IOError, OSError):
+			pass
+		try:
+			if destfd:
+				os.close(destfd)
+		except (IOError, OSError):
+			rv = False
+		return rv
+
+	def backup(self, destdir):
+		err = 0
+		rv = True
+		try:
+			if not os.path.isdir(destdir):
+				os.mkdir(destdir)
+		except IOError, (err, strerr):
+			rv = False
+
+		backuppath = destdir+"/"+self.backupName
+		if rv:
+			rv = self.safeCopy(self.origPath,
+				backuppath)
+
+		if not rv:
+			try:
+				os.unlink(backuppath)
+			except OSError:
+				pass
+		return rv
+
+	def restore(self, backupdir):
+		err = 0
+		rv = True
+		try:
+			if not os.path.isdir(backupdir):
+				return False
+		except IOError, (err, strerr):
+			rv = False
+
+		backuppath = backupdir+"/"+self.backupName
+		if rv and os.path.isfile(backuppath):
+			rv = self.safeCopy(backuppath, self.origPath)
+
+		return rv
+
+def readCache():
+	rv = os.system("/sbin/chkconfig nscd >/dev/null 2>&1")
+	return os.WIFEXITED(rv) and os.WEXITSTATUS(rv) == 0
+
+def writeCache(enabled):
+	if enabled:
+		os.system("/sbin/chkconfig --add nscd")
+		os.system("/sbin/chkconfig --level 345 nscd on")
+	else:
+		try:
+			os.stat(PATH_NSCD)
+	    		os.system("/sbin/chkconfig --level 345 nscd off");
+		except OSError:
+			pass
+	return True
+
+class CacheBackup(FileBackup):
+	def backup(self, destdir):
+		err = 0
+		rv = True
+		try:
+			if not os.path.isdir(destdir):
+				os.mkdir(destdir)
+		except IOError, (err, strerr):
+			rv = False
+
+		backuppath = destdir+"/"+self.backupName
+		if rv:
+			dest = None
+			try:
+				
+				enabled = readCache()
+				dest = open(backuppath, "w")
+				dest.write(str(int(enabled)))
+			except IOError:
+				rv = False
+			if dest:
+				dest.close()
+
+		if not rv:
+			try:
+				os.unlink(backuppath)
+			except OSError:
+				pass
+		return rv
+		
+	def restore(self, backupdir):
+		err = 0
+		rv = True
+		try:
+			if not os.path.isdir(backupdir):
+				return False
+		except IOError, (err, strerr):
+			rv = False
+
+		backuppath = backupdir+"/"+self.backupName
+		if rv and os.path.isfile(backuppath):
+			backup = None
+			try:
+				backup = open(backuppath, "r")
+				enabled = int(backup.read())
+				writeCache(enabled)
+			except (IOError, OSError, ValueError):
+				rv = False
+			if backup:
+				backup.close()
+
+		return rv
+
+(CFG_HESIOD, CFG_PAM_SMB, CFG_YP, CFG_LDAP, CFG_OPENLDAP, CFG_KRB5,
+	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
+	CFG_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
+	CFG_LOGIN_DEFS) = range(0, 16)
+all_configs = [ 
+	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
+	FileBackup("pam_smb.conf", SYSCONFDIR+"/pam_smb.conf"),
+	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
+	FileBackup("ldap.conf", SYSCONFDIR+"/ldap.conf"),
+	FileBackup("openldap.conf", SYSCONFDIR+"/openldap/ldap.conf"),
+	FileBackup("krb5.conf", SYSCONFDIR+"/krb5.conf"),
+	FileBackup("krb.conf", SYSCONFDIR+"/krb.conf"),
+	FileBackup("pam_pkcs11.conf", SYSCONFDIR+"/pam_pkcs11/pam_pkcs11.conf"),
+	FileBackup("smb.conf", SYSCONFDIR+"/samba/smb.conf"),
+	FileBackup("nsswitch.conf", SYSCONFDIR+"/nsswitch.conf"),
+	CacheBackup("cacheenabled.conf", ""),
+	FileBackup("system-auth-ac", SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC),
+	FileBackup("authconfig", SYSCONFDIR+"/sysconfig/authconfig"),
+	FileBackup("network", SYSCONFDIR+"/sysconfig/network"),
+	FileBackup("libuser.conf", SYSCONFDIR+"/libuser.conf"),
+	FileBackup("login.defs", SYSCONFDIR+"/login.defs") ]
+
 class AuthInfo:
 	def __init__(self, msgcb):
 		self.messageCB = msgcb
+		self.backupDir = ""
 
 		# Service-specific settings.
 		self.hesiodLHS = ""
@@ -784,7 +952,7 @@ class AuthInfo:
 	def readHesiod(self):
 		# Open the file.  Bail if it's not there.
 		try:
-			shv = shvfile.read(SYSCONFDIR+"/hesiod.conf")
+			shv = shvfile.read(all_configs[CFG_HESIOD].origPath)
 		except IOError:
 			return False
 	
@@ -802,7 +970,7 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/pam_smb.conf", "r")
+			f = open(all_configs[CFG_PAM_SMB].origPath, "r")
 		except IOError:
 			return False
 
@@ -821,7 +989,7 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/yp.conf", "r")
+			f = open(all_configs[CFG_YP].origPath, "r")
 		except IOError:
 			return False
 		
@@ -877,7 +1045,7 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/ldap.conf", "r")
+			f = open(all_configs[CFG_LDAP].origPath, "r")
 		except IOError:
 			return False
 	
@@ -934,7 +1102,7 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/krb5.conf", "r")
+			f = open(all_configs[CFG_KRB5].origPath, "r")
 		except IOError:
 			return False
 	
@@ -1016,7 +1184,7 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/samba/smb.conf", "r")
+			f = open(all_configs[CFG_SMB].origPath, "r")
 		except IOError:
 			return result
 
@@ -1051,7 +1219,7 @@ class AuthInfo:
 				return False
 		return None
 
-	# Read winbind settings from /etc/smb/samba.conf.
+	# Read winbind settings from /etc/samba/smb.conf.
 	def readWinbind(self):
 		tmp = self.readWinbindGlobal("workgroup")
 		if tmp:
@@ -1109,7 +1277,7 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/nsswitch.conf", "r")
+			f = open(all_configs[CFG_NSSWITCH].origPath, "r")
 		except IOError:
 			return False
 
@@ -1136,8 +1304,7 @@ class AuthInfo:
 
 	# Read whether or not caching is enabled.
 	def readCache(self):
-		rv = os.system("/sbin/chkconfig nscd >/dev/null 2>&1")
-		self.enableCache = os.WIFEXITED(rv) and os.WEXITSTATUS(rv) == 0
+		self.enableCache = readCache()
 		return True
 
 	# Read hints from the PAM control file.
@@ -1145,7 +1312,7 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
 		try:
-			f = open(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC, "r")
+			f = open(all_configs[CFG_PAM].origPath, "r")
 		except IOError:
 			try:
 				f = open(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE, "r")
@@ -1277,7 +1444,7 @@ class AuthInfo:
 		# figure out by examination.
 		# Open the file.  Bail if it's not there.
 		try:
-			shv = shvfile.read(SYSCONFDIR+"/sysconfig/authconfig")
+			shv = shvfile.read(all_configs[CFG_AUTHCONFIG].origPath)
 
 			try:
 				self.enableAFS = shv.getBoolValue("USEAFS")
@@ -1425,7 +1592,7 @@ class AuthInfo:
 	def readNetwork(self):
 		# Open the file.  Bail if it's not there.
 		try:
-			shv = shvfile.read(SYSCONFDIR+"/sysconfig/network")
+			shv = shvfile.read(all_configs[CFG_NETWORK].origPath)
 		except IOError:
 			return False
 		
@@ -1575,20 +1742,14 @@ class AuthInfo:
 		return ret
 
 	def writeCache(self):
-		if self.enableCache:
-			os.system("/sbin/chkconfig --add nscd")
-			os.system("/sbin/chkconfig --level 345 nscd on")
-		else:
-			try:
-				os.stat(PATH_NSCD)
-		    		os.system("/sbin/chkconfig --level 345 nscd off");
-			except OSError:
-				pass
+		all_configs[CFG_CACHE].backup(self.backupDir)
+		writeCache(self.enableCache)
 		return True
 
 	def writeHesiod(self):
+		all_configs[CFG_HESIOD].backup(self.backupDir)
 		try:
-			shv = shvfile.rcreate(SYSCONFDIR+"/hesiod.conf")
+			shv = shvfile.rcreate(all_configs[CFG_HESIOD].origPath)
 		except IOError:
 			return False
 		shv.setValue("lhs", self.hesiodLHS)
@@ -1602,8 +1763,9 @@ class AuthInfo:
 	# Write SMB setup to /etc/pam_smb.conf.
 	def writeSMB(self):
 		f = None
+		all_configs[CFG_PAM_SMB].backup(self.backupDir)
 		try:
-			f = openLocked(SYSCONFDIR+"/pam_smb.conf", 0644)
+			f = openLocked(all_configs[CFG_PAM_SMB].origPath, 0644)
 		
 			f.truncate(0)
 			
@@ -1631,8 +1793,9 @@ class AuthInfo:
 		written = False
 		f = None
 		output = ""
+		all_configs[CFG_YP].backup(self.backupDir)
 		try:
-			f = openLocked(SYSCONFDIR+"/yp.conf", 0644)
+			f = openLocked(all_configs[CFG_YP].origPath, 0644)
 
 			# Read in the old file.
 			for line in f:
@@ -1817,11 +1980,13 @@ class AuthInfo:
 		return True
 
 	def writeLDAP(self):
-		ret = self.writeLDAP2(SYSCONFDIR+"/ldap.conf",
+		all_configs[CFG_LDAP].backup(self.backupDir)
+		all_configs[CFG_OPENLDAP].backup(self.backupDir)
+		ret = self.writeLDAP2(all_configs[CFG_LDAP].origPath,
 					 "uri", "host", "base", True)
 		if ret:
 			# Ignore errors here.
-			self.writeLDAP2(SYSCONFDIR+"/openldap/ldap.conf",
+			self.writeLDAP2(all_configs[CFG_OPENLDAP].origPath,
 				   "URI", "HOST", "BASE", False)
 		return ret
 
@@ -1841,8 +2006,9 @@ class AuthInfo:
 		section = ""
 		f = None
 		output = ""
+		all_configs[CFG_LIBUSER].backup(self.backupDir)
 		try:
-			f = openLocked(SYSCONFDIR+"/libuser.conf", 0644)
+			f = openLocked(all_configs[CFG_LIBUSER].origPath, 0644)
 
 			# Read in the old file.
 			for line in f:
@@ -1893,6 +2059,7 @@ class AuthInfo:
 		section = ""
 		f = None
 		output = ""
+		all_configs[CFG_LOGIN_DEFS].backup(self.backupDir)
 
 		if self.passwordAlgorithm == "md5":
 			md5crypt = "MD5_CRYPT_ENAB yes\n"
@@ -1904,7 +2071,7 @@ class AuthInfo:
 		else:
 			encmethod = "ENCRYPT_METHOD " + self.passwordAlgorithm.upper() + "\n"
 		try:
-			f = openLocked(SYSCONFDIR+"/login.defs", 0644)
+			f = openLocked(all_configs[CFG_LOGIN_DEFS].origPath, 0644)
 
 			# Read in the old file.
 			for line in f:
@@ -1960,6 +2127,7 @@ class AuthInfo:
 		subsection = ""
 		f = None
 		output = ""
+		all_configs[CFG_KRB5].backup(self.backupDir)
 		if self.enableKerberos and self.kerberosRealm:
 			defaultrealm = self.kerberosRealm
 		elif (self.enableWinbind or 
@@ -1970,7 +2138,7 @@ class AuthInfo:
 		if self.kerberosRealm == self.smbRealm:
 			wrotesmbrealm = True
 		try:
-			f = openLocked(SYSCONFDIR+"/krb5.conf", 0644)
+			f = openLocked(all_configs[CFG_KRB5].origPath, 0644)
 
 			# Read in the old file.
 			for line in f:
@@ -2180,8 +2348,9 @@ class AuthInfo:
 		readrealm = False
 		f = None
 		output = ""
+		all_configs[CFG_KRB].backup(self.backupDir)
 		try:
-			f = openLocked(SYSCONFDIR+"/krb.conf", 0644)
+			f = openLocked(all_configs[CFG_KRB].origPath, 0644)
 			# Set up the buffer with the parts of the file which pertain to our
 			# realm.
 			output += self.kerberosRealm + "\n"
@@ -2223,6 +2392,7 @@ class AuthInfo:
 		return ret
 
 	def writeSmartcard(self):
+		all_configs[CFG_PAM_PKCS11].backup(self.backupDir)
 		insact = "/usr/sbin/gdm-safe-restart"
 		rmact = "/usr/sbin/gdm-safe-restart"
 		if self.smartcardAction == _("Lock"):
@@ -2315,11 +2485,12 @@ class AuthInfo:
 		output += line
 		return output;
 
-	# Write winbind settings to /etc/smb/samba.conf.
+	# Write winbind settings to /etc/samba/smb.conf.
 	def writeWinbind(self):
 		authsection = False
 		wroteauthsection = False
 		section = ""
+		all_configs[CFG_SMB].backup(self.backupDir)
 		options = ["workgroup", "password server", "realm", "security",
 			   "domain logons", "domain master",
 			   "idmap uid", "idmap gid", "winbind separator",
@@ -2329,7 +2500,7 @@ class AuthInfo:
 		f = None
 		output = ""
 		try:
-			f = openLocked(SYSCONFDIR+"/samba/smb.conf", 0644)
+			f = openLocked(all_configs[CFG_SMB].origPath, 0644)
 
 			# Read in the old file.
 			for line in f:
@@ -2400,8 +2571,9 @@ class AuthInfo:
 		wrotehosts = False
 		f = None
 		output = ""
+		all_configs[CFG_NSSWITCH].backup(self.backupDir)
 		try:
-			f = openLocked(SYSCONFDIR+"/nsswitch.conf", 0644)
+			f = openLocked(all_configs[CFG_NSSWITCH].origPath, 0644)
 
 			# Determine what we want in that file for most of the databases. If
 			# we're using DB, we're doing it for speed, so put it in first.  Then
@@ -2628,8 +2800,9 @@ class AuthInfo:
 		f = None
 		self.module_missing = {}
 		output = ""
+		all_configs[CFG_PAM].backup(self.backupDir)
 		try:
-			f = openLocked(SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC, 0644)
+			f = openLocked(all_configs[CFG_PAM].origPath, 0644)
 
 			output += "#%PAM-1.0\n"
 			output += "# This file is auto-generated.\n"
@@ -2682,8 +2855,9 @@ class AuthInfo:
 		return True
 
 	def writeSysconfig(self):
+		all_configs[CFG_AUTHCONFIG].backup(self.backupDir)
 		try:
-			shv = shvfile.rcreate(SYSCONFDIR+"/sysconfig/authconfig")
+			shv = shvfile.rcreate(all_configs[CFG_AUTHCONFIG].origPath)
 		except IOError:
 			return False
 
@@ -2714,8 +2888,9 @@ class AuthInfo:
 		return True
 
 	def writeNetwork(self):
+		all_configs[CFG_NETWORK].backup(self.backupDir)
 		try:
-			shv = shvfile.rcreate(SYSCONFDIR+"/sysconfig/network")
+			shv = shvfile.rcreate(all_configs[CFG_NETWORK].origPath)
 		except IOError:
 			return False
 
@@ -2728,6 +2903,7 @@ class AuthInfo:
 
 	def write(self):
 		self.update()
+		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		try:
 			ret = self.writeLibuser()
 			ret = ret and self.writeLogindefs()
@@ -2805,6 +2981,7 @@ class AuthInfo:
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 		self.update()
+		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		ret = True
 		try:
 			for group in save_groups:
@@ -3046,3 +3223,37 @@ class AuthInfo:
 			return False
 		self.rehashLDAPCACerts()
 		return True
+
+	def setupBackup(self, backupdir):
+		if backupdir[0] != "/":
+			backupdir = PATH_CONFIG_BACKUPS + "/backup-" + backupdir
+		self.backupDir = backupdir
+		if not isEmptyDir(backupdir):
+			try:
+				lst = os.listdir(backupdir)
+				for filename in lst:
+					try:
+						os.unlink(backupdir+"/"+filename)
+					except OSError:
+						pass
+			except OSError:
+				pass
+
+	def saveBackup(self, backupdir):
+		self.setupBackup(backupdir)
+		ret = True
+		for cfg in all_configs:
+			ret = cfg.backup(self.backupDir) and ret
+		return ret
+
+	def restoreBackup(self, backupdir):
+		if backupdir[0] != "/":
+			backupdir = PATH_CONFIG_BACKUPS + "/backup-" + backupdir
+		ret = True
+		for cfg in all_configs:
+			ret = cfg.restore(backupdir) and ret
+		return ret
+
+	def restoreLast(self):
+		return self.restoreBackup(PATH_CONFIG_BACKUPS + "/last")
+

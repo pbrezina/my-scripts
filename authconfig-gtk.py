@@ -199,7 +199,7 @@ class Authconfig:
 		pristine = authinfo.read(self.message_callback)
 		self.info_apply(map, xml)
 		if self.info.differs(pristine):
-			response = self.run_on_button(self, "joinsave",
+			response = self.run_on_button(None, "joinsave",
 						      "empty_map", parent,
 						      (0, 1))
 			if (response == gtk.RESPONSE_CANCEL):
@@ -217,7 +217,7 @@ class Authconfig:
 	def winbindjoin_launch(self, button, map, xml, parent):
 		if not self.info.joinUser:
 			self.info.joinUser = "Administrator"
-		response = self.run_on_button(self, "winbindjoin",
+		response = self.run_on_button(None, "winbindjoin",
 					      "winbindjoin_map", parent)
 		if (response == gtk.RESPONSE_OK):
 			self.info.joinDomain(True)
@@ -340,18 +340,9 @@ class Authconfig:
 
 	# Create a vbox with the right controls and return the vbox.
 	def get_main_widget(self):
-		dialog = gtk.Dialog(_("Authentication Configuration"),
-				    None,
-				    gtk.DIALOG_NO_SEPARATOR,
-				    (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-				     gtk.STOCK_OK, gtk.RESPONSE_OK))
-		dialog.set_resizable(False)
-		dialog.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
-		# Construct the XML object.
 		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
-				    'vbox', "authconfig")
-		box = xml.get_widget('vbox')
-		dialog.vbox.pack_start(box)
+				'authconfig', "authconfig")
+		dialog = xml.get_widget('authconfig')
 
 		# Set up the pushbuttons to launch new dialogs.
 		for entry in self.launch_map.keys():
@@ -435,7 +426,7 @@ class Authconfig:
 		    self.ldap_cacert_download(None, None, None, parent)
 
 	def ldap_cacert_download(self, button, map, xml, parent):
-		response = self.run_on_button(self, "ldapcacertdownload",
+		response = self.run_on_button(None, "ldapcacertdownload",
 					      "ldapcacert_map", parent)
 		if (response == gtk.RESPONSE_OK):
 			self.info.downloadLDAPCACert()
@@ -453,6 +444,22 @@ if __name__ == '__main__':
 	gtk.glade.bindtextdomain("authconfig", "/usr/share/locale")
 	module = Authconfig()
 	dialog = module.get_main_widget()
-	if dialog.run() == gtk.RESPONSE_OK:
-		module.apply()
-	sys.exit(0)
+	while True:
+		response = dialog.run()
+		if response == gtk.RESPONSE_OK:
+			module.apply()
+			dialog.destroy()
+			sys.exit(0)
+		elif response == 1:
+			response = module.run_on_button(None, "revertsettings",
+				"empty_map", dialog)
+			if (response == gtk.RESPONSE_OK):
+				module.info.restoreLast()
+				# reload module
+				dialog.destroy()
+				module = Authconfig()
+				dialog = module.get_main_widget()
+		else:
+			dialog.destroy()
+			sys.exit(1)
+

@@ -17,6 +17,8 @@ pkgdata_DATA = authconfig.glade authinfo.py shvfile.py dnsclient.py
 pythonsite_LTLIBRARIES = acutilmodule.la
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = user_auth.png
+backupdir = $(localstatedir)/authconfig
+backup_DATA =
 
 install-exec-local:
 	mkdir -p $(DESTDIR)/$(bindir)

@@ -77,7 +77,7 @@ class Authconfig:
 	def parseOptions(self):
 		usage = _("usage: %s [options]") % self.module()
 		if self.module() == "authconfig":
-			usage += " <--update|--test|--probe>"
+			usage += " {--update|--updateall|--test|--probe|--restorebackup <name>|--savebackup <name>|--restorelastbackup}"
 
 		parser = UnihelpOptionParser(usage)
 
@@ -258,6 +258,15 @@ class Authconfig:
 		parser.add_option("--probe", action="store_true",
 			help=_("probe network for defaults and print them"))
 
+ 		parser.add_option("--savebackup", metavar=_("<name>"),
+			help=_("save a backup of all configuration files"))
+
+ 		parser.add_option("--restorebackup", metavar=_("<name>"),
+			help=_("restore the backup of configuration files"))
+
+		parser.add_option("--restorelastbackup", action="store_true",
+			help=_("restore the backup of configuration files saved before the previous configuration change"))
+
 		(self.options, args) = parser.parse_args()
 		
 		if args:
@@ -265,7 +274,9 @@ class Authconfig:
 			sys.exit(2)
 
 		if (not self.module() == "authconfig-tui" and not self.options.probe and
-			not self.options.test and not self.options.update and not self.options.updateall):
+			not self.options.test and not self.options.update and not self.options.updateall
+			and not self.options.savebackup and not self.options.restorebackup
+			and not self.options.restorelastbackup):
 			# --update (== --kickstart) or --test or --probe must be specified
 			# this will print usage and call sys.exit()
 			parser.parse_args(["-h"])
@@ -410,6 +421,15 @@ class Authconfig:
 			self.printError(_("can only be run as root"))
 			sys.exit(2)
 		self.readAuthInfo()
+		if self.options.restorelastbackup:
+			rv = self.info.restoreLast()
+			sys.exit(int(not rv))
+		if self.options.restorebackup:
+			rv = self.info.restoreBackup(self.options.restorebackup)
+			sys.exit(int(not rv))
+		if self.options.savebackup:
+			rv = self.info.saveBackup(self.options.savebackup)
+			sys.exit(int(not rv))
 		self.testAvailableSubsys()
 		self.overrideSettings()
 		if not self.doUI():

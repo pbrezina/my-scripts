@@ -8,10 +8,9 @@ License: GPLv2+
 ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-# The upstream project is hosted in CVS on:
-URL: http://rhlinux.redhat.com/
+URL: https://fedorahosted.org/authconfig
 # The project doesn't have http site with downloadable tarballs yet.
-Source: %{name}-%{version}.tar.bz2
+Source: https://fedorahosted.org/releases/a/u/%{name}/%{name}-%{version}.tar.bz2
 Requires: newt-python, pam >= 0.99.6.2, usermode, python
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 Conflicts: nss_ldap < 254
@@ -81,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-tui
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-tui
+%attr(700,root,root) %dir %{_localstatedir}/%{name}
 
 %files gtk
 %defattr(-,root,root,-)
@@ -98,6 +98,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Mar 10 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.0-1
+- include config-util in console.apps files
+- add support for saving/restoring backups of configuration
+  files affected by authconfig (#433776)
+- improve the authconfig manual page (#432023, #432938)
+
 * Tue Jan 29 2008 Tomas Mraz <tmraz@redhat.com> - 5.3.21-1
 - correct the fix for bug #237956
 
