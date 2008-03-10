@@ -8,7 +8,7 @@ Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: https://fedorahosted.org/authconfig
 Source: https://fedorahosted.org/releases/a/u/%{name}/%{name}-%{version}.tar.bz2
-Requires: newt-python, pam >= 0.99.6.2, usermode, python
+Requires: newt-python, pam >= 0.99.10.0, usermode, python
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 Conflicts: nss_ldap < 254
 BuildRequires: glib2-devel, python >= 2.4.1, python-devel
