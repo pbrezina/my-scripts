@@ -1,15 +1,12 @@
 Summary: Command line tool for setting up authentication from network services
 Name: authconfig
 Version: @PACKAGE_VERSION@
-# Don't change release in elvis CVS, up version after merging all patches
-# from dist CVS instead.
 Release: 1%{?dist}
 License: GPLv2+
 ExclusiveOS: Linux
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: https://fedorahosted.org/authconfig
-# The project doesn't have http site with downloadable tarballs yet.
 Source: https://fedorahosted.org/releases/a/u/%{name}/%{name}-%{version}.tar.bz2
 Requires: newt-python, pam >= 0.99.6.2, usermode, python
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
