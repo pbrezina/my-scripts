@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-tui
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-tui
-%attr(700,root,root) %dir %{_localstatedir}/%{name}
+%attr(700,root,root) %dir %{_localstatedir}/lib/%{name}
 
 %files gtk
 %defattr(-,root,root,-)
@@ -95,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Mar 11 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.1-1
+- fixed backup directory in Makefile and spec (#437040)
+
 * Mon Mar 10 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.0-1
 - include config-util in console.apps files
 - add support for saving/restoring backups of configuration
