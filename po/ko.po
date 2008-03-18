@@ -1,7 +1,7 @@
+# translation of authconfig.tip.po to Korean
 # translation of ko.po to
 # translation of ko.po to
 # translation of ko.po to
-# translation of ko.po to Korean
 #
 # 번 역 자: Michelle Kim 김지은 (mkim@redhat.com)
 #
@@ -9,13 +9,13 @@
 # Michelle J Kim <mkim@redhat.com>, 2003, 2004, 2005.
 # Jinseok Seo <jsseo@postech.ac.kr>, 2004.
 # Michelle Ji Yeen Kim <mkim@redhat.com>, 2005, 2006.
-# Eunju Kim <eukim@redhat.com>, 2006, 2007.
+# Eunju Kim <eukim@redhat.com>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: ko\n"
+"Project-Id-Version: authconfig.tip\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 14:03+0100\n"
-"PO-Revision-Date: 2007-09-03 16:03+1000\n"
+"POT-Creation-Date: 2008-03-10 18:28+0000\n"
+"PO-Revision-Date: 2008-03-18 14:10+1000\n"
 "Last-Translator: Eunju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "MD5 암호를 기본적으로 사용하지 않음"
 
 #: ../authconfig.py:94
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "새 암호 용 해시/암호 알고리즘 "
 
 #: ../authconfig.py:97
 msgid "enable NIS for user information by default"
@@ -351,11 +351,11 @@ msgstr "로컬 파일만에 의한 인증 시스템 계정"
 
 #: ../authconfig.py:236
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "처음 로그인 시 사용자 용 홈 디렉토리 생성 "
 
 #: ../authconfig.py:238
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "처음 로그인 시 사용자 용 홈 디렉토리를 생성하지 않음 "
 
 #: ../authconfig.py:241
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -386,25 +386,22 @@ msgid "probe network for defaults and print them"
 msgstr "네트워크에서 기본값을 검색 후 프린트"
 
 #: ../authconfig.py:261 ../authconfig.py:264
-#, fuzzy
 msgid "<name>"
-msgstr "<관리 영역>"
+msgstr "<이름> "
 
 #: ../authconfig.py:262
-#, fuzzy
 msgid "save a backup of all configuration files"
-msgstr "모든 설정 파일을 업데이트함"
+msgstr "모든 설정 파일 백업 저장 "
 
 #: ../authconfig.py:265
-#, fuzzy
 msgid "restore the backup of configuration files"
-msgstr "모든 설정 파일을 업데이트함"
+msgstr "모든 설정 파일 백업 복구 "
 
 #: ../authconfig.py:268
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
-msgstr ""
+msgstr "이전 설정 사항을 변경하기 전에 저장된 설정 파일 백업을 복구 "
 
 #: ../authconfig.py:273
 msgid "unexpected argument"
@@ -416,7 +413,7 @@ msgstr "잘못된 smart card 삭제 작업이 지정됨."
 
 #: ../authconfig.py:392
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "알려지지 않은 암호 해시 알고리즘 지정, sha256 사용. "
 
 #: ../authconfig.py:421
 msgid "can only be run as root"
@@ -710,8 +707,7 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-"      <Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
+msgstr "      <Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -737,7 +733,7 @@ msgstr "주의"
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
-msgstr ""
+msgstr "이전 인증 설정 변경에 의해 수정된 모든 설정 파일은 백업에서 복구됩니다. 변경 사항을 복구하시겠습니까? "
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -781,7 +777,7 @@ msgstr "Winbind 설정...(_B)"
 
 #: ../authconfig.glade.h:18
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "처음 로그인 시 홈 디렉토리 생성(_H) "
 
 #: ../authconfig.glade.h:19
 msgid "Do_n't Save"
@@ -855,7 +851,7 @@ msgstr ""
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
+msgstr "사용자의 홈 디렉토리가 없을 경우, 이는 처음 로그인 시 자동으로 생성됩니다.  "
 
 #: ../authconfig.glade.h:36
 msgid "Joining Winbind Domain"
@@ -901,12 +897,11 @@ msgstr "옵션"
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
-msgstr ""
+msgstr "이전 설정 사항을 변경하기 전 백업된 설정 파일 복구 "
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Revert"
-msgstr "서버:"
+msgstr "복구 "
 
 #: ../authconfig.glade.h:50
 msgid ""
@@ -939,15 +934,13 @@ msgstr ""
 "서 급격히 사용량이 늘고 있습니다."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"TLS 프로토콜을 사용하여 LDAP 서버에 적절히 연결하기 위해서는 서버의 인증서를 "
-"공증한 CA 인증서를 PEM 형식으로 '%s' 디렉토리에 복사하셔야 합니다.\n"
-"복사를 마친 후 확인 버튼을 눌러주세요."
+"TLS 프로토콜을 사용하여 LDAP 서버를 확인하기 위해서는 서버의 인증서를 "
+"공증한 CA 인증서가 필요합니다. PEM 형식으로 CA 인증서를 다운로드 할 수 있는 URL에서 작성해 주십시오.  "
 
 #: ../authconfig.glade.h:56
 msgid "Use DNS to _locate KDCs for realms"
@@ -969,7 +962,7 @@ msgstr "TLS를 이용하여 접속을 암호화함(_T)"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "활성화일 때 /etc/security/access.conf가 사용자 액세스 인증할 것을 권장합니다. "
 
 #: ../authconfig.glade.h:62
 msgid ""
@@ -1006,9 +999,8 @@ msgid "_Admin Servers"
 msgstr "관리 서버(_A)"
 
 #: ../authconfig.glade.h:69
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "오프라인 로그인 허용"
+msgstr "오프라인 로그인 허용(_A)"
 
 #: ../authconfig.glade.h:70
 msgid "_Authenticate system accounts by network services"
@@ -1040,7 +1032,7 @@ msgstr "암호(_P)"
 
 #: ../authconfig.glade.h:77
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "암호 해시 알고리즘(_P)     "
 
 #: ../authconfig.glade.h:78
 msgid "_Realm"
@@ -1083,8 +1075,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "CA 인증서를 다운로드 하는 도중 오류 발생"
 
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "LDAP CA 인증서 확인"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "MD5 암호 사용(_M)"
