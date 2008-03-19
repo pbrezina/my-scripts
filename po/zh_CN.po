@@ -1,22 +1,22 @@
-# translation of zh_CN.po to Chinese, Simplied（简体中文）
+# translation of authconfig.tip.po to Simplified Chinese
 # translation of zh_CN.po to
 # translation of zh_CN.po to
 # translation of zh_CN.po to
 # translation of zh_CN.po to
-# Copyright (C) 2003,2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2003,2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 #
 # Sarah Wang <sarahs@redhat.com>, 2003,2004, 2005.
 # Leah Liu <weliu@redhat.com>, 2005, 2006.
 # Xi Huang <xhuang@redhat.com>, 2006.
-# Leah Liu <lliu@redhat.com>, 2007.
+# Leah Liu <lliu@redhat.com>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: zh_CN\n"
+"Project-Id-Version: authconfig.tip\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 14:03+0100\n"
-"PO-Revision-Date: 2007-09-05 09:54+1000\n"
+"POT-Creation-Date: 2008-03-10 17:56+0000\n"
+"PO-Revision-Date: 2008-03-19 09:56+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
-"Language-Team: Chinese, Simplied（简体中文） <zh_CN@li.org>\n"
+"Language-Team: Simplified Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,7 +45,7 @@ msgstr "默认禁用 MD5 口令"
 
 #: ../authconfig.py:94
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "新密码的散列/加密算法"
 
 #: ../authconfig.py:97
 msgid "enable NIS for user information by default"
@@ -346,11 +346,11 @@ msgstr "仅通过本地文件认证的系统帐号"
 
 #: ../authconfig.py:236
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "在用户首次登录时为其创建主目录"
 
 #: ../authconfig.py:238
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "不要为用户在其首次登录时创建主目录"
 
 #: ../authconfig.py:241
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -381,25 +381,22 @@ msgid "probe network for defaults and print them"
 msgstr "探测网络默认值并输出它们"
 
 #: ../authconfig.py:261 ../authconfig.py:264
-#, fuzzy
 msgid "<name>"
-msgstr "<realm>"
+msgstr "<name>"
 
 #: ../authconfig.py:262
-#, fuzzy
 msgid "save a backup of all configuration files"
-msgstr "更新所有配置文件"
+msgstr "保存所有配置文件备份"
 
 #: ../authconfig.py:265
-#, fuzzy
 msgid "restore the backup of configuration files"
-msgstr "更新所有配置文件"
+msgstr "恢复配置文件备份"
 
 #: ../authconfig.py:268
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
-msgstr ""
+msgstr "在更改之前配置前恢复配置文件备份"
 
 #: ../authconfig.py:273
 msgid "unexpected argument"
@@ -411,7 +408,7 @@ msgstr "指定的错误的智能卡删除动作"
 
 #: ../authconfig.py:392
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "指定未知密码散列算法，使用 sha256。"
 
 #: ../authconfig.py:421
 msgid "can only be run as root"
@@ -731,7 +728,7 @@ msgstr "警告"
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
-msgstr ""
+msgstr "将从备份中恢复之前由验证配置更改修改的所有配置文件。恢复修改？"
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -775,7 +772,7 @@ msgstr "配置 Winbind (_b)..."
 
 #: ../authconfig.glade.h:18
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "在首次登录时创建主目录（_h）"
 
 #: ../authconfig.glade.h:19
 msgid "Do_n't Save"
@@ -849,7 +846,7 @@ msgstr ""
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
+msgstr "如果某个用户的主目录还不存在，就会在该用户首次登录时创建。"
 
 #: ../authconfig.glade.h:36
 msgid "Joining Winbind Domain"
@@ -891,19 +888,17 @@ msgstr "选项"
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
-msgstr ""
+msgstr "恢复在之前进行的配置更改前备份的配置文件"
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Revert"
-msgstr "服务器："
+msgstr "恢复："
 
 #: ../authconfig.glade.h:50
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
-msgstr ""
-"SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
+msgstr "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
 
 #: ../authconfig.glade.h:51
 msgid "Smart Card Settings"
@@ -925,15 +920,11 @@ msgstr ""
 "括任意数据。LDAP 在小型到大型网络中被越来越广泛地使用。"
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"要正确连接到使用 TLS 的 LDAP 服务器，您需要用来签署您的服务器证书的 CA 证书。"
-"把这个证书以 PEM 的格式复制到“%s”目录中。\n"
-"然后按“确定”按钮。"
+msgstr "要确定启用了带有 TLS 协议的 LDAP 服务器，您需要签署了服务器证书的 CA证书。请在 URL 中填写可下载 PEM 格式的 CA 证书的地方。"
 
 #: ../authconfig.glade.h:56
 msgid "Use DNS to _locate KDCs for realms"
@@ -955,7 +946,7 @@ msgstr "使用 TLS 来加密连接 (_T)"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "启用 /etc/security/access.conf 将在用户访问时询问授权。"
 
 #: ../authconfig.glade.h:62
 msgid ""
@@ -991,9 +982,8 @@ msgid "_Admin Servers"
 msgstr "管理服务器(_A)"
 
 #: ../authconfig.glade.h:69
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "允许离线登录"
+msgstr "允许离线登录（_A）"
 
 #: ../authconfig.glade.h:70
 msgid "_Authenticate system accounts by network services"
@@ -1025,7 +1015,7 @@ msgstr "口令(_P)"
 
 #: ../authconfig.glade.h:77
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "密码散列算法（_P）"
 
 #: ../authconfig.glade.h:78
 msgid "_Realm"
@@ -1066,8 +1056,3 @@ msgstr "缺少验证模块 %s/pam_%s.so。验证无法正常进行。"
 msgid "Error downloading CA certificate"
 msgstr "下载 CA 证书错误"
 
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "LDAP CA 证书检查"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "使用 MD5 口令(_M)"
