@@ -1,11 +1,15 @@
+# Translation of authconfig to Slovak
+#
+# Marek Mahut <mmahut@fedoraproject.org>, 2008
+
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 14:03+0100\n"
-"PO-Revision-Date: 2007-01-25 20:42+0100\n"
-"Last-Translator: Mike Karas <zoliqe@gmail.com>\n"
-"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"POT-Creation-Date: 2008-03-10 18:28+0000\n"
+"PO-Revision-Date: 2008-03-23 13:28+0100\n"
+"Last-Translator: Marek Mahut <mmahut@fedoraproject.org>\n"
+"Language-Team: Slovak <fedora-trans-sk@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,7 +37,7 @@ msgstr "štandardne vypnúť MD5 heslá"
 
 #: ../authconfig.py:94
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "hash/crypt algoritmus pre nové heslá"
 
 #: ../authconfig.py:97
 msgid "enable NIS for user information by default"
@@ -51,7 +55,9 @@ msgstr "<doména>"
 msgid "default NIS domain"
 msgstr "štandardná NIS doména"
 
-#: ../authconfig.py:102 ../authconfig.py:113 ../authconfig.py:142
+#: ../authconfig.py:102
+#: ../authconfig.py:113
+#: ../authconfig.py:142
 #: ../authconfig.py:144
 msgid "<server>"
 msgstr "<server>"
@@ -148,7 +154,8 @@ msgstr "štandardný kerberos KDC"
 msgid "default kerberos admin server"
 msgstr "štandardný administrátorský server kerberos"
 
-#: ../authconfig.py:146 ../authconfig.py:176
+#: ../authconfig.py:146
+#: ../authconfig.py:176
 msgid "<realm>"
 msgstr "<realm>"
 
@@ -220,7 +227,8 @@ msgstr "bezpečnostný režim, ktorý použiť pre sambu a winbind"
 msgid "default realm for samba and winbind when security=ads"
 msgstr "štandardný realm pre sambu a winbind ak security=ads"
 
-#: ../authconfig.py:178 ../authconfig.py:180
+#: ../authconfig.py:178
+#: ../authconfig.py:180
 msgid "<lowest-highest>"
 msgstr "<najnižšie-najvyššie>"
 
@@ -233,54 +241,36 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "rozsah gid, ktorý bude winbind priraďovať doméne alebo ads užívateľom"
 
 #: ../authconfig.py:183
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"znak, ktorý bude použitý na oddelenie doménových a užívateľských častí mien "
-"winbind-om vytvorených užívateľov ak winbindusedefaultdomain nie je zapnuté"
+msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr "znak, ktorý bude použitý na oddelenie doménových a užívateľských častí mien winbind-om vytvorených užívateľov ak winbindusedefaultdomain nie je zapnuté"
 
 #: ../authconfig.py:185
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"priečinok, ktorý bude pre winbind-om vytvorených užívateľov ich domovským "
-"priečinkom"
+msgstr "priečinok, ktorý bude pre winbind-om vytvorených užívateľov ich domovským priečinkom"
 
 #: ../authconfig.py:187
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
-"skupina, ktorá bude pre winbind-om vytvorených užívateľov ich primárnou "
-"skupinou"
+msgstr "skupina, ktorá bude pre winbind-om vytvorených užívateľov ich primárnou skupinou"
 
 #: ../authconfig.py:189
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"shell, ktorý budú mať winbind-om vytvorení užívatelia ako ich prihlasovací "
-"shell"
+msgstr "shell, ktorý budú mať winbind-om vytvorení užívatelia ako ich prihlasovací shell"
 
 #: ../authconfig.py:191
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"nastavuje winbind aby predpokladal, že užívatelia bez domény v ich "
-"užívateľskom mene sú užívateľmi domény"
+msgid "configures winbind to assume that users with no domain in their user names are domain users"
+msgstr "nastavuje winbind aby predpokladal, že užívatelia bez domény v ich užívateľskom mene sú užívateľmi domény"
 
 #: ../authconfig.py:193
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"nastavuje winbind aby predpokladal, že užívatelia bez domény v ich "
-"užívateľskom mene nie sú užívateľmi domény"
+msgid "configures winbind to assume that users with no domain in their user names are not domain users"
+msgstr "nastavuje winbind aby predpokladal, že užívatelia bez domény v ich užívateľskom mene nie sú užívateľmi domény"
 
 #: ../authconfig.py:195
 msgid "configures winbind to allow offline login"
-msgstr ""
+msgstr "dopustiť winbind pre nepriame (offline) prihlásenie"
 
 #: ../authconfig.py:197
 msgid "configures winbind to prevent offline login"
-msgstr ""
+msgstr "zabrániť winbind pre nepriame (offline) prihlásenie"
 
 #: ../authconfig.py:199
 msgid "join the winbind domain or ads realm now as this administrator"
@@ -328,11 +318,11 @@ msgstr "autorizovať lokálnych užívateľov tiež cez vzdialenú službu"
 
 #: ../authconfig.py:226
 msgid "check access.conf during account authorization"
-msgstr ""
+msgstr "prever access.conf pri autorizaci účtov"
 
 #: ../authconfig.py:228
 msgid "do not check access.conf during account authorization"
-msgstr ""
+msgstr "nepreveruj access.conf pri autorizaci účtov"
 
 #: ../authconfig.py:231
 msgid "authenticate system accounts by network services"
@@ -344,11 +334,11 @@ msgstr "autentifikovať systémové kontá len cez lokálne súbory"
 
 #: ../authconfig.py:236
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "vytvor domace adresáre pri prvom prihlásení"
 
 #: ../authconfig.py:238
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "nevytvaraj domace adresáre pri prvom prihlásení"
 
 #: ../authconfig.py:241
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -378,26 +368,22 @@ msgstr "aktualizovať všetky súbory nastavení"
 msgid "probe network for defaults and print them"
 msgstr "zistiť štandardné nastavenia siete a vypísať ich"
 
-#: ../authconfig.py:261 ../authconfig.py:264
-#, fuzzy
+#: ../authconfig.py:261
+#: ../authconfig.py:264
 msgid "<name>"
-msgstr "<realm>"
+msgstr "<meno>"
 
 #: ../authconfig.py:262
-#, fuzzy
 msgid "save a backup of all configuration files"
-msgstr "aktualizovať všetky súbory nastavení"
+msgstr "uložiť súbory nastavení"
 
 #: ../authconfig.py:265
-#, fuzzy
 msgid "restore the backup of configuration files"
-msgstr "aktualizovať všetky súbory nastavení"
+msgstr "reštaurovať súbory nastavení"
 
 #: ../authconfig.py:268
-msgid ""
-"restore the backup of configuration files saved before the previous "
-"configuration change"
-msgstr ""
+msgid "restore the backup of configuration files saved before the previous configuration change"
+msgstr "zreštaurovať zálohu súboroch nastavení pred zmenou"
 
 #: ../authconfig.py:273
 msgid "unexpected argument"
@@ -409,7 +395,7 @@ msgstr "Špecifikovaná nesprávna akcia pre odstránenie smart karty."
 
 #: ../authconfig.py:392
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Neznámí algoritmus hesiel, bude použité sha256."
 
 #: ../authconfig.py:421
 msgid "can only be run as root"
@@ -422,20 +408,26 @@ msgstr "dialóg bol zrušený"
 #: ../authconfig.py:460
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
 "Súbor %s nebol nájdený, ale je požadovaný pre správnu činnosť podpory %s.\n"
 "Nainštalujte balík %s, ktorý tento súbor poskytuje."
 
-#: ../authconfig.py:462 ../authconfig.py:817
+#: ../authconfig.py:462
+#: ../authconfig.py:817
 msgid "Warning"
 msgstr "Varovanie"
 
-#: ../authconfig.py:462 ../authconfig.py:675 ../authconfig.py:682
-#: ../authconfig.py:688 ../authconfig.py:697 ../authconfig.py:704
-#: ../authconfig.py:712 ../authconfig.py:753 ../authconfig.py:817
+#: ../authconfig.py:462
+#: ../authconfig.py:675
+#: ../authconfig.py:682
+#: ../authconfig.py:688
+#: ../authconfig.py:697
+#: ../authconfig.py:704
+#: ../authconfig.py:712
+#: ../authconfig.py:753
+#: ../authconfig.py:817
 msgid "Ok"
 msgstr "Ok"
 
@@ -467,7 +459,8 @@ msgstr "tieňové heslá"
 msgid "SMB authentication"
 msgstr "SMB autentifikácia"
 
-#: ../authconfig.py:473 ../authconfig.py:475
+#: ../authconfig.py:473
+#: ../authconfig.py:475
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -475,7 +468,8 @@ msgstr "Winbind"
 msgid "Winbind authentication"
 msgstr "Winbind autentifikácia"
 
-#: ../authconfig.py:480 ../authconfig.glade.h:60
+#: ../authconfig.py:480
+#: ../authconfig.glade.h:60
 msgid "User Information"
 msgstr "Informácie o užívateľovi"
 
@@ -499,7 +493,9 @@ msgstr "Použiť NIS"
 msgid "Use Winbind"
 msgstr "Použiť Winbind"
 
-#: ../authconfig.py:504 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:6
+#: ../authconfig.py:504
+#: ../authconfig.desktop.in.h:1
+#: ../authconfig.glade.h:6
 msgid "Authentication"
 msgstr "Autentifikácia"
 
@@ -531,23 +527,34 @@ msgstr "Použiť Winbind autentifikáciu"
 msgid "Local authorization is sufficient"
 msgstr "Lokálna autorizácia je postačujúca"
 
-#: ../authconfig.py:540 ../authconfig.py:675 ../authconfig.py:682
-#: ../authconfig.py:688 ../authconfig.py:697 ../authconfig.py:704
+#: ../authconfig.py:540
+#: ../authconfig.py:675
+#: ../authconfig.py:682
+#: ../authconfig.py:688
+#: ../authconfig.py:697
+#: ../authconfig.py:704
 #: ../authconfig.py:753
 msgid "Back"
 msgstr "Späť"
 
-#: ../authconfig.py:540 ../authconfig.py:712
+#: ../authconfig.py:540
+#: ../authconfig.py:712
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: ../authconfig.py:541 ../authconfig.py:675 ../authconfig.py:682
-#: ../authconfig.py:688 ../authconfig.py:697 ../authconfig.py:704
+#: ../authconfig.py:541
+#: ../authconfig.py:675
+#: ../authconfig.py:682
+#: ../authconfig.py:688
+#: ../authconfig.py:697
+#: ../authconfig.py:704
 #: ../authconfig.py:753
 msgid "Next"
 msgstr "Ďalej"
 
-#: ../authconfig.py:552 ../authconfig-gtk.py:436 ../authconfig.glade.h:7
+#: ../authconfig.py:552
+#: ../authconfig-gtk.py:436
+#: ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "Nastavenie autentifikácie"
 
@@ -559,7 +566,8 @@ msgstr "LHS:"
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:674 ../authconfig.glade.h:31
+#: ../authconfig.py:674
+#: ../authconfig.glade.h:31
 msgid "Hesiod Settings"
 msgstr "Nastavenia Hesiod"
 
@@ -567,7 +575,8 @@ msgstr "Nastavenia Hesiod"
 msgid "Use TLS"
 msgstr "Použiť TLS"
 
-#: ../authconfig.py:679 ../authconfig.py:686
+#: ../authconfig.py:679
+#: ../authconfig.py:686
 msgid "Server:"
 msgstr "Server:"
 
@@ -575,15 +584,18 @@ msgstr "Server:"
 msgid "Base DN:"
 msgstr "Base DN:"
 
-#: ../authconfig.py:681 ../authconfig.glade.h:40
+#: ../authconfig.py:681
+#: ../authconfig.glade.h:40
 msgid "LDAP Settings"
 msgstr "Nastavenia LDAP"
 
-#: ../authconfig.py:685 ../authconfig.py:747
+#: ../authconfig.py:685
+#: ../authconfig.py:747
 msgid "Domain:"
 msgstr "Doména:"
 
-#: ../authconfig.py:687 ../authconfig.glade.h:42
+#: ../authconfig.py:687
+#: ../authconfig.glade.h:42
 msgid "NIS Settings"
 msgstr "Nastavenia NIS"
 
@@ -607,7 +619,8 @@ msgstr "Použiť DNS pre prevod počítačov na realmy"
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Použiť DNS pre lokalizáciu KDC pre realmy"
 
-#: ../authconfig.py:696 ../authconfig.glade.h:37
+#: ../authconfig.py:696
+#: ../authconfig.glade.h:37
 msgid "Kerberos Settings"
 msgstr "Nastavenia Kerberos"
 
@@ -623,7 +636,8 @@ msgstr "Servery:"
 msgid "Shell:"
 msgstr "Shell:"
 
-#: ../authconfig.py:703 ../authconfig.glade.h:49
+#: ../authconfig.py:703
+#: ../authconfig.glade.h:49
 msgid "SMB Settings"
 msgstr "Nastavenia SMB"
 
@@ -639,15 +653,10 @@ msgstr "Heslo:"
 msgid "Join Settings"
 msgstr "Nastavenia prihlásenia"
 
-#: ../authconfig.py:721 ../authconfig.glade.h:53
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
-msgstr ""
-"Niektoré zo zmien v nastaveniach, ktoré ste vykonali by mali byť pred "
-"pokračovaním uložené na disk.  Ak ich neuložíte, môže pokus o vstup do "
-"domény zlyhať.  Uložiť zmeny?"
+#: ../authconfig.py:721
+#: ../authconfig.glade.h:53
+msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
+msgstr "Niektoré zo zmien v nastaveniach, ktoré ste vykonali by mali byť pred pokračovaním uložené na disk.  Ak ich neuložíte, môže pokus o vstup do domény zlyhať.  Uložiť zmeny?"
 
 #: ../authconfig.py:728
 msgid "Save Settings"
@@ -679,7 +688,8 @@ msgstr "ADS Realm:"
 msgid "Template Shell:"
 msgstr "Dočasný shell:"
 
-#: ../authconfig.py:752 ../authconfig.glade.h:65
+#: ../authconfig.py:752
+#: ../authconfig.glade.h:65
 msgid "Winbind Settings"
 msgstr "Nastavenia Winbind"
 
@@ -690,23 +700,16 @@ msgstr "Vstupná doména"
 #: ../authconfig.py:812
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Na pripojenie k LDAP serveru cez zapnutý TLS protokol potrebujete certifikát "
-"CA, ktorý podpíše certifikát vašeho servera. Prekopírujte tento certifikát "
-"vo formáte PEM do priečinku '%s'.\n"
+"Na pripojenie k LDAP serveru cez zapnutý TLS protokol potrebujete certifikát CA, ktorý podpíše certifikát vašeho servera. Prekopírujte tento certifikát vo formáte PEM do priečinku '%s'.\n"
 "Potom kliknite na Ok."
 
 #. FIXME - version
 #: ../authconfig.py:826
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
-"  <Tab>/<Alt-Tab> medzi položkami  |  <Space> vyberá  |  <F12> nasl. obr. "
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
+msgstr "  <Tab>/<Alt-Tab> medzi položkami  |  <Space> vyberá  |  <F12> nasl. obr. "
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -729,10 +732,8 @@ msgid "Alert"
 msgstr "Výstraha"
 
 #: ../authconfig.glade.h:5
-msgid ""
-"All configuration files which were modified by the previous authentication "
-"configuration change will be restored from backup. Revert the changes?"
-msgstr ""
+msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
+msgstr "Vsetky súbory nastavení ktoré boli zmenené predošlou zmenou nastavení budú prepísane zálohou. Chcete zreštaurovať zálohu?"
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -776,7 +777,7 @@ msgstr "Nastaviť Win_bind..."
 
 #: ../authconfig.glade.h:18
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "_Vytvor domace adresáre pri prvom prihlásení"
 
 #: ../authconfig.glade.h:19
 msgid "Do_n't Save"
@@ -823,13 +824,8 @@ msgid "Enable _Winbind Support"
 msgstr "Zapnúť podporu _Winbind"
 
 #: ../authconfig.glade.h:30
-msgid ""
-"For user accounts maintained in local /etc/passwd file system will not check "
-"authorization from network services such as LDAP or Kerberos."
-msgstr ""
-"Pre užívateľské kontá spravované cez lokálny súbor /etc/passwd nebude systém "
-"kontrolovať autorizáciu prostredníctvom sieťových služieb ako LDAP alebo "
-"Kerberos."
+msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
+msgstr "Pre užívateľské kontá spravované cez lokálny súbor /etc/passwd nebude systém kontrolovať autorizáciu prostredníctvom sieťových služieb ako LDAP alebo Kerberos."
 
 #: ../authconfig.glade.h:32
 msgid "Hesiod _LHS"
@@ -840,30 +836,20 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
 #: ../authconfig.glade.h:34
-msgid ""
-"Hesiod allows a system administrator to publish user and group information "
-"in DNS.  It is sometimes used in very large networks."
-msgstr ""
-"Hesiod umožňuje systémovému správcovi zverejňovať informácie o užívateľoch a "
-"skupinách v DNS. Niekedy sa používa vo veľmi veľkých sieťach."
+msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
+msgstr "Hesiod umožňuje systémovému správcovi zverejňovať informácie o užívateľoch a skupinách v DNS. Niekedy sa používa vo veľmi veľkých sieťach."
 
 #: ../authconfig.glade.h:35
-msgid ""
-"If the home directory of an user doesn't exist yet it will be created "
-"automatically on his first login."
-msgstr ""
+msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
+msgstr "Ak domaci adresár neexistuje, bude vytvorený pri prvom prihlásení."
 
 #: ../authconfig.glade.h:36
 msgid "Joining Winbind Domain"
 msgstr "Vstup do Winbind domény"
 
 #: ../authconfig.glade.h:38
-msgid ""
-"Kerberos is a trusted third-party authentication system which is commonly "
-"used in medium to large networks."
-msgstr ""
-"Kerberos je systém autentifikácie dôveryhodnou treťou stranou, ktorý je "
-"prevažne používaný v stredných až veľkých sieťach."
+msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
+msgstr "Kerberos je systém autentifikácie dôveryhodnou treťou stranou, ktorý je prevažne používaný v stredných až veľkých sieťach."
 
 #: ../authconfig.glade.h:39
 msgid "LDAP Search _Base DN"
@@ -882,69 +868,40 @@ msgid "NIS _Server"
 msgstr "NIS _server"
 
 #: ../authconfig.glade.h:45
-msgid ""
-"NIS is the Network Information Service.  It is commonly used on small to "
-"medium networks."
-msgstr ""
-"NIS je sieťová informačná služba (Network Information Service). Je prevažne "
-"používaná v malých až stredných sieťach."
+msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
+msgstr "NIS je sieťová informačná služba (Network Information Service). Je prevažne používaná v malých až stredných sieťach."
 
 #: ../authconfig.glade.h:46
 msgid "Options"
 msgstr "Voľby"
 
 #: ../authconfig.glade.h:47
-msgid ""
-"Restore the configuration files backed up before the previous configuration "
-"change"
-msgstr ""
+msgid "Restore the configuration files backed up before the previous configuration change"
+msgstr "Zreštaurovať zálohu súboroch nastavení pred predošlou zmenou nastavení"
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Revert"
-msgstr "Server:"
+msgstr "Obnova"
 
 #: ../authconfig.glade.h:50
-msgid ""
-"SMB authentication verifies user passwords by attempting to connect to a "
-"server which uses the SMB (system message block) protocol suite."
-msgstr ""
-"SMB autentifikácia overuje užívateľské heslá požiadavkou cez pripojenie sa "
-"na server, ktorý používa SMB (system message block) protokol."
+msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
+msgstr "SMB autentifikácia overuje užívateľské heslá požiadavkou cez pripojenie sa na server, ktorý používa SMB (system message block) protokol."
 
 #: ../authconfig.glade.h:51
 msgid "Smart Card Settings"
 msgstr "Nastavenia Smart karty"
 
 #: ../authconfig.glade.h:52
-msgid ""
-"Smart card authentication allows you to log in using a certificate and key "
-"associated with a smart card."
-msgstr ""
-"Autentifikácia Smart kartou vám umožňuje prihlásiť sa použitím certifikátu a "
-"kľúča priradeným k smart karte."
+msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
+msgstr "Autentifikácia Smart kartou vám umožňuje prihlásiť sa použitím certifikátu a kľúča priradeným k smart karte."
 
 #: ../authconfig.glade.h:54
-msgid ""
-"The Lightweight Directory Access Protocol is a standard way of searching a "
-"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
-"increasingly being used in small to large networks."
-msgstr ""
-"Lightweight Directory Access Protocol je štandardný spôsob prehľadávania "
-"adresárov, ktoré môžu udržiavať ľubovoľné dáta v štruktúrovanej hierarchii. "
-"LDAP sa čoraz častejšie používa v malých až veľkých sieťach."
+msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
+msgstr "Lightweight Directory Access Protocol je štandardný spôsob prehľadávania adresárov, ktoré môžu udržiavať ľubovoľné dáta v štruktúrovanej hierarchii. LDAP sa čoraz častejšie používa v malých až veľkých sieťach."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
-msgid ""
-"To verify the LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed the server's certificate. Please fill in the URL "
-"where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Na pripojenie k LDAP serveru cez zapnutý TLS protokol potrebujete certifikát "
-"CA, ktorý podpíše certifikát vašeho servera. Prekopírujte tento certifikát "
-"vo formáte PEM do priečinku '%s'.\n"
-"Potom kliknite na Ok."
+msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
+msgstr "Na pripojenie k LDAP serveru cez zapnutý TLS protokol potrebujete certifikát CA, ktorý podpísal certifikát vašeho servera. Napište adresu tohoto  certifikátu vo formáte PEM."
 
 #: ../authconfig.glade.h:56
 msgid "Use DNS to _locate KDCs for realms"
@@ -963,18 +920,12 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Použiť _TLS na zabezpečenie pripojenia"
 
 #: ../authconfig.glade.h:61
-msgid ""
-"When enabled /etc/security/access.conf will be consulted for authorization "
-"of users access."
-msgstr ""
+msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
+msgstr "Ak nastavené, /etc/security/access.conf bude konzultované pre autentifikáciu užívateľov."
 
 #: ../authconfig.glade.h:62
-msgid ""
-"When enabled allows network services such as LDAP or Kerberos to "
-"authenticate system accounts including root on this machine."
-msgstr ""
-"Ak je zapnuté, povoluje sieťovým službám ako LDAP alebo Kerberos na tomto "
-"systéme autentifikovať systémové kontá vrátane správcu."
+msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
+msgstr "Ak je zapnuté, povoluje sieťovým službám ako LDAP alebo Kerberos na tomto systéme autentifikovať systémové kontá vrátane správcu."
 
 #: ../authconfig.glade.h:63
 msgid "Winbind ADS _Realm"
@@ -989,14 +940,8 @@ msgid "Winbind _Domain"
 msgstr "Winbind _doména"
 
 #: ../authconfig.glade.h:67
-msgid ""
-"Winbind allows a system to retrieve information about users and to "
-"authenticate users by using information stored in an NTDOM or ADS server.  "
-"It is used in small to large networks."
-msgstr ""
-"Winbind umožňuje systému získavanie informácii o užívateľoch a "
-"autentifikáciu užívateľov pomocou informácii uložených na NTDOM alebo ADS "
-"serveri. Používa sa od malých až po veľké siete."
+msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
+msgstr "Winbind umožňuje systému získavanie informácii o užívateľoch a autentifikáciu užívateľov pomocou informácii uložených na NTDOM alebo ADS serveri. Používa sa od malých až po veľké siete."
 
 #: ../authconfig.glade.h:68
 msgid "_Admin Servers"
@@ -1004,7 +949,7 @@ msgstr "_Administrátorské servery"
 
 #: ../authconfig.glade.h:69
 msgid "_Allow offline login"
-msgstr ""
+msgstr "_povoliť nepriame prihlásenie"
 
 #: ../authconfig.glade.h:70
 msgid "_Authenticate system accounts by network services"
@@ -1012,7 +957,7 @@ msgstr "_Autentifikovať systémové kontá cez sieťové služby"
 
 #: ../authconfig.glade.h:71
 msgid "_Check access.conf during account authorization"
-msgstr ""
+msgstr "_Prever access.conf pri autorizaci účtov"
 
 #: ../authconfig.glade.h:72
 msgid "_Domain Controllers"
@@ -1036,7 +981,7 @@ msgstr "_Heslo"
 
 #: ../authconfig.glade.h:77
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "_Algoritmus hesiel"
 
 #: ../authconfig.glade.h:78
 msgid "_Realm"
@@ -1058,22 +1003,21 @@ msgstr "_Dočasný shell"
 msgid "_Workgroup"
 msgstr "_Pracovná skupina"
 
-#: ../authinfo.py:666 ../authinfo.py:1175 ../authinfo.py:2398
+#: ../authinfo.py:666
+#: ../authinfo.py:1175
+#: ../authinfo.py:2398
 msgid "Lock"
 msgstr "Zamknúť"
 
-#: ../authinfo.py:666 ../authinfo.py:1177
+#: ../authinfo.py:666
+#: ../authinfo.py:1177
 msgid "Ignore"
 msgstr "Ignorovať"
 
 #: ../authinfo.py:2743
 #, python-format
-msgid ""
-"Authentication module %s/pam_%s.so is missing. Authentication process will "
-"not work correctly."
-msgstr ""
-"Chýba autentifikačný modul %s/pam_%s.so. Proces autentifikácie nebude "
-"pracovať správne."
+msgid "Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly."
+msgstr "Chýba autentifikačný modul %s/pam_%s.so. Proces autentifikácie nebude pracovať správne."
 
 #: ../authinfo.py:3222
 msgid "Error downloading CA certificate"
@@ -1081,7 +1025,6 @@ msgstr "Chyba pri preberaní certifikátu CA"
 
 #~ msgid "LDAP CA Certificate Check"
 #~ msgstr "Kontrola LDAP certifikátu CA"
-
 #~ msgid "Use _MD5 Passwords"
 #~ msgstr "Používať _MD5 heslá"
 
@@ -1096,7 +1039,6 @@ msgstr "Chyba pri preberaní certifikátu CA"
 #, fuzzy
 #~ msgid "disable NIS"
 #~ msgstr "NIS"
-
 #~ msgid "%s: bad argument %s: %s\n"
 #~ msgstr "%s: neprípustný parameter %s: %s\n"
 
@@ -1187,49 +1129,34 @@ msgstr "Chyba pri preberaní certifikátu CA"
 #, fuzzy
 #~ msgid "%s: critical error writing %s/sysconfig/network"
 #~ msgstr "%s: kritická chyba pri zápise /etc/sysconfig/network\n"
-
 #~ msgid "%s: cannot open /etc/sysconfig/network: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/sysconfig/network: %s\n"
-
 #~ msgid "%s: cannot open /etc/yp.conf: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/yp.conf: %s\n"
-
 #~ msgid "%s: cannot open /etc/ldap.conf: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/ldap.conf: %s\n"
-
 #~ msgid "   LDAP Domain:"
 #~ msgstr "   LDAP doména:"
-
 #~ msgid "Request via broadcast"
 #~ msgstr "Vyžiadať cez broadcast"
-
 #~ msgid "Error"
 #~ msgstr "Chyba"
-
 #~ msgid "You must enter a NIS server or request via broadcast."
 #~ msgstr "Musíte zadať NIS server alebo vyžiadať cez broadcast."
-
 #~ msgid "You must enter an authentication domain."
 #~ msgstr "Musíte zadať overovaciu doménu."
-
 #~ msgid "%s: cannot open /etc/sysconfig/network- for writing: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/sysconfig/network- na zápis: %s\n"
-
 #~ msgid "%s: cannot open /etc/yp.conf- for writing: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/yp.conf- na zápis: %s\n"
-
 #~ msgid "%s: cannot open /etc/ldap.conf- for writing: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/ldap.conf- na zápis: %s\n"
-
 #~ msgid "%s: cannot open /etc/nsswitch.conf: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/nsswitch.conf: %s\n"
-
 #~ msgid "%s: cannot open /etc/nsswitch.conf- for writing: %s\n"
 #~ msgstr "%s: nemôžem otvoriť /etc/nsswitch.conf- na zápis: %s\n"
-
 #~ msgid "%s: error opening %s\n"
 #~ msgstr "%s: chyba pri otváraní %s\n"
-
 #~ msgid ""
 #~ "Usage: %s [options]\n"
 #~ "\n"
@@ -1252,15 +1179,12 @@ msgstr "Chyba pri preberaní certifikátu CA"
 #~ "     --enablemd5          povoliť MD5 heslá\n"
 #~ "     --kickstart          nezobrazovať používateľské rozhranie\n"
 #~ "     --help               ukázať tento text\n"
-
 #~ msgid "%s: unknown authorization type %s\n"
 #~ msgstr "%s: neznámy typ autorizácie %s\n"
-
 #~ msgid "authentication type selected: "
 #~ msgstr "zvolený typ overovania: "
-
 #~ msgid "%s: critical error turning on NIS service\n"
 #~ msgstr "%s: kritická chyba pri zapínaní NIS služby\n"
-
 #~ msgid "%s: critical error with shadow password manipulation\n"
 #~ msgstr "%s: kritická chyba pri manipulácii s tieňovými (shadow) heslami\n"
+
