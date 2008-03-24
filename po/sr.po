@@ -1,15 +1,16 @@
 # Serbian translations for authconfig
 # Copyright (C) 2005 Red Hat, Inc.
 # This file is distributed under the same license as the authconfig package.
+#
 # Zoltan Čala <zolika@sezampro.yu>, 1999.
 # Miloš Komarčević <kmilos@gmail.com>, 2005.
-#
+# Nikola Pajtic <salgeras@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-10 14:03+0100\n"
-"PO-Revision-Date: 2008-03-21 00:45-0000\n"
+"PO-Revision-Date: 2008-03-23 12:59-0000\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -158,11 +159,11 @@ msgstr "подразумевани kerberos админ. сервер"
 
 #: ../authconfig.py:146 ../authconfig.py:176
 msgid "<realm>"
-msgstr "<царство>"
+msgstr "<подручје>"
 
 #: ../authconfig.py:147
 msgid "default kerberos realm"
-msgstr "подразумевано kerberos царство"
+msgstr "подразумевано kerberos подручје"
 
 #: ../authconfig.py:149
 msgid "enable use of DNS to find kerberos KDCs"
@@ -174,11 +175,11 @@ msgstr "искључи DNS употребу за проналазак kerberos K
 
 #: ../authconfig.py:153
 msgid "enable use of DNS to find kerberos realms"
-msgstr "укључи DNS употребу за проналазак kerberos царства"
+msgstr "укључи DNS употребу за проналазак kerberos подручја"
 
 #: ../authconfig.py:155
 msgid "disable use of DNS to find kerberos realms"
-msgstr "искључи DNS употребу за проналазак kerberos царства"
+msgstr "искључи DNS употребу за проналазак kerberos подручја"
 
 #: ../authconfig.py:158
 msgid "enable SMB authentication by default"
@@ -226,11 +227,11 @@ msgstr "безбедносни режим за употребу код samba-е 
 
 #: ../authconfig.py:177
 msgid "default realm for samba and winbind when security=ads"
-msgstr "подразумевано samba и winbind царство када security=ads"
+msgstr "подразумевано подручје за samba и winbind када је security=ads"
 
 #: ../authconfig.py:178 ../authconfig.py:180
 msgid "<lowest-highest>"
-msgstr "<најмањи-највећи>"
+msgstr "<најнижи-највиши>"
 
 #: ../authconfig.py:179
 msgid "uid range winbind will assign to domain or ads users"
@@ -269,7 +270,7 @@ msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
-"подешава winbind да претпоставља да корисници без домена у свом корисничком "
+"подешава winbind да претпостави да корисници без домена у свом корисничком "
 "имену јесу корисници домена"
 
 #: ../authconfig.py:193
@@ -277,20 +278,21 @@ msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
-"подешава winbind да претпоставља да корисници без домена у свом корисничком "
+"подешава winbind да претпостави да корисници без домена у свом корисничком "
 "имену нису корисници домена"
 
 #: ../authconfig.py:195
 msgid "configures winbind to allow offline login"
-msgstr "подешава winbind за дозвољавање пријаве без везе"
+msgstr "подешава winbind да дозволи пријаву без везе"
 
 #: ../authconfig.py:197
 msgid "configures winbind to prevent offline login"
-msgstr "подешава winbind за спречавање пријаве без везе"
+msgstr "подешава winbind да спречи пријаву без везе"
 
 #: ../authconfig.py:199
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr "придружи се сада winbind домену или ads царству као овај администратор"
+msgstr ""
+"придружи се сада winbind домену или ads подручју као овај администратор"
 
 #: ../authconfig.py:202
 msgid "enable wins for hostname resolution"
@@ -310,11 +312,11 @@ msgstr "подразумевано искључи hesiod за податке о 
 
 #: ../authconfig.py:211
 msgid "default hesiod LHS"
-msgstr "подразумевана hesiod лева страна (LHS)"
+msgstr "подразумевана hesiod лева страна"
 
 #: ../authconfig.py:213
 msgid "default hesiod RHS"
-msgstr "подразумевана hesiod десна страна (RHS)"
+msgstr "подразумевана hesiod десна страна"
 
 #: ../authconfig.py:216
 msgid "enable caching of user information by default"
@@ -330,7 +332,7 @@ msgstr "локално овлашћење је довољно за локалн�
 
 #: ../authconfig.py:223
 msgid "authorize local users also through remote service"
-msgstr "овласти локалне кориснике кроз даљински сервис такође"
+msgstr "такође овласти локалне кориснике кроз даљински сервис "
 
 #: ../authconfig.py:226
 msgid "check access.conf during account authorization"
@@ -342,11 +344,11 @@ msgstr "не проверавај access.conf током овлашћивања 
 
 #: ../authconfig.py:231
 msgid "authenticate system accounts by network services"
-msgstr "аутентификуј системске налоге кроз мрежне сервисе"
+msgstr "аутентификуј системске налоге путем мрежних сервиса"
 
 #: ../authconfig.py:233
 msgid "authenticate system accounts by local files only"
-msgstr "аутентификуј системске налоге само кроз локалне датотеке"
+msgstr "аутентификуј системске налоге само путем локалних датотека"
 
 #: ../authconfig.py:236
 msgid "create home directories for users on their first login"
@@ -371,11 +373,11 @@ msgstr "прикажи „Назад“ уместо „Откажи“ у гл�
 
 #: ../authconfig.py:250
 msgid "do not display the deprecated text user interface"
-msgstr "не приказуј превазиђено корисничко сучеље"
+msgstr "не приказуј превазиђено текстуално корисничко сучеље"
 
 #: ../authconfig.py:253
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "насупрот --test, ажурирај датотеке подешавања са изменама"
+msgstr "насупрот --test, ажурирај датотеке подешавања са измењеним поставкама"
 
 #: ../authconfig.py:256
 msgid "update all configuration files"
@@ -411,7 +413,7 @@ msgstr "неочекиван аргумент"
 
 #: ../authconfig.py:387
 msgid "Bad smart card removal action specified."
-msgstr "Наведена је лоша мера по уклањању интелигентне картице."
+msgstr "Наведена је лоша мера при уклањању интелигентне картице."
 
 #: ../authconfig.py:392
 msgid "Unknown password hashing algorithm specified, using sha256."
@@ -419,7 +421,7 @@ msgstr "Наведен је непознат алгоритам хеширања
 
 #: ../authconfig.py:421
 msgid "can only be run as root"
-msgstr "може да покрене само root"
+msgstr "може бити покренуто само као root корисник"
 
 #: ../authconfig.py:437
 msgid "dialog was cancelled"
@@ -432,9 +434,9 @@ msgid ""
 "properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"Датотека %s није пронађена, а неопходна је да би %s подршка радила "
-"исправно.\n"
-"Инсталирајте %s пакет који снабдева ову датотеку."
+"Датотека %s није пронађена, а неопходна је да би %s подршка исправно "
+"радила.\n"
+"Инсталирајте %s пакет који пружа ову датотеку."
 
 #: ../authconfig.py:462 ../authconfig.py:817
 msgid "Warning"
@@ -596,11 +598,11 @@ msgstr "NIS поставке"
 
 #: ../authconfig.py:691
 msgid "Realm:"
-msgstr "Царство:"
+msgstr "Подручје:"
 
 #: ../authconfig.py:692
 msgid "KDC:"
-msgstr "KDC:"
+msgstr "Центар за расподелу кључева (KDC):"
 
 #: ../authconfig.py:693
 msgid "Admin Server:"
@@ -608,11 +610,11 @@ msgstr "Админ. сервер:"
 
 #: ../authconfig.py:694
 msgid "Use DNS to resolve hosts to realms"
-msgstr "Користи DNS за разрешавање домаћина у царства"
+msgstr "Користи DNS за разрешавање домаћина у подручја"
 
 #: ../authconfig.py:695
 msgid "Use DNS to locate KDCs for realms"
-msgstr "Користи DNS за налажење KDC-а за царства"
+msgstr "Користи DNS за налажење KDC-а за подручја"
 
 #: ../authconfig.py:696 ../authconfig.glade.h:37
 msgid "Kerberos Settings"
@@ -652,9 +654,9 @@ msgid ""
 "continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
 msgstr ""
-"Неке од промена подешавања које сте направили треба сачувати на диск пре "
-"наставка.  Ако их не сачувате, онда Ваши покушаји да се придружите домену "
-"можда неће успети.  Да сачувам промене?"
+"Неке од промена подешавања које сте направили треба да буду сачуване на диск "
+"пре наставка.  Ако их не сачувате, онда Ваши покушаји да се придружите "
+"домену можда неће успети.  Да сачувам промене?"
 
 #: ../authconfig.py:728
 msgid "Save Settings"
@@ -680,7 +682,7 @@ msgstr "Контролори домена:"
 
 #: ../authconfig.py:749
 msgid "ADS Realm:"
-msgstr "ADS царство:"
+msgstr "ADS подручје:"
 
 #: ../authconfig.py:750
 msgid "Template Shell:"
@@ -704,7 +706,7 @@ msgid ""
 msgstr ""
 "За повезивање на LDAP сервер са укљученим TLS протоколом потребна је CA "
 "потврда којом је потписана потврда Вашег сервера. Прекопирајте потврду у PEM "
-"облику у директоријум „%s“.\n"
+"формату у директоријум „%s“.\n"
 "Потом притисните „У реду“."
 
 #. FIXME - version
@@ -746,7 +748,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
-msgstr "Кеширај пода_тке о кориснику"
+msgstr "Кеширај _корисничке податке"
 
 #: ../authconfig.glade.h:9
 msgid "Card Removal _Action"
@@ -762,15 +764,15 @@ msgstr "П_одеси SMB..."
 
 #: ../authconfig.glade.h:12
 msgid "Configure H_esiod..."
-msgstr "Подеси _hesiod..."
+msgstr "Подеси Н_esiod..."
 
 #: ../authconfig.glade.h:13
 msgid "Configure K_erberos..."
-msgstr "Подеси ke_rberos..."
+msgstr "Подеси Кe_rberos..."
 
 #: ../authconfig.glade.h:14
 msgid "Configure L_DAP..."
-msgstr "Подеси _LDAP..."
+msgstr "Подеси L_DAP..."
 
 #: ../authconfig.glade.h:15
 msgid "Configure NI_S..."
@@ -814,11 +816,11 @@ msgstr "Укључи подршку за интелигентну _картиц�
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
-msgstr "Укључи _hesiod подршку"
+msgstr "Укључи _Hesiod подршку"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _Kerberos Support"
-msgstr "Укључи _kerberos подршку"
+msgstr "Укључи _Kerberos подршку"
 
 #: ../authconfig.glade.h:27
 msgid "Enable _LDAP Support"
@@ -830,7 +832,7 @@ msgstr "Укључи _NIS подршку"
 
 #: ../authconfig.glade.h:29
 msgid "Enable _Winbind Support"
-msgstr "Укључи win_bind подршку"
+msgstr "Укључи _Winbind подршку"
 
 #: ../authconfig.glade.h:30
 msgid ""
@@ -847,7 +849,7 @@ msgstr "Hesiod _лева страна (LHS)"
 
 #: ../authconfig.glade.h:33
 msgid "Hesiod _RHS"
-msgstr "Hesiod д_есна страна (RHS)"
+msgstr "Hesiod _десна страна (RHS)"
 
 #: ../authconfig.glade.h:34
 msgid ""
@@ -855,7 +857,7 @@ msgid ""
 "in DNS.  It is sometimes used in very large networks."
 msgstr ""
 "Hesiod дозвољава администратору система да објави податке о корисницима и "
-"групама код DNS-а.  Понекад се користи у веома великим мрежама."
+"групама у DNS-у.  Понекад се користи у веома великим мрежама."
 
 #: ../authconfig.glade.h:35
 msgid ""
@@ -874,8 +876,8 @@ msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
 msgstr ""
-"Kerberos је поверљив систем аутентификације са стране који је обично у "
-"употреби код средњих до великих мрежа."
+"Kerberos је поверљив систем аутентификације са стране који се обично користи "
+"код средњих до великих мрежа."
 
 #: ../authconfig.glade.h:39
 msgid "LDAP Search _Base DN"
@@ -883,22 +885,22 @@ msgstr "_Основни DN LDAP претраге"
 
 #: ../authconfig.glade.h:41
 msgid "LDAP _Server"
-msgstr "LDAP се_рвер"
+msgstr "LDAP _сервер"
 
 #: ../authconfig.glade.h:43
 msgid "NIS _Domain"
-msgstr "NIS до_мен"
+msgstr "NIS _домен"
 
 #: ../authconfig.glade.h:44
 msgid "NIS _Server"
-msgstr "NIS се_рвер"
+msgstr "NIS _сервер"
 
 #: ../authconfig.glade.h:45
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr ""
-"NIS је мрежни информациони сервис (Network Information Service).  Обично се "
+"NIS је Мрежни информациони сервис (Network Information Service).  Обично се "
 "користи код малих до средњих мрежа."
 
 #: ../authconfig.glade.h:46
@@ -922,8 +924,8 @@ msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
 msgstr ""
-"SMB аутентификација проверава корисничке лозинке покушајем повезивања на "
-"сервер који користи скуп протокола блока серверске поруке (Server Message "
+"SMB аутентификација проверава корисничке лозинке покушавајући да се повеже "
+"на сервер који користи скуп протокола Блока серверске поруке (Server Message "
 "Block)."
 
 #: ../authconfig.glade.h:51
@@ -935,7 +937,7 @@ msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
 msgstr ""
-"Аутентификација са интелигентном картицом Вам омогућава пријаву коришћењем "
+"Аутентификација интелигентном картицом Вам омогућава пријаву коришћењем "
 "потврде и кључа придружених интелигентној картици."
 
 #: ../authconfig.glade.h:54
@@ -944,7 +946,7 @@ msgid ""
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"Протокол лаганог приступа каталогу (Lightweight Directory Access Protocol) "
+"Протокол олакшаног приступа каталогу (Lightweight Directory Access Protocol) "
 "је стандардан начин претраживања каталога, који садржи произвољне податке у "
 "уређеној хијерархији. LDAP је све више у употреби од малих до великих мрежа."
 
@@ -956,19 +958,19 @@ msgid ""
 msgstr ""
 "За проверу LDAP сервера са укљученим TLS протоколом потребна је CA потврда "
 "којом је потписана потврда сервера. Попуните УРЛ одакле се може преузети CA "
-"потврда у PEM облику."
+"потврда у PEM формату."
 
 #: ../authconfig.glade.h:56
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "Користи DNS за на_лажење KDC-а за царства"
+msgstr "Користи DNS за на_лажење KDC-а за подручја"
 
 #: ../authconfig.glade.h:57
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "Користи _DNS за разрешавање домаћина у царства"
+msgstr "Користи _DNS за разрешавање домаћина у подручја"
 
 #: ../authconfig.glade.h:58
 msgid "Use _Shadow Passwords"
-msgstr "Користи shad_ow лозинке"
+msgstr "Користи _shadow лозинке"
 
 #: ../authconfig.glade.h:59
 msgid "Use _TLS to encrypt connections"
@@ -980,7 +982,7 @@ msgid ""
 "of users access."
 msgstr ""
 "Када је укључено, /etc/security/access.conf ће бити прегледан ради овлашћења "
-"корисниковог приступа."
+"корисничког приступа."
 
 #: ../authconfig.glade.h:62
 msgid ""
@@ -992,7 +994,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:63
 msgid "Winbind ADS _Realm"
-msgstr "Winbind ADS _царство"
+msgstr "Winbind ADS _подручје"
 
 #: ../authconfig.glade.h:64
 msgid "Winbind Domain Co_ntrollers"
@@ -1000,7 +1002,7 @@ msgstr "Winbind _контролори домена"
 
 #: ../authconfig.glade.h:66
 msgid "Winbind _Domain"
-msgstr "Winbind д_омен"
+msgstr "Winbind _домен"
 
 #: ../authconfig.glade.h:67
 msgid ""
@@ -1009,8 +1011,8 @@ msgid ""
 "It is used in small to large networks."
 msgstr ""
 "Winbind дозвољава систему да добави податке о корисницима и да аутентификује "
-"кориснике користећи податке похрањене на NTDOM или ADS серверу.  Употребљава "
-"се од малих до великих мрежа."
+"кориснике користећи податке похрањене на NTDOM или ADS серверу.  Користи се "
+"код малих до великих мрежа."
 
 #: ../authconfig.glade.h:68
 msgid "_Admin Servers"
@@ -1022,19 +1024,19 @@ msgstr "_Дозволи пријаву без везе"
 
 #: ../authconfig.glade.h:70
 msgid "_Authenticate system accounts by network services"
-msgstr "_Аутентификуј системске налоге кроз мрежне сервисе"
+msgstr "_Аутентификуј системске налоге путем мрежних сервиса"
 
 #: ../authconfig.glade.h:71
 msgid "_Check access.conf during account authorization"
-msgstr "Про_вери access.conf током овлашћивања налога"
+msgstr "_Провери access.conf током овлашћивања налога"
 
 #: ../authconfig.glade.h:72
 msgid "_Domain Controllers"
-msgstr "Контролори д_омена"
+msgstr "Контролори _домена"
 
 #: ../authconfig.glade.h:73
 msgid "_Join Domain"
-msgstr "Пр_идружи се домену"
+msgstr "_Придружи се домену"
 
 #: ../authconfig.glade.h:74
 msgid "_KDCs"
@@ -1054,11 +1056,11 @@ msgstr "Алгоритам хеширања _лозинки"
 
 #: ../authconfig.glade.h:78
 msgid "_Realm"
-msgstr "_Царство"
+msgstr "_Подручје"
 
 #: ../authconfig.glade.h:79
 msgid "_Require smart card for login"
-msgstr "_Захтевај интелигентну картицу за пријаву"
+msgstr "_Потребна је интелигентна картицу за пријаву"
 
 #: ../authconfig.glade.h:80
 msgid "_Security Model"
