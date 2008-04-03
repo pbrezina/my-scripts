@@ -371,7 +371,7 @@ class Authconfig:
 
 		for opt, aival in string_settings.iteritems():
 			if getattr(self.options, opt) != None:
-				setattr(self.info, aival, getattr(self.options, opt))			
+				setattr(self.info, aival, getattr(self.options, opt))
 
 		if self.options.winbindjoin:
 			lst = self.options.winbindjoin.split("%", 1)
@@ -387,10 +387,14 @@ class Authconfig:
 				self.printError(_("Bad smart card removal action specified."))
 				self.info.smartcardAction = ""
 
-		if self.options.passalgo:
-			if self.options.passalgo not in authinfo.password_algorithms:
-				self.printError(_("Unknown password hashing algorithm specified, using sha256."))
-				self.info.passwordAlgorithm = "sha256"
+		if not self.options.passalgo:
+			if self.options.enablemd5:
+				self.info.passwordAlgorithm = "md5"
+			if self.options.disablemd5:
+				self.info.passwordAlgorithm = "descrypt"
+		elif self.options.passalgo not in authinfo.password_algorithms:
+			self.printError(_("Unknown password hashing algorithm specified, using sha256."))
+			self.info.passwordAlgorithm = "sha256"
 
 	def doUI(self):
 		return True

@@ -1286,7 +1286,12 @@ class AuthInfo:
 			
 			value = matchKey(line, "passwd:")
 			if value:
-				nssconfig = value			
+				nssconfig = value
+			else:
+				# wins can be found in hosts only
+				value = matchKey(line, "hosts:")
+				if value:
+					self.enableWINS = checkNSS(value, "wins")
 
 		if nssconfig:
 			self.enableCompat = checkNSS(nssconfig, "compat")
@@ -1298,7 +1303,6 @@ class AuthInfo:
 			self.enableNIS = checkNSS(nssconfig, "nis")
 			self.enableNIS3 = checkNSS(nssconfig, "nisplus")
 			self.enableWinbind = checkNSS(nssconfig, "winbind")
-			self.enableWINS = checkNSS(nssconfig, "wins")
 		f.close()
 		return True
 
@@ -2911,7 +2915,7 @@ class AuthInfo:
 
 			if self.enableHesiod:
 				ret = ret and self. writeHesiod()
-			if self.enableLDAP:
+			if self.enableLDAP or self.enableLDAPAuth:
 				ret = ret and self.writeLDAP()
 			if (self.enableKerberos or
 				(self.enableWinbindAuth and
@@ -3108,11 +3112,11 @@ class AuthInfo:
 		print " krb5 kdc = \"%s\"" % self.kerberosKDC
 		print " krb5 kdc via dns is %s" % formatBool(self.kerberosKDCviaDNS)
 		print " krb5 admin server = \"%s\"" % self.kerberosAdminServer
-		print "pam_ldap is %s\n" % formatBool(self.enableLDAPAuth)
+		print "pam_ldap is %s" % formatBool(self.enableLDAPAuth)
 		print " LDAP+TLS is %s" % formatBool(self.enableLDAPS)
 		print " LDAP server = \"%s\"" % self.ldapServer
 		print " LDAP base DN = \"%s\"" % self.ldapBaseDN
-		print "pam_pkcs11 is %s\n" % formatBool(self.enableSmartcard)
+		print "pam_pkcs11 is %s" % formatBool(self.enableSmartcard)
 		print " use only smartcard for login is %s" % formatBool(self.forceSmartcard)
 		print " smartcard module = \"%s\"" % self.smartcardModule
 		print " smartcard removal action = \"%s\"" % self.smartcardAction

@@ -95,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+- read wins setting from nsswitch.conf correctly
+- do not ignore --enablemd5/--disablemd5 options
+
 * Tue Mar 11 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.1-1
 - fixed backup directory in Makefile and spec (#437040)
 
