@@ -2,15 +2,15 @@
 # Copyright (C) 1999 Free Software Foundation, Inc.
 # Mohammad DAMT <mdamt@linux.or.id>, 1999.
 # Teguh DC <dheche@songolimo.net>, 2005-2007.
-# 
+# Dapid Candra <dapidc@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 14:03+0100\n"
-"PO-Revision-Date: 2007-12-05 11:07+0700\n"
-"Last-Translator: Teguh DC <dheche@songolimo.net>\n"
-"Language-Team: Linux Indonesia <http://linux.or.id>\n"
+"POT-Creation-Date: 2008-03-24 18:16+0000\n"
+"PO-Revision-Date: 2008-04-04 13:09+0700\n"
+"Last-Translator: Dapid Candra <dapidc@gmail.com>\n"
+"Language-Team: Fedora Indonesia <fedora-trans-id@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,7 +40,7 @@ msgstr "nonaktifkan password MD5 secara standar"
 
 #: ../authconfig.py:94
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "algoritma hash/crypt untuk password baru"
 
 #: ../authconfig.py:97
 msgid "enable NIS for user information by default"
@@ -58,7 +58,9 @@ msgstr "<domain>"
 msgid "default NIS domain"
 msgstr "Standar Domain NIS"
 
-#: ../authconfig.py:102 ../authconfig.py:113 ../authconfig.py:142
+#: ../authconfig.py:102
+#: ../authconfig.py:113
+#: ../authconfig.py:142
 #: ../authconfig.py:144
 msgid "<server>"
 msgstr "<server>"
@@ -155,7 +157,8 @@ msgstr "Standar kerberos KDC"
 msgid "default kerberos admin server"
 msgstr "standar server admin kerberos"
 
-#: ../authconfig.py:146 ../authconfig.py:176
+#: ../authconfig.py:146
+#: ../authconfig.py:176
 msgid "<realm>"
 msgstr "<realm>"
 
@@ -227,7 +230,8 @@ msgstr "modus keamanan yang digunakan untuk samba dan winbind"
 msgid "default realm for samba and winbind when security=ads"
 msgstr "standar realm untuk samba dan winbind ketika keamanan=ads"
 
-#: ../authconfig.py:178 ../authconfig.py:180
+#: ../authconfig.py:178
+#: ../authconfig.py:180
 msgid "<lowest-highest>"
 msgstr "<terendah-tertinggi>"
 
@@ -240,46 +244,28 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "jarak gid winbind akan menentukan ke domain atau pengguna"
 
 #: ../authconfig.py:183
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"Karakter yang akan digunakan untuk memisahkan antara domain dan bagian dari "
-"user dari winbind nama user jika winbindusedefaultdomain tidak diaktifkan"
+msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr "Karakter yang akan digunakan untuk memisahkan antara domain dan bagian dari user dari winbind nama user jika winbindusedefaultdomain tidak diaktifkan"
 
 #: ../authconfig.py:185
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"Direktori yang oleh pengguna hasil kreasi winbind akan digunakan sebagai "
-"direktori home"
+msgstr "Direktori yang oleh pengguna hasil kreasi winbind akan digunakan sebagai direktori home"
 
 #: ../authconfig.py:187
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
-"Kelompok yang oleh pengguna hasil kreasi winbind akan digunakan sebagai "
-"kelompok utama"
+msgstr "Kelompok yang oleh pengguna hasil kreasi winbind akan digunakan sebagai kelompok utama"
 
 #: ../authconfig.py:189
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"shell yang oleh pengguna hasil kreasi winbind akan digunakan sebagai shell "
-"loginnya"
+msgstr "shell yang oleh pengguna hasil kreasi winbind akan digunakan sebagai shell loginnya"
 
 #: ../authconfig.py:191
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"winbind yang dikonfigur itu harus diasumsikan pengguna yang tidak memiliki "
-"domain di dalam nama pengguna mereka adalah pengguna domain"
+msgid "configures winbind to assume that users with no domain in their user names are domain users"
+msgstr "winbind yang dikonfigur itu harus diasumsikan pengguna yang tidak memiliki domain di dalam nama pengguna mereka adalah pengguna domain"
 
 #: ../authconfig.py:193
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"winbind yang dikonfigur itu harus diasumsikan pengguna yang tidak memiliki "
-"domain di dalam nama pengguna mereka adalah bukan pengguna domain"
+msgid "configures winbind to assume that users with no domain in their user names are not domain users"
+msgstr "winbind yang dikonfigur itu harus diasumsikan pengguna yang tidak memiliki domain di dalam nama pengguna mereka adalah bukan pengguna domain"
 
 #: ../authconfig.py:195
 msgid "configures winbind to allow offline login"
@@ -291,8 +277,7 @@ msgstr "konfigur winbind untuk mencegah login secara offline"
 
 #: ../authconfig.py:199
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr ""
-"gabung dalam domain winbind atau realm sekarang sebagai administratornya"
+msgstr "gabung dalam domain winbind atau realm sekarang sebagai administratornya"
 
 #: ../authconfig.py:202
 msgid "enable wins for hostname resolution"
@@ -352,11 +337,11 @@ msgstr "otentikasi akun sistem hanya berdasarkan berkas lokal"
 
 #: ../authconfig.py:236
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "buat direktori home untuk pemakai pada login pertama kali"
 
 #: ../authconfig.py:238
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "jangan buat direktori home untuk pemakai saat login pertama kali"
 
 #: ../authconfig.py:241
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -376,8 +361,7 @@ msgstr "jangan tampilkan antarmuka teks yang sudah ditinggalkan"
 
 #: ../authconfig.py:253
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr ""
-"kebalikan dari --test, perbarui berkas konfigurasi dengan seting yang berubah"
+msgstr "kebalikan dari --test, perbarui berkas konfigurasi dengan seting yang berubah"
 
 #: ../authconfig.py:256
 msgid "update all configuration files"
@@ -387,26 +371,22 @@ msgstr "perbarui semua berkas konfigurasi"
 msgid "probe network for defaults and print them"
 msgstr "temukan jaringan untuk standarnya dan cetaklah"
 
-#: ../authconfig.py:261 ../authconfig.py:264
-#, fuzzy
+#: ../authconfig.py:261
+#: ../authconfig.py:264
 msgid "<name>"
-msgstr "<realm>"
+msgstr "<name>"
 
 #: ../authconfig.py:262
-#, fuzzy
 msgid "save a backup of all configuration files"
-msgstr "perbarui semua berkas konfigurasi"
+msgstr "simpan backup dari semua berkas konfigurasi"
 
 #: ../authconfig.py:265
-#, fuzzy
 msgid "restore the backup of configuration files"
 msgstr "perbarui semua berkas konfigurasi"
 
 #: ../authconfig.py:268
-msgid ""
-"restore the backup of configuration files saved before the previous "
-"configuration change"
-msgstr ""
+msgid "restore the backup of configuration files saved before the previous configuration change"
+msgstr "simpan ulang cadangan berkas konfigurasi yang disimpan sebelum perubahan konfigurasi sebelumnya"
 
 #: ../authconfig.py:273
 msgid "unexpected argument"
@@ -418,7 +398,7 @@ msgstr "Tindakan pelepasan kartu cerdas yang rusak telah ditentukan."
 
 #: ../authconfig.py:392
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "Algoritma hashing password yang dipilih tidak dikenal, menggunakan sha256."
 
 #: ../authconfig.py:421
 msgid "can only be run as root"
@@ -431,21 +411,26 @@ msgstr "dialog sudah dibatalkan"
 #: ../authconfig.py:460
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"Berkas %s tidak bisa ditemukan. tapi berkas tersebut diperlukan untuk "
-"dukungan %s agar berjalan secara benar. \n"
+"Berkas %s tidak bisa ditemukan. tapi berkas tersebut diperlukan untuk dukungan %s agar berjalan secara benar. \n"
 "Install paket %s, yang menyediakan berkas tersebut."
 
-#: ../authconfig.py:462 ../authconfig.py:817
+#: ../authconfig.py:462
+#: ../authconfig.py:817
 msgid "Warning"
 msgstr "Peringatan"
 
-#: ../authconfig.py:462 ../authconfig.py:675 ../authconfig.py:682
-#: ../authconfig.py:688 ../authconfig.py:697 ../authconfig.py:704
-#: ../authconfig.py:712 ../authconfig.py:753 ../authconfig.py:817
+#: ../authconfig.py:462
+#: ../authconfig.py:675
+#: ../authconfig.py:682
+#: ../authconfig.py:688
+#: ../authconfig.py:697
+#: ../authconfig.py:704
+#: ../authconfig.py:712
+#: ../authconfig.py:753
+#: ../authconfig.py:817
 msgid "Ok"
 msgstr "Ok"
 
@@ -477,7 +462,8 @@ msgstr "password shadow"
 msgid "SMB authentication"
 msgstr "Otentikasi SMB"
 
-#: ../authconfig.py:473 ../authconfig.py:475
+#: ../authconfig.py:473
+#: ../authconfig.py:475
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -485,7 +471,8 @@ msgstr "Winbind"
 msgid "Winbind authentication"
 msgstr "Otentikasi Winbind"
 
-#: ../authconfig.py:480 ../authconfig.glade.h:60
+#: ../authconfig.py:480
+#: ../authconfig.glade.h:60
 msgid "User Information"
 msgstr "Informasi Pengguna"
 
@@ -509,7 +496,9 @@ msgstr "Gunakan NIS"
 msgid "Use Winbind"
 msgstr "Gunakan Winbind"
 
-#: ../authconfig.py:504 ../authconfig.desktop.in.h:1 ../authconfig.glade.h:6
+#: ../authconfig.py:504
+#: ../authconfig.desktop.in.h:1
+#: ../authconfig.glade.h:6
 msgid "Authentication"
 msgstr "Otentikasi"
 
@@ -541,23 +530,34 @@ msgstr "Gunakan Otentikasi Winbind"
 msgid "Local authorization is sufficient"
 msgstr "Otorisasi Lokal sudah cukup"
 
-#: ../authconfig.py:540 ../authconfig.py:675 ../authconfig.py:682
-#: ../authconfig.py:688 ../authconfig.py:697 ../authconfig.py:704
+#: ../authconfig.py:540
+#: ../authconfig.py:675
+#: ../authconfig.py:682
+#: ../authconfig.py:688
+#: ../authconfig.py:697
+#: ../authconfig.py:704
 #: ../authconfig.py:753
 msgid "Back"
 msgstr "Mundur"
 
-#: ../authconfig.py:540 ../authconfig.py:712
+#: ../authconfig.py:540
+#: ../authconfig.py:712
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../authconfig.py:541 ../authconfig.py:675 ../authconfig.py:682
-#: ../authconfig.py:688 ../authconfig.py:697 ../authconfig.py:704
+#: ../authconfig.py:541
+#: ../authconfig.py:675
+#: ../authconfig.py:682
+#: ../authconfig.py:688
+#: ../authconfig.py:697
+#: ../authconfig.py:704
 #: ../authconfig.py:753
 msgid "Next"
 msgstr "Maju"
 
-#: ../authconfig.py:552 ../authconfig-gtk.py:436 ../authconfig.glade.h:7
+#: ../authconfig.py:552
+#: ../authconfig-gtk.py:436
+#: ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "Konfigurasi Otentikasi"
 
@@ -569,7 +569,8 @@ msgstr "LHS:"
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:674 ../authconfig.glade.h:31
+#: ../authconfig.py:674
+#: ../authconfig.glade.h:31
 msgid "Hesiod Settings"
 msgstr "Pengaturan Hesiod"
 
@@ -577,7 +578,8 @@ msgstr "Pengaturan Hesiod"
 msgid "Use TLS"
 msgstr "Gunakan TLS"
 
-#: ../authconfig.py:679 ../authconfig.py:686
+#: ../authconfig.py:679
+#: ../authconfig.py:686
 msgid "Server:"
 msgstr "Server:"
 
@@ -585,15 +587,18 @@ msgstr "Server:"
 msgid "Base DN:"
 msgstr "Base DN:"
 
-#: ../authconfig.py:681 ../authconfig.glade.h:40
+#: ../authconfig.py:681
+#: ../authconfig.glade.h:40
 msgid "LDAP Settings"
 msgstr "Pengaturan LDAP"
 
-#: ../authconfig.py:685 ../authconfig.py:747
+#: ../authconfig.py:685
+#: ../authconfig.py:747
 msgid "Domain:"
 msgstr "Domain:"
 
-#: ../authconfig.py:687 ../authconfig.glade.h:42
+#: ../authconfig.py:687
+#: ../authconfig.glade.h:42
 msgid "NIS Settings"
 msgstr "Pengaturan NIS"
 
@@ -617,7 +622,8 @@ msgstr "Gunakan DNS untuk menresolve dari host ke realm"
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Gunakan DNS untuk menemukan lokasi KDC untuk realm"
 
-#: ../authconfig.py:696 ../authconfig.glade.h:37
+#: ../authconfig.py:696
+#: ../authconfig.glade.h:37
 msgid "Kerberos Settings"
 msgstr "Pengaturan Kerberos"
 
@@ -633,7 +639,8 @@ msgstr "Server:"
 msgid "Shell:"
 msgstr "Shell:"
 
-#: ../authconfig.py:703 ../authconfig.glade.h:49
+#: ../authconfig.py:703
+#: ../authconfig.glade.h:49
 msgid "SMB Settings"
 msgstr "Pengaturan SMB"
 
@@ -649,15 +656,10 @@ msgstr "Password:"
 msgid "Join Settings"
 msgstr "Pengaturan Join"
 
-#: ../authconfig.py:721 ../authconfig.glade.h:53
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
-msgstr ""
-"Beberapa perubahan konfigurasi yang telah anda lakukan sebaiknya disimpan "
-"dalam disk sebelum di lanjutkan. Jika anda tidak melakukan penyimpanan, maka "
-"saat anda mencoba untuk gabung domain akan gagal. Simpan perubahan?"
+#: ../authconfig.py:721
+#: ../authconfig.glade.h:53
+msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
+msgstr "Beberapa perubahan konfigurasi yang telah anda lakukan sebaiknya disimpan dalam disk sebelum di lanjutkan. Jika anda tidak melakukan penyimpanan, maka saat anda mencoba untuk gabung domain akan gagal. Simpan perubahan?"
 
 #: ../authconfig.py:728
 msgid "Save Settings"
@@ -689,7 +691,8 @@ msgstr "Realm ADS:"
 msgid "Template Shell:"
 msgstr "Template Shell:"
 
-#: ../authconfig.py:752 ../authconfig.glade.h:65
+#: ../authconfig.py:752
+#: ../authconfig.glade.h:65
 msgid "Winbind Settings"
 msgstr "Pengaturan Winbind"
 
@@ -700,29 +703,20 @@ msgstr "Gabung Domain"
 #: ../authconfig.py:812
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Untuk bisa melakukan koneksi dengan benar ke server LDAP menggunakan "
-"protokol TLS anda perlu sertifikat CA yang menandatangi sertifikat server "
-"anda. Copy sertifikat dalam format PEM ke direktori '%s'.\n"
+"Untuk bisa melakukan koneksi dengan benar ke server LDAP menggunakan protokol TLS anda perlu sertifikat CA yang menandatangi sertifikat server anda. Copy sertifikat dalam format PEM ke direktori '%s'.\n"
 "Kemudian tekan OK."
 
 #. FIXME - version
 #: ../authconfig.py:826
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
-" <Tab>/<Alt-Tab> untuk switch | <Spasi> untuk memilih | <F12> layar maju"
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
+msgstr " <Tab>/<Alt-Tab> untuk switch | <Spasi> untuk memilih | <F12> layar maju"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Kontrol bagaimana sistem bisa melakukan verifikasi pengguna yang mencoba "
-"untuk masuk"
+msgstr "Kontrol bagaimana sistem bisa melakukan verifikasi pengguna yang mencoba untuk masuk"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -741,10 +735,8 @@ msgid "Alert"
 msgstr "Sinyal"
 
 #: ../authconfig.glade.h:5
-msgid ""
-"All configuration files which were modified by the previous authentication "
-"configuration change will be restored from backup. Revert the changes?"
-msgstr ""
+msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
+msgstr "Semua berkas konfigurasi yang diubah oleh perubahan konfigurasi otentikasi sebelumnya akan disimpan ulang dari cadangan. Balikkan perubahan?"
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -788,7 +780,7 @@ msgstr "Konfigur Win_bind..."
 
 #: ../authconfig.glade.h:18
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Buat direktori _home pada login pertama kali"
 
 #: ../authconfig.glade.h:19
 msgid "Do_n't Save"
@@ -835,12 +827,8 @@ msgid "Enable _Winbind Support"
 msgstr "Aktifkan Dukungan _Winbind"
 
 #: ../authconfig.glade.h:30
-msgid ""
-"For user accounts maintained in local /etc/passwd file system will not check "
-"authorization from network services such as LDAP or Kerberos."
-msgstr ""
-"Untuk akun pengguna yang dipelihara di berkas lokal /etc/passwd sistem tidak "
-"akan menguji otorisasi dari layanan jaringan seperti LDAP atau Kerberos."
+msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
+msgstr "Untuk akun pengguna yang dipelihara di berkas lokal /etc/passwd sistem tidak akan menguji otorisasi dari layanan jaringan seperti LDAP atau Kerberos."
 
 #: ../authconfig.glade.h:32
 msgid "Hesiod _LHS"
@@ -851,31 +839,20 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
 #: ../authconfig.glade.h:34
-msgid ""
-"Hesiod allows a system administrator to publish user and group information "
-"in DNS.  It is sometimes used in very large networks."
-msgstr ""
-"Hesion membolehkan administrator dari sistem untuk mempublis informasi "
-"pengguna dan kelompok dalam DNS. Hesiod ini kadang di gunakan dalam jaringan "
-"yang besar."
+msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
+msgstr "Hesion membolehkan administrator dari sistem untuk mempublis informasi pengguna dan kelompok dalam DNS. Hesiod ini kadang di gunakan dalam jaringan yang besar."
 
 #: ../authconfig.glade.h:35
-msgid ""
-"If the home directory of an user doesn't exist yet it will be created "
-"automatically on his first login."
-msgstr ""
+msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
+msgstr "Jika direktori home dari seorang pemakai belum ada, maka akan dibuatkan pertama kali saat pertama kali login."
 
 #: ../authconfig.glade.h:36
 msgid "Joining Winbind Domain"
 msgstr "Penggabungan Domain Winbind"
 
 #: ../authconfig.glade.h:38
-msgid ""
-"Kerberos is a trusted third-party authentication system which is commonly "
-"used in medium to large networks."
-msgstr ""
-"Kerberos adalah sistem otentikasi third-party terpercaya yang biasanya "
-"digunakan dalam jaringan menengah sampai besar."
+msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
+msgstr "Kerberos adalah sistem otentikasi third-party terpercaya yang biasanya digunakan dalam jaringan menengah sampai besar."
 
 #: ../authconfig.glade.h:39
 msgid "LDAP Search _Base DN"
@@ -894,70 +871,40 @@ msgid "NIS _Server"
 msgstr "Server _NIS"
 
 #: ../authconfig.glade.h:45
-msgid ""
-"NIS is the Network Information Service.  It is commonly used on small to "
-"medium networks."
-msgstr ""
-"NIS adalah Network Information Service. NIS biasanya digunakan dalam network "
-"kecil sampai menegah."
+msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
+msgstr "NIS adalah Network Information Service. NIS biasanya digunakan dalam network kecil sampai menegah."
 
 #: ../authconfig.glade.h:46
 msgid "Options"
 msgstr "Pilihan"
 
 #: ../authconfig.glade.h:47
-msgid ""
-"Restore the configuration files backed up before the previous configuration "
-"change"
-msgstr ""
+msgid "Restore the configuration files backed up before the previous configuration change"
+msgstr "Simpan ulang berkas konfigurasi yang di simpan sebelum perubahan konfigurasi sebelumnya"
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Revert"
-msgstr "Server:"
+msgstr "Balikkan"
 
 #: ../authconfig.glade.h:50
-msgid ""
-"SMB authentication verifies user passwords by attempting to connect to a "
-"server which uses the SMB (system message block) protocol suite."
-msgstr ""
-"Otentikasi SMB melakukan verifikasi password pengguna yang mencoba melakukan "
-"koneksi ke server yang menggunakan protokol SMB (system message block)."
+msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
+msgstr "Otentikasi SMB melakukan verifikasi password pengguna yang mencoba melakukan koneksi ke server yang menggunakan protokol SMB (system message block)."
 
 #: ../authconfig.glade.h:51
 msgid "Smart Card Settings"
 msgstr "Pengaturan Kartu Cerdas"
 
 #: ../authconfig.glade.h:52
-msgid ""
-"Smart card authentication allows you to log in using a certificate and key "
-"associated with a smart card."
-msgstr ""
-"Otentikasi kartu cerdas mengijinkan anda untuk masuk mempergunakan "
-"sertifikat dan kunci yang telah diasosiasikan dengan kartu cerdas."
+msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
+msgstr "Otentikasi kartu cerdas mengijinkan anda untuk masuk mempergunakan sertifikat dan kunci yang telah diasosiasikan dengan kartu cerdas."
 
 #: ../authconfig.glade.h:54
-msgid ""
-"The Lightweight Directory Access Protocol is a standard way of searching a "
-"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
-"increasingly being used in small to large networks."
-msgstr ""
-"Lightweight Directory Access Protocol  (LDAP) adalah cara standar untuk "
-"pencarian sebuah direktori, yang bisa menyimpan data arbitari secara "
-"terstruktur yang hirarki. LDAP semakin banyak digunakan dalam jaringan kecil "
-"sampai besar."
+msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
+msgstr "Lightweight Directory Access Protocol  (LDAP) adalah cara standar untuk pencarian sebuah direktori, yang bisa menyimpan data arbitari secara terstruktur yang hirarki. LDAP semakin banyak digunakan dalam jaringan kecil sampai besar."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
-msgid ""
-"To verify the LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed the server's certificate. Please fill in the URL "
-"where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Untuk bisa melakukan koneksi dengan benar ke server LDAP menggunakan "
-"protokol TLS anda perlu sertifikat CA yang menandatangi sertifikat server "
-"anda. Copy sertifikat dalam format PEM ke direktori '%s'.\n"
-"Kemudian tekan OK."
+msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
+msgstr "Untuk memeriksa LDAP server dengan protokol TSL aktif Anda memerlukan sertifikat CA yang menandai sertifikat server. Isikan URL di mana sertifikat CA dalam format PEM dapat diunduh."
 
 #: ../authconfig.glade.h:56
 msgid "Use DNS to _locate KDCs for realms"
@@ -976,18 +923,12 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Gunakan _TLS untuk mengenkripsi koneksi"
 
 #: ../authconfig.glade.h:61
-msgid ""
-"When enabled /etc/security/access.conf will be consulted for authorization "
-"of users access."
-msgstr ""
+msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
+msgstr "Jika diaktifkan /etc/security/access.conf akan diperiksa untuk otorisasi dari akses pemakai."
 
 #: ../authconfig.glade.h:62
-msgid ""
-"When enabled allows network services such as LDAP or Kerberos to "
-"authenticate system accounts including root on this machine."
-msgstr ""
-"Ketika diaktifkan maka layanan jaringan seperti LDAP atau Kerberos diijinkan "
-"untuk melakukan otentikasi akun sistem termasuk root pada mesin ini."
+msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
+msgstr "Ketika diaktifkan maka layanan jaringan seperti LDAP atau Kerberos diijinkan untuk melakukan otentikasi akun sistem termasuk root pada mesin ini."
 
 #: ../authconfig.glade.h:63
 msgid "Winbind ADS _Realm"
@@ -1002,22 +943,14 @@ msgid "Winbind _Domain"
 msgstr "_Domain Winbind"
 
 #: ../authconfig.glade.h:67
-msgid ""
-"Winbind allows a system to retrieve information about users and to "
-"authenticate users by using information stored in an NTDOM or ADS server.  "
-"It is used in small to large networks."
-msgstr ""
-"Winbind membolehkan sebuah sistem untuk mengambil informasi tentang pengguna "
-"dan untuk otentifikasi pengguna dengan menggunakan informasi yang disimpan "
-"dalam NTDOm atau server ADS. Winbind digunakan dalam jaringan kecil sampai "
-"dengan besar"
+msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
+msgstr "Winbind membolehkan sebuah sistem untuk mengambil informasi tentang pengguna dan untuk otentifikasi pengguna dengan menggunakan informasi yang disimpan dalam NTDOm atau server ADS. Winbind digunakan dalam jaringan kecil sampai dengan besar"
 
 #: ../authconfig.glade.h:68
 msgid "_Admin Servers"
 msgstr "Server _Admin"
 
 #: ../authconfig.glade.h:69
-#, fuzzy
 msgid "_Allow offline login"
 msgstr "Ijinkan login offline"
 
@@ -1051,7 +984,7 @@ msgstr "_Password"
 
 #: ../authconfig.glade.h:77
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algoritma hashing _Password"
 
 #: ../authconfig.glade.h:78
 msgid "_Realm"
@@ -1073,22 +1006,21 @@ msgstr "Shell _Template"
 msgid "_Workgroup"
 msgstr "_Workgroup"
 
-#: ../authinfo.py:666 ../authinfo.py:1175 ../authinfo.py:2398
+#: ../authinfo.py:666
+#: ../authinfo.py:1175
+#: ../authinfo.py:2398
 msgid "Lock"
 msgstr "Kunci"
 
-#: ../authinfo.py:666 ../authinfo.py:1177
+#: ../authinfo.py:666
+#: ../authinfo.py:1177
 msgid "Ignore"
 msgstr "Abaikan"
 
 #: ../authinfo.py:2743
 #, python-format
-msgid ""
-"Authentication module %s/pam_%s.so is missing. Authentication process will "
-"not work correctly."
-msgstr ""
-"Modul otentikasi %s/pam_%s.so tidak ditemukan. Proses otentikasi tidak akan "
-"bekerja dengan benar."
+msgid "Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly."
+msgstr "Modul otentikasi %s/pam_%s.so tidak ditemukan. Proses otentikasi tidak akan bekerja dengan benar."
 
 #: ../authinfo.py:3222
 msgid "Error downloading CA certificate"
@@ -1096,6 +1028,6 @@ msgstr "Gagal mengunduh sertifikat CA"
 
 #~ msgid "LDAP CA Certificate Check"
 #~ msgstr "Pemeriksaan Sertifikat CA LDAP"
-
 #~ msgid "Use _MD5 Passwords"
 #~ msgstr "Gunakan Password _MD5"
+
