@@ -1,25 +1,26 @@
-# translation of ja.po to Japanese
+# translation of authconfig.tip.ja.po to Japanese
 # Japanese translations for Authconfig
 # Copyright (C) 2002 Red Hat, Inc.
+#
 # James Hashida <khashida@redhat.com>, 2002.
 # Tadashi Jokagi <fedora@elf.no-ip.org>, 2004.
 # Hirofumi Saito <hi_saito@yk.rim.or.jp>, 2004, 2005, 2006.
 # Kiyoto James Hashida <khashida@redhat.com>, 2006.
 # Noriko Mizumoto <noriko@redhat.com>, 2006.
 # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2007.
-#
+# Kiyoto Hashida <khashida@redhat.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: ja\n"
+"Project-Id-Version: authconfig.tip.ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 14:03+0100\n"
-"PO-Revision-Date: 2008-01-13 14:05+0900\n"
-"Last-Translator: Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>\n"
-"Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
+"POT-Creation-Date: 2008-03-10 18:28+0000\n"
+"PO-Revision-Date: 2008-04-07 11:39+1000\n"
+"Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
+"Language-Team: Japanese <jp@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../authconfig.py:78
 #, python-format
@@ -268,8 +269,7 @@ msgstr "samba と winbind 用に使用するセキュリティモード"
 
 #: ../authconfig.py:177
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
-"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
+msgstr "セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
 
 #: ../authconfig.py:178 ../authconfig.py:180
 msgid "<lowest-highest>"
@@ -433,25 +433,22 @@ msgstr "デフォルトのネットワークを検出して表示する"
 
 # ../authconfig.c:753
 #: ../authconfig.py:261 ../authconfig.py:264
-#, fuzzy
 msgid "<name>"
-msgstr "<レルム>"
+msgstr "<name>"
 
 #: ../authconfig.py:262
-#, fuzzy
 msgid "save a backup of all configuration files"
-msgstr "全ての設定ファイルのアップデート"
+msgstr "全ての設定ファイルのバックアップを保存"
 
 #: ../authconfig.py:265
-#, fuzzy
 msgid "restore the backup of configuration files"
-msgstr "全ての設定ファイルのアップデート"
+msgstr "設定ファイルのバックアップを復元"
 
 #: ../authconfig.py:268
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
-msgstr ""
+msgstr "前回の設定変更の前に保存されている設定ファイルのバックアップを復元"
 
 # ../authconfig.c:794
 #: ../authconfig.py:273
@@ -464,8 +461,7 @@ msgstr "不正なスマートカード取り出し動作が指定されました
 
 #: ../authconfig.py:392
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
-"不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
+msgstr "不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
 
 # ../authconfig.c:803
 #: ../authconfig.py:421
@@ -829,6 +825,8 @@ msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
 msgstr ""
+"前回の認証設定変更により修正された全ての設定ファイルはバックアップから "
+"以前の設定に復元できます。変更を戻しますか ？"
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -1002,13 +1000,12 @@ msgstr "オプション"
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
-msgstr ""
+msgstr "前回の設定変更の前にバックアップされている設定ファイルを復元"
 
 # ../authconfig.c:163 ../authconfig.c:201
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Revert"
-msgstr "サーバー:"
+msgstr "戻す"
 
 #: ../authconfig.glade.h:50
 msgid ""
@@ -1192,9 +1189,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "CA 証明書のダウンロードでエラー"
 
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "LDAP CA 証明書チェック"
-
-# ../authconfig.c:455
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "MD5 パスワードを使用(_M)"
