@@ -912,13 +912,11 @@ class AuthInfo:
 		# Authentication setup.
 		self.enableAFS = None
 		self.enableAFSKerberos = None
-		self.enableBigCrypt = None
 		self.enableNullOk = True
 		self.enableCracklib = None
 		self.enableEPS = None
 		self.enableKerberos = None
 		self.enableLDAPAuth = None
-		self.enableMD5 = None
 		self.passwordAlgorithm = ""
 		self.algoRounds = ""
 		self.enableOTP = None
@@ -1515,7 +1513,11 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
-				self.enableMD5 = shv.getBoolValue("USEMD5")
+				enableMD5 = shv.getBoolValue("USEMD5")
+				if enableMD5:
+					self.passwordAlgorithm = 'md5'
+				else:
+					self.passwordAlgorithm = 'descrypt'
 			except ValueError:
 				pass
 			try:
@@ -1676,7 +1678,6 @@ class AuthInfo:
 
 		(self.enableAFS != b.enableAFS) or
 		(self.enableAFSKerberos != b.enableAFSKerberos) or
-		(self.enableBigCrypt != b.enableBigCrypt) or
 		(self.enableNullOk != b.enableNullOk) or
 		(self.enableCracklib != b.enableCracklib) or
 		(self.enableEPS != b.enableEPS) or
@@ -1684,7 +1685,6 @@ class AuthInfo:
 		(self.enableLDAPAuth != b.enableLDAPAuth) or
 		(self.enableSmartcard != b.enableSmartcard) or
 		(self.forceSmartcard != b.forceSmartcard) or
-		(self.enableMD5 != b.enableMD5) or
 		(self.enableOTP != b.enableOTP) or
 		(self.enablePasswdQC != b.enablePasswdQC) or
 		(self.enableShadow != b.enableShadow) or
@@ -1717,11 +1717,6 @@ class AuthInfo:
 			if self.smbRealm:
 				self.smbRealm = self.smbRealm.upper()
 		self.passwordAlgorithm = self.passwordAlgorithm.lower()
-		if not self.passwordAlgorithm:
-			if self.enableMD5:
-				self.passwordAlgorithm = "md5"
-			elif self.enableBigCrypt:
-				self.passwordAlgorithm = "bigcrypt"
 
 	def read(self):
 		self.readHesiod()

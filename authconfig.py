@@ -312,7 +312,6 @@ class Authconfig:
 	
 	def overrideSettings(self):
 		bool_settings = {"shadow":"enableShadow",
-			"md5":"enableMD5",
 			"locauthorize":"enableLocAuthorize",
 			"pamaccess":"enablePAMAccess",
 			"sysnetauth":"enableSysNetAuth",
@@ -508,7 +507,7 @@ class AuthconfigTUI(Authconfig):
 		comp = snack.Label(_("Authentication"))
 		authGrid.setField(comp, 0, 0, anchorLeft=1, growx=1)
 
-		md5 = cb = snack.Checkbox(_("Use MD5 Passwords"), bool(self.info.enableMD5))
+		md5 = cb = snack.Checkbox(_("Use MD5 Passwords"), bool(self.info.passwordAlgorithm=='md5'))
 		authGrid.setField(cb, 0, 1, anchorLeft=1, growx=1)
 
 		shadow = cb = snack.Checkbox(_("Use Shadow Passwords"), bool(self.info.enableShadow))
@@ -566,7 +565,10 @@ class AuthconfigTUI(Authconfig):
 			self.info.enableNIS = nis.selected()
 			self.info.enableWinbind = winbind.selected()
 			self.info.enableShadow = shadow.selected()
-			self.info.enableMD5 = md5.selected()
+			if md5.selected():
+				self.info.passwordAlgorithm = 'md5'
+			elif self.info.passwordAlgorithm == 'md5':
+				self.info.passwordAlgorithm = 'descrypt'
 			self.info.enableLDAPAuth = ldapa.selected()
 			self.info.enableKerberos = krb5.selected()
 			self.info.enableSMB = smb.selected()
