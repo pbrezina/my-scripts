@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-12 13:43+0200\n"
+"POT-Creation-Date: 2008-06-06 15:53+0200\n"
 "PO-Revision-Date: 2008-03-14 11:59+0530\n"
 "Last-Translator: I. Felix <ifelix@redhat.com>\n"
 "Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
@@ -98,7 +98,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "முன்னிருப்பாக LDAPஐ அங்கீகாரத்திற்கு செயல்நீக்கவும்"
 
 #: ../authconfig.py:114
-msgid "default LDAP server"
+#, fuzzy
+msgid "default LDAP server hostname or URI"
 msgstr "முன்னிருப்பு LDAP சேவையகம்"
 
 #: ../authconfig.py:115
@@ -110,11 +111,13 @@ msgid "default LDAP base DN"
 msgstr "முன்னிருப்பு LDAP அடிப்படை DN"
 
 #: ../authconfig.py:118
-msgid "enable use of TLS with LDAP"
+#, fuzzy
+msgid "enable use of TLS with LDAP (RFC-2830)"
 msgstr "TLS இன் பயனை LDAP உடன் செயல்படுத்தவும்"
 
 #: ../authconfig.py:120
-msgid "disable use of TLS with LDAP"
+#, fuzzy
+msgid "disable use of TLS with LDAP (RFC-2830)"
 msgstr "TLS ன் பயனை LDAP உடன் செயல்நீக்கவும்"
 
 #: ../authconfig.py:121
@@ -310,129 +313,139 @@ msgid "disable wins for hostname resolution"
 msgstr "புரவலன் பெயர் தெளிவுத்திறனுக்கான winsஐ செயல்நீக்கவும்"
 
 #: ../authconfig.py:207
+#, fuzzy
+msgid "prefer dns over wins or nis for hostname resolution"
+msgstr "புரவலன் பெயர் தெளிவுத்திறனுக்கான winsஐ செயல்படுத்துத்தவும்"
+
+#: ../authconfig.py:209
+#, fuzzy
+msgid "do not prefer dns over wins or nis for hostname resolution"
+msgstr "புரவலன் பெயர் தெளிவுத்திறனுக்கான winsஐ செயல்படுத்துத்தவும்"
+
+#: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
 msgstr "பயனர் தகவலுக்கான hesiodஐ முன்னிருப்பாக செயல்படுத்தவும்"
 
-#: ../authconfig.py:209
+#: ../authconfig.py:214
 msgid "disable hesiod for user information by default"
 msgstr "பயனர் தகவலுக்கான hesiodஐ முன்னிருப்பாக செயல்நீக்கவும்"
 
-#: ../authconfig.py:211
+#: ../authconfig.py:216
 msgid "default hesiod LHS"
 msgstr "முன்னிருப்பு hesiod LHS"
 
-#: ../authconfig.py:213
+#: ../authconfig.py:218
 msgid "default hesiod RHS"
 msgstr "முன்னிருப்பு hesiod RHS"
 
-#: ../authconfig.py:216
+#: ../authconfig.py:221
 msgid "enable caching of user information by default"
 msgstr "முன்னிருப்பு பயனர் தகவலை இடையகத்தில் செயல்படுத்தவும்"
 
-#: ../authconfig.py:218
+#: ../authconfig.py:223
 msgid "disable caching of user information by default"
 msgstr "முன்னிருப்பாக பயனர் தகவலை இடையகத்தில் செயல்நீக்கவும்"
 
-#: ../authconfig.py:221
+#: ../authconfig.py:226
 msgid "local authorization is sufficient for local users"
 msgstr "உள்ளமை பயனர்களுக்கு போதுமான உள்ளமை அனுமதி"
 
-#: ../authconfig.py:223
+#: ../authconfig.py:228
 msgid "authorize local users also through remote service"
 msgstr "உள்ளமை பயனர்களை தொலை சேவைகள் மூலமும் அங்கீகரிக்கவும்"
 
-#: ../authconfig.py:226
+#: ../authconfig.py:231
 msgid "check access.conf during account authorization"
 msgstr "கணக்கு அங்கீகரித்தலில் access.conf ஐ சரிபார்க்கவும்"
 
-#: ../authconfig.py:228
+#: ../authconfig.py:233
 msgid "do not check access.conf during account authorization"
 msgstr "கணக்கு அங்கீகரித்தலில் access.conf ஐ சரிபார்க்க வேண்டாம்"
 
-#: ../authconfig.py:231
+#: ../authconfig.py:236
 msgid "authenticate system accounts by network services"
 msgstr "பிணைய சேவைகளால் கணினி கணக்குகளை அங்கீகரிக்கவும்"
 
-#: ../authconfig.py:233
+#: ../authconfig.py:238
 msgid "authenticate system accounts by local files only"
 msgstr "உள்ளமை கோப்புகளால் மட்டும் கணினி கணக்குகளை அங்கீகரிக்கவும்"
 
-#: ../authconfig.py:236
+#: ../authconfig.py:241
 msgid "create home directories for users on their first login"
 msgstr "பயனர்களுக்கு அவர்களின் முதல் புகுபதிவில் இல்ல அடைவுகளை உருவாக்கவும்"
 
-#: ../authconfig.py:238
+#: ../authconfig.py:243
 msgid "do not create home directories for users on their first login"
 msgstr "பயனர்களுக்கு அவர்களின் முதல் புகுபதிவில் இல்ல அடைவுகளை உருவாக்க வேண்டாம்"
 
-#: ../authconfig.py:241
+#: ../authconfig.py:246
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind, and nscdஐ துவக்க/நிறுத்த வேண்டாம்"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:249
 msgid "do not update the configuration files, only print new settings"
 msgstr "கட்டமைக்கப்பட்ட கோப்புகளை மேம்படுத்த வேண்டாம், புதிய அமைவுகளை மட்டும் அச்சடிக்கவும்"
 
-#: ../authconfig.py:248
+#: ../authconfig.py:253
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "TUI ன் முதன்மை உரையாடலில் ரத்து என்பதற்குப் பதில் பின்னோக்கு என காட்டவும்"
 
-#: ../authconfig.py:250
+#: ../authconfig.py:255
 msgid "do not display the deprecated text user interface"
 msgstr "எதிரிடையான உரை பயனர் முகப்பை காட்ட வேண்டாம்"
 
-#: ../authconfig.py:253
+#: ../authconfig.py:258
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--test இன் எதிர், மாற்றப்பட்ட அமைவுகளுடன் கட்டமைப்பு கோப்புகளை மேம்படுத்தவும்"
 
-#: ../authconfig.py:256
+#: ../authconfig.py:261
 msgid "update all configuration files"
 msgstr "அனைத்து கட்டமைப்பு கோப்புகளையும் மேம்படுத்தவும்"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:264
 msgid "probe network for defaults and print them"
 msgstr "முன்னிருப்பு பிணையத்தை தேடி பின் அச்சிடவும்"
 
-#: ../authconfig.py:261 ../authconfig.py:264
+#: ../authconfig.py:266 ../authconfig.py:269
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:267
 msgid "save a backup of all configuration files"
 msgstr "அனைத்து கட்டமைப்பு கோப்புகளையும் ஒரு பின்சேமிப்பாக சேமிக்கவும்"
 
-#: ../authconfig.py:265
+#: ../authconfig.py:270
 msgid "restore the backup of configuration files"
 msgstr "கட்டமைப்பு கோப்புகளின் பின்சேமிப்பை மீண்டும் சேமிக்கவும்"
 
-#: ../authconfig.py:268
+#: ../authconfig.py:273
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 "முந்தைய கட்டமைப்பு மாற்றப்படும் முன் கட்டமைப்பு கோப்புகளின் பின்சேமிப்பை மீண்டும் சேமிக்கவும்"
 
-#: ../authconfig.py:273
+#: ../authconfig.py:278
 msgid "unexpected argument"
 msgstr "எதிர்பாராத மதிப்புரு"
 
-#: ../authconfig.py:386
+#: ../authconfig.py:392
 msgid "Bad smart card removal action specified."
 msgstr "தவறான ஸ்மார்ட்கார்ட் நீக்க செயல் குறிப்பிடப்பட்டுள்ளது."
 
-#: ../authconfig.py:395
+#: ../authconfig.py:401
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "sha256 ஐ பயன்படுத்தி தெரியாத ஹஷிங் கணிமொழி குறிக்கப்பட்டுள்ளது."
 
-#: ../authconfig.py:424
+#: ../authconfig.py:430
 msgid "can only be run as root"
 msgstr "ரூட்டாக மட்டுமே இயக்க முடியும்"
 
-#: ../authconfig.py:440
+#: ../authconfig.py:446
 msgid "dialog was cancelled"
 msgstr "உரையாடல் ரத்துச் செய்யப்பட்டது"
 
-#: ../authconfig.py:463
+#: ../authconfig.py:469
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -442,217 +455,217 @@ msgstr ""
 "%s கோப்பினை காணவில்லை. ஆனால் %s துணை ஒழுங்காக வேலை செய்ய இது தேவை.\n"
 "இந்த கோப்பினை தரும், %s தொகுப்பை நிறுவுக."
 
-#: ../authconfig.py:465 ../authconfig.py:823
+#: ../authconfig.py:471 ../authconfig.py:829
 msgid "Warning"
 msgstr "எச்சரிக்கை"
 
-#: ../authconfig.py:465 ../authconfig.py:681 ../authconfig.py:688
-#: ../authconfig.py:694 ../authconfig.py:703 ../authconfig.py:710
-#: ../authconfig.py:718 ../authconfig.py:759 ../authconfig.py:823
+#: ../authconfig.py:471 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:724 ../authconfig.py:765 ../authconfig.py:829
 msgid "Ok"
 msgstr "சரி"
 
-#: ../authconfig.py:469
+#: ../authconfig.py:475
 msgid "caching"
 msgstr "இடையகம்"
 
-#: ../authconfig.py:470
+#: ../authconfig.py:476
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:471
+#: ../authconfig.py:477
 msgid "LDAP authentication"
 msgstr "LDAP அங்கீகாரம்"
 
-#: ../authconfig.py:472
+#: ../authconfig.py:478
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:473
+#: ../authconfig.py:479
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:474
+#: ../authconfig.py:480
 msgid "shadow password"
 msgstr "நிழல் கடவுச்சொல்"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:481
 msgid "SMB authentication"
 msgstr "SMB அங்கீகாரம்"
 
-#: ../authconfig.py:476 ../authconfig.py:478
+#: ../authconfig.py:482 ../authconfig.py:484
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:477
+#: ../authconfig.py:483
 msgid "Winbind authentication"
 msgstr "Winbind அங்கீகாரம்"
 
-#: ../authconfig.py:483
+#: ../authconfig.py:489
 msgid "User Information"
 msgstr "பயனர் தகவல்"
 
-#: ../authconfig.py:486
+#: ../authconfig.py:492
 msgid "Cache Information"
 msgstr "இடையக தகவல்"
 
-#: ../authconfig.py:490
+#: ../authconfig.py:496
 msgid "Use Hesiod"
 msgstr "Hesiodஐ பயன்படுத்தவும்"
 
-#: ../authconfig.py:493
+#: ../authconfig.py:499
 msgid "Use LDAP"
 msgstr "LDAPஐ பயன்படுத்தவும்"
 
-#: ../authconfig.py:497
+#: ../authconfig.py:503
 msgid "Use NIS"
 msgstr "NISஐ பயன்படுத்தவும்"
 
-#: ../authconfig.py:501
+#: ../authconfig.py:507
 msgid "Use Winbind"
 msgstr "Winbind ஐ பயன்படுத்தவும்"
 
-#: ../authconfig.py:507 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:513 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "அங்கீகாரம்"
 
-#: ../authconfig.py:510
+#: ../authconfig.py:516
 msgid "Use MD5 Passwords"
 msgstr "MD5 கடவுச்சொற்களை பயன்படுத்தவும்"
 
-#: ../authconfig.py:513
+#: ../authconfig.py:519
 msgid "Use Shadow Passwords"
 msgstr "நிழற் கடவுச்சொற்களை பயன்படுத்தவும்"
 
-#: ../authconfig.py:517
+#: ../authconfig.py:523
 msgid "Use LDAP Authentication"
 msgstr "LDAP அங்கீகாரத்தைப் பயன்படுத்தவும்"
 
-#: ../authconfig.py:521
+#: ../authconfig.py:527
 msgid "Use Kerberos"
 msgstr "Kerberosஐ பயன்படுத்தவும்"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:531
 msgid "Use SMB Authentication"
 msgstr "SMB அங்கீகாரத்தைப் பயன்படுத்தவும்"
 
-#: ../authconfig.py:529
+#: ../authconfig.py:535
 msgid "Use Winbind Authentication"
 msgstr "Winbind அங்கீகாரத்தைப் பயன்படுத்தவும்"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:539
 msgid "Local authorization is sufficient"
 msgstr "உள்ளமை அனுமதி போதுமானது"
 
-#: ../authconfig.py:543 ../authconfig.py:681 ../authconfig.py:688
-#: ../authconfig.py:694 ../authconfig.py:703 ../authconfig.py:710
-#: ../authconfig.py:759
+#: ../authconfig.py:549 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:765
 msgid "Back"
 msgstr "பின்னோக்கு"
 
-#: ../authconfig.py:543 ../authconfig.py:718
+#: ../authconfig.py:549 ../authconfig.py:724
 msgid "Cancel"
 msgstr "ரத்து"
 
-#: ../authconfig.py:544 ../authconfig.py:681 ../authconfig.py:688
-#: ../authconfig.py:694 ../authconfig.py:703 ../authconfig.py:710
-#: ../authconfig.py:759
+#: ../authconfig.py:550 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:765
 msgid "Next"
 msgstr "அடுத்து"
 
-#: ../authconfig.py:555 ../authconfig-gtk.py:436 ../authconfig.glade.h:7
+#: ../authconfig.py:561 ../authconfig-gtk.py:436 ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "அங்கீகார கட்டமைப்பு"
 
-#: ../authconfig.py:678
+#: ../authconfig.py:684
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:679
+#: ../authconfig.py:685
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:680 ../authconfig.glade.h:32
+#: ../authconfig.py:686 ../authconfig.glade.h:32
 msgid "Hesiod Settings"
 msgstr "Hesiod அமைவுகள்"
 
-#: ../authconfig.py:684
+#: ../authconfig.py:690
 msgid "Use TLS"
 msgstr "TLSஐ பயன்படுத்தவும்"
 
-#: ../authconfig.py:685 ../authconfig.py:692
+#: ../authconfig.py:691 ../authconfig.py:698
 msgid "Server:"
 msgstr "சேவையகம்:"
 
-#: ../authconfig.py:686
+#: ../authconfig.py:692
 msgid "Base DN:"
 msgstr "அடிப்படை DN:"
 
-#: ../authconfig.py:687 ../authconfig.glade.h:41
+#: ../authconfig.py:693 ../authconfig.glade.h:42
 msgid "LDAP Settings"
 msgstr "LDAP அமைவுகள்"
 
-#: ../authconfig.py:691 ../authconfig.py:753
+#: ../authconfig.py:697 ../authconfig.py:759
 msgid "Domain:"
 msgstr "செயற்களம்:"
 
-#: ../authconfig.py:693 ../authconfig.glade.h:43
+#: ../authconfig.py:699 ../authconfig.glade.h:44
 msgid "NIS Settings"
 msgstr "NIS அமைவுகள்"
 
-#: ../authconfig.py:697
+#: ../authconfig.py:703
 msgid "Realm:"
 msgstr "Realm:"
 
-#: ../authconfig.py:698
+#: ../authconfig.py:704
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:699
+#: ../authconfig.py:705
 msgid "Admin Server:"
 msgstr "நிர்வகிக்கும் சேவையகம்: "
 
-#: ../authconfig.py:700
+#: ../authconfig.py:706
 msgid "Use DNS to resolve hosts to realms"
 msgstr "DNSஐ பயன்படுத்தி realmsக்கு புரவலன்களை சரி செய்யவும்"
 
-#: ../authconfig.py:701
+#: ../authconfig.py:707
 msgid "Use DNS to locate KDCs for realms"
 msgstr "DNSஐ பயன்படுத்தி KDCகளை realmsக்கு மாற்றவும்"
 
-#: ../authconfig.py:702 ../authconfig.glade.h:38
+#: ../authconfig.py:708 ../authconfig.glade.h:39
 msgid "Kerberos Settings"
 msgstr "Kerberos அமைவுகள்"
 
-#: ../authconfig.py:706
+#: ../authconfig.py:712
 msgid "Workgroup:"
 msgstr "பணிக்குழு:"
 
-#: ../authconfig.py:707
+#: ../authconfig.py:713
 msgid "Servers:"
 msgstr "சேவையகங்கள்:"
 
-#: ../authconfig.py:708
+#: ../authconfig.py:714
 msgid "Shell:"
 msgstr "ஷெல்:"
 
-#: ../authconfig.py:709 ../authconfig.glade.h:50
+#: ../authconfig.py:715 ../authconfig.glade.h:51
 msgid "SMB Settings"
 msgstr "SMB அமைவுகள்"
 
-#: ../authconfig.py:713
+#: ../authconfig.py:719
 msgid "Domain Administrator:"
 msgstr "செயற்கள நிர்வாகி:"
 
-#: ../authconfig.py:714
+#: ../authconfig.py:720
 msgid "Password:"
 msgstr "கடவுச்சொல்:"
 
-#: ../authconfig.py:717
+#: ../authconfig.py:723
 msgid "Join Settings"
 msgstr "அமைவுகளை இணைக்கவும்"
 
-#: ../authconfig.py:727 ../authconfig.glade.h:54
+#: ../authconfig.py:733 ../authconfig.glade.h:55
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -661,45 +674,45 @@ msgstr ""
 "தொடர்வதற்கு முன் நீங்கள் செய்த அமைவு மாற்றங்களை சேமிக்க வேண்டும். சேமிக்கவில்லை எனில் "
 "உங்களால் செயற்களத்தில் இணைய முடியாது. மாற்றங்களை சேமிக்க வேண்டுமா?"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:740
 msgid "Save Settings"
 msgstr "அமைவுகளை சேமிக்கவும்"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "No"
 msgstr "இல்லை"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "Yes"
 msgstr "ஆம்"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:752
+#: ../authconfig.py:758
 msgid "Security Model:"
 msgstr "பாதுகாப்பு மாதிரி:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:760
 msgid "Domain Controllers:"
 msgstr "செயற்கள கட்டுப்படுத்திகள்:"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:761
 msgid "ADS Realm:"
 msgstr "ADS Realm:"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:762
 msgid "Template Shell:"
 msgstr "மாதிரி உரு ஷெல்:"
 
-#: ../authconfig.py:758 ../authconfig.glade.h:66
+#: ../authconfig.py:764 ../authconfig.glade.h:68
 msgid "Winbind Settings"
 msgstr "Winbind அமைவுகள்"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:766
 msgid "Join Domain"
 msgstr "செயற்களத்தில் இணைக்கவும்"
 
-#: ../authconfig.py:818
+#: ../authconfig.py:824
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -713,7 +726,7 @@ msgstr ""
 "பின் சரி என்பதை அழுத்தவும்."
 
 #. FIXME - version
-#: ../authconfig.py:832
+#: ../authconfig.py:838
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -874,17 +887,21 @@ msgstr ""
 "அனுமதிக்கிறது. இது சில சமயங்களில் மிகப் பெரிய பிணையங்களில் பயன்படுகிறது."
 
 #: ../authconfig.glade.h:36
+msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
+msgstr ""
+
+#: ../authconfig.glade.h:37
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
 "பயனரின் இல்ல அடைவு அவர்களின் முதல் புகுபதிவிலிலிருந்து இன்னும் உருவாக்கப்படவில்லை."
 
-#: ../authconfig.glade.h:37
+#: ../authconfig.glade.h:38
 msgid "Joining Winbind Domain"
 msgstr "இணையும் Winbind செயற்களம்"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:40
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -892,23 +909,23 @@ msgstr ""
 "Kerberos என்பது நம்பிக்கையான மூன்றாம் நபர் அனுமதி கணினி, இது பொதுவாகமிதமான மற்றும் "
 "பெரிய பிணையங்களில் பயன்படுகிறது."
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:41
 msgid "LDAP Search _Base DN"
 msgstr "LDAP தேடல் அடிப்படையான DN (_B)"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:43
 msgid "LDAP _Server"
 msgstr "LDAP சேவையகம் (_S)"
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:45
 msgid "NIS _Domain"
 msgstr "NIS செயற்களம் (_D)"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid "NIS _Server"
 msgstr "NIS சேவையகம் (_S)"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:47
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
@@ -916,12 +933,12 @@ msgstr ""
 "NIS என்பது பிணைய தகவல் சேவை. இது பொதுவாக சிறிய மற்றும் மிதமான பிணையங்களில் "
 "பயன்படுகிறது."
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:48
 #, fuzzy
 msgid "Op_tions"
 msgstr "விருப்பங்கள்"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:49
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
@@ -929,11 +946,11 @@ msgstr ""
 "முந்தைய கட்டமைப்பு மாற்றத்திற்கு முன் கட்டமைப்பு கோப்புகளின் பின்சேமிக்கப்பட்ட மீண்டும் "
 "சேமிக்கவும்"
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:50
 msgid "Revert"
 msgstr "திரும்பப்பெறுதல்"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:52
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -941,11 +958,11 @@ msgstr ""
 "SMB அனுமதி பயனரின் கடவுச்சொற்களை SMB (system message block) நெறிமுறை தொகுப்பு "
 "இருக்கும் சேவையகத்துடன் தொடர்பு கொள்ள முயற்சித்து சரிபார்க்கிறது."
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:53
 msgid "Smart Card Settings"
 msgstr "ஸ்மார்ட்கார்ட் அமைவுகள்"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:54
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -953,7 +970,7 @@ msgstr ""
 "ஸ்மார்ட்கார்ட் அங்கீகாரம் உங்கள் ஒரு சான்றிதழ் மற்றும் தொடர்புடைய விசையை ஸ்மார்ட் கார்ட் மூலம் "
 "புகுபதிவுசெய்ய அனுமதிக்கிறது."
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:56
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -963,7 +980,7 @@ msgstr ""
 "வரையறுக்கப்பட்ட வரிசையில் தகவலை வைத்துக் கொள்ளும். LDAP சிறிய மற்றும் பெரிய பிணையங்களில் "
 "பயன்படுகிறது."
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:57
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
@@ -973,28 +990,34 @@ msgstr ""
 "கையொப்பமிட தேவைப்படுகிறது. PEM வடிவத்தில் உள்ள CA சான்றிதழின் இணைய முகவரியை "
 "நிரப்பவும்."
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "realmகளுக்கான KDCஐ கண்டுபிடிக்க DNSஐ பயன்படுத்தவும் (_l)"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:59
+msgid ""
+"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
+"must not be ticked with ldaps server URI."
+msgstr ""
+
+#: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "realmகளின் புரவலன்களை சரி செய்ய _DNS ஐ பயன்படுத்தவும்"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:61
 msgid "Use _Shadow Passwords"
 msgstr "நிழற் கடவுச்சொற்களை பயன்படுத்தவும் (_S)"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:62
 msgid "Use _TLS to encrypt connections"
 msgstr "_TLS இணைப்புகளை மறைகுறியீடாக்க பயன்படுத்தவும்"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:63
 #, fuzzy
 msgid "User Infor_mation"
 msgstr "பயனர் தகவல்"
 
-#: ../authconfig.glade.h:62
+#: ../authconfig.glade.h:64
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
@@ -1002,7 +1025,7 @@ msgstr ""
 "செயல்படுத்தப்பட்டால் /etc/security/access.conf பயனரின் அணுகல் அங்கீகாரத்திற்கு "
 "ஆலோசிக்கப்படும்."
 
-#: ../authconfig.glade.h:63
+#: ../authconfig.glade.h:65
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
@@ -1010,19 +1033,19 @@ msgstr ""
 "LDAP அல்லது Kerberos போன்ற பிணைய சேவைகளை இந்த கணினியின் ரூட்டில் அமைவு கணக்கினை "
 "அங்கீகரிக்க அனுமதிக்கவும்."
 
-#: ../authconfig.glade.h:64
+#: ../authconfig.glade.h:66
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS _Realm"
 
-#: ../authconfig.glade.h:65
+#: ../authconfig.glade.h:67
 msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind செயற்கள கட்டுப்படுத்திகள் (_n)"
 
-#: ../authconfig.glade.h:67
+#: ../authconfig.glade.h:69
 msgid "Winbind _Domain"
 msgstr "Winbind செயற்களம் (_D)"
 
-#: ../authconfig.glade.h:68
+#: ../authconfig.glade.h:70
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -1032,71 +1055,71 @@ msgstr ""
 "தகவல்களை கொண்டு அனுமதி சரிபார்க்கும். இது சிறிய மற்றும் பெரிய பிணையங்களில் "
 "பயன்படுத்தப்படுகிறது."
 
-#: ../authconfig.glade.h:69
+#: ../authconfig.glade.h:71
 msgid "_Admin Servers"
 msgstr "நிர்வாகி சேவையகங்கள் (_A)"
 
-#: ../authconfig.glade.h:70
+#: ../authconfig.glade.h:72
 msgid "_Allow offline login"
 msgstr "இணைப்பில்லாத புகுபதிவை அனுமதித்தல் (_A)"
 
-#: ../authconfig.glade.h:71
+#: ../authconfig.glade.h:73
 msgid "_Authenticate system accounts by network services"
 msgstr "பிணைய சேவைகளால் கணினி கணக்குகளை அனுமதிக்கவும் (_A)"
 
-#: ../authconfig.glade.h:72
+#: ../authconfig.glade.h:74
 msgid "_Domain Controllers"
 msgstr "செயற்களம் கட்டுப்படுத்திகள் (_D)"
 
-#: ../authconfig.glade.h:73
+#: ../authconfig.glade.h:75
 msgid "_Join Domain"
 msgstr "செயற்களத்தை இணைக்கவும் (_J)"
 
-#: ../authconfig.glade.h:74
+#: ../authconfig.glade.h:76
 msgid "_KDCs"
 msgstr "_KDCs"
 
-#: ../authconfig.glade.h:75
+#: ../authconfig.glade.h:77
 msgid "_Local authorization is sufficient for local users"
 msgstr "உள்ளமை அனுமதி உள்ளமை பயனர்களுக்கு போதுமானது (_L)"
 
-#: ../authconfig.glade.h:76
+#: ../authconfig.glade.h:78
 msgid "_Password"
 msgstr "கடவுச்சொல் (_P)"
 
-#: ../authconfig.glade.h:77
+#: ../authconfig.glade.h:79
 msgid "_Password hashing algorithm"
 msgstr "கடவுச்சொல் ஹெஷிங் கணிமுறை (_P)"
 
-#: ../authconfig.glade.h:78
+#: ../authconfig.glade.h:80
 msgid "_Realm"
 msgstr "_Realm"
 
-#: ../authconfig.glade.h:79
+#: ../authconfig.glade.h:81
 msgid "_Require smart card for login"
 msgstr "புகுபதிவுக்கு ஸ்மார்ட்கார்ட் தேவைப்படுகிறது (_R)"
 
-#: ../authconfig.glade.h:80
+#: ../authconfig.glade.h:82
 msgid "_Security Model"
 msgstr "பாதுகாப்பு மாதிரி (_S)"
 
-#: ../authconfig.glade.h:81
+#: ../authconfig.glade.h:83
 msgid "_Template Shell"
 msgstr "மாதிரி உரு ஷெல் (_T):"
 
-#: ../authconfig.glade.h:82
+#: ../authconfig.glade.h:84
 msgid "_Workgroup"
 msgstr "பணிக்குழு (_W)"
 
-#: ../authinfo.py:666 ../authinfo.py:1173 ../authinfo.py:2397
+#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
 msgid "Lock"
 msgstr "பூட்டுதல்"
 
-#: ../authinfo.py:666 ../authinfo.py:1175
+#: ../authinfo.py:667 ../authinfo.py:1177
 msgid "Ignore"
 msgstr "தவிர்த்தல்"
 
-#: ../authinfo.py:2742
+#: ../authinfo.py:2757
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1104,6 +1127,6 @@ msgid ""
 msgstr ""
 "அனுமதி தொகுதி %s/pam_%s.so விடுபடுகிறது. அங்கீகார பணி சரியாக வேலை செய்யவில்லை."
 
-#: ../authinfo.py:3221
+#: ../authinfo.py:3238
 msgid "Error downloading CA certificate"
 msgstr "CA சான்றிதழை பதிவிறக்கும் போது பிழை"

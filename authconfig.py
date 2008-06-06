@@ -111,13 +111,13 @@ class Authconfig:
  		parser.add_option("--disableldapauth", action="store_true",
 			help=_("disable LDAP for authentication by default"))
  		parser.add_option("--ldapserver", metavar=_("<server>"),
- 			help=_("default LDAP server"))
+ 			help=_("default LDAP server hostname or URI"))
  		parser.add_option("--ldapbasedn", metavar=_("<dn>"),
  			help=_("default LDAP base DN"))
-		parser.add_option("--enableldaptls", "--enableldapssl", action="store_true",
-			help=_("enable use of TLS with LDAP"))
- 		parser.add_option("--disableldaptls",  "--disableldapssl", action="store_true",
-			help=_("disable use of TLS with LDAP"))
+		parser.add_option("--enableldaptls", "--enableldapstarttls", action="store_true",
+			help=_("enable use of TLS with LDAP (RFC-2830)"))
+ 		parser.add_option("--disableldaptls",  "--disableldapstarttls", action="store_true",
+			help=_("disable use of TLS with LDAP (RFC-2830)"))
  		parser.add_option("--ldaploadcacert", metavar=_("<URL>"),
  			help=_("load CA certificate from the URL"))
 
@@ -202,6 +202,11 @@ class Authconfig:
 			help=_("enable wins for hostname resolution"))
  		parser.add_option("--disablewins", action="store_true",
 			help=_("disable wins for hostname resolution"))
+
+		parser.add_option("--enablepreferdns", action="store_true",
+			help=_("prefer dns over wins or nis for hostname resolution"))
+ 		parser.add_option("--disablepreferdns", action="store_true",
+			help=_("do not prefer dns over wins or nis for hostname resolution"))
 
 		parser.add_option("--enablehesiod", action="store_true",
 			help=_("enable hesiod for user information by default"))
@@ -332,7 +337,8 @@ class Authconfig:
 			"winbindauth":"enableWinbindAuth",
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
 			"winbindoffline":"winbindOffline",
-			"wins":"enableWINS"}
+			"wins":"enableWINS",
+			"preferdns":"preferDNSinHosts"}
 			
 		string_settings = {"passalgo":"passwordAlgorithm",
 			"hesiodlhs":"hesiodLHS",

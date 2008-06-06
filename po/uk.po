@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-12 13:43+0200\n"
+"POT-Creation-Date: 2008-06-06 15:53+0200\n"
 "PO-Revision-Date: 2007-01-23 13:18+0200\n"
 "Last-Translator: Maxim Dzumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -81,7 +81,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "не використовувати автентифікацію LDAP"
 
 #: ../authconfig.py:114
-msgid "default LDAP server"
+#, fuzzy
+msgid "default LDAP server hostname or URI"
 msgstr "LDAP сервер"
 
 #: ../authconfig.py:115
@@ -93,11 +94,13 @@ msgid "default LDAP base DN"
 msgstr "базова DN сервера LDAP"
 
 #: ../authconfig.py:118
-msgid "enable use of TLS with LDAP"
+#, fuzzy
+msgid "enable use of TLS with LDAP (RFC-2830)"
 msgstr "увімкнути використання TLS з LDAP"
 
 #: ../authconfig.py:120
-msgid "disable use of TLS with LDAP"
+#, fuzzy
+msgid "disable use of TLS with LDAP (RFC-2830)"
 msgstr "не використовувати TLS з LDAP"
 
 #: ../authconfig.py:121
@@ -300,134 +303,144 @@ msgid "disable wins for hostname resolution"
 msgstr "не використовувати wins для розв'язання назв вузлів"
 
 #: ../authconfig.py:207
+#, fuzzy
+msgid "prefer dns over wins or nis for hostname resolution"
+msgstr "використовувати wins для розв'язання назв вузлів"
+
+#: ../authconfig.py:209
+#, fuzzy
+msgid "do not prefer dns over wins or nis for hostname resolution"
+msgstr "використовувати wins для розв'язання назв вузлів"
+
+#: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
 msgstr "використовувати hesiod для інформації про користувачів"
 
-#: ../authconfig.py:209
+#: ../authconfig.py:214
 msgid "disable hesiod for user information by default"
 msgstr "не використовувати hesiod для інформації про користувачів"
 
-#: ../authconfig.py:211
+#: ../authconfig.py:216
 msgid "default hesiod LHS"
 msgstr "hesiod LHS"
 
-#: ../authconfig.py:213
+#: ../authconfig.py:218
 msgid "default hesiod RHS"
 msgstr "типовий hesiod RHS"
 
-#: ../authconfig.py:216
+#: ../authconfig.py:221
 msgid "enable caching of user information by default"
 msgstr "використовувати кешування інформацій про користувачів"
 
-#: ../authconfig.py:218
+#: ../authconfig.py:223
 msgid "disable caching of user information by default"
 msgstr "не використовувати кешування інформацій про користувачів"
 
-#: ../authconfig.py:221
+#: ../authconfig.py:226
 msgid "local authorization is sufficient for local users"
 msgstr "локальної авторизації достатньо для локальних користувачів"
 
-#: ../authconfig.py:223
+#: ../authconfig.py:228
 msgid "authorize local users also through remote service"
 msgstr "авторизувати локальних користувачів через зовнішні служби"
 
-#: ../authconfig.py:226
+#: ../authconfig.py:231
 msgid "check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:228
+#: ../authconfig.py:233
 msgid "do not check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:231
+#: ../authconfig.py:236
 msgid "authenticate system accounts by network services"
 msgstr "авторизувати локальних користувачів через мережні служби"
 
-#: ../authconfig.py:233
+#: ../authconfig.py:238
 msgid "authenticate system accounts by local files only"
 msgstr "авторизувати локальних користувачів лише через локальні файли"
 
-#: ../authconfig.py:236
+#: ../authconfig.py:241
 msgid "create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:238
+#: ../authconfig.py:243
 msgid "do not create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:241
+#: ../authconfig.py:246
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "не запускати/зупиняти portmap, ypbind, та nscd"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:249
 msgid "do not update the configuration files, only print new settings"
 msgstr "не оновлювати конфігураційні файли, лише вивести нові параметри"
 
-#: ../authconfig.py:248
+#: ../authconfig.py:253
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr ""
 "відображати у головному вікні текстового інтерфейсу кнопку Назад замість "
 "кнопки Скасувати"
 
-#: ../authconfig.py:250
+#: ../authconfig.py:255
 msgid "do not display the deprecated text user interface"
 msgstr "не відображати застарілий текстовий інтерфейс"
 
-#: ../authconfig.py:253
+#: ../authconfig.py:258
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "протилежність --test, оновлює змінені параметри у конфігураційних файлах"
 
-#: ../authconfig.py:256
+#: ../authconfig.py:261
 msgid "update all configuration files"
 msgstr "оновити всі конфігураційні файли"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:264
 msgid "probe network for defaults and print them"
 msgstr "визначити параметри мережі автоматично"
 
-#: ../authconfig.py:261 ../authconfig.py:264
+#: ../authconfig.py:266 ../authconfig.py:269
 #, fuzzy
 msgid "<name>"
 msgstr "<область>"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:267
 #, fuzzy
 msgid "save a backup of all configuration files"
 msgstr "оновити всі конфігураційні файли"
 
-#: ../authconfig.py:265
+#: ../authconfig.py:270
 #, fuzzy
 msgid "restore the backup of configuration files"
 msgstr "оновити всі конфігураційні файли"
 
-#: ../authconfig.py:268
+#: ../authconfig.py:273
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:273
+#: ../authconfig.py:278
 msgid "unexpected argument"
 msgstr "несподіваний аргумент"
 
-#: ../authconfig.py:386
+#: ../authconfig.py:392
 msgid "Bad smart card removal action specified."
 msgstr "Вказано неправильну дію видалення смарт-картки."
 
-#: ../authconfig.py:395
+#: ../authconfig.py:401
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:424
+#: ../authconfig.py:430
 msgid "can only be run as root"
 msgstr "може виконуватись лише користувачем root"
 
-#: ../authconfig.py:440
+#: ../authconfig.py:446
 msgid "dialog was cancelled"
 msgstr "діалог було перервано"
 
-#: ../authconfig.py:463
+#: ../authconfig.py:469
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -438,217 +451,217 @@ msgstr ""
 "s.\n"
 "Встановіть пакет %s, який містить цей файл."
 
-#: ../authconfig.py:465 ../authconfig.py:823
+#: ../authconfig.py:471 ../authconfig.py:829
 msgid "Warning"
 msgstr "Попередження"
 
-#: ../authconfig.py:465 ../authconfig.py:681 ../authconfig.py:688
-#: ../authconfig.py:694 ../authconfig.py:703 ../authconfig.py:710
-#: ../authconfig.py:718 ../authconfig.py:759 ../authconfig.py:823
+#: ../authconfig.py:471 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:724 ../authconfig.py:765 ../authconfig.py:829
 msgid "Ok"
 msgstr "Гаразд"
 
-#: ../authconfig.py:469
+#: ../authconfig.py:475
 msgid "caching"
 msgstr "кешування"
 
-#: ../authconfig.py:470
+#: ../authconfig.py:476
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:471
+#: ../authconfig.py:477
 msgid "LDAP authentication"
 msgstr "LDAP автентифікація"
 
-#: ../authconfig.py:472
+#: ../authconfig.py:478
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:473
+#: ../authconfig.py:479
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:474
+#: ../authconfig.py:480
 msgid "shadow password"
 msgstr "приховані паролі"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:481
 msgid "SMB authentication"
 msgstr "Автентифікація SMB"
 
-#: ../authconfig.py:476 ../authconfig.py:478
+#: ../authconfig.py:482 ../authconfig.py:484
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:477
+#: ../authconfig.py:483
 msgid "Winbind authentication"
 msgstr "Аутентифікація Winbind"
 
-#: ../authconfig.py:483
+#: ../authconfig.py:489
 msgid "User Information"
 msgstr "Інформація про користувача"
 
-#: ../authconfig.py:486
+#: ../authconfig.py:492
 msgid "Cache Information"
 msgstr "Кешувати інформацію"
 
-#: ../authconfig.py:490
+#: ../authconfig.py:496
 msgid "Use Hesiod"
 msgstr "Використовувати Hesiod"
 
-#: ../authconfig.py:493
+#: ../authconfig.py:499
 msgid "Use LDAP"
 msgstr "Використовувати LDAP"
 
-#: ../authconfig.py:497
+#: ../authconfig.py:503
 msgid "Use NIS"
 msgstr "Використовувати NIS"
 
-#: ../authconfig.py:501
+#: ../authconfig.py:507
 msgid "Use Winbind"
 msgstr "Використовувати Winbind"
 
-#: ../authconfig.py:507 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:513 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Аутентифікація"
 
-#: ../authconfig.py:510
+#: ../authconfig.py:516
 msgid "Use MD5 Passwords"
 msgstr "Використовувати паролі MD5"
 
-#: ../authconfig.py:513
+#: ../authconfig.py:519
 msgid "Use Shadow Passwords"
 msgstr "Використовувати приховані паролі"
 
-#: ../authconfig.py:517
+#: ../authconfig.py:523
 msgid "Use LDAP Authentication"
 msgstr "Викор. автентифікацію LDAP"
 
-#: ../authconfig.py:521
+#: ../authconfig.py:527
 msgid "Use Kerberos"
 msgstr "Використовувати Kerberos"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:531
 msgid "Use SMB Authentication"
 msgstr "Викор. автентифікацію SMB"
 
-#: ../authconfig.py:529
+#: ../authconfig.py:535
 msgid "Use Winbind Authentication"
 msgstr "Викор. автентифікацію Winbind"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:539
 msgid "Local authorization is sufficient"
 msgstr "Достатньо локальної авторизації"
 
-#: ../authconfig.py:543 ../authconfig.py:681 ../authconfig.py:688
-#: ../authconfig.py:694 ../authconfig.py:703 ../authconfig.py:710
-#: ../authconfig.py:759
+#: ../authconfig.py:549 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:765
 msgid "Back"
 msgstr "Назад"
 
-#: ../authconfig.py:543 ../authconfig.py:718
+#: ../authconfig.py:549 ../authconfig.py:724
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: ../authconfig.py:544 ../authconfig.py:681 ../authconfig.py:688
-#: ../authconfig.py:694 ../authconfig.py:703 ../authconfig.py:710
-#: ../authconfig.py:759
+#: ../authconfig.py:550 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:765
 msgid "Next"
 msgstr "Далі"
 
-#: ../authconfig.py:555 ../authconfig-gtk.py:436 ../authconfig.glade.h:7
+#: ../authconfig.py:561 ../authconfig-gtk.py:436 ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "Налаштовування автентифікації"
 
-#: ../authconfig.py:678
+#: ../authconfig.py:684
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:679
+#: ../authconfig.py:685
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:680 ../authconfig.glade.h:32
+#: ../authconfig.py:686 ../authconfig.glade.h:32
 msgid "Hesiod Settings"
 msgstr "Параметри Hesiod"
 
-#: ../authconfig.py:684
+#: ../authconfig.py:690
 msgid "Use TLS"
 msgstr "Використовувати TLS"
 
-#: ../authconfig.py:685 ../authconfig.py:692
+#: ../authconfig.py:691 ../authconfig.py:698
 msgid "Server:"
 msgstr "Сервер:"
 
-#: ../authconfig.py:686
+#: ../authconfig.py:692
 msgid "Base DN:"
 msgstr "Базовий DN:"
 
-#: ../authconfig.py:687 ../authconfig.glade.h:41
+#: ../authconfig.py:693 ../authconfig.glade.h:42
 msgid "LDAP Settings"
 msgstr "Параметри LDAP"
 
-#: ../authconfig.py:691 ../authconfig.py:753
+#: ../authconfig.py:697 ../authconfig.py:759
 msgid "Domain:"
 msgstr "Домен:"
 
-#: ../authconfig.py:693 ../authconfig.glade.h:43
+#: ../authconfig.py:699 ../authconfig.glade.h:44
 msgid "NIS Settings"
 msgstr "Параметри NIS"
 
-#: ../authconfig.py:697
+#: ../authconfig.py:703
 msgid "Realm:"
 msgstr "Область:"
 
-#: ../authconfig.py:698
+#: ../authconfig.py:704
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:699
+#: ../authconfig.py:705
 msgid "Admin Server:"
 msgstr "Керуючий сервер:"
 
-#: ../authconfig.py:700
+#: ../authconfig.py:706
 msgid "Use DNS to resolve hosts to realms"
 msgstr "Використовувати DNS для пошуку вузлів та областей"
 
-#: ../authconfig.py:701
+#: ../authconfig.py:707
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Використовувати DNS для пошуку KDC для областей"
 
-#: ../authconfig.py:702 ../authconfig.glade.h:38
+#: ../authconfig.py:708 ../authconfig.glade.h:39
 msgid "Kerberos Settings"
 msgstr "Параметри Kerberos"
 
-#: ../authconfig.py:706
+#: ../authconfig.py:712
 msgid "Workgroup:"
 msgstr "Робоча група:"
 
-#: ../authconfig.py:707
+#: ../authconfig.py:713
 msgid "Servers:"
 msgstr "Сервери:"
 
-#: ../authconfig.py:708
+#: ../authconfig.py:714
 msgid "Shell:"
 msgstr "Оболонка:"
 
-#: ../authconfig.py:709 ../authconfig.glade.h:50
+#: ../authconfig.py:715 ../authconfig.glade.h:51
 msgid "SMB Settings"
 msgstr "Параметри SMB"
 
-#: ../authconfig.py:713
+#: ../authconfig.py:719
 msgid "Domain Administrator:"
 msgstr "Адміністратор домену:"
 
-#: ../authconfig.py:714
+#: ../authconfig.py:720
 msgid "Password:"
 msgstr "Пароль:"
 
-#: ../authconfig.py:717
+#: ../authconfig.py:723
 msgid "Join Settings"
 msgstr "Параметри входу"
 
-#: ../authconfig.py:727 ../authconfig.glade.h:54
+#: ../authconfig.py:733 ../authconfig.glade.h:55
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -658,45 +671,45 @@ msgstr ""
 "параметрах. Якщо ви їх не збережете, ваша спроба приєднатись до домену не "
 "вдасться. Зберегти зміни?"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:740
 msgid "Save Settings"
 msgstr "Збереження змін"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "No"
 msgstr "Ні"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "Yes"
 msgstr "Так"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:752
+#: ../authconfig.py:758
 msgid "Security Model:"
 msgstr "Модель безпеки:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:760
 msgid "Domain Controllers:"
 msgstr "Контролери домену:"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:761
 msgid "ADS Realm:"
 msgstr "Області ADS:"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:762
 msgid "Template Shell:"
 msgstr "Оболонка шаблону:"
 
-#: ../authconfig.py:758 ../authconfig.glade.h:66
+#: ../authconfig.py:764 ../authconfig.glade.h:68
 msgid "Winbind Settings"
 msgstr "Параметри Winbind"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:766
 msgid "Join Domain"
 msgstr "Вхід у домен"
 
-#: ../authconfig.py:818
+#: ../authconfig.py:824
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -710,7 +723,7 @@ msgstr ""
 "Потім натисніть Гаразд."
 
 #. FIXME - version
-#: ../authconfig.py:832
+#: ../authconfig.py:838
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -868,16 +881,20 @@ msgstr ""
 "групи у DNS. Іноді використовується у дуже великих мережах."
 
 #: ../authconfig.glade.h:36
+msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
+msgstr ""
+
+#: ../authconfig.glade.h:37
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
 
-#: ../authconfig.glade.h:37
+#: ../authconfig.glade.h:38
 msgid "Joining Winbind Domain"
 msgstr "Підключення до Winbind домену"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:40
 msgid ""
 "Kerberos is a trusted third-party authentication system which is commonly "
 "used in medium to large networks."
@@ -885,23 +902,23 @@ msgstr ""
 "Kerberos - це довірча система автентифікації третьою стороною, яка широко "
 "використовується у середніх та великих мережах."
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:41
 msgid "LDAP Search _Base DN"
 msgstr "LDAP Search _Base DN"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:43
 msgid "LDAP _Server"
 msgstr "С_ервер LDAP"
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:45
 msgid "NIS _Domain"
 msgstr "_Домен NIS:"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid "NIS _Server"
 msgstr "С_ервер NIS:"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:47
 msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
@@ -909,23 +926,23 @@ msgstr ""
 "NIS (Network Information Service) часто використовується у невеликих та "
 "середніх мережах."
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:48
 #, fuzzy
 msgid "Op_tions"
 msgstr "Параметри"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:49
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr ""
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:50
 #, fuzzy
 msgid "Revert"
 msgstr "Сервер:"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:52
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
@@ -933,11 +950,11 @@ msgstr ""
 "Автентифікація SMB перевіряє пароль користувача з'єднуючись з сервером, який "
 "використовує протокол SMB (system message block)."
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:53
 msgid "Smart Card Settings"
 msgstr "Параметри смарт-карток"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:54
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -945,7 +962,7 @@ msgstr ""
 "Автентифікація смарт-картками дозволяє входити у систему з використанням "
 "сертифікату та ключа, що пов'язаний зі смарт-карткою."
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:56
 msgid ""
 "The Lightweight Directory Access Protocol is a standard way of searching a "
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
@@ -955,7 +972,7 @@ msgstr ""
 "каталогів, які можуть містити дані у ієрархічній структурі. LDAP набирає "
 "популярність у маленьких, середніх та великих мережах."
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:57
 #, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
@@ -967,34 +984,40 @@ msgstr ""
 "PEM у каталог '%s'.\n"
 "Потім натисніть Гаразд."
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Використовувати DNS для _пошуку KDC для областей"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:59
+msgid ""
+"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
+"must not be ticked with ldaps server URI."
+msgstr ""
+
+#: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "Використовувати _DNS для пошуку вузлів та областей"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:61
 msgid "Use _Shadow Passwords"
 msgstr "Використовувати _приховані паролі"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:62
 msgid "Use _TLS to encrypt connections"
 msgstr "Використовувати _TLS для шифрування з'єднань"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:63
 #, fuzzy
 msgid "User Infor_mation"
 msgstr "Інформація про користувача"
 
-#: ../authconfig.glade.h:62
+#: ../authconfig.glade.h:64
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
 
-#: ../authconfig.glade.h:63
+#: ../authconfig.glade.h:65
 msgid ""
 "When enabled allows network services such as LDAP or Kerberos to "
 "authenticate system accounts including root on this machine."
@@ -1002,19 +1025,19 @@ msgstr ""
 "Якщо відмічено, дозволяє мережним службам LDAP чи Kerberos авторизувати "
 "системних користувачів на цьому комп'ютері, включаючи root."
 
-#: ../authconfig.glade.h:64
+#: ../authconfig.glade.h:66
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS об_ласть"
 
-#: ../authconfig.glade.h:65
+#: ../authconfig.glade.h:67
 msgid "Winbind Domain Co_ntrollers"
 msgstr "_Контролери домену Winbind"
 
-#: ../authconfig.glade.h:67
+#: ../authconfig.glade.h:69
 msgid "Winbind _Domain"
 msgstr "_Домен Winbind"
 
-#: ../authconfig.glade.h:68
+#: ../authconfig.glade.h:70
 msgid ""
 "Winbind allows a system to retrieve information about users and to "
 "authenticate users by using information stored in an NTDOM or ADS server.  "
@@ -1025,73 +1048,73 @@ msgstr ""
 "зберігається на NTDOM або ADS сервері. Використовується у мережах від "
 "великих до малих."
 
-#: ../authconfig.glade.h:69
+#: ../authconfig.glade.h:71
 msgid "_Admin Servers"
 msgstr "_Керуючі сервери"
 
-#: ../authconfig.glade.h:70
+#: ../authconfig.glade.h:72
 msgid "_Allow offline login"
 msgstr ""
 
-#: ../authconfig.glade.h:71
+#: ../authconfig.glade.h:73
 msgid "_Authenticate system accounts by network services"
 msgstr "_Авторизувати системних користувачів через мережні служби"
 
-#: ../authconfig.glade.h:72
+#: ../authconfig.glade.h:74
 msgid "_Domain Controllers"
 msgstr "Контролери _домену"
 
-#: ../authconfig.glade.h:73
+#: ../authconfig.glade.h:75
 msgid "_Join Domain"
 msgstr "_Увійти в домен"
 
-#: ../authconfig.glade.h:74
+#: ../authconfig.glade.h:76
 msgid "_KDCs"
 msgstr "_KDC"
 
-#: ../authconfig.glade.h:75
+#: ../authconfig.glade.h:77
 msgid "_Local authorization is sufficient for local users"
 msgstr ""
 "_Локальної перевірки достатньо\n"
 "для локальних користувачів"
 
-#: ../authconfig.glade.h:76
+#: ../authconfig.glade.h:78
 msgid "_Password"
 msgstr "_Пароль"
 
-#: ../authconfig.glade.h:77
+#: ../authconfig.glade.h:79
 msgid "_Password hashing algorithm"
 msgstr ""
 
-#: ../authconfig.glade.h:78
+#: ../authconfig.glade.h:80
 msgid "_Realm"
 msgstr "_Realm"
 
-#: ../authconfig.glade.h:79
+#: ../authconfig.glade.h:81
 msgid "_Require smart card for login"
 msgstr "_Вимагати смарт-картку для входу у систему"
 
-#: ../authconfig.glade.h:80
+#: ../authconfig.glade.h:82
 msgid "_Security Model"
 msgstr "Модель _безпеки"
 
-#: ../authconfig.glade.h:81
+#: ../authconfig.glade.h:83
 msgid "_Template Shell"
 msgstr "Оболонка _шаблону:"
 
-#: ../authconfig.glade.h:82
+#: ../authconfig.glade.h:84
 msgid "_Workgroup"
 msgstr "_Робочі групи"
 
-#: ../authinfo.py:666 ../authinfo.py:1173 ../authinfo.py:2397
+#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
 msgid "Lock"
 msgstr "Блокувати"
 
-#: ../authinfo.py:666 ../authinfo.py:1175
+#: ../authinfo.py:667 ../authinfo.py:1177
 msgid "Ignore"
 msgstr "Ігнорувати"
 
-#: ../authinfo.py:2742
+#: ../authinfo.py:2757
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1100,7 +1123,7 @@ msgstr ""
 "Відсутній модуль аутентифікації %s/pam_%s.so. процес аутентифікації не буде "
 "коректним."
 
-#: ../authinfo.py:3221
+#: ../authinfo.py:3238
 msgid "Error downloading CA certificate"
 msgstr "Помилка завантаження сертифікату CA"
 
