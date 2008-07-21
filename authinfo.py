@@ -160,18 +160,19 @@ def checkNSS(configuration, candidate):
 	if len(lst) > 1:
 		configuration = lst[1]
 	start = 0
+	clen = len(candidate)
 	while True:
 		start = configuration.find(candidate, start)
 		if start < 0:
-			return False
+			return None
 		if start > 0 and configuration[start-1].isalnum():
-			start += len(candidate)
+			start += clen
 			continue
-		start += len(candidate)
-		if start < len(configuration) and configuration[start].isalnum():
+		if start+clen < len(configuration) and configuration[start+clen].isalnum():
+			start += clen
 			continue
-		return True
-	return False
+		return start
+	return None
 
 def openfdLocked(filename, mode, perms):
 	fd = -1
@@ -908,6 +909,7 @@ class AuthInfo:
 		self.enableOdbcbind = None
 		self.enableWinbind = None
 		self.enableWINS = None
+		self.preferDNSinHosts = None
 
 		# Authentication setup.
 		self.enableAFS = None
@@ -1274,6 +1276,8 @@ class AuthInfo:
 	def readNSS(self):
 		# Open the file.  Bail if it's not there or there's some problem
 	 	# reading it.
+		nssconfig = ""
+
 		try:
 			f = open(all_configs[CFG_NSSWITCH].origPath, "r")
 		except IOError:
@@ -1289,18 +1293,25 @@ class AuthInfo:
 				# wins can be found in hosts only
 				value = matchKey(line, "hosts:")
 				if value:
-					self.enableWINS = checkNSS(value, "wins")
+					self.enableWINS = bool(checkNSS(value, "wins"))
+
+					nispos = checkNSS(value, "nis")
+					if nispos == None:
+						nispos = checkNSS(value, "wins")
+					dnspos = checkNSS(value, "dns")
+					if nispos != None and dnspos != None:
+						self.preferDNSinHosts = dnspos < nispos
 
 		if nssconfig:
-			self.enableCompat = checkNSS(nssconfig, "compat")
-			self.enableDB = checkNSS(nssconfig, "db")
-			self.enableDirectories = checkNSS(nssconfig,
-							   "directories")
-			self.enableHesiod = checkNSS(nssconfig, "hesiod")
-			self.enableLDAP = checkNSS(nssconfig, "ldap")
-			self.enableNIS = checkNSS(nssconfig, "nis")
-			self.enableNIS3 = checkNSS(nssconfig, "nisplus")
-			self.enableWinbind = checkNSS(nssconfig, "winbind")
+			self.enableCompat = bool(checkNSS(nssconfig, "compat"))
+			self.enableDB = bool(checkNSS(nssconfig, "db"))
+			self.enableDirectories = bool(checkNSS(nssconfig,
+							   "directories"))
+			self.enableHesiod = bool(checkNSS(nssconfig, "hesiod"))
+			self.enableLDAP = bool(checkNSS(nssconfig, "ldap"))
+			self.enableNIS = bool(checkNSS(nssconfig, "nis"))
+			self.enableNIS3 = bool(checkNSS(nssconfig, "nisplus"))
+			self.enableWinbind = bool(checkNSS(nssconfig, "winbind"))
 		f.close()
 		return True
 
@@ -1675,6 +1686,7 @@ class AuthInfo:
 		(self.enableWinbind != b.enableWinbind) or
 		(self.enableWinbindAuth != b.enableWinbindAuth) or
 		(self.enableWINS != b.enableWINS) or
+		(self.preferDNSinHosts != b.preferDNSinHosts) or
 
 		(self.enableAFS != b.enableAFS) or
 		(self.enableAFSKerberos != b.enableAFSKerberos) or
@@ -2614,13 +2626,16 @@ class AuthInfo:
 
 			# Hostnames we treat specially.
 			hosts += " files"
+			if self.preferDNSinHosts:
+				hosts += " dns"
 			if self.enableWINS:
 				hosts += " wins"
 			if self.enableNIS3:
 				hosts += " nisplus"
 			if self.enableNIS:
 				hosts += " nis"
-			hosts += " dns"
+			if not self.preferDNSinHosts:
+				hosts += " dns"
 
 			# Read in the old file.
 			for line in f:
@@ -2959,7 +2974,8 @@ class AuthInfo:
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
 		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
-		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b")]),
+		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
+		("preferDNSinHosts", "b")]),
 	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
 		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
@@ -3098,6 +3114,7 @@ class AuthInfo:
 		print " SMB idmap uid = \"%s\"" % self.smbIdmapUid
 		print " SMB idmap gid = \"%s\"" % self.smbIdmapGid
 		print "nss_wins is %s" % formatBool(self.enableWINS)
+		print "DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts)
 		print "pam_unix is always enabled"
 		print " shadow passwords are %s" % formatBool(self.enableShadow)
 		print " password hashing algorithm is %s" % self.passwordAlgorithm

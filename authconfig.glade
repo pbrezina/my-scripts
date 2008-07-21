@@ -911,6 +911,7 @@
 	  <child>
 	    <widget class="GtkEntry" id="server">
 	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Hostname or ldap:// or ldaps:// URI pointing to the LDAP server.</property>
 	      <property name="can_focus">True</property>
 	      <property name="editable">True</property>
 	      <property name="visibility">True</property>
@@ -1017,6 +1018,7 @@
 	      <child>
 		<widget class="GtkCheckButton" id="tls">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Use Transport Layer Security extension for LDAP as defined by RFC-2830. It must not be ticked with ldaps server URI.</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">Use _TLS to encrypt connections</property>
 		  <property name="use_underline">True</property>

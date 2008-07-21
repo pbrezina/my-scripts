@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-12 18:50+0000\n"
+"POT-Creation-Date: 2008-07-21 10:45+0200\n"
 "PO-Revision-Date: 2008-05-27 00:18+0100\n"
 "Last-Translator: Sulyok Péter <peti@fedoraproject.org>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
@@ -50,11 +50,15 @@ msgstr "szóró/titkosító algoritmus új jelszavakra"
 
 #: ../authconfig.py:97
 msgid "enable NIS for user information by default"
-msgstr "a NIS felhasználói információkhoz való használatának engedélyezése alapértelmezésben"
+msgstr ""
+"a NIS felhasználói információkhoz való használatának engedélyezése "
+"alapértelmezésben"
 
 #: ../authconfig.py:99
 msgid "disable NIS for user information by default"
-msgstr "a NIS felhasználói információkhoz való használatának tiltása alapértelmezésben"
+msgstr ""
+"a NIS felhasználói információkhoz való használatának tiltása "
+"alapértelmezésben"
 
 #: ../authconfig.py:100
 msgid "<domain>"
@@ -64,9 +68,7 @@ msgstr "<tartomány>"
 msgid "default NIS domain"
 msgstr "alapértelmezett NIS-tartomány"
 
-#: ../authconfig.py:102
-#: ../authconfig.py:113
-#: ../authconfig.py:142
+#: ../authconfig.py:102 ../authconfig.py:113 ../authconfig.py:142
 #: ../authconfig.py:144
 msgid "<server>"
 msgstr "<kiszolgáló>"
@@ -77,11 +79,15 @@ msgstr "alapértelmezett NIS-kiszolgáló"
 
 #: ../authconfig.py:106
 msgid "enable LDAP for user information by default"
-msgstr "az LDAP felhasználói információkhoz való használatának engedélyezése alapértelmezésben"
+msgstr ""
+"az LDAP felhasználói információkhoz való használatának engedélyezése "
+"alapértelmezésben"
 
 #: ../authconfig.py:108
 msgid "disable LDAP for user information by default"
-msgstr "az LDAP felhasználói információkhoz való használatának tiltása alapértelmezésben"
+msgstr ""
+"az LDAP felhasználói információkhoz való használatának tiltása "
+"alapértelmezésben"
 
 #: ../authconfig.py:110
 msgid "enable LDAP for authentication by default"
@@ -92,7 +98,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "az LDAP azonosításhoz való használatának tiltása alapértelmezésben"
 
 #: ../authconfig.py:114
-msgid "default LDAP server"
+#, fuzzy
+msgid "default LDAP server hostname or URI"
 msgstr "alapértelmezett LDAP-kiszolgáló"
 
 #: ../authconfig.py:115
@@ -104,11 +111,13 @@ msgid "default LDAP base DN"
 msgstr "alapértelmezett LDAP alap-DN"
 
 #: ../authconfig.py:118
-msgid "enable use of TLS with LDAP"
+#, fuzzy
+msgid "enable use of TLS with LDAP (RFC-2830)"
 msgstr "a TLS LDAP-pal való használatának engedélyezése"
 
 #: ../authconfig.py:120
-msgid "disable use of TLS with LDAP"
+#, fuzzy
+msgid "disable use of TLS with LDAP (RFC-2830)"
 msgstr "a TLS LDAP-pal való használatának tiltása"
 
 #: ../authconfig.py:121
@@ -163,8 +172,7 @@ msgstr "alapértelmezett Kerberos-KDC"
 msgid "default kerberos admin server"
 msgstr "alapértelmezett Kerberos rendszergazda-kiszolgáló"
 
-#: ../authconfig.py:146
-#: ../authconfig.py:176
+#: ../authconfig.py:146 ../authconfig.py:176
 msgid "<realm>"
 msgstr "<tartomány>"
 
@@ -214,11 +222,13 @@ msgstr "munkacsoport-azonosítási kiszolgálók a következőben:"
 
 #: ../authconfig.py:167
 msgid "enable winbind for user information by default"
-msgstr "a Winbind engedélyezése alapértelmezésben felhasználói adatok lekérdezéséhez"
+msgstr ""
+"a Winbind engedélyezése alapértelmezésben felhasználói adatok lekérdezéséhez"
 
 #: ../authconfig.py:169
 msgid "disable winbind for user information by default"
-msgstr "a Winbind letiltása alapértelmezésben felhasználói adatok lekérdezéséhez"
+msgstr ""
+"a Winbind letiltása alapértelmezésben felhasználói adatok lekérdezéséhez"
 
 #: ../authconfig.py:171
 msgid "enable winbind for authentication by default"
@@ -234,28 +244,40 @@ msgstr "biztonsági mód a Samba és a Winbind használatához"
 
 #: ../authconfig.py:177
 msgid "default realm for samba and winbind when security=ads"
-msgstr "alapértelmezett Kerberos-tartomány a Sambához és a Winbindhoz security=ads esetén"
+msgstr ""
+"alapértelmezett Kerberos-tartomány a Sambához és a Winbindhoz security=ads "
+"esetén"
 
-#: ../authconfig.py:178
-#: ../authconfig.py:180
+#: ../authconfig.py:178 ../authconfig.py:180
 msgid "<lowest-highest>"
 msgstr "<legalacsonyabb-legmagasabb>"
 
 #: ../authconfig.py:179
 msgid "uid range winbind will assign to domain or ads users"
-msgstr "a Winbind által a tartomány- illetve ADS-felhasználóknak biztosított uid-tartomány"
+msgstr ""
+"a Winbind által a tartomány- illetve ADS-felhasználóknak biztosított uid-"
+"tartomány"
 
 #: ../authconfig.py:181
 msgid "gid range winbind will assign to domain or ads users"
-msgstr "a Winbind által a tartomány- illetve ADS-felhasználóknak biztosított gid-tartomány"
+msgstr ""
+"a Winbind által a tartomány- illetve ADS-felhasználóknak biztosított gid-"
+"tartomány"
 
 #: ../authconfig.py:183
-msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr "a Winbind által létrehozott felhasználói nevekben a tartomány és a felhasználó elválasztására használt betű (a winbindusedefaultdomain kikapcsolt állapota esetén)"
+msgid ""
+"the character which will be used to separate the domain and user part of "
+"winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr ""
+"a Winbind által létrehozott felhasználói nevekben a tartomány és a "
+"felhasználó elválasztására használt betű (a winbindusedefaultdomain "
+"kikapcsolt állapota esetén)"
 
 #: ../authconfig.py:185
 msgid "the directory which winbind-created users will have as home directories"
-msgstr "a mappa, amelyet a Winbind által létrehozott felhasználók saját mappaként kapnak"
+msgstr ""
+"a mappa, amelyet a Winbind által létrehozott felhasználók saját mappaként "
+"kapnak"
 
 #: ../authconfig.py:187
 msgid "the group which winbind-created users will have as their primary group"
@@ -263,15 +285,27 @@ msgstr "a Winbind által létrehozott felhasználók elsődleges csoportja"
 
 #: ../authconfig.py:189
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "a héj, amelyet a Winbind által létrehozott felhasználók kapnak bejelentkezési héjként"
+msgstr ""
+"a héj, amelyet a Winbind által létrehozott felhasználók kapnak "
+"bejelentkezési héjként"
 
 #: ../authconfig.py:191
-msgid "configures winbind to assume that users with no domain in their user names are domain users"
-msgstr "úgy állítja be a Winbindot, hogy azok a felhasználók, akiknek a felhasználóneve nem tartalmaz tartományt, tartományi felhasználókként legyenek kezelve"
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are domain users"
+msgstr ""
+"úgy állítja be a Winbindot, hogy azok a felhasználók, akiknek a "
+"felhasználóneve nem tartalmaz tartományt, tartományi felhasználókként "
+"legyenek kezelve"
 
 #: ../authconfig.py:193
-msgid "configures winbind to assume that users with no domain in their user names are not domain users"
-msgstr "úgy állítja be a Winbindot, hogy azok a felhasználók, akiknek a felhasználóneve nem tartalmaz tartományt, nem tartományi felhasználókként legyenek kezelve"
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are not domain users"
+msgstr ""
+"úgy állítja be a Winbindot, hogy azok a felhasználók, akiknek a "
+"felhasználóneve nem tartalmaz tartományt, nem tartományi felhasználókként "
+"legyenek kezelve"
 
 #: ../authconfig.py:195
 msgid "configures winbind to allow offline login"
@@ -283,7 +317,9 @@ msgstr "winbind beállítása kapcsolatlan bejelentkezés megakadályozására"
 
 #: ../authconfig.py:199
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr "csatlakozás a Winbind-tartományhoz vagy ADS-tartományhoz rendszergazdaként most"
+msgstr ""
+"csatlakozás a Winbind-tartományhoz vagy ADS-tartományhoz rendszergazdaként "
+"most"
 
 #: ../authconfig.py:202
 msgid "enable wins for hostname resolution"
@@ -294,432 +330,443 @@ msgid "disable wins for hostname resolution"
 msgstr "a Wins gépnév-feloldáshoz való használatának tiltása"
 
 #: ../authconfig.py:207
-msgid "enable hesiod for user information by default"
-msgstr "a felhasználói információk Hesioddal való kezelésének engedélyezése alapértelmezésben"
+#, fuzzy
+msgid "prefer dns over wins or nis for hostname resolution"
+msgstr "a Wins gépnév-feloldáshoz való használatának engedélyezése"
 
 #: ../authconfig.py:209
-msgid "disable hesiod for user information by default"
-msgstr "a felhasználói információk Hesioddal való kezelésének tiltása alapértelmezésben"
+#, fuzzy
+msgid "do not prefer dns over wins or nis for hostname resolution"
+msgstr "a Wins gépnév-feloldáshoz való használatának engedélyezése"
 
-#: ../authconfig.py:211
+#: ../authconfig.py:212
+msgid "enable hesiod for user information by default"
+msgstr ""
+"a felhasználói információk Hesioddal való kezelésének engedélyezése "
+"alapértelmezésben"
+
+#: ../authconfig.py:214
+msgid "disable hesiod for user information by default"
+msgstr ""
+"a felhasználói információk Hesioddal való kezelésének tiltása "
+"alapértelmezésben"
+
+#: ../authconfig.py:216
 msgid "default hesiod LHS"
 msgstr "alapértelmezett Hesiod LHS"
 
-#: ../authconfig.py:213
+#: ../authconfig.py:218
 msgid "default hesiod RHS"
 msgstr "alapértelmezett Hesiod RHS"
 
-#: ../authconfig.py:216
-msgid "enable caching of user information by default"
-msgstr "felhasználói információk gyorstárazásának engedélyezése alapértelmezésben"
-
-#: ../authconfig.py:218
-msgid "disable caching of user information by default"
-msgstr "felhasználói információk gyorstárazásának kikapcsolása alapértelmezésben"
-
 #: ../authconfig.py:221
+msgid "enable caching of user information by default"
+msgstr ""
+"felhasználói információk gyorstárazásának engedélyezése alapértelmezésben"
+
+#: ../authconfig.py:223
+msgid "disable caching of user information by default"
+msgstr ""
+"felhasználói információk gyorstárazásának kikapcsolása alapértelmezésben"
+
+#: ../authconfig.py:226
 msgid "local authorization is sufficient for local users"
 msgstr "helyi felhasználók számára elegendő a helyi jogosultság ellenőrzés"
 
-#: ../authconfig.py:223
+#: ../authconfig.py:228
 msgid "authorize local users also through remote service"
-msgstr "helyi felhasználók jogosultságait is távoli szolgáltatással ellenőrizze"
+msgstr ""
+"helyi felhasználók jogosultságait is távoli szolgáltatással ellenőrizze"
 
-#: ../authconfig.py:226
+#: ../authconfig.py:231
 msgid "check access.conf during account authorization"
 msgstr "access.conf _ellenőrzése számla hitelesítéskor"
 
-#: ../authconfig.py:228
+#: ../authconfig.py:233
 msgid "do not check access.conf during account authorization"
 msgstr "access.conf _nem ellenőrzése számla hitelesítéskor"
 
-#: ../authconfig.py:231
+#: ../authconfig.py:236
 msgid "authenticate system accounts by network services"
 msgstr "a rendszerfelhasználókat hálózati szolgáltatásokkal azonosítsa"
 
-#: ../authconfig.py:233
+#: ../authconfig.py:238
 msgid "authenticate system accounts by local files only"
 msgstr "rendszerfelhasználókat csak helyi fájlokkal azonosítsa"
 
-#: ../authconfig.py:236
+#: ../authconfig.py:241
 msgid "create home directories for users on their first login"
 msgstr "saját mappa teremtés első bejelentkezéskor"
 
-#: ../authconfig.py:238
+#: ../authconfig.py:243
 msgid "do not create home directories for users on their first login"
 msgstr "saját mappa nem teremtés első bejelentkezéskor"
 
-#: ../authconfig.py:241
+#: ../authconfig.py:246
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "a portmap, az ypbind és az nscd ne legyen elindítva/leállítva"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:249
 msgid "do not update the configuration files, only print new settings"
-msgstr "ne frissítse a konfigurációs fájlokat, csak nyomtassa ki az új beállításokat"
+msgstr ""
+"ne frissítse a konfigurációs fájlokat, csak nyomtassa ki az új beállításokat"
 
-#: ../authconfig.py:248
+#: ../authconfig.py:253
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "A TUI fő párbeszédablakában a Vissza jelenjen meg a Mégse helyett"
 
-#: ../authconfig.py:250
+#: ../authconfig.py:255
 msgid "do not display the deprecated text user interface"
 msgstr "ne jelenjen meg az elavult szöveges felhasználói felület"
 
-#: ../authconfig.py:253
+#: ../authconfig.py:258
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "a --test ellentéteként, a konfigurációs fájlok frissítése a megváltozott beállításokkal"
+msgstr ""
+"a --test ellentéteként, a konfigurációs fájlok frissítése a megváltozott "
+"beállításokkal"
 
-#: ../authconfig.py:256
+#: ../authconfig.py:261
 msgid "update all configuration files"
 msgstr "minden konfigurációs fájl frissítése"
 
-#: ../authconfig.py:259
-msgid "probe network for defaults and print them"
-msgstr "hálózat szondázása az alapértelmezett beállításokért, majd azok nyomtatása"
-
-#: ../authconfig.py:261
 #: ../authconfig.py:264
+msgid "probe network for defaults and print them"
+msgstr ""
+"hálózat szondázása az alapértelmezett beállításokért, majd azok nyomtatása"
+
+#: ../authconfig.py:266 ../authconfig.py:269
 msgid "<name>"
 msgstr "<név>"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:267
 msgid "save a backup of all configuration files"
 msgstr "minden konfigurációs fájl mentése"
 
-#: ../authconfig.py:265
+#: ../authconfig.py:270
 msgid "restore the backup of configuration files"
 msgstr "konfigurációs fájlok visszaállítása"
 
-#: ../authconfig.py:268
-msgid "restore the backup of configuration files saved before the previous configuration change"
-msgstr "beállítás fájlok mentésének visszaállítása az előző beállítás változás előtti állapotra"
-
 #: ../authconfig.py:273
+msgid ""
+"restore the backup of configuration files saved before the previous "
+"configuration change"
+msgstr ""
+"beállítás fájlok mentésének visszaállítása az előző beállítás változás "
+"előtti állapotra"
+
+#: ../authconfig.py:278
 msgid "unexpected argument"
 msgstr "váratlan argumentum"
 
-#: ../authconfig.py:386
+#: ../authconfig.py:392
 msgid "Bad smart card removal action specified."
 msgstr "Hibás a megadott csipkártya-eltávolítási művelet."
 
-#: ../authconfig.py:395
+#: ../authconfig.py:401
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "Ismeretlen jelszó szóró algoritmust adtak meg, sha256 használata."
 
-#: ../authconfig.py:424
+#: ../authconfig.py:430
 msgid "can only be run as root"
 msgstr "csak rendszergazdaként futtatható"
 
-#: ../authconfig.py:440
+#: ../authconfig.py:446
 msgid "dialog was cancelled"
 msgstr "a párbeszéd meg lett szakítva"
 
-#: ../authconfig.py:463
+#: ../authconfig.py:469
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work properly.\n"
+"The %s file was not found, but it is required for %s support to work "
+"properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"A(z) %s fájl nem található, de szükség van rá a(z) %s-támogatás működéséhez.\n"
+"A(z) %s fájl nem található, de szükség van rá a(z) %s-támogatás "
+"működéséhez.\n"
 "Telepítse a(z) %s csomagot, amely tartalmazza ezt a fájlt."
 
-#: ../authconfig.py:465
-#: ../authconfig.py:823
+#: ../authconfig.py:471 ../authconfig.py:829
 msgid "Warning"
 msgstr "Figyelem"
 
-#: ../authconfig.py:465
-#: ../authconfig.py:681
-#: ../authconfig.py:688
-#: ../authconfig.py:694
-#: ../authconfig.py:703
-#: ../authconfig.py:710
-#: ../authconfig.py:718
-#: ../authconfig.py:759
-#: ../authconfig.py:823
+#: ../authconfig.py:471 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:724 ../authconfig.py:765 ../authconfig.py:829
 msgid "Ok"
 msgstr "OK"
 
-#: ../authconfig.py:469
+#: ../authconfig.py:475
 msgid "caching"
 msgstr "gyorstárazás"
 
-#: ../authconfig.py:470
+#: ../authconfig.py:476
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:471
+#: ../authconfig.py:477
 msgid "LDAP authentication"
 msgstr "LDAP-azonosítás"
 
-#: ../authconfig.py:472
+#: ../authconfig.py:478
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:473
+#: ../authconfig.py:479
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:474
+#: ../authconfig.py:480
 msgid "shadow password"
 msgstr "árnyékjelszó"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:481
 msgid "SMB authentication"
 msgstr "SMB-azonosítás"
 
-#: ../authconfig.py:476
-#: ../authconfig.py:478
+#: ../authconfig.py:482 ../authconfig.py:484
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:477
+#: ../authconfig.py:483
 msgid "Winbind authentication"
 msgstr "Winbind-azonosítás"
 
-#: ../authconfig.py:483
+#: ../authconfig.py:489
 msgid "User Information"
 msgstr "Felhasználói információk"
 
-#: ../authconfig.py:486
+#: ../authconfig.py:492
 msgid "Cache Information"
 msgstr "Gyorstár-információk"
 
-#: ../authconfig.py:490
+#: ../authconfig.py:496
 msgid "Use Hesiod"
 msgstr "Hesiod használata"
 
-#: ../authconfig.py:493
+#: ../authconfig.py:499
 msgid "Use LDAP"
 msgstr "LDAP használata"
 
-#: ../authconfig.py:497
+#: ../authconfig.py:503
 msgid "Use NIS"
 msgstr "NIS használata"
 
-#: ../authconfig.py:501
+#: ../authconfig.py:507
 msgid "Use Winbind"
 msgstr "Winbind használata"
 
-#: ../authconfig.py:507
-#: ../authconfig.desktop.in.h:1
+#: ../authconfig.py:513 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Azonosítás"
 
-#: ../authconfig.py:510
+#: ../authconfig.py:516
 msgid "Use MD5 Passwords"
 msgstr "MD5-jelszók használata"
 
-#: ../authconfig.py:513
+#: ../authconfig.py:519
 msgid "Use Shadow Passwords"
 msgstr "Árnyékjelszók használata"
 
-#: ../authconfig.py:517
+#: ../authconfig.py:523
 msgid "Use LDAP Authentication"
 msgstr "LDAP-azonosítás használata"
 
-#: ../authconfig.py:521
+#: ../authconfig.py:527
 msgid "Use Kerberos"
 msgstr "Kerberos használata"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:531
 msgid "Use SMB Authentication"
 msgstr "SMB-azonosítás használata"
 
-#: ../authconfig.py:529
+#: ../authconfig.py:535
 msgid "Use Winbind Authentication"
 msgstr "Winbind-azonosítás használata"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:539
 msgid "Local authorization is sufficient"
 msgstr "A helyi azonosítás elegendő"
 
-#: ../authconfig.py:543
-#: ../authconfig.py:681
-#: ../authconfig.py:688
-#: ../authconfig.py:694
-#: ../authconfig.py:703
-#: ../authconfig.py:710
-#: ../authconfig.py:759
+#: ../authconfig.py:549 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:765
 msgid "Back"
 msgstr "Vissza"
 
-#: ../authconfig.py:543
-#: ../authconfig.py:718
+#: ../authconfig.py:549 ../authconfig.py:724
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: ../authconfig.py:544
-#: ../authconfig.py:681
-#: ../authconfig.py:688
-#: ../authconfig.py:694
-#: ../authconfig.py:703
-#: ../authconfig.py:710
-#: ../authconfig.py:759
+#: ../authconfig.py:550 ../authconfig.py:687 ../authconfig.py:694
+#: ../authconfig.py:700 ../authconfig.py:709 ../authconfig.py:716
+#: ../authconfig.py:765
 msgid "Next"
 msgstr "Következő"
 
-#: ../authconfig.py:555
-#: ../authconfig-gtk.py:436
-#: ../authconfig.glade.h:7
+#: ../authconfig.py:561 ../authconfig-gtk.py:436 ../authconfig.glade.h:7
 msgid "Authentication Configuration"
 msgstr "Azonosítás beállítása"
 
-#: ../authconfig.py:678
+#: ../authconfig.py:684
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:679
+#: ../authconfig.py:685
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:680
-#: ../authconfig.glade.h:32
+#: ../authconfig.py:686 ../authconfig.glade.h:32
 msgid "Hesiod Settings"
 msgstr "Hesiod-beállítás"
 
-#: ../authconfig.py:684
+#: ../authconfig.py:690
 msgid "Use TLS"
 msgstr "TLS használata"
 
-#: ../authconfig.py:685
-#: ../authconfig.py:692
+#: ../authconfig.py:691 ../authconfig.py:698
 msgid "Server:"
 msgstr "Kiszolgáló:"
 
-#: ../authconfig.py:686
+#: ../authconfig.py:692
 msgid "Base DN:"
 msgstr "Alap DN:"
 
-#: ../authconfig.py:687
-#: ../authconfig.glade.h:41
+#: ../authconfig.py:693 ../authconfig.glade.h:42
 msgid "LDAP Settings"
 msgstr "LDAP-beállítás"
 
-#: ../authconfig.py:691
-#: ../authconfig.py:753
+#: ../authconfig.py:697 ../authconfig.py:759
 msgid "Domain:"
 msgstr "Tartomány:"
 
-#: ../authconfig.py:693
-#: ../authconfig.glade.h:43
+#: ../authconfig.py:699 ../authconfig.glade.h:44
 msgid "NIS Settings"
 msgstr "NIS-beállítás"
 
-#: ../authconfig.py:697
+#: ../authconfig.py:703
 msgid "Realm:"
 msgstr "Tartomány:"
 
 # Key Distribution Center
-#: ../authconfig.py:698
+#: ../authconfig.py:704
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:699
+#: ../authconfig.py:705
 msgid "Admin Server:"
 msgstr "Rendszergazda-kiszolgáló:"
 
-#: ../authconfig.py:700
+#: ../authconfig.py:706
 msgid "Use DNS to resolve hosts to realms"
 msgstr "DNS használata a gépek realmhez való rendelésére"
 
-#: ../authconfig.py:701
+#: ../authconfig.py:707
 msgid "Use DNS to locate KDCs for realms"
 msgstr "DNS használata a tartományi KDC-k keresésére"
 
-#: ../authconfig.py:702
-#: ../authconfig.glade.h:38
+#: ../authconfig.py:708 ../authconfig.glade.h:39
 msgid "Kerberos Settings"
 msgstr "Kerberos-beállítás"
 
-#: ../authconfig.py:706
+#: ../authconfig.py:712
 msgid "Workgroup:"
 msgstr "Munkacsoport:"
 
-#: ../authconfig.py:707
+#: ../authconfig.py:713
 msgid "Servers:"
 msgstr "Kiszolgálók:"
 
-#: ../authconfig.py:708
+#: ../authconfig.py:714
 msgid "Shell:"
 msgstr "Héj:"
 
-#: ../authconfig.py:709
-#: ../authconfig.glade.h:50
+#: ../authconfig.py:715 ../authconfig.glade.h:51
 msgid "SMB Settings"
 msgstr "SMB-beállítás"
 
-#: ../authconfig.py:713
+#: ../authconfig.py:719
 msgid "Domain Administrator:"
 msgstr "Tartomány-rendszergazda:"
 
-#: ../authconfig.py:714
+#: ../authconfig.py:720
 msgid "Password:"
 msgstr "Jelszó:"
 
-#: ../authconfig.py:717
+#: ../authconfig.py:723
 msgid "Join Settings"
 msgstr "Csatlakozási beállítások"
 
-#: ../authconfig.py:727
-#: ../authconfig.glade.h:54
-msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
-msgstr "Folytatás előtt lemezre kell menteni a beállításokon végzett módosításokat. Ha nem menti el őket, akkor nem biztos, hogy lehetséges lesz a tartományhoz való csatlakozás. Menti a változásokat?"
+#: ../authconfig.py:733 ../authconfig.glade.h:55
+msgid ""
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
+"may fail.  Save changes?"
+msgstr ""
+"Folytatás előtt lemezre kell menteni a beállításokon végzett módosításokat. "
+"Ha nem menti el őket, akkor nem biztos, hogy lehetséges lesz a tartományhoz "
+"való csatlakozás. Menti a változásokat?"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:740
 msgid "Save Settings"
 msgstr "Beállítások mentése"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "No"
 msgstr "Nem"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "Yes"
 msgstr "Igen"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:752
+#: ../authconfig.py:758
 msgid "Security Model:"
 msgstr "Biztonsági modell:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:760
 msgid "Domain Controllers:"
 msgstr "Tartományvezérlők:"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:761
 msgid "ADS Realm:"
 msgstr "ADS-tartomány:"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:762
 msgid "Template Shell:"
 msgstr "Héjsablon:"
 
-#: ../authconfig.py:758
-#: ../authconfig.glade.h:66
+#: ../authconfig.py:764 ../authconfig.glade.h:68
 msgid "Winbind Settings"
 msgstr "Winbind-beállítás"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:766
 msgid "Join Domain"
 msgstr "Tartományhoz való csatlakozás"
 
 # PEM: egyfajta formátum
 #  http://tirian.magd.ox.ac.uk/~nick/openssl-certs/general.shtml
-#: ../authconfig.py:818
+#: ../authconfig.py:824
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed your server's certificate. Copy the certificate in "
+"the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Ahhoz, hogy kapcsolódhasson egy LDAP-kiszolgálóhoz TLS protokollon, át kell másolnia a(z) %s könyvtárba azt a PEM formátumú CA tanúsítványt, amellyel a kiszolgáló tanúsítványa alá lett írva.\n"
+"Ahhoz, hogy kapcsolódhasson egy LDAP-kiszolgálóhoz TLS protokollon, át kell "
+"másolnia a(z) %s könyvtárba azt a PEM formátumú CA tanúsítványt, amellyel a "
+"kiszolgáló tanúsítványa alá lett írva.\n"
 "Ezt követően nyomja meg az OK gombot."
 
 #. FIXME - version
-#: ../authconfig.py:832
-msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
-msgstr "<Tab>/<Alt+Tab> elemek között | <Szóköz> kiválasztás | <F12> következő képernyő"
+#: ../authconfig.py:838
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+"<Tab>/<Alt+Tab> elemek között | <Szóköz> kiválasztás | <F12> következő "
+"képernyő"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -746,8 +793,12 @@ msgid "Alert"
 msgstr "Figyelmeztetés"
 
 #: ../authconfig.glade.h:6
-msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
-msgstr "Minden beállítás fájl, amit változtatott az előző hitelesítés beállítás változás, visszaállítható a mentésből. Visszaállítsuk a változásokat?"
+msgid ""
+"All configuration files which were modified by the previous authentication "
+"configuration change will be restored from backup. Revert the changes?"
+msgstr ""
+"Minden beállítás fájl, amit változtatott az előző hitelesítés beállítás "
+"változás, visszaállítható a mentésből. Visszaállítsuk a változásokat?"
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -842,8 +893,12 @@ msgid "Enable _Winbind Support"
 msgstr "_Winbind-támogatás engedélyezése"
 
 #: ../authconfig.glade.h:31
-msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
-msgstr "A helyi /etc/passwd fájlban kezelt felhasználók jogosultságait a rendszer nem fogja hálózati szolgáltatásokkal mint LDAP vagy Kerberos ellenőrizni"
+msgid ""
+"For user accounts maintained in local /etc/passwd file system will not check "
+"authorization from network services such as LDAP or Kerberos."
+msgstr ""
+"A helyi /etc/passwd fájlban kezelt felhasználók jogosultságait a rendszer "
+"nem fogja hálózati szolgáltatásokkal mint LDAP vagy Kerberos ellenőrizni"
 
 #: ../authconfig.glade.h:33
 msgid "Hesiod _LHS"
@@ -854,197 +909,266 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
 #: ../authconfig.glade.h:35
-msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
-msgstr "A Hesiod lehetővé teszi rendszergazdák számára, hogy felhasználó- és csoportinformációkat rögzítsenek DNS-ben. Nagyon nagy hálózatokban is használatos."
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"A Hesiod lehetővé teszi rendszergazdák számára, hogy felhasználó- és "
+"csoportinformációkat rögzítsenek DNS-ben. Nagyon nagy hálózatokban is "
+"használatos."
 
 #: ../authconfig.glade.h:36
-msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
-msgstr "Ha egy másik használónak még nincs saját mappája, önműködően megteremtik az első bejelentkezésekor."
+msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
+msgstr ""
 
 #: ../authconfig.glade.h:37
+msgid ""
+"If the home directory of an user doesn't exist yet it will be created "
+"automatically on his first login."
+msgstr ""
+"Ha egy másik használónak még nincs saját mappája, önműködően megteremtik az "
+"első bejelentkezésekor."
+
+#: ../authconfig.glade.h:38
 msgid "Joining Winbind Domain"
 msgstr "Csatlakozás a Winbind-tartományhoz"
 
-#: ../authconfig.glade.h:39
-msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
-msgstr "A Kerberos egy azonosítási rendszer megbízott külső személyek azonosításához. Gyakran használatos a közepes és a nagy hálózatokon."
-
 #: ../authconfig.glade.h:40
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"A Kerberos egy azonosítási rendszer megbízott külső személyek "
+"azonosításához. Gyakran használatos a közepes és a nagy hálózatokon."
+
+#: ../authconfig.glade.h:41
 msgid "LDAP Search _Base DN"
 msgstr "LDAP-keresési _alap-DN"
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:43
 msgid "LDAP _Server"
 msgstr "LDA_P-kiszolgáló"
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:45
 msgid "NIS _Domain"
 msgstr "NIS-_tartomány"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid "NIS _Server"
 msgstr "NIS-_kiszolgáló"
 
-#: ../authconfig.glade.h:46
-msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
-msgstr "NIS: Network Information Service. Kicsi és közepes hálózatokon gyakran használatos."
-
 #: ../authconfig.glade.h:47
+msgid ""
+"NIS is the Network Information Service.  It is commonly used on small to "
+"medium networks."
+msgstr ""
+"NIS: Network Information Service. Kicsi és közepes hálózatokon gyakran "
+"használatos."
+
+#: ../authconfig.glade.h:48
 msgid "Op_tions"
 msgstr "Op_ciók"
 
-#: ../authconfig.glade.h:48
-msgid "Restore the configuration files backed up before the previous configuration change"
-msgstr "Elmentett beállítás fájlok visszaállítása az előző beállítás változás előtti állapotba"
-
 #: ../authconfig.glade.h:49
+msgid ""
+"Restore the configuration files backed up before the previous configuration "
+"change"
+msgstr ""
+"Elmentett beállítás fájlok visszaállítása az előző beállítás változás előtti "
+"állapotba"
+
+#: ../authconfig.glade.h:50
 msgid "Revert"
 msgstr "Visszaállítás"
 
-#: ../authconfig.glade.h:51
-msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
-msgstr "Az SMB-azonosítás egy, az SMB (System Message Block) protokollcsomagot használó kiszolgálóhoz csatlakozva ellenőrzi a felhasználói jelszavakat."
-
 #: ../authconfig.glade.h:52
+msgid ""
+"SMB authentication verifies user passwords by attempting to connect to a "
+"server which uses the SMB (system message block) protocol suite."
+msgstr ""
+"Az SMB-azonosítás egy, az SMB (System Message Block) protokollcsomagot "
+"használó kiszolgálóhoz csatlakozva ellenőrzi a felhasználói jelszavakat."
+
+#: ../authconfig.glade.h:53
 msgid "Smart Card Settings"
 msgstr "Csipkártya beállítások"
 
-#: ../authconfig.glade.h:53
-msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
-msgstr "A csipkártya-alapú azonosítás lehetővé teszi, hogy egy csipkártyához rendelt tanúsítvánnyal és kulccsal lépjen be a rendszerbe."
+#: ../authconfig.glade.h:54
+msgid ""
+"Smart card authentication allows you to log in using a certificate and key "
+"associated with a smart card."
+msgstr ""
+"A csipkártya-alapú azonosítás lehetővé teszi, hogy egy csipkártyához rendelt "
+"tanúsítvánnyal és kulccsal lépjen be a rendszerbe."
 
-#: ../authconfig.glade.h:55
-msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
-msgstr "A Lightweight Directory Access Protocol egy szabványos keresési mód egy olyan címtárban, amelyben tetszőleges adatok tárolhatók egy strukturált hierarchiában. Az LDAP használata kis és nagy hálózatokban is egyre növekszik."
+#: ../authconfig.glade.h:56
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"A Lightweight Directory Access Protocol egy szabványos keresési mód egy "
+"olyan címtárban, amelyben tetszőleges adatok tárolhatók egy strukturált "
+"hierarchiában. Az LDAP használata kis és nagy hálózatokban is egyre "
+"növekszik."
 
 # PEM: egyfajta formátum
 #  http://tirian.magd.ox.ac.uk/~nick/openssl-certs/general.shtml
-#: ../authconfig.glade.h:56
-msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
-msgstr "Ahhoz, hogy kapcsolódhasson egy LDAP kiszolgálóhoz TLS protokoll engedélyezésével, szükséges egy CA tanúsítványt, amellyel a kiszolgáló tanúsítványát aláírták. Kérem adja meg az URL-t ahonnan a PEM fromátumú CA tanusítvány letölthető."
-
 #: ../authconfig.glade.h:57
+msgid ""
+"To verify the LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed the server's certificate. Please fill in the URL "
+"where the CA certificate in the PEM format can be downloaded from."
+msgstr ""
+"Ahhoz, hogy kapcsolódhasson egy LDAP kiszolgálóhoz TLS protokoll "
+"engedélyezésével, szükséges egy CA tanúsítványt, amellyel a kiszolgáló "
+"tanúsítványát aláírták. Kérem adja meg az URL-t ahonnan a PEM fromátumú CA "
+"tanusítvány letölthető."
+
+#: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "_DNS használata a Kerberos-tartomány KDC-jeinek kereséséhez"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:59
+msgid ""
+"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
+"must not be ticked with ldaps server URI."
+msgstr ""
+
+#: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
 msgstr "DNS _használata a gépek Kerberos-tartományhoz rendelésére"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:61
 msgid "Use _Shadow Passwords"
 msgstr "_Árnyékjelszók használata"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:62
 msgid "Use _TLS to encrypt connections"
 msgstr "_TLS használata a kapcsolatok titkosítására"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:63
 msgid "User Infor_mation"
 msgstr "Használó tájé_koztató"
 
-#: ../authconfig.glade.h:62
-msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
-msgstr "Engedélyezve /etc/security/access.conf fájl alapján végzik a használó hozzáférés hitelesítést."
-
-#: ../authconfig.glade.h:63
-msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
-msgstr "Ha engedélyezve van, akkor lehetővé teszi az LDAP-nak vagy a Kerberosnak, hogy rendszerfelhasználókat, beleértve a root-ot ezen a gépen azonosítsanak."
-
 #: ../authconfig.glade.h:64
+msgid ""
+"When enabled /etc/security/access.conf will be consulted for authorization "
+"of users access."
+msgstr ""
+"Engedélyezve /etc/security/access.conf fájl alapján végzik a használó "
+"hozzáférés hitelesítést."
+
+#: ../authconfig.glade.h:65
+msgid ""
+"When enabled allows network services such as LDAP or Kerberos to "
+"authenticate system accounts including root on this machine."
+msgstr ""
+"Ha engedélyezve van, akkor lehetővé teszi az LDAP-nak vagy a Kerberosnak, "
+"hogy rendszerfelhasználókat, beleértve a root-ot ezen a gépen azonosítsanak."
+
+#: ../authconfig.glade.h:66
 msgid "Winbind ADS _Realm"
 msgstr "Winbind ADS _tartomány"
 
-#: ../authconfig.glade.h:65
+#: ../authconfig.glade.h:67
 msgid "Winbind Domain Co_ntrollers"
 msgstr "Winbind-tartomány_vezérlők"
 
-#: ../authconfig.glade.h:67
+#: ../authconfig.glade.h:69
 msgid "Winbind _Domain"
 msgstr "Winbind-_tartomány"
 
-#: ../authconfig.glade.h:68
-msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
-msgstr "A Winbind lehetővé teszi egy rendszer számára, hogy NTDOM- vagy ADS-kiszolgálókon tárolt információk segítségével információkat kérdezzen le felhasználókról, illetve felhasználóazonosítást végezzen. Kis és nagy hálózatokon is használatos."
+#: ../authconfig.glade.h:70
+msgid ""
+"Winbind allows a system to retrieve information about users and to "
+"authenticate users by using information stored in an NTDOM or ADS server.  "
+"It is used in small to large networks."
+msgstr ""
+"A Winbind lehetővé teszi egy rendszer számára, hogy NTDOM- vagy ADS-"
+"kiszolgálókon tárolt információk segítségével információkat kérdezzen le "
+"felhasználókról, illetve felhasználóazonosítást végezzen. Kis és nagy "
+"hálózatokon is használatos."
 
-#: ../authconfig.glade.h:69
+#: ../authconfig.glade.h:71
 msgid "_Admin Servers"
 msgstr "_Rendszergazda-kiszolgálók"
 
-#: ../authconfig.glade.h:70
+#: ../authconfig.glade.h:72
 msgid "_Allow offline login"
 msgstr "_Kapcsolatlan belépes engedélyezése"
 
-#: ../authconfig.glade.h:71
+#: ../authconfig.glade.h:73
 msgid "_Authenticate system accounts by network services"
 msgstr "Rendszerfelhasználók _azonosítása hálózati szolgáltatásokkal"
 
-#: ../authconfig.glade.h:72
+#: ../authconfig.glade.h:74
 msgid "_Domain Controllers"
 msgstr "_Tartományvezérlők"
 
-#: ../authconfig.glade.h:73
+#: ../authconfig.glade.h:75
 msgid "_Join Domain"
 msgstr "_Csatlakozás a tartományhoz"
 
-#: ../authconfig.glade.h:74
+#: ../authconfig.glade.h:76
 msgid "_KDCs"
 msgstr "_KDC-k"
 
-#: ../authconfig.glade.h:75
+#: ../authconfig.glade.h:77
 msgid "_Local authorization is sufficient for local users"
 msgstr "_Helyi felhasználók számára elegendő a helyi jogosultság ellenőrzés"
 
-#: ../authconfig.glade.h:76
+#: ../authconfig.glade.h:78
 msgid "_Password"
 msgstr "_Jelszó"
 
-#: ../authconfig.glade.h:77
+#: ../authconfig.glade.h:79
 msgid "_Password hashing algorithm"
 msgstr "_Jelszó szóró algoritmus"
 
-#: ../authconfig.glade.h:78
+#: ../authconfig.glade.h:80
 msgid "_Realm"
 msgstr "_Kerberos-tartomány"
 
-#: ../authconfig.glade.h:79
+#: ../authconfig.glade.h:81
 msgid "_Require smart card for login"
 msgstr "Csipkártya _kötelező a bejelentkezéshez"
 
-#: ../authconfig.glade.h:80
+#: ../authconfig.glade.h:82
 msgid "_Security Model"
 msgstr "_Biztonsági modell"
 
-#: ../authconfig.glade.h:81
+#: ../authconfig.glade.h:83
 msgid "_Template Shell"
 msgstr "_Parancsértelmező-sablon"
 
-#: ../authconfig.glade.h:82
+#: ../authconfig.glade.h:84
 msgid "_Workgroup"
 msgstr "_Munkacsoport"
 
-#: ../authinfo.py:666
-#: ../authinfo.py:1173
-#: ../authinfo.py:2397
+#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
 msgid "Lock"
 msgstr "Zárolás"
 
-#: ../authinfo.py:666
-#: ../authinfo.py:1175
+#: ../authinfo.py:667 ../authinfo.py:1177
 msgid "Ignore"
 msgstr "Figyelmen kívül hagy"
 
-#: ../authinfo.py:2742
+#: ../authinfo.py:2757
 #, python-format
-msgid "Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly."
-msgstr "Az azonosítást végző %s/pam_%s.so modul hiányzik. Az azonosítási folyamat nem fog megfelelően működni."
+msgid ""
+"Authentication module %s/pam_%s.so is missing. Authentication process will "
+"not work correctly."
+msgstr ""
+"Az azonosítást végző %s/pam_%s.so modul hiányzik. Az azonosítási folyamat "
+"nem fog megfelelően működni."
 
-#: ../authinfo.py:3221
+#: ../authinfo.py:3238
 msgid "Error downloading CA certificate"
 msgstr "Hiba a CA tanúsítvány letöltésekor"
 
 #~ msgid "LDAP CA Certificate Check"
 #~ msgstr "LDAP CA tanúsítvány ellenőrzés"
+
 #~ msgid "Use _MD5 Passwords"
 #~ msgstr "MD_5-jelszók használata"
-
