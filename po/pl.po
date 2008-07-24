@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-05-12 21:34+0200\n"
+"PO-Revision-Date: 2008-07-24 20:31+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -84,9 +84,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "domyślnie wyłącz uwierzytelnianie przez LDAP"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "domyślny serwer LDAP"
+msgstr "nazwa komputera lub URI domyślnego serwera LDAP"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -97,14 +96,12 @@ msgid "default LDAP base DN"
 msgstr "domyślny bazowy DN LDAP"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "włącz użycie TLS z LDAP"
+msgstr "włącz użycie TLS z LDAP (RFC-2830)"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "wyłącz użycie TLS z LDAP"
+msgstr "wyłącz użycie TLS z LDAP (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -236,11 +233,11 @@ msgstr "<najniższy-nawyższy>"
 
 #: ../authconfig.py:179
 msgid "uid range winbind will assign to domain or ads users"
-msgstr "zakres UID przypisywany przez winbind dla domeny lub użytkowników ads"
+msgstr "zakres UID przypisywany przez winbind dla domeny lub użytkowników ADS"
 
 #: ../authconfig.py:181
 msgid "gid range winbind will assign to domain or ads users"
-msgstr "zakres GID przypisywany przez winbind dla domeny lub użytkowników ads"
+msgstr "zakres GID przypisywany przez winbind dla domeny lub użytkowników ADS"
 
 #: ../authconfig.py:183
 msgid ""
@@ -288,25 +285,23 @@ msgstr "konfiguruje winbind tak, aby zabraniał logowania offline"
 
 #: ../authconfig.py:199
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr "dołącz do domeny winbind lub obszaru ads jako administrator"
+msgstr "dołącz do domeny winbind lub obszaru ADS jako administrator"
 
 #: ../authconfig.py:202
 msgid "enable wins for hostname resolution"
-msgstr "włącz wins do rozwiązywania nazw komputerów"
+msgstr "włącz WINS do rozwiązywania nazw komputerów"
 
 #: ../authconfig.py:204
 msgid "disable wins for hostname resolution"
-msgstr "wyłącz wins do rozwiązywania nazw komputerów"
+msgstr "wyłącz WINS do rozwiązywania nazw komputerów"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "włącz wins do rozwiązywania nazw komputerów"
+msgstr "preferuj DNS zamiast WINS lub NIS do rozwiązywania nazw komputerów"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "włącz wins do rozwiązywania nazw komputerów"
+msgstr "nie preferuj DNS zamiast WINS lub NIS do rozwiązywania nazw komputerów"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -882,6 +877,7 @@ msgstr ""
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr ""
+"Nazwa komputera lub URI ldap:// albo ldaps:// wskazujące na serwer LDAP."
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -992,6 +988,8 @@ msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
 msgstr ""
+"Użyj rozszerzenia Bezpieczeństwa warstwy przesyłania dla LDAP, jak określa "
+"RFC-2830. Nie może używać URI ldaps serwera."
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
