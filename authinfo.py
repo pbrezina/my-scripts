@@ -493,7 +493,8 @@ def toggleCachingService(enableCaching, nostart):
 
 def toggleNisService(enableNis, nisDomain, nostart):
 	if enableNis and nisDomain:
-		os.system("/bin/domainname " + nisDomain)
+		if not nostart:
+			os.system("/bin/domainname " + nisDomain)
 		try:
 			os.stat(PATH_PORTMAP)
 			os.system("/sbin/chkconfig --add portmap")
@@ -515,7 +516,8 @@ def toggleNisService(enableNis, nisDomain, nostart):
 		except OSError:
 			pass
 	else:
-		os.system("/bin/domainname \"(none)\"")
+		if not nostart:
+			os.system("/bin/domainname \"(none)\"")
 		try:
 			os.stat(PATH_YPBIND)
 			if not nostart:

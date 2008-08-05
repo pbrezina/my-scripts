@@ -95,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Aug  5 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.4-1
+- do not call domainname when run with --nostart (#457697)
+
 * Fri Jun  6 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.3-1
 - remove the --enableldapssl alias and add some help to GUI tooltips
   to clear up some confusion (#220973)
