@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-05-25 18:55+0300\n"
+"POT-Creation-Date: 2008-08-25 19:23+0000\n"
+"PO-Revision-Date: 2008-08-31 01:02+0300\n"
 "Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,9 +85,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "älä käytä LDAP:ia todennukseen oletuksena"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "oletus LDAP-palvelin"
+msgstr "oletus-LDAP-palvelimen konenimi tai URI"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -98,14 +97,12 @@ msgid "default LDAP base DN"
 msgstr "oletus LDAP base DN"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "käytä TLS:tä LDAP:in kanssa"
+msgstr "käytä TLS:tä LDAP:in kanssa (RFC-2830)"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "älä käytä TLS:tä LDAP:in kanssa"
+msgstr "älä käytä TLS:tä LDAP:in kanssa (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -303,14 +300,16 @@ msgid "disable wins for hostname resolution"
 msgstr "älä käytä winsiä konenimen selvittämiseksi"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "käytä winsiä konenimen selvittämiseksi"
+msgstr ""
+"suosi dns:ää ennemmin kuin wins:ää tai nis:ää konenimen "
+"selvittämiseksi"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "käytä winsiä konenimen selvittämiseksi"
+msgstr ""
+"älä suosi dns:ää ennemmin kuin wins:ää tai nis:ää konenimen "
+"selvittämiseksi"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -886,6 +885,8 @@ msgstr ""
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr ""
+"Konenimi tai LDAP-palvelimeen osoittava URI tyyppiä ldap:// tai "
+"ldaps://"
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -1107,15 +1108,15 @@ msgstr "_Mallikuori"
 msgid "_Workgroup"
 msgstr "_Työryhmä"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "Lukitse"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "Ohita"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1123,7 +1124,7 @@ msgid ""
 msgstr ""
 "Todennusmoduuli %s/pam_%s.so puuttuu. Todennusprosessi ei toimi oikein."
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "Virhe ladattaessa CA-sertifikaattia"
 
