@@ -1,4 +1,4 @@
-# translation of authconfig.tip.ja.po to Japanese
+# translation of ja.po to Japanese
 # Japanese translations for Authconfig
 # Copyright (C) 2002 Red Hat, Inc.
 #
@@ -6,17 +6,17 @@
 # Tadashi Jokagi <fedora@elf.no-ip.org>, 2004.
 # Hirofumi Saito <hi_saito@yk.rim.or.jp>, 2004, 2005, 2006.
 # Kiyoto James Hashida <khashida@redhat.com>, 2006.
-# Noriko Mizumoto <noriko@redhat.com>, 2006.
+# Noriko Mizumoto <noriko@redhat.com>, 2006, 2008.
 # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2007.
 # Kiyoto Hashida <khashida@redhat.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.tip.ja\n"
+"Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-04-07 11:39+1000\n"
-"Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
-"Language-Team: Japanese <jp@li.org>\n"
+"POT-Creation-Date: 2008-08-25 19:23+0000\n"
+"PO-Revision-Date: 2008-09-09 18:55+1000\n"
+"Last-Translator: Noriko Mizumoto <noriko@redhat.com>\n"
+"Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -105,9 +105,8 @@ msgstr "LDAP 認証をデフォルトで無効にする"
 
 # ../authconfig.c:740
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "デフォルトの LDAP サーバー"
+msgstr "デフォルトの LDAP サーバーホスト名または URI"
 
 # ../authconfig.c:742
 #: ../authconfig.py:115
@@ -121,15 +120,13 @@ msgstr "デフォルトの LDAP ベース DN"
 
 # ../authconfig.c:732
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "TLS と LDAP の併用を有効にする"
+msgstr "TLS と LDAP の併用を有効にする (RFC-2830)"
 
 # ../authconfig.c:734
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "TLS と LDAP の併用を無効にする"
+msgstr "TLS と LDAP の併用を無効にする (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -272,8 +269,7 @@ msgstr "samba と winbind 用に使用するセキュリティモード"
 
 #: ../authconfig.py:177
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
-"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
+msgstr "セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
 
 #: ../authconfig.py:178 ../authconfig.py:180
 msgid "<lowest-highest>"
@@ -344,14 +340,12 @@ msgid "disable wins for hostname resolution"
 msgstr "ホスト名解決用の wins を無効にする"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "ホスト名解決用の wins を有効にする"
+msgstr "ホスト名解決に wins または nis より dns を優先する"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "ホスト名解決用の wins を有効にする"
+msgstr "ホスト名解決に wins または nis より dns を優先しない"
 
 # ../authconfig.c:756
 #: ../authconfig.py:212
@@ -475,8 +469,7 @@ msgstr "不正なスマートカード取り出し動作が指定されました
 
 #: ../authconfig.py:401
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
-"不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
+msgstr "不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
 
 # ../authconfig.c:803
 #: ../authconfig.py:430
@@ -833,9 +826,8 @@ msgstr "<b>スマートカード</b>"
 
 # ../authconfig.c:462
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "A_uthentication"
-msgstr "認証"
+msgstr "認証(_U)"
 
 #: ../authconfig.glade.h:5
 msgid "Alert"
@@ -862,9 +854,8 @@ msgid "Certificate _URL"
 msgstr "証明書 URL (_U)"
 
 #: ../authconfig.glade.h:11
-#, fuzzy
 msgid "Check access.conf _during account authorization"
-msgstr "アカウント認証中に access.conf をチェックする"
+msgstr "アカウント認証中に access.conf をチェックする(_D)"
 
 #: ../authconfig.glade.h:12
 msgid "Con_figure SMB..."
@@ -887,9 +878,8 @@ msgid "Configure NI_S..."
 msgstr "NISの設定(_S)..."
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Configure Sm_art Card..."
-msgstr "スマートカードの設定(_R)..."
+msgstr "スマートカードの設定(_A)..."
 
 #: ../authconfig.glade.h:18
 msgid "Configure Win_bind..."
@@ -938,9 +928,8 @@ msgid "Enable _NIS Support"
 msgstr "NIS サポートを有効にする(_N)"
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Enable _Smart Card Support"
-msgstr "スマートカードサポートを有効にする(_C)"
+msgstr "スマートカードサポートを有効にする(_S)"
 
 #: ../authconfig.glade.h:30
 msgid "Enable _Winbind Support"
@@ -975,7 +964,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "ホスト名または ldap:// または ldaps:// LDAP サーバーをポイントする URI"
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -1025,9 +1014,8 @@ msgstr ""
 "イズのネットワークで使用されます。"
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Op_tions"
-msgstr "オプション"
+msgstr "オプション(_T)"
 
 #: ../authconfig.glade.h:49
 msgid ""
@@ -1088,7 +1076,7 @@ msgstr "DNS を使用してレルム用の KDC を見付ける(_l)"
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
+msgstr "RFC-2830 で定義されているように LDAP に TLS 拡張を使用する。 ldaps サーバー URI で印を付けてはいけない。"
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -1104,9 +1092,8 @@ msgid "Use _TLS to encrypt connections"
 msgstr "TLS を使用して接続を暗号化する(_T)"
 
 #: ../authconfig.glade.h:63
-#, fuzzy
 msgid "User Infor_mation"
-msgstr "ユーザー情報"
+msgstr "ユーザー情報(_M)"
 
 #: ../authconfig.glade.h:64
 msgid ""
@@ -1208,15 +1195,15 @@ msgstr "テンプレートシェル(_T)"
 msgid "_Workgroup"
 msgstr "ワークグループ(_W)"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "ロック"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "無視"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1225,6 +1212,7 @@ msgstr ""
 "認証モジュール %s/pam_%s.so が見つかりません。認証プロセスは正常に動作しませ"
 "ん。"
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "CA 証明書のダウンロードでエラー"
+
