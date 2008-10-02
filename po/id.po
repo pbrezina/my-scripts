@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-04-04 13:09+0700\n"
-"Last-Translator: Dapid Candra <dapidc@gmail.com>\n"
+"POT-Creation-Date: 2008-08-25 19:16+0000\n"
+"PO-Revision-Date: 2008-09-02 12:56+0700\n"
+"Last-Translator: Teguh DC <dheche@songolimo.net>\n"
 "Language-Team: Fedora Indonesia <fedora-trans-id@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -84,9 +84,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "nonaktifkan LDAP untuk otentikasi secara standar"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "Standar server LDAP"
+msgstr "Standar nama host atau URI server LDAP"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -97,14 +96,12 @@ msgid "default LDAP base DN"
 msgstr "Standar LDAP base DN"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "Aktifkan penggunaan TLS dengan LDAP"
+msgstr "Aktifkan penggunaan TLS dengan LDAP (RFC-2830)"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "Nonaktifkan penggunaan TLS dengan LDAP"
+msgstr "Nonaktifkan penggunaan TLS dengan LDAP (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -306,14 +303,12 @@ msgid "disable wins for hostname resolution"
 msgstr "nonaktifkan wins untuk resolusi hostname"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "aktifkan wins untuk resolusi hostname"
+msgstr "gunakan dns sebelum wins atau nis untuk resolusi hostname"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "aktifkan wins untuk resolusi hostname"
+msgstr "jangan gunakan dns sebelum wins atau nis untuk resolusi hostname"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -750,7 +745,6 @@ msgid "<b>Smart Card</b>"
 msgstr "<b>Kartu Cerdas</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "A_uthentication"
 msgstr "Otentikasi"
 
@@ -779,9 +773,8 @@ msgid "Certificate _URL"
 msgstr "_URL Sertifikat"
 
 #: ../authconfig.glade.h:11
-#, fuzzy
 msgid "Check access.conf _during account authorization"
-msgstr "Periksa a_ccess.conf selama otorisasi akun"
+msgstr "Periksa access.conf selama otorisasi akun"
 
 #: ../authconfig.glade.h:12
 msgid "Con_figure SMB..."
@@ -804,9 +797,8 @@ msgid "Configure NI_S..."
 msgstr "Konfigur NI_S..."
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Configure Sm_art Card..."
-msgstr "Konfigur Ka_rtu Cerdas..."
+msgstr "Konfigur K_artu Cerdas..."
 
 #: ../authconfig.glade.h:18
 msgid "Configure Win_bind..."
@@ -853,9 +845,8 @@ msgid "Enable _NIS Support"
 msgstr "Aktifkan Dukungan _NIS"
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Enable _Smart Card Support"
-msgstr "Aktifkan Dukungan Kartu _Cerdas"
+msgstr "Aktifkan Dukungan Kartu Cerda_s"
 
 #: ../authconfig.glade.h:30
 msgid "Enable _Winbind Support"
@@ -888,7 +879,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "Hostname atau URI ldap:// atau ldaps:// mengarah ke server LDAP."
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -935,7 +926,6 @@ msgstr ""
 "kecil sampai menegah."
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Op_tions"
 msgstr "Pilihan"
 
@@ -994,13 +984,15 @@ msgstr ""
 
 #: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "Gunakan DNS untuk men_locate KDC untul realm"
+msgstr "Gunakan DNS untuk men_locate KDC untuk realm"
 
 #: ../authconfig.glade.h:59
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
 msgstr ""
+"Gunakan ekstensi lapisan keamanan transpor untuk LDAP seperti yang telah "
+"didefinisikan dalam RFC-2830. Jangan dipilih bersamaan dengan URI server ldap."
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -1015,9 +1007,8 @@ msgid "Use _TLS to encrypt connections"
 msgstr "Gunakan _TLS untuk mengenkripsi koneksi"
 
 #: ../authconfig.glade.h:63
-#, fuzzy
 msgid "User Infor_mation"
-msgstr "Informasi Pengguna"
+msgstr "Infor_masi Pengguna"
 
 #: ../authconfig.glade.h:64
 msgid ""
@@ -1114,15 +1105,15 @@ msgstr "Shell _Template"
 msgid "_Workgroup"
 msgstr "_Workgroup"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "Kunci"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "Abaikan"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1131,7 +1122,7 @@ msgstr ""
 "Modul otentikasi %s/pam_%s.so tidak ditemukan. Proses otentikasi tidak akan "
 "bekerja dengan benar."
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "Gagal mengunduh sertifikat CA"
 
