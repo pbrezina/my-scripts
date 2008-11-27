@@ -95,9 +95,9 @@ class Authconfig:
 			"enablesmartcard":
 			("enableSmartcard", authinfo.PATH_PAM_PKCS11,
 			 "Smartcard", "pam_pkcs11", ["configsmartcard"]),
-			"enablesmb" :
-			("enableSMB", authinfo.PATH_PAM_SMB,
-			 "SMB", "pam_smb", ["configsmb"]),
+			"enablefprintd":
+			("enableFprintd", authinfo.PATH_PAM_FPRINTD,
+			 "Fprintd", "pam_fprintd", []),
 			"enableshadow" :
 			("enableShadow", "", "", "", []),
 			"enablewinbind" :
@@ -151,13 +151,11 @@ class Authconfig:
 			"action" : ("smartcardAction", authinfo.getSmartcardActions(),()),
 			"forcesmartcard" : ("forceSmartcard", ""),
 		}
+		self.fprintd_map = {
+		}
 		self.hesiod_map = {
 			"lhs" : ("hesiodLHS", ""),
 			"rhs" : ("hesiodRHS", ""),
-		}
-		self.smb_map = {
-			"workgroup" : ("smbWorkgroup", ""),
-			"domaincontrollers" : ("smbServers", ""),
 		}
 		self.winbindjoin_map = {
 			"domain" : ("smbWorkgroup", ""),
@@ -178,7 +176,6 @@ class Authconfig:
 			"configldap": ("ldapsettings", "ldap_map"),
 			"configldapauth": ("ldapsettings", "ldap_map"),
 			"confighesiod": ("hesiodsettings", "hesiod_map"),
-			"configsmb": ("smbsettings", "smb_map"),
 			"configkerberos": ("kerberossettings", "kerberos_map"),
 			"configsmartcard": ("smartcardsettings", "smartcard_map"),
 			"configwinbind": ("winbindsettings", "winbind_map"),

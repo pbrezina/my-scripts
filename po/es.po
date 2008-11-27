@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-25 19:23+0000\n"
+"POT-Creation-Date: 2008-11-27 10:36+0100\n"
 "PO-Revision-Date: 2008-09-01 12:09-0300\n"
 "Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
@@ -24,757 +24,768 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../authconfig.py:78
+#: ../authconfig.py:79
 #, python-format
 msgid "usage: %s [options]"
 msgstr "uso: %s [opciones]"
 
-#: ../authconfig.py:85
+#: ../authconfig.py:86
 msgid "enable shadowed passwords by default"
 msgstr "habilitar por defecto contraseñas ocultas (shadow)"
 
-#: ../authconfig.py:87
+#: ../authconfig.py:88
 msgid "disable shadowed passwords by default"
 msgstr "deshabilitar por defecto contraseñas ocultas (shadow)"
 
-#: ../authconfig.py:89
+#: ../authconfig.py:90
 msgid "enable MD5 passwords by default"
 msgstr "habilitar por defecto contraseñas MD5"
 
-#: ../authconfig.py:91
+#: ../authconfig.py:92
 msgid "disable MD5 passwords by default"
 msgstr "deshabilitar por defecto las contraseñas MD5"
 
-#: ../authconfig.py:94
+#: ../authconfig.py:95
 msgid "hash/crypt algorithm for new passwords"
 msgstr "hash/algoritmo de encriptado para las nuevas contraseñas"
 
-#: ../authconfig.py:97
+#: ../authconfig.py:98
 msgid "enable NIS for user information by default"
 msgstr "habilitar por defecto NIS para la información del usuario"
 
-#: ../authconfig.py:99
+#: ../authconfig.py:100
 msgid "disable NIS for user information by default"
 msgstr "deshabilitar por defecto NIS para la información del usuario"
 
-#: ../authconfig.py:100
+#: ../authconfig.py:101
 msgid "<domain>"
 msgstr "<dominio>"
 
-#: ../authconfig.py:101
+#: ../authconfig.py:102
 msgid "default NIS domain"
 msgstr "dominio NIS predeterminado"
 
-#: ../authconfig.py:102
-#: ../authconfig.py:113
-#: ../authconfig.py:142
-#: ../authconfig.py:144
+#: ../authconfig.py:103 ../authconfig.py:114 ../authconfig.py:148
+#: ../authconfig.py:150
 msgid "<server>"
 msgstr "<servidor>"
 
-#: ../authconfig.py:103
+#: ../authconfig.py:104
 msgid "default NIS server"
 msgstr "servidor NIS predeterminado"
 
-#: ../authconfig.py:106
+#: ../authconfig.py:107
 msgid "enable LDAP for user information by default"
 msgstr "habilitar por defecto LDAP para la información del usuario"
 
-#: ../authconfig.py:108
+#: ../authconfig.py:109
 msgid "disable LDAP for user information by default"
 msgstr "deshabilitar por defecto LDAP para la información del usuario"
 
-#: ../authconfig.py:110
+#: ../authconfig.py:111
 msgid "enable LDAP for authentication by default"
 msgstr "habilitar por defecto LDAP para la autenticación"
 
-#: ../authconfig.py:112
+#: ../authconfig.py:113
 msgid "disable LDAP for authentication by default"
 msgstr "deshabilitar por defecto la autenticación"
 
-#: ../authconfig.py:114
+#: ../authconfig.py:115
 msgid "default LDAP server hostname or URI"
 msgstr "nombre del servidor LDAP o URI predeterminado"
 
-#: ../authconfig.py:115
+#: ../authconfig.py:116
 msgid "<dn>"
 msgstr "<dn>"
 
-#: ../authconfig.py:116
+#: ../authconfig.py:117
 msgid "default LDAP base DN"
 msgstr "DN base predeterminado de LDAP"
 
-#: ../authconfig.py:118
+#: ../authconfig.py:119
 msgid "enable use of TLS with LDAP (RFC-2830)"
 msgstr "habilitar el uso de TLS con LDAP (RFC-2830)"
 
-#: ../authconfig.py:120
+#: ../authconfig.py:121
 msgid "disable use of TLS with LDAP (RFC-2830)"
 msgstr "deshabilitar el uso de TLS con LDAP (RFC-2830)"
 
-#: ../authconfig.py:121
+#: ../authconfig.py:122
 msgid "<URL>"
 msgstr "<URL>"
 
-#: ../authconfig.py:122
+#: ../authconfig.py:123
 msgid "load CA certificate from the URL"
 msgstr "Cargar el certificado CA desde el URL"
 
-#: ../authconfig.py:125
+#: ../authconfig.py:126
 msgid "enable authentication with smart card by default"
 msgstr "habilitar autenticación con tarjeta inteligente por defecto"
 
-#: ../authconfig.py:127
+#: ../authconfig.py:128
 msgid "disable authentication with smart card by default"
 msgstr "deshabilitar autenticación con tarjeta inteligente por defecto"
 
-#: ../authconfig.py:129
+#: ../authconfig.py:130
 msgid "require smart card for authentication by default"
 msgstr "requerir tarjeta inteligente para la autenticación por defecto"
 
-#: ../authconfig.py:131
+#: ../authconfig.py:132
 msgid "do not require smart card for authentication by default"
 msgstr "no requerir tarjeta inteligente para la autenticación por defecto"
 
-#: ../authconfig.py:132
+#: ../authconfig.py:133
 msgid "<module>"
 msgstr "<modulo>"
 
-#: ../authconfig.py:133
+#: ../authconfig.py:134
 msgid "default smart card module to use"
 msgstr "módulo de tarjeta inteligente por defecto a usar"
 
-#: ../authconfig.py:136
+#: ../authconfig.py:137
 msgid "action to be taken on smart card removal"
 msgstr "qué hacer al quitar la tarjeta inteligente"
 
-#: ../authconfig.py:139
+#: ../authconfig.py:140
+#, fuzzy
+msgid "enable authentication with fingerprint readers by default"
+msgstr "habilitar autenticación con tarjeta inteligente por defecto"
+
+#: ../authconfig.py:142
+#, fuzzy
+msgid "disable authentication with fingerprint readers by default"
+msgstr "deshabilitar autenticación con tarjeta inteligente por defecto"
+
+#: ../authconfig.py:145
 msgid "enable kerberos authentication by default"
 msgstr "habilitar por defecto la autenticación con kerberos"
 
-#: ../authconfig.py:141
+#: ../authconfig.py:147
 msgid "disable kerberos authentication by default"
 msgstr "deshabilitar por defecto la autenticación con kerberos"
 
-#: ../authconfig.py:143
+#: ../authconfig.py:149
 msgid "default kerberos KDC"
 msgstr "KDC predeterminado de kerberos"
 
-#: ../authconfig.py:145
+#: ../authconfig.py:151
 msgid "default kerberos admin server"
 msgstr "servidor de administración predeterminado de kerberos"
 
-#: ../authconfig.py:146
-#: ../authconfig.py:176
+#: ../authconfig.py:152 ../authconfig.py:182
 msgid "<realm>"
 msgstr "<entorno>"
 
-#: ../authconfig.py:147
+#: ../authconfig.py:153
 msgid "default kerberos realm"
 msgstr "entorno predeterminado de Kerberos"
 
-#: ../authconfig.py:149
+#: ../authconfig.py:155
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "habilitar el uso del DNS para encontrar kerberos KDCs"
 
-#: ../authconfig.py:151
+#: ../authconfig.py:157
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "deshabilitar el uso del DNS para encontrar kerberos KDCs"
 
-#: ../authconfig.py:153
+#: ../authconfig.py:159
 msgid "enable use of DNS to find kerberos realms"
 msgstr "habilitar el uso del DNS para encontrar los entornos de kerberos"
 
-#: ../authconfig.py:155
+#: ../authconfig.py:161
 msgid "disable use of DNS to find kerberos realms"
 msgstr "deshabilitar el uso del DNS para encontrar los entornos de kerberos"
 
-#: ../authconfig.py:158
+#: ../authconfig.py:164
 msgid "enable SMB authentication by default"
 msgstr "habilitar autenticación SMB por defecto"
 
-#: ../authconfig.py:160
+#: ../authconfig.py:166
 msgid "disable SMB authentication by default"
 msgstr "deshabilitar autenticación SMB por defecto"
 
-#: ../authconfig.py:161
+#: ../authconfig.py:167
 msgid "<servers>"
 msgstr "<servers>"
 
-#: ../authconfig.py:162
+#: ../authconfig.py:168
 msgid "names of servers to authenticate against"
 msgstr "nombres de los servidores contra los cuales autenticar"
 
-#: ../authconfig.py:163
+#: ../authconfig.py:169
 msgid "<workgroup>"
 msgstr "<grupo de trabajo>"
 
-#: ../authconfig.py:164
+#: ../authconfig.py:170
 msgid "workgroup authentication servers are in"
 msgstr "grupo de trabajo donde están los servidores de autenticación"
 
-#: ../authconfig.py:167
+#: ../authconfig.py:173
 msgid "enable winbind for user information by default"
 msgstr "habilitar winbind por defecto para la información de usuario"
 
-#: ../authconfig.py:169
+#: ../authconfig.py:175
 msgid "disable winbind for user information by default"
 msgstr "deshabilitar winbind por defecto para la información del usuario"
 
-#: ../authconfig.py:171
+#: ../authconfig.py:177
 msgid "enable winbind for authentication by default"
 msgstr "habilitar winbind por defecto para la autenticación"
 
-#: ../authconfig.py:173
+#: ../authconfig.py:179
 msgid "disable winbind for authentication by default"
 msgstr "deshabilitar winbind por defecto para la autenticación"
 
-#: ../authconfig.py:175
+#: ../authconfig.py:181
 msgid "security mode to use for samba and winbind"
 msgstr "modo de seguridad a utilizar para samba y winbind"
 
-#: ../authconfig.py:177
+#: ../authconfig.py:183
 msgid "default realm for samba and winbind when security=ads"
 msgstr "entorno por defecto para samba y winbind cuando la seguridad=ads"
 
-#: ../authconfig.py:178
-#: ../authconfig.py:180
+#: ../authconfig.py:184 ../authconfig.py:186
 msgid "<lowest-highest>"
 msgstr "<bajo-alto>"
 
-#: ../authconfig.py:179
+#: ../authconfig.py:185
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "rango uid winbind que será asignado a dominios o usuarios ads"
 
-#: ../authconfig.py:181
+#: ../authconfig.py:187
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "rango gid winbind que será asignado a dominios o usuarios ads"
 
-#: ../authconfig.py:183
-msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr "el caracter que se utilizará para separar la parte de dominio y usuario de los nombres de usuarios creados por winbind si winbindusedefaultdomain no esta habilitado"
-
-#: ../authconfig.py:185
-msgid "the directory which winbind-created users will have as home directories"
-msgstr "el directorio que los usuarios creados por winbind tendrán como directorio de inicio"
-
-#: ../authconfig.py:187
-msgid "the group which winbind-created users will have as their primary group"
-msgstr "el grupo que los usuarios creados por winbind tendrán como grupo primario"
-
 #: ../authconfig.py:189
-msgid "the shell which winbind-created users will have as their login shell"
-msgstr "la shell que los usuarios creados por winbind tendrán para que inicien sesión"
+msgid ""
+"the character which will be used to separate the domain and user part of "
+"winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr ""
+"el caracter que se utilizará para separar la parte de dominio y usuario de "
+"los nombres de usuarios creados por winbind si winbindusedefaultdomain no "
+"esta habilitado"
 
 #: ../authconfig.py:191
-msgid "configures winbind to assume that users with no domain in their user names are domain users"
-msgstr "configura winbind para asumir que los usuarios sin dominio en sus nombres de usuario son usuarios del dominio"
+msgid "the directory which winbind-created users will have as home directories"
+msgstr ""
+"el directorio que los usuarios creados por winbind tendrán como directorio "
+"de inicio"
 
 #: ../authconfig.py:193
-msgid "configures winbind to assume that users with no domain in their user names are not domain users"
-msgstr "configura winbind para asumir que los usuarios sin dominio en sus nombres de usuario no son usuarios del dominio"
+msgid "the group which winbind-created users will have as their primary group"
+msgstr ""
+"el grupo que los usuarios creados por winbind tendrán como grupo primario"
 
 #: ../authconfig.py:195
+msgid "the shell which winbind-created users will have as their login shell"
+msgstr ""
+"la shell que los usuarios creados por winbind tendrán para que inicien sesión"
+
+#: ../authconfig.py:197
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are domain users"
+msgstr ""
+"configura winbind para asumir que los usuarios sin dominio en sus nombres de "
+"usuario son usuarios del dominio"
+
+#: ../authconfig.py:199
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are not domain users"
+msgstr ""
+"configura winbind para asumir que los usuarios sin dominio en sus nombres de "
+"usuario no son usuarios del dominio"
+
+#: ../authconfig.py:201
 msgid "configures winbind to allow offline login"
 msgstr "configura winbind para permitir ingresos fuera de línea"
 
-#: ../authconfig.py:197
+#: ../authconfig.py:203
 msgid "configures winbind to prevent offline login"
 msgstr "configura winbind para que no deje ingresar fuera de línea"
 
-#: ../authconfig.py:199
+#: ../authconfig.py:205
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr "unirse al dominio winbind o entorno ads ahora como este administrador"
 
-#: ../authconfig.py:202
+#: ../authconfig.py:208
 msgid "enable wins for hostname resolution"
 msgstr "habilitar wins para resolver el nombre del host"
 
-#: ../authconfig.py:204
+#: ../authconfig.py:210
 msgid "disable wins for hostname resolution"
 msgstr "deshabilitar wins para resolver el nombre del host"
 
-#: ../authconfig.py:207
+#: ../authconfig.py:213
 msgid "prefer dns over wins or nis for hostname resolution"
 msgstr "elegir dns en vez de wins para resolver el nombre del equipo"
 
-#: ../authconfig.py:209
+#: ../authconfig.py:215
 msgid "do not prefer dns over wins or nis for hostname resolution"
 msgstr "no elegir dns en vez de wins para resolver el nombre del equipo"
 
-#: ../authconfig.py:212
+#: ../authconfig.py:218
 msgid "enable hesiod for user information by default"
 msgstr "habilitar hesiod por defecto para la información de usuario"
 
-#: ../authconfig.py:214
+#: ../authconfig.py:220
 msgid "disable hesiod for user information by default"
 msgstr "deshabilitar hesiod por defecto para la información del usuario"
 
-#: ../authconfig.py:216
+#: ../authconfig.py:222
 msgid "default hesiod LHS"
 msgstr "LHS predeterminado de hesiod"
 
-#: ../authconfig.py:218
+#: ../authconfig.py:224
 msgid "default hesiod RHS"
 msgstr "RHS predeterminado de hesiod"
 
-#: ../authconfig.py:221
+#: ../authconfig.py:227
 msgid "enable caching of user information by default"
 msgstr "habilitar por defecto la caché de información de usuario"
 
-#: ../authconfig.py:223
+#: ../authconfig.py:229
 msgid "disable caching of user information by default"
 msgstr "deshabilitar por defecto la caché de información de usuario"
 
-#: ../authconfig.py:226
+#: ../authconfig.py:232
 msgid "local authorization is sufficient for local users"
 msgstr "la autorización local es suficiente para usuarios locales"
 
-#: ../authconfig.py:228
+#: ../authconfig.py:234
 msgid "authorize local users also through remote service"
 msgstr "autoriza también a usuarios locales a través del servicio remoto"
 
-#: ../authconfig.py:231
+#: ../authconfig.py:237
 msgid "check access.conf during account authorization"
 msgstr "chequear access.conf durante la autorización de cuenta"
 
-#: ../authconfig.py:233
+#: ../authconfig.py:239
 msgid "do not check access.conf during account authorization"
 msgstr "no chequear access.conf durante la autorización de cuenta"
 
-#: ../authconfig.py:236
+#: ../authconfig.py:242
 msgid "authenticate system accounts by network services"
 msgstr "autentica las cuentas de sistema por los servicios de red"
 
-#: ../authconfig.py:238
+#: ../authconfig.py:244
 msgid "authenticate system accounts by local files only"
 msgstr "autentica las cuentas del sistema por archivos locales únicamente"
 
-#: ../authconfig.py:241
+#: ../authconfig.py:247
 msgid "create home directories for users on their first login"
-msgstr "crear el directorio de inicio de los usuarios al ingresar la primera vez"
+msgstr ""
+"crear el directorio de inicio de los usuarios al ingresar la primera vez"
 
-#: ../authconfig.py:243
+#: ../authconfig.py:249
 msgid "do not create home directories for users on their first login"
-msgstr "no crear los directorios de inicio de los usuarios al ingresar la primera vez"
+msgstr ""
+"no crear los directorios de inicio de los usuarios al ingresar la primera vez"
 
-#: ../authconfig.py:246
+#: ../authconfig.py:252
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "no iniciar/detener portmap, ypbind, y nscd"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:255
 msgid "do not update the configuration files, only print new settings"
-msgstr "no actualizar los archivos de configuración, solo imprimir los nuevos parámetros"
+msgstr ""
+"no actualizar los archivos de configuración, solo imprimir los nuevos "
+"parámetros"
 
-#: ../authconfig.py:253
+#: ../authconfig.py:259
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "mostrar Atrás en vez de Cancelar en el diálogo principal de TUI"
 
-#: ../authconfig.py:255
+#: ../authconfig.py:261
 msgid "do not display the deprecated text user interface"
 msgstr "no visualizar la interfaz de usuario de texto deprecada"
 
-#: ../authconfig.py:258
+#: ../authconfig.py:264
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "opuesto de --test, actualiza los archivos de configuración con los parámetros editados"
+msgstr ""
+"opuesto de --test, actualiza los archivos de configuración con los "
+"parámetros editados"
 
-#: ../authconfig.py:261
+#: ../authconfig.py:267
 msgid "update all configuration files"
 msgstr "actualiza todos los archivos de configuración"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:270
 msgid "probe network for defaults and print them"
 msgstr "probar los valores por defecto de la red e imprimirlos"
 
-#: ../authconfig.py:266
-#: ../authconfig.py:269
+#: ../authconfig.py:272 ../authconfig.py:275
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:273
 msgid "save a backup of all configuration files"
 msgstr "guarda un respaldo de todos los archivos de configuración"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:276
 msgid "restore the backup of configuration files"
 msgstr "restaura los archivos de configuración desde el respaldo"
 
-#: ../authconfig.py:273
-msgid "restore the backup of configuration files saved before the previous configuration change"
-msgstr "restaura los archivos de configuración respaldados que hayan sido grabados antes del cambio de configuración previo."
+#: ../authconfig.py:279
+msgid ""
+"restore the backup of configuration files saved before the previous "
+"configuration change"
+msgstr ""
+"restaura los archivos de configuración respaldados que hayan sido grabados "
+"antes del cambio de configuración previo."
 
-#: ../authconfig.py:278
+#: ../authconfig.py:284
 msgid "unexpected argument"
 msgstr "argumento inesperado"
 
-#: ../authconfig.py:392
+#: ../authconfig.py:400
 msgid "Bad smart card removal action specified."
-msgstr "Se especificó una acción incorrecta de eliminación de tarjeta inteligente."
+msgstr ""
+"Se especificó una acción incorrecta de eliminación de tarjeta inteligente."
 
-#: ../authconfig.py:401
+#: ../authconfig.py:409
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr "Se especificó un algoritmo de hash de contraseña desconocido, usando sha256."
+msgstr ""
+"Se especificó un algoritmo de hash de contraseña desconocido, usando sha256."
 
-#: ../authconfig.py:430
+#: ../authconfig.py:438
 msgid "can only be run as root"
 msgstr "sólo puede ser ejecutado como root"
 
-#: ../authconfig.py:446
+#: ../authconfig.py:454
 msgid "dialog was cancelled"
 msgstr "diálogo cancelado"
 
-#: ../authconfig.py:469
+#: ../authconfig.py:477
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work properly.\n"
+"The %s file was not found, but it is required for %s support to work "
+"properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"No se encontró el archivo %s, el cual es necesario para que el soporte %s funcione adecuadamente.\n"
+"No se encontró el archivo %s, el cual es necesario para que el soporte %s "
+"funcione adecuadamente.\n"
 "Instale el paquete %s, el cual proporciona este archivo."
 
-#: ../authconfig.py:471
-#: ../authconfig.py:829
+#: ../authconfig.py:479 ../authconfig.py:825
 msgid "Warning"
 msgstr "Aviso"
 
-#: ../authconfig.py:471
-#: ../authconfig.py:687
-#: ../authconfig.py:694
-#: ../authconfig.py:700
-#: ../authconfig.py:709
-#: ../authconfig.py:716
-#: ../authconfig.py:724
-#: ../authconfig.py:765
-#: ../authconfig.py:829
+#: ../authconfig.py:479 ../authconfig.py:696 ../authconfig.py:703
+#: ../authconfig.py:709 ../authconfig.py:718 ../authconfig.py:726
+#: ../authconfig.py:767 ../authconfig.py:825
 msgid "Ok"
 msgstr "Aceptar"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:483
 msgid "caching"
 msgstr "caching"
 
-#: ../authconfig.py:476
+#: ../authconfig.py:484
+#, fuzzy
+msgid "Fingerprint reader"
+msgstr "Habilitar el soporte de _Winbind"
+
+#: ../authconfig.py:485
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:477
+#: ../authconfig.py:486
 msgid "LDAP authentication"
 msgstr "Autenticación LDAP"
 
-#: ../authconfig.py:478
+#: ../authconfig.py:487
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:480
+#: ../authconfig.py:489
 msgid "shadow password"
 msgstr "contraseña oculta (shadow)"
 
-#: ../authconfig.py:481
-msgid "SMB authentication"
-msgstr "Autenticación SMB"
-
-#: ../authconfig.py:482
-#: ../authconfig.py:484
+#: ../authconfig.py:490 ../authconfig.py:492
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:483
+#: ../authconfig.py:491
 msgid "Winbind authentication"
 msgstr "Autenticación Winbind"
 
-#: ../authconfig.py:489
+#: ../authconfig.py:497
 msgid "User Information"
 msgstr "Información del usuario"
 
-#: ../authconfig.py:492
+#: ../authconfig.py:500
 msgid "Cache Information"
 msgstr "Información de la caché"
 
-#: ../authconfig.py:496
+#: ../authconfig.py:504
 msgid "Use Hesiod"
 msgstr "Utilizar Hesiod"
 
-#: ../authconfig.py:499
+#: ../authconfig.py:507
 msgid "Use LDAP"
 msgstr "Utilizar LDAP"
 
-#: ../authconfig.py:503
+#: ../authconfig.py:511
 msgid "Use NIS"
 msgstr "Utilizar NIS"
 
-#: ../authconfig.py:507
+#: ../authconfig.py:515
 msgid "Use Winbind"
 msgstr "Utilizar Winbind"
 
-#: ../authconfig.py:513
-#: ../authconfig.desktop.in.h:1
+#: ../authconfig.py:521 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Autenticación"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:524
 msgid "Use MD5 Passwords"
 msgstr "Utilizar contraseñas MD5"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:527
 msgid "Use Shadow Passwords"
 msgstr "Utilizar contraseñas ocultas (shadow)"
 
-#: ../authconfig.py:523
+#: ../authconfig.py:531
 msgid "Use LDAP Authentication"
 msgstr "Utilizar Autenticación LDAP"
 
-#: ../authconfig.py:527
+#: ../authconfig.py:535
 msgid "Use Kerberos"
 msgstr "Utilizar Kerberos"
 
-#: ../authconfig.py:531
-msgid "Use SMB Authentication"
-msgstr "Utilizar Autenticación SMB"
+#: ../authconfig.py:539
+msgid "Use Fingerprint reader"
+msgstr ""
 
-#: ../authconfig.py:535
+#: ../authconfig.py:544
 msgid "Use Winbind Authentication"
 msgstr "Utilizar Autenticación Winbind"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:548
 msgid "Local authorization is sufficient"
 msgstr "La autorización local es suficiente"
 
-#: ../authconfig.py:549
-#: ../authconfig.py:687
-#: ../authconfig.py:694
-#: ../authconfig.py:700
-#: ../authconfig.py:709
-#: ../authconfig.py:716
-#: ../authconfig.py:765
+#: ../authconfig.py:558 ../authconfig.py:696 ../authconfig.py:703
+#: ../authconfig.py:709 ../authconfig.py:718 ../authconfig.py:767
 msgid "Back"
 msgstr "Anterior"
 
-#: ../authconfig.py:549
-#: ../authconfig.py:724
+#: ../authconfig.py:558 ../authconfig.py:726
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../authconfig.py:550
-#: ../authconfig.py:687
-#: ../authconfig.py:694
-#: ../authconfig.py:700
-#: ../authconfig.py:709
-#: ../authconfig.py:716
-#: ../authconfig.py:765
+#: ../authconfig.py:559 ../authconfig.py:696 ../authconfig.py:703
+#: ../authconfig.py:709 ../authconfig.py:718 ../authconfig.py:767
 msgid "Next"
 msgstr "Siguiente"
 
-#: ../authconfig.py:561
-#: ../authconfig-gtk.py:436
-#: ../authconfig.glade.h:7
+#: ../authconfig.py:570 ../authconfig-gtk.py:433 ../authconfig.glade.h:8
 msgid "Authentication Configuration"
 msgstr "Configuración de la autenticación"
 
-#: ../authconfig.py:684
+#: ../authconfig.py:693
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:685
+#: ../authconfig.py:694
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:686
-#: ../authconfig.glade.h:32
+#: ../authconfig.py:695 ../authconfig.glade.h:33
 msgid "Hesiod Settings"
 msgstr "Configuración de Hesiod"
 
-#: ../authconfig.py:690
+#: ../authconfig.py:699
 msgid "Use TLS"
 msgstr "Utilizar TLS"
 
-#: ../authconfig.py:691
-#: ../authconfig.py:698
+#: ../authconfig.py:700 ../authconfig.py:707
 msgid "Server:"
 msgstr "Servidor:"
 
-#: ../authconfig.py:692
+#: ../authconfig.py:701
 msgid "Base DN:"
 msgstr "DN base:"
 
-#: ../authconfig.py:693
-#: ../authconfig.glade.h:42
+#: ../authconfig.py:702 ../authconfig.glade.h:43
 msgid "LDAP Settings"
 msgstr "Configuración de LDAP"
 
-#: ../authconfig.py:697
-#: ../authconfig.py:759
+#: ../authconfig.py:706 ../authconfig.py:761
 msgid "Domain:"
 msgstr "Dominio:"
 
-#: ../authconfig.py:699
-#: ../authconfig.glade.h:44
+#: ../authconfig.py:708 ../authconfig.glade.h:45
 msgid "NIS Settings"
 msgstr "Configuración de NIS"
 
-#: ../authconfig.py:703
+#: ../authconfig.py:712
 msgid "Realm:"
 msgstr "Entorno:"
 
-#: ../authconfig.py:704
+#: ../authconfig.py:713
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:705
+#: ../authconfig.py:714
 msgid "Admin Server:"
 msgstr "Servidor de administración:"
 
 # interpretación de realms (entornos o dominios)
-#: ../authconfig.py:706
+#: ../authconfig.py:715
 msgid "Use DNS to resolve hosts to realms"
 msgstr "Utilizar DNS para resolver hosts a entornos"
 
-#: ../authconfig.py:707
+#: ../authconfig.py:716
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Utilizar DNS para localizar KDCs para los entornos"
 
-#: ../authconfig.py:708
-#: ../authconfig.glade.h:39
+#: ../authconfig.py:717 ../authconfig.glade.h:40
 msgid "Kerberos Settings"
 msgstr "Configuración de Kerberos"
 
-#: ../authconfig.py:712
-msgid "Workgroup:"
-msgstr "Grupo de trabajo:"
-
-#: ../authconfig.py:713
-msgid "Servers:"
-msgstr "Servidores:"
-
-#: ../authconfig.py:714
-msgid "Shell:"
-msgstr "Shell:"
-
-#: ../authconfig.py:715
-#: ../authconfig.glade.h:51
-msgid "SMB Settings"
-msgstr "Configuración SMB"
-
-#: ../authconfig.py:719
+#: ../authconfig.py:721
 msgid "Domain Administrator:"
 msgstr "Administrador de dominio:"
 
-#: ../authconfig.py:720
+#: ../authconfig.py:722
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: ../authconfig.py:723
+#: ../authconfig.py:725
 msgid "Join Settings"
 msgstr "Unir configuraciones"
 
-#: ../authconfig.py:733
-#: ../authconfig.glade.h:55
-msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
-msgstr "Algunos cambios que usted ha realizado en la configuración deben ser guardados antes de continuar. Si usted no guarda es probable de que su intento de unir el dominio falle. ¿Guardar los cambios?"
+#: ../authconfig.py:735 ../authconfig.glade.h:55
+msgid ""
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
+"may fail.  Save changes?"
+msgstr ""
+"Algunos cambios que usted ha realizado en la configuración deben ser "
+"guardados antes de continuar. Si usted no guarda es probable de que su "
+"intento de unir el dominio falle. ¿Guardar los cambios?"
 
-#: ../authconfig.py:740
+#: ../authconfig.py:742
 msgid "Save Settings"
 msgstr "Guardar Configuración"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:743
 msgid "No"
 msgstr "No"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:743
 msgid "Yes"
 msgstr "Si"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:758
+#: ../authconfig.py:760
 msgid "Security Model:"
 msgstr "Modelo de Seguridad:"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:762
 msgid "Domain Controllers:"
 msgstr "Controladores de dominio"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:763
 msgid "ADS Realm:"
 msgstr "Entorno ADS:"
 
-#: ../authconfig.py:762
+#: ../authconfig.py:764
 msgid "Template Shell:"
 msgstr "Shell Modelo:"
 
-#: ../authconfig.py:764
-#: ../authconfig.glade.h:68
+#: ../authconfig.py:766 ../authconfig.glade.h:68
 msgid "Winbind Settings"
 msgstr "Configuración de Winbind"
 
-#: ../authconfig.py:766
+#: ../authconfig.py:768
 msgid "Join Domain"
 msgstr "Unir Dominio:"
 
-#: ../authconfig.py:824
+#: ../authconfig.py:820
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed your server's certificate. Copy the certificate in "
+"the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Para conectarse a un servidor LDAP con el protocolo TLS activado, usted debe tener un certificado CA, el cual firmará el certificado de su servidor. Copie el certificado en formato PEM en el directorio '%s'.\n"
+"Para conectarse a un servidor LDAP con el protocolo TLS activado, usted debe "
+"tener un certificado CA, el cual firmará el certificado de su servidor. "
+"Copie el certificado en formato PEM en el directorio '%s'.\n"
 "Luego presione OK."
 
 #. FIXME - version
-#: ../authconfig.py:838
-msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
-msgstr " <Tab>/<Alt-Tab> cambiar elementos  |  <Espacio> seleccionar  |  <F12> siguiente pantalla"
+#: ../authconfig.py:834
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> cambiar elementos  |  <Espacio> seleccionar  |  <F12> "
+"siguiente pantalla"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr "Controlar el modo en el que el sistema verifica a los usuarios que intentan iniciar sesión"
+msgstr ""
+"Controlar el modo en el que el sistema verifica a los usuarios que intentan "
+"iniciar sesión"
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
+msgid "<b>Fingerprint Reader</b>"
+msgstr ""
+
+#: ../authconfig.glade.h:3
 msgid "<b>Options</b>"
 msgstr "<b>Opciones</b>"
 
-#: ../authconfig.glade.h:3
+#: ../authconfig.glade.h:4
 msgid "<b>Smart Card</b>"
 msgstr "<b>Tarjeta Inteligente</b>"
 
-#: ../authconfig.glade.h:4
+#: ../authconfig.glade.h:5
 msgid "A_uthentication"
 msgstr "A_utenticación"
 
-#: ../authconfig.glade.h:5
+#: ../authconfig.glade.h:6
 msgid "Alert"
 msgstr "Alerta"
 
-#: ../authconfig.glade.h:6
-msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
-msgstr "Todos los archivos de configuración que fueron modificados por un cambio en la configuración de la autenticación se restaurarán desde el respaldo. ¿Revertir los cambios?"
+#: ../authconfig.glade.h:7
+msgid ""
+"All configuration files which were modified by the previous authentication "
+"configuration change will be restored from backup. Revert the changes?"
+msgstr ""
+"Todos los archivos de configuración que fueron modificados por un cambio en "
+"la configuración de la autenticación se restaurarán desde el respaldo. "
+"¿Revertir los cambios?"
 
-#: ../authconfig.glade.h:8
+#: ../authconfig.glade.h:9
 msgid "Cache User _Information"
 msgstr "_Información del usuario de la caché"
 
-#: ../authconfig.glade.h:9
+#: ../authconfig.glade.h:10
 msgid "Card Removal _Action"
 msgstr "_Acción para el Sacado de Placa"
 
-#: ../authconfig.glade.h:10
+#: ../authconfig.glade.h:11
 msgid "Certificate _URL"
 msgstr "_URL de Certificado"
 
-#: ../authconfig.glade.h:11
+#: ../authconfig.glade.h:12
 msgid "Check access.conf _during account authorization"
 msgstr "Chequear access.conf _durante la autorización de cuenta"
-
-#: ../authconfig.glade.h:12
-msgid "Con_figure SMB..."
-msgstr "_Configurar SMB..."
 
 #: ../authconfig.glade.h:13
 msgid "Configure H_esiod..."
@@ -821,8 +832,9 @@ msgid "Download CA Certificate"
 msgstr "Bajar el Certificado CA"
 
 #: ../authconfig.glade.h:24
-msgid "Enable SMB S_upport"
-msgstr "Habilitar el soporte _SMB"
+#, fuzzy
+msgid "Enable _Fingerprint Reader Support"
+msgstr "Habilitar el soporte de _Winbind"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -849,96 +861,151 @@ msgid "Enable _Winbind Support"
 msgstr "Habilitar el soporte de _Winbind"
 
 #: ../authconfig.glade.h:31
-msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
-msgstr "Para las cuentas de usuarios mantenidas en el archivo local /etc/passwd el sistema no revisará la autorización de los servicios de red como LDAP o Kerberos."
+#, fuzzy
+msgid ""
+"Fingerprint authentication allows you to log in by scanning your finger with "
+"the fingerprint reader."
+msgstr ""
+"La autenticación de tarjeta inteligente le permite ingresar usando un "
+"certificado y clave asociado con la tarjeta inteligente."
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:32
+msgid ""
+"For user accounts maintained in local /etc/passwd file system will not check "
+"authorization from network services such as LDAP or Kerberos."
+msgstr ""
+"Para las cuentas de usuarios mantenidas en el archivo local /etc/passwd el "
+"sistema no revisará la autorización de los servicios de red como LDAP o "
+"Kerberos."
+
+#: ../authconfig.glade.h:34
 msgid "Hesiod _LHS"
 msgstr "_LHS de hesiod"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:35
 msgid "Hesiod _RHS"
 msgstr "_RHS de Hesiod"
 
-#: ../authconfig.glade.h:35
-msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
-msgstr "Hesiod permite que un administrador de sistemas publique información de usuario y de grupo en DNS. A menudo se usa en redes amplias."
-
 #: ../authconfig.glade.h:36
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiod permite que un administrador de sistemas publique información de "
+"usuario y de grupo en DNS. A menudo se usa en redes amplias."
+
+#: ../authconfig.glade.h:37
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr "Nombre de equipo o URI ldap:// o ldaps:// que apunte al servidor LDAP."
 
-#: ../authconfig.glade.h:37
-msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
-msgstr "Si el directorio de inicio de un usuario no existe todavía, será creado automáticamente al ingresar la primera vez."
-
 #: ../authconfig.glade.h:38
+msgid ""
+"If the home directory of an user doesn't exist yet it will be created "
+"automatically on his first login."
+msgstr ""
+"Si el directorio de inicio de un usuario no existe todavía, será creado "
+"automáticamente al ingresar la primera vez."
+
+#: ../authconfig.glade.h:39
 msgid "Joining Winbind Domain"
 msgstr "Uniendo el dominio Winbind"
 
-#: ../authconfig.glade.h:40
-msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
-msgstr "Kerberos es un sistema de autenticación fiable que se usa en redes medianas y grandes."
-
 #: ../authconfig.glade.h:41
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberos es un sistema de autenticación fiable que se usa en redes medianas "
+"y grandes."
+
+#: ../authconfig.glade.h:42
 msgid "LDAP Search _Base DN"
 msgstr "DN de _Base de búsqueda de LDAP"
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:44
 msgid "LDAP _Server"
 msgstr "_Servidor LDAP"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid "NIS _Domain"
 msgstr "_Dominio NIS"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:47
 msgid "NIS _Server"
 msgstr "_Servidor NIS"
 
-#: ../authconfig.glade.h:47
-msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
-msgstr "NIS es el Servicio de información de redes. Se usa habitualmente en redes pequeñas y medianas."
-
 #: ../authconfig.glade.h:48
+msgid ""
+"NIS is the Network Information Service.  It is commonly used on small to "
+"medium networks."
+msgstr ""
+"NIS es el Servicio de información de redes. Se usa habitualmente en redes "
+"pequeñas y medianas."
+
+#: ../authconfig.glade.h:49
 msgid "Op_tions"
 msgstr "_Opciones"
 
-#: ../authconfig.glade.h:49
-msgid "Restore the configuration files backed up before the previous configuration change"
-msgstr "Restaurar los archivos de configuración respaldados por un cambio de configuración previo"
-
 #: ../authconfig.glade.h:50
+msgid ""
+"Restore the configuration files backed up before the previous configuration "
+"change"
+msgstr ""
+"Restaurar los archivos de configuración respaldados por un cambio de "
+"configuración previo"
+
+#: ../authconfig.glade.h:51
 msgid "Revert"
 msgstr "Revertir"
 
 #: ../authconfig.glade.h:52
-msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
-msgstr "La autentificación de SMB verifica las contraseñas de usuario al intentar conectar con un servidor que usa el paquete de protocolo SMB (system message block)"
+msgid "SMB Settings"
+msgstr "Configuración SMB"
 
 #: ../authconfig.glade.h:53
 msgid "Smart Card Settings"
 msgstr "Configuración de la Tarjeta Inteligente"
 
 #: ../authconfig.glade.h:54
-msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
-msgstr "La autenticación de tarjeta inteligente le permite ingresar usando un certificado y clave asociado con la tarjeta inteligente."
+msgid ""
+"Smart card authentication allows you to log in using a certificate and key "
+"associated with a smart card."
+msgstr ""
+"La autenticación de tarjeta inteligente le permite ingresar usando un "
+"certificado y clave asociado con la tarjeta inteligente."
 
 #: ../authconfig.glade.h:56
-msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
-msgstr "El Lightweight Directory Access Protocol es un modo estándar de búsqueda de un directorio, que puede sostener datos arbitrarios en una jerarquía estructurada. LDAP se usa cada vez más en redes pequeñas y grandes."
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"El Lightweight Directory Access Protocol es un modo estándar de búsqueda de "
+"un directorio, que puede sostener datos arbitrarios en una jerarquía "
+"estructurada. LDAP se usa cada vez más en redes pequeñas y grandes."
 
 #: ../authconfig.glade.h:57
-msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
-msgstr "Para conectarse a un servidor LDAP con el protocolo TLS activado, usted debe tener un certificado CA, el cual firmará el certificado de su servidor. Por favor, ponga la URL desde donde se puede descargar el certificado CA en formato PEM."
+msgid ""
+"To verify the LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed the server's certificate. Please fill in the URL "
+"where the CA certificate in the PEM format can be downloaded from."
+msgstr ""
+"Para conectarse a un servidor LDAP con el protocolo TLS activado, usted debe "
+"tener un certificado CA, el cual firmará el certificado de su servidor. Por "
+"favor, ponga la URL desde donde se puede descargar el certificado CA en "
+"formato PEM."
 
 #: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Utilizar DNS para _localizar KDCs para los entornos"
 
 #: ../authconfig.glade.h:59
-msgid "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It must not be ticked with ldaps server URI."
-msgstr "Usar extensión de Seguridad en la Capa de Transporte para LDAP como está definido en RFC-2830. No confundir con el URI del servidor ldaps."
+msgid ""
+"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
+"must not be ticked with ldaps server URI."
+msgstr ""
+"Usar extensión de Seguridad en la Capa de Transporte para LDAP como está "
+"definido en RFC-2830. No confundir con el URI del servidor ldaps."
 
 # interpretación de realms (entornos o dominios)
 #: ../authconfig.glade.h:60
@@ -958,12 +1025,21 @@ msgid "User Infor_mation"
 msgstr "Infor_mación del usuario"
 
 #: ../authconfig.glade.h:64
-msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
-msgstr "Cuando está habilitado, se consultará /etc/security/access.conf para la autorización de acceso de los usuarios."
+msgid ""
+"When enabled /etc/security/access.conf will be consulted for authorization "
+"of users access."
+msgstr ""
+"Cuando está habilitado, se consultará /etc/security/access.conf para la "
+"autorización de acceso de los usuarios."
 
 #: ../authconfig.glade.h:65
-msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
-msgstr "Al estar activado se le permite a los servicios de red, como LDAP o Kerberos, autenticar las cuentas del sistema, incluyendo root, en esta máquina."
+msgid ""
+"When enabled allows network services such as LDAP or Kerberos to "
+"authenticate system accounts including root on this machine."
+msgstr ""
+"Al estar activado se le permite a los servicios de red, como LDAP o "
+"Kerberos, autenticar las cuentas del sistema, incluyendo root, en esta "
+"máquina."
 
 #: ../authconfig.glade.h:66
 msgid "Winbind ADS _Realm"
@@ -978,8 +1054,14 @@ msgid "Winbind _Domain"
 msgstr "_Dominio Winbind"
 
 #: ../authconfig.glade.h:70
-msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
-msgstr "Winbind permite que un sistema obtenga información sobre los usuarios y los autentique usando la información almacenada en un servidor NTDOM o ADS.Esto se usa en redes pequeñas y grandes."
+msgid ""
+"Winbind allows a system to retrieve information about users and to "
+"authenticate users by using information stored in an NTDOM or ADS server.  "
+"It is used in small to large networks."
+msgstr ""
+"Winbind permite que un sistema obtenga información sobre los usuarios y los "
+"autentique usando la información almacenada en un servidor NTDOM o ADS.Esto "
+"se usa en redes pequeñas y grandes."
 
 #: ../authconfig.glade.h:71
 msgid "_Admin Servers"
@@ -1037,23 +1119,52 @@ msgstr "_Tipo de Shell"
 msgid "_Workgroup"
 msgstr "_Grupo de trabajo"
 
-#: ../authinfo.py:669
-#: ../authinfo.py:1177
-#: ../authinfo.py:2411
+#: ../authinfo.py:675 ../authinfo.py:1184 ../authinfo.py:2426
 msgid "Lock"
 msgstr "Bloquear"
 
-#: ../authinfo.py:669
-#: ../authinfo.py:1179
+#: ../authinfo.py:675 ../authinfo.py:1186
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: ../authinfo.py:2759
+#: ../authinfo.py:2774
 #, python-format
-msgid "Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly."
-msgstr "El módulo de autenticación %s/pam_%s.so no se encuentra. El proceso de autenticación no funcionará apropiadamente."
+msgid ""
+"Authentication module %s/pam_%s.so is missing. Authentication process will "
+"not work correctly."
+msgstr ""
+"El módulo de autenticación %s/pam_%s.so no se encuentra. El proceso de "
+"autenticación no funcionará apropiadamente."
 
-#: ../authinfo.py:3240
+#: ../authinfo.py:3258
 msgid "Error downloading CA certificate"
 msgstr "Error al bajar el certificado CA"
 
+#~ msgid "SMB authentication"
+#~ msgstr "Autenticación SMB"
+
+#~ msgid "Workgroup:"
+#~ msgstr "Grupo de trabajo:"
+
+#~ msgid "Servers:"
+#~ msgstr "Servidores:"
+
+#~ msgid "Shell:"
+#~ msgstr "Shell:"
+
+#~ msgid "Use SMB Authentication"
+#~ msgstr "Utilizar Autenticación SMB"
+
+#~ msgid "Con_figure SMB..."
+#~ msgstr "_Configurar SMB..."
+
+#~ msgid "Enable SMB S_upport"
+#~ msgstr "Habilitar el soporte _SMB"
+
+#~ msgid ""
+#~ "SMB authentication verifies user passwords by attempting to connect to a "
+#~ "server which uses the SMB (system message block) protocol suite."
+#~ msgstr ""
+#~ "La autentificación de SMB verifica las contraseñas de usuario al intentar "
+#~ "conectar con un servidor que usa el paquete de protocolo SMB (system "
+#~ "message block)"

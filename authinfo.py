@@ -56,7 +56,7 @@ AUTH_MODULE_DIR = LIBDIR + "/security"
 PATH_PORTMAP = "/sbin/portmap"
 PATH_PWCONV = "/usr/sbin/pwconv"
 PATH_NSCD = "/usr/sbin/nscd"
-PATH_NSCD_PID = "/var/run/nscd.pid"
+PATH_NSCD_PID = "/var/run/nscd/nscd.pid"
 PATH_DBBIND = "/usr/sbin/dbbind"
 PATH_DBBIND_PID = "/var/run/dbbind.pid"
 PATH_DBIBIND = "/usr/sbin/dbibind"
@@ -89,6 +89,7 @@ PATH_PAM_LDAP = AUTH_MODULE_DIR + "/pam_ldap.so"
 PATH_PAM_SMB = AUTH_MODULE_DIR + "/pam_smb_auth.so"
 PATH_PAM_WINBIND = AUTH_MODULE_DIR + "/pam_winbind.so"
 PATH_PAM_PKCS11 = AUTH_MODULE_DIR + "/pam_pkcs11.so"
+PATH_PAM_FPRINTD = AUTH_MODULE_DIR + "/pam_fprintd.so"
 
 PATH_WINBIND_NET = "/usr/bin/net"
 
@@ -277,6 +278,9 @@ argv_eps_password = [
 	"use_authtok"
 ]
 
+argv_fprintd_auth = [
+]
+
 argv_pkcs11_auth = [
 ]
 
@@ -373,6 +377,8 @@ standard_pam_modules = [
 	 "krb5",		argv_krb5_sc_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "permit",		[]],
+	[False,  AUTH,          LOGIC_SUFFICIENT,
+	 "fprintd",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
@@ -937,6 +943,7 @@ class AuthInfo:
 		self.brokenShadow = None
 		self.forceBrokenShadow = None
 		self.forceSmartcard = None
+		self.enableFprintd = None
 
 		# Not really options.
 		self.joinUser = ""
@@ -1404,6 +1411,9 @@ class AuthInfo:
 				else:
 					self.forceSmartcard = False
 				continue
+			if module.startswith("pam_fprintd"):
+				self.enableFprintd = True
+				continue
 			if module.startswith("pam_passwdqc"):
 				self.enablePasswdQC = True
 				if args:
@@ -1515,6 +1525,10 @@ class AuthInfo:
 				pass
 			try:
 				self.enableSmartcard = shv.getBoolValue("USESMARTCARD")
+			except ValueError:
+				pass
+			try:
+				self.enableFprintd = shv.getBoolValue("USEFPRINTD")
 			except ValueError:
 				pass
 			try:
@@ -1698,6 +1712,7 @@ class AuthInfo:
 		(self.enableKerberos != b.enableKerberos) or
 		(self.enableLDAPAuth != b.enableLDAPAuth) or
 		(self.enableSmartcard != b.enableSmartcard) or
+		(self.enableFprintd != b.enableFprintd) or
 		(self.forceSmartcard != b.forceSmartcard) or
 		(self.enableOTP != b.enableOTP) or
 		(self.enablePasswdQC != b.enablePasswdQC) or
@@ -2844,6 +2859,7 @@ class AuthInfo:
 					(self.enableSmartcard and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_SKIPNEXT) or
 					(self.enableSmartcard and module[NAME] == "pkcs11") or 
+					(self.enableFprintd and module[NAME] == "fprintd") or
 					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableSMB and module[NAME] == "smb_auth") or
@@ -2888,6 +2904,7 @@ class AuthInfo:
 		shv.setBoolValue("USELDAPAUTH", self.enableLDAPAuth)
 		shv.setBoolValue("USESMARTCARD", self.enableSmartcard)
 		shv.setBoolValue("FORCESMARTCARD", self.forceSmartcard)
+		shv.setBoolValue("USEFPRINTD", self.enableFprintd)
 		shv.setValue("PASSWDALGORITHM", self.passwordAlgorithm)
 		shv.setValue("USEMD5", None)
 		shv.setBoolValue("USESHADOW", self.enableShadow)
@@ -2987,14 +3004,14 @@ class AuthInfo:
 		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
-		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b")]),
+		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"), ("enableFprintd", "b")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
 		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
-		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b")]),
+		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 		self.update()
@@ -3134,6 +3151,7 @@ class AuthInfo:
 		print " use only smartcard for login is %s" % formatBool(self.forceSmartcard)
 		print " smartcard module = \"%s\"" % self.smartcardModule
 		print " smartcard removal action = \"%s\"" % self.smartcardAction
+		print "pam_fprintd is %s" % formatBool(self.enableFprintd)
 		print "pam_smb_auth is %s" % formatBool(self.enableSMB)
 		print " SMB workgroup = \"%s\"" % self.smbWorkgroup
 		print " SMB servers = \"%s\"" % self.smbServers

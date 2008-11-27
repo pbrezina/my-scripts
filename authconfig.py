@@ -54,6 +54,7 @@ class Authconfig:
 		ldap_avail = False
 		smb_avail = False
 		cache_avail = False
+		fprintd_avail = False
 
 	def module(self):
 		return "authconfig"
@@ -134,6 +135,11 @@ class Authconfig:
 		actshelp = self.listHelp(authinfo.getSmartcardActions(), True)
  		parser.add_option("--smartcardaction", metavar=actshelp,
  			help=_("action to be taken on smart card removal"))
+
+		parser.add_option("--enablefingerprint", action="store_true",
+			help=_("enable authentication with fingerprint readers by default"))
+ 		parser.add_option("--disablefingerprint", action="store_true",
+			help=_("disable authentication with fingerprint readers by default"))
 
 		parser.add_option("--enablekrb5", action="store_true",
 			help=_("enable kerberos authentication by default"))
@@ -314,6 +320,7 @@ class Authconfig:
 			os.access(authinfo.PATH_LIBNSS_LDAP, os.X_OK))
 		self.smb_avail = os.access(authinfo.PATH_PAM_SMB, os.X_OK)
 		self.cache_avail = os.access(authinfo.PATH_NSCD, os.X_OK)
+		self.fprintd_avail = os.access(authinfo.PATH_PAM_FPRINTD, os.X_OK)
 	
 	def overrideSettings(self):
 		bool_settings = {"shadow":"enableShadow",
@@ -331,6 +338,7 @@ class Authconfig:
 			"krb5kdcdns":"kerberosKDCviaDNS",
 			"krb5realmdns":"kerberosRealmviaDNS",
 			"smartcard":"enableSmartcard",
+			"fingerprint":"enableFprintd",
 			"requiresmartcard":"forceSmartcard",
 			"smbauth":"enableSMB",
 			"winbind":"enableWinbind",
@@ -473,12 +481,12 @@ class AuthconfigTUI(Authconfig):
 			
 	def getMainChoices(self):
 		warnCache = [authinfo.PATH_NSCD, _("caching"), "nscd", None]
+		warnFprintd = [authinfo.PATH_PAM_FPRINTF, _("Fingerprint reader"), "pam_fprintd", None]
 		warnKerberos = [authinfo.PATH_PAM_KRB5, _("Kerberos"), "pam_krb5", None]
 		warnLDAPAuth = [authinfo.PATH_PAM_LDAP, _("LDAP authentication"), "nss_ldap", None]
 		warnLDAP = [authinfo.PATH_LIBNSS_LDAP, _("LDAP"), "nss_ldap", None]
 		warnNIS = [authinfo.PATH_YPBIND, _("NIS"), "ypbind", None]
 		warnShadow = [authinfo.PATH_PWCONV, _("shadow password"), "shadow-utils", None]
-		warnSMB = [authinfo.PATH_PAM_SMB, _("SMB authentication"), "pam_smb", None]
 		warnWinbindNet = [authinfo.PATH_WINBIND_NET, _("Winbind"), "samba-client", None]
 		warnWinbindAuth = [authinfo.PATH_PAM_WINBIND, _("Winbind authentication"), "samba-common", warnWinbindNet]
 		warnWinbind = [authinfo.PATH_LIBNSS_WINBIND, _("Winbind"), "samba-common", warnWinbindAuth]
@@ -528,9 +536,10 @@ class AuthconfigTUI(Authconfig):
 		authGrid.setField(cb, 0, 4, anchorLeft=1, growx=1)
 		cb.setCallback(self.warnCallback, (cb, warnKerberos))
 
-		smb = cb = snack.Checkbox(_("Use SMB Authentication"), bool(self.info.enableSMB))
+		fprintd = cb = snack.Checkbox(_("Use Fingerprint reader"), bool(self.info.enableFprintd))
 		authGrid.setField(cb, 0, 5, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnSMB))
+		cb.setCallback(self.warnCallback, (cb, warnFprintd))
+
 
 		winbindauth = cb = snack.Checkbox(_("Use Winbind Authentication"), bool(self.info.enableWinbindAuth))
 		authGrid.setField(cb, 0, 6, anchorLeft=1, growx=1)
@@ -577,9 +586,9 @@ class AuthconfigTUI(Authconfig):
 				self.info.passwordAlgorithm = 'descrypt'
 			self.info.enableLDAPAuth = ldapa.selected()
 			self.info.enableKerberos = krb5.selected()
-			self.info.enableSMB = smb.selected()
 			self.info.enableWinbindAuth = winbindauth.selected()
 			self.info.enableLocAuthorize = locauthorize.selected()
+			self.info.enableFprintd = fprintd.selected()
 
 		self.screen.popWindow()
 
@@ -708,13 +717,6 @@ class AuthconfigTUI(Authconfig):
 		return self.getGenericChoices(_("Kerberos Settings"),
 			questions, _("Back"), next and _("Next") or _("Ok"))
 
-	def getSMBSettings(self, next):
-		questions = [("svalue", _("Workgroup:"), "smbWorkgroup", 0),
-			("svalue", _("Servers:"), "smbServers", 0),
-			("svalue", _("Shell:"), "winbindTemplateShell", 0)]
-		return self.getGenericChoices(_("SMB Settings"),
-			questions, _("Back"), next and _("Next") or _("Ok"))
-
 	def getJoinSettings(self):
 		questions = [("svalue", _("Domain Administrator:"), "joinUser", 0),
 			("svalue", _("Password:"), "joinPassword", 1)]
@@ -804,12 +806,6 @@ class AuthconfigTUI(Authconfig):
 						self.info.enableWinbindAuth)
 					rc = self.getKerberosSettings(more)
 			elif next == 6:
-				if self.info.enableSMB and not (self.info.enableWinbind or
-					self.info.enableWinbindAuth):
-					more = (self.info.enableWinbind or
-						self.info.enableWinbindAuth)
-					rc = self.getSMBSettings(more)
-			elif next == 7:
       				if self.info.enableWinbind or self.info.enableWinbindAuth:
 					more = False
 					rc = self.getWinbindSettings(more)
@@ -818,7 +814,7 @@ class AuthconfigTUI(Authconfig):
 				next += 1
 			else:
 				next -= 1
-		return next == 8
+		return next == 7
 	
 	def displayCACertsMessage(self):
 		text = (_("To connect to a LDAP server with TLS protocol enabled you need "

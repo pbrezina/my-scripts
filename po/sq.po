@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-12 21:06+0100\n"
+"POT-Creation-Date: 2008-11-27 10:36+0100\n"
 "PO-Revision-Date: 2008-11-23 00:49+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -15,757 +15,770 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../authconfig.py:78
+#: ../authconfig.py:79
 #, python-format
 msgid "usage: %s [options]"
 msgstr "përdorimi: %s [mundësi]"
 
-#: ../authconfig.py:85
+#: ../authconfig.py:86
 msgid "enable shadowed passwords by default"
 msgstr "aktivizo si parazgjedhje fjalëkalime të hijezuar"
 
-#: ../authconfig.py:87
+#: ../authconfig.py:88
 msgid "disable shadowed passwords by default"
 msgstr "çaktivizo si parazgjedhje fjalëkalime të hijezuar"
 
-#: ../authconfig.py:89
+#: ../authconfig.py:90
 msgid "enable MD5 passwords by default"
 msgstr "aktivizo si parazgjedhje fjalëkalime MD5"
 
-#: ../authconfig.py:91
+#: ../authconfig.py:92
 msgid "disable MD5 passwords by default"
 msgstr "çaktivizo si parazgjedhje fjalëkalime MD5"
 
-#: ../authconfig.py:94
+#: ../authconfig.py:95
 msgid "hash/crypt algorithm for new passwords"
 msgstr "algoritëm \"hash/crypt\" për fjalëkalime të reja"
 
-#: ../authconfig.py:97
+#: ../authconfig.py:98
 msgid "enable NIS for user information by default"
 msgstr "aktivizo si parazgjedhje NIS për të dhëna përdoruesi"
 
-#: ../authconfig.py:99
+#: ../authconfig.py:100
 msgid "disable NIS for user information by default"
 msgstr "çaktivizo si parazgjedhje NIS për të dhëna përdoruesi"
 
-#: ../authconfig.py:100
+#: ../authconfig.py:101
 msgid "<domain>"
 msgstr "<përkatësi>"
 
-#: ../authconfig.py:101
+#: ../authconfig.py:102
 msgid "default NIS domain"
 msgstr "përkatësi NIS parazgjedhje"
 
-#: ../authconfig.py:102
-#: ../authconfig.py:113
-#: ../authconfig.py:142
-#: ../authconfig.py:144
+#: ../authconfig.py:103 ../authconfig.py:114 ../authconfig.py:148
+#: ../authconfig.py:150
 msgid "<server>"
 msgstr "<shërbyes>"
 
-#: ../authconfig.py:103
+#: ../authconfig.py:104
 msgid "default NIS server"
 msgstr "shërbyes NIS parazgjedhje"
 
-#: ../authconfig.py:106
+#: ../authconfig.py:107
 msgid "enable LDAP for user information by default"
 msgstr "aktivizo si parazgjedhje LDAP për të dhëna përdoruesi"
 
-#: ../authconfig.py:108
+#: ../authconfig.py:109
 msgid "disable LDAP for user information by default"
 msgstr "çaktivizo si parazgjedhje LDAP për të dhëna përdoruesi"
 
-#: ../authconfig.py:110
+#: ../authconfig.py:111
 msgid "enable LDAP for authentication by default"
 msgstr "aktivizo si parazgjedhje LDAP për mirëfilltësime"
 
-#: ../authconfig.py:112
+#: ../authconfig.py:113
 msgid "disable LDAP for authentication by default"
 msgstr "çaktivizo si parazgjedhje LDAP për mirëfilltësime"
 
-#: ../authconfig.py:114
+#: ../authconfig.py:115
 msgid "default LDAP server hostname or URI"
 msgstr "URI ose emërtrehë shërbyesi LDAP parazgjedhje"
 
-#: ../authconfig.py:115
+#: ../authconfig.py:116
 msgid "<dn>"
 msgstr "<dn>"
 
-#: ../authconfig.py:116
+#: ../authconfig.py:117
 msgid "default LDAP base DN"
 msgstr "DN baze LDAP parazgjedhje"
 
-#: ../authconfig.py:118
+#: ../authconfig.py:119
 msgid "enable use of TLS with LDAP (RFC-2830)"
 msgstr "aktivizo përdorimin e TLS-së me LDAP (RFC-2830)"
 
-#: ../authconfig.py:120
+#: ../authconfig.py:121
 msgid "disable use of TLS with LDAP (RFC-2830)"
 msgstr "çaktivizo përdorimin e TLS-së me LDAP (RFC-2830)"
 
-#: ../authconfig.py:121
+#: ../authconfig.py:122
 msgid "<URL>"
 msgstr "<URL>"
 
-#: ../authconfig.py:122
+#: ../authconfig.py:123
 msgid "load CA certificate from the URL"
 msgstr "ngarko dëshmi AD-je prej URL-je"
 
-#: ../authconfig.py:125
+#: ../authconfig.py:126
 msgid "enable authentication with smart card by default"
 msgstr "aktivizo si parazgjedhje mirëfilltësim përmes kartash të mençura"
 
-#: ../authconfig.py:127
+#: ../authconfig.py:128
 msgid "disable authentication with smart card by default"
 msgstr "çaktivizo si parazgjedhje mirëfilltësim përmes kartash të mençura"
 
-#: ../authconfig.py:129
+#: ../authconfig.py:130
 msgid "require smart card for authentication by default"
 msgstr "kërko si parazgjedhje kartë të mençur për mirëfilltësim"
 
-#: ../authconfig.py:131
+#: ../authconfig.py:132
 msgid "do not require smart card for authentication by default"
 msgstr "mos kërko si parazgjedhje kartë të mençur për mirëfilltësim"
 
-#: ../authconfig.py:132
+#: ../authconfig.py:133
 msgid "<module>"
 msgstr "<modul>"
 
-#: ../authconfig.py:133
+#: ../authconfig.py:134
 msgid "default smart card module to use"
 msgstr "modul karte të mençur parazgjedhje për përdorim"
 
-#: ../authconfig.py:136
+#: ../authconfig.py:137
 msgid "action to be taken on smart card removal"
 msgstr "veprim për t'u bërë kur hiqet karta e mençur"
 
-#: ../authconfig.py:139
+#: ../authconfig.py:140
+#, fuzzy
+msgid "enable authentication with fingerprint readers by default"
+msgstr "aktivizo si parazgjedhje mirëfilltësim përmes kartash të mençura"
+
+#: ../authconfig.py:142
+#, fuzzy
+msgid "disable authentication with fingerprint readers by default"
+msgstr "çaktivizo si parazgjedhje mirëfilltësim përmes kartash të mençura"
+
+#: ../authconfig.py:145
 msgid "enable kerberos authentication by default"
 msgstr "aktivizo si parazgjedhje mirëfilltësim kerberos"
 
-#: ../authconfig.py:141
+#: ../authconfig.py:147
 msgid "disable kerberos authentication by default"
 msgstr "çaktivizo, si parazgjedhje, mirëfilltësim kerberos"
 
-#: ../authconfig.py:143
+#: ../authconfig.py:149
 msgid "default kerberos KDC"
 msgstr "KDC kerberos parazgjedhje"
 
-#: ../authconfig.py:145
+#: ../authconfig.py:151
 msgid "default kerberos admin server"
 msgstr "shërbyes parazgjedhje admin-i kerberos"
 
-#: ../authconfig.py:146
-#: ../authconfig.py:176
+#: ../authconfig.py:152 ../authconfig.py:182
 msgid "<realm>"
 msgstr "<emër i vërtetë>"
 
-#: ../authconfig.py:147
+#: ../authconfig.py:153
 msgid "default kerberos realm"
 msgstr "i vërteti parazgjedhje kerberos"
 
-#: ../authconfig.py:149
+#: ../authconfig.py:155
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "aktivizo përdorim DNS-je për të gjetur KDC-ra kerberos"
 
-#: ../authconfig.py:151
+#: ../authconfig.py:157
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "çaktivizo  përdorim DNS-je për të gjetur KDC-ra kerberos"
 
-#: ../authconfig.py:153
+#: ../authconfig.py:159
 msgid "enable use of DNS to find kerberos realms"
 msgstr "aktivizo përdorim DNS-je për të gjetur emra të vërtetë kerberos"
 
-#: ../authconfig.py:155
+#: ../authconfig.py:161
 msgid "disable use of DNS to find kerberos realms"
 msgstr "çaktivizo  përdorim DNS-je për të gjetur emra të vërtetë kerberos"
 
-#: ../authconfig.py:158
+#: ../authconfig.py:164
 msgid "enable SMB authentication by default"
 msgstr "aktivizo si parazgjedhje mirëfilltësim SMB"
 
-#: ../authconfig.py:160
+#: ../authconfig.py:166
 msgid "disable SMB authentication by default"
 msgstr "çaktivizo si parazgjedhje mirëfilltësim SMB"
 
-#: ../authconfig.py:161
+#: ../authconfig.py:167
 msgid "<servers>"
 msgstr "<shërbyesa>"
 
-#: ../authconfig.py:162
+#: ../authconfig.py:168
 msgid "names of servers to authenticate against"
 msgstr "emra shërbyesish kundrejt të cilëve të kryhet mirëfilltësim"
 
-#: ../authconfig.py:163
+#: ../authconfig.py:169
 msgid "<workgroup>"
 msgstr "<grup pune>"
 
-#: ../authconfig.py:164
+#: ../authconfig.py:170
 msgid "workgroup authentication servers are in"
 msgstr "shërbyesat për mirëfilltësim grupi pune gjenden te"
 
-#: ../authconfig.py:167
+#: ../authconfig.py:173
 msgid "enable winbind for user information by default"
 msgstr "aktivizo si parazgjedhje \"winbind\" për të dhëna përdoruesi"
 
-#: ../authconfig.py:169
+#: ../authconfig.py:175
 msgid "disable winbind for user information by default"
 msgstr "çaktivizo si parazgjedhje \"winbind\" për të dhëna përdoruesi"
 
-#: ../authconfig.py:171
+#: ../authconfig.py:177
 msgid "enable winbind for authentication by default"
 msgstr "aktivizo si parazgjedhje \"winbind\" për mirëfilltësim"
 
-#: ../authconfig.py:173
+#: ../authconfig.py:179
 msgid "disable winbind for authentication by default"
 msgstr "çaktivizo si parazgjedhje \"winbind\" për mirëfilltësim"
 
-#: ../authconfig.py:175
+#: ../authconfig.py:181
 msgid "security mode to use for samba and winbind"
 msgstr "mënyrë sigurie për përdorim për samba-n dhe winbind-in"
 
-#: ../authconfig.py:177
+#: ../authconfig.py:183
 msgid "default realm for samba and winbind when security=ads"
 msgstr "i vërtetë parazgjedhje për samba dhe winbind kur security=ads"
 
-#: ../authconfig.py:178
-#: ../authconfig.py:180
+#: ../authconfig.py:184 ../authconfig.py:186
 msgid "<lowest-highest>"
 msgstr "<më i ulti-më i larti>"
 
-#: ../authconfig.py:179
-msgid "uid range winbind will assign to domain or ads users"
-msgstr "intervali uid që \"winbind\"-i do të caktojë për përkatësinë ose për përdoruesa \"ads\""
-
-#: ../authconfig.py:181
-msgid "gid range winbind will assign to domain or ads users"
-msgstr "intervali gid që \"winbind\"-i do të caktojë për përkatësinë ose për përdoruesa \"ads\""
-
-#: ../authconfig.py:183
-msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr "shenja që do të përdoret për të ndarë pjesën e përkatësisë nga ajo e përdoruesit te emra përdoruesish të krijuar nga \"winbind\"-i nëse winbindusedefaultdomain nuk është e aktivizuar"
-
 #: ../authconfig.py:185
-msgid "the directory which winbind-created users will have as home directories"
-msgstr "drejtoria që përdorues të krijuar nga \"winbind\"-i do ta kenë si drejtori shtëpi"
+msgid "uid range winbind will assign to domain or ads users"
+msgstr ""
+"intervali uid që \"winbind\"-i do të caktojë për përkatësinë ose për "
+"përdoruesa \"ads\""
 
 #: ../authconfig.py:187
-msgid "the group which winbind-created users will have as their primary group"
-msgstr "grupi që përdorues të krijuar nga \"winbind\"-i do ta kenë si grupin e tyre parësor"
+msgid "gid range winbind will assign to domain or ads users"
+msgstr ""
+"intervali gid që \"winbind\"-i do të caktojë për përkatësinë ose për "
+"përdoruesa \"ads\""
 
 #: ../authconfig.py:189
-msgid "the shell which winbind-created users will have as their login shell"
-msgstr "shelli që përdorues të krijuar nga \"winbind\"-i do ta kenë si shellin e tyre për hyrje"
+msgid ""
+"the character which will be used to separate the domain and user part of "
+"winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr ""
+"shenja që do të përdoret për të ndarë pjesën e përkatësisë nga ajo e "
+"përdoruesit te emra përdoruesish të krijuar nga \"winbind\"-i nëse "
+"winbindusedefaultdomain nuk është e aktivizuar"
 
 #: ../authconfig.py:191
-msgid "configures winbind to assume that users with no domain in their user names are domain users"
-msgstr "e formëson \"winbind\"-in të marrë të mirëqenë që përdoruesit pa përkatësi te emrat e tyre të përdoruesit janë përdoruesa të përkatësisë"
+msgid "the directory which winbind-created users will have as home directories"
+msgstr ""
+"drejtoria që përdorues të krijuar nga \"winbind\"-i do ta kenë si drejtori "
+"shtëpi"
 
 #: ../authconfig.py:193
-msgid "configures winbind to assume that users with no domain in their user names are not domain users"
-msgstr "e formëson \"winbind\"-in të marrë të mirëqenë që përdoruesit pa përkatësi te emrat e tyre të përdoruesit nuk janë përdoruesa të përkatësisë"
+msgid "the group which winbind-created users will have as their primary group"
+msgstr ""
+"grupi që përdorues të krijuar nga \"winbind\"-i do ta kenë si grupin e tyre "
+"parësor"
 
 #: ../authconfig.py:195
+msgid "the shell which winbind-created users will have as their login shell"
+msgstr ""
+"shelli që përdorues të krijuar nga \"winbind\"-i do ta kenë si shellin e "
+"tyre për hyrje"
+
+#: ../authconfig.py:197
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are domain users"
+msgstr ""
+"e formëson \"winbind\"-in të marrë të mirëqenë që përdoruesit pa përkatësi "
+"te emrat e tyre të përdoruesit janë përdoruesa të përkatësisë"
+
+#: ../authconfig.py:199
+msgid ""
+"configures winbind to assume that users with no domain in their user names "
+"are not domain users"
+msgstr ""
+"e formëson \"winbind\"-in të marrë të mirëqenë që përdoruesit pa përkatësi "
+"te emrat e tyre të përdoruesit nuk janë përdoruesa të përkatësisë"
+
+#: ../authconfig.py:201
 msgid "configures winbind to allow offline login"
 msgstr "formëson \"winbind\"-in për lejim hyrjesh \"offline\""
 
-#: ../authconfig.py:197
+#: ../authconfig.py:203
 msgid "configures winbind to prevent offline login"
 msgstr "formëson \"winbind\"-in për moslejim hyrjesh \"offline\""
 
-#: ../authconfig.py:199
+#: ../authconfig.py:205
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr ""
 
-#: ../authconfig.py:202
+#: ../authconfig.py:208
 msgid "enable wins for hostname resolution"
 msgstr "aktivizo \"wins\" për ftillim emërstrehësh"
 
-#: ../authconfig.py:204
+#: ../authconfig.py:210
 msgid "disable wins for hostname resolution"
 msgstr "çaktivizo \"wins\" për ftillim emërstrehësh"
 
-#: ../authconfig.py:207
+#: ../authconfig.py:213
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "për ftillim emrëstrehash parapëlqe më mirë \"dns\" sesa \"wins\" ose \"nis\""
+msgstr ""
+"për ftillim emrëstrehash parapëlqe më mirë \"dns\" sesa \"wins\" ose \"nis\""
 
-#: ../authconfig.py:209
+#: ../authconfig.py:215
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "për ftillim emrëstrehash parapëlqe më mirë \"wins\" ose \"nis\" sesa \"dns\""
+msgstr ""
+"për ftillim emrëstrehash parapëlqe më mirë \"wins\" ose \"nis\" sesa \"dns\""
 
-#: ../authconfig.py:212
+#: ../authconfig.py:218
 msgid "enable hesiod for user information by default"
 msgstr "aktivizo si parazgjedhje hesiod për të dhëna përdoruesi"
 
-#: ../authconfig.py:214
+#: ../authconfig.py:220
 msgid "disable hesiod for user information by default"
 msgstr "çaktivizo si parazgjedhje hesiod për të dhëna përdoruesi"
 
-#: ../authconfig.py:216
+#: ../authconfig.py:222
 msgid "default hesiod LHS"
 msgstr "LHS parazgjedhje hesiodi"
 
-#: ../authconfig.py:218
+#: ../authconfig.py:224
 msgid "default hesiod RHS"
 msgstr "RHS parazgjedhje hesiodi"
 
-#: ../authconfig.py:221
+#: ../authconfig.py:227
 msgid "enable caching of user information by default"
-msgstr "aktivizo si parazgjedhje ruajtjen në fshehtinë të të dhënave të përdoruesit "
+msgstr ""
+"aktivizo si parazgjedhje ruajtjen në fshehtinë të të dhënave të përdoruesit "
 
-#: ../authconfig.py:223
+#: ../authconfig.py:229
 msgid "disable caching of user information by default"
-msgstr "çaktivizo si parazgjedhje ruajtjen në fshehtinë të të dhënave të përdoruesit"
+msgstr ""
+"çaktivizo si parazgjedhje ruajtjen në fshehtinë të të dhënave të përdoruesit"
 
-#: ../authconfig.py:226
+#: ../authconfig.py:232
 msgid "local authorization is sufficient for local users"
 msgstr "mirëfilltësimi vendor është i mjaftueshëm për përdoruesa vendorë"
 
-#: ../authconfig.py:228
+#: ../authconfig.py:234
 msgid "authorize local users also through remote service"
 msgstr "autorizo përdoruesa vendorë edhe prej shërbimi të largët"
 
-#: ../authconfig.py:231
+#: ../authconfig.py:237
 msgid "check access.conf during account authorization"
 msgstr "kontrolloje access.conf gjatë autorizimit të llogarisë"
 
-#: ../authconfig.py:233
+#: ../authconfig.py:239
 msgid "do not check access.conf during account authorization"
 msgstr "mos e kontrollo access.conf gjatë autorizimit të llogarisë"
 
-#: ../authconfig.py:236
+#: ../authconfig.py:242
 msgid "authenticate system accounts by network services"
 msgstr "mirëfilltëso llogari sistemi përmes shërbimesh rrjeti"
 
-#: ../authconfig.py:238
+#: ../authconfig.py:244
 msgid "authenticate system accounts by local files only"
 msgstr "mirëfilltëso llogari sistemi vetëm përmes kartelash vendore"
 
-#: ../authconfig.py:241
+#: ../authconfig.py:247
 msgid "create home directories for users on their first login"
 msgstr "krijo drejtorira shtëpi për përdoruesa gjatë hyrjes së parë të tyre"
 
-#: ../authconfig.py:243
+#: ../authconfig.py:249
 msgid "do not create home directories for users on their first login"
-msgstr "mos krijo drejtorira shtëpi për përdoruesa gjatë hyrjes së parë të tyre"
+msgstr ""
+"mos krijo drejtorira shtëpi për përdoruesa gjatë hyrjes së parë të tyre"
 
-#: ../authconfig.py:246
+#: ../authconfig.py:252
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "mos fillo/ndalo portmap, ypbind, dhe nscd"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:255
 msgid "do not update the configuration files, only print new settings"
 msgstr "mos përditëso kartela formësimi, vetëm shtyp rregullimet e reja"
 
-#: ../authconfig.py:253
+#: ../authconfig.py:259
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "shfaq Prapa dhe jo Anulo te dialogu kryesor i TUI-t"
 
-#: ../authconfig.py:255
+#: ../authconfig.py:261
 msgid "do not display the deprecated text user interface"
 msgstr "mos shfaq ndërfaqen e vjetëruar tekst të përdoruesit"
 
-#: ../authconfig.py:258
+#: ../authconfig.py:264
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "e kundërta e --test, përditëso kartela formësimi me rregullime të ndryshuara"
+msgstr ""
+"e kundërta e --test, përditëso kartela formësimi me rregullime të ndryshuara"
 
-#: ../authconfig.py:261
+#: ../authconfig.py:267
 msgid "update all configuration files"
 msgstr "përditëso tërë kartelat e formësimit"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:270
 msgid "probe network for defaults and print them"
 msgstr "analizo rrjet për parazgjedhje dhe shtypi ato"
 
-#: ../authconfig.py:266
-#: ../authconfig.py:269
+#: ../authconfig.py:272 ../authconfig.py:275
 msgid "<name>"
 msgstr "<emër>"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:273
 msgid "save a backup of all configuration files"
 msgstr "ruaj një kopjeruajtje të tërë kartelave të formësimeve"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:276
 msgid "restore the backup of configuration files"
 msgstr "rikthe kopjeruajtjen e kartelave të formësimit"
 
-#: ../authconfig.py:273
-msgid "restore the backup of configuration files saved before the previous configuration change"
-msgstr "rikthe kopjeruajtjen e kartelave të formësimit të ruajtura përpara ndryshimit të mëparshëm të formësimit"
+#: ../authconfig.py:279
+msgid ""
+"restore the backup of configuration files saved before the previous "
+"configuration change"
+msgstr ""
+"rikthe kopjeruajtjen e kartelave të formësimit të ruajtura përpara "
+"ndryshimit të mëparshëm të formësimit"
 
-#: ../authconfig.py:278
+#: ../authconfig.py:284
 msgid "unexpected argument"
 msgstr "argument i papritur"
 
-#: ../authconfig.py:392
+#: ../authconfig.py:400
 msgid "Bad smart card removal action specified."
 msgstr "U caktua veprimi për raste heqjesh karte të mençur të dëmtuar."
 
-#: ../authconfig.py:401
+#: ../authconfig.py:409
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "U dha algoritëm i panjohur \"hash\"-i fjalëkalimi, po përdoret sha256."
 
-#: ../authconfig.py:430
+#: ../authconfig.py:438
 msgid "can only be run as root"
 msgstr "mund të xhirohet vetëm si rrënjë"
 
-#: ../authconfig.py:446
+#: ../authconfig.py:454
 msgid "dialog was cancelled"
 msgstr "dialogu u anulua"
 
-#: ../authconfig.py:469
+#: ../authconfig.py:477
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work properly.\n"
+"The %s file was not found, but it is required for %s support to work "
+"properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"Kartela %s nuk u gjet, por është e nevojshme që mbulimi për %s të punojë si duhet.\n"
+"Kartela %s nuk u gjet, por është e nevojshme që mbulimi për %s të punojë si "
+"duhet.\n"
 "Instaloni paketën %s, që sjell këtë kartelë."
 
-#: ../authconfig.py:471
-#: ../authconfig.py:829
+#: ../authconfig.py:479 ../authconfig.py:825
 msgid "Warning"
 msgstr "Kujdes"
 
-#: ../authconfig.py:471
-#: ../authconfig.py:687
-#: ../authconfig.py:694
-#: ../authconfig.py:700
-#: ../authconfig.py:709
-#: ../authconfig.py:716
-#: ../authconfig.py:724
-#: ../authconfig.py:765
-#: ../authconfig.py:829
+#: ../authconfig.py:479 ../authconfig.py:696 ../authconfig.py:703
+#: ../authconfig.py:709 ../authconfig.py:718 ../authconfig.py:726
+#: ../authconfig.py:767 ../authconfig.py:825
 msgid "Ok"
 msgstr "Ok"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:483
 #, fuzzy
 msgid "caching"
 msgstr "po ruhet në fshehtinë"
 
-#: ../authconfig.py:476
+#: ../authconfig.py:484
+#, fuzzy
+msgid "Fingerprint reader"
+msgstr "Aktivizoni Mbulim _Winbind"
+
+#: ../authconfig.py:485
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:477
+#: ../authconfig.py:486
 msgid "LDAP authentication"
 msgstr "mirëfilltësim LDAP"
 
-#: ../authconfig.py:478
+#: ../authconfig.py:487
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:480
+#: ../authconfig.py:489
 msgid "shadow password"
 msgstr "fjalëkalim hije"
 
-#: ../authconfig.py:481
-msgid "SMB authentication"
-msgstr "mirëfilltësim SMB"
-
-#: ../authconfig.py:482
-#: ../authconfig.py:484
+#: ../authconfig.py:490 ../authconfig.py:492
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:483
+#: ../authconfig.py:491
 msgid "Winbind authentication"
 msgstr "mirëfilltësim Winbind"
 
-#: ../authconfig.py:489
+#: ../authconfig.py:497
 msgid "User Information"
 msgstr "Të dhëna Përdoruesi"
 
-#: ../authconfig.py:492
+#: ../authconfig.py:500
 msgid "Cache Information"
 msgstr "Të dhëna Fshehtine"
 
-#: ../authconfig.py:496
+#: ../authconfig.py:504
 msgid "Use Hesiod"
 msgstr "Përdor Hesiod"
 
-#: ../authconfig.py:499
+#: ../authconfig.py:507
 msgid "Use LDAP"
 msgstr "Përdor LDAP"
 
-#: ../authconfig.py:503
+#: ../authconfig.py:511
 msgid "Use NIS"
 msgstr "Përdor NIS"
 
-#: ../authconfig.py:507
+#: ../authconfig.py:515
 msgid "Use Winbind"
 msgstr "Përdor Winbind"
 
-#: ../authconfig.py:513
-#: ../authconfig.desktop.in.h:1
+#: ../authconfig.py:521 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Mirëfilltësim"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:524
 msgid "Use MD5 Passwords"
 msgstr "Përdor Fjalëkalime MD5"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:527
 msgid "Use Shadow Passwords"
 msgstr "Përdor Fjalëkalime Hije"
 
-#: ../authconfig.py:523
+#: ../authconfig.py:531
 msgid "Use LDAP Authentication"
 msgstr "Përdor Mirëfilltësim LDAP"
 
-#: ../authconfig.py:527
+#: ../authconfig.py:535
 msgid "Use Kerberos"
 msgstr "Përdor Kerberos"
 
-#: ../authconfig.py:531
-msgid "Use SMB Authentication"
-msgstr "Përdor Mirëfilltësim SMB"
+#: ../authconfig.py:539
+msgid "Use Fingerprint reader"
+msgstr ""
 
-#: ../authconfig.py:535
+#: ../authconfig.py:544
 msgid "Use Winbind Authentication"
 msgstr "Përdor Mirëfilltësim Winbind"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:548
 msgid "Local authorization is sufficient"
 msgstr "Autorizimi vendor është i mjaftueshëm"
 
-#: ../authconfig.py:549
-#: ../authconfig.py:687
-#: ../authconfig.py:694
-#: ../authconfig.py:700
-#: ../authconfig.py:709
-#: ../authconfig.py:716
-#: ../authconfig.py:765
+#: ../authconfig.py:558 ../authconfig.py:696 ../authconfig.py:703
+#: ../authconfig.py:709 ../authconfig.py:718 ../authconfig.py:767
 msgid "Back"
 msgstr "Prapa"
 
-#: ../authconfig.py:549
-#: ../authconfig.py:724
+#: ../authconfig.py:558 ../authconfig.py:726
 msgid "Cancel"
 msgstr "Anulo"
 
-#: ../authconfig.py:550
-#: ../authconfig.py:687
-#: ../authconfig.py:694
-#: ../authconfig.py:700
-#: ../authconfig.py:709
-#: ../authconfig.py:716
-#: ../authconfig.py:765
+#: ../authconfig.py:559 ../authconfig.py:696 ../authconfig.py:703
+#: ../authconfig.py:709 ../authconfig.py:718 ../authconfig.py:767
 msgid "Next"
 msgstr "Pasues"
 
-#: ../authconfig.py:561
-#: ../authconfig-gtk.py:436
-#: ../authconfig.glade.h:7
+#: ../authconfig.py:570 ../authconfig-gtk.py:433 ../authconfig.glade.h:8
 msgid "Authentication Configuration"
 msgstr "Formësim Mirëfilltësimi"
 
-#: ../authconfig.py:684
+#: ../authconfig.py:693
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:685
+#: ../authconfig.py:694
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:686
-#: ../authconfig.glade.h:32
+#: ../authconfig.py:695 ../authconfig.glade.h:33
 msgid "Hesiod Settings"
 msgstr "Rregullime për Hesiod-in"
 
-#: ../authconfig.py:690
+#: ../authconfig.py:699
 msgid "Use TLS"
 msgstr "Përdor TLS"
 
-#: ../authconfig.py:691
-#: ../authconfig.py:698
+#: ../authconfig.py:700 ../authconfig.py:707
 msgid "Server:"
 msgstr "Shërbyes:"
 
-#: ../authconfig.py:692
+#: ../authconfig.py:701
 msgid "Base DN:"
 msgstr "DN Bazë:"
 
-#: ../authconfig.py:693
-#: ../authconfig.glade.h:42
+#: ../authconfig.py:702 ../authconfig.glade.h:43
 msgid "LDAP Settings"
 msgstr "Rregullime LDAP"
 
-#: ../authconfig.py:697
-#: ../authconfig.py:759
+#: ../authconfig.py:706 ../authconfig.py:761
 msgid "Domain:"
 msgstr "Përkatësi:"
 
-#: ../authconfig.py:699
-#: ../authconfig.glade.h:44
+#: ../authconfig.py:708 ../authconfig.glade.h:45
 msgid "NIS Settings"
 msgstr "Rregullime NIS"
 
-#: ../authconfig.py:703
+#: ../authconfig.py:712
 msgid "Realm:"
 msgstr "Emër i vërtetë:"
 
-#: ../authconfig.py:704
+#: ../authconfig.py:713
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:705
+#: ../authconfig.py:714
 msgid "Admin Server:"
 msgstr "Shërbyes Admin:"
 
-#: ../authconfig.py:706
+#: ../authconfig.py:715
 msgid "Use DNS to resolve hosts to realms"
 msgstr "Përdor DNS për të shquar strehë për emra të vërtetë"
 
-#: ../authconfig.py:707
+#: ../authconfig.py:716
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Përdor DNS për të kapur KDC-ra për emra të vërtetë"
 
-#: ../authconfig.py:708
-#: ../authconfig.glade.h:39
+#: ../authconfig.py:717 ../authconfig.glade.h:40
 msgid "Kerberos Settings"
 msgstr "Rregullime Kerberos"
 
-#: ../authconfig.py:712
-msgid "Workgroup:"
-msgstr "Grup pune:"
-
-#: ../authconfig.py:713
-msgid "Servers:"
-msgstr "Shërbyesa:"
-
-#: ../authconfig.py:714
-msgid "Shell:"
-msgstr "Shell:"
-
-#: ../authconfig.py:715
-#: ../authconfig.glade.h:51
-msgid "SMB Settings"
-msgstr "Rregullime SMB"
-
-#: ../authconfig.py:719
+#: ../authconfig.py:721
 msgid "Domain Administrator:"
 msgstr "Administrues Përkatësie:"
 
-#: ../authconfig.py:720
+#: ../authconfig.py:722
 msgid "Password:"
 msgstr "Fjalëkalim:"
 
-#: ../authconfig.py:723
+#: ../authconfig.py:725
 msgid "Join Settings"
 msgstr "Rregullime për Bashkojuni"
 
-#: ../authconfig.py:733
-#: ../authconfig.glade.h:55
-msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
-msgstr "Disa prej ndryshimeve në formësim që bëtë duhen ruajtur në disk përpara se të vazhdohet.  Nëse nuk i ruani, përpjekja juaj për t'iu bashkuar përkatësisë mund të dështojë.  T'i ruaj ndryshimet?"
+#: ../authconfig.py:735 ../authconfig.glade.h:55
+msgid ""
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
+"may fail.  Save changes?"
+msgstr ""
+"Disa prej ndryshimeve në formësim që bëtë duhen ruajtur në disk përpara se "
+"të vazhdohet.  Nëse nuk i ruani, përpjekja juaj për t'iu bashkuar "
+"përkatësisë mund të dështojë.  T'i ruaj ndryshimet?"
 
-#: ../authconfig.py:740
+#: ../authconfig.py:742
 msgid "Save Settings"
 msgstr "Ruaj Rregullimet"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:743
 msgid "No"
 msgstr "Jo"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:743
 msgid "Yes"
 msgstr "Po"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:758
+#: ../authconfig.py:760
 msgid "Security Model:"
 msgstr "Model Sigurie:"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:762
 msgid "Domain Controllers:"
 msgstr "Kontrolluesa Përkatësie:"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:763
 msgid "ADS Realm:"
 msgstr "Emër i vërtetë ADS-je:"
 
-#: ../authconfig.py:762
+#: ../authconfig.py:764
 msgid "Template Shell:"
 msgstr ""
 
-#: ../authconfig.py:764
-#: ../authconfig.glade.h:68
+#: ../authconfig.py:766 ../authconfig.glade.h:68
 msgid "Winbind Settings"
 msgstr "Rregullime Winbind"
 
-#: ../authconfig.py:766
+#: ../authconfig.py:768
 msgid "Join Domain"
 msgstr "Bashkojuni Përkatësisë"
 
-#: ../authconfig.py:824
+#: ../authconfig.py:820
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed your server's certificate. Copy the certificate in "
+"the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Për t'u lidhur me një shërbyes LDAP me protokollin TLS të aktivizuar keni nevojë për një dëshmi AD e cila nënshkroi dëshminë e shërbyesit tuaj. Kopjojeni dëshminë nën formatin PEM te drejtoria '%s'.\n"
+"Për t'u lidhur me një shërbyes LDAP me protokollin TLS të aktivizuar keni "
+"nevojë për një dëshmi AD e cila nënshkroi dëshminë e shërbyesit tuaj. "
+"Kopjojeni dëshminë nën formatin PEM te drejtoria '%s'.\n"
 "Mandej shtypni OK."
 
 #. FIXME - version
-#: ../authconfig.py:838
-msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
-msgstr " <Tab>/<Alt-Tab> përmes elementesh   |   <Space> përzgjedh   |  <F12> pamja pasuese "
+#: ../authconfig.py:834
+msgid ""
+" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
+"screen"
+msgstr ""
+" <Tab>/<Alt-Tab> përmes elementesh   |   <Space> përzgjedh   |  <F12> pamja "
+"pasuese "
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr "Kontrolloni se si i verifikon sistemi përdoruesit që përpiqen të hyjnë në të"
+msgstr ""
+"Kontrolloni se si i verifikon sistemi përdoruesit që përpiqen të hyjnë në të"
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
+msgid "<b>Fingerprint Reader</b>"
+msgstr ""
+
+#: ../authconfig.glade.h:3
 msgid "<b>Options</b>"
 msgstr "<b>Mundësi</b>"
 
-#: ../authconfig.glade.h:3
+#: ../authconfig.glade.h:4
 msgid "<b>Smart Card</b>"
 msgstr "<b>Kartë e Mençur</b>"
 
-#: ../authconfig.glade.h:4
+#: ../authconfig.glade.h:5
 msgid "A_uthentication"
 msgstr "_Mirëfilltësim"
 
-#: ../authconfig.glade.h:5
+#: ../authconfig.glade.h:6
 msgid "Alert"
 msgstr "Njoftim"
 
-#: ../authconfig.glade.h:6
-msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
-msgstr "Tërë kartelat e formësimit që qenë ndryshuar nga ndryshimi i mëparshëm i formësimit do të rikthehen prej kopjeruajtjes. Të përmbysen ndryshimet?"
+#: ../authconfig.glade.h:7
+msgid ""
+"All configuration files which were modified by the previous authentication "
+"configuration change will be restored from backup. Revert the changes?"
+msgstr ""
+"Tërë kartelat e formësimit që qenë ndryshuar nga ndryshimi i mëparshëm i "
+"formësimit do të rikthehen prej kopjeruajtjes. Të përmbysen ndryshimet?"
 
-#: ../authconfig.glade.h:8
+#: ../authconfig.glade.h:9
 msgid "Cache User _Information"
 msgstr "Ruaji të _Dhënat e Përdorusi në Fshehtinë"
 
-#: ../authconfig.glade.h:9
+#: ../authconfig.glade.h:10
 msgid "Card Removal _Action"
 msgstr "_Veprim Heqjeje Karte"
 
-#: ../authconfig.glade.h:10
+#: ../authconfig.glade.h:11
 msgid "Certificate _URL"
 msgstr "_URL Dëshmish"
 
-#: ../authconfig.glade.h:11
+#: ../authconfig.glade.h:12
 msgid "Check access.conf _during account authorization"
 msgstr "_Kontrolloje access.conf gjatë autorizimit të llogarisë"
-
-#: ../authconfig.glade.h:12
-msgid "Con_figure SMB..."
-msgstr "_Formësoni SMB-në..."
 
 #: ../authconfig.glade.h:13
 msgid "Configure H_esiod..."
@@ -812,8 +825,9 @@ msgid "Download CA Certificate"
 msgstr "Shkarko Dëshmi AD-je"
 
 #: ../authconfig.glade.h:24
-msgid "Enable SMB S_upport"
-msgstr "Aktivizoni Mb_ulim të SMB-së"
+#, fuzzy
+msgid "Enable _Fingerprint Reader Support"
+msgstr "Aktivizoni Mbulim _Winbind"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -840,96 +854,152 @@ msgid "Enable _Winbind Support"
 msgstr "Aktivizoni Mbulim _Winbind"
 
 #: ../authconfig.glade.h:31
-msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
-msgstr "Për llogari përdoruesi të mbajtura te /etc/passwd, sistemi vendor i kartelave nuk do të kontrollojë autorizim prej shërbimesh rrjeti si LDAP ose Kerberos."
+#, fuzzy
+msgid ""
+"Fingerprint authentication allows you to log in by scanning your finger with "
+"the fingerprint reader."
+msgstr ""
+"Mirëfilltësimi përmes kartash të mençura ju lejon hyrje duke përdorur një "
+"dëshmi dhe një kyç shoqëruar një karte të mençur."
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:32
+msgid ""
+"For user accounts maintained in local /etc/passwd file system will not check "
+"authorization from network services such as LDAP or Kerberos."
+msgstr ""
+"Për llogari përdoruesi të mbajtura te /etc/passwd, sistemi vendor i "
+"kartelave nuk do të kontrollojë autorizim prej shërbimesh rrjeti si LDAP ose "
+"Kerberos."
+
+#: ../authconfig.glade.h:34
 msgid "Hesiod _LHS"
 msgstr "_LHS Hesiod"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:35
 msgid "Hesiod _RHS"
 msgstr "_RHS Hesiod"
 
-#: ../authconfig.glade.h:35
-msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
-msgstr "Hesiod-i i kejon një adminstruesi rrjetesh të botojë të dhëna përdoruesi dhe grupi në DNS.  Ngadonjëherë përdoret në rrjete shumë të gjerë."
-
 #: ../authconfig.glade.h:36
+msgid ""
+"Hesiod allows a system administrator to publish user and group information "
+"in DNS.  It is sometimes used in very large networks."
+msgstr ""
+"Hesiod-i i kejon një adminstruesi rrjetesh të botojë të dhëna përdoruesi dhe "
+"grupi në DNS.  Ngadonjëherë përdoret në rrjete shumë të gjerë."
+
+#: ../authconfig.glade.h:37
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr "Emërstreha ose ldap:// apo ldaps:// URI që shpien te shërbyesi LDAP."
 
-#: ../authconfig.glade.h:37
-msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
-msgstr "Po qe se drejtoria shtëpi e një përdoruesi nuk ekziston ende, ajo do të krijohet vetvetiu gjatë hyrjes së tij të parë."
-
 #: ../authconfig.glade.h:38
+msgid ""
+"If the home directory of an user doesn't exist yet it will be created "
+"automatically on his first login."
+msgstr ""
+"Po qe se drejtoria shtëpi e një përdoruesi nuk ekziston ende, ajo do të "
+"krijohet vetvetiu gjatë hyrjes së tij të parë."
+
+#: ../authconfig.glade.h:39
 msgid "Joining Winbind Domain"
 msgstr "Po i bashkohem Përkatësie \"Winbind\" "
 
-#: ../authconfig.glade.h:40
-msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
-msgstr "Kerberos është një sistem i besuar mirëfilltësimi prej palësh të treta i cili është gjerësisht i përdorur në rrjete nga të mesëm deri në të gjerë."
-
 #: ../authconfig.glade.h:41
+msgid ""
+"Kerberos is a trusted third-party authentication system which is commonly "
+"used in medium to large networks."
+msgstr ""
+"Kerberos është një sistem i besuar mirëfilltësimi prej palësh të treta i "
+"cili është gjerësisht i përdorur në rrjete nga të mesëm deri në të gjerë."
+
+#: ../authconfig.glade.h:42
 msgid "LDAP Search _Base DN"
 msgstr ""
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:44
 msgid "LDAP _Server"
 msgstr "_Shërbyes LDAP"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:46
 msgid "NIS _Domain"
 msgstr "_Përkatësi NIS"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:47
 msgid "NIS _Server"
 msgstr "_Shërbyes NIS"
 
-#: ../authconfig.glade.h:47
-msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
-msgstr "NIS është Shërbim të Dhënash Rrjeti (Network Information Service).  Është gjerësisht i përdorur në rrjete nga të vegjël deri te të mesëm."
-
 #: ../authconfig.glade.h:48
+msgid ""
+"NIS is the Network Information Service.  It is commonly used on small to "
+"medium networks."
+msgstr ""
+"NIS është Shërbim të Dhënash Rrjeti (Network Information Service).  Është "
+"gjerësisht i përdorur në rrjete nga të vegjël deri te të mesëm."
+
+#: ../authconfig.glade.h:49
 msgid "Op_tions"
 msgstr "_Mundësi"
 
-#: ../authconfig.glade.h:49
-msgid "Restore the configuration files backed up before the previous configuration change"
-msgstr "Rikthe kartela formësimesh të kopjeruajtura përpara ndryshimit të mëparshëm të formësimit"
-
 #: ../authconfig.glade.h:50
+msgid ""
+"Restore the configuration files backed up before the previous configuration "
+"change"
+msgstr ""
+"Rikthe kartela formësimesh të kopjeruajtura përpara ndryshimit të mëparshëm "
+"të formësimit"
+
+#: ../authconfig.glade.h:51
 msgid "Revert"
 msgstr "Riktheje"
 
 #: ../authconfig.glade.h:52
-msgid "SMB authentication verifies user passwords by attempting to connect to a server which uses the SMB (system message block) protocol suite."
-msgstr "Mirëfilltësimi SMB verifikon fjalëkalime përdoruesi duke u përpjekur të lidhet me një shërbyes i cili përdor suitën e protokollit SMB (system message block)."
+msgid "SMB Settings"
+msgstr "Rregullime SMB"
 
 #: ../authconfig.glade.h:53
 msgid "Smart Card Settings"
 msgstr "Rregullime për Karta të Mençura"
 
 #: ../authconfig.glade.h:54
-msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
-msgstr "Mirëfilltësimi përmes kartash të mençura ju lejon hyrje duke përdorur një dëshmi dhe një kyç shoqëruar një karte të mençur."
+msgid ""
+"Smart card authentication allows you to log in using a certificate and key "
+"associated with a smart card."
+msgstr ""
+"Mirëfilltësimi përmes kartash të mençura ju lejon hyrje duke përdorur një "
+"dëshmi dhe një kyç shoqëruar një karte të mençur."
 
 #: ../authconfig.glade.h:56
-msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
-msgstr "Protokolli i Lehtë për Hyrje në Drejtori (Lightweight Directory Access Protocol) është një rrugë standarde për kërkime në një drejtori,e cila mund të mbajë të dhëna arbitrare nën një hierarki të strukturuar. Përdorimi i LDAP-i t në rrjete nga të vegjël deri në të mëdhenj është duke u shtuar."
+msgid ""
+"The Lightweight Directory Access Protocol is a standard way of searching a "
+"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
+"increasingly being used in small to large networks."
+msgstr ""
+"Protokolli i Lehtë për Hyrje në Drejtori (Lightweight Directory Access "
+"Protocol) është një rrugë standarde për kërkime në një drejtori,e cila mund "
+"të mbajë të dhëna arbitrare nën një hierarki të strukturuar. Përdorimi i "
+"LDAP-i t në rrjete nga të vegjël deri në të mëdhenj është duke u shtuar."
 
 #: ../authconfig.glade.h:57
-msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
-msgstr "Për të verifikuar një shërbyes LDAP me protokollin TLS të aktivizuar, keni nevojë për një dëshmi AD e cila nënshkroi dëshminë e shërbyesit tuaj. Ju lutem plotësoni URL-në prej nga mund të shkarkohet dëshmia AD te formati PEM."
+msgid ""
+"To verify the LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed the server's certificate. Please fill in the URL "
+"where the CA certificate in the PEM format can be downloaded from."
+msgstr ""
+"Për të verifikuar një shërbyes LDAP me protokollin TLS të aktivizuar, keni "
+"nevojë për një dëshmi AD e cila nënshkroi dëshminë e shërbyesit tuaj. Ju "
+"lutem plotësoni URL-në prej nga mund të shkarkohet dëshmia AD te formati PEM."
 
 #: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Përdor DNS për të _kapur KDCra për të vërtetë"
 
 #: ../authconfig.glade.h:59
-msgid "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It must not be ticked with ldaps server URI."
-msgstr "Përdor për LDAP-në zgjerimin Siguri Shtrese Transporti (Transport Layer Security), si përcaktohet nga RFC-2830. Nuk duhet trajtuar me URI shërbyesi ldaps."
+msgid ""
+"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
+"must not be ticked with ldaps server URI."
+msgstr ""
+"Përdor për LDAP-në zgjerimin Siguri Shtrese Transporti (Transport Layer "
+"Security), si përcaktohet nga RFC-2830. Nuk duhet trajtuar me URI shërbyesi "
+"ldaps."
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -948,12 +1018,20 @@ msgid "User Infor_mation"
 msgstr "Të _dhëna përdoruesi"
 
 #: ../authconfig.glade.h:64
-msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
-msgstr "Kur aktivizohet /etc/security/access.conf, do të konsultohet për autorizim hyrjesh përdoruesi."
+msgid ""
+"When enabled /etc/security/access.conf will be consulted for authorization "
+"of users access."
+msgstr ""
+"Kur aktivizohet /etc/security/access.conf, do të konsultohet për autorizim "
+"hyrjesh përdoruesi."
 
 #: ../authconfig.glade.h:65
-msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
-msgstr "Kur është i aktivizuar u lejon shërbimeve të rrjetit si LDAP ose Kerberos të kryejnë mirëfilltësim llogarish sistemi përfshi rrënjën në këtë makinë."
+msgid ""
+"When enabled allows network services such as LDAP or Kerberos to "
+"authenticate system accounts including root on this machine."
+msgstr ""
+"Kur është i aktivizuar u lejon shërbimeve të rrjetit si LDAP ose Kerberos të "
+"kryejnë mirëfilltësim llogarish sistemi përfshi rrënjën në këtë makinë."
 
 #: ../authconfig.glade.h:66
 msgid "Winbind ADS _Realm"
@@ -968,8 +1046,14 @@ msgid "Winbind _Domain"
 msgstr "_Përkatësi \"Winbind\""
 
 #: ../authconfig.glade.h:70
-msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
-msgstr "\"Winbind\"-i i lejon një sistemi të marrë të dhëna rreth përdoruesve dhe të mirëfilltësojë përdoruesa duke përdorur të dhëna të ruajtura në një shërbyes NTDOM ose ADS.  Përdoret në rrjetë nga të vegjël deri në të mëdhenj."
+msgid ""
+"Winbind allows a system to retrieve information about users and to "
+"authenticate users by using information stored in an NTDOM or ADS server.  "
+"It is used in small to large networks."
+msgstr ""
+"\"Winbind\"-i i lejon një sistemi të marrë të dhëna rreth përdoruesve dhe të "
+"mirëfilltësojë përdoruesa duke përdorur të dhëna të ruajtura në një shërbyes "
+"NTDOM ose ADS.  Përdoret në rrjetë nga të vegjël deri në të mëdhenj."
 
 #: ../authconfig.glade.h:71
 msgid "_Admin Servers"
@@ -1027,24 +1111,53 @@ msgstr ""
 msgid "_Workgroup"
 msgstr "_Grup pune"
 
-#: ../authinfo.py:667
-#: ../authinfo.py:1175
-#: ../authinfo.py:2409
+#: ../authinfo.py:675 ../authinfo.py:1184 ../authinfo.py:2426
 #, fuzzy
 msgid "Lock"
 msgstr "Kyç"
 
-#: ../authinfo.py:667
-#: ../authinfo.py:1177
+#: ../authinfo.py:675 ../authinfo.py:1186
 msgid "Ignore"
 msgstr "Shpërfille"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2774
 #, python-format
-msgid "Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly."
-msgstr "Mungon moduli %s/pam_%s.so për mirëfilltësim. Procesi i mirëfilltësimit nuk do të punojë saktësisht."
+msgid ""
+"Authentication module %s/pam_%s.so is missing. Authentication process will "
+"not work correctly."
+msgstr ""
+"Mungon moduli %s/pam_%s.so për mirëfilltësim. Procesi i mirëfilltësimit nuk "
+"do të punojë saktësisht."
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3258
 msgid "Error downloading CA certificate"
 msgstr "Gabim gjatë shkarkimit të dëshmisë AD"
 
+#~ msgid "SMB authentication"
+#~ msgstr "mirëfilltësim SMB"
+
+#~ msgid "Workgroup:"
+#~ msgstr "Grup pune:"
+
+#~ msgid "Servers:"
+#~ msgstr "Shërbyesa:"
+
+#~ msgid "Shell:"
+#~ msgstr "Shell:"
+
+#~ msgid "Use SMB Authentication"
+#~ msgstr "Përdor Mirëfilltësim SMB"
+
+#~ msgid "Con_figure SMB..."
+#~ msgstr "_Formësoni SMB-në..."
+
+#~ msgid "Enable SMB S_upport"
+#~ msgstr "Aktivizoni Mb_ulim të SMB-së"
+
+#~ msgid ""
+#~ "SMB authentication verifies user passwords by attempting to connect to a "
+#~ "server which uses the SMB (system message block) protocol suite."
+#~ msgstr ""
+#~ "Mirëfilltësimi SMB verifikon fjalëkalime përdoruesi duke u përpjekur të "
+#~ "lidhet me një shërbyes i cili përdor suitën e protokollit SMB (system "
+#~ "message block)."

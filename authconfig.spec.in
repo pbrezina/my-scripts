@@ -95,7 +95,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Nov 27 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.5-1
 - improved cacertdir_rehash to be more robust
+- add fingerprint reader support (original patch by Bastien Nocera) (#469418)
+- remove pam_smb support from GUI and TUI
+- fix nscd pid file path (#471642)
 
 * Tue Aug  5 2008 Tomas Mraz <tmraz@redhat.com> - 5.4.4-1
 - do not call domainname when run with --nostart (#457697)
