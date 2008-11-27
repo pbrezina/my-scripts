@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-03-19 09:56+1000\n"
+"POT-Creation-Date: 2008-08-25 19:23+0000\n"
+"PO-Revision-Date: 2008-09-01 09:34+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,19 +29,19 @@ msgstr "用法: %s [选项]"
 
 #: ../authconfig.py:85
 msgid "enable shadowed passwords by default"
-msgstr "默认启用屏蔽口令"
+msgstr "默认启用屏蔽密码"
 
 #: ../authconfig.py:87
 msgid "disable shadowed passwords by default"
-msgstr "默认禁用屏蔽口令"
+msgstr "默认禁用屏蔽密码"
 
 #: ../authconfig.py:89
 msgid "enable MD5 passwords by default"
-msgstr "默认启用 MD5 口令"
+msgstr "默认启用 MD5 密码"
 
 #: ../authconfig.py:91
 msgid "disable MD5 passwords by default"
-msgstr "默认禁用 MD5 口令"
+msgstr "默认禁用 MD5 密码"
 
 #: ../authconfig.py:94
 msgid "hash/crypt algorithm for new passwords"
@@ -89,9 +89,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "默认禁用 LDAP 验证"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "默认的 LDAP 服务器"
+msgstr "默认的 LDAP 服务器主机名或者 URI"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -102,14 +101,12 @@ msgid "default LDAP base DN"
 msgstr "默认的基于 DN 的 LDAP "
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "LDAP 使用 TLS"
+msgstr "启用带 LDAP 的 TLS（RFC-2830）"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "LDAP 不使用 TLS"
+msgstr "禁用带 LDAP 的 TLS（RFC-2830）"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -300,14 +297,12 @@ msgid "disable wins for hostname resolution"
 msgstr "禁用 wins 进行主机名解析"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "启用 wins 进行主机名解析"
+msgstr "优先使用 dns 而不是 wins 或者 nis 进行主机名解析"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "启用 wins 进行主机名解析"
+msgstr "不优先使用 dns 进行主机名解析"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -473,7 +468,7 @@ msgstr "NIS"
 
 #: ../authconfig.py:480
 msgid "shadow password"
-msgstr "屏蔽口令"
+msgstr "屏蔽密码"
 
 #: ../authconfig.py:481
 msgid "SMB authentication"
@@ -517,11 +512,11 @@ msgstr "验证"
 
 #: ../authconfig.py:516
 msgid "Use MD5 Passwords"
-msgstr "使用 MD5 口令"
+msgstr "使用 MD5 密码"
 
 #: ../authconfig.py:519
 msgid "Use Shadow Passwords"
-msgstr "使用屏蔽口令"
+msgstr "使用屏蔽密码"
 
 #: ../authconfig.py:523
 msgid "Use LDAP Authentication"
@@ -645,7 +640,7 @@ msgstr "域管理员："
 
 #: ../authconfig.py:720
 msgid "Password:"
-msgstr "口令："
+msgstr "密码："
 
 #: ../authconfig.py:723
 msgid "Join Settings"
@@ -734,9 +729,8 @@ msgid "<b>Smart Card</b>"
 msgstr "<b>智能卡</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "A_uthentication"
-msgstr "验证"
+msgstr "认证（_u）"
 
 #: ../authconfig.glade.h:5
 msgid "Alert"
@@ -761,38 +755,36 @@ msgid "Certificate _URL"
 msgstr "证书 URL(_U)"
 
 #: ../authconfig.glade.h:11
-#, fuzzy
 msgid "Check access.conf _during account authorization"
-msgstr "（_C）在帐户验证过程中检查 access.conf"
+msgstr "在进行帐户认证的过程中（_d）查看 access.conf"
 
 #: ../authconfig.glade.h:12
 msgid "Con_figure SMB..."
-msgstr "配置 SMB (_f)..."
+msgstr "配置 SMB（_f）..."
 
 #: ../authconfig.glade.h:13
 msgid "Configure H_esiod..."
-msgstr "配置 Hesiod (_e)..."
+msgstr "配置 Hesiod（_e）..."
 
 #: ../authconfig.glade.h:14
 msgid "Configure K_erberos..."
-msgstr "配置 Kerberos (_e)..."
+msgstr "配置 Kerberos（_e）..."
 
 #: ../authconfig.glade.h:15
 msgid "Configure L_DAP..."
-msgstr "配置 LDAP (_D)..."
+msgstr "配置 LDAP（_D）..."
 
 #: ../authconfig.glade.h:16
 msgid "Configure NI_S..."
-msgstr "配置 NIS (_S)..."
+msgstr "配置 NIS（_S）..."
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Configure Sm_art Card..."
-msgstr "配置智能卡(_r)..."
+msgstr "配置智能卡（_a）..."
 
 #: ../authconfig.glade.h:18
 msgid "Configure Win_bind..."
-msgstr "配置 Winbind (_b)..."
+msgstr "配置 Winbind（_b）..."
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
@@ -800,7 +792,7 @@ msgstr "在首次登录时创建主目录（_h）"
 
 #: ../authconfig.glade.h:20
 msgid "Do_n't Save"
-msgstr "不保存(_n)"
+msgstr "不保存（_n）"
 
 #: ../authconfig.glade.h:21
 msgid "Domain"
@@ -808,7 +800,7 @@ msgstr "域"
 
 #: ../authconfig.glade.h:22
 msgid "Domain _Administrator"
-msgstr "域管理员(_A)"
+msgstr "域管理员（_A）"
 
 #: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
@@ -816,32 +808,31 @@ msgstr "下载 CA 证书"
 
 #: ../authconfig.glade.h:24
 msgid "Enable SMB S_upport"
-msgstr "启用 SMB 支持 (_u)"
+msgstr "启用 SMB 支持（_u）"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
-msgstr "启用 Hesiod 支持 (_H)"
+msgstr "启用 Hesiod 支持（_H）"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _Kerberos Support"
-msgstr "启用 Kerberos 支持 (_K)"
+msgstr "启用 Kerberos 支持（_K）"
 
 #: ../authconfig.glade.h:27
 msgid "Enable _LDAP Support"
-msgstr "启用 LDAP 支持 (_L)"
+msgstr "启用 LDAP 支持（_L)"
 
 #: ../authconfig.glade.h:28
 msgid "Enable _NIS Support"
-msgstr "启用 NIS 支持 (_N)"
+msgstr "启用 NIS 支持（_N）"
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Enable _Smart Card Support"
-msgstr "启用智能卡支持(_c)"
+msgstr "启用智能卡支持（_S）"
 
 #: ../authconfig.glade.h:30
 msgid "Enable _Winbind Support"
-msgstr "启用 Winbind 支持(_W)"
+msgstr "启用 Winbind 支持（_W）"
 
 #: ../authconfig.glade.h:31
 msgid ""
@@ -853,11 +844,11 @@ msgstr ""
 
 #: ../authconfig.glade.h:33
 msgid "Hesiod _LHS"
-msgstr "Hesiod LHS (_L)"
+msgstr "Hesiod LHS（_L）"
 
 #: ../authconfig.glade.h:34
 msgid "Hesiod _RHS"
-msgstr "Hesiod RHS (_R)"
+msgstr "Hesiod RHS（_R）"
 
 #: ../authconfig.glade.h:35
 msgid ""
@@ -869,7 +860,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "指向 LDAP 服务器的主机名或者 ldap:// 或者 ldaps:// URI。"
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -910,9 +901,8 @@ msgid ""
 msgstr "NIS 是网络信息服务。它在中小型网络系统中普遍使用。"
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Op_tions"
-msgstr "选项"
+msgstr "选项（_t）"
 
 #: ../authconfig.glade.h:49
 msgid ""
@@ -928,8 +918,7 @@ msgstr "恢复："
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
-msgstr ""
-"SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户口令。"
+msgstr "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户密码。"
 
 #: ../authconfig.glade.h:53
 msgid "Smart Card Settings"
@@ -967,24 +956,23 @@ msgstr "通过 DNS 查找领域的 KDC (_l)"
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
+msgstr "使用 RFC－2830 为 LDAP 定义的传输层安全性扩展。一定不要将其与 ldaps 服务器 URI 一同选择。"
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "使用 DNS 将主机解析到领域 (_D)"
+msgstr "使用 DNS 将主机解析到领域（_D）"
 
 #: ../authconfig.glade.h:61
 msgid "Use _Shadow Passwords"
-msgstr "使用屏蔽口令(_S)"
+msgstr "使用屏蔽密码（_S）"
 
 #: ../authconfig.glade.h:62
 msgid "Use _TLS to encrypt connections"
 msgstr "使用 TLS 来加密连接 (_T)"
 
 #: ../authconfig.glade.h:63
-#, fuzzy
 msgid "User Infor_mation"
-msgstr "用户信息"
+msgstr "用户信息（_m）"
 
 #: ../authconfig.glade.h:64
 msgid ""
@@ -1051,7 +1039,7 @@ msgstr "本地用户使用本地授权(_L)"
 
 #: ../authconfig.glade.h:78
 msgid "_Password"
-msgstr "口令(_P)"
+msgstr "密码(_P)"
 
 #: ../authconfig.glade.h:79
 msgid "_Password hashing algorithm"
@@ -1077,21 +1065,22 @@ msgstr "模板 Shell (_T)"
 msgid "_Workgroup"
 msgstr "工作组 (_W)"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "锁定"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "忽略"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr "缺少验证模块 %s/pam_%s.so。验证无法正常进行。"
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "下载 CA 证书错误"
+

@@ -1,25 +1,24 @@
 # translation of authconfig.tip.ru.po to
-# translation of ru.po to
 # Leonid Kanter <leon@geon.donetsk.ua>, 2003.
 # Leonid Kanter <leon@asplinux.ru>, 2003, 2004.
 # Andrew Martynov <andrewm@inventa.ru>, 2004, 2005, 2006, 2008.
 # Yuliya Poyarkova <ypoyarko@brisbane.redhat.com>, 2006.
 # Yulia Poyarkova <ypoyarko@redhat.com>, 2006.
 # Yulia Poyarkova <yulia.poyarkova@redhat.com>, 2008.
+# translation of ru.po to
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-06-25 22:02+0400\n"
-"Last-Translator: Andrew Martynov <andrewm@inventa.ru>\n"
-"Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
+"POT-Creation-Date: 2008-08-25 19:16+0000\n"
+"PO-Revision-Date: 2008-09-09 15:25+1000\n"
+"Last-Translator: Yulia Poyarkova <yulia.poyarkova@redhat.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KAider 0.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../authconfig.py:78
 #, python-format
@@ -88,9 +87,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "не использовать аутентификацию LDAP"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "LDAP сервер"
+msgstr "имя узла или URI стандартного LDAP-сервера"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -101,14 +99,12 @@ msgid "default LDAP base DN"
 msgstr "базовый DN сервера LDAP"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "включить использование TLS с LDAP"
+msgstr "включить использование TLS с LDAP (RFC-2830)"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "не использовать TLS с LDAP"
+msgstr "отключить использование TLS с LDAP (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -240,13 +236,11 @@ msgstr "<начальный-конечный>"
 
 #: ../authconfig.py:179
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
-"диапазон uid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон uid, которые winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:181
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
-"диапазон gid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон gid, которые winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:183
 msgid ""
@@ -312,14 +306,12 @@ msgid "disable wins for hostname resolution"
 msgstr "запретить wins для разрешения имён узлов"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "включить wins для разрешения имён узлов"
+msgstr "предпочитать использование dns, а не wins для разрешения имён узлов"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "включить wins для разрешения имён узлов"
+msgstr "не предпочитать использование dns вместо wins для разрешения имён узлов"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -389,8 +381,7 @@ msgstr "не изменять конфигурационные файлы, а т
 
 #: ../authconfig.py:253
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr ""
-"отображать \"Назад\" вместо \"Отмена\" в основном окне текстового интерфейса"
+msgstr "отображать \"Назад\" вместо \"Отмена\" в основном окне текстового интерфейса"
 
 #: ../authconfig.py:255
 msgid "do not display the deprecated text user interface"
@@ -734,13 +725,11 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
+msgstr " <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Настраивает методы проверки пользователей, которые пытаются войти в систему"
+msgstr "Настраивает методы проверки пользователей, которые пытаются войти в систему"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -889,7 +878,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "Имя узла или URI в формате ldap:// или ldaps:// для указания LDAP-сервера."
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -999,7 +988,7 @@ msgstr "Использовать DNS для _поиска KDC для облас�
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
+msgstr "Использовать расширенные возможности TLS (Transport Layer Security) для LDAP (согласно RFC-2830). Не выбирайте эту опцию, если используется URI LDAP-сервера."
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -1116,15 +1105,15 @@ msgstr "Оболочка _шаблона:"
 msgid "_Workgroup"
 msgstr "_Рабочая группа"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "Блокировка"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "Игнорировать"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1133,6 +1122,7 @@ msgstr ""
 "Отсутствует модуль аутентификации %s/pam_%s.so. Процесс аутентификации не "
 "будет функционировать корректно."
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "Ошибка при скачивании сертификата CA"
+

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-05-17 18:53+0200\n"
+"POT-Creation-Date: 2008-08-25 19:16+0000\n"
+"PO-Revision-Date: 2008-09-27 12:12+0200\n"
 "Last-Translator: Göran Uddeborg <goeran@uddeborg.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -82,9 +82,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "inaktivera LDAP för autentisering som standard"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "standardserver för LDAP"
+msgstr "standard LDAP servernamn eller URI"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -95,14 +94,12 @@ msgid "default LDAP base DN"
 msgstr "standardbasnamn för LDAP"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "aktivera TLS med LDAP"
+msgstr "aktivera användning av TLS med LDAP (RFC-2830)"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "inaktivera TLS med LDAP"
+msgstr "inaktivera användning av TLS med LDAP (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -303,14 +300,12 @@ msgid "disable wins for hostname resolution"
 msgstr "inaktivera wins för värdnamnsuppslagning"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "aktivera wins för värdnamnsuppslagning"
+msgstr "föredra dns framför wins eller nis för värdnamnsuppslagning"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "aktivera wins för värdnamnsuppslagning"
+msgstr "föredra inte dns framför wins eller nis för värdnamnsuppslagning"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -887,7 +882,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "Värdnamn eller ldap:// eller ldaps:// URI pekar på LDAP-servern."
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -998,7 +993,7 @@ msgstr "Använd DNS för att _lokalisera KDC:er för realmer"
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
+msgstr "Använd transportlagersäkerhetsutvidgningar (TLS) för LDAP som de definieras av RFC-2830.  Det får inte kryssas i tillsammans med ldaps-server-URI."
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -1110,18 +1105,18 @@ msgstr "_Mallskal"
 msgid "_Workgroup"
 msgstr "_Arbetsgrupp"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "Lås"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "Ignorera"
 
 # Buggrapporterat som
 # https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=177264
 #
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1130,6 +1125,6 @@ msgstr ""
 "Autentiseringsmodulen %s/pam_%s.so saknas. Autentiseringsprocessen kommer "
 "inte att fungera korrekt."
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "Fel vid hämtning av CA-certifikat"

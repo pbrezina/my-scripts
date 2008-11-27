@@ -1,29 +1,30 @@
-# translation of zh_TW.po to Chinese, Traditional
+# translation of authconfig.tip.po to Traditional Chinese
 # Translation of authconfig to Traditional Chinese
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+#
 # Ben Wu <hpwu@redhat.com>, 2002,2003, 2004.
 # Chester Cheng <ccheng@redhat.com>, 2004, 2005, 2006.
 # Waika Liu <wliu@redhat.com>, 2005.
 # Walter Cheuk <wwycheuk@netvigator.com>, 2005.
-#
+# Terry Chuang <tchuang@redhat.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: zh_TW\n"
+"Project-Id-Version: authconfig.tip\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2006-11-23 00:22+1000\n"
-"Last-Translator: Chester Cheng <ccheng@redhat.com>\n"
-"Language-Team: Chinese, Traditional <zh_TW@li.org>\n"
+"POT-Creation-Date: 2008-08-25 19:16+0000\n"
+"PO-Revision-Date: 2008-09-24 14:26+1000\n"
+"Last-Translator: Terry Chuang <tchuang@redhat.com>\n"
+"Language-Team: Traditional Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../authconfig.py:78
 #, python-format
 msgid "usage: %s [options]"
-msgstr "用法: %s [選項]"
+msgstr "用法：%s [選項]"
 
 #: ../authconfig.py:85
 msgid "enable shadowed passwords by default"
@@ -43,7 +44,7 @@ msgstr "預設停用 MD5 密碼"
 
 #: ../authconfig.py:94
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "新密碼的雜湊/加密演算法則"
 
 #: ../authconfig.py:97
 msgid "enable NIS for user information by default"
@@ -87,9 +88,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "預設停用 LDAP 認證"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "預設的 LDAP 伺服器"
+msgstr "預設的 LDAP 伺服器主機名稱或 URI"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -100,14 +100,12 @@ msgid "default LDAP base DN"
 msgstr "預設的 LDAP 基底 DN"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "LDAP 使用 TLS"
+msgstr "啟用 LDAP（RFC-2830）並使用 TLS"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "LDAP 不使用 TLS"
+msgstr "停用 LDAP（RFC-2830）的 TLS"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -279,11 +277,11 @@ msgstr "設定 winbind 以假設使用者名稱不含網域資訊的使用者非
 
 #: ../authconfig.py:195
 msgid "configures winbind to allow offline login"
-msgstr ""
+msgstr "配置 winbind 來允許離線登錄"
 
 #: ../authconfig.py:197
 msgid "configures winbind to prevent offline login"
-msgstr ""
+msgstr "配置 winbind 來避免離線登錄"
 
 #: ../authconfig.py:199
 msgid "join the winbind domain or ads realm now as this administrator"
@@ -298,14 +296,12 @@ msgid "disable wins for hostname resolution"
 msgstr "停用 wins 作主機名稱解析"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "啟用 wins 作主機名稱解析 "
+msgstr "使用 wins 或 nis 作為主機名稱解析"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "啟用 wins 作主機名稱解析 "
+msgstr "不使用 dns 而是使用 wins 或 nis 來作為主機名稱解析"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -341,11 +337,11 @@ msgstr "本機使用者也要通過遠端服務認證"
 
 #: ../authconfig.py:231
 msgid "check access.conf during account authorization"
-msgstr ""
+msgstr "在進行帳號驗證時檢查 access.conf"
 
 #: ../authconfig.py:233
 msgid "do not check access.conf during account authorization"
-msgstr ""
+msgstr "不在進行帳號驗證時檢查 access.conf"
 
 #: ../authconfig.py:236
 msgid "authenticate system accounts by network services"
@@ -357,11 +353,11 @@ msgstr "僅供本機檔案使用的認證系統帳號"
 
 #: ../authconfig.py:241
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "當用戶第一次登錄時為他們建立家目錄"
 
 #: ../authconfig.py:243
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "當用戶第一次登錄時不為他們建立家目錄"
 
 #: ../authconfig.py:246
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -373,7 +369,7 @@ msgstr "不要更新設定檔，只列出新的設定"
 
 #: ../authconfig.py:253
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr "在文字用戶介面的主對話窗視顯示『上一步』而非『取消』"
+msgstr "在文字用戶介面的主對話窗視顯示「上一步」而非「取消」"
 
 #: ../authconfig.py:255
 msgid "do not display the deprecated text user interface"
@@ -392,25 +388,22 @@ msgid "probe network for defaults and print them"
 msgstr "偵測預設的網路然後列出來"
 
 #: ../authconfig.py:266 ../authconfig.py:269
-#, fuzzy
 msgid "<name>"
-msgstr "<領域>"
+msgstr "<名稱>"
 
 #: ../authconfig.py:267
-#, fuzzy
 msgid "save a backup of all configuration files"
-msgstr "更新所有設定檔"
+msgstr "備份所有設定檔"
 
 #: ../authconfig.py:270
-#, fuzzy
 msgid "restore the backup of configuration files"
-msgstr "更新所有設定檔"
+msgstr "復原所有備份的設定檔"
 
 #: ../authconfig.py:273
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
-msgstr ""
+msgstr "在進行先前的配置變更前復原所有儲存的備份設定檔"
 
 #: ../authconfig.py:278
 msgid "unexpected argument"
@@ -422,11 +415,11 @@ msgstr "指定了不正確的 smart card 移除動作。"
 
 #: ../authconfig.py:401
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "指定了不明的密碼雜湊演算法則，使用了 sha256。"
 
 #: ../authconfig.py:430
 msgid "can only be run as root"
-msgstr "只能由系統管理者 (root) 執行"
+msgstr "只能由系統管理者（root）執行"
 
 #: ../authconfig.py:446
 msgid "dialog was cancelled"
@@ -440,7 +433,7 @@ msgid ""
 "Install the %s package, which provides this file."
 msgstr ""
 "找不到 %s 檔案，不過 %s 需要它才能順利執行。\n"
-"請安裝提供此檔案的 %s 套件。。"
+"請安裝提供此檔案的 %s 套件。"
 
 #: ../authconfig.py:471 ../authconfig.py:829
 msgid "Warning"
@@ -566,11 +559,11 @@ msgstr "認證設定"
 
 #: ../authconfig.py:684
 msgid "LHS:"
-msgstr "LHS:"
+msgstr "LHS："
 
 #: ../authconfig.py:685
 msgid "RHS:"
-msgstr "RHS:"
+msgstr "RHS："
 
 #: ../authconfig.py:686 ../authconfig.glade.h:32
 msgid "Hesiod Settings"
@@ -582,11 +575,11 @@ msgstr "使用 TLS"
 
 #: ../authconfig.py:691 ../authconfig.py:698
 msgid "Server:"
-msgstr "伺服器:"
+msgstr "伺服器："
 
 #: ../authconfig.py:692
 msgid "Base DN:"
-msgstr "基底 DN:"
+msgstr "基底 DN："
 
 #: ../authconfig.py:693 ../authconfig.glade.h:42
 msgid "LDAP Settings"
@@ -594,7 +587,7 @@ msgstr "LDAP 設定"
 
 #: ../authconfig.py:697 ../authconfig.py:759
 msgid "Domain:"
-msgstr "網域:"
+msgstr "網域："
 
 #: ../authconfig.py:699 ../authconfig.glade.h:44
 msgid "NIS Settings"
@@ -602,15 +595,15 @@ msgstr "NIS 設定"
 
 #: ../authconfig.py:703
 msgid "Realm:"
-msgstr "領域:"
+msgstr "領域："
 
 #: ../authconfig.py:704
 msgid "KDC:"
-msgstr "Kerberos 機碼配送中心(KDC):"
+msgstr "Kerberos 機碼配送中心（KDC）："
 
 #: ../authconfig.py:705
 msgid "Admin Server:"
-msgstr "管理伺服器:"
+msgstr "管理伺服器："
 
 #: ../authconfig.py:706
 msgid "Use DNS to resolve hosts to realms"
@@ -626,15 +619,15 @@ msgstr "Kerberos 設定"
 
 #: ../authconfig.py:712
 msgid "Workgroup:"
-msgstr "工作群組:"
+msgstr "工作群組："
 
 #: ../authconfig.py:713
 msgid "Servers:"
-msgstr "伺服器:"
+msgstr "伺服器："
 
 #: ../authconfig.py:714
 msgid "Shell:"
-msgstr "Shell:"
+msgstr "Shell："
 
 #: ../authconfig.py:715 ../authconfig.glade.h:51
 msgid "SMB Settings"
@@ -659,7 +652,7 @@ msgid ""
 "may fail.  Save changes?"
 msgstr ""
 "在繼續之前，必須儲存您所做的設定變更到磁碟中，假如不儲存的話，當您試著加入網"
-"域時將會失敗。 是否要儲存變更？"
+"域時將會失敗。是否要儲存變更？"
 
 #: ../authconfig.py:740
 msgid "Save Settings"
@@ -685,11 +678,11 @@ msgstr "網域控制器："
 
 #: ../authconfig.py:761
 msgid "ADS Realm:"
-msgstr "ADS 領域:"
+msgstr "ADS 領域："
 
 #: ../authconfig.py:762
 msgid "Template Shell:"
-msgstr "樣板 Shell:"
+msgstr "樣板 Shell："
 
 #: ../authconfig.py:764 ../authconfig.glade.h:68
 msgid "Winbind Settings"
@@ -708,7 +701,7 @@ msgid ""
 "Then press OK."
 msgstr ""
 "要使用 TLS 連上 LDAP 伺服器，您需要一個簽署您伺服器認證的 CA 認證。請將 PEM "
-"格式的認證複製到『%s』目錄。\n"
+"格式的認證複製到「%s」目錄。\n"
 "然後按下「確定」。"
 
 #. FIXME - version
@@ -735,9 +728,8 @@ msgid "<b>Smart Card</b>"
 msgstr "<b>智慧卡</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "A_uthentication"
-msgstr "認證"
+msgstr "認證（_u）"
 
 #: ../authconfig.glade.h:5
 msgid "Alert"
@@ -747,15 +739,15 @@ msgstr "警示"
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
-msgstr ""
+msgstr "所有透過先前驗證配置變更所修改的配置檔案都將會由備份復原。請問您要將變更復原嗎？"
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
-msgstr "緩衝貯存使用者資訊(_I)"
+msgstr "緩衝貯存使用者資訊（_I）"
 
 #: ../authconfig.glade.h:9
 msgid "Card Removal _Action"
-msgstr "移除卡片動作(_A)"
+msgstr "移除卡片動作（_A）"
 
 #: ../authconfig.glade.h:10
 msgid "Certificate _URL"
@@ -763,11 +755,11 @@ msgstr "證書 _URL"
 
 #: ../authconfig.glade.h:11
 msgid "Check access.conf _during account authorization"
-msgstr ""
+msgstr "在進行帳號驗證時檢查 access.conf（_d）"
 
 #: ../authconfig.glade.h:12
 msgid "Con_figure SMB..."
-msgstr "設定 SMB(_f)..."
+msgstr "設定 SMB（_f）..."
 
 #: ../authconfig.glade.h:13
 msgid "Configure H_esiod..."
@@ -786,9 +778,8 @@ msgid "Configure NI_S..."
 msgstr "設定 NI_S..."
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Configure Sm_art Card..."
-msgstr "設定 Sma_rt Card..."
+msgstr "設定 Sm_art Card..."
 
 #: ../authconfig.glade.h:18
 msgid "Configure Win_bind..."
@@ -796,11 +787,11 @@ msgstr "設定 Win_bind..."
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "第一次進行登錄時建立家目錄（_h）"
 
 #: ../authconfig.glade.h:20
 msgid "Do_n't Save"
-msgstr "不儲存(_N)"
+msgstr "不儲存（_N）"
 
 #: ../authconfig.glade.h:21
 msgid "Domain"
@@ -808,7 +799,7 @@ msgstr "網域"
 
 #: ../authconfig.glade.h:22
 msgid "Domain _Administrator"
-msgstr "網域管理員(_A)"
+msgstr "網域管理員（_A）"
 
 #: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
@@ -816,7 +807,7 @@ msgstr "下載 CA 證書"
 
 #: ../authconfig.glade.h:24
 msgid "Enable SMB S_upport"
-msgstr "啟用 SMB 支援(_U)"
+msgstr "啟用 SMB 支援（_U）"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -835,9 +826,8 @@ msgid "Enable _NIS Support"
 msgstr "啟用 _NIS 支援"
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Enable _Smart Card Support"
-msgstr "啟用 Smart _Card 支援"
+msgstr "啟用 _Smart Card 支援（_S）"
 
 #: ../authconfig.glade.h:30
 msgid "Enable _Winbind Support"
@@ -869,13 +859,13 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "指向了 LDAP 伺服器的主機名稱或是 ldap:// 或是 ldaps:// URI。"
 
 #: ../authconfig.glade.h:37
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
+msgstr "若某位用戶的家目錄不存在的話，這將會在他第一次登錄時被自動建立。"
 
 #: ../authconfig.glade.h:38
 msgid "Joining Winbind Domain"
@@ -893,15 +883,15 @@ msgstr "LDAP 查詢 _Base DN"
 
 #: ../authconfig.glade.h:43
 msgid "LDAP _Server"
-msgstr "LDAP 伺服器(_S)"
+msgstr "LDAP 伺服器（_S）"
 
 #: ../authconfig.glade.h:45
 msgid "NIS _Domain"
-msgstr "NIS 網域(_D)"
+msgstr "NIS 網域（_D）"
 
 #: ../authconfig.glade.h:46
 msgid "NIS _Server"
-msgstr "NIS 伺服器(_S)"
+msgstr "NIS 伺服器（_S）"
 
 #: ../authconfig.glade.h:47
 msgid ""
@@ -910,20 +900,18 @@ msgid ""
 msgstr "NIS 代表網路資訊服務，常用於小型至中型網路。"
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Op_tions"
-msgstr "選項"
+msgstr "選項（_t）"
 
 #: ../authconfig.glade.h:49
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
-msgstr ""
+msgstr "在進行先前的配置變更前復原備份的配置檔案"
 
 #: ../authconfig.glade.h:50
-#, fuzzy
 msgid "Revert"
-msgstr "伺服器:"
+msgstr "復原"
 
 #: ../authconfig.glade.h:52
 msgid ""
@@ -953,25 +941,21 @@ msgstr ""
 "法，已漸漸被用於小型至大型網路中。"
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"要使用 TLS 連上 LDAP 伺服器，您需要一個簽署您伺服器認證的 CA 認證。請將 PEM "
-"格式的認證複製到『%s』目錄。\n"
-"然後按下「確定」。"
+msgstr "若要驗證啟用了 TLS 通訊協定的 LDAP 伺服器，您將需要一個簽署您伺服器認證的 CA 憑證。請填入可下載 PEM 格式的 CA 憑證的 URL。"
 
 #: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "使用 DNS 來找出領域中的 KDC(_L)"
+msgstr "使用 DNS 來找出領域中的 KDC（_L）"
 
 #: ../authconfig.glade.h:59
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
+msgstr "請依照 RFC-2830 所指定地來使用 LDAP 的傳輸層安全性延伸。請勿將它勾選為 ldaps 伺服器 URI。"
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -986,15 +970,14 @@ msgid "Use _TLS to encrypt connections"
 msgstr "使用 _TLS 為連線加密"
 
 #: ../authconfig.glade.h:63
-#, fuzzy
 msgid "User Infor_mation"
-msgstr "使用者資訊"
+msgstr "使用者資訊（_m）"
 
 #: ../authconfig.glade.h:64
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "當啟用時，/etc/security/access.conf 將會被檢查來進行用戶存取上的驗證。"
 
 #: ../authconfig.glade.h:65
 msgid ""
@@ -1006,15 +989,15 @@ msgstr ""
 
 #: ../authconfig.glade.h:66
 msgid "Winbind ADS _Realm"
-msgstr "Winbind ADS 領域(_R)"
+msgstr "Winbind ADS 領域（_R）"
 
 #: ../authconfig.glade.h:67
 msgid "Winbind Domain Co_ntrollers"
-msgstr "Winbind 網域控制器(_N)"
+msgstr "Winbind 網域控制器（_N）"
 
 #: ../authconfig.glade.h:69
 msgid "Winbind _Domain"
-msgstr "Winbind 網域(_D)"
+msgstr "Winbind 網域（_D）"
 
 #: ../authconfig.glade.h:70
 msgid ""
@@ -1027,23 +1010,23 @@ msgstr ""
 
 #: ../authconfig.glade.h:71
 msgid "_Admin Servers"
-msgstr "管理伺服器(_A)"
+msgstr "管理伺服器（_A）"
 
 #: ../authconfig.glade.h:72
 msgid "_Allow offline login"
-msgstr ""
+msgstr "允許離線登錄（_A）"
 
 #: ../authconfig.glade.h:73
 msgid "_Authenticate system accounts by network services"
-msgstr "由網路服務進行認證系統帳號(_A)"
+msgstr "由網路服務進行認證系統帳號（_A）"
 
 #: ../authconfig.glade.h:74
 msgid "_Domain Controllers"
-msgstr "網域控制器(_D)"
+msgstr "網域控制器（_D）"
 
 #: ../authconfig.glade.h:75
 msgid "_Join Domain"
-msgstr "加入網域(_J)"
+msgstr "加入網域（_J）"
 
 #: ../authconfig.glade.h:76
 msgid "_KDCs"
@@ -1051,57 +1034,52 @@ msgstr "_KDCs"
 
 #: ../authconfig.glade.h:77
 msgid "_Local authorization is sufficient for local users"
-msgstr "對本機使用者使用本機認證已經足夠(_L)"
+msgstr "對本機使用者使用本機認證已經足夠（_L）"
 
 #: ../authconfig.glade.h:78
 msgid "_Password"
-msgstr "密碼(_P)"
+msgstr "密碼（_P）"
 
 #: ../authconfig.glade.h:79
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "密碼雜湊演算法則（_P）"
 
 #: ../authconfig.glade.h:80
 msgid "_Realm"
-msgstr "領域(_R)"
+msgstr "領域（_R）"
 
 #: ../authconfig.glade.h:81
 msgid "_Require smart card for login"
-msgstr "登入時需要智慧卡(_R)"
+msgstr "登入時需要智慧卡（_R）"
 
 #: ../authconfig.glade.h:82
 msgid "_Security Model"
-msgstr "安全模式(_S)"
+msgstr "安全模式（_S）"
 
 #: ../authconfig.glade.h:83
 msgid "_Template Shell"
-msgstr "樣板 Shell(_T)"
+msgstr "樣板 Shell（_T）"
 
 #: ../authconfig.glade.h:84
 msgid "_Workgroup"
-msgstr "工作群組(_W)"
+msgstr "工作群組（_W）"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "鎖定"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "忽略"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr "找不到認證模組 %s/pam_%s.so。認證過程無法正確地運作。"
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "下載 CA 證書時發生錯誤"
 
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "LDAP CA 證書檢查"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "使用 _MD5 密碼"

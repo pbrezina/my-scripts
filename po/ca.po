@@ -1,7 +1,7 @@
 # Catalan translation of authconfig by Softcatalà
-# Copyright (C) 2004, 2005, 2006 Free Software Foundation
+# Copyright (C) 2004-8 Free Software Foundation
 # This file is distributed under the same license as the authconfig package.
-# Xavier Conde Rueda <xavi.conde@gmail.com>, 2004, 2005, 2006.
+# Xavier Conde Rueda <xavi.conde@gmail.com>, 2004-8.
 #
 # This file is translated according to the glossary and style guide of
 #   Softcatalà. If you plan to modify this file, please read first the page
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2007-09-07 23:20+0100\n"
+"POT-Creation-Date: 2008-08-25 19:16+0000\n"
+"PO-Revision-Date: 2008-09-21 23:20+0100\n"
 "Last-Translator: Xavier Conde Rueda <xavi.conde@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "inhabilita les contrasenyes MD5 per defecte"
 
 #: ../authconfig.py:94
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "algorisme de dispersió/encriptació per a noves contrasenyes"
 
 #: ../authconfig.py:97
 msgid "enable NIS for user information by default"
@@ -94,9 +94,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "inhabilita l'LDAP per autenticar per defecte"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "servidor LDAP predeterminat"
+msgstr "servidor LDAP predeterminat o URI"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -107,14 +106,12 @@ msgid "default LDAP base DN"
 msgstr "DN base LDAP predeterminat"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "habilita l'ús de TLS amb LDAP"
+msgstr "habilita l'ús de TLS amb LDAP (RFC-2830)"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "inhabilita l'ús de TLS amb LDAP"
+msgstr "inhabilita l'ús de TLS amb LDAP (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -320,14 +317,12 @@ msgid "disable wins for hostname resolution"
 msgstr "inhabilita el Wins per a resoldre els noms d'ordinador"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "habilita el Wins per resoldre els noms de màquina"
+msgstr "prefereix els dns sobre wins o nis per a resoldre noms de màquina"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "habilita el Wins per resoldre els noms de màquina"
+msgstr "no prefereixis el dns sobre wins o nis per a resoldre noms de màquina"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -379,11 +374,11 @@ msgstr "autentica els comptes del sistema només a través de fitxers locals"
 
 #: ../authconfig.py:241
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "crea directoris d'inici per a usuaris quan entrin per primera vegada"
 
 #: ../authconfig.py:243
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "no creïs directoris d'inici per a usuaris quan entrin per primera vegada"
 
 #: ../authconfig.py:246
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -417,25 +412,24 @@ msgid "probe network for defaults and print them"
 msgstr "fes proves a la xarxa per als predeterminats, i escriu-los"
 
 #: ../authconfig.py:266 ../authconfig.py:269
-#, fuzzy
 msgid "<name>"
-msgstr "<regne>"
+msgstr "<nom>"
 
 #: ../authconfig.py:267
-#, fuzzy
 msgid "save a backup of all configuration files"
-msgstr "actualitza els fitxers de configuració"
+msgstr "desa una còpia de seguretat dels fitxers de configuració"
 
 #: ../authconfig.py:270
-#, fuzzy
 msgid "restore the backup of configuration files"
-msgstr "actualitza els fitxers de configuració"
+msgstr "restaura la còpia de seguretat dels fitxers de configuració"
 
 #: ../authconfig.py:273
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
+"restaura la còpia de seguretat dels fitxers de configuració abans "
+"que canviï la configuració anterior"
 
 #: ../authconfig.py:278
 msgid "unexpected argument"
@@ -448,7 +442,8 @@ msgstr ""
 
 #: ../authconfig.py:401
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
+msgstr "S'ha especificat un algorisme de dispersió de contrasenyes desconegut, "
+"es farà servir sha256."
 
 #: ../authconfig.py:430
 msgid "can only be run as root"
@@ -764,9 +759,8 @@ msgid "<b>Smart Card</b>"
 msgstr "<b>Targeta intel·ligent</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "A_uthentication"
-msgstr "Autenticació"
+msgstr "A_utenticació"
 
 #: ../authconfig.glade.h:5
 msgid "Alert"
@@ -777,6 +771,9 @@ msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
 msgstr ""
+"Tots els fitxers de configuració que van ser modificats pels canvis de "
+"configuració d'autenticació anteriors seran restaurats des de la còpia de "
+"seguretat. Voleu recuperar els canvis?" 
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -791,9 +788,8 @@ msgid "Certificate _URL"
 msgstr "_URL del certificat"
 
 #: ../authconfig.glade.h:11
-#, fuzzy
 msgid "Check access.conf _during account authorization"
-msgstr "_Comprova l'access.conf durant l'autorització del compte"
+msgstr "Comprova l'access.conf durant l'autorització del compte"
 
 #: ../authconfig.glade.h:12
 msgid "Con_figure SMB..."
@@ -816,9 +812,8 @@ msgid "Configure NI_S..."
 msgstr "Configura el NI_S..."
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Configure Sm_art Card..."
-msgstr "Configura la ta_rja..."
+msgstr "Configura l'Sm_art Card..."
 
 #: ../authconfig.glade.h:18
 msgid "Configure Win_bind..."
@@ -826,7 +821,7 @@ msgstr "Configura el Win_bind..."
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "Crea carpetes d'_inici en la primera entrada"
 
 #: ../authconfig.glade.h:20
 msgid "Do_n't Save"
@@ -865,9 +860,8 @@ msgid "Enable _NIS Support"
 msgstr "Habilita el _NIS"
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Enable _Smart Card Support"
-msgstr "Habilita la _targeta intel·ligent"
+msgstr "Habilita l'ús d'_Smart Card" 
 
 #: ../authconfig.glade.h:30
 msgid "Enable _Winbind Support"
@@ -900,13 +894,15 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "Nom de màquina o URI ldap:// o ldaps:// que apunta al servidor LDAP."
 
 #: ../authconfig.glade.h:37
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"Si el directori d'inici d'un usuari encara no existeix, es crearà automàticament "
+"la primera vegada que entri."
 
 #: ../authconfig.glade.h:38
 msgid "Joining Winbind Domain"
@@ -946,27 +942,27 @@ msgstr ""
 "petites a grans."
 
 #: ../authconfig.glade.h:48
-#, fuzzy
 msgid "Op_tions"
-msgstr "Opcions"
+msgstr "O_pcions"
 
 #: ../authconfig.glade.h:49
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr ""
+"Restaura els fitxers de configuració desats abans de canviar la configuració "
+"anterior"
 
 #: ../authconfig.glade.h:50
-#, fuzzy
 msgid "Revert"
-msgstr "Servidor:"
+msgstr "Restaura"
 
 #: ../authconfig.glade.h:52
 msgid ""
 "SMB authentication verifies user passwords by attempting to connect to a "
 "server which uses the SMB (system message block) protocol suite."
 msgstr ""
-"La autenticació SMB verifica les contrasenyes d'usuari tot connectant-se a "
+"L'autenticació SMB verifica les contrasenyes d'usuari tot connectant-se a "
 "un servidor que fa servir el conjunt de protocols SMB (bloc de missatges de "
 "sistema)."
 
@@ -994,16 +990,14 @@ msgstr ""
 "grans."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"Per poder connectar a un servidor LDAP fent servir TLS, cal que tingueu un "
-"certificat CA que hagi signat el certificat del vostre servidor. Copieu el "
-"certificat en format PEM al directori '%s'.\n"
-"Després premeu D'acord."
+"Per poder verificar un servidor LDAP fent servir TLS, cal que tingueu un "
+"certificat d'una EC que hagi signat el certificat del vostre servidor. "
+"Empleneu l'URL des d'on es baixarà el certificat de l'EC en format PEM."
 
 #: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
@@ -1025,18 +1019,19 @@ msgstr "U_sa contrasenyes ocultes"
 
 #: ../authconfig.glade.h:62
 msgid "Use _TLS to encrypt connections"
-msgstr "Usa el _TLS per encriptar connexions"
+msgstr "Usa _TLS per a xifrar connexions"
 
 #: ../authconfig.glade.h:63
-#, fuzzy
 msgid "User Infor_mation"
-msgstr "Informació d'usuari"
+msgstr "Infor_mació d'usuari"
 
 #: ../authconfig.glade.h:64
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
+"Quan s'habiliti, es consultarà /etc/security/access.conf quant a l'autorització "
+"d'accés dels usuaris."
 
 #: ../authconfig.glade.h:65
 msgid ""
@@ -1074,9 +1069,8 @@ msgid "_Admin Servers"
 msgstr "Servidors d'_administració"
 
 #: ../authconfig.glade.h:72
-#, fuzzy
 msgid "_Allow offline login"
-msgstr "Permet l'entrada fora de línia"
+msgstr "_Permet l'entrada fora de línia"
 
 #: ../authconfig.glade.h:73
 msgid "_Authenticate system accounts by network services"
@@ -1104,7 +1098,7 @@ msgstr "_Contrasenya"
 
 #: ../authconfig.glade.h:79
 msgid "_Password hashing algorithm"
-msgstr ""
+msgstr "Algorisme de _dispersió de contrasenya"
 
 #: ../authconfig.glade.h:80
 msgid "_Realm"
@@ -1126,15 +1120,15 @@ msgstr "Plan_tilla de l'intèrpret d'ordres"
 msgid "_Workgroup"
 msgstr "Gr_up de treball"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "Bloqueig"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "Ignora"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1143,7 +1137,7 @@ msgstr ""
 "Manca el mòdul d'autenticació %s/pam_%s.so. El procés d'autenticació no "
 "funcionarà correctament."
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr ""
 "S'ha produït un error en descarregar el certificat de l'entitat de "

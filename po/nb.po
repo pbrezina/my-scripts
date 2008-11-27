@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig 4.0.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-21 10:45+0200\n"
-"PO-Revision-Date: 2008-07-10 14:23+0200\n"
+"POT-Creation-Date: 2008-08-25 19:16+0000\n"
+"PO-Revision-Date: 2008-09-10 12:26+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -77,9 +77,8 @@ msgid "disable LDAP for authentication by default"
 msgstr "ikke bruk LDAP som standard for autentisering"
 
 #: ../authconfig.py:114
-#, fuzzy
 msgid "default LDAP server hostname or URI"
-msgstr "forvalgt LDAP-tjener"
+msgstr "vertsnavn eller URI til forvalgt LDAP-tjener"
 
 #: ../authconfig.py:115
 msgid "<dn>"
@@ -90,14 +89,12 @@ msgid "default LDAP base DN"
 msgstr "forvalgt LDAP basis DN"
 
 #: ../authconfig.py:118
-#, fuzzy
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "bruk TLS med LDAP"
+msgstr "slå på bruk av TLS med LDAP (RFC-2830)"
 
 #: ../authconfig.py:120
-#, fuzzy
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "ikke bruk TLS med LDAP"
+msgstr "slå av bruk av TLS med LDAP (RFC-2830)"
 
 #: ../authconfig.py:121
 msgid "<URL>"
@@ -293,14 +290,12 @@ msgid "disable wins for hostname resolution"
 msgstr "deaktiver wins for oppslag av vertsnavn"
 
 #: ../authconfig.py:207
-#, fuzzy
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "aktiver wins for oppslag av vertsnavn"
+msgstr "foretrekk dns før wins eller nis for oppslag av vertsnavn"
 
 #: ../authconfig.py:209
-#, fuzzy
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "aktiver wins for oppslag av vertsnavn"
+msgstr "ikke foretrekk dns før wins eller nis for oppslag av vertsnavn"
 
 #: ../authconfig.py:212
 msgid "enable hesiod for user information by default"
@@ -746,7 +741,7 @@ msgstr "Varsel"
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
-msgstr ""
+msgstr "Alle konfigurasjonsfiler som er endret av tidligere endring i konfigurasjon av autentisering vil gjenopprettes fra sikkerhetskopi. Forkast endringene?"
 
 #: ../authconfig.glade.h:8
 msgid "Cache User _Information"
@@ -866,7 +861,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:36
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "Vertsnavn eller ldap:// eller ldaps:// URI som peker til LDAP-tjeneren."
 
 #: ../authconfig.glade.h:37
 msgid ""
@@ -976,7 +971,7 @@ msgstr "Bruk DNS for å _lokalisere KDCer for områder"
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
+msgstr "Bruk Transport Layer Security utvidelsen for LDAP som definert av RFC-2830. Denne må ikke krysses av sammen med ldaps URI til tjener."
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -998,7 +993,7 @@ msgstr "Infor_masjon om bruker"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
+msgstr "Hvis aktivert vil /etc/security/access.conf sjekkes for autorisasjon av brukers aksess."
 
 #: ../authconfig.glade.h:65
 msgid ""
@@ -1086,15 +1081,15 @@ msgstr "Skall for _mal"
 msgid "_Workgroup"
 msgstr "_Arbeidsgruppe:"
 
-#: ../authinfo.py:667 ../authinfo.py:1175 ../authinfo.py:2409
+#: ../authinfo.py:669 ../authinfo.py:1177 ../authinfo.py:2411
 msgid "Lock"
 msgstr "Lås"
 
-#: ../authinfo.py:667 ../authinfo.py:1177
+#: ../authinfo.py:669 ../authinfo.py:1179
 msgid "Ignore"
 msgstr "Ignorer"
 
-#: ../authinfo.py:2757
+#: ../authinfo.py:2759
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
@@ -1103,6 +1098,6 @@ msgstr ""
 "Autentiseringsmodul %s/pam_%s.so mangler. Autentiseringsprosessen vil ikke "
 "fungere."
 
-#: ../authinfo.py:3238
+#: ../authinfo.py:3240
 msgid "Error downloading CA certificate"
 msgstr "Feil ved nedlasting av CA-sertifikat"
