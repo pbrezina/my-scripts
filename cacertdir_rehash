@@ -2,15 +2,34 @@
 # create hash links on all files in the specified directory
 #
 
-if [ ! -d $1 ] || ! cd $1 ; then
+if [ -z "$1" -o ! -d "$1" ] ; then
     echo "'$1' must be a directory." >&2
     exit 1
 fi
 
+if ! cd $1 ; then
+    echo "Cannot change cwd to $1" >&2
+    exit 2
+fi
 
-for i in *
-do
-	if [ ! -h $i -a -r $i ] ; then
-    		hash=`openssl x509 -hash -noout -in $i` && ln -sf $i $hash.0
+# remove old links
+for i in ????????.* ; do
+	if  [ -h $i ] ; then
+		rm -f $i
+	fi
+done
+
+# create new links
+for i in * ; do
+	if [ -r $i -a ! -d $i ] ; then
+    		hash=$(openssl x509 -hash -noout -in $i 2>/dev/null)
+    		if [ -z "$hash" ] ; then
+    		    continue
+    		fi
+    		suffix=0
+    		while [ -e $hash.$suffix ] ; do
+    		    suffix=$((suffix + 1))
+    		done
+    		ln -sf $i $hash.$suffix
 	fi
 done
