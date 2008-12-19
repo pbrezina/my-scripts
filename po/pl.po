@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-27 10:36+0100\n"
-"PO-Revision-Date: 2008-07-24 20:31+0200\n"
+"PO-Revision-Date: 2008-12-20 00:33+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "domyślnie wyłącz hasła MD5"
 
 #: ../authconfig.py:95
 msgid "hash/crypt algorithm for new passwords"
-msgstr "algorytm hashowania/kodowania dla nowych haseł"
+msgstr "algorytm hashowania/szyfrowania dla nowych haseł"
 
 #: ../authconfig.py:98
 msgid "enable NIS for user information by default"
@@ -133,21 +133,19 @@ msgstr "<moduł>"
 
 #: ../authconfig.py:134
 msgid "default smart card module to use"
-msgstr "domyślny użyty moduł smart card"
+msgstr "domyślnie użyty moduł smart card"
 
 #: ../authconfig.py:137
 msgid "action to be taken on smart card removal"
-msgstr "operacja podejmowana podczas usuwania smart card"
+msgstr "działanie podejmowane podczas usuwania smart card"
 
 #: ../authconfig.py:140
-#, fuzzy
 msgid "enable authentication with fingerprint readers by default"
-msgstr "domyślnie włącz uwierzytelnianie smart card"
+msgstr "domyślnie włącz uwierzytelnianie za pomocą czytnika linii papilarnych"
 
 #: ../authconfig.py:142
-#, fuzzy
 msgid "disable authentication with fingerprint readers by default"
-msgstr "domyślnie wyłącz uwierzytelnianie smart card"
+msgstr "domyślnie wyłącz uwierzytelnianie za pomocą czytnika linii papilarnych"
 
 #: ../authconfig.py:145
 msgid "enable kerberos authentication by default"
@@ -203,7 +201,7 @@ msgstr "<serwery>"
 
 #: ../authconfig.py:168
 msgid "names of servers to authenticate against"
-msgstr "nazwy serwerów, które mają uwierzytelniać w przypadku"
+msgstr "nazwy serwerów do uwierzytelniania"
 
 #: ../authconfig.py:169
 msgid "<workgroup>"
@@ -231,11 +229,11 @@ msgstr "domyślnie wyłącz uwierzytelnianie przez winbind"
 
 #: ../authconfig.py:181
 msgid "security mode to use for samba and winbind"
-msgstr "model bezpieczeństwa do użycia przez Sambę i winbind"
+msgstr "model bezpieczeństwa używany przez Sambę i winbind"
 
 #: ../authconfig.py:183
 msgid "default realm for samba and winbind when security=ads"
-msgstr "domyślny obszar dla Samby i winbind, gdy model bezpieczeństwa=ads"
+msgstr "domyślny obszar dla Samby i winbind, kiedy bezpieczeństwo=ads"
 
 #: ../authconfig.py:184 ../authconfig.py:186
 msgid "<lowest-highest>"
@@ -295,7 +293,7 @@ msgstr "konfiguruje winbind tak, aby zabraniał logowania offline"
 
 #: ../authconfig.py:205
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr "dołącz do domeny winbind lub obszaru ADS jako administrator"
+msgstr "dołącz do domeny winbind lub obszaru ADS jako ten administrator"
 
 #: ../authconfig.py:208
 msgid "enable wins for hostname resolution"
@@ -400,7 +398,7 @@ msgstr "zaktualizuj wszystkie pliki konfiguracyjne"
 
 #: ../authconfig.py:270
 msgid "probe network for defaults and print them"
-msgstr "skanuj sieć w poszukiwaniu parametrów domyślnych i wypisz je"
+msgstr "przeskanuj sieć w poszukiwaniu parametrów domyślnych i wyświetl je"
 
 #: ../authconfig.py:272 ../authconfig.py:275
 msgid "<name>"
@@ -424,15 +422,15 @@ msgstr ""
 
 #: ../authconfig.py:284
 msgid "unexpected argument"
-msgstr "nieoczekiwany argument"
+msgstr "nieoczekiwany parametr"
 
 #: ../authconfig.py:400
 msgid "Bad smart card removal action specified."
-msgstr "Określono błędną akcję usunięcia smart card."
+msgstr "Podano błędną akcję usunięcia smart card."
 
 #: ../authconfig.py:409
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr "Określono nieznany algorytm hashowania hasła, używanie SHA256."
+msgstr "Podano nieznany algorytm hashowania hasła, używanie SHA256."
 
 #: ../authconfig.py:438
 msgid "can only be run as root"
@@ -468,9 +466,8 @@ msgid "caching"
 msgstr "zapisywanie w pamięci podręcznej"
 
 #: ../authconfig.py:484
-#, fuzzy
 msgid "Fingerprint reader"
-msgstr "Włącz obsługę _winbind"
+msgstr "Czytnik linii papilarnych"
 
 #: ../authconfig.py:485
 msgid "Kerberos"
@@ -546,7 +543,7 @@ msgstr "Użyj Kerberosa"
 
 #: ../authconfig.py:539
 msgid "Use Fingerprint reader"
-msgstr ""
+msgstr "Użyj czytnika linii papilarnych"
 
 #: ../authconfig.py:544
 msgid "Use Winbind Authentication"
@@ -596,7 +593,7 @@ msgstr "Serwer:"
 
 #: ../authconfig.py:701
 msgid "Base DN:"
-msgstr "Bazowy DN:"
+msgstr "Podstawowy DN:"
 
 #: ../authconfig.py:702 ../authconfig.glade.h:43
 msgid "LDAP Settings"
@@ -624,7 +621,7 @@ msgstr "Serwer administracyjny:"
 
 #: ../authconfig.py:715
 msgid "Use DNS to resolve hosts to realms"
-msgstr "Użyj DNS, aby rozwikływać nazwy komputerów w obszarach"
+msgstr "Użyj DNS, aby rozwiązywać nazwy komputerów w obszarach"
 
 #: ../authconfig.py:716
 msgid "Use DNS to locate KDCs for realms"
@@ -653,8 +650,8 @@ msgid ""
 "may fail.  Save changes?"
 msgstr ""
 "Niektóre ze zmian konfiguracji powinny zostać zapisane na dysku przed "
-"kontynuacją. Jeżeli nie chcesz ich zapisywać, to próba dołączenia do domeny "
-"może się nie powieść. Zapisać zmiany?"
+"kontynuowaniem. Jeżeli nie chcesz ich zapisywać, to próba dołączenia do "
+"domeny może się nie powieść. Zapisać zmiany?"
 
 #: ../authconfig.py:742
 msgid "Save Settings"
@@ -684,7 +681,7 @@ msgstr "Obszar ADS:"
 
 #: ../authconfig.py:764
 msgid "Template Shell:"
-msgstr "Szablonowa powłoka:"
+msgstr "Szablon powłoki:"
 
 #: ../authconfig.py:766 ../authconfig.glade.h:68
 msgid "Winbind Settings"
@@ -727,7 +724,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Fingerprint Reader</b>"
-msgstr ""
+msgstr "<b>Czytnik linii papilarnych</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Options</b>"
@@ -760,7 +757,7 @@ msgstr "Zapisuj _informacje o użytkowniku w pamięci podręcznej"
 
 #: ../authconfig.glade.h:10
 msgid "Card Removal _Action"
-msgstr "Oper_acja usuwania karty"
+msgstr "Dzi_ałanie usuwania karty"
 
 #: ../authconfig.glade.h:11
 msgid "Certificate _URL"
@@ -815,9 +812,8 @@ msgid "Download CA Certificate"
 msgstr "Pobierz certyfikat CA"
 
 #: ../authconfig.glade.h:24
-#, fuzzy
 msgid "Enable _Fingerprint Reader Support"
-msgstr "Włącz obsługę _winbind"
+msgstr "Włącz obsługę czytnika _linii papilarnych"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -844,13 +840,12 @@ msgid "Enable _Winbind Support"
 msgstr "Włącz obsługę _winbind"
 
 #: ../authconfig.glade.h:31
-#, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
 msgstr ""
-"Uwierzytelnianie smart card pozwala na zalogowanie się używając certyfikatu "
-"i klucza związanego ze smart card."
+"Uwierzytelnianie za pomocą linii papilarnych pozwala na zalogowanie się "
+"przez przeskanowanie linii papilarnych."
 
 #: ../authconfig.glade.h:32
 msgid ""
@@ -880,7 +875,7 @@ msgstr ""
 #: ../authconfig.glade.h:37
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr ""
-"Nazwa komputera lub URI ldap:// albo ldaps:// wskazujące na serwer LDAP."
+"Nazwa komputera lub URI ldap:// albo ldaps:// wskazujące serwer LDAP."
 
 #: ../authconfig.glade.h:38
 msgid ""
@@ -904,7 +899,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:42
 msgid "LDAP Search _Base DN"
-msgstr "Przeszukiwanie LDAP z _bazowym DN"
+msgstr "Przeszukiwanie LDAP z po_dstawowym DN"
 
 #: ../authconfig.glade.h:44
 msgid "LDAP _Server"
@@ -923,7 +918,7 @@ msgid ""
 "NIS is the Network Information Service.  It is commonly used on small to "
 "medium networks."
 msgstr ""
-"NIS to Network Information Service. Zazwyczaj jest stosowany w małych i "
+"NIS to Sieciowa usługa informacji. Zazwyczaj jest stosowany w małych i "
 "średnich sieciach."
 
 #: ../authconfig.glade.h:49
@@ -964,7 +959,7 @@ msgid ""
 "directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
 "increasingly being used in small to large networks."
 msgstr ""
-"Lightweight Directory Access Protocol jest standardem przeszukiwania "
+"Lekki protokół dostępu do katalogu jest standardem przeszukiwania "
 "katalogu przechowującego dane w strukturze hierarchicznej. LDAP jest coraz "
 "częściej używany w małych i dużych sieciach."
 
@@ -992,7 +987,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
-msgstr "Użyj _DNS, aby rozwikływać nazwy komputerów w obszarach"
+msgstr "Użyj _DNS, aby rozwiązywać nazwy komputerów w obszarach"
 
 #: ../authconfig.glade.h:61
 msgid "Use _Shadow Passwords"
@@ -1094,7 +1089,7 @@ msgstr "Model bezpieczeń_stwa"
 
 #: ../authconfig.glade.h:83
 msgid "_Template Shell"
-msgstr "_Szablonowa powłoka"
+msgstr "_Szablon powłoki"
 
 #: ../authconfig.glade.h:84
 msgid "_Workgroup"
@@ -1114,37 +1109,9 @@ msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process will "
 "not work correctly."
 msgstr ""
-"Brak modułu uwierzytelniania %s/pam_%s.so. Proces uwierzytelniania nie\n"
-"będzie poprawny."
+"Brak modułu uwierzytelniania %s/pam_%s.so. Proces uwierzytelniania nie "
+"będzie poprawnie działał."
 
 #: ../authinfo.py:3258
 msgid "Error downloading CA certificate"
 msgstr "Błąd podczas pobierania certyfikatu CA"
-
-#~ msgid "SMB authentication"
-#~ msgstr "Uwierzytelnianie SMB"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Grupa robocza:"
-
-#~ msgid "Servers:"
-#~ msgstr "Serwery:"
-
-#~ msgid "Shell:"
-#~ msgstr "Powłoka:"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "Użyj uwierzytelniania SMB"
-
-#~ msgid "Con_figure SMB..."
-#~ msgstr "Sko_nfiguruj SMB..."
-
-#~ msgid "Enable SMB S_upport"
-#~ msgstr "Włącz obsł_ugę SMB"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB weryfikuje hasła użytkowników próbując podłączać się do serwera, "
-#~ "który używa SMB (System Message Block)."
