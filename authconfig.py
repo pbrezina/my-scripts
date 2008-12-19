@@ -481,7 +481,7 @@ class AuthconfigTUI(Authconfig):
 			
 	def getMainChoices(self):
 		warnCache = [authinfo.PATH_NSCD, _("caching"), "nscd", None]
-		warnFprintd = [authinfo.PATH_PAM_FPRINTF, _("Fingerprint reader"), "pam_fprintd", None]
+		warnFprintd = [authinfo.PATH_PAM_FPRINTD, _("Fingerprint reader"), "pam_fprintd", None]
 		warnKerberos = [authinfo.PATH_PAM_KRB5, _("Kerberos"), "pam_krb5", None]
 		warnLDAPAuth = [authinfo.PATH_PAM_LDAP, _("LDAP authentication"), "nss_ldap", None]
 		warnLDAP = [authinfo.PATH_LIBNSS_LDAP, _("LDAP"), "nss_ldap", None]
