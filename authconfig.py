@@ -49,12 +49,13 @@ class UnihelpOptionParser(OptionParser):
 
 class Authconfig:
 	def __init__(self):
-		nis_avail = False
-		kerberos_avail = False
-		ldap_avail = False
-		smb_avail = False
-		cache_avail = False
-		fprintd_avail = False
+		self.nis_avail = False
+		self.kerberos_avail = False
+		self.ldap_avail = False
+		self.smb_avail = False
+		self.cache_avail = False
+		self.fprintd_avail = False
+		self.retval = 0
 
 	def module(self):
 		return "authconfig"
@@ -408,6 +409,7 @@ class Authconfig:
 		elif self.options.passalgo not in authinfo.password_algorithms:
 			self.printError(_("Unknown password hashing algorithm specified, using sha256."))
 			self.info.passwordAlgorithm = "sha256"
+			self.retval = 3
 
 	def doUI(self):
 		return True
@@ -419,12 +421,15 @@ class Authconfig:
 	def writeAuthInfo(self):
 		self.info.testLDAPCACerts()
 		if self.info.ldapCacertURL:
-			self.info.downloadLDAPCACert()
+			if not self.info.downloadLDAPCACert():
+				self.retval = 4
 		self.info.rehashLDAPCACerts()
 		if self.options.updateall:
-			self.info.write()
+			if not self.info.write():
+				self.retval = 5
 		else:
-			self.info.writeChanged(self.pristineinfo)
+			if not self.info.writeChanged(self.pristineinfo):
+				self.retval = 6
 		# FIXME: what about printing critical errors writing individual configs?
 		self.joinDomain()
 		self.info.post(self.options.nostart)
@@ -456,7 +461,8 @@ class Authconfig:
 		if self.options.test:
 			self.info.printInfo()
 		else:
-			self.writeAuthInfo()				
+			self.writeAuthInfo()
+		return self.retval
 
 class AuthconfigTUI(Authconfig):
 	def module(self):
@@ -852,5 +858,4 @@ if __name__ == '__main__':
 		module = AuthconfigTUI()
 	else:
 		module = Authconfig()
-	module.run()
-	sys.exit(0)
+	sys.exit(module.run())
