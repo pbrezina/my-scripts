@@ -3,18 +3,18 @@
 # translation of zh_CN.po to
 # translation of zh_CN.po to
 # translation of zh_CN.po to
-# Copyright (C) 2003,2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2003,2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 #
 # Sarah Wang <sarahs@redhat.com>, 2003,2004, 2005.
 # Leah Liu <weliu@redhat.com>, 2005, 2006.
 # Xi Huang <xhuang@redhat.com>, 2006.
-# Leah Liu <lliu@redhat.com>, 2007, 2008.
+# Leah Liu <lliu@redhat.com>, 2007, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-27 10:36+0100\n"
-"PO-Revision-Date: 2008-09-01 09:34+1000\n"
+"PO-Revision-Date: 2009-03-30 15:08+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -145,14 +145,12 @@ msgid "action to be taken on smart card removal"
 msgstr "删除智能卡时进行的操作"
 
 #: ../authconfig.py:140
-#, fuzzy
 msgid "enable authentication with fingerprint readers by default"
-msgstr "默认状态为启用智能卡验证"
+msgstr "默认启用指纹读取器验证"
 
 #: ../authconfig.py:142
-#, fuzzy
 msgid "disable authentication with fingerprint readers by default"
-msgstr "默认禁用智能卡验证"
+msgstr "默认禁用指纹读取器验证"
 
 #: ../authconfig.py:145
 msgid "enable kerberos authentication by default"
@@ -461,9 +459,8 @@ msgid "caching"
 msgstr "缓存"
 
 #: ../authconfig.py:484
-#, fuzzy
 msgid "Fingerprint reader"
-msgstr "启用 Winbind 支持（_W）"
+msgstr "指纹读取器"
 
 #: ../authconfig.py:485
 msgid "Kerberos"
@@ -539,7 +536,7 @@ msgstr "使用 Kerberos"
 
 #: ../authconfig.py:539
 msgid "Use Fingerprint reader"
-msgstr ""
+msgstr "使用指纹读取器"
 
 #: ../authconfig.py:544
 msgid "Use Winbind Authentication"
@@ -715,7 +712,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Fingerprint Reader</b>"
-msgstr ""
+msgstr "<b>指纹读取器</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Options</b>"
@@ -800,9 +797,8 @@ msgid "Download CA Certificate"
 msgstr "下载 CA 证书"
 
 #: ../authconfig.glade.h:24
-#, fuzzy
 msgid "Enable _Fingerprint Reader Support"
-msgstr "启用 Winbind 支持（_W）"
+msgstr "启用指纹读取器支持（_F）"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -829,11 +825,10 @@ msgid "Enable _Winbind Support"
 msgstr "启用 Winbind 支持（_W）"
 
 #: ../authconfig.glade.h:31
-#, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
-msgstr "智能卡认证允许您使用一个证书和一个与智能卡相连的密钥进行登录。"
+msgstr "指纹验证允许您通过使用指纹读取器扫描指纹登录。"
 
 #: ../authconfig.glade.h:32
 msgid ""
@@ -1085,29 +1080,3 @@ msgstr "缺少验证模块 %s/pam_%s.so。验证无法正常进行。"
 msgid "Error downloading CA certificate"
 msgstr "下载 CA 证书错误"
 
-#~ msgid "SMB authentication"
-#~ msgstr "SMB 验证"
-
-#~ msgid "Workgroup:"
-#~ msgstr "工作组："
-
-#~ msgid "Servers:"
-#~ msgstr "服务器："
-
-#~ msgid "Shell:"
-#~ msgstr "Shell:"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "使用 SMB 验证"
-
-#~ msgid "Con_figure SMB..."
-#~ msgstr "配置 SMB（_f）..."
-
-#~ msgid "Enable SMB S_upport"
-#~ msgstr "启用 SMB 支持（_u）"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB 验证是通过与使用 SMB（系统消息块）协议套件的服务器连接来校验用户密码。"
