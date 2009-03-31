@@ -8,15 +8,15 @@
 # Kiyoto James Hashida <khashida@redhat.com>, 2006.
 # Noriko Mizumoto <noriko@redhat.com>, 2006, 2008.
 # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2007.
-# Kiyoto Hashida <khashida@redhat.com>, 2008.
+# Kiyoto Hashida <khashida@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-27 10:36+0100\n"
-"PO-Revision-Date: 2008-09-09 18:55+1000\n"
-"Last-Translator: Noriko Mizumoto <noriko@redhat.com>\n"
-"Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
+"PO-Revision-Date: 2009-03-31 13:59+1000\n"
+"Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
+"Language-Team: Japanese <jp@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -170,15 +170,13 @@ msgstr "スマートカードの取り出し時に行う動作"
 
 # ../authconfig.c:745
 #: ../authconfig.py:140
-#, fuzzy
 msgid "enable authentication with fingerprint readers by default"
-msgstr "スマートカードによる認証をデフォルトで有効にする"
+msgstr "指紋読み取りによる認証をデフォルトで有効にする"
 
 # ../authconfig.c:738
 #: ../authconfig.py:142
-#, fuzzy
 msgid "disable authentication with fingerprint readers by default"
-msgstr "スマートカードによる認証をデフォルトで無効にする"
+msgstr "指紋読み取りによる認証をデフォルトで無効にする"
 
 # ../authconfig.c:745
 #: ../authconfig.py:145
@@ -281,8 +279,7 @@ msgstr "samba と winbind 用に使用するセキュリティモード"
 
 #: ../authconfig.py:183
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
-"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
+msgstr "セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
 
 #: ../authconfig.py:184 ../authconfig.py:186
 msgid "<lowest-highest>"
@@ -482,8 +479,7 @@ msgstr "不正なスマートカード取り出し動作が指定されました
 
 #: ../authconfig.py:409
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
-"不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
+msgstr "不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
 
 # ../authconfig.c:803
 #: ../authconfig.py:438
@@ -524,9 +520,8 @@ msgid "caching"
 msgstr "キャッシュ化"
 
 #: ../authconfig.py:484
-#, fuzzy
 msgid "Fingerprint reader"
-msgstr "Winbind サポートを有効にする(_W)"
+msgstr "指紋読み取り"
 
 # ../authconfig.c:500
 #: ../authconfig.py:485
@@ -616,7 +611,7 @@ msgstr "Kerberos 5 を使用"
 
 #: ../authconfig.py:539
 msgid "Use Fingerprint reader"
-msgstr ""
+msgstr "指紋読み取りを使用"
 
 # ../authconfig.c:462
 #: ../authconfig.py:544
@@ -812,7 +807,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Fingerprint Reader</b>"
-msgstr ""
+msgstr "<b>指紋読み取り</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Options</b>"
@@ -901,9 +896,8 @@ msgid "Download CA Certificate"
 msgstr "CA 証明書をダウンロードする"
 
 #: ../authconfig.glade.h:24
-#, fuzzy
 msgid "Enable _Fingerprint Reader Support"
-msgstr "Winbind サポートを有効にする(_W)"
+msgstr "指紋読み取りサポートを有効にする(_F)"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -931,13 +925,12 @@ msgid "Enable _Winbind Support"
 msgstr "Winbind サポートを有効にする(_W)"
 
 #: ../authconfig.glade.h:31
-#, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
 msgstr ""
-"スマートカード認証を使用すると、スマートカードと関連付けられた証明証及びキー"
-"を使用したログインが可能になります。"
+"指紋読み取り認証を使用すると、指紋読み取りと関連付けられた自分の指のスキャンで"
+"ログインが可能になります。"
 
 #: ../authconfig.glade.h:32
 msgid ""
@@ -1218,33 +1211,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "CA 証明書のダウンロードでエラー"
 
-# ../authconfig.c:462
-#~ msgid "SMB authentication"
-#~ msgstr "SMB 認証"
-
-#~ msgid "Workgroup:"
-#~ msgstr "ワークグループ:"
-
-# ../authconfig.c:163 ../authconfig.c:201
-#~ msgid "Servers:"
-#~ msgstr "サーバー:"
-
-#~ msgid "Shell:"
-#~ msgstr "シェル:"
-
-# ../authconfig.c:462
-#~ msgid "Use SMB Authentication"
-#~ msgstr "SMB 認証を使用"
-
-#~ msgid "Con_figure SMB..."
-#~ msgstr "SMB の設定(_F)..."
-
-#~ msgid "Enable SMB S_upport"
-#~ msgstr "SMB サポートを有効にする(_S)"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB 認証は SMB (system message block)プロトコルセットを使用するサーバーに"
-#~ "接続してユーザーパスワードを確証します。"
