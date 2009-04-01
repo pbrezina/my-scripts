@@ -1,4 +1,4 @@
-# translation of authconfig.tip.po to Korean
+# translation of authconfig.tip.ko.po to Korean
 # translation of ko.po to
 # translation of ko.po to
 # translation of ko.po to
@@ -9,20 +9,20 @@
 # Michelle J Kim <mkim@redhat.com>, 2003, 2004, 2005.
 # Jinseok Seo <jsseo@postech.ac.kr>, 2004.
 # Michelle Ji Yeen Kim <mkim@redhat.com>, 2005, 2006.
-# Eunju Kim <eukim@redhat.com>, 2006, 2007, 2008.
+# Eunju Kim <eukim@redhat.com>, 2006, 2007, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.tip\n"
+"Project-Id-Version: authconfig.tip.ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-27 10:36+0100\n"
-"PO-Revision-Date: 2008-09-02 15:37+1000\n"
+"PO-Revision-Date: 2009-04-01 10:10+1000\n"
 "Last-Translator: Eunju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n!=1);\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
 "\n"
 
 #: ../authconfig.py:79
@@ -148,14 +148,12 @@ msgid "action to be taken on smart card removal"
 msgstr "smart card를 제거하기 위한 명령"
 
 #: ../authconfig.py:140
-#, fuzzy
 msgid "enable authentication with fingerprint readers by default"
-msgstr "인증에 smart card를 기본적으로 사용함"
+msgstr "지문 인식기 인증을 기본적으로 사용함 "
 
 #: ../authconfig.py:142
-#, fuzzy
 msgid "disable authentication with fingerprint readers by default"
-msgstr "인증을 위해 smart card를 기본적으로 사용하지 않음"
+msgstr "지문 인식기 인증을 기본적으로 사용하지 않음 "
 
 #: ../authconfig.py:145
 msgid "enable kerberos authentication by default"
@@ -468,9 +466,8 @@ msgid "caching"
 msgstr "캐싱"
 
 #: ../authconfig.py:484
-#, fuzzy
 msgid "Fingerprint reader"
-msgstr "Winbind 지원 활성화(_W)"
+msgstr "지문 인식기 "
 
 #: ../authconfig.py:485
 msgid "Kerberos"
@@ -546,7 +543,7 @@ msgstr "커베로스 사용"
 
 #: ../authconfig.py:539
 msgid "Use Fingerprint reader"
-msgstr ""
+msgstr "지문 인식기 사용 "
 
 #: ../authconfig.py:544
 msgid "Use Winbind Authentication"
@@ -710,8 +707,7 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-"      <Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
+msgstr "      <Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -723,7 +719,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Fingerprint Reader</b>"
-msgstr ""
+msgstr "<b>지문 인식기</b> "
 
 #: ../authconfig.glade.h:3
 msgid "<b>Options</b>"
@@ -810,9 +806,8 @@ msgid "Download CA Certificate"
 msgstr "CA 인증서를 다운로드함"
 
 #: ../authconfig.glade.h:24
-#, fuzzy
 msgid "Enable _Fingerprint Reader Support"
-msgstr "Winbind 지원 활성화(_W)"
+msgstr "지문 인식기 지원 활성화(_F) "
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -839,13 +834,10 @@ msgid "Enable _Winbind Support"
 msgstr "Winbind 지원 활성화(_W)"
 
 #: ../authconfig.glade.h:31
-#, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
-msgstr ""
-"Smart card 인증을 통하여 smart card에 부합하는 인증서와 키를 사용함으로써 로"
-"그인할 수 있습니다."
+msgstr "지문 인증을 통해 지문 인식기로 지문을 스캐닝하여 로그인할 수 있습니다.   "
 
 #: ../authconfig.glade.h:32
 msgid ""
@@ -873,15 +865,13 @@ msgstr ""
 
 #: ../authconfig.glade.h:37
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"호스트명 또는 ldap:// 또는 ldaps:// URI는 LDAP 서버를 가리키고 있습니다. "
+msgstr "호스트명 또는 ldap:// 또는 ldaps:// URI는 LDAP 서버를 가리키고 있습니다. "
 
 #: ../authconfig.glade.h:38
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
-"사용자의 홈 디렉토리가 없을 경우, 이는 처음 로그인 시 자동으로 생성됩니다.  "
+msgstr "사용자의 홈 디렉토리가 없을 경우, 이는 처음 로그인 시 자동으로 생성됩니다.  "
 
 #: ../authconfig.glade.h:39
 msgid "Joining Winbind Domain"
@@ -1112,30 +1102,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "CA 인증서를 다운로드 하는 도중 오류 발생"
 
-#~ msgid "SMB authentication"
-#~ msgstr "SMB 인증"
-
-#~ msgid "Workgroup:"
-#~ msgstr "작업그룹:"
-
-#~ msgid "Servers:"
-#~ msgstr "서버:"
-
-#~ msgid "Shell:"
-#~ msgstr "쉘:"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "SMB 인증 사용"
-
-#~ msgid "Con_figure SMB..."
-#~ msgstr "SMB 구성(_F)"
-
-#~ msgid "Enable SMB S_upport"
-#~ msgstr "SMB 지원 활성화(_U)"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB 인증은 SMB (system message block) 프로토콜 수트를 사용하는 서버에 접속"
-#~ "하려 시도하는 사용자의 암호를 확인합니다."
