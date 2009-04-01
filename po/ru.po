@@ -4,22 +4,21 @@
 # Andrew Martynov <andrewm@inventa.ru>, 2004, 2005, 2006, 2008.
 # Yuliya Poyarkova <ypoyarko@brisbane.redhat.com>, 2006.
 # Yulia Poyarkova <ypoyarko@redhat.com>, 2006.
-# Yulia Poyarkova <yulia.poyarkova@redhat.com>, 2008.
+# Yulia Poyarkova <yulia.poyarkova@redhat.com>, 2008, 2009.
 # translation of ru.po to
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.tip.ru\n"
+"Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-27 10:36+0100\n"
-"PO-Revision-Date: 2008-09-09 15:25+1000\n"
+"PO-Revision-Date: 2009-04-01 15:16+1100\n"
 "Last-Translator: Yulia Poyarkova <yulia.poyarkova@redhat.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../authconfig.py:79
 #, python-format
@@ -144,14 +143,12 @@ msgid "action to be taken on smart card removal"
 msgstr "действие при извлечении смарт-карты"
 
 #: ../authconfig.py:140
-#, fuzzy
 msgid "enable authentication with fingerprint readers by default"
-msgstr "использовать аутентификацию при помощи смарт-карт"
+msgstr "использовать аутентификацию при помощи отпечатков"
 
 #: ../authconfig.py:142
-#, fuzzy
 msgid "disable authentication with fingerprint readers by default"
-msgstr "не использовать аутентификацию при помощи смарт-карт"
+msgstr "не использовать аутентификацию при помощи отпечатков"
 
 #: ../authconfig.py:145
 msgid "enable kerberos authentication by default"
@@ -247,13 +244,11 @@ msgstr "<начальный-конечный>"
 
 #: ../authconfig.py:185
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
-"диапазон uid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон uid, которые winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:187
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
-"диапазон gid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон gid, которые winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:189
 msgid ""
@@ -324,8 +319,7 @@ msgstr "предпочитать использование dns, а не wins д
 
 #: ../authconfig.py:215
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr ""
-"не предпочитать использование dns вместо wins для разрешения имён узлов"
+msgstr "не предпочитать использование dns вместо wins для разрешения имён узлов"
 
 #: ../authconfig.py:218
 msgid "enable hesiod for user information by default"
@@ -395,8 +389,7 @@ msgstr "не изменять конфигурационные файлы, а т
 
 #: ../authconfig.py:259
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr ""
-"отображать \"Назад\" вместо \"Отмена\" в основном окне текстового интерфейса"
+msgstr "отображать \"Назад\" вместо \"Отмена\" в основном окне текстового интерфейса"
 
 #: ../authconfig.py:261
 msgid "do not display the deprecated text user interface"
@@ -479,9 +472,8 @@ msgid "caching"
 msgstr "кэширование"
 
 #: ../authconfig.py:484
-#, fuzzy
 msgid "Fingerprint reader"
-msgstr "Включить поддержку _Winbind"
+msgstr "Сканер отпечатков"
 
 #: ../authconfig.py:485
 msgid "Kerberos"
@@ -557,7 +549,7 @@ msgstr "Использовать Kerberos"
 
 #: ../authconfig.py:539
 msgid "Use Fingerprint reader"
-msgstr ""
+msgstr "Использовать сканирование отпечатков"
 
 #: ../authconfig.py:544
 msgid "Use Winbind Authentication"
@@ -723,13 +715,11 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
+msgstr " <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Настраивает методы проверки пользователей, которые пытаются войти в систему"
+msgstr "Настраивает методы проверки пользователей, которые пытаются войти в систему"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -737,7 +727,7 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Fingerprint Reader</b>"
-msgstr ""
+msgstr "<b>Сканер отпечатков</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Options</b>"
@@ -824,9 +814,8 @@ msgid "Download CA Certificate"
 msgstr "Скачать сертификат CA"
 
 #: ../authconfig.glade.h:24
-#, fuzzy
 msgid "Enable _Fingerprint Reader Support"
-msgstr "Включить поддержку _Winbind"
+msgstr "Включить поддержку сканирования отпе_чатков"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _Hesiod Support"
@@ -853,13 +842,10 @@ msgid "Enable _Winbind Support"
 msgstr "Включить поддержку _Winbind"
 
 #: ../authconfig.glade.h:31
-#, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
-msgstr ""
-"Аутентификация по смарт-картам позволяет входить в систему с использованием "
-"сертификата и ключа, связанного со смарт-картой."
+msgstr "Аутентификация отпечатков позволяет входить в систему при успешном сканировании отпечатка пальца."
 
 #: ../authconfig.glade.h:32
 msgid ""
@@ -888,8 +874,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:37
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"Имя узла или URI в формате ldap:// или ldaps:// для указания LDAP-сервера."
+msgstr "Имя узла или URI в формате ldap:// или ldaps:// для указания LDAP-сервера."
 
 #: ../authconfig.glade.h:38
 msgid ""
@@ -1136,30 +1121,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "Ошибка при скачивании сертификата CA"
 
-#~ msgid "SMB authentication"
-#~ msgstr "Аутентификация SMB"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Рабочая группа:"
-
-#~ msgid "Servers:"
-#~ msgstr "Сервер:"
-
-#~ msgid "Shell:"
-#~ msgstr "Оболочка:"
-
-#~ msgid "Use SMB Authentication"
-#~ msgstr "Исп. аутентификацию через SMB"
-
-#~ msgid "Con_figure SMB..."
-#~ msgstr "Настроить S_MB..."
-
-#~ msgid "Enable SMB S_upport"
-#~ msgstr "Включить поддержку _SMB"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "Аутентификация SMB проверяет пароль пользователя подключаясь к серверу, "
-#~ "который использует протокол SMB (system message block)."
