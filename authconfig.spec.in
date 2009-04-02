@@ -95,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Apr  2 2009 Tomas Mraz <tmraz@redhat.com> - 5.4.8-1
+- fix regression in authconfig-tui (#493576)
+
 * Mon Jan 26 2009 Tomas Mraz <tmraz@redhat.com> - 5.4.7-1
 - move the consolehelper symlinks to the gtk subpackage to remove
   the dependency on usermode in the base package (#480014)

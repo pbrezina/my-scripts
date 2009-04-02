@@ -776,7 +776,7 @@ class AuthconfigTUI(Authconfig):
 	def getChoices(self):
 		next = 1
 		rc = False
-		while next > 0 and next <= 7:
+		while next > 0 and next <= 6:
 			self.info.update()
 			if next == 1:
 				rc = self.getMainChoices()
