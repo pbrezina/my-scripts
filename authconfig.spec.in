@@ -59,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING NOTES TODO README.samba3
 %ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/system-auth-ac
+%ghost %config(noreplace) %{_sysconfdir}/pam.d/password-auth-ac
+%ghost %config(noreplace) %{_sysconfdir}/pam.d/fingerprint-auth-ac
+%ghost %config(noreplace) %{_sysconfdir}/pam.d/smartcard-auth-ac
 %{_sbindir}/cacertdir_rehash
 %{_sbindir}/authconfig
 %{_sbindir}/authconfig-tui
@@ -95,6 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Apr 10 2009 Tomas Mraz <tmraz@redhat.com> - 5.4.9-1
+- add support for multiple PAM auth stacks (by Ray Strode) (#494874)
+
 * Thu Apr  2 2009 Tomas Mraz <tmraz@redhat.com> - 5.4.8-1
 - fix regression in authconfig-tui (#493576)
 

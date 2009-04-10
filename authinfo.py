@@ -414,7 +414,6 @@ pam_modules[STANDARD] = [
 	 "winbind",		argv_winbind_auth],
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
-
 # Account management is tricky.  Because we've implicitly committed to
 # getting it "right" for any combination of nss and pam, we have to be
 # careful about how we handle cases where networked sources of information
@@ -485,16 +484,12 @@ pam_modules[STANDARD] = [
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "ldap",		[]],
+	 "ldap",		[]]
 ]
 
 pam_modules[PASSWORD_ONLY] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
-	[False, AUTH,		LOGIC_OPTIONAL,
-	 "krb5",		argv_krb5_sc_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "permit",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
@@ -576,10 +571,8 @@ pam_modules[PASSWORD_ONLY] = [
 pam_modules[FINGERPRINT] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
-	[True,  AUTH,		LOGIC_REQUIRED,
+	[False,  AUTH,		LOGIC_SUFFICIENT,
 	 "fprintd",		[]],
-	[True, AUTH,		LOGIC_SUFFICIENT,
-	 "succeed_if",		argv_succeed_if_auth],
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
 	[False, ACCOUNT,	LOGIC_REQUIRED,
@@ -623,8 +616,8 @@ pam_modules[FINGERPRINT] = [
 pam_modules[SMARTCARD] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
-	[True,  AUTH,		LOGIC_FORCE_PKCS11,
-	 "pkcs11",		argv_force_pkcs11_auth],
+	[False,  AUTH,		LOGIC_PKCS11,
+	 "pkcs11",		argv_pkcs11_auth],
 	[False, AUTH,		LOGIC_OPTIONAL,
 	 "krb5",		argv_krb5_sc_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
@@ -647,12 +640,8 @@ pam_modules[SMARTCARD] = [
 	 "winbind",		[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "permit",		[]],
-	[False,  PASSWORD,	LOGIC_OPTIONAL,
+	[False,  PASSWORD,	LOGIC_REQUIRED,
 	 "pkcs11",		[]],
-	[False,  PASSWORD,	LOGIC_REQUISITE,
-	 "cracklib",		argv_cracklib_password],
-	[False,  PASSWORD,	LOGIC_REQUISITE,
-	 "passwdqc",		argv_passwdqc_password],
 	[True,  SESSION,	LOGIC_OPTIONAL,
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
@@ -2942,14 +2931,14 @@ class AuthInfo:
 				pass
 		return True
 		
-	def formatPAMModule(self, module):
+	def formatPAMModule(self, module, forcescard):
 		stack = pam_stacks[module[STACK]]
 		logic = module[LOGIC]
 		output = ""
 		if stack and logic:
 			args = ""
 			if module[NAME] == "pkcs11" and stack == "auth":
-				if self.forceSmartcard:
+				if forcescard:
 					if self.enableKerberos:
 						logic = LOGIC_FORCE_PKCS11_KRB5
 					else:
@@ -3037,18 +3026,14 @@ class AuthInfo:
 			output += "# User changes will be destroyed the next time "
 			output += "authconfig is run.\n"
 
-			if service == PASSWORD_ONLY:
-				enableFprintd = False
-				enableSmartcard = False
-			elif service == FINGERPRINT:
+			forceSmartcard = self.forceSmartcard
+			enableSmartcard = self.enableSmartcard
+			enableFprintd = self.enableFprintd
+			if service == FINGERPRINT:
 				enableFprintd = True
-				enableSmartcard = False
 			elif service == SMARTCARD:
 				enableSmartcard = True
-				enableFprintd = False
-			else:
-				enableSmartcard = self.enableSmartcard
-				enableFprintd = self.enableFprintd
+				forceSmartcard = True
 
 			prevmodule = []
 			for module in pam_modules[service]:
@@ -3079,7 +3064,7 @@ class AuthInfo:
 					(self.enableMkHomeDir and module[NAME] == "mkhomedir") or
 					(not self.enableSysNetAuth and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_REQUISITE)):
-					output += self.formatPAMModule(module)
+					output += self.formatPAMModule(module, forceSmartcard)
 
 			# Write it out and close it.
 			f.seek(0)
