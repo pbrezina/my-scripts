@@ -50,6 +50,9 @@ install-data-local: authconfig.desktop
 	ln -sf authconfig.py $(DESTDIR)/$(pkgdatadir)/authconfig-tui.py
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
 	touch $(DESTDIR)/$(pamdir)/system-auth-ac
+	touch $(DESTDIR)/$(pamdir)/password-auth-ac
+	touch $(DESTDIR)/$(pamdir)/fingerprint-auth-ac
+	touch $(DESTDIR)/$(pamdir)/smartcard-auth-ac
 	mkdir -p $(DESTDIR)/$(datadir)/applications
 	desktop-file-install --vendor redhat \
 		--add-category=X-Red-Hat-Base \
