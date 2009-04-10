@@ -46,6 +46,15 @@ SYSCONFDIR = "/etc"
 AUTH_PAM_SERVICE = "system-auth"
 AUTH_PAM_SERVICE_AC = "system-auth-ac"
 
+PASSWORD_AUTH_PAM_SERVICE = "password-auth"
+PASSWORD_AUTH_PAM_SERVICE_AC = "password-auth-ac"
+
+FINGERPRINT_AUTH_PAM_SERVICE = "fingerprint-auth"
+FINGERPRINT_AUTH_PAM_SERVICE_AC = "fingerprint-auth-ac"
+
+SMARTCARD_AUTH_PAM_SERVICE = "smartcard-auth"
+SMARTCARD_AUTH_PAM_SERVICE_AC = "smartcard-auth-ac"
+
 if "lib64" in str(globals()["acutil"]):
 	LIBDIR = "/lib64"
 else:
@@ -364,9 +373,13 @@ pam_stacks = ["auth", "account", "session", "password"]
 
 (MANDATORY, STACK, LOGIC, NAME, ARGV) = range(0,5)
 
+(STANDARD, PASSWORD_ONLY, FINGERPRINT, SMARTCARD) = range(0,4)
+
+pam_modules = [[] for service in (STANDARD, PASSWORD_ONLY, FINGERPRINT, SMARTCARD)]
+
 # The list of stacks, module flags, and arguments, if there are any.
 # [ MANDATORY, STACK, LOGIC, NAME, ARGV ]
-standard_pam_modules = [
+pam_modules[STANDARD] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
 	[False,  AUTH,          LOGIC_SKIPNEXT,
@@ -433,7 +446,6 @@ standard_pam_modules = [
 	 "winbind",		[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "permit",		[]],
-
 	[False,  PASSWORD,	LOGIC_OPTIONAL,
 	 "pkcs11",		[]],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
@@ -456,7 +468,6 @@ standard_pam_modules = [
 	 "winbind",		argv_winbind_password],
 	[True,  PASSWORD,	LOGIC_REQUIRED,
 	 "deny",		[]],
-
 	[True,  SESSION,	LOGIC_OPTIONAL,
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
@@ -475,6 +486,191 @@ standard_pam_modules = [
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "ldap",		[]],
+]
+
+pam_modules[PASSWORD_ONLY] = [
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "env",			[]],
+	[False, AUTH,		LOGIC_OPTIONAL,
+	 "krb5",		argv_krb5_sc_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "permit",		[]],
+	[True,  AUTH,		LOGIC_SUFFICIENT,
+	 "unix",		argv_unix_auth],
+	[False, AUTH,		LOGIC_REQUISITE,
+	 "succeed_if",		argv_succeed_if_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "afs",			argv_afs_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "afs.krb",		argv_afs_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "eps_auth",		argv_eps_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "krb5",		argv_krb5_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "ldap",		argv_ldap_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "otp",			argv_otp_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "smb_auth",		argv_smb_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "winbind",		argv_winbind_auth],
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "deny",		[]],
+	[False, ACCOUNT,	LOGIC_REQUIRED,
+	 "access",		[]],
+	[True,  ACCOUNT,	LOGIC_REQUIRED,
+	 "unix",		[]],
+	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
+	 "localuser",		[]],
+	[True,  ACCOUNT,	LOGIC_SUFFICIENT,
+	 "succeed_if",		argv_succeed_if_account],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "ldap",		[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "krb5",		[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "winbind",		[]],
+	[True,  ACCOUNT,	LOGIC_REQUIRED,
+	 "permit",		[]],
+	[False,  PASSWORD,	LOGIC_REQUISITE,
+	 "cracklib",		argv_cracklib_password],
+	[False,  PASSWORD,	LOGIC_REQUISITE,
+	 "passwdqc",		argv_passwdqc_password],
+	[True,  PASSWORD,	LOGIC_SUFFICIENT,
+	 "unix",		argv_unix_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "afs",			argv_afs_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "afs.krb",		argv_afs_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "eps_passwd",		argv_eps_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "krb5",		argv_krb5_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "ldap",		argv_ldap_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "winbind",		argv_winbind_password],
+	[True,  PASSWORD,	LOGIC_REQUIRED,
+	 "deny",		[]],
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "keyinit",		argv_keyinit_session],
+	[True,  SESSION,	LOGIC_REQUIRED,
+	 "limits",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "mkhomedir",		[]],
+	[True,  SESSION,	LOGIC_SKIPNEXT,
+	 "succeed_if",		argv_succeed_if_session],
+	[True,  SESSION,	LOGIC_REQUIRED,
+	 "unix",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "afs",			[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "afs.krb",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "krb5",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "ldap",		[]],
+]
+
+pam_modules[FINGERPRINT] = [
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "env",			[]],
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "fprintd",		[]],
+	[True, AUTH,		LOGIC_SUFFICIENT,
+	 "succeed_if",		argv_succeed_if_auth],
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "deny",		[]],
+	[False, ACCOUNT,	LOGIC_REQUIRED,
+	 "access",		[]],
+	[True,  ACCOUNT,	LOGIC_REQUIRED,
+	 "unix",		[]],
+	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
+	 "localuser",		[]],
+	[True,  ACCOUNT,	LOGIC_SUFFICIENT,
+	 "succeed_if",		argv_succeed_if_account],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "ldap",		[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "krb5",		[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "winbind",		[]],
+	[True,  ACCOUNT,	LOGIC_REQUIRED,
+	 "permit",		[]],
+	[True,  PASSWORD,	LOGIC_REQUIRED,
+	 "deny",		[]],
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "keyinit",		argv_keyinit_session],
+	[True,  SESSION,	LOGIC_REQUIRED,
+	 "limits",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "mkhomedir",		[]],
+	[True,  SESSION,	LOGIC_SKIPNEXT,
+	 "succeed_if",		argv_succeed_if_session],
+	[True,  SESSION,	LOGIC_REQUIRED,
+	 "unix",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "afs",			[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "afs.krb",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "krb5",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "ldap",		[]]
+]
+
+pam_modules[SMARTCARD] = [
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "env",			[]],
+	[True,  AUTH,		LOGIC_FORCE_PKCS11,
+	 "pkcs11",		argv_force_pkcs11_auth],
+	[False, AUTH,		LOGIC_OPTIONAL,
+	 "krb5",		argv_krb5_sc_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "permit",		[]],
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "deny",		[]],
+	[False, ACCOUNT,	LOGIC_REQUIRED,
+	 "access",		[]],
+	[True,  ACCOUNT,	LOGIC_REQUIRED,
+	 "unix",		[]],
+	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
+	 "localuser",		[]],
+	[True,  ACCOUNT,	LOGIC_SUFFICIENT,
+	 "succeed_if",		argv_succeed_if_account],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "ldap",		[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "krb5",		[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "winbind",		[]],
+	[True,  ACCOUNT,	LOGIC_REQUIRED,
+	 "permit",		[]],
+	[False,  PASSWORD,	LOGIC_OPTIONAL,
+	 "pkcs11",		[]],
+	[False,  PASSWORD,	LOGIC_REQUISITE,
+	 "cracklib",		argv_cracklib_password],
+	[False,  PASSWORD,	LOGIC_REQUISITE,
+	 "passwdqc",		argv_passwdqc_password],
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "keyinit",		argv_keyinit_session],
+	[True,  SESSION,	LOGIC_REQUIRED,
+	 "limits",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "mkhomedir",		[]],
+	[True,  SESSION,	LOGIC_SKIPNEXT,
+	 "succeed_if",		argv_succeed_if_session],
+	[True,  SESSION,	LOGIC_REQUIRED,
+	 "unix",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "afs",			[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "afs.krb",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "krb5",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "ldap",		[]]
 ]
 
 def domain2dn(domain):
@@ -841,8 +1037,8 @@ class CacheBackup(FileBackup):
 
 (CFG_HESIOD, CFG_PAM_SMB, CFG_YP, CFG_LDAP, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
-	CFG_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
-	CFG_LOGIN_DEFS) = range(0, 16)
+	CFG_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
+	CFG_LOGIN_DEFS) = range(0, 19)
 all_configs = [ 
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("pam_smb.conf", SYSCONFDIR+"/pam_smb.conf"),
@@ -856,6 +1052,9 @@ all_configs = [
 	FileBackup("nsswitch.conf", SYSCONFDIR+"/nsswitch.conf"),
 	CacheBackup("cacheenabled.conf", ""),
 	FileBackup("system-auth-ac", SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC),
+	FileBackup("password-auth-ac", SYSCONFDIR+"/pam.d/"+PASSWORD_AUTH_PAM_SERVICE_AC),
+	FileBackup("fingerprint-auth-ac", SYSCONFDIR+"/pam.d/"+FINGERPRINT_AUTH_PAM_SERVICE_AC),
+	FileBackup("smartcard-auth-ac", SYSCONFDIR+"/pam.d/"+SMARTCARD_AUTH_PAM_SERVICE_AC),
 	FileBackup("authconfig", SYSCONFDIR+"/sysconfig/authconfig"),
 	FileBackup("network", SYSCONFDIR+"/sysconfig/network"),
 	FileBackup("libuser.conf", SYSCONFDIR+"/libuser.conf"),
@@ -2825,23 +3024,34 @@ class AuthInfo:
 				os.symlink(src, dest)
 			except OSError:
 				pass
-	
-	# Write PAM setup to the control file.
-	def writePAM(self):
+
+	def writePAMService(self, service, cfg, cfg_basename, cfg_link):
 		f = None
-		self.module_missing = {}
 		output = ""
-		all_configs[CFG_PAM].backup(self.backupDir)
+		all_configs[cfg].backup(self.backupDir)
 		try:
-			f = openLocked(all_configs[CFG_PAM].origPath, 0644)
+			f = openLocked(all_configs[cfg].origPath, 0644)
 
 			output += "#%PAM-1.0\n"
 			output += "# This file is auto-generated.\n"
 			output += "# User changes will be destroyed the next time "
 			output += "authconfig is run.\n"
 
+			if service == PASSWORD_ONLY:
+				enableFprintd = False
+				enableSmartcard = False
+			elif service == FINGERPRINT:
+				enableFprintd = True
+				enableSmartcard = False
+			elif service == SMARTCARD:
+				enableSmartcard = True
+				enableFprintd = False
+			else:
+				enableSmartcard = self.enableSmartcard
+				enableFprintd = self.enableFprintd
+
 			prevmodule = []
-			for module in standard_pam_modules:
+			for module in pam_modules[service]:
 				if prevmodule and module[STACK] != prevmodule[STACK]:
 					output += "\n"
 				prevmodule = module
@@ -2852,14 +3062,14 @@ class AuthInfo:
 					(self.enableEPS and module[NAME] == "eps") or
 					(self.enableKerberos and module[NAME] == "krb5" and
 						not module[ARGV] == argv_krb5_sc_auth) or
-					(self.enableKerberos and self.enableSmartcard and
+					(self.enableKerberos and enableSmartcard and
 					    ((module[NAME] == "krb5" and module[ARGV] == argv_krb5_sc_auth) or
 					    (module[NAME] == "permit" and module[STACK] == AUTH))) or
 					(self.enableLDAPAuth and module[NAME] == "ldap") or
-					(self.enableSmartcard and module[STACK] == AUTH and
+					(enableSmartcard and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_SKIPNEXT) or
-					(self.enableSmartcard and module[NAME] == "pkcs11") or 
-					(self.enableFprintd and module[NAME] == "fprintd") or
+					(enableSmartcard and module[NAME] == "pkcs11") or 
+					(enableFprintd and module[NAME] == "fprintd") or
 					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableSMB and module[NAME] == "smb_auth") or
@@ -2882,8 +3092,17 @@ class AuthInfo:
 			except IOError:
 				pass
 
-		self.linkPAMService(AUTH_PAM_SERVICE_AC, SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE)
+		self.linkPAMService(cfg_basename, SYSCONFDIR+"/pam.d/"+cfg_link)
 
+		return True
+
+	# Write PAM setup to the control file(s).
+	def writePAM(self):
+		self.module_missing = {}
+		self.writePAMService(STANDARD, CFG_PAM, AUTH_PAM_SERVICE_AC, AUTH_PAM_SERVICE)
+		self.writePAMService(PASSWORD_ONLY, CFG_PASSWORD_PAM, PASSWORD_AUTH_PAM_SERVICE_AC, PASSWORD_AUTH_PAM_SERVICE)
+		self.writePAMService(FINGERPRINT, CFG_FINGERPRINT_PAM, FINGERPRINT_AUTH_PAM_SERVICE_AC, FINGERPRINT_AUTH_PAM_SERVICE)
+		self.writePAMService(SMARTCARD, CFG_SMARTCARD_PAM, SMARTCARD_AUTH_PAM_SERVICE_AC, SMARTCARD_AUTH_PAM_SERVICE)
 		return True
 
 	def writeSysconfig(self):
