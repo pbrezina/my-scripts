@@ -54,6 +54,9 @@ find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%triggerin -- authconfig <= 5.4.9
+authconfig --update >/dev/null 2>&1 || :
+
 %files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc COPYING NOTES TODO README.samba3
@@ -98,6 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Apr 10 2009 Tomas Mraz <tmraz@redhat.com> - 5.4.10-1
+- update PAM configuration when updating from old authconfig versions (#495924)
+
 * Fri Apr 10 2009 Tomas Mraz <tmraz@redhat.com> - 5.4.9-1
 - add support for multiple PAM auth stacks (by Ray Strode) (#494874)
 

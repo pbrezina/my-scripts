@@ -1143,7 +1143,9 @@ class AuthInfo:
 		self.mkhomedirArgs = ""
 		self.ldapCacertDir = ""
 		self.ldapCacertURL = ""
-		
+
+		self.pamLinked = True
+
 	# Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvfile
 	# can read it just fine.
 	def readHesiod(self):
@@ -3014,6 +3016,16 @@ class AuthInfo:
 			except OSError:
 				pass
 
+	def checkPAMLinked(self):
+		for dest in [AUTH_PAM_SERVICE, PASSWORD_AUTH_PAM_SERVICE, FINGERPRINT_AUTH_PAM_SERVICE,
+				SMARTCARD_AUTH_PAM_SERVICE]:
+			dest = SYSCONFDIR + "/pam.d/" + dest
+			f = os.path.isfile(dest)
+			l = os.path.islink(dest)
+			if (f and not l) or (l and not f):
+				self.pamLinked = False
+				return
+
 	def writePAMService(self, service, cfg, cfg_basename, cfg_link):
 		f = None
 		output = ""
@@ -3208,7 +3220,8 @@ class AuthInfo:
 		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
-		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"), ("enableFprintd", "b")]),
+		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
+		("enableFprintd", "b"), ("pamLinked", "b")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
@@ -3218,6 +3231,7 @@ class AuthInfo:
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
+		self.checkPAMLinked()
 		self.update()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		ret = True
