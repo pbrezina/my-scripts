@@ -55,7 +55,7 @@ find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
 rm -rf $RPM_BUILD_ROOT
 
 %triggerin -- authconfig <= 5.4.9
-authconfig --update >/dev/null 2>&1 || :
+authconfig --update --nostart >/dev/null 2>&1 || :
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
