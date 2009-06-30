@@ -240,7 +240,7 @@ def matchLineSMB(line, key):
 	else:
 		param = linelst[1]
 
-	linelst = linelst[0].lower().split(None)	
+	linelst = linelst[0].lower().split(None)
 	keylst = key.lower().split(None)
 	# Compare the lists
 	if keylst == linelst:
@@ -741,7 +741,7 @@ def toggleSplatbindService(enable, path, pidfile, name, nostart):
 					os.system("/sbin/service " + name +" stop")
 				except OSError:
 					pass
-			
+
 			os.system("/sbin/chkconfig --level 345 " + name + " off")
 		except OSError:
 			pass
@@ -807,12 +807,12 @@ def feedFork(command, echo, query, response):
 					output = ""
 					sys.stderr.write("<...>\n")
 			except OSError, (err, text):
-				sys.stderr.write("write: " + text + "\n")				
+				sys.stderr.write("write: " + text + "\n")
 				os.close(master)
 				eof = True
 		else:
 			os.close(master)
-			eof = True			
+			eof = True
 	try:
 		os.kill(pid, signal.SIGTERM)
 	except OSError:
@@ -848,7 +848,7 @@ def callPKCS11Setup(options):
 			del lst[-1:]
 	except OSError:
 		return None
-	return lst		
+	return lst
 
 def getSmartcardModules():
 	mods = callPKCS11Setup(["list_modules"])
@@ -858,7 +858,7 @@ def getSmartcardModules():
 
 def getSmartcardActions():
 	return [_("Lock"), _("Ignore")]
-		
+
 def read(msgcb):
 	info = AuthInfo(msgcb)
 	info.read()
@@ -893,7 +893,7 @@ class FileBackup:
 		try:
 			destfd = openfdLocked(dest,
 				os.O_RDWR | os.O_CREAT, 0644)
-			srcfd = openfdLocked(src, os.O_RDONLY, 0)			
+			srcfd = openfdLocked(src, os.O_RDONLY, 0)
 		except IOError, (err, strerr):
 			rv = False
 		try:
@@ -966,7 +966,7 @@ def writeCache(enabled):
 	else:
 		try:
 			os.stat(PATH_NSCD)
-	    		os.system("/sbin/chkconfig --level 345 nscd off");
+			os.system("/sbin/chkconfig --level 345 nscd off");
 		except OSError:
 			pass
 	return True
@@ -1000,7 +1000,7 @@ class CacheBackup(FileBackup):
 			except OSError:
 				pass
 		return rv
-		
+
 	def restore(self, backupdir):
 		err = 0
 		rv = True
@@ -1154,7 +1154,7 @@ class AuthInfo:
 			shv = shvfile.read(all_configs[CFG_HESIOD].origPath)
 		except IOError:
 			return False
-	
+
 		# Read the LHS.
 		self.hesiodLHS = snipString(shv.getValue("lhs"))
 
@@ -1186,7 +1186,7 @@ class AuthInfo:
 	# Read NIS setup from /etc/yp.conf.
 	def readNIS(self):
 		# Open the file.  Bail if it's not there or there's some problem
-	 	# reading it.
+		# reading it.
 		try:
 			f = open(all_configs[CFG_YP].origPath, "r")
 		except IOError:
@@ -1247,7 +1247,7 @@ class AuthInfo:
 			f = open(all_configs[CFG_LDAP].origPath, "r")
 		except IOError:
 			return False
-	
+
 		for line in f:
 			line = line.strip()
 
@@ -1348,7 +1348,7 @@ class AuthInfo:
 					value = matchKeyEquals(line, "kdc")
 					if value:
 						self.allKerberosKDCs[subsection] = commaAppend(self.getKerberosKDC(subsection), value)
-						continue					
+						continue
 					value = matchKeyEquals(line, "admin_server")
 					if value:
 						self.allKerberosAdminServers[subsection] = commaAppend(self.getKerberosAdminServer(subsection), value)
@@ -1364,18 +1364,18 @@ class AuthInfo:
 		if self.smartcardModule == None:
 			return False
 		self.smartcardModule = self.smartcardModule[0]
-   		rmactions = callPKCS11Setup(["rm_action"])
-   		if rmactions == None:
-   			return False
-   		for action in rmactions:
-   			if "lockhelper.sh" in action:
-   				lock = True
-   		if lock:
-   			self.smartcardAction = _("Lock")
-   		else:
-   			self.smartcardAction = _("Ignore")
-   		return True
-   		
+		rmactions = callPKCS11Setup(["rm_action"])
+		if rmactions == None:
+			return False
+		for action in rmactions:
+			if "lockhelper.sh" in action:
+				lock = True
+		if lock:
+			self.smartcardAction = _("Lock")
+		else:
+			self.smartcardAction = _("Ignore")
+		return True
+
 	# Read Samba setup from /etc/samba/smb.conf.
 	def readWinbindGlobal(self, key):
 		result = ""
@@ -1808,7 +1808,7 @@ class AuthInfo:
 			not self.enableKerberos and not self.enableWinbindAuth and
 			not self.enableSmartcard):
 			self.forceBrokenShadow = True
-			    	
+
 		return True
 
 	# Read hints from the network control file.
@@ -1989,7 +1989,7 @@ class AuthInfo:
 			
 			f.write(self.smbWorkgroup+"\n")
 			
-			servers = self.smbServers.replace(",", " ")			
+			servers = self.smbServers.replace(",", " ")
 			servers = servers.split(None)
 			
 			if len(servers) > 0:
@@ -2352,7 +2352,7 @@ class AuthInfo:
 			self.enableWinbindAuth) and self.smbSecurity == "ads" and self.smbRealm:
 			defaultrealm = self.smbRealm
 		else:
-			defaultrealm = self.kerberosRealm	
+			defaultrealm = self.kerberosRealm
 		if self.kerberosRealm == self.smbRealm:
 			wrotesmbrealm = True
 		try:
@@ -2397,7 +2397,7 @@ class AuthInfo:
 					if len(value) < 1:
 						output += line
 						continue
-					subsection = value[0]					
+					subsection = value[0]
 					# If this is the section for our realm, mark
 					# that.
 					if self.kerberosRealm and subsection == self.kerberosRealm:
@@ -2431,7 +2431,7 @@ class AuthInfo:
 					continue
 				if section == "libdefaults" and matchLine(ls, "dns_lookup_realm"):
 					if not wrotednsrealm:
-						output += " dns_lookup_realm = "					
+						output += " dns_lookup_realm = "
 						output += str(bool(self.kerberosRealmviaDNS)).lower()
 						output += "\n"
 						wrotednsrealm = True
@@ -2475,7 +2475,7 @@ class AuthInfo:
 							output +=  "\n"
 							wrotedefaultrealm = True
 						if not wrotednsrealm:
-							output += " dns_lookup_realm = "					
+							output += " dns_lookup_realm = "
 							output += str(bool(self.kerberosRealmviaDNS)).lower()
 							output += "\n"
 							wrotednsrealm = True
@@ -2520,7 +2520,7 @@ class AuthInfo:
 					output += defaultrealm
 					output +=  "\n"
 				if not wrotednsrealm:
-					output += " dns_lookup_realm = "					
+					output += " dns_lookup_realm = "
 					output += str(bool(self.kerberosRealmviaDNS)).lower()
 					output += "\n"
 				if not wrotednskdc:
@@ -2890,7 +2890,7 @@ class AuthInfo:
 						output += "hosts:     "
 						output += hosts
 						output += "\n"
-						wrotehosts = True				
+						wrotehosts = True
 				# Otherwise, just copy the current line out.
 				else:
 					output += line
@@ -2962,7 +2962,7 @@ class AuthInfo:
 			if not module[NAME] in self.module_missing and not os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, module[NAME]), os.X_OK):
 				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly." %
-					(AUTH_MODULE_DIR, module[NAME])))				
+					(AUTH_MODULE_DIR, module[NAME])))
 				self.module_missing[module[NAME]] = True
 			if module[NAME] == "cracklib":
 				args = self.cracklibArgs

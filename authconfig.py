@@ -64,11 +64,11 @@ class Authconfig:
 		sys.stderr.write("%s: %s\n" % (self.module(), error))
 
 	def listHelp(self, l, addidx):
- 		idx = 0
- 		help = "<"
- 		for item in l:
- 			if idx > 0:
- 				help += "|"
+		idx = 0
+		help = "<"
+		for item in l:
+			if idx > 0:
+				help += "|"
 			if addidx:
 				help += str(idx) + "="
 			help += item
@@ -85,11 +85,11 @@ class Authconfig:
 
 		parser.add_option("--enableshadow", "--useshadow", action="store_true",
 			help=_("enable shadowed passwords by default"))
- 		parser.add_option("--disableshadow", action="store_true",
+		parser.add_option("--disableshadow", action="store_true",
 			help=_("disable shadowed passwords by default"))
 		parser.add_option("--enablemd5", "--usemd5", action="store_true",
 			help=_("enable MD5 passwords by default"))
- 		parser.add_option("--disablemd5", action="store_true",
+		parser.add_option("--disablemd5", action="store_true",
 			help=_("disable MD5 passwords by default"))
 		parser.add_option("--passalgo",
 			metavar=self.listHelp(authinfo.password_algorithms, False),
@@ -97,61 +97,61 @@ class Authconfig:
 
 		parser.add_option("--enablenis", action="store_true",
 			help=_("enable NIS for user information by default"))
- 		parser.add_option("--disablenis", action="store_true",
+		parser.add_option("--disablenis", action="store_true",
 			help=_("disable NIS for user information by default"))
- 		parser.add_option("--nisdomain", metavar=_("<domain>"),
- 			help=_("default NIS domain"))
- 		parser.add_option("--nisserver", metavar=_("<server>"),
- 			help=_("default NIS server"))
+		parser.add_option("--nisdomain", metavar=_("<domain>"),
+			help=_("default NIS domain"))
+		parser.add_option("--nisserver", metavar=_("<server>"),
+			help=_("default NIS server"))
 
 		parser.add_option("--enableldap", action="store_true",
 			help=_("enable LDAP for user information by default"))
- 		parser.add_option("--disableldap", action="store_true",
+		parser.add_option("--disableldap", action="store_true",
 			help=_("disable LDAP for user information by default"))
 		parser.add_option("--enableldapauth", action="store_true",
 			help=_("enable LDAP for authentication by default"))
- 		parser.add_option("--disableldapauth", action="store_true",
+		parser.add_option("--disableldapauth", action="store_true",
 			help=_("disable LDAP for authentication by default"))
- 		parser.add_option("--ldapserver", metavar=_("<server>"),
- 			help=_("default LDAP server hostname or URI"))
- 		parser.add_option("--ldapbasedn", metavar=_("<dn>"),
- 			help=_("default LDAP base DN"))
+		parser.add_option("--ldapserver", metavar=_("<server>"),
+			help=_("default LDAP server hostname or URI"))
+		parser.add_option("--ldapbasedn", metavar=_("<dn>"),
+			help=_("default LDAP base DN"))
 		parser.add_option("--enableldaptls", "--enableldapstarttls", action="store_true",
 			help=_("enable use of TLS with LDAP (RFC-2830)"))
- 		parser.add_option("--disableldaptls",  "--disableldapstarttls", action="store_true",
+		parser.add_option("--disableldaptls",  "--disableldapstarttls", action="store_true",
 			help=_("disable use of TLS with LDAP (RFC-2830)"))
- 		parser.add_option("--ldaploadcacert", metavar=_("<URL>"),
- 			help=_("load CA certificate from the URL"))
+		parser.add_option("--ldaploadcacert", metavar=_("<URL>"),
+			help=_("load CA certificate from the URL"))
 
 		parser.add_option("--enablesmartcard", action="store_true",
 			help=_("enable authentication with smart card by default"))
- 		parser.add_option("--disablesmartcard", action="store_true",
+		parser.add_option("--disablesmartcard", action="store_true",
 			help=_("disable authentication with smart card by default"))
 		parser.add_option("--enablerequiresmartcard", action="store_true",
 			help=_("require smart card for authentication by default"))
- 		parser.add_option("--disablerequiresmartcard", action="store_true",
+		parser.add_option("--disablerequiresmartcard", action="store_true",
 			help=_("do not require smart card for authentication by default"))
- 		parser.add_option("--smartcardmodule", metavar=_("<module>"),
- 			help=_("default smart card module to use"))
+		parser.add_option("--smartcardmodule", metavar=_("<module>"),
+			help=_("default smart card module to use"))
 		actshelp = self.listHelp(authinfo.getSmartcardActions(), True)
- 		parser.add_option("--smartcardaction", metavar=actshelp,
- 			help=_("action to be taken on smart card removal"))
+		parser.add_option("--smartcardaction", metavar=actshelp,
+			help=_("action to be taken on smart card removal"))
 
 		parser.add_option("--enablefingerprint", action="store_true",
 			help=_("enable authentication with fingerprint readers by default"))
- 		parser.add_option("--disablefingerprint", action="store_true",
+		parser.add_option("--disablefingerprint", action="store_true",
 			help=_("disable authentication with fingerprint readers by default"))
 
 		parser.add_option("--enablekrb5", action="store_true",
 			help=_("enable kerberos authentication by default"))
- 		parser.add_option("--disablekrb5", action="store_true",
+		parser.add_option("--disablekrb5", action="store_true",
 			help=_("disable kerberos authentication by default"))
- 		parser.add_option("--krb5kdc", metavar=_("<server>"),
- 			help=_("default kerberos KDC"))
- 		parser.add_option("--krb5adminserver", metavar=_("<server>"),
- 			help=_("default kerberos admin server"))
- 		parser.add_option("--krb5realm", metavar=_("<realm>"),
- 			help=_("default kerberos realm"))
+		parser.add_option("--krb5kdc", metavar=_("<server>"),
+			help=_("default kerberos KDC"))
+		parser.add_option("--krb5adminserver", metavar=_("<server>"),
+			help=_("default kerberos admin server"))
+		parser.add_option("--krb5realm", metavar=_("<realm>"),
+			help=_("default kerberos realm"))
 		parser.add_option("--enablekrb5kdcdns", action="store_true",
 			help=_("enable use of DNS to find kerberos KDCs"))
 		parser.add_option("--disablekrb5kdcdns", action="store_true",
@@ -176,77 +176,77 @@ class Authconfig:
 			help=_("disable winbind for user information by default"))
 		parser.add_option("--enablewinbindauth", action="store_true",
 			help=_("enable winbind for authentication by default"))
- 		parser.add_option("--disablewinbindauth", action="store_true",
+		parser.add_option("--disablewinbindauth", action="store_true",
 			help=_("disable winbind for authentication by default"))		
- 		parser.add_option("--smbsecurity", metavar="<user|server|domain|ads>",
- 			help=_("security mode to use for samba and winbind"))
- 		parser.add_option("--smbrealm", metavar=_("<realm>"),
- 			help=_("default realm for samba and winbind when security=ads"))
- 		parser.add_option("--smbidmapuid", metavar=_("<lowest-highest>"),
- 			help=_("uid range winbind will assign to domain or ads users"))
- 		parser.add_option("--smbidmapgid", metavar=_("<lowest-highest>"),
- 			help=_("gid range winbind will assign to domain or ads users"))
- 		parser.add_option("--winbindseparator", metavar="<\\>",
- 			help=_("the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"))
- 		parser.add_option("--winbindtemplatehomedir", metavar="</home/%D/%U>",
- 			help=_("the directory which winbind-created users will have as home directories"))
- 		parser.add_option("--winbindtemplateprimarygroup", metavar="<nobody>",
- 			help=_("the group which winbind-created users will have as their primary group"))
- 		parser.add_option("--winbindtemplateshell", metavar="</bin/false>",
- 			help=_("the shell which winbind-created users will have as their login shell"))
+		parser.add_option("--smbsecurity", metavar="<user|server|domain|ads>",
+			help=_("security mode to use for samba and winbind"))
+		parser.add_option("--smbrealm", metavar=_("<realm>"),
+			help=_("default realm for samba and winbind when security=ads"))
+		parser.add_option("--smbidmapuid", metavar=_("<lowest-highest>"),
+			help=_("uid range winbind will assign to domain or ads users"))
+		parser.add_option("--smbidmapgid", metavar=_("<lowest-highest>"),
+			help=_("gid range winbind will assign to domain or ads users"))
+		parser.add_option("--winbindseparator", metavar="<\\>",
+			help=_("the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"))
+		parser.add_option("--winbindtemplatehomedir", metavar="</home/%D/%U>",
+			help=_("the directory which winbind-created users will have as home directories"))
+		parser.add_option("--winbindtemplateprimarygroup", metavar="<nobody>",
+			help=_("the group which winbind-created users will have as their primary group"))
+		parser.add_option("--winbindtemplateshell", metavar="</bin/false>",
+			help=_("the shell which winbind-created users will have as their login shell"))
 		parser.add_option("--enablewinbindusedefaultdomain", action="store_true",
 			help=_("configures winbind to assume that users with no domain in their user names are domain users"))
- 		parser.add_option("--disablewinbindusedefaultdomain", action="store_true",
+		parser.add_option("--disablewinbindusedefaultdomain", action="store_true",
 			help=_("configures winbind to assume that users with no domain in their user names are not domain users"))
 		parser.add_option("--enablewinbindoffline", action="store_true",
 			help=_("configures winbind to allow offline login"))
- 		parser.add_option("--disablewinbindoffline", action="store_true",
+		parser.add_option("--disablewinbindoffline", action="store_true",
 			help=_("configures winbind to prevent offline login"))
- 		parser.add_option("--winbindjoin", metavar="<Administrator>",
-			help=_("join the winbind domain or ads realm now as this administrator"))		
+		parser.add_option("--winbindjoin", metavar="<Administrator>",
+			help=_("join the winbind domain or ads realm now as this administrator"))
 
 		parser.add_option("--enablewins", action="store_true",
 			help=_("enable wins for hostname resolution"))
- 		parser.add_option("--disablewins", action="store_true",
+		parser.add_option("--disablewins", action="store_true",
 			help=_("disable wins for hostname resolution"))
 
 		parser.add_option("--enablepreferdns", action="store_true",
 			help=_("prefer dns over wins or nis for hostname resolution"))
- 		parser.add_option("--disablepreferdns", action="store_true",
+		parser.add_option("--disablepreferdns", action="store_true",
 			help=_("do not prefer dns over wins or nis for hostname resolution"))
 
 		parser.add_option("--enablehesiod", action="store_true",
 			help=_("enable hesiod for user information by default"))
- 		parser.add_option("--disablehesiod", action="store_true",
+		parser.add_option("--disablehesiod", action="store_true",
 			help=_("disable hesiod for user information by default"))
- 		parser.add_option("--hesiodlhs", metavar="<lhs>",
+		parser.add_option("--hesiodlhs", metavar="<lhs>",
 			help=_("default hesiod LHS"))
- 		parser.add_option("--hesiodrhs", metavar="<rhs>",
+		parser.add_option("--hesiodrhs", metavar="<rhs>",
 			help=_("default hesiod RHS"))
 
 		parser.add_option("--enablecache", action="store_true",
 			help=_("enable caching of user information by default"))
- 		parser.add_option("--disablecache", action="store_true",
+		parser.add_option("--disablecache", action="store_true",
 			help=_("disable caching of user information by default"))
 
 		parser.add_option("--enablelocauthorize", action="store_true",
 			help=_("local authorization is sufficient for local users"))
- 		parser.add_option("--disablelocauthorize", action="store_true",
+		parser.add_option("--disablelocauthorize", action="store_true",
 			help=_("authorize local users also through remote service"))
 
 		parser.add_option("--enablepamaccess", action="store_true",
 			help=_("check access.conf during account authorization"))
- 		parser.add_option("--disablepamaccess", action="store_true",
+		parser.add_option("--disablepamaccess", action="store_true",
 			help=_("do not check access.conf during account authorization"))
 
 		parser.add_option("--enablesysnetauth", action="store_true",
 			help=_("authenticate system accounts by network services"))
- 		parser.add_option("--disablesysnetauth", action="store_true",
+		parser.add_option("--disablesysnetauth", action="store_true",
 			help=_("authenticate system accounts by local files only"))
 
 		parser.add_option("--enablemkhomedir", action="store_true",
 			help=_("create home directories for users on their first login"))
- 		parser.add_option("--disablemkhomedir", action="store_true",
+		parser.add_option("--disablemkhomedir", action="store_true",
 			help=_("do not create home directories for users on their first login"))
 
 		parser.add_option("--nostart", action="store_true",
@@ -270,7 +270,7 @@ class Authconfig:
 		parser.add_option("--probe", action="store_true",
 			help=_("probe network for defaults and print them"))
 
- 		parser.add_option("--savebackup", metavar=_("<name>"),
+		parser.add_option("--savebackup", metavar=_("<name>"),
 			help=_("save a backup of all configuration files"))
 
  		parser.add_option("--restorebackup", metavar=_("<name>"),
@@ -292,7 +292,7 @@ class Authconfig:
 			# --update (== --kickstart) or --test or --probe must be specified
 			# this will print usage and call sys.exit()
 			parser.parse_args(["-h"])
-	
+
 	def probe(self):
 		info = authinfo.AuthInfo(self.printError)
 		info.probe()
@@ -305,7 +305,7 @@ class Authconfig:
 		if info.kerberosRealm:
 			print "krb5 %s/%s/%s\n" % (info.kerberosRealm,
 				info.kerberosKDC or "", info.kerberosAdminServer or "")
-	
+
 	def readAuthInfo(self):
 		self.info = authinfo.read(self.printError)
 		# FIXME: what about printing critical errors reading individual configs?
@@ -322,7 +322,7 @@ class Authconfig:
 		self.smb_avail = os.access(authinfo.PATH_PAM_SMB, os.X_OK)
 		self.cache_avail = os.access(authinfo.PATH_NSCD, os.X_OK)
 		self.fprintd_avail = os.access(authinfo.PATH_PAM_FPRINTD, os.X_OK)
-	
+
 	def overrideSettings(self):
 		bool_settings = {"shadow":"enableShadow",
 			"locauthorize":"enableLocAuthorize",
@@ -392,7 +392,7 @@ class Authconfig:
 			self.info.joinUser = lst[0]
 			if len(lst) > 1:
 				self.info.joinPassword = lst[1]
-		
+
 		if self.options.smartcardaction:
 			try:
 				idx = int(self.options.smartcardaction)
@@ -413,11 +413,11 @@ class Authconfig:
 
 	def doUI(self):
 		return True
-	
+
 	def joinDomain(self):
 		if self.options.winbindjoin:
 			self.info.joinDomain(True)
-	
+
 	def writeAuthInfo(self):
 		self.info.testLDAPCACerts()
 		if self.info.ldapCacertURL:
@@ -558,7 +558,7 @@ class AuthconfigTUI(Authconfig):
 		mechGrid = snack.Grid(2, 1)
 		mechGrid.setField(infoGrid, 0, 0, anchorLeft=1, anchorTop=1, padding=(1, 0, 1, 1))
 		mechGrid.setField(authGrid, 1, 0, anchorRight=1, anchorTop=1, padding=(2, 0, 1, 1))
-		
+
 		# Buttons
 		buttonGrid = snack.Grid(2, 1)
 		cancel = snack.Button(self.options.back and _("Back") or _("Cancel"))
@@ -611,21 +611,21 @@ class AuthconfigTUI(Authconfig):
 		widgets = []
 		for (t, desc, attr, val) in items:
 			if t == "tfvalue":
-      				cb = snack.Checkbox(desc, bool(getattr(self.info, attr)))
-      				widgets.append(cb)
+					cb = snack.Checkbox(desc, bool(getattr(self.info, attr)))
+				widgets.append(cb)
 				questionGrid.setField(snack.Label(""), 0, row, anchorRight=1)
 				questionGrid.setField(cb, 1, row, anchorLeft=1)
 				
 			elif t == "svalue":
-      				comp = snack.Label(desc)
+				comp = snack.Label(desc)
 				questionGrid.setField(comp, 0, row, padding=(0, 0, 1, 0), anchorRight=1)
-      				comp = snack.Entry(40, getattr(self.info, attr), hidden=val)
-      				widgets.append(comp)
+			comp = snack.Entry(40, getattr(self.info, attr), hidden=val)
+				widgets.append(comp)
 				# FIXME? Filtering " " and "\t"
 				questionGrid.setField(comp, 1, row, growx=1)
 
 			elif t == "rvalue":
-      				comp = snack.Label(desc)
+				comp = snack.Label(desc)
 				questionGrid.setField(comp, 0, row, padding=(0, 0, 1, 0), anchorRight=1, anchorTop=1)
 				try:
 					sel = getattr(self.info, attr)
@@ -639,7 +639,7 @@ class AuthconfigTUI(Authconfig):
 				radioBar = snack.RadioBar(None, buttonlist)
 				widgets.append(radioBar)			
 				questionGrid.setField(radioBar, 1, row, anchorLeft=1)
-				
+
 			elif t == "lvalue":
 				comp = snack.TextboxReflowed(50, desc, flexDown=1, flexUp=1)	
 				widgets.append(comp)
@@ -658,7 +658,7 @@ class AuthconfigTUI(Authconfig):
 		buttonGrid.setField(ok, anothertxt and 2 or 1, 0)
 
 		# Top-level grid
-  		mainGrid = snack.Grid(1, 2)
+		mainGrid = snack.Grid(1, 2)
 		mainGrid.setField(questionGrid, 0, 0, padding=(0, 0, 0, 1), growx=1)
 		mainGrid.setField(buttonGrid, 0, 1, padding=(0, 0, 0, 0), growx=1)
 
@@ -685,13 +685,13 @@ class AuthconfigTUI(Authconfig):
 					setattr(self.info, attr, wcopy.pop(0).getSelection())
 					
 				elif t == "lvalue":
-					wcopy.pop(0)			
-			
+					wcopy.pop(0)
+
 			if comp != another:
 				break
 			if anothercb:
 				anothercb()
-		
+
 		self.screen.popWindow()
 		return comp != cancel
 
@@ -759,10 +759,10 @@ class AuthconfigTUI(Authconfig):
 			
 		def shellexists(shell):
 			return os.access(shell, os.X_OK)
-		
+
 		shells = filter(shellexists, shells)
 		# Why does your favorite shell not show up in the list?  Because it won't
-   		# fit, that's why!
+		# fit, that's why!
 		questions = [("rvalue", _("Security Model:"), "smbSecurity", security),
 			("svalue", _("Domain:"), "smbWorkgroup", 0),
 			("svalue", _("Domain Controllers:"), "smbServers", 0),
@@ -812,7 +812,7 @@ class AuthconfigTUI(Authconfig):
 						self.info.enableWinbindAuth)
 					rc = self.getKerberosSettings(more)
 			elif next == 6:
-      				if self.info.enableWinbind or self.info.enableWinbindAuth:
+				if self.info.enableWinbind or self.info.enableWinbindAuth:
 					more = False
 					rc = self.getWinbindSettings(more)
 			self.info.update()
@@ -821,7 +821,7 @@ class AuthconfigTUI(Authconfig):
 			else:
 				next -= 1
 		return next == 7
-	
+
 	def displayCACertsMessage(self):
 		text = (_("To connect to a LDAP server with TLS protocol enabled you need "
                         "a CA certificate which signed your server's certificate. "
@@ -829,7 +829,7 @@ class AuthconfigTUI(Authconfig):
                         "Then press OK.") %
 			self.info.ldapCacertDir)
 		snack.ButtonChoiceWindow(self.screen, _("Warning"), text, [_("Ok")])
-	
+
 	def doUI(self):
 		if self.options.kickstart:
 			return True
