@@ -2961,7 +2961,7 @@ class AuthInfo:
 				module[NAME])
 			if not module[NAME] in self.module_missing and not os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, module[NAME]), os.X_OK):
-				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process will not work correctly." %
+				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly." %
 					(AUTH_MODULE_DIR, module[NAME])))				
 				self.module_missing[module[NAME]] = True
 			if module[NAME] == "cracklib":
