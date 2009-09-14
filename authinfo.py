@@ -673,7 +673,8 @@ DEFAULT_DNS_QUERY_SIZE = 1024
 def toggleCachingService(enableCaching, nostart):
 	if not nostart:
 		if enableCaching:
-			os.system("/sbin/service nscd restart")
+			os.system("/sbin/service nscd stop >/dev/null 2>&1")
+			os.system("/sbin/service nscd start")
 		else:
 			try:
 				os.stat(PATH_NSCD_PID)
@@ -691,7 +692,8 @@ def toggleNisService(enableNis, nisDomain, nostart):
 			os.system("/sbin/chkconfig --add portmap")
 			os.system("/sbin/chkconfig --level 345 portmap on")
 			if not nostart:
-				os.system("/sbin/service portmap restart")
+				os.system("/sbin/service portmap stop >/dev/null 2>&1")
+				os.system("/sbin/service portmap start")
 		except OSError:
 			pass
 		try:
@@ -729,7 +731,8 @@ def toggleSplatbindService(enable, path, pidfile, name, nostart):
 			os.system("/sbin/chkconfig --add " + name)
 			os.system("/sbin/chkconfig --level 345 " + name + " on")
 			if not nostart:
-				os.system("/sbin/service " + name +" restart")
+				os.system("/sbin/service " + name +" stop >/dev/null 2>&1")
+				os.system("/sbin/service " + name +" start")
 		except OSError:
 			pass
 	else:
