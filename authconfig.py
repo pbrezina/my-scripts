@@ -163,21 +163,21 @@ class Authconfig:
 
 		parser.add_option("--enablesmbauth", action="store_true",
 			help=_("enable SMB authentication by default"))
- 		parser.add_option("--disablesmbauth", action="store_true",
+		parser.add_option("--disablesmbauth", action="store_true",
 			help=_("disable SMB authentication by default"))
- 		parser.add_option("--smbservers", metavar=_("<servers>"),
- 			help=_("names of servers to authenticate against"))
- 		parser.add_option("--smbworkgroup", metavar=_("<workgroup>"),
- 			help=_("workgroup authentication servers are in"))
-			
+		parser.add_option("--smbservers", metavar=_("<servers>"),
+			help=_("names of servers to authenticate against"))
+		parser.add_option("--smbworkgroup", metavar=_("<workgroup>"),
+			help=_("workgroup authentication servers are in"))
+
 		parser.add_option("--enablewinbind", action="store_true",
 			help=_("enable winbind for user information by default"))
- 		parser.add_option("--disablewinbind", action="store_true",
+		parser.add_option("--disablewinbind", action="store_true",
 			help=_("disable winbind for user information by default"))
 		parser.add_option("--enablewinbindauth", action="store_true",
 			help=_("enable winbind for authentication by default"))
 		parser.add_option("--disablewinbindauth", action="store_true",
-			help=_("disable winbind for authentication by default"))		
+			help=_("disable winbind for authentication by default"))
 		parser.add_option("--smbsecurity", metavar="<user|server|domain|ads>",
 			help=_("security mode to use for samba and winbind"))
 		parser.add_option("--smbrealm", metavar=_("<realm>"),
@@ -273,14 +273,14 @@ class Authconfig:
 		parser.add_option("--savebackup", metavar=_("<name>"),
 			help=_("save a backup of all configuration files"))
 
- 		parser.add_option("--restorebackup", metavar=_("<name>"),
+		parser.add_option("--restorebackup", metavar=_("<name>"),
 			help=_("restore the backup of configuration files"))
 
 		parser.add_option("--restorelastbackup", action="store_true",
 			help=_("restore the backup of configuration files saved before the previous configuration change"))
 
 		(self.options, args) = parser.parse_args()
-		
+
 		if args:
 			self.printError(_("unexpected argument"))
 			sys.exit(2)
@@ -298,7 +298,7 @@ class Authconfig:
 		info.probe()
 		if info.hesiodLHS and info.hesiodRHS:
 			print "hesiod %s/%s" % (info.hesiodLHS,
- 				info.hesiodRHS)
+				info.hesiodRHS)
 		if info.ldapServer and info.ldapBaseDN:
 			print "ldap %s/%s\n" % (info.ldapServer,
 				info.ldapBaseDN)
@@ -348,7 +348,7 @@ class Authconfig:
 			"winbindoffline":"winbindOffline",
 			"wins":"enableWINS",
 			"preferdns":"preferDNSinHosts"}
-			
+
 		string_settings = {"passalgo":"passwordAlgorithm",
 			"hesiodlhs":"hesiodLHS",
 			"hesiodrhs":"hesiodRHS",
@@ -372,7 +372,7 @@ class Authconfig:
 			"winbindtemplatehomedir":"winbindTemplateHomedir",
 			"winbindtemplateprimarygroup":"winbindTemplatePrimaryGroup",
 			"winbindtemplateshell":"winbindTemplateShell"}
-			
+
 		for opt, aival in bool_settings.iteritems():
 			if getattr(self.options, "enable"+opt):
 				setattr(self.info, aival, True)
@@ -433,7 +433,7 @@ class Authconfig:
 		# FIXME: what about printing critical errors writing individual configs?
 		self.joinDomain()
 		self.info.post(self.options.nostart)
-				
+
 	def run(self):
 		self.parseOptions()
 		if self.options.probe:
@@ -484,7 +484,7 @@ class AuthconfigTUI(Authconfig):
 					(warning[0], warning[1], warning[2]))
 				snack.ButtonChoiceWindow(self.screen, _("Warning"), text, [_("Ok")])
 			warning = warning[3]
-			
+
 	def getMainChoices(self):
 		warnCache = [authinfo.PATH_NSCD, _("caching"), "nscd", None]
 		warnFprintd = [authinfo.PATH_PAM_FPRINTD, _("Fingerprint reader"), "pam_fprintd", None]
@@ -615,11 +615,11 @@ class AuthconfigTUI(Authconfig):
 				widgets.append(cb)
 				questionGrid.setField(snack.Label(""), 0, row, anchorRight=1)
 				questionGrid.setField(cb, 1, row, anchorLeft=1)
-				
+
 			elif t == "svalue":
 				comp = snack.Label(desc)
 				questionGrid.setField(comp, 0, row, padding=(0, 0, 1, 0), anchorRight=1)
-			comp = snack.Entry(40, getattr(self.info, attr), hidden=val)
+				comp = snack.Entry(40, getattr(self.info, attr), hidden=val)
 				widgets.append(comp)
 				# FIXME? Filtering " " and "\t"
 				questionGrid.setField(comp, 1, row, growx=1)
@@ -756,7 +756,7 @@ class AuthconfigTUI(Authconfig):
 		security = ["ads", "domain"]
 		shells = ["/sbin/nologin", "/bin/sh", "/bin/bash", "/bin/tcsh", "/bin/ksh",
 			"/bin/zsh"]
-			
+
 		def shellexists(shell):
 			return os.access(shell, os.X_OK)
 

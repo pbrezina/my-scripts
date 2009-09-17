@@ -87,7 +87,7 @@ class DNSQueryHeader:
 		self.dns_rcode = byte2 & 15
 		self.dns_z = (byte2 >> 4) & 7
 		self.dns_ra = (byte1 >> 7) & 1
-	
+
 	def size(self):
 		return struct.calcsize(DNSQueryHeader.FORMAT)
 
@@ -110,7 +110,7 @@ class DNSResult:
 	def unpack(self, data):
 		(self.dns_type, self.dns_class, self.dns_ttl,
 			self.dns_rlength) = struct.unpack(DNSResult.FORMAT, data[0:self.size()])
-			
+
 	def qunpack(self, data):
 		(self.dns_type, self.dns_class) = struct.unpack(DNSResult.QFORMAT, data[0:self.qsize()])
 
@@ -122,7 +122,7 @@ class DNSResult:
 
 class DNSRData:
 	def __init__(self):
-		pass	
+		pass
 
 #typedef struct dns_rr_a {
 #	u_int32_t address;
@@ -211,7 +211,7 @@ def dnsParseLabel(label, base):
 	rest = label
 	output = ""
 	skip = 0
-	
+
 	try:
 		while ord(rest[0]):
 			if ord(rest[0]) & 0xc0:
@@ -233,9 +233,9 @@ def dnsParseA(data, base):
 	if len(data) < 4:
 		rdata.address = 0
 		return None
-		
+
 	rdata.address = (ord(data[0])<<24) | (ord(data[1])<<16) | (ord(data[2])<<8) | (ord(data[3])<<0)
-		
+
 	if DEBUG_DNSCLIENT:
 		print "A = %d.%d.%d.%d." % (ord(data[0]), ord(data[1]), ord(data[2]), ord(data[3]))
 	return rdata
@@ -265,7 +265,7 @@ def dnsParseCNAME(data, base):
 def dnsParseSOA(data, base):
 	rdata = DNSRData()
 	format = "!IIIII"
-	
+
 	(rest, rdata.mname) = dnsParseLabel(data, base)
 	if rdata.mname is None:
 		return None
@@ -277,7 +277,7 @@ def dnsParseSOA(data, base):
 
 	(rdata.serial, rdata.refresh, rdata.retry, rdata.expire,
 		rdata.minimum) = struct.unpack(format, rest[:struct.calcsize(format)])
-	
+
 	if DEBUG_DNSCLIENT:
 		print "SOA(mname) = \"%s\"." % rdata.mname
 		print "SOA(rname) = \"%s\"." % rdata.rname
@@ -335,7 +335,7 @@ def dnsParseSRV(data, base):
 	flen = struct.calcsize(format)
 	if len(data) < flen:
 		return None
-		
+
 	(rdata.priority, rdata.weight, rdata.port) = struct.unpack(format, data[:flen])
 	(rest, rdata.server) = dnsParseLabel(data[flen:], base)
 	if DEBUG_DNSCLIENT:
@@ -350,7 +350,7 @@ def dnsParseResults(results):
 		header = unpackQueryHeader(results)
 	except struct.error:
 		return []
-	
+
 	if header.dns_qr != 1: # should be a response
 		return []
 
@@ -358,13 +358,13 @@ def dnsParseResults(results):
 		return []
 
 	rest = results[header.size():]
-	
+
 	rrlist = []
 
 	for i in xrange(header.dns_qdcount):
 		if not rest:
 			return []
-		
+
 		rr = DNSResult()
 
 		(rest, label) = dnsParseLabel(rest, results)
@@ -373,9 +373,9 @@ def dnsParseResults(results):
 
 		if len(rest) < rr.qsize():
 			return []
-		
+
 		rr.qunpack(rest)
-		
+
 		rest = rest[rr.qsize():]
 
 		if DEBUG_DNSCLIENT:
@@ -407,7 +407,7 @@ def dnsParseResults(results):
 			if DEBUG_DNSCLIENT:
 				print "Answer too short."
 			return []
-		
+
 		fmap = { DNS_T_A: dnsParseA, DNS_T_NS: dnsParseNS,
 			DNS_T_CNAME: dnsParseCNAME, DNS_T_SOA: dnsParseSOA,
 			DNS_T_NULL: dnsParseNULL, DNS_T_WKS: dnsParseWKS,

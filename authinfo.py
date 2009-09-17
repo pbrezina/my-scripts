@@ -325,7 +325,7 @@ argv_otp_auth = [
 ]
 
 argv_smb_auth = [
-	"use_first_pass",	
+	"use_first_pass",
 	"nolocal"
 ]
 
@@ -988,7 +988,7 @@ class CacheBackup(FileBackup):
 		if rv:
 			dest = None
 			try:
-				
+
 				enabled = readCache()
 				dest = open(backuppath, "w")
 				dest.write(str(int(enabled)))
@@ -1031,7 +1031,7 @@ class CacheBackup(FileBackup):
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
 	CFG_LOGIN_DEFS) = range(0, 19)
-all_configs = [ 
+all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("pam_smb.conf", SYSCONFDIR+"/pam_smb.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
@@ -1060,7 +1060,7 @@ class AuthInfo:
 		# Service-specific settings.
 		self.hesiodLHS = ""
 		self.hesiodRHS = ""
-  
+
 		self.ldapServer = ""
 		self.ldapBaseDN = ""
 
@@ -1163,21 +1163,21 @@ class AuthInfo:
 
 		# Read the RHS.
 		self.hesiodRHS = snipString(shv.getValue("rhs"))
-		
+
 		shv.close()
 		return True
 
 	# Read SMB setup from /etc/pam_smb.conf.
 	def readSMB(self):
 		# Open the file.  Bail if it's not there or there's some problem
-	 	# reading it.
+		# reading it.
 		try:
 			f = open(all_configs[CFG_PAM_SMB].origPath, "r")
 		except IOError:
 			return False
 
 		# Read three lines.  The first is the workgroup, and subsequent
-	 	# lines are the PDC and BDC, respectively.
+		# lines are the PDC and BDC, respectively.
 		self.smbWorkgroup = snipString(f.readline())
 		servers = f.readlines()
 		servers = map(snipString, servers)
@@ -1194,7 +1194,7 @@ class AuthInfo:
 			f = open(all_configs[CFG_YP].origPath, "r")
 		except IOError:
 			return False
-		
+
 		for line in f:
 			line = line.strip()
 
@@ -1206,7 +1206,7 @@ class AuthInfo:
 				continue
 
 			# It had better be a "domain" statement, because the man page
-		 	# for this file states that this is all there is.
+			# for this file states that this is all there is.
 			value = matchKey(line, "domain")
 			if value:
 				# Save the domain's name.  To do that, find its end.
@@ -1245,7 +1245,7 @@ class AuthInfo:
 		self.ldapCacertDir = PATH_LDAP_CACERTS
 		self.ldapServer = ""
 		# Open the file.  Bail if it's not there or there's some problem
-	 	# reading it.
+		# reading it.
 		try:
 			f = open(all_configs[CFG_LDAP].origPath, "r")
 		except IOError:
@@ -1278,7 +1278,7 @@ class AuthInfo:
 				self.enableLDAPS = matchLine(value, "start_tls")
 				continue
 			# We'll pull MD5/DES crypt ("pam_password") from the config
-		 	# file, or from the pam_unix PAM config lines.
+			# file, or from the pam_unix PAM config lines.
 
 		self.ldapServer = self.ldapHostsToURIs(cleanList(self.ldapServer))
 		f.close()
@@ -1302,7 +1302,7 @@ class AuthInfo:
 		self.allKerberosKDCs = {}
 		self.allKerberosAdminServers = {}		
 		# Open the file.  Bail if it's not there or there's some problem
-	 	# reading it.
+		# reading it.
 		try:
 			f = open(all_configs[CFG_KRB5].origPath, "r")
 		except IOError:
@@ -1384,7 +1384,7 @@ class AuthInfo:
 		result = ""
 		section = ""
 		# Open the file.  Bail if it's not there or there's some problem
-	 	# reading it.
+		# reading it.
 		try:
 			f = open(all_configs[CFG_SMB].origPath, "r")
 		except IOError:
@@ -1477,7 +1477,7 @@ class AuthInfo:
 	# Read NSS setup from /etc/nsswitch.conf.
 	def readNSS(self):
 		# Open the file.  Bail if it's not there or there's some problem
-	 	# reading it.
+		# reading it.
 		nssconfig = ""
 
 		try:
@@ -1525,7 +1525,7 @@ class AuthInfo:
 	# Read hints from the PAM control file.
 	def readPAM(self):
 		# Open the file.  Bail if it's not there or there's some problem
-	 	# reading it.
+		# reading it.
 		try:
 			f = open(all_configs[CFG_PAM].origPath, "r")
 		except IOError:
@@ -1570,7 +1570,7 @@ class AuthInfo:
 			
 			if lst[0] == "include":
 				continue
-				
+
 			control = lst[0]
 			if control.startswith("["):
 				control += "]"
@@ -1585,7 +1585,7 @@ class AuthInfo:
 
 			if len(lst) == 2:
 				args = lst[1]
-			
+
 			if module.startswith("pam_cracklib"):
 				self.enableCracklib = True
 				if args:
@@ -1660,7 +1660,6 @@ class AuthInfo:
 
 		# Read settings from our config file, which override anything we
 		# figure out by examination.
-		# Open the file.  Bail if it's not there.
 		try:
 			shv = shvfile.read(all_configs[CFG_AUTHCONFIG].origPath)
 
@@ -1800,12 +1799,12 @@ class AuthInfo:
 			pass
 
 		# Special handling for pam_cracklib and pam_passwdqc: there can be
-	 	# only one.
+		# only one.
 		if self.enableCracklib and self.enablePasswdQC:
 			self.enablePasswdQC = False
 		if not self.enableCracklib and not self.enablePasswdQC:
 			self.enableCracklib = True
-	
+
 		# Special handling for broken_shadow option
 		if (self.brokenShadow and not self.enableLDAPAuth and
 			not self.enableKerberos and not self.enableWinbindAuth and
@@ -1821,7 +1820,7 @@ class AuthInfo:
 			shv = shvfile.read(all_configs[CFG_NETWORK].origPath)
 		except IOError:
 			return False
-		
+
 		tmp = shv.getValue("NISDOMAIN")
 		if tmp:
 			self.nisLocalDomain = tmp
@@ -1946,7 +1945,7 @@ class AuthInfo:
 		self.readWinbind()
 		self.readNetwork()
 		self.readNIS()
-		self.readLDAP()		
+		self.readLDAP()
 		self.readKerberos()
 		self.readSmartcard()
 		self.readNSS()
@@ -1987,14 +1986,14 @@ class AuthInfo:
 		all_configs[CFG_PAM_SMB].backup(self.backupDir)
 		try:
 			f = openLocked(all_configs[CFG_PAM_SMB].origPath, 0644)
-		
+
 			f.truncate(0)
 			
 			f.write(self.smbWorkgroup+"\n")
-			
+
 			servers = self.smbServers.replace(",", " ")
 			servers = servers.split(None)
-			
+
 			if len(servers) > 0:
 				f.write(servers[0])
 			f.write("\n")
@@ -2036,7 +2035,7 @@ class AuthInfo:
 					if not written and self.nisDomain:
 						output += "domain " + self.nisDomain
 						# Take an empty server name to mean that we
-				 		# want to use broadcast.
+						# want to use broadcast.
 						servers = self.nisServer.split(",")
 						if self.nisServer:
 							output += " server "
@@ -2070,7 +2069,7 @@ class AuthInfo:
 				if self.nisDomain:
 					output += "domain " + self.nisDomain
 					# Take an empty server name to mean that we
-				 	# want to use broadcast.
+					# want to use broadcast.
 					if servers[0]:
 						output += " server "
 						output += servers[0]
@@ -2204,11 +2203,11 @@ class AuthInfo:
 		all_configs[CFG_LDAP].backup(self.backupDir)
 		all_configs[CFG_OPENLDAP].backup(self.backupDir)
 		ret = self.writeLDAP2(all_configs[CFG_LDAP].origPath,
-					 "uri", "host", "base", True)
+					"uri", "host", "base", True)
 		if ret:
 			# Ignore errors here.
 			self.writeLDAP2(all_configs[CFG_OPENLDAP].origPath,
-				   "URI", "HOST", "BASE", False)
+					"URI", "HOST", "BASE", False)
 		return ret
 
 	def cryptStyle(self):
@@ -2245,7 +2244,7 @@ class AuthInfo:
 				# If it's the beginning of a section, record its name.
 				if matchLine(ls, "["):
 					# If the previous section was "defaults", and we didn't
-			 		# see the crypt_style setting , write it out.
+					# see the crypt_style setting , write it out.
 					if section == "defaults" and not wrotecryptstyle:
 						output += self.cryptStyle() + "\n"
 						wrotecryptstyle = True
@@ -2384,7 +2383,7 @@ class AuthInfo:
 						wrotesmbkdc = True
 					continue
 				# If this is the "admin_server" in our realm, replace it with
-			 	# the values we now have.
+				# the values we now have.
 				if (section == "realms" and subsection and subsection == self.kerberosRealm
 					and matchLine(ls, "admin_server")):
 					if not wroteadmin:
@@ -2393,7 +2392,7 @@ class AuthInfo:
 						wroteadmin = True
 					continue
 				# If we're in the realms section, but not in a realm, we'd
-			 	# better be looking at the beginning of one.
+				# better be looking at the beginning of one.
 				if section == "realms" and not subsection:
 					# Read the name of the realm.
 					value = ls.split(None,1)
@@ -2619,7 +2618,7 @@ class AuthInfo:
 		if self.smartcardAction == _("Lock"):
 			insact += ",/etc/pkcs11/lockhelper.sh -lock"
 			rmact += ",/etc/pkcs11/lockhelper.sh -deactivate"
-		
+
 		callPKCS11Setup(["use_module="+self.smartcardModule,
 			"ins_action="+insact, "rm_action="+rmact])
 		return True
@@ -2935,7 +2934,7 @@ class AuthInfo:
 			except IOError:
 				pass
 		return True
-		
+
 	def formatPAMModule(self, module, forcescard):
 		stack = pam_stacks[module[STACK]]
 		logic = module[LOGIC]
@@ -3456,7 +3455,7 @@ class AuthInfo:
 			except OSError, (err, text):
 				if err == errno.ENOENT:
 					os.mkdir(self.ldapCacertDir, 0755)
-		
+
 			return isEmptyDir(self.ldapCacertDir)
 		return False
 
@@ -3513,4 +3512,3 @@ class AuthInfo:
 
 	def restoreLast(self):
 		return self.restoreBackup(PATH_CONFIG_BACKUPS + "/last")
-

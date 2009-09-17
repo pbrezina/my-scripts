@@ -412,10 +412,10 @@ class Authconfig:
 				if os.access("/etc/init.d/" + service, os.X_OK):
 					os.system("/etc/init.d/" + service + " condrestart")
 			if os.access("/etc/init.d/autofs", os.X_OK):
-    				if self.info.enableNIS:
+				if self.info.enableNIS:
 					cond = ""
 				else:
-    					cond = "cond"
+					cond = "cond"
 				os.system("/etc/init.d/autofs " + cond + "restart")
 
 	def ldap_cacerts_test(self, parent):

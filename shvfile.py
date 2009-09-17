@@ -82,7 +82,7 @@ class SHVFile:
 			except IOError:
 				pass
 		return
-	
+
 	def parse(self):
 		if not self.f:
 			return
@@ -91,7 +91,7 @@ class SHVFile:
 			if len(vs) < 2:
 				continue
 			self.variables[vs[0]] = unescape(vs[1])
-			
+
 	def write(self, perms):
 		if not self.f:
 			try:
@@ -111,7 +111,7 @@ class SHVFile:
 		except IOError:
 			# we cannot do much in case of error anyway
 			pass
-	
+
 	def close(self):
 		if self.f:
 			try:
@@ -120,32 +120,32 @@ class SHVFile:
 				# we cannot do much in case of error anyway
 				pass
 			self.f = None			
-	
+
 	def getValue(self, name):
 		try:
 			return self.variables[name]
 		except KeyError:
 			return ""
-	
+
 	def getBoolValue(self, name):
 		# return True if <key> resolves to any truth value (e.g. "yes", "y", "true")
- 		# return False if <key> resolves to any non-truth value (e.g. "no", "n", "false")
- 		# raise ValueError otherwise
+		# return False if <key> resolves to any non-truth value (e.g. "no", "n", "false")
+		# raise ValueError otherwise
 		try:
-	 		val = self.variables[name].lower()
-	 	except KeyError:
-	 		raise ValueError
- 		if val == "yes" or val == "true" or val == "t" or val == "y":
- 			return True
- 		if val == "no" or val == "false" or val == "f" or val == "n":
- 			return False
- 		raise ValueError
+			val = self.variables[name].lower()
+		except KeyError:
+			raise ValueError
+		if val == "yes" or val == "true" or val == "t" or val == "y":
+			return True
+		if val == "no" or val == "false" or val == "f" or val == "n":
+			return False
+		raise ValueError
 
 	def setValue(self, name, value):
 		if not value:
 			if name in self.variables:
 				del self.variables[name]
-		else:		
+		else:
 			self.variables[name] = value
 
 	def setBoolValue(self, name, value):
