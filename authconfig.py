@@ -611,7 +611,7 @@ class AuthconfigTUI(Authconfig):
 		widgets = []
 		for (t, desc, attr, val) in items:
 			if t == "tfvalue":
-					cb = snack.Checkbox(desc, bool(getattr(self.info, attr)))
+				cb = snack.Checkbox(desc, bool(getattr(self.info, attr)))
 				widgets.append(cb)
 				questionGrid.setField(snack.Label(""), 0, row, anchorRight=1)
 				questionGrid.setField(cb, 1, row, anchorLeft=1)
@@ -637,11 +637,11 @@ class AuthconfigTUI(Authconfig):
 				for v in val:
 					buttonlist.append((v, v, v == sel))
 				radioBar = snack.RadioBar(None, buttonlist)
-				widgets.append(radioBar)			
+				widgets.append(radioBar)
 				questionGrid.setField(radioBar, 1, row, anchorLeft=1)
 
 			elif t == "lvalue":
-				comp = snack.TextboxReflowed(50, desc, flexDown=1, flexUp=1)	
+				comp = snack.TextboxReflowed(50, desc, flexDown=1, flexUp=1)
 				widgets.append(comp)
 				questionGrid.setField(comp, 0, row, anchorLeft=1)
 
@@ -676,14 +676,14 @@ class AuthconfigTUI(Authconfig):
 			for (t, desc, attr, val) in items:
 				if t == "tfvalue":
 					setattr(self.info, attr, wcopy.pop(0).selected())
-					
+
 				elif t == "svalue":
 					setattr(self.info, attr, wcopy.pop(0).value())
 					# FIXME? Filtering " " and "\t"
 
 				elif t == "rvalue":
 					setattr(self.info, attr, wcopy.pop(0).getSelection())
-					
+
 				elif t == "lvalue":
 					wcopy.pop(0)
 
@@ -713,7 +713,7 @@ class AuthconfigTUI(Authconfig):
 			("svalue", _("Server:"), "nisServer", 0)]
 		return self.getGenericChoices(_("NIS Settings"),
 			questions, _("Back"), next and _("Next") or _("Ok"))
-			
+
 	def getKerberosSettings(self, next):
 		questions = [("svalue", _("Realm:"), "kerberosRealm", 0),
 			("svalue", _("KDC:"), "kerberosKDC", 0),
@@ -738,8 +738,8 @@ class AuthconfigTUI(Authconfig):
 
 	def maybeGetJoinSettings(self):
 		questions = [("lvalue",
-			 _("Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"),
-			  None, None)]
+			     _("Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"),
+			     None, None)]
 		orig_info = authinfo.read(self.printError)
 		orig_info.update()
 		self.info.update()
@@ -836,7 +836,7 @@ class AuthconfigTUI(Authconfig):
 		try:
 			self.screen = snack.SnackScreen()
 			packageversion = self.module() # FIXME - version
-			
+
 			self.screen.pushHelpLine(_(" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"))
 			self.screen.drawRootText(0, 0, packageversion + " - (c) 1999-2005 Red Hat, Inc.")
 			if not self.getChoices():
