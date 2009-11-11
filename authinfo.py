@@ -895,7 +895,7 @@ class FileBackup:
 		destfd = None
 		try:
 			destfd = openfdLocked(dest,
-				os.O_RDWR | os.O_CREAT, 0644)
+				os.O_TRUNC | os.O_WRONLY | os.O_CREAT, 0644)
 			srcfd = openfdLocked(src, os.O_RDONLY, 0)
 		except IOError, (err, strerr):
 			rv = False
