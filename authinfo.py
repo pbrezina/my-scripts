@@ -78,6 +78,8 @@ PATH_ODBCBIND = "/usr/sbin/odbcbind"
 PATH_ODBCBIND_PID = "/var/run/odbcbind.pid"
 PATH_WINBIND = "/usr/sbin/winbindd"
 PATH_WINBIND_PID = "/var/run/winbindd.pid"
+PATH_SSSD = "/usr/sbin/sssd"
+PATH_SSSD_PID = "/var/run/sssd.pid"
 PATH_YPBIND = "/sbin/ypbind"
 PATH_YPBIND_PID = "/var/run/ypbind.pid"
 PATH_SEBOOL = "/usr/sbin/setsebool"
@@ -92,6 +94,7 @@ PATH_LIBNSS_HESIOD = LIBDIR + "/libnss_hesiod.so.2"
 PATH_LIBNSS_ODBCBIND = LIBDIR + "/libnss_odbcbind.so.2"
 PATH_LIBNSS_WINBIND = LIBDIR + "/libnss_winbind.so.2"
 PATH_LIBNSS_WINS = LIBDIR + "/libnss_wins.so.2"
+PATH_LIBNSS_SSS = LIBDIR + "/libnss_sss.so.2"
 
 PATH_PAM_KRB5 = AUTH_MODULE_DIR + "/pam_krb5.so"
 PATH_PAM_LDAP = AUTH_MODULE_DIR + "/pam_ldap.so"
@@ -99,6 +102,7 @@ PATH_PAM_SMB = AUTH_MODULE_DIR + "/pam_smb_auth.so"
 PATH_PAM_WINBIND = AUTH_MODULE_DIR + "/pam_winbind.so"
 PATH_PAM_PKCS11 = AUTH_MODULE_DIR + "/pam_pkcs11.so"
 PATH_PAM_FPRINTD = AUTH_MODULE_DIR + "/pam_fprintd.so"
+PATH_PAM_SSS = AUTH_MODULE_DIR + "/pam_sss.so"
 
 PATH_WINBIND_NET = "/usr/bin/net"
 
@@ -359,6 +363,14 @@ argv_winbind_password = [
 	"use_authtok"
 ]
 
+argv_sss_auth = [
+	"use_first_pass"
+]
+
+argv_sss_password = [
+	"use_authtok"
+]
+
 argv_keyinit_session = [
 	"revoke"
 ]
@@ -396,6 +408,8 @@ pam_modules[STANDARD] = [
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
 	 "succeed_if",		argv_succeed_if_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "sss",			argv_sss_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "afs",			argv_afs_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
@@ -438,6 +452,8 @@ pam_modules[STANDARD] = [
 	[True,  ACCOUNT,	LOGIC_SUFFICIENT,
 	 "succeed_if",		argv_succeed_if_account],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "sss",			[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		[]],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5",		[]],
@@ -453,6 +469,8 @@ pam_modules[STANDARD] = [
 	 "passwdqc",		argv_passwdqc_password],
 	[True,  PASSWORD,	LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "sss",			argv_sss_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "afs",			argv_afs_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
@@ -478,6 +496,8 @@ pam_modules[STANDARD] = [
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
+	 "sss",			[]]
+	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs.krb",		[]],
@@ -494,6 +514,8 @@ pam_modules[PASSWORD_ONLY] = [
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
 	 "succeed_if",		argv_succeed_if_auth],
+	[False, AUTH,		LOGIC_SUFFICIENT,
+	 "sss",			argv_sss_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "afs",			argv_afs_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
@@ -521,6 +543,8 @@ pam_modules[PASSWORD_ONLY] = [
 	[True,  ACCOUNT,	LOGIC_SUFFICIENT,
 	 "succeed_if",		argv_succeed_if_account],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "sss",			[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		[]],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5",		[]],
@@ -559,6 +583,8 @@ pam_modules[PASSWORD_ONLY] = [
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
+	 "sss",			[]]
+	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs.krb",		[]],
@@ -584,6 +610,8 @@ pam_modules[FINGERPRINT] = [
 	[True,  ACCOUNT,	LOGIC_SUFFICIENT,
 	 "succeed_if",		argv_succeed_if_account],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "sss",			[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		[]],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5",		[]],
@@ -603,6 +631,8 @@ pam_modules[FINGERPRINT] = [
 	 "succeed_if",		argv_succeed_if_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "sss",			[]]
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -633,6 +663,8 @@ pam_modules[SMARTCARD] = [
 	[True,  ACCOUNT,	LOGIC_SUFFICIENT,
 	 "succeed_if",		argv_succeed_if_account],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
+	 "sss",			[]],
+	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "ldap",		[]],
 	[False, ACCOUNT,	LOGIC_IGNORE_UNKNOWN,
 	 "krb5",		[]],
@@ -652,6 +684,8 @@ pam_modules[SMARTCARD] = [
 	 "succeed_if",		argv_succeed_if_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "sss",			[]]
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -1109,6 +1143,7 @@ class AuthInfo:
 		self.enableWinbind = None
 		self.enableWINS = None
 		self.preferDNSinHosts = None
+		self.enableSSSD = None
 
 		# Authentication setup.
 		self.enableAFS = None
@@ -1130,6 +1165,7 @@ class AuthInfo:
 		self.enableSysNetAuth = None
 		self.enableMkHomeDir = None
 		self.enableSmartcard = None
+		self.enableSSSDAuth = None
 
 		self.brokenShadow = None
 		self.forceBrokenShadow = None
@@ -1514,6 +1550,7 @@ class AuthInfo:
 			self.enableNIS = bool(checkNSS(nssconfig, "nis"))
 			self.enableNIS3 = bool(checkNSS(nssconfig, "nisplus"))
 			self.enableWinbind = bool(checkNSS(nssconfig, "winbind"))
+			self.enableSSSD = bool(checkNSS(nssconfig, "sss"))
 		f.close()
 		return True
 
@@ -1617,6 +1654,9 @@ class AuthInfo:
 				continue
 			if module.startswith("pam_winbind"):
 				self.enableWinbindAuth = True
+				continue
+			if module.startswith("pam_sss"):
+				self.enableSSSDAuth = True
 				continue
 			if module.startswith("pam_access"):
 				self.enablePAMAccess = True
@@ -1776,6 +1816,14 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
+				self.enableSSSD = shv.getBoolValue("USESSSD")
+			except ValueError:
+				pass
+			try:
+				self.enableSSSDAuth = shv.getBoolValue("USESSSDAUTH")
+			except ValueError:
+				pass
+			try:
 				self.enableLocAuthorize = shv.getBoolValue("USELOCAUTHORIZE")
 			except ValueError:
 				pass
@@ -1808,7 +1856,7 @@ class AuthInfo:
 		# Special handling for broken_shadow option
 		if (self.brokenShadow and not self.enableLDAPAuth and
 			not self.enableKerberos and not self.enableWinbindAuth and
-			not self.enableSmartcard):
+			not self.enableSSSDAuth and not self.enableSmartcard):
 			self.forceBrokenShadow = True
 
 		return True
@@ -1893,6 +1941,8 @@ class AuthInfo:
 		(self.enableOdbcbind != b.enableOdbcbind) or
 		(self.enableWinbind != b.enableWinbind) or
 		(self.enableWinbindAuth != b.enableWinbindAuth) or
+		(self.enableSSSD != b.enableSSSD) or
+		(self.enableSSSDAuth != b.enableSSSDAuth) or
 		(self.enableWINS != b.enableWINS) or
 		(self.preferDNSinHosts != b.preferDNSinHosts) or
 
@@ -2832,6 +2882,8 @@ class AuthInfo:
 
 			if self.enableWinbind:
 				users += " winbind"
+			if self.enableSSSD:
+				users += " sss"
 
 			# Hostnames we treat specially.
 			hosts += " files"
@@ -3073,6 +3125,7 @@ class AuthInfo:
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
+					(self.enableSSSDAuth and module[NAME] == "sss") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
 					(self.enablePAMAccess and module[NAME] == "access") or
 					(self.enableMkHomeDir and module[NAME] == "mkhomedir") or
@@ -3118,6 +3171,7 @@ class AuthInfo:
 		shv.setBoolValue("USENIS", self.enableNIS)
 		shv.setBoolValue("USEPASSWDQC", self.enablePasswdQC)
 		shv.setBoolValue("USEWINBIND", self.enableWinbind)
+		shv.setBoolValue("USESSSD", self.enableSSSD)
 		shv.setBoolValue("USEKERBEROS", self.enableKerberos)
 		shv.setBoolValue("USELDAPAUTH", self.enableLDAPAuth)
 		shv.setBoolValue("USESMARTCARD", self.enableSmartcard)
@@ -3128,6 +3182,7 @@ class AuthInfo:
 		shv.setBoolValue("USESHADOW", self.enableShadow)
 		shv.setBoolValue("USESMBAUTH", self.enableSMB)
 		shv.setBoolValue("USEWINBINDAUTH", self.enableWinbindAuth)
+		shv.setBoolValue("USESSSDAUTH", self.enableSSSDAuth)
 		shv.setBoolValue("USELOCAUTHORIZE", self.enableLocAuthorize)
 		shv.setBoolValue("USEPAMACCESS", self.enablePAMAccess)
 		shv.setBoolValue("USEMKHOMEDIR", self.enableMkHomeDir)
@@ -3212,7 +3267,7 @@ class AuthInfo:
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
 		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
 		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
-		("preferDNSinHosts", "b")]),
+		("enableSSSD", "b"), ("preferDNSinHosts", "b")]),
 	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
 		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
@@ -3223,14 +3278,15 @@ class AuthInfo:
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
-		("enableFprintd", "b"), ("pamLinked", "b")]),
+		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
 		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
-		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b")]),
+		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
+		("enableSSSD", "b"), ("enableSSSDAuth", "b"),]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 		self.checkPAMLinked()
@@ -3352,6 +3408,7 @@ class AuthInfo:
 		print " Winbind template shell = \"%s\"" % self.winbindTemplateShell
 		print " SMB idmap uid = \"%s\"" % self.smbIdmapUid
 		print " SMB idmap gid = \"%s\"" % self.smbIdmapGid
+		print "nss_sss is %s" % formatBool(self.enableSSSD)
 		print "nss_wins is %s" % formatBool(self.enableWINS)
 		print "DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts)
 		print "pam_unix is always enabled"
@@ -3380,6 +3437,7 @@ class AuthInfo:
 		print " SMB servers = \"%s\"" % self.smbServers
 		print " SMB security = \"%s\"" % self.smbSecurity
 		print " SMB realm = \"%s\"" % self.smbRealm
+		print "pam_sss is %s" % formatBool(self.enableSSSDAuth)
 		print "pam_cracklib is %s (%s)" % (formatBool(self.enableCracklib),
 			self.cracklibArgs)
 		print "pam_passwdqc is %s (%s)" % (formatBool(self.enablePasswdQC),
@@ -3430,6 +3488,9 @@ class AuthInfo:
 		toggleNisService(self.enableNIS, self.nisDomain, nostart)
 		toggleSplatbindService(self.enableWinbind or self.enableWinbindAuth,
 			PATH_WINBIND, PATH_WINBIND_PID,
+			"winbind", nostart)
+		toggleSplatbindService(self.enableSSSD or self.enableSSSDAuth,
+			PATH_SSSD, PATH_SSSD_PID,
 			"winbind", nostart)
 		toggleSplatbindService(self.enableDBbind,
 			PATH_DBBIND, PATH_DBBIND_PID,

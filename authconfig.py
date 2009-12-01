@@ -52,6 +52,7 @@ class Authconfig:
 		self.nis_avail = False
 		self.kerberos_avail = False
 		self.ldap_avail = False
+		self.sssd_avail = False
 		self.smb_avail = False
 		self.cache_avail = False
 		self.fprintd_avail = False
@@ -224,6 +225,15 @@ class Authconfig:
 		parser.add_option("--hesiodrhs", metavar="<rhs>",
 			help=_("default hesiod RHS"))
 
+		parser.add_option("--enablesssd", action="store_true",
+			help=_("enable SSSD for user information by default"))
+		parser.add_option("--disablesssd", action="store_true",
+			help=_("disable SSSD for user information by default"))
+		parser.add_option("--enablesssdauth", action="store_true",
+			help=_("enable SSSD for authentication by default"))
+		parser.add_option("--disablesssdauth", action="store_true",
+			help=_("disable SSSD for authentication by default"))
+
 		parser.add_option("--enablecache", action="store_true",
 			help=_("enable caching of user information by default"))
 		parser.add_option("--disablecache", action="store_true",
@@ -319,6 +329,8 @@ class Authconfig:
 		self.kerberos_avail = os.access(authinfo.PATH_PAM_KRB5, os.X_OK)
 		self.ldap_avail = (os.access(authinfo.PATH_PAM_LDAP, os.X_OK) and
 			os.access(authinfo.PATH_LIBNSS_LDAP, os.X_OK))
+		self.sssd_avail = (os.access(authinfo.PATH_PAM_SSS, os.X_OK) and
+			os.access(authinfo.PATH_LIBNSS_SSS, os.X_OK))
 		self.smb_avail = os.access(authinfo.PATH_PAM_SMB, os.X_OK)
 		self.cache_avail = os.access(authinfo.PATH_NSCD, os.X_OK)
 		self.fprintd_avail = os.access(authinfo.PATH_PAM_FPRINTD, os.X_OK)
@@ -347,6 +359,8 @@ class Authconfig:
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
 			"winbindoffline":"winbindOffline",
 			"wins":"enableWINS",
+			"sssd":"enableSSSD",
+			"sssdauth":"enableSSSDAuth",
 			"preferdns":"preferDNSinHosts"}
 
 		string_settings = {"passalgo":"passwordAlgorithm",
