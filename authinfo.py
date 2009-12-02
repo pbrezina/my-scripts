@@ -496,7 +496,7 @@ pam_modules[STANDARD] = [
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "sss",			[]]
+	 "sss",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -583,7 +583,7 @@ pam_modules[PASSWORD_ONLY] = [
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "sss",			[]]
+	 "sss",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -685,7 +685,7 @@ pam_modules[SMARTCARD] = [
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "sss",			[]]
+	 "sss",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
