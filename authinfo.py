@@ -632,7 +632,7 @@ pam_modules[FINGERPRINT] = [
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "sss",			[]]
+	 "sss",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "afs",			[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
