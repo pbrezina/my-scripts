@@ -1064,7 +1064,7 @@ class CacheBackup(FileBackup):
 (CFG_HESIOD, CFG_PAM_SMB, CFG_YP, CFG_LDAP, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
-	CFG_LOGIN_DEFS) = range(0, 19)
+	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 20)
 all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("pam_smb.conf", SYSCONFDIR+"/pam_smb.conf"),
@@ -1084,7 +1084,8 @@ all_configs = [
 	FileBackup("authconfig", SYSCONFDIR+"/sysconfig/authconfig"),
 	FileBackup("network", SYSCONFDIR+"/sysconfig/network"),
 	FileBackup("libuser.conf", SYSCONFDIR+"/libuser.conf"),
-	FileBackup("login.defs", SYSCONFDIR+"/login.defs") ]
+	FileBackup("login.defs", SYSCONFDIR+"/login.defs"),
+	FileBackup("sssd.conf", SYSCONFDIR+"/sssd/sssd.conf")]
 
 class AuthInfo:
 	def __init__(self, msgcb):
@@ -3491,7 +3492,7 @@ class AuthInfo:
 			"winbind", nostart)
 		toggleSplatbindService(self.enableSSSD or self.enableSSSDAuth,
 			PATH_SSSD, PATH_SSSD_PID,
-			"winbind", nostart)
+			"sssd", nostart)
 		toggleSplatbindService(self.enableDBbind,
 			PATH_DBBIND, PATH_DBBIND_PID,
 			"dbbind", nostart)
@@ -3573,3 +3574,6 @@ class AuthInfo:
 
 	def restoreLast(self):
 		return self.restoreBackup(PATH_CONFIG_BACKUPS + "/last")
+
+	def saveSSSDBackup(self):
+		all_configs[CFG_SSSD].backup(self.backupDir)

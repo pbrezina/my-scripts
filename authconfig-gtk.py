@@ -27,6 +27,11 @@ import authinfo, acutil
 import gettext, os, signal, sys
 _ = gettext.lgettext
 import locale
+try:
+	import SSSDConfig
+except ImportError:
+	SSSDConfig = None
+
 locale.setlocale(locale.LC_ALL, '')
 
 firstbootservices = [
@@ -65,6 +70,283 @@ except RuntimeError, e:
 		sys.exit(1)
 	else:
 		raise e
+
+class DomainOpts:
+	def __init__(self, domain, xml):
+		self.domain = domain
+		self.xml = xml
+		self.pwidget = xml.get_widget('sdproviders')
+		self.owidget = xml.get_widget('sdoptions')
+		(self.pmodel, self.omodel, self.tmodel) = self.create_models()
+		self.init_widgets()
+
+	def create_models(self):
+		pmodel = gtk.ListStore(str, str, str)
+		pmodel.set_sort_column_id(1, gtk.SORT_ASCENDING)
+		self.update_providers(pmodel)
+		omodel = gtk.ListStore(str, str, str)
+		omodel.set_sort_column_id(1, gtk.SORT_ASCENDING)
+		self.update_options(omodel)
+		tmodel = gtk.ListStore(str)
+		tmodel.set_sort_column_id(0, gtk.SORT_ASCENDING)
+		tmodel.append(["-"])
+		return (pmodel, omodel, tmodel)
+
+	def update_providers(self, model):
+		model.clear()
+		provs = self.domain.list_providers()
+		subtypes = set(reduce(lambda x,y: x+y, [provs[p] for p in provs]))
+		options = self.domain.list_options()
+		for s in subtypes:
+			descr = str(options[s+"_provider"][2])
+			try:
+				model.append([s, descr, self.domain.get_option(s+"_provider")])
+			except SSSDConfig.NoOptionError:
+				model.append([s, descr, "-"])
+
+	def update_types(self, renderer, editable, path):
+		self.tmodel.clear()
+		self.tmodel.append(["-"])
+		subtype = self.pmodel[path][0]
+		provs = self.domain.list_providers()
+
+		for (t, st) in provs.iteritems():
+			if subtype in st:
+				self.tmodel.append([t])
+
+	def update_options(self, model):
+		model.clear()
+		opts = self.domain.list_options()
+		for (opt, desc) in opts.iteritems():
+			if not opt.endswith("_provider") and not desc[0] == list:
+				try:
+					val = self.domain.get_option(opt)
+					if type(val) == bool and val == True:
+						val = "Y"
+					elif type(val) == bool and val == False:
+						val = "N"
+					else:
+						val = str(val)
+				except SSSDConfig.NoOptionError:
+					val = ''
+				model.append([opt, str(desc[2]), val])
+
+	def init_widgets(self):
+		self.pwidget.set_model(self.pmodel)
+		self.pwidget.set_search_column(1)
+		column = gtk.TreeViewColumn(None, gtk.CellRendererText(),
+			text=1)
+		column.set_sort_column_id(1)
+		column.set_alignment(0)
+		column.set_expand(True)
+		self.pwidget.append_column(column)
+
+		renderer = gtk.CellRendererCombo()
+		renderer.connect('edited', self.provider_set)
+		renderer.connect('editing-started', self.update_types)
+		renderer.set_property('editable', True)
+		renderer.set_property('has_entry', False)
+		renderer.set_property('model', self.tmodel)
+		renderer.set_property('text_column', 0)
+
+		column = gtk.TreeViewColumn(None, renderer,
+			text=2)
+		column.set_sort_column_id(2)
+		column.set_alignment(0)
+		column.set_min_width(40)
+		self.pwidget.append_column(column)
+
+		self.owidget.set_model(self.omodel)
+		self.owidget.set_search_column(1)
+		column = gtk.TreeViewColumn(None, gtk.CellRendererText(),
+			text=1)
+		column.set_sort_column_id(1)
+		column.set_alignment(0)
+		column.set_expand(True)
+		self.owidget.append_column(column)
+
+		renderer = gtk.CellRendererText()
+		renderer.connect('edited', self.option_set)
+		renderer.set_property('editable', True)
+
+		column = gtk.TreeViewColumn(None, renderer,
+			text=2)
+		column.set_sort_column_id(2)
+		column.set_alignment(0)
+		column.set_min_width(40)
+		self.owidget.append_column(column)
+
+	def provider_set(self, cell, path, value):
+		self.pmodel[path][2] = value
+		subtype = self.pmodel[path][0]
+		try:
+			oldprov = self.domain.get_option(subtype + "_provider")
+		except SSSDConfig.NoOptionError:
+			oldprov = "-"
+		if oldprov != value:
+			if oldprov != "-":
+				self.domain.remove_provider(subtype)
+				# XXXX SSSDConfig bug workaround
+				self.domain.remove_option(subtype + "_provider")
+			if value != "-":
+				self.domain.add_provider(value, subtype)
+		self.update_options(self.omodel)
+
+	def option_set(self, cell, path, value):
+		self.omodel[path][2] = value
+		name = self.omodel[path][0]
+		try:
+			oldval = self.domain.get_option(name)
+		except SSSDConfig.NoOptionError:
+			oldval = ''
+		opts = self.domain.list_options()
+		if oldval != value:
+			if value == '':
+				self.domain.remove_option(name)
+			else:
+				if opts[name][0] == bool:
+					if value in ("T", "Y", "True", "Yes", "yes", "true", "1"):
+						value = True
+						self.omodel[path][2] = "Y"
+					else:
+						value = False
+						self.omodel[path][2] = "N"
+				elif opts[name][0] == int:
+					try:
+						value = int(value)
+					except ValueError:
+						value = 0
+				self.domain.set_option(name, value)
+
+class DomainList:
+	def __init__(self, widget, config, xml):
+		self.config = config
+		self.xml = xml
+		self.widget = widget
+		self.model = self.create_model()
+		self.init_widget()
+		self.selected(widget.get_selection())
+		self.changed = False
+
+	def create_model(self):
+		model = gtk.ListStore(str, bool)
+		model.set_sort_column_id(0, gtk.SORT_ASCENDING)
+		self.update_model(model)
+		return model
+
+	def update_model(self, model):
+		model.clear()
+		activedomains = self.config.list_active_domains()
+		for domain in self.config.list_domains():
+			item = model.append([domain, domain in activedomains])
+
+	def selected(self, selection):
+		rows = selection.get_selected_rows()
+		sens = bool(len(rows[1]))
+		self.xml.get_widget('editdomain').set_sensitive(sens)
+		self.xml.get_widget('deldomain').set_sensitive(sens)
+
+	def init_widget(self):
+		self.widget.set_model(self.model)
+		self.widget.set_search_column(0)
+		column = gtk.TreeViewColumn(_("Name"), gtk.CellRendererText(),
+			text=0)
+		column.set_sort_column_id(0)
+		column.set_alignment(0)
+		column.set_expand(True)
+		self.widget.append_column(column)
+
+		renderer = gtk.CellRendererToggle()
+		renderer.connect('toggled', self.toggle_active)
+		column = gtk.TreeViewColumn(_("Active"), renderer,
+			active=1)
+		column.set_sort_column_id(1)
+		column.set_alignment(0)
+		self.widget.append_column(column)
+
+		self.widget.get_selection().connect('changed', self.selected)
+
+	def toggle_active(self, cell, path):
+		self.model[path][1] = not self.model[path][1]
+
+	def apply(self):
+		oldactive = self.config.list_active_domains()
+		for (domain, active) in self.model:
+			if active and domain not in oldactive:
+				self.config.activate_domain(domain)
+				self.changed = True
+			if not active and domain in oldactive:
+				self.config.deactivate_domain(domain)
+				self.changed = True
+
+	def namechanged(self, widget, xml):
+		xml.get_widget('sdeditokbutton').set_sensitive(bool(widget.get_text()))
+
+	def deletedomain(self, domain, parent):
+		msg = gtk.MessageDialog(parent, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO,
+			_("Delete the SSSD domain: %s?") % domain.get_name())
+		msg.set_title(_("Authentication Configuration"))
+		response = msg.run()
+		msg.destroy()
+		if response == gtk.RESPONSE_YES:
+			self.changed = True
+			self.config.delete_domain(domain.get_name())
+			self.update_model(self.model)
+
+	def run_on_button(self, widget, buttonname, parent=None):
+		self.apply()
+		if buttonname == 'adddomain':
+			dom = self.config.new_domain('')
+		else:
+			rows = self.widget.get_selection().get_selected_rows()
+			try:
+				dom = self.config.get_domain(self.model[rows[1][0]][0])
+			except IndexError:
+				return False
+		if buttonname == 'deldomain':
+			return self.deletedomain(dom, parent)
+		top = 'sssddomedit'
+		xml = gtk.glade.XML(gladepath,
+				top, 'authconfig')
+
+		dialog = xml.get_widget(top)
+		if parent:
+			dialog.set_transient_for(parent)
+			parent.set_sensitive(False)
+		dialog.set_resizable(False)
+
+		nameentry = xml.get_widget('sdname')
+		nameentry.connect('changed', self.namechanged, xml)
+		nameentry.set_text(dom.get_name())
+
+		xml.get_widget('sdeditokbutton').set_sensitive(bool(dom.get_name()))
+
+		opts = DomainOpts(dom, xml)
+
+		response = None
+		while ((response != gtk.RESPONSE_OK) and
+		       (response != gtk.RESPONSE_CANCEL)):
+			response = dialog.run()
+
+		if response == gtk.RESPONSE_OK:
+			self.changed = True
+			oldname = dom.get_name()
+			name = nameentry.get_text()
+			if oldname != name:
+				dom.set_name(name)
+			self.config.save_domain(dom)
+			if buttonname == 'adddomain':
+				# set new domain as active
+				self.config.activate_domain(name)
+			self.update_model(self.model)
+		else:
+			if buttonname == 'adddomain':
+				self.config.delete_domain('')
+
+		dialog.destroy()
+		if parent:
+			parent.set_sensitive(True)
+		return response
 
 class Authconfig:
 	def __init__(self):
@@ -106,6 +388,10 @@ class Authconfig:
 			"enablewinbindauth" :
 			("enableWinbindAuth", authinfo.PATH_PAM_WINBIND,
 			 "winbind", "samba-client", ["configwinbindauth"]),
+			"enablesssd" :
+			("enableSSSD", authinfo.PATH_LIBNSS_SSS,
+			 "SSSD", "sssd", ["sssddomains", "adddomain", "editdomain", "deldomain",
+			  "sssdoffdays"]),
 			"enablelocauthorize" :
 			("enableLocAuthorize", "", "", "", []),
 			"enablepamaccess" :
@@ -185,6 +471,15 @@ class Authconfig:
 		self.pristineinfo = self.info.copy()
 		if self.info.enableLocAuthorize == None:
 			self.info.enableLocAuthorize = True # ON by default
+		global SSSDConfig
+		self.sssdconfig = None
+		self.domlist = None
+		if SSSDConfig:
+			try:
+				self.sssdconfig = SSSDConfig.SSSDConfig()
+				self.sssdconfig.import_config()
+			except IOError:
+				pass
 		return
 
 	def destroy_widget(self, button, widget):
@@ -242,6 +537,9 @@ class Authconfig:
 			widget.set_active(checkbox.get_active())
 		for widget in dependents:
 			widget.set_sensitive(checkbox.get_active())
+		# special case for SSSD
+		if name == "enableSSSD":
+			self.info.enableSSSDAuth = checkbox.get_active()
 		return
 
 	def changeoption(self, combo, entry, xml):
@@ -260,7 +558,7 @@ class Authconfig:
 
 	# Create a vbox or dialog using the file, and return it. */
 	def run_on_button(self, button, top, mapname, parent=None, responses=()):
-		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
+		xml = gtk.glade.XML(gladepath,
 				    top, "authconfig")
 		map = getattr(self, mapname)
 		dialog = xml.get_widget(top)
@@ -336,9 +634,7 @@ class Authconfig:
 		return response
 
 	# Create a vbox with the right controls and return the vbox.
-	def get_main_widget(self):
-		xml = gtk.glade.XML("/usr/share/authconfig/authconfig.glade",
-				'authconfig', "authconfig")
+	def get_main_widget(self, xml):
 		dialog = xml.get_widget('authconfig')
 
 		# Set up the pushbuttons to launch new dialogs.
@@ -376,7 +672,7 @@ class Authconfig:
 						   self.main_map[entry][0],
 						   aliases,
 						   dependents)
-			if type(widget) == type(gtk.ComboBox()):
+			elif type(widget) == type(gtk.ComboBox()):
 				widget.remove_text(0) # remove the bogus text necessary for glade
 				options = self.main_map[entry][4]
 				offset = 0
@@ -392,20 +688,45 @@ class Authconfig:
 					options.insert(0, option)
 				widget.connect("changed", self.combochanged,
 					       self.main_map[entry])
-			# if not tokens are installed, don't enable smartcard
+			# if no tokens are installed, don't enable smartcard
 			# login
 			if entry == "enablesmartcard" and len(authinfo.getSmartcardModules()) == 0:
 				widget.set_sensitive(False)
+		if self.sssdconfig:
+			self.domlist = DomainList(xml.get_widget("sssddomains"), self.sssdconfig, xml)
+			for entry in ["adddomain", "editdomain", "deldomain"]:
+				button = xml.get_widget(entry)
+				button.connect("clicked", self.domlist.run_on_button,
+					       entry, dialog)
+			widget = xml.get_widget("sssdoffdays")
+			try:
+				self.offdays = self.sssdconfig.get_service('pam').get_option('offline_credentials_expiration')
+			except SSSDConfig.NoOptionError:
+				self.offdays = 0
+			widget.set_value(self.offdays)
 		return dialog
 
 	# Save changes.
-	def apply(self, button = None):
+	def apply(self, xml):
 		self.info.testLDAPCACerts()
 		self.info.rehashLDAPCACerts()
+
 		if "--updateall" in sys.argv:
 			self.info.write()
 		else:
 			self.info.writeChanged(self.pristineinfo)
+
+		if self.domlist:
+			svc = self.sssdconfig.get_service('pam')
+			offdays = xml.get_widget("sssdoffdays").get_value()
+			if offdays != self.offdays:
+				svc.set_option('offline_credentials_expiration', offdays)
+				self.sssdconfig.save_service(svc)
+			self.domlist.apply()
+			if self.domlist.changed or offdays != self.offdays:
+				self.info.saveSSSDBackup()
+				self.sssdconfig.write()
+
 		self.info.post(False)
 		if "--firstboot" in sys.argv:
 			for service in firstbootservices:
@@ -439,12 +760,17 @@ if __name__ == '__main__':
 	signal.signal(signal.SIGINT, signal.SIG_DFL)
 	gettext.textdomain("authconfig")
 	gtk.glade.bindtextdomain("authconfig", "/usr/share/locale")
+	gladepath = os.path.dirname(authinfo.__file__)+"/authconfig.glade"
+	if not os.access(gladepath, os.R_OK):
+		gladepath = "/usr/share/authconfig/authconfig.glade"
 	module = Authconfig()
-	dialog = module.get_main_widget()
+	xml = gtk.glade.XML(gladepath,
+			    'authconfig', "authconfig")
+	dialog = module.get_main_widget(xml)
 	while True:
 		response = dialog.run()
 		if response == gtk.RESPONSE_OK:
-			module.apply()
+			module.apply(xml)
 			dialog.destroy()
 			sys.exit(0)
 		elif response == 1:
