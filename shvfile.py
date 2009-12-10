@@ -108,6 +108,8 @@ class SHVFile:
 			self.f.truncate()
 			for name, value in self.variables.iteritems():
 				self.f.write(name + "=" + escape(value) + "\n")
+			self.f.flush()
+			os.fsync(self.f.fileno())
 		except IOError:
 			# we cannot do much in case of error anyway
 			pass

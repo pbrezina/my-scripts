@@ -37,6 +37,7 @@ import sys
 import errno
 import urllib2
 import time
+import tempfile
 from subprocess import *
 import acutil
 import gettext
@@ -917,21 +918,50 @@ class SaveGroup:
 				ret = ret or stringsDiffer(getattr(a, aname), getattr(b, aname), False)
 		return ret
 
+class SafeFile:
+	def __init__(self, filename, default_mode):
+		(base, name) = os.path.split(filename)
+		self.file = tempfile.NamedTemporaryFile(dir=base, prefix=name, delete=True)
+		# overwrite the inode attributes and contents
+		if call(["/bin/cp", "-af", filename, self.file.name],
+			stderr=os.open('/dev/null', os.O_WRONLY)) == 1:
+			# the mode was not copied, use the default
+			os.fchmod(self.file.fileno(), default_mode)
+		self.filename = filename
+
+	def save(self):
+		self.file.flush()
+		os.fsync(self.file.fileno())
+		os.rename(self.file.name, self.filename)
+
+	def close(self):
+		# we may have renamed the temp file, need to catch OSError
+		try:
+			self.file.close()
+		except OSError:
+			pass
+
+	def write(self, s):
+		return self.file.write(s)
+
+	def rewind(self):
+		self.file.seek(0)
+		self.file.truncate(0)
+
 class FileBackup:
 	def __init__(self, backupname, origpath):
 		self.backupName = backupname
 		self.origPath = origpath
 
 	def safeCopy(self, src, dest):
-		err = 0
 		rv = True
 		srcfd = None
-		destfd = None
+		destfile = None
 		try:
-			destfd = openfdLocked(dest,
-				os.O_TRUNC | os.O_WRONLY | os.O_CREAT, 0644)
+			destfile = SafeFile(dest, 0644)
+			destfile.rewind()
 			srcfd = openfdLocked(src, os.O_RDONLY, 0)
-		except IOError, (err, strerr):
+		except IOError:
 			rv = False
 		try:
 			while rv:
@@ -939,19 +969,18 @@ class FileBackup:
 				if not b:
 					rv = True
 					break
-				os.write(destfd, b)
+				os.write(destfile.file.fileno(), b)
 		except (IOError, OSError):
 			rv = False
-		if err == errno.ENOENT:
-			rv = True
 		try:
 			if srcfd:
 				os.close(srcfd)
 		except (IOError, OSError):
 			pass
 		try:
-			if destfd:
-				os.close(destfd)
+			if destfile and rv:
+				destfile.save()
+				destfile.close()
 		except (IOError, OSError):
 			rv = False
 		return rv
@@ -970,11 +999,6 @@ class FileBackup:
 			rv = self.safeCopy(self.origPath,
 				backuppath)
 
-		if not rv:
-			try:
-				os.unlink(backuppath)
-			except OSError:
-				pass
 		return rv
 
 	def restore(self, backupdir):
@@ -2036,10 +2060,9 @@ class AuthInfo:
 		f = None
 		all_configs[CFG_PAM_SMB].backup(self.backupDir)
 		try:
-			f = openLocked(all_configs[CFG_PAM_SMB].origPath, 0644)
+			f = SafeFile(all_configs[CFG_PAM_SMB].origPath, 0644)
 
-			f.truncate(0)
-			
+			f.rewind()
 			f.write(self.smbWorkgroup+"\n")
 
 			servers = self.smbServers.replace(",", " ")
@@ -2051,6 +2074,7 @@ class AuthInfo:
 			if len(servers) > 1:
 				f.write(servers[1])
 			f.write("\n")
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2066,10 +2090,10 @@ class AuthInfo:
 		output = ""
 		all_configs[CFG_YP].backup(self.backupDir)
 		try:
-			f = openLocked(all_configs[CFG_YP].origPath, 0644)
+			f = SafeFile(all_configs[CFG_YP].origPath, 0644)
 
 			# Read in the old file.
-			for line in f:
+			for line in f.file:
 				ls = line.strip()
 				
 				value = matchKey(ls, "domain")
@@ -2133,9 +2157,9 @@ class AuthInfo:
 					if s:
 						output += "ypserver " + s + "\n"
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2159,10 +2183,10 @@ class AuthInfo:
 		else: 
 			passalgo = "crypt"
 		try:
-			f = openLocked(filename, 0644)
+			f = SafeFile(filename, 0644)
 
 			# Read in the old file.
-			for line in f:
+			for line in f.file:
 				ls = line.strip()
 				# If it's a 'uri' line, insert ours instead.
 				if matchLine(ls, uri):
@@ -2239,9 +2263,9 @@ class AuthInfo:
 				output += "pam_password " + passalgo
 				output += "\n"
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2279,10 +2303,10 @@ class AuthInfo:
 		output = ""
 		all_configs[CFG_LIBUSER].backup(self.backupDir)
 		try:
-			f = openLocked(all_configs[CFG_LIBUSER].origPath, 0644)
+			f = SafeFile(all_configs[CFG_LIBUSER].origPath, 0644)
 
 			# Read in the old file.
-			for line in f:
+			for line in f.file:
 				ls = line.strip()
 
 				# If this is the "crypt_style" in the defaults section,
@@ -2312,9 +2336,9 @@ class AuthInfo:
 				wrotedefaults = True
 				wrotecryptstyle = True
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2342,10 +2366,10 @@ class AuthInfo:
 		else:
 			encmethod = "ENCRYPT_METHOD " + self.passwordAlgorithm.upper() + "\n"
 		try:
-			f = openLocked(all_configs[CFG_LOGIN_DEFS].origPath, 0644)
+			f = SafeFile(all_configs[CFG_LOGIN_DEFS].origPath, 0644)
 
 			# Read in the old file.
-			for line in f:
+			for line in f.file:
 				ls = line.strip()
 
 				if matchLine(ls, "MD5_CRYPT_ENAB"):
@@ -2366,9 +2390,9 @@ class AuthInfo:
 			if not wroteencmethod:
 				output += encmethod
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2409,10 +2433,10 @@ class AuthInfo:
 		if self.kerberosRealm == self.smbRealm:
 			wrotesmbrealm = True
 		try:
-			f = openLocked(all_configs[CFG_KRB5].origPath, 0644)
+			f = SafeFile(all_configs[CFG_KRB5].origPath, 0644)
 
 			# Read in the old file.
-			for line in f:
+			for line in f.file:
 				ls = line.strip()
 
 				# If this is the "kdc" in our realm, replace it with
@@ -2601,9 +2625,9 @@ class AuthInfo:
 					output +=  "\n"
 
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2621,7 +2645,7 @@ class AuthInfo:
 		output = ""
 		all_configs[CFG_KRB].backup(self.backupDir)
 		try:
-			f = openLocked(all_configs[CFG_KRB].origPath, 0644)
+			f = SafeFile(all_configs[CFG_KRB].origPath, 0644)
 			# Set up the buffer with the parts of the file which pertain to our
 			# realm.
 			output += self.kerberosRealm + "\n"
@@ -2636,7 +2660,7 @@ class AuthInfo:
 
 			# Now append lines from the original file which have nothing to do
 			# with our realm.
-			for line in f:
+			for line in f.file:
 				# Skip initial realm line
 				if not readrealm:
 					readrealm = True
@@ -2644,9 +2668,9 @@ class AuthInfo:
 				if not matchLine(line, self.kerberosRealm):
 					output += line
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2771,10 +2795,10 @@ class AuthInfo:
 		f = None
 		output = ""
 		try:
-			f = openLocked(all_configs[CFG_SMB].origPath, 0644)
+			f = SafeFile(all_configs[CFG_SMB].origPath, 0644)
 
 			# Read in the old file.
-			for line in f:
+			for line in f.file:
 				ls = line.strip()
 
 				if authsection:
@@ -2818,9 +2842,9 @@ class AuthInfo:
 				output += self.paramsWinbind()
 
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -2844,7 +2868,7 @@ class AuthInfo:
 		output = ""
 		all_configs[CFG_NSSWITCH].backup(self.backupDir)
 		try:
-			f = openLocked(all_configs[CFG_NSSWITCH].origPath, 0644)
+			f = SafeFile(all_configs[CFG_NSSWITCH].origPath, 0644)
 
 			# Determine what we want in that file for most of the databases. If
 			# we're using DB, we're doing it for speed, so put it in first.  Then
@@ -2900,7 +2924,7 @@ class AuthInfo:
 				hosts += " dns"
 
 			# Read in the old file.
-			for line in f:
+			for line in f.file:
 				ls = line.strip()
 
 				# If it's a 'passwd' line, insert ours instead.
@@ -2977,9 +3001,9 @@ class AuthInfo:
 				output += "\n"
 
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
@@ -3086,7 +3110,7 @@ class AuthInfo:
 		output = ""
 		all_configs[cfg].backup(self.backupDir)
 		try:
-			f = openLocked(all_configs[cfg].origPath, 0644)
+			f = SafeFile(all_configs[cfg].origPath, 0644)
 
 			output += "#%PAM-1.0\n"
 			output += "# This file is auto-generated.\n"
@@ -3135,9 +3159,9 @@ class AuthInfo:
 					output += self.formatPAMModule(module, forceSmartcard)
 
 			# Write it out and close it.
-			f.seek(0)
-			f.truncate(0)
+			f.rewind()
 			f.write(output)
+			f.save()
 		finally:
 			try:
 				if f:
