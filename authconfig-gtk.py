@@ -118,7 +118,7 @@ class DomainOpts:
 		model.clear()
 		opts = self.domain.list_options()
 		for (opt, desc) in opts.iteritems():
-			if not opt.endswith("_provider") and not desc[0] == list:
+			if not opt.endswith("_provider") and not desc[0] == list and not desc[2] == None:
 				try:
 					val = self.domain.get_option(opt)
 					if type(val) == bool and val == True:
@@ -177,6 +177,8 @@ class DomainOpts:
 		self.owidget.append_column(column)
 
 	def provider_set(self, cell, path, value):
+		if value == None:
+			value = "-"
 		self.pmodel[path][2] = value
 		subtype = self.pmodel[path][0]
 		try:
@@ -335,6 +337,9 @@ class DomainList:
 			if oldname != name:
 				dom.set_name(name)
 			self.config.save_domain(dom)
+			# XXXX SSSD Config API bug workaround
+			if oldname != name and oldname in self.config.list_domains():
+				self.config.delete_domain(oldname)
 			if buttonname == 'adddomain':
 				# set new domain as active
 				self.config.activate_domain(name)
@@ -532,14 +537,17 @@ class Authconfig:
 
 	# Toggle a boolean.
 	def toggleboolean(self, checkbox, name, aliases, dependents):
-		setattr(self.info, name, checkbox.get_active())
-		for widget in aliases:
-			widget.set_active(checkbox.get_active())
-		for widget in dependents:
-			widget.set_sensitive(checkbox.get_active())
+		active = checkbox.get_active()
+		setattr(self.info, name, active)
 		# special case for SSSD
 		if name == "enableSSSD":
-			self.info.enableSSSDAuth = checkbox.get_active()
+			self.info.enableSSSDAuth = active
+			if not self.sssdconfig:
+				active = False
+		for widget in aliases:
+			widget.set_active(active)
+		for widget in dependents:
+			widget.set_sensitive(active)
 		return
 
 	def changeoption(self, combo, entry, xml):
