@@ -10,8 +10,8 @@ URL: https://fedorahosted.org/authconfig
 Source: https://fedorahosted.org/releases/a/u/%{name}/%{name}-%{version}.tar.bz2
 Requires: newt-python, pam >= 0.99.10.0, python
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
-Conflicts: nss_ldap < 254
-BuildRequires: glib2-devel, python >= 2.4.1, python-devel
+Conflicts: nss_ldap < 254, sssd < 1.0.0
+BuildRequires: glib2-devel, python >= 2.6, python-devel
 BuildRequires: desktop-file-utils, intltool, gettext, perl-XML-Parser
 
 %description 
@@ -23,7 +23,7 @@ authentication schemes.
 %package gtk
 Summary: Graphical tool for setting up authentication from network services
 Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.4.0
+Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.14.0
 Requires: usermode-gtk
 
 %description gtk
@@ -101,6 +101,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Dec 10 2009 Tomas Mraz <tmraz@redhat.com> - 6.0.0-1
+- support for SSSD enabling/disabling and basic support for
+  SSSD domain setup
+- safe atomic overwrites of the config files
+
 * Wed Nov 11 2009 Tomas Mraz <tmraz@redhat.com> - 5.4.14-1
 - fixed missing truncation in the backup restores (#533881)
 
