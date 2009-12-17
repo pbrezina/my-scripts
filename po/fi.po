@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-17 09:22+0200\n"
-"PO-Revision-Date: 2009-09-20 21:08+0300\n"
-"Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
+"PO-Revision-Date: 2009-12-17 20:38+0200\n"
+"Last-Translator: Ville Skyttä <ville.skytta@iki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,9 @@ msgstr "<toimialue>"
 msgid "default NIS domain"
 msgstr "oletus NIS-toimialue"
 
-#: ../authconfig.py:104 ../authconfig.py:115 ../authconfig.py:149
+#: ../authconfig.py:104
+#: ../authconfig.py:115
+#: ../authconfig.py:149
 #: ../authconfig.py:151
 msgid "<server>"
 msgstr "<palvelin>"
@@ -163,7 +165,8 @@ msgstr "oletus kerberos KDC"
 msgid "default kerberos admin server"
 msgstr "oletus kerberos-pääpalvelin"
 
-#: ../authconfig.py:153 ../authconfig.py:183
+#: ../authconfig.py:153
+#: ../authconfig.py:183
 msgid "<realm>"
 msgstr "<realm>"
 
@@ -235,7 +238,8 @@ msgstr "samban ja winbindin käyttämä turvatyyppi"
 msgid "default realm for samba and winbind when security=ads"
 msgstr "oletus-realm samballe ja winbindille kun turvatyyppi=ads"
 
-#: ../authconfig.py:185 ../authconfig.py:187
+#: ../authconfig.py:185
+#: ../authconfig.py:187
 msgid "<lowest-highest>"
 msgstr "<matalin-korkein>"
 
@@ -248,17 +252,12 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "winbindin osoittama gid-alue domain- tai ads-käyttäjille"
 
 #: ../authconfig.py:190
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"merkki joka erottaa toimialueen ja käyttäjäosan winbindillä luoduista "
-"käyttäjänimistä jos winbindusedefaultdomain ei ole päällä."
+msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr "merkki joka erottaa toimialueen ja käyttäjäosan winbindillä luoduista käyttäjänimistä jos winbindusedefaultdomain ei ole päällä."
 
 #: ../authconfig.py:192
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"hakemisto, joka tulee olemaan kotihakemisto winbindillä luoduille käyttäjille"
+msgstr "hakemisto, joka tulee olemaan kotihakemisto winbindillä luoduille käyttäjille"
 
 #: ../authconfig.py:194
 msgid "the group which winbind-created users will have as their primary group"
@@ -266,25 +265,15 @@ msgstr "ryhmä, joka tulee olemaan pääryhmä winbindillä luoduille käyttäji
 
 #: ../authconfig.py:196
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"komentotulkki, joka tulee olemaan kirjautumiskomentotulkki winbindillä "
-"luoduille käyttäjille"
+msgstr "komentotulkki, joka tulee olemaan kirjautumiskomentotulkki winbindillä luoduille käyttäjille"
 
 #: ../authconfig.py:198
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"asettaa winbindin olettamaan, että käyttäjät joilla ei ole toimialuetta "
-"käyttäjänimissään,ovat toimialueen käyttäjiä"
+msgid "configures winbind to assume that users with no domain in their user names are domain users"
+msgstr "asettaa winbindin olettamaan, että käyttäjät joilla ei ole toimialuetta käyttäjänimissään,ovat toimialueen käyttäjiä"
 
 #: ../authconfig.py:200
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"asettaa winbindin olettamaan, että käyttäjät joilla ei ole toimialuetta "
-"käyttäjänimissään,eivät ole toimialueen käyttäjiä"
+msgid "configures winbind to assume that users with no domain in their user names are not domain users"
+msgstr "asettaa winbindin olettamaan, että käyttäjät joilla ei ole toimialuetta käyttäjänimissään,eivät ole toimialueen käyttäjiä"
 
 #: ../authconfig.py:202
 msgid "configures winbind to allow offline login"
@@ -308,13 +297,11 @@ msgstr "älä käytä winsiä konenimen selvittämiseksi"
 
 #: ../authconfig.py:214
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr ""
-"suosi dns:ää ennemmin kuin wins:ää tai nis:ää konenimen selvittämiseksi"
+msgstr "suosi dns:ää ennemmin kuin wins:ää tai nis:ää konenimen selvittämiseksi"
 
 #: ../authconfig.py:216
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr ""
-"älä suosi dns:ää ennemmin kuin wins:ää tai nis:ää konenimen selvittämiseksi"
+msgstr "älä suosi dns:ää ennemmin kuin wins:ää tai nis:ää konenimen selvittämiseksi"
 
 #: ../authconfig.py:219
 msgid "enable hesiod for user information by default"
@@ -370,8 +357,7 @@ msgstr "luo käyttäjille kotihakemistot ensimmäisen kirjautumisen yhteydessä"
 
 #: ../authconfig.py:250
 msgid "do not create home directories for users on their first login"
-msgstr ""
-"älä luo käyttäjille kotihakemistoja ensimmäisen kirjautumisen yhteydessä"
+msgstr "älä luo käyttäjille kotihakemistoja ensimmäisen kirjautumisen yhteydessä"
 
 #: ../authconfig.py:253
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -383,9 +369,7 @@ msgstr "älä päivitä asetustiedostoja, ainoastaan tulosta uudet asetukset"
 
 #: ../authconfig.py:260
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr ""
-"näytä komento Takaisin komennon Peru sijasta tekstikäyttöliittymän "
-"päänäytössä"
+msgstr "näytä komento Takaisin komennon Peru sijasta tekstikäyttöliittymän päänäytössä"
 
 #: ../authconfig.py:262
 msgid "do not display the deprecated text user interface"
@@ -393,9 +377,7 @@ msgstr "älä näytä vanhentunutta tekstikäyttöliittymää"
 
 #: ../authconfig.py:265
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr ""
-"--test-valitsimen vastakohta, päivitä asetustiedostot muuttuneilla "
-"asetuksilla"
+msgstr "--test-valitsimen vastakohta, päivitä asetustiedostot muuttuneilla asetuksilla"
 
 #: ../authconfig.py:268
 msgid "update all configuration files"
@@ -405,7 +387,8 @@ msgstr "päivitä kaikki asetustiedostot"
 msgid "probe network for defaults and print them"
 msgstr "Tutki verkosta oletukset ja näytä ne"
 
-#: ../authconfig.py:273 ../authconfig.py:276
+#: ../authconfig.py:273
+#: ../authconfig.py:276
 msgid "<name>"
 msgstr "<name>"
 
@@ -418,11 +401,8 @@ msgid "restore the backup of configuration files"
 msgstr "palauta kaikki asetustiedostot varmuuskopioista"
 
 #: ../authconfig.py:280
-msgid ""
-"restore the backup of configuration files saved before the previous "
-"configuration change"
-msgstr ""
-"palauta asetustiedostoista ennen edellistä muutosta tehdyt varmuuskopiot"
+msgid "restore the backup of configuration files saved before the previous configuration change"
+msgstr "palauta asetustiedostoista ennen edellistä muutosta tehdyt varmuuskopiot"
 
 #: ../authconfig.py:285
 msgid "unexpected argument"
@@ -447,21 +427,25 @@ msgstr "ikkuna peruutettiin"
 #: ../authconfig.py:483
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"Tiedostoa %s ei löytynyt, mutta se on tarvitaan, että %s-tuki toimisi "
-"oikein.\n"
+"Tiedostoa %s ei löytynyt, mutta se on tarvitaan, että %s-tuki toimisi oikein.\n"
 " Asenna paketti %s, joka sisältää tämän tiedoston."
 
-#: ../authconfig.py:485 ../authconfig.py:831
+#: ../authconfig.py:485
+#: ../authconfig.py:831
 msgid "Warning"
 msgstr "Varoitus"
 
-#: ../authconfig.py:485 ../authconfig.py:702 ../authconfig.py:709
-#: ../authconfig.py:715 ../authconfig.py:724 ../authconfig.py:732
-#: ../authconfig.py:773 ../authconfig.py:831
+#: ../authconfig.py:485
+#: ../authconfig.py:702
+#: ../authconfig.py:709
+#: ../authconfig.py:715
+#: ../authconfig.py:724
+#: ../authconfig.py:732
+#: ../authconfig.py:773
+#: ../authconfig.py:831
 msgid "Ok"
 msgstr "Ok"
 
@@ -493,7 +477,8 @@ msgstr "NIS"
 msgid "shadow password"
 msgstr "varjosalasana"
 
-#: ../authconfig.py:496 ../authconfig.py:498
+#: ../authconfig.py:496
+#: ../authconfig.py:498
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -525,7 +510,8 @@ msgstr "Käytä NIS:iä"
 msgid "Use Winbind"
 msgstr "Käytä Winbindiä"
 
-#: ../authconfig.py:527 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:527
+#: ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Todennus"
 
@@ -557,21 +543,32 @@ msgstr "Käytä Winbind-todennusta"
 msgid "Local authorization is sufficient"
 msgstr "Paikallinen todennus on riittävä"
 
-#: ../authconfig.py:564 ../authconfig.py:702 ../authconfig.py:709
-#: ../authconfig.py:715 ../authconfig.py:724 ../authconfig.py:773
+#: ../authconfig.py:564
+#: ../authconfig.py:702
+#: ../authconfig.py:709
+#: ../authconfig.py:715
+#: ../authconfig.py:724
+#: ../authconfig.py:773
 msgid "Back"
 msgstr "Edellinen"
 
-#: ../authconfig.py:564 ../authconfig.py:732
+#: ../authconfig.py:564
+#: ../authconfig.py:732
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: ../authconfig.py:565 ../authconfig.py:702 ../authconfig.py:709
-#: ../authconfig.py:715 ../authconfig.py:724 ../authconfig.py:773
+#: ../authconfig.py:565
+#: ../authconfig.py:702
+#: ../authconfig.py:709
+#: ../authconfig.py:715
+#: ../authconfig.py:724
+#: ../authconfig.py:773
 msgid "Next"
 msgstr "Seuraava"
 
-#: ../authconfig.py:576 ../authconfig-gtk.py:433 ../authconfig.glade.h:8
+#: ../authconfig.py:576
+#: ../authconfig-gtk.py:433
+#: ../authconfig.glade.h:8
 msgid "Authentication Configuration"
 msgstr "Todennusasetukset"
 
@@ -583,7 +580,8 @@ msgstr "LHS:"
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:701 ../authconfig.glade.h:33
+#: ../authconfig.py:701
+#: ../authconfig.glade.h:33
 msgid "Hesiod Settings"
 msgstr "Hesiod-asetukset"
 
@@ -591,7 +589,8 @@ msgstr "Hesiod-asetukset"
 msgid "Use TLS"
 msgstr "Käytä TLS:ää"
 
-#: ../authconfig.py:706 ../authconfig.py:713
+#: ../authconfig.py:706
+#: ../authconfig.py:713
 msgid "Server:"
 msgstr "Palvelin:"
 
@@ -599,15 +598,18 @@ msgstr "Palvelin:"
 msgid "Base DN:"
 msgstr "Base DN:"
 
-#: ../authconfig.py:708 ../authconfig.glade.h:43
+#: ../authconfig.py:708
+#: ../authconfig.glade.h:43
 msgid "LDAP Settings"
 msgstr "LDAP-asetukset"
 
-#: ../authconfig.py:712 ../authconfig.py:767
+#: ../authconfig.py:712
+#: ../authconfig.py:767
 msgid "Domain:"
 msgstr "Toimialue:"
 
-#: ../authconfig.py:714 ../authconfig.glade.h:45
+#: ../authconfig.py:714
+#: ../authconfig.glade.h:45
 msgid "NIS Settings"
 msgstr "NIS-asetukset"
 
@@ -631,7 +633,8 @@ msgstr "Käytä DNS:ää konenimien selvittämisessä realmeiksi"
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Käytä DNS:ää paikallistaaksesi KDC:t realmeja varten"
 
-#: ../authconfig.py:723 ../authconfig.glade.h:40
+#: ../authconfig.py:723
+#: ../authconfig.glade.h:40
 msgid "Kerberos Settings"
 msgstr "Kerberos-asetukset"
 
@@ -647,15 +650,10 @@ msgstr "Salasana:"
 msgid "Join Settings"
 msgstr "Liittymisasetukset"
 
-#: ../authconfig.py:741 ../authconfig.glade.h:55
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
-msgstr ""
-"Jotkut tekemistäsi muutoksista tulisi tallentaa levylle ennen jatkamista. "
-"Jos muutoksia ei tallenneta, liittyminen toimialueeseen saattaa epäonnistua. "
-"Tallennetaanko muutokset?"
+#: ../authconfig.py:741
+#: ../authconfig.glade.h:55
+msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
+msgstr "Jotkut tekemistäsi muutoksista tulisi tallentaa levylle ennen jatkamista. Jos muutoksia ei tallenneta, liittyminen toimialueeseen saattaa epäonnistua. Tallennetaanko muutokset?"
 
 #: ../authconfig.py:748
 msgid "Save Settings"
@@ -687,7 +685,8 @@ msgstr "ADS Realm:"
 msgid "Template Shell:"
 msgstr "Mallikuori:"
 
-#: ../authconfig.py:772 ../authconfig.glade.h:68
+#: ../authconfig.py:772
+#: ../authconfig.glade.h:68
 msgid "Winbind Settings"
 msgstr "Winbind-asetukset"
 
@@ -698,29 +697,20 @@ msgstr "Liity toimialueeseen"
 #: ../authconfig.py:826
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Yhdistääksesi LDAP-palvelimelle käyttäen TLS-protokollaa tarvitset CA-"
-"sertifikaatin, joka allekirjoitti palvelimesi sertifikaatin. Kopioi "
-"sertifikaatti PEM-muodossa hakemistoon '%s'.\n"
+"Yhdistääksesi LDAP-palvelimelle käyttäen TLS-protokollaa tarvitset CA-sertifikaatin, joka allekirjoitti palvelimesi sertifikaatin. Kopioi sertifikaatti PEM-muodossa hakemistoon '%s'.\n"
 "Napsauta sitten OK."
 
 #. FIXME - version
 #: ../authconfig.py:840
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
-" <Tab>/<Alt-Tab> siirry   |   <Välilyönti> valitse   |  <F12> seuraava ruutu"
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
+msgstr " <Tab>/<Alt-Tab> siirry   |   <Välilyönti> valitse   |  <F12> seuraava ruutu"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Kontrolloi kuinka järjestelmä vahvistaa sisäänkirjautumista yrittävät "
-"käyttäjät"
+msgstr "Kontrolloi kuinka järjestelmä vahvistaa sisäänkirjautumista yrittävät käyttäjät"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -747,12 +737,8 @@ msgid "Alert"
 msgstr "Hälytys"
 
 #: ../authconfig.glade.h:7
-msgid ""
-"All configuration files which were modified by the previous authentication "
-"configuration change will be restored from backup. Revert the changes?"
-msgstr ""
-"Kaikki edellisessä todennusasetusten muutoksessa muokatut asetustiedostot "
-"palautetaan varmuuskopiosta. Kumotaanko muutokset?"
+msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
+msgstr "Kaikki edellisessä todennusasetusten muutoksessa muokatut asetustiedostot palautetaan varmuuskopiosta. Kumotaanko muutokset?"
 
 #: ../authconfig.glade.h:9
 msgid "Cache User _Information"
@@ -845,19 +831,12 @@ msgid "Enable _Winbind Support"
 msgstr "Käytä _Winbind-tukea"
 
 #: ../authconfig.glade.h:31
-msgid ""
-"Fingerprint authentication allows you to log in by scanning your finger with "
-"the fingerprint reader."
+msgid "Fingerprint authentication allows you to log in by scanning your finger with the fingerprint reader."
 msgstr "Sisäänkirjautuminen on mahdollista käyttäen sormenjälkilukijaa."
 
 #: ../authconfig.glade.h:32
-msgid ""
-"For user accounts maintained in local /etc/passwd file system will not check "
-"authorization from network services such as LDAP or Kerberos."
-msgstr ""
-"Järjestelmä ei tarkasta oikeuksia käyttäjätunnuksille, jotka pidetään "
-"paikallisessa /etc/passwd-tiedostossa verkkopalveluista kuten LDAP tai "
-"Kerberos."
+msgid "For user accounts maintained in local /etc/passwd file system will not check authorization from network services such as LDAP or Kerberos."
+msgstr "Järjestelmä ei tarkasta oikeuksia käyttäjätunnuksille, jotka pidetään paikallisessa /etc/passwd-tiedostossa verkkopalveluista kuten LDAP tai Kerberos."
 
 #: ../authconfig.glade.h:34
 msgid "Hesiod _LHS"
@@ -868,37 +847,24 @@ msgid "Hesiod _RHS"
 msgstr "Hesiod _RHS"
 
 #: ../authconfig.glade.h:36
-msgid ""
-"Hesiod allows a system administrator to publish user and group information "
-"in DNS.  It is sometimes used in very large networks."
-msgstr ""
-"Hesiod antaa järjestelmän ylläpitäjälle mahdollisuuden julkaista käyttäjä- "
-"ja ryhmätietoja DNS:ssä. Sitä käytetään joskus erittäin suurissa verkoissa."
+msgid "Hesiod allows a system administrator to publish user and group information in DNS.  It is sometimes used in very large networks."
+msgstr "Hesiod antaa järjestelmän ylläpitäjälle mahdollisuuden julkaista käyttäjä- ja ryhmätietoja DNS:ssä. Sitä käytetään joskus erittäin suurissa verkoissa."
 
 #: ../authconfig.glade.h:37
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"Konenimi tai LDAP-palvelimeen osoittava URI tyyppiä ldap:// tai ldaps://"
+msgstr "Konenimi tai LDAP-palvelimeen osoittava URI tyyppiä ldap:// tai ldaps://"
 
 #: ../authconfig.glade.h:38
-msgid ""
-"If the home directory of an user doesn't exist yet it will be created "
-"automatically on his first login."
-msgstr ""
-"Jos käyttäjän kotihakemistoa ei ole vielä olemassa, se luodaan "
-"automaattisesti ensimmäisen kirjautumisen yhteydessä."
+msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
+msgstr "Jos käyttäjän kotihakemistoa ei ole vielä olemassa, se luodaan automaattisesti ensimmäisen kirjautumisen yhteydessä."
 
 #: ../authconfig.glade.h:39
 msgid "Joining Winbind Domain"
 msgstr "Winbind-toimialueeseen liittyminen"
 
 #: ../authconfig.glade.h:41
-msgid ""
-"Kerberos is a trusted third-party authentication system which is commonly "
-"used in medium to large networks."
-msgstr ""
-"Kerberos on luotettu kolmannen osapuolen todennusjärjestelmä, jota käytetään "
-"yleensä keskisuurista verkoista suuriin verkkoihin."
+msgid "Kerberos is a trusted third-party authentication system which is commonly used in medium to large networks."
+msgstr "Kerberos on luotettu kolmannen osapuolen todennusjärjestelmä, jota käytetään yleensä keskisuurista verkoista suuriin verkkoihin."
 
 #: ../authconfig.glade.h:42
 msgid "LDAP Search _Base DN"
@@ -917,23 +883,16 @@ msgid "NIS _Server"
 msgstr "_NIS-palvelin"
 
 #: ../authconfig.glade.h:48
-msgid ""
-"NIS is the Network Information Service.  It is commonly used on small to "
-"medium networks."
-msgstr ""
-"NIS eli Network Information Service, jota käytetään usein pienissä ja "
-"keskisuurissa verkoissa."
+msgid "NIS is the Network Information Service.  It is commonly used on small to medium networks."
+msgstr "NIS eli Network Information Service, jota käytetään usein pienissä ja keskisuurissa verkoissa."
 
 #: ../authconfig.glade.h:49
 msgid "Op_tions"
 msgstr "_Valinnat"
 
 #: ../authconfig.glade.h:50
-msgid ""
-"Restore the configuration files backed up before the previous configuration "
-"change"
-msgstr ""
-"Palauta ennen edellistä asetusmuutosta varmuuskopioidut asetustiedostot"
+msgid "Restore the configuration files backed up before the previous configuration change"
+msgstr "Palauta ennen edellistä asetusmuutosta varmuuskopioidut asetustiedostot"
 
 #: ../authconfig.glade.h:51
 msgid "Revert"
@@ -948,43 +907,24 @@ msgid "Smart Card Settings"
 msgstr "Älykortin asetukset"
 
 #: ../authconfig.glade.h:54
-msgid ""
-"Smart card authentication allows you to log in using a certificate and key "
-"associated with a smart card."
-msgstr ""
-"Älykorttitodennus mahdollistaa sisäänkirjautumisen käyttämällä älykorttiin "
-"liitettyä sertifikaattia ja avainta."
+msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
+msgstr "Älykorttitodennus mahdollistaa sisäänkirjautumisen käyttämällä älykorttiin liitettyä sertifikaattia ja avainta."
 
 #: ../authconfig.glade.h:56
-msgid ""
-"The Lightweight Directory Access Protocol is a standard way of searching a "
-"directory, which can hold arbitrary data in a structured hierarchy. LDAP is "
-"increasingly being used in small to large networks."
-msgstr ""
-"Lightweight Directory Access Protocol on standardoitu menetelmä hakea "
-"hakemistoista, jotka sisältävät sattumanvaraista dataa rakenteellisessa "
-"hierarkiassa. LDAP:ia käytetään kasvavassa määrin pienistä suuriin "
-"verkkoihin."
+msgid "The Lightweight Directory Access Protocol is a standard way of searching a directory, which can hold arbitrary data in a structured hierarchy. LDAP is increasingly being used in small to large networks."
+msgstr "Lightweight Directory Access Protocol on standardoitu menetelmä hakea hakemistoista, jotka sisältävät sattumanvaraista dataa rakenteellisessa hierarkiassa. LDAP:ia käytetään kasvavassa määrin pienistä suuriin verkkoihin."
 
 #: ../authconfig.glade.h:57
-msgid ""
-"To verify the LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed the server's certificate. Please fill in the URL "
-"where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Varmentaaksesi LDAP-palvelimen käyttäen TLS-protokollaa tarvitset CA-"
-"sertifikaatin, joka allekirjoitti palvelimen sertifikaatin. Syötä URL, josta "
-"PEM-muotoinen CA-sertifikaatti on ladattavissa."
+msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
+msgstr "Varmentaaksesi LDAP-palvelimen käyttäen TLS-protokollaa tarvitset CA-sertifikaatin, joka allekirjoitti palvelimen sertifikaatin. Syötä URL, josta PEM-muotoinen CA-sertifikaatti on ladattavissa."
 
 #: ../authconfig.glade.h:58
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Käytä DNS:ää paika_llistaaksesi KDC:t realmeja varten"
 
 #: ../authconfig.glade.h:59
-msgid ""
-"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
-"must not be ticked with ldaps server URI."
-msgstr ""
+msgid "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It must not be ticked with ldaps server URI."
+msgstr "Käytä Transport Layer Security -laajennusta LDAP:lle RFC 2830:n määritysten mukaisesti. Älä valitse mikäli palvelin-URI on tyyppiä ldaps."
 
 #: ../authconfig.glade.h:60
 msgid "Use _DNS to resolve hosts to realms"
@@ -1003,20 +943,12 @@ msgid "User Infor_mation"
 msgstr "Käyttäjä_tiedot"
 
 #: ../authconfig.glade.h:64
-msgid ""
-"When enabled /etc/security/access.conf will be consulted for authorization "
-"of users access."
-msgstr ""
-"Kun käytössä, tiedostoa /etc/security/access.conf käytetään käyttöoikeuksien "
-"todentamiseen."
+msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
+msgstr "Kun käytössä, tiedostoa /etc/security/access.conf käytetään käyttöoikeuksien todentamiseen."
 
 #: ../authconfig.glade.h:65
-msgid ""
-"When enabled allows network services such as LDAP or Kerberos to "
-"authenticate system accounts including root on this machine."
-msgstr ""
-"Kun käytössä, mahdollistaa verkkopalvelujen kuten LDAP:in ja Kerberoksen "
-"todentaa tämän koneen käyttäjätunnuksia, mukaanlukien root."
+msgid "When enabled allows network services such as LDAP or Kerberos to authenticate system accounts including root on this machine."
+msgstr "Kun käytössä, mahdollistaa verkkopalvelujen kuten LDAP:in ja Kerberoksen todentaa tämän koneen käyttäjätunnuksia, mukaanlukien root."
 
 #: ../authconfig.glade.h:66
 msgid "Winbind ADS _Realm"
@@ -1031,14 +963,8 @@ msgid "Winbind _Domain"
 msgstr "Winbind-_toimialue"
 
 #: ../authconfig.glade.h:70
-msgid ""
-"Winbind allows a system to retrieve information about users and to "
-"authenticate users by using information stored in an NTDOM or ADS server.  "
-"It is used in small to large networks."
-msgstr ""
-"Winbind mahdollistaa järjestelmän tiedonhakemisen käyttäjistä ja niiden "
-"todennuksen käyttämällä NTDOM- tai ADS-palvelimelle tallennettua tietoa. "
-"Tämä on käytössä pienistä suuriin verkkoihin."
+msgid "Winbind allows a system to retrieve information about users and to authenticate users by using information stored in an NTDOM or ADS server.  It is used in small to large networks."
+msgstr "Winbind mahdollistaa järjestelmän tiedonhakemisen käyttäjistä ja niiden todennuksen käyttämällä NTDOM- tai ADS-palvelimelle tallennettua tietoa. Tämä on käytössä pienistä suuriin verkkoihin."
 
 #: ../authconfig.glade.h:71
 msgid "_Admin Servers"
@@ -1096,21 +1022,21 @@ msgstr "_Mallikuori"
 msgid "_Workgroup"
 msgstr "_Työryhmä"
 
-#: ../authinfo.py:863 ../authinfo.py:1377 ../authinfo.py:2618
+#: ../authinfo.py:863
+#: ../authinfo.py:1377
+#: ../authinfo.py:2618
 msgid "Lock"
 msgstr "Lukitse"
 
-#: ../authinfo.py:863 ../authinfo.py:1379
+#: ../authinfo.py:863
+#: ../authinfo.py:1379
 msgid "Ignore"
 msgstr "Ohita"
 
 #: ../authinfo.py:2966
 #, python-format
-msgid ""
-"Authentication module %s/pam_%s.so is missing. Authentication process might "
-"not work correctly."
-msgstr ""
-"Todennusmoduuli %s/pam_%s.so puuttuu. Todennusprosessi ei ehkä toimi oikein."
+msgid "Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly."
+msgstr "Todennusmoduuli %s/pam_%s.so puuttuu. Todennusprosessi ei ehkä toimi oikein."
 
 #: ../authinfo.py:3478
 msgid "Error downloading CA certificate"
@@ -1118,34 +1044,26 @@ msgstr "Virhe ladattaessa CA-sertifikaattia"
 
 #~ msgid "SMB authentication"
 #~ msgstr "SMB-todennus"
-
 #~ msgid "Workgroup:"
 #~ msgstr "Työryhmä:"
-
 #~ msgid "Servers:"
 #~ msgstr "Palvelimet:"
-
 #~ msgid "Shell:"
 #~ msgstr "Komentotulkki:"
-
 #~ msgid "Use SMB Authentication"
 #~ msgstr "Käytä SMB-todennusta"
-
 #~ msgid "Con_figure SMB..."
 #~ msgstr "_Aseta SMB..."
-
 #~ msgid "Enable SMB S_upport"
 #~ msgstr "Käytä _SMB-tukea"
-
 #~ msgid ""
 #~ "SMB authentication verifies user passwords by attempting to connect to a "
 #~ "server which uses the SMB (system message block) protocol suite."
 #~ msgstr ""
 #~ "SMB-todennus tarkistaa käyttäjän salasanan yhdistämällä SMB-"
 #~ "käytäntöperhettä (system message block) käyttävälle palvelimelle."
-
 #~ msgid "LDAP CA Certificate Check"
 #~ msgstr "LDAP CA-sertifikaatin tarkastus"
-
 #~ msgid "Use _MD5 Passwords"
 #~ msgstr "Käytä _MD5-salasanoja"
+
