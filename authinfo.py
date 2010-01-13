@@ -2687,6 +2687,9 @@ class AuthInfo:
 		return ret
 
 	def writeSmartcard(self):
+		if self.smartcardModule == None:
+			# pam_pkcs11 not installed
+			return True
 		all_configs[CFG_PAM_PKCS11].backup(self.backupDir)
 		insact = "/usr/sbin/gdm-safe-restart"
 		rmact = "/usr/sbin/gdm-safe-restart"
@@ -2884,6 +2887,8 @@ class AuthInfo:
 				normal += " nisplus"
 			if self.enableNIS:
 				normal += " nis"
+			if self.enableSSSD:
+				normal += " sss"
 			if self.enableLDAPbind:
 				normal += " ldapbind"
 			if self.enableLDAP:
@@ -2907,8 +2912,6 @@ class AuthInfo:
 
 			if self.enableWinbind:
 				users += " winbind"
-			if self.enableSSSD:
-				users += " sss"
 
 			# Hostnames we treat specially.
 			hosts += " files"
