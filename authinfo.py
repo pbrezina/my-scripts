@@ -67,6 +67,8 @@ PATH_PORTMAP = "/sbin/portmap"
 PATH_PWCONV = "/usr/sbin/pwconv"
 PATH_NSCD = "/usr/sbin/nscd"
 PATH_NSCD_PID = "/var/run/nscd/nscd.pid"
+PATH_NSLCD = "/usr/sbin/nslcd"
+PATH_NSLCD_PID = "/var/run/nslcd/nslcd.pid"
 PATH_DBBIND = "/usr/sbin/dbbind"
 PATH_DBBIND_PID = "/var/run/dbbind.pid"
 PATH_DBIBIND = "/usr/sbin/dbibind"
@@ -90,6 +92,8 @@ PATH_SCSETUP = "/usr/bin/pkcs11_setup"
 
 PATH_LIBNSS_DB = LIBDIR + "/libnss_db.so.2"
 PATH_LIBNSS_LDAP = "/usr" + LIBDIR + "/libnss_ldap.so.2"
+if not os.path.isfile(PATH_LIBNSS_LDAP):
+	PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
 PATH_LIBNSS_NIS = LIBDIR + "/libnss_nis.so.2"
 PATH_LIBNSS_HESIOD = LIBDIR + "/libnss_hesiod.so.2"
 PATH_LIBNSS_ODBCBIND = LIBDIR + "/libnss_odbcbind.so.2"
@@ -1085,7 +1089,7 @@ class CacheBackup(FileBackup):
 
 		return rv
 
-(CFG_HESIOD, CFG_PAM_SMB, CFG_YP, CFG_LDAP, CFG_OPENLDAP, CFG_KRB5,
+(CFG_HESIOD, CFG_PAM_SMB, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
 	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 20)
@@ -1094,6 +1098,9 @@ all_configs = [
 	FileBackup("pam_smb.conf", SYSCONFDIR+"/pam_smb.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
 	FileBackup("ldap.conf", SYSCONFDIR+"/ldap.conf"),
+	FileBackup("nss_ldap.conf", SYSCONFDIR+"/nss_ldap.conf"),
+	FileBackup("pam_ldap.conf", SYSCONFDIR+"/pam_ldap.conf"),
+	FileBackup("nslcd.conf", SYSCONFDIR+"/nslcd.conf"),
 	FileBackup("openldap.conf", SYSCONFDIR+"/openldap/ldap.conf"),
 	FileBackup("krb5.conf", SYSCONFDIR+"/krb5.conf"),
 	FileBackup("krb.conf", SYSCONFDIR+"/krb.conf"),
@@ -1308,9 +1315,18 @@ class AuthInfo:
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		try:
-			f = open(all_configs[CFG_LDAP].origPath, "r")
+			f = open(all_configs[CFG_NSSLDAP].origPath, "r")
 		except IOError:
-			return False
+			try:
+				f = open(all_configs[CFG_NSLCD].origPath, "r")
+			except IOError:
+				try:
+					f = open(all_configs[CFG_PAMLDAP].origPath, "r")
+				except IOError:
+					try:
+						f = open(all_configs[CFG_LDAP].origPath, "r")
+					except IOError:
+						return False
 
 		for line in f:
 			line = line.strip()
@@ -2275,13 +2291,24 @@ class AuthInfo:
 		return True
 
 	def writeLDAP(self):
-		all_configs[CFG_LDAP].backup(self.backupDir)
-		all_configs[CFG_OPENLDAP].backup(self.backupDir)
-		ret = self.writeLDAP2(all_configs[CFG_LDAP].origPath,
+		if os.path.isfile(all_configs[CFG_LDAP].origPath):
+			all_configs[CFG_LDAP].backup(self.backupDir)
+			self.writeLDAP2(all_configs[CFG_LDAP].origPath,
 					"uri", "host", "base", True)
-		if ret:
-			# Ignore errors here.
-			self.writeLDAP2(all_configs[CFG_OPENLDAP].origPath,
+		if os.path.isfile(all_configs[CFG_NSSLDAP].origPath):
+			all_configs[CFG_NSSLDAP].backup(self.backupDir)
+			self.writeLDAP2(all_configs[CFG_NSSLDAP].origPath,
+					"uri", "host", "base", True)
+		if os.path.isfile(all_configs[CFG_PAMLDAP].origPath):
+			all_configs[CFG_PAMLDAP].backup(self.backupDir)
+			self.writeLDAP2(all_configs[CFG_PAMLDAP].origPath,
+					"uri", "host", "base", True)
+		if os.path.isfile(all_configs[CFG_NSLCD].origPath):
+			all_configs[CFG_NSLCD].backup(self.backupDir)
+			self.writeLDAP2(all_configs[CFG_NSLCD].origPath,
+					"uri", "host", "base", True)
+		all_configs[CFG_OPENLDAP].backup(self.backupDir)
+		ret = self.writeLDAP2(all_configs[CFG_OPENLDAP].origPath,
 					"URI", "HOST", "BASE", False)
 		return ret
 
@@ -3520,6 +3547,9 @@ class AuthInfo:
 		toggleSplatbindService(self.enableSSSD or self.enableSSSDAuth,
 			PATH_SSSD, PATH_SSSD_PID,
 			"sssd", nostart)
+		toggleSplatbindService(self.enableLDAP or self.enableLDAPAuth,
+			PATH_NSLCD, PATH_NSLCD_PID,
+			"nslcd", nostart)
 		toggleSplatbindService(self.enableDBbind,
 			PATH_DBBIND, PATH_DBBIND_PID,
 			"dbbind", nostart)

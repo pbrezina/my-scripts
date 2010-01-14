@@ -101,6 +101,13 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Jan 14 2009 Tomas Mraz <tmraz@redhat.com> - 6.0.1-1
+- do not try to write smartcard settings if pam_pkcs11 is not
+  installed (#528458)
+- make position of sss in nsswitch consistent with position in
+  system-auth (#552501)
+- support nss_ldap/pam_ldap split and nslcd
+
 * Thu Dec 10 2009 Tomas Mraz <tmraz@redhat.com> - 6.0.0-1
 - support for SSSD enabling/disabling and basic support for
   SSSD domain setup
