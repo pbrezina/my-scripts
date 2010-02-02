@@ -101,6 +101,9 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Feb  2 2010 Tomas Mraz <tmraz@redhat.com> - 6.0.2-1
+- fix regression from the nss_ldap/pam_ldap nslcd split
+
 * Thu Jan 14 2010 Tomas Mraz <tmraz@redhat.com> - 6.0.1-1
 - do not try to write smartcard settings if pam_pkcs11 is not
   installed (#528458)
