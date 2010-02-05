@@ -506,7 +506,7 @@ class Authconfig:
 				self.info = backup
 			# Save.
 			if (response == 1):
-				self.apply()
+				self.apply(xml)
 				backup = self.info
 		self.winbindjoin_launch(button, map, xml, parent)
 		self.info = backup
