@@ -27,10 +27,6 @@ import authinfo, acutil
 import gettext, os, signal, sys
 _ = gettext.lgettext
 import locale
-try:
-	import SSSDConfig
-except ImportError:
-	SSSDConfig = None
 
 locale.setlocale(locale.LC_ALL, '')
 
@@ -71,343 +67,67 @@ except RuntimeError, e:
 	else:
 		raise e
 
-class DomainOpts:
-	def __init__(self, domain, xml):
-		self.domain = domain
-		self.xml = xml
-		self.pwidget = xml.get_widget('sdproviders')
-		self.owidget = xml.get_widget('sdoptions')
-		(self.pmodel, self.omodel, self.tmodel) = self.create_models()
-		self.init_widgets()
-
-	def create_models(self):
-		pmodel = gtk.ListStore(str, str, str)
-		pmodel.set_sort_column_id(1, gtk.SORT_ASCENDING)
-		self.update_providers(pmodel)
-		omodel = gtk.ListStore(str, str, str)
-		omodel.set_sort_column_id(1, gtk.SORT_ASCENDING)
-		self.update_options(omodel)
-		tmodel = gtk.ListStore(str)
-		tmodel.set_sort_column_id(0, gtk.SORT_ASCENDING)
-		tmodel.append(["-"])
-		return (pmodel, omodel, tmodel)
-
-	def update_providers(self, model):
-		model.clear()
-		provs = self.domain.list_providers()
-		subtypes = set(reduce(lambda x,y: x+y, [provs[p] for p in provs]))
-		options = self.domain.list_options()
-		for s in subtypes:
-			descr = str(options[s+"_provider"][2])
-			try:
-				model.append([s, descr, self.domain.get_option(s+"_provider")])
-			except SSSDConfig.NoOptionError:
-				model.append([s, descr, "-"])
-
-	def update_types(self, renderer, editable, path):
-		self.tmodel.clear()
-		self.tmodel.append(["-"])
-		subtype = self.pmodel[path][0]
-		provs = self.domain.list_providers()
-
-		for (t, st) in provs.iteritems():
-			if subtype in st:
-				self.tmodel.append([t])
-
-	def update_options(self, model):
-		model.clear()
-		opts = self.domain.list_options()
-		for (opt, desc) in opts.iteritems():
-			if not opt.endswith("_provider") and not desc[0] == list and not desc[2] == None:
-				try:
-					val = self.domain.get_option(opt)
-					if type(val) == bool and val == True:
-						val = "Y"
-					elif type(val) == bool and val == False:
-						val = "N"
-					else:
-						val = str(val)
-				except SSSDConfig.NoOptionError:
-					val = ''
-				model.append([opt, str(desc[2]), val])
-
-	def init_widgets(self):
-		self.pwidget.set_model(self.pmodel)
-		self.pwidget.set_search_column(1)
-		column = gtk.TreeViewColumn(None, gtk.CellRendererText(),
-			text=1)
-		column.set_sort_column_id(1)
-		column.set_alignment(0)
-		column.set_expand(True)
-		self.pwidget.append_column(column)
-
-		renderer = gtk.CellRendererCombo()
-		renderer.connect('edited', self.provider_set)
-		renderer.connect('editing-started', self.update_types)
-		renderer.set_property('editable', True)
-		renderer.set_property('has_entry', False)
-		renderer.set_property('model', self.tmodel)
-		renderer.set_property('text_column', 0)
-
-		column = gtk.TreeViewColumn(None, renderer,
-			text=2)
-		column.set_sort_column_id(2)
-		column.set_alignment(0)
-		column.set_min_width(40)
-		self.pwidget.append_column(column)
-
-		self.owidget.set_model(self.omodel)
-		self.owidget.set_search_column(1)
-		column = gtk.TreeViewColumn(None, gtk.CellRendererText(),
-			text=1)
-		column.set_sort_column_id(1)
-		column.set_alignment(0)
-		column.set_expand(True)
-		self.owidget.append_column(column)
-
-		renderer = gtk.CellRendererText()
-		renderer.connect('edited', self.option_set)
-		renderer.set_property('editable', True)
-
-		column = gtk.TreeViewColumn(None, renderer,
-			text=2)
-		column.set_sort_column_id(2)
-		column.set_alignment(0)
-		column.set_min_width(40)
-		self.owidget.append_column(column)
-
-	def provider_set(self, cell, path, value):
-		if value == None:
-			value = "-"
-		self.pmodel[path][2] = value
-		subtype = self.pmodel[path][0]
-		try:
-			oldprov = self.domain.get_option(subtype + "_provider")
-		except SSSDConfig.NoOptionError:
-			oldprov = "-"
-		if oldprov != value:
-			if oldprov != "-":
-				self.domain.remove_provider(subtype)
-				# XXXX SSSDConfig bug workaround
-				self.domain.remove_option(subtype + "_provider")
-			if value != "-":
-				self.domain.add_provider(value, subtype)
-		self.update_options(self.omodel)
-
-	def option_set(self, cell, path, value):
-		self.omodel[path][2] = value
-		name = self.omodel[path][0]
-		try:
-			oldval = self.domain.get_option(name)
-		except SSSDConfig.NoOptionError:
-			oldval = ''
-		opts = self.domain.list_options()
-		if oldval != value:
-			if value == '':
-				self.domain.remove_option(name)
-			else:
-				if opts[name][0] == bool:
-					if value in ("T", "Y", "True", "Yes", "yes", "true", "1"):
-						value = True
-						self.omodel[path][2] = "Y"
-					else:
-						value = False
-						self.omodel[path][2] = "N"
-				elif opts[name][0] == int:
-					try:
-						value = int(value)
-					except ValueError:
-						value = 0
-				self.domain.set_option(name, value)
-
-class DomainList:
-	def __init__(self, widget, config, xml):
-		self.config = config
-		self.xml = xml
-		self.widget = widget
-		self.model = self.create_model()
-		self.init_widget()
-		self.selected(widget.get_selection())
-		self.changed = False
-
-	def create_model(self):
-		model = gtk.ListStore(str, bool)
-		model.set_sort_column_id(0, gtk.SORT_ASCENDING)
-		self.update_model(model)
-		return model
-
-	def update_model(self, model):
-		model.clear()
-		activedomains = self.config.list_active_domains()
-		for domain in self.config.list_domains():
-			item = model.append([domain, domain in activedomains])
-
-	def selected(self, selection):
-		rows = selection.get_selected_rows()
-		sens = bool(len(rows[1]))
-		self.xml.get_widget('editdomain').set_sensitive(sens)
-		self.xml.get_widget('deldomain').set_sensitive(sens)
-
-	def init_widget(self):
-		self.widget.set_model(self.model)
-		self.widget.set_search_column(0)
-		column = gtk.TreeViewColumn(_("Name"), gtk.CellRendererText(),
-			text=0)
-		column.set_sort_column_id(0)
-		column.set_alignment(0)
-		column.set_expand(True)
-		self.widget.append_column(column)
-
-		renderer = gtk.CellRendererToggle()
-		renderer.connect('toggled', self.toggle_active)
-		column = gtk.TreeViewColumn(_("Active"), renderer,
-			active=1)
-		column.set_sort_column_id(1)
-		column.set_alignment(0)
-		self.widget.append_column(column)
-
-		self.widget.get_selection().connect('changed', self.selected)
-
-	def toggle_active(self, cell, path):
-		self.model[path][1] = not self.model[path][1]
-
-	def apply(self):
-		oldactive = self.config.list_active_domains()
-		for (domain, active) in self.model:
-			if active and domain not in oldactive:
-				self.config.activate_domain(domain)
-				self.changed = True
-			if not active and domain in oldactive:
-				self.config.deactivate_domain(domain)
-				self.changed = True
-
-	def namechanged(self, widget, xml):
-		xml.get_widget('sdeditokbutton').set_sensitive(bool(widget.get_text()))
-
-	def deletedomain(self, domain, parent):
-		msg = gtk.MessageDialog(parent, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO,
-			_("Delete the SSSD domain: %s?") % domain.get_name())
-		msg.set_title(_("Authentication Configuration"))
-		response = msg.run()
-		msg.destroy()
-		if response == gtk.RESPONSE_YES:
-			self.changed = True
-			self.config.delete_domain(domain.get_name())
-			self.update_model(self.model)
-
-	def run_on_button(self, widget, buttonname, parent=None):
-		self.apply()
-		if buttonname == 'adddomain':
-			dom = self.config.new_domain('')
-		else:
-			rows = self.widget.get_selection().get_selected_rows()
-			try:
-				dom = self.config.get_domain(self.model[rows[1][0]][0])
-			except IndexError:
-				return False
-		if buttonname == 'deldomain':
-			return self.deletedomain(dom, parent)
-		top = 'sssddomedit'
-		xml = gtk.glade.XML(gladepath,
-				top, 'authconfig')
-
-		dialog = xml.get_widget(top)
-		if parent:
-			dialog.set_transient_for(parent)
-			parent.set_sensitive(False)
-		dialog.set_resizable(False)
-
-		nameentry = xml.get_widget('sdname')
-		nameentry.connect('changed', self.namechanged, xml)
-		nameentry.set_text(dom.get_name())
-
-		xml.get_widget('sdeditokbutton').set_sensitive(bool(dom.get_name()))
-
-		opts = DomainOpts(dom, xml)
-
-		response = None
-		while ((response != gtk.RESPONSE_OK) and
-		       (response != gtk.RESPONSE_CANCEL)):
-			response = dialog.run()
-
-		if response == gtk.RESPONSE_OK:
-			self.changed = True
-			oldname = dom.get_name()
-			name = nameentry.get_text()
-			if oldname != name:
-				dom.set_name(name)
-			self.config.save_domain(dom)
-			# XXXX SSSD Config API bug workaround
-			if oldname != name and oldname in self.config.list_domains():
-				self.config.delete_domain(oldname)
-			if buttonname == 'adddomain':
-				# set new domain as active
-				self.config.activate_domain(name)
-			self.update_model(self.model)
-		else:
-			if buttonname == 'adddomain':
-				self.config.delete_domain('')
-
-		dialog.destroy()
-		if parent:
-			parent.set_sensitive(True)
-		return response
-
 class Authconfig:
 	def __init__(self):
 		self.runPriority = 45
 		self.moduleName = "Authentication"
 		self.moduleClass = "reconfig"
 		# "checkbox/button name": authInfo field, file, generic name,
-		# package, names of widgets to disable if checkbox not active
+		# package, function to call on checkbox activation
 		self.main_map = {
-			"enablecache" :
-			("enableCache", authinfo.PATH_NSCD,
-			 "caching", "nscd", []),
-			"enablenis" :
-			("enableNIS", authinfo.PATH_YPBIND,
-			 "NIS", "ypbind", ["confignis"]),
-			"enablehesiod" :
-			("enableHesiod", authinfo.PATH_LIBNSS_HESIOD,
-			 "Hesiod", "glibc", ["confighesiod"]),
-			"enableldap" :
-			("enableLDAP", authinfo.PATH_LIBNSS_LDAP,
-			 "LDAP", "nss_ldap", ["configldap"]),
-			"enableldapauth" :
-			("enableLDAPAuth", authinfo.PATH_PAM_LDAP,
-			 "LDAP", "nss_ldap", ["configldapauth"]),
-			"enablekerberos" :
-			("enableKerberos", authinfo.PATH_PAM_KRB5,
-			 "Kerberos", "pam_krb5", ["configkerberos"]),
 			"enablesmartcard":
 			("enableSmartcard", authinfo.PATH_PAM_PKCS11,
-			 "Smartcard", "pam_pkcs11", ["configsmartcard"]),
+			 "Smartcard", "pam_pkcs11", self.display_smartcard_opts),
 			"enablefprintd":
 			("enableFprintd", authinfo.PATH_PAM_FPRINTD,
-			 "Fprintd", "pam_fprintd", []),
-			"enableshadow" :
-			("enableShadow", "", "", "", []),
-			"enablewinbind" :
-			("enableWinbind", authinfo.PATH_LIBNSS_WINBIND,
-			 "winbind", "samba-client", ["configwinbind"]),
-			"enablewinbindauth" :
-			("enableWinbindAuth", authinfo.PATH_PAM_WINBIND,
-			 "winbind", "samba-client", ["configwinbindauth"]),
-			"enablesssd" :
-			("enableSSSD", authinfo.PATH_LIBNSS_SSS,
-			 "SSSD", "sssd", ["sssddomains", "adddomain", "editdomain", "deldomain",
-			  "sssdoffdays"]),
-			"enablelocauthorize" :
-			("enableLocAuthorize", "", "", "", []),
+			 "Fprintd", "pam_fprintd", None),
 			"enablepamaccess" :
-			("enablePAMAccess", "", "", "", []),
-			"enablesysnetauth" :
-			("enableSysNetAuth", "", "", "", []),
+			("enablePAMAccess", "", "", "", None),
 			"passwordalgo" :
 			("passwordAlgorithm", "", "", "",
 			 ["DESCRYPT", "BIGCRYPT", "MD5", "SHA256", "SHA512"]),
 			"enablemkhomedir" :
-			("enableMkHomeDir", "", "", "", []),
+			("enableMkHomeDir", "", "", "", None),
+		}
+		# "id type": localized name, tuple of allowed auth types,
+		# option widget, option map name, file, package
+		self.id_map = {
+			"local":
+			(_("Local accounts only"), ("local",),
+			 "identitylabel", "empty_map", "", ""),
+			"LDAP":
+			(_("LDAP"), ("Kerberos", "LDAPAuth"),
+			 "ldapoptions", "ldap_map", authinfo.PATH_LIBNSS_SSS, "sssd-client"),
+			"FreeIPA":
+			(_("FreeIPA"), ("Kerberos", "LDAPAuth"),
+			 "ldapoptions", "ldap_map", authinfo.PATH_LIBNSS_SSS, "sssd-client"),
+			"NIS":
+			(_("NIS"), ("NISAuth", "Kerberos"),
+			 "nisoptions", "nis_map", authinfo.PATH_LIBNSS_NIS, "ypbind"),
+			"Winbind":
+			(_("Winbind"), ("WinbindAuth",),
+			 "winbindoptions", "winbind_map", authinfo.PATH_LIBNSS_WINBIND, "samba-client")
+		}
+		# to keep the order we need a tuple
+		self.id_keys = ("local", "LDAP", "FreeIPA", "NIS", "Winbind")
+		# "auth type": localized name,
+		# option widget, option map name, file, package
+		self.auth_map = {
+			"local":
+			(_("Password"),
+			 "authlabel", "empty_map", "", ""),
+			"LDAPAuth":
+			(_("LDAP password"),
+			 "authlabel", "empty_map", "", ""),
+			"Kerberos":
+			(_("Kerberos password"),
+			 "kerberosoptions", "kerberos_map", authinfo.PATH_PAM_KRB5, "pam_krb5"),
+			"NISAuth":
+			(_("NIS password"),
+			 "authlabel", "empty_map", "", ""),
+			"WinbindAuth":
+			(_("Winbind password"),
+			 "authlabel", "empty_map", "", ""),
 		}
 		# entry or label / button / checkbox / option menu :
 		# entry (or label): authInfo field
@@ -418,35 +138,31 @@ class Authconfig:
 		self.empty_map = {
 		}
 		self.nis_map = {
-			"domain" : ("nisDomain", ""),
-			"server" : ("nisServer", ""),
+			"nisdomain" : ("nisDomain", ""),
+			"nisserver" : ("nisServer", ""),
 		}
 		self.kerberos_map = {
-			"realm" : ("kerberosRealm", ""),
+			"krbrealm" : ("kerberosRealm", ""),
 			"kdc" : ("kerberosKDC", ""),
 			"adminserver" : ("kerberosAdminServer", ""),
 			"dnsrealm" : ("kerberosRealmviaDNS", ""),
 			"dnskdc" : ("kerberosKDCviaDNS", ""),
 		}
 		self.ldap_map = {
-			"tls" : ("enableLDAPS", "", "", "", "downloadcacert"),
+			"ldaptls" : ("enableLDAPS", "", "", "", self.enable_cacert_download),
 			"downloadcacert" : ("ldap_cacert_download", ""),
-			"basedn" : ("ldapBaseDN", ""),
-			"server" : ("ldapServer", ""),
+			"ldapbasedn" : ("ldapBaseDN", ""),
+			"ldapserver" : ("ldapServer", "", "", "", self.enable_cacert_download),
 		}
 		self.ldapcacert_map = {
 			"cacerturl" : ("ldapCacertURL", ""),
 		}
 		self.smartcard_map = {
 			"module" : ("smartcardModule", authinfo.getSmartcardModules(),()),
-			"action" : ("smartcardAction", authinfo.getSmartcardActions(),()),
+			"scaction" : ("smartcardAction", authinfo.getSmartcardActions(),()),
 			"forcesmartcard" : ("forceSmartcard", ""),
 		}
 		self.fprintd_map = {
-		}
-		self.hesiod_map = {
-			"lhs" : ("hesiodLHS", ""),
-			"rhs" : ("hesiodRHS", ""),
 		}
 		self.winbindjoin_map = {
 			"domain" : ("smbWorkgroup", ""),
@@ -454,42 +170,31 @@ class Authconfig:
 			"joinpassword" : ("joinPassword", ""),
 		}
 		self.winbind_map = {
-			"domain" : ("smbWorkgroup", ""),
-			"security" : ("smbSecurity", ("ads", "domain", "server", "user"), (("realm", ("ads",)), ("shell", ("domain", "ads")), ("join", ("domain", "ads")))),
-			"realm" : ("smbRealm", ""),
-			"servers" : ("smbServers", ""),
-			"shell" : ("winbindTemplateShell", ["/bin/false"] + acutil.getusershells(), ()),
-			"offline" : ("winbindOffline", ""),
-			"join" : ("winbindjoin_maybe_launch", "")
-		}
-		self.launch_map = {
-			"confignis": ("nissettings", "nis_map"),
-			"configldap": ("ldapsettings", "ldap_map"),
-			"configldapauth": ("ldapsettings", "ldap_map"),
-			"confighesiod": ("hesiodsettings", "hesiod_map"),
-			"configkerberos": ("kerberossettings", "kerberos_map"),
-			"configsmartcard": ("smartcardsettings", "smartcard_map"),
-			"configwinbind": ("winbindsettings", "winbind_map"),
-			"configwinbindauth": ("winbindsettings", "winbind_map"),
+			"winbinddomain" : ("smbWorkgroup", ""),
+			"winbindsecurity" : ("smbSecurity", ("ads", "domain", "server", "user"),
+				(("winbindrealm", ("ads",)),
+				 ("winbindshell", ("domain", "ads")),
+				 ("winbindjoin", ("domain", "ads")))),
+			"winbindrealm" : ("smbRealm", ""),
+			"winbindservers" : ("smbServers", ""),
+			"winbindshell" : ("winbindTemplateShell",
+				["/bin/false"] + acutil.getusershells(), ()),
+			"winbindoffline" : ("winbindOffline", ""),
+			"winbindjoin" : ("winbindjoin_maybe_launch", "")
 		}
 		self.info = authinfo.read(self.message_callback)
 		self.pristineinfo = self.info.copy()
 		if self.info.enableLocAuthorize == None:
 			self.info.enableLocAuthorize = True # ON by default
-		global SSSDConfig
-		self.sssdconfig = None
-		self.domlist = None
-		if SSSDConfig:
-			try:
-				self.sssdconfig = SSSDConfig.SSSDConfig()
-				self.sssdconfig.import_config()
-			except IOError:
-				pass
-		return
+		self.currid = self.current_idtype()
+		self.currauth = self.current_authtype()
+		if self.currauth not in self.id_map[self.currid][1]:
+			self.currauth = self.id_map[self.currid][1][0]
+		self.suspendchanges = False
+		self.scxml = None
 
 	def destroy_widget(self, button, widget):
 		widget.destroy()
-		return
 
 	def winbindjoin_maybe_launch(self, button, map, xml, parent):
 		backup = self.info.copy()
@@ -506,7 +211,7 @@ class Authconfig:
 				self.info = backup
 			# Save.
 			if (response == 1):
-				self.apply(xml)
+				self.apply()
 				backup = self.info
 		self.winbindjoin_launch(button, map, xml, parent)
 		self.info = backup
@@ -536,19 +241,16 @@ class Authconfig:
 		self.info.update()
 
 	# Toggle a boolean.
-	def toggleboolean(self, checkbox, name, aliases, dependents):
+	def toggleboolean(self, checkbox, name, trigger, xml):
 		active = checkbox.get_active()
 		setattr(self.info, name, active)
-		# special case for SSSD
-		if name == "enableSSSD":
-			self.info.enableSSSDAuth = active
-			if not self.sssdconfig:
-				active = False
-		for widget in aliases:
-			widget.set_active(active)
-		for widget in dependents:
-			widget.set_sensitive(active)
-		return
+		if trigger:
+			trigger(active, xml)
+
+	# Run trigger on changed entry
+	def changedentry(self, entry, name, trigger, xml):
+		if trigger:
+			trigger(entry.get_text(), xml)
 
 	def changeoption(self, combo, entry, xml):
 	        options = combo.get_data("option_list")
@@ -564,12 +266,7 @@ class Authconfig:
 		option = entry[4][combo.get_active()]
 		setattr(self.info, entry[0], option)
 
-	# Create a vbox or dialog using the file, and return it. */
-	def run_on_button(self, button, top, mapname, parent=None, responses=()):
-		xml = gtk.glade.XML(gladepath,
-				    top, "authconfig")
-		map = getattr(self, mapname)
-		dialog = xml.get_widget(top)
+	def update_widgets(self, mapname, map, xml, topparent):
 		self.info.update()
 		if mapname == "smartcard_map":
 			widget = xml.get_widget("action")
@@ -604,25 +301,37 @@ class Authconfig:
 					       getattr(self, map[entry][0]),
 					       map,
 					       xml,
-					       dialog)
+					       topparent)
 			if type(widget) == type(gtk.Entry()):
 				if getattr(self.info, map[entry][0]):
 					widget.set_text(getattr(self.info,
 								map[entry][0]))
+				if len(map[entry]) > 4:
+					widget.connect("changed", self.changedentry,
+						entry, map[entry][4], xml)
+					self.changedentry(widget,
+						entry, map[entry][4], xml)
 
 			if type(widget) == type(gtk.CheckButton()):
 				widget.set_active(bool(getattr(self.info,
 							  map[entry][0])))
 				if len(map[entry]) > 4:
-					button = xml.get_widget(map[entry][4])
 					widget.connect("toggled", self.toggleboolean,
-						entry, [], [button])
+						entry, map[entry][4], xml)
 					self.toggleboolean(widget,
-						entry, [], [button])
+						entry, map[entry][4], xml)
 			if type(widget) == type(gtk.Label()):
 				if getattr(self.info, map[entry][0]):
 					widget.set_text(getattr(self.info,
 								map[entry][0]))
+
+	# Create a vbox or dialog using the file, and return it. */
+	def run_on_button(self, button, top, mapname, parent=None, responses=()):
+		xml = gtk.glade.XML(gladepath,
+				    top, "authconfig")
+		map = getattr(self, mapname)
+		dialog = xml.get_widget(top)
+		self.update_widgets(mapname, map, xml, dialog)
 		if parent:
 			dialog.set_transient_for(parent)
 			parent.set_sensitive(False)
@@ -641,17 +350,161 @@ class Authconfig:
 			parent.set_sensitive(True)
 		return response
 
+	def current_type(self, typemap):
+		# skip local method as this is the default
+		for meth in typemap.keys():
+			if meth != 'local':
+				try:
+					if getattr(self.info, 'enable' + meth):
+						return meth
+				except AttributeError:
+					pass
+		return 'local'
+
+	def update_type(self, typemap, typevalue):
+		if typevalue == 'FreeIPA':
+			self.info.enableRFC2307bis = True
+			typevalue = 'LDAP'
+		else:
+			self.info.enableRFC2307bis = False
+		for meth in typemap.keys():
+			if meth != 'local' and hasattr(self.info, 'enable' + meth):
+				setattr(self.info, 'enable' + meth, meth == typevalue)
+
+	def current_idtype(self):
+		return self.current_type(self.id_map)
+
+	def current_authtype(self):
+		return self.current_type(self.auth_map)
+
+	def display_opts(self, optname, sitename, mapname, topparent):
+		optxml = gtk.glade.XML(gladepath,
+				optname, "authconfig")
+
+		opts = optxml.get_widget(optname)
+		parent = opts.get_parent()
+		if parent:
+			parent.remove(opts)
+		placement = self.xml.get_widget(sitename)
+		placement.remove(placement.get_child())
+		placement.add(opts)
+		if mapname != "empty_map":
+			self.update_widgets(mapname, getattr(self, mapname),
+				optxml, topparent)
+		return optxml
+
+	def is_ldap_secure(self, xml):
+		ldaptls = xml.get_widget('ldaptls')
+		ldapserver = xml.get_widget('ldapserver')
+		return bool(ldaptls.get_active() or
+			'ldaps:' in ldapserver.get_text())
+
+	def enable_cacert_download(self, active, xml):
+		apply = self.xml.get_widget('apply')
+		downloadcacert = xml.get_widget('downloadcacert')
+		if downloadcacert:
+			secureldap = self.is_ldap_secure(xml)
+			downloadcacert.set_sensitive(secureldap)
+			secureldap = secureldap or self.currauth != "LDAPAuth"
+		else:
+			secureldap = True
+		apply.set_sensitive(secureldap)
+		if secureldap:
+			apply.set_tooltip_markup(None)
+		else:
+			apply.set_tooltip_markup("<span color='dark red'>%s</span>" % _("You must provide ldaps:// server address or use TLS for LDAP authentication."))
+
+	def display_smartcard_opts(self, active, xml):
+		if self.scxml:
+			self.info_apply(self.smartcard_map, self.scxml)
+		if active:
+			self.scxml = self.display_opts('smartcardoptions',
+				'scauthsite', 'smartcard_map', None)
+		else:
+			self.scxml = None
+			self.display_opts('scauthlabel', 'scauthsite',
+				'empty_map', None)
+
+	def clear_combo(self, widget):
+		for i in range(0, len(widget.get_model())):
+			widget.remove_text(0)
+
+	def set_combo(self, widget, choices, textmap, current):
+		self.suspendchanges = True
+		self.clear_combo(widget)
+		offset = 0
+		for entry in choices:
+			widget.append_text(textmap[entry][0])
+			if entry == current:
+				widget.set_active(offset)
+			offset += 1
+		if offset <= 1:
+			widget.set_sensitive(False)
+		else:
+			widget.set_sensitive(True)
+		self.suspendchanges = False
+
+
+	def apply_idsettings(self):
+		mapname = self.id_map[self.currid][3]
+		if mapname != "empty_map":
+			self.info_apply(getattr(self, mapname), self.idxml)
+
+	def apply_authsettings(self):
+		mapname = self.auth_map[self.currauth][2]
+		if mapname != "empty_map":
+			self.info_apply(getattr(self, mapname), self.authxml)
+
+	def display_idopts(self, topparent):
+		self.idxml = self.display_opts(self.id_map[self.currid][2], 'identitysite',
+			self.id_map[self.currid][3], topparent)
+
+	def idcombochanged(self, combo, authcombo, topparent):
+		if self.suspendchanges:
+			return
+		self.apply_idsettings()
+		self.currid = self.id_keys[combo.get_active()]
+		self.display_idopts(topparent)
+		displayopts = False
+		if self.currauth not in self.id_map[self.currid][1]:
+			self.apply_authsettings()
+			self.currauth = self.id_map[self.currid][1][0]
+			displayopts = True
+		self.set_combo(authcombo, self.id_map[self.currid][1], self.auth_map,
+				self.currauth)
+		if displayopts:
+			self.display_authopts(topparent)
+		self.enable_cacert_download(None, self.idxml)
+
+	def display_authopts(self, topparent):
+		self.authxml = self.display_opts(self.auth_map[self.currauth][1], 'authsite',
+			self.auth_map[self.currauth][2], topparent)
+
+	def authcombochanged(self, combo, topparent):
+		if self.suspendchanges:
+			return
+		self.apply_authsettings()
+		self.currauth = self.id_map[self.currid][1][combo.get_active()]
+		self.display_authopts(topparent)
+		self.enable_cacert_download(None, self.idxml)
+
 	# Create a vbox with the right controls and return the vbox.
 	def get_main_widget(self, xml):
+		self.xml = xml
 		dialog = xml.get_widget('authconfig')
+		# Set main comboboxes
+		idcombo = xml.get_widget('identitytype')
+		self.set_combo(idcombo, self.id_keys, self.id_map, self.currid)
+		authcombo = xml.get_widget('authtype')
+		self.set_combo(authcombo, self.id_map[self.currid][1], self.auth_map,
+				self.currauth)
 
-		# Set up the pushbuttons to launch new dialogs.
-		for entry in self.launch_map.keys():
-			button = xml.get_widget(entry)
-			button.connect("clicked", self.run_on_button,
-				       self.launch_map[entry][0],
-				       self.launch_map[entry][1],
-				       dialog)
+		# display options
+		self.display_idopts(dialog)
+		self.display_authopts(dialog)
+
+		idcombo.connect("changed", self.idcombochanged, authcombo, dialog)
+		authcombo.connect("changed", self.authcombochanged, dialog)
 
 		# Hook up checkboxes and entry fields.
 		for entry in self.main_map.keys():
@@ -665,21 +518,12 @@ class Authconfig:
 				widget.set_active(bool(getattr(self.info,
 						  self.main_map[entry][0])))
 			if type(widget) == type(gtk.CheckButton()):
-				aliases = []
-				dependents = []
-				for candidate in self.main_map.keys():
-					if entry != candidate:
-						if self.main_map[entry][0] == self.main_map[candidate][0]:
-							aliases = aliases + [xml.get_widget(candidate)]
-				for candidate in self.main_map[entry][4]:
-					dependents = dependents + [xml.get_widget(candidate)]
 				widget.connect("toggled", self.toggleboolean,
-					       self.main_map[entry][0], aliases,
-					       dependents)
+					       self.main_map[entry][0],
+					       self.main_map[entry][4], xml)
 				self.toggleboolean(widget,
 						   self.main_map[entry][0],
-						   aliases,
-						   dependents)
+						   self.main_map[entry][4], xml)
 			elif type(widget) == type(gtk.ComboBox()):
 				widget.remove_text(0) # remove the bogus text necessary for glade
 				options = self.main_map[entry][4]
@@ -700,22 +544,12 @@ class Authconfig:
 			# login
 			if entry == "enablesmartcard" and len(authinfo.getSmartcardModules()) == 0:
 				widget.set_sensitive(False)
-		if self.sssdconfig:
-			self.domlist = DomainList(xml.get_widget("sssddomains"), self.sssdconfig, xml)
-			for entry in ["adddomain", "editdomain", "deldomain"]:
-				button = xml.get_widget(entry)
-				button.connect("clicked", self.domlist.run_on_button,
-					       entry, dialog)
-			widget = xml.get_widget("sssdoffdays")
-			try:
-				self.offdays = self.sssdconfig.get_service('pam').get_option('offline_credentials_expiration')
-			except SSSDConfig.NoOptionError:
-				self.offdays = 0
-			widget.set_value(self.offdays)
 		return dialog
 
 	# Save changes.
-	def apply(self, xml):
+	def apply(self):
+		self.update_type(self.id_map, self.currid)
+		self.update_type(self.auth_map, self.currauth)
 		self.info.testLDAPCACerts()
 		self.info.rehashLDAPCACerts()
 
@@ -723,17 +557,6 @@ class Authconfig:
 			self.info.write()
 		else:
 			self.info.writeChanged(self.pristineinfo)
-
-		if self.domlist:
-			svc = self.sssdconfig.get_service('pam')
-			offdays = xml.get_widget("sssdoffdays").get_value()
-			if offdays != self.offdays:
-				svc.set_option('offline_credentials_expiration', offdays)
-				self.sssdconfig.save_service(svc)
-			self.domlist.apply()
-			if self.domlist.changed or offdays != self.offdays:
-				self.info.saveSSSDBackup()
-				self.sssdconfig.write()
 
 		self.info.post(False)
 		if "--firstboot" in sys.argv:
@@ -778,7 +601,7 @@ if __name__ == '__main__':
 	while True:
 		response = dialog.run()
 		if response == gtk.RESPONSE_OK:
-			module.apply(xml)
+			module.apply()
 			dialog.destroy()
 			sys.exit(0)
 		elif response == 1:
