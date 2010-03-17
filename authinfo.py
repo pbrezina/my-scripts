@@ -990,12 +990,11 @@ class FileBackup:
 		return rv
 
 	def backup(self, destdir):
-		err = 0
 		rv = True
 		try:
 			if not os.path.isdir(destdir):
 				os.mkdir(destdir)
-		except IOError, (err, strerr):
+		except OSError, IOError:
 			rv = False
 
 		backuppath = destdir+"/"+self.backupName
@@ -1006,12 +1005,11 @@ class FileBackup:
 		return rv
 
 	def restore(self, backupdir):
-		err = 0
 		rv = True
 		try:
 			if not os.path.isdir(backupdir):
 				return False
-		except IOError, (err, strerr):
+		except IOError, OSError:
 			rv = False
 
 		backuppath = backupdir+"/"+self.backupName
@@ -1038,12 +1036,11 @@ def writeCache(enabled):
 
 class CacheBackup(FileBackup):
 	def backup(self, destdir):
-		err = 0
 		rv = True
 		try:
 			if not os.path.isdir(destdir):
 				os.mkdir(destdir)
-		except IOError, (err, strerr):
+		except OSError, IOError:
 			rv = False
 
 		backuppath = destdir+"/"+self.backupName
@@ -1067,12 +1064,11 @@ class CacheBackup(FileBackup):
 		return rv
 
 	def restore(self, backupdir):
-		err = 0
 		rv = True
 		try:
 			if not os.path.isdir(backupdir):
 				return False
-		except IOError, (err, strerr):
+		except IOError, OSError:
 			rv = False
 
 		backuppath = backupdir+"/"+self.backupName
@@ -1165,6 +1161,7 @@ class AuthInfo:
 		self.enableHesiod = None
 		self.enableLDAP = None
 		self.enableLDAPS = None
+		self.enableRFC2307bis = None
 		self.enableNIS = None
 		self.enableNIS3 = None
 		self.enableDBbind = None
@@ -1216,6 +1213,11 @@ class AuthInfo:
 		self.ldapCacertURL = ""
 
 		self.pamLinked = True
+
+	def sssdSupported(self):
+		nssall = ('NIS', 'LDAP', 'Winbind', 'Hesiod')
+		pamall = ('')
+		idsupported = ('LDAP'
 
 	# Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvfile
 	# can read it just fine.
@@ -1353,6 +1355,11 @@ class AuthInfo:
 			value = matchKey(line, "ssl")
 			if value:
 				self.enableLDAPS = matchLine(value, "start_tls")
+				continue
+			# Is it a "nss_schema" statement?
+			value = matchKey(line, "nss_schema")
+			if value:
+				self.enableRFC2307bis = matchLine(value, "rfc2307bis")
 				continue
 			# We'll pull MD5/DES crypt ("pam_password") from the config
 			# file, or from the pam_unix PAM config lines.
@@ -1973,6 +1980,7 @@ class AuthInfo:
 		(self.enableHesiod != b.enableHesiod) or
 		(self.enableLDAP != b.enableLDAP) or
 		(self.enableLDAPS != b.enableLDAPS) or
+		(self.enableRFC2307bis != b.enableRFC2307bis) or
 		(self.enableNIS != b.enableNIS) or
 		(self.enableNIS3 != b.enableNIS3) or
 		(self.enableDBbind != b.enableDBbind) or
@@ -2185,10 +2193,11 @@ class AuthInfo:
 		return True
 
 	# Write LDAP setup to an ldap.conf using host and base as keys.
-	def writeLDAP2(self, filename, uri, host, base, writePadl):
+	def writeLDAP2(self, filename, uri, host, base, writepadl, writeschema):
 		wrotebasedn = False
 		wroteserver = False
 		wrotessl = False
+		wroteschema = False
 		wrotepass = False
 		wrotecacertdir = False
 		f = None
@@ -2222,7 +2231,7 @@ class AuthInfo:
 						output += self.ldapBaseDN
 						output += "\n"
 						wrotebasedn = True
-				elif writePadl and matchLine(ls, "ssl"):
+				elif writepadl and matchLine(ls, "ssl"):
 					# If it's an 'ssl' line, insert ours instead.
 					if not wrotessl:
 						output += "ssl "
@@ -2230,6 +2239,16 @@ class AuthInfo:
 							output += "start_tls"
 						else:
 							output += "no"
+						output += "\n"
+						wrotessl = True
+				elif writeschema and matchLine(ls, "nss_schema"):
+					# If it's an 'nss_schema' line, insert ours instead.
+					if not wroteschema:
+						output += "nss_schema "
+						if self.enableRFC2307bis:
+							output += "rfc2307bis"
+						else:
+							output += "rfc2307"
 						output += "\n"
 						wrotessl = True
 				elif matchLineI(ls, "tls_cacertdir"):
@@ -2242,7 +2261,7 @@ class AuthInfo:
 						output += " " + self.ldapCacertDir
 						output += "\n"
 						wrotecacertdir = True
-				elif writePadl and matchLine(ls, "pam_password"):
+				elif writepadl and matchLine(ls, "pam_password"):
 					# If it's a 'pam_password' line, write the correct setting.
 					if not wrotepass:
 						output += "pam_password " + passalgo
@@ -2267,6 +2286,13 @@ class AuthInfo:
 							output += "start_tls"
 						else:
 							output += "no"
+						output += "\n"
+			if writeschema and not wroteschema:
+						output += "nss_schema "
+						if self.enableRFC2307bis:
+							output += "rfc2307bis"
+						else:
+							output += "rfc2307"
 						output += "\n"
 			if not wrotecacertdir:
 				if writePadl:
@@ -2294,22 +2320,22 @@ class AuthInfo:
 		if os.path.isfile(all_configs[CFG_LDAP].origPath):
 			all_configs[CFG_LDAP].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_LDAP].origPath,
-					"uri", "host", "base", True)
+					"uri", "host", "base", True, True)
 		if os.path.isfile(all_configs[CFG_NSSLDAP].origPath):
 			all_configs[CFG_NSSLDAP].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_NSSLDAP].origPath,
-					"uri", "host", "base", True)
+					"uri", "host", "base", True, True)
 		if os.path.isfile(all_configs[CFG_PAMLDAP].origPath):
 			all_configs[CFG_PAMLDAP].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_PAMLDAP].origPath,
-					"uri", "host", "base", True)
+					"uri", "host", "base", True, False)
 		if os.path.isfile(all_configs[CFG_NSLCD].origPath):
 			all_configs[CFG_NSLCD].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_NSLCD].origPath,
-					"uri", "host", "base", True)
+					"uri", "host", "base", True, False)
 		all_configs[CFG_OPENLDAP].backup(self.backupDir)
 		ret = self.writeLDAP2(all_configs[CFG_OPENLDAP].origPath,
-					"URI", "HOST", "BASE", False)
+					"URI", "HOST", "BASE", False, False)
 		return ret
 
 	def cryptStyle(self):
@@ -2429,7 +2455,7 @@ class AuthInfo:
 		return True
 
 	# Write Kerberos 5 setup to /etc/krb5.conf.
-	def writeKerberos5(self):
+	def writeKerberos(self):
 		wroterealm = False
 		wrotekdc = False
 		wroteadmin = False
@@ -2662,56 +2688,6 @@ class AuthInfo:
 			except IOError:
 				pass
 		return True
-
-	# Write Kerberos 4 setup to /etc/krb.conf,
-	def writeKerberos4(self):
-		if not self.kerberosRealm:
-			return False
-		readrealm = False
-		f = None
-		output = ""
-		all_configs[CFG_KRB].backup(self.backupDir)
-		try:
-			f = SafeFile(all_configs[CFG_KRB].origPath, 0644)
-			# Set up the buffer with the parts of the file which pertain to our
-			# realm.
-			output += self.kerberosRealm + "\n"
-
-			for kdc in self.kerberosKDC.split(","):
-				if kdc:
-					output += self.kerberosRealm + "\t" + kdc + "\n"
-			for asrv in self.kerberosAdminServer.split(","):
-				if asrv:
-					output += self.kerberosRealm + "\t" + asrv 
-					output += " admin server" + "\n"
-
-			# Now append lines from the original file which have nothing to do
-			# with our realm.
-			for line in f.file:
-				# Skip initial realm line
-				if not readrealm:
-					readrealm = True
-					continue
-				if not matchLine(line, self.kerberosRealm):
-					output += line
-			# Write it out and close it.
-			f.rewind()
-			f.write(output)
-			f.save()
-		finally:
-			try:
-				if f:
-					f.close()
-			except IOError:
-				pass
-		return True
-
-	# Write information to /etc/krb5.conf and /etc/krb.conf.
-	def writeKerberos(self):
-		ret = self.writeKerberos5()
-		if ret:
-			self.writeKerberos4()
-		return ret
 
 	def writeSmartcard(self):
 		if self.smartcardModule == None:
@@ -3290,7 +3266,7 @@ class AuthInfo:
 			ret = ret and self.writePAM()
 			ret = ret and self.writeSysconfig()
 			ret = ret and self.writeNetwork()
-		except IOError:
+		except OSError, IOError:
 			return False
 		return ret
 
@@ -3301,7 +3277,7 @@ class AuthInfo:
 	SaveGroup(self.writeSMB, [("smbWorkgroup", "i"), ("smbServers", "i")]),
 	SaveGroup(self.writeNIS, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
 	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
-		("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
+		("enableRFC2307bis", "b"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
 	SaveGroup(self.writeCache, [("enableCache", "b")]),
 	SaveGroup(self.writeLibuser, [("passwordAlgorithm", "i")]),
 	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]),
@@ -3352,7 +3328,7 @@ class AuthInfo:
 			for group in save_groups:
 				if group.attrsDiffer(self, ref):
 					ret = ret and group.saveFunction()
-		except IOError:
+		except OSError, IOError:
 			return False
 		return ret
 

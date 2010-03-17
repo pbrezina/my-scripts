@@ -121,6 +121,10 @@ class Authconfig:
 			help=_("enable use of TLS with LDAP (RFC-2830)"))
 		parser.add_option("--disableldaptls",  "--disableldapstarttls", action="store_true",
 			help=_("disable use of TLS with LDAP (RFC-2830)"))
+		parser.add_option("--enablerfc2307bis", action="store_true",
+			help=_("enable use of RFC-2307bis schema for LDAP user information lookups"))
+		parser.add_option("--disablerfc2307bis", action="store_true",
+			help=_("disable use of RFC-2307bis schema for LDAP user information lookups"))
 		parser.add_option("--ldaploadcacert", metavar=_("<URL>"),
 			help=_("load CA certificate from the URL"))
 
@@ -345,6 +349,7 @@ class Authconfig:
 			"hesiod":"enableHesiod",
 			"ldap":"enableLDAP",
 			"ldaptls":"enableLDAPS",
+			"rfc2307bis":"enableRFC2307bis",
 			"ldapauth":"enableLDAPAuth",
 			"krb5":"enableKerberos",
 			"nis":"enableNIS",
