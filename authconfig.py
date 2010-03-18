@@ -398,6 +398,14 @@ class Authconfig:
 			if getattr(self.options, "disable"+opt):
 				setattr(self.info, aival, False)
 
+		try:
+			if self.info.enableRFC2307bis:
+				self.info.ldapSchema = 'rfc2307bis'
+			else:
+				self.info.ldapSchema = ''
+		except AttributeError:
+			pass
+
 		if self.options.krb5realm and self.options.krb5realm != self.info.kerberosRealm:
 			self.info.kerberosKDC = self.info.getKerberosKDC(self.options.krb5realm)
 			self.info.kerberosAdminServer = self.info.getKerberosAdminServer(self.options.krb5realm)

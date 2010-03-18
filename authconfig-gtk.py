@@ -356,6 +356,8 @@ class Authconfig:
 			if meth != 'local':
 				try:
 					if getattr(self.info, 'enable' + meth):
+						if meth == 'LDAP' and self.info.ldapSchema == 'rfc2307bis':
+							meth = 'FreeIPA'
 						return meth
 				except AttributeError:
 					pass
@@ -363,10 +365,11 @@ class Authconfig:
 
 	def update_type(self, typemap, typevalue):
 		if typevalue == 'FreeIPA':
-			self.info.enableRFC2307bis = True
+			self.info.ldapschema = 'rfc2307bis'
 			typevalue = 'LDAP'
-		else:
-			self.info.enableRFC2307bis = False
+		elif typevalue == 'LDAP':
+			# default is rfc2307
+			self.info.ldapschema = ''
 		for meth in typemap.keys():
 			if meth != 'local' and hasattr(self.info, 'enable' + meth):
 				setattr(self.info, 'enable' + meth, meth == typevalue)
@@ -550,6 +553,8 @@ class Authconfig:
 	def apply(self):
 		self.update_type(self.id_map, self.currid)
 		self.update_type(self.auth_map, self.currauth)
+		self.apply_idsettings()
+		self.apply_authsettings()
 		self.info.testLDAPCACerts()
 		self.info.rehashLDAPCACerts()
 
