@@ -2820,23 +2820,28 @@ class AuthInfo:
 		elif self.enableLDAPAuth:
 			self.changeProvider(domain, 'ldap', 'auth')
 			self.changeProvider(domain, 'ldap', 'chpass')
-		domain.set_active(activate)
 
-		for attr in sssdopt_map.keys():
+		for attr, option in sssdopt_map.iteritems():
 			try:
 				val = getattr(self, attr)
 				if type(val) == bool:
-					domain.set_option(sssdopt_map[attr], val)
+					domain.set_option(option, val)
 				elif type(val) == str:
 					if val:
-						domain.set_option(sssdopt_map[attr], val)
+						domain.set_option(option, val)
 					else:
-						 domain.remove_option(val)
+						domain.remove_option(option)
 				else:
-					domain.remove_option(val)
+					domain.remove_option(option)
 			except SSSDConfig.NoOptionError:
 				pass
 		self.sssdConfig.save_domain(domain)
+
+		if activate:
+			self.sssdConfig.activate_domain(domain.get_name())
+		else:
+			self.sssdConfig.deactivate_domain(domain.get_name())
+
 		try:
 			self.sssdConfig.write(all_configs[CFG_SSSD].origPath)
 		except IOError:
@@ -3172,7 +3177,7 @@ class AuthInfo:
 				pass
 		return True
 
-	def formatPAMModule(self, module, forcescard):
+	def formatPAMModule(self, module, forcescard, warn):
 		stack = pam_stacks[module[STACK]]
 		logic = module[LOGIC]
 		output = ""
@@ -3198,7 +3203,7 @@ class AuthInfo:
 					logic = LOGIC_SKIPNEXT3
 			output += "%-12s%-13s pam_%s.so" % (stack, logic,
 				module[NAME])
-			if not module[NAME] in self.module_missing and not os.access("%s/pam_%s.so"
+			if warn and not module[NAME] in self.module_missing and not os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, module[NAME]), os.X_OK):
 				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly." %
 					(AUTH_MODULE_DIR, module[NAME])))
@@ -3280,6 +3285,9 @@ class AuthInfo:
 			forceSmartcard = self.forceSmartcard
 			enableSmartcard = self.enableSmartcard
 			enableFprintd = self.enableFprintd
+			warn = False
+			if service == STANDARD:
+				warn = True
 			if service == FINGERPRINT:
 				enableFprintd = True
 			elif service == SMARTCARD:
@@ -3316,7 +3324,7 @@ class AuthInfo:
 					(self.enableMkHomeDir and module[NAME] == "mkhomedir") or
 					(not self.enableSysNetAuth and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_REQUISITE)):
-					output += self.formatPAMModule(module, forceSmartcard)
+					output += self.formatPAMModule(module, forceSmartcard, warn)
 
 			# Write it out and close it.
 			f.rewind()
@@ -3444,7 +3452,8 @@ class AuthInfo:
 	SaveGroup(self.writeSSSD, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
 		("ldapSchema", "c"), ("ldapCacertDir", "c"),
 		("kerberosRealm", "c"), ("kerberosKDC", "i"), ("kerberosAdminServer", "i"),
-		("forceSSSDUpdate", "b")]),
+		("forceSSSDUpdate", "b"), ("enableLDAP", "b"), ("enableKerberos", "b"),
+		("enableLDAPAuth", "b")]),
 	SaveGroup(self.writeSmartcard, [("smartcardAction", "i"), ("smartcardModule", "c")]),
 	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
