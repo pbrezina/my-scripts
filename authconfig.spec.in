@@ -101,6 +101,14 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+* Thu Mar 18 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.0-1
+- new very much simplified GUI
+- use SSSD instead of legacy ldap/krb5 if the configuration is
+  supported
+- drop krb4 config file write (#569612)
+- handle exception when running with insufficient priviledges (#572534)
+- support RFC2307bis LDAP schema
+
 * Tue Feb  2 2010 Tomas Mraz <tmraz@redhat.com> - 6.0.2-1
 - fix regression from the nss_ldap/pam_ldap nslcd split
 
