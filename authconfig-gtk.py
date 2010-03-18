@@ -24,6 +24,7 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 import authinfo, acutil
+import msgarea
 import gettext, os, signal, sys
 _ = gettext.lgettext
 import locale
@@ -192,6 +193,7 @@ class Authconfig:
 			self.currauth = self.id_map[self.currid][1][0]
 		self.suspendchanges = False
 		self.scxml = None
+		self.msgctrl = None
 
 	def destroy_widget(self, button, widget):
 		widget.destroy()
@@ -412,10 +414,18 @@ class Authconfig:
 		else:
 			secureldap = True
 		apply.set_sensitive(secureldap)
+		if self.msgctrl == None:
+			self.msgctrl = msgarea.MsgAreaController()
+			self.xml.get_widget('idauthpage').pack_start(self.msgctrl)
+			self.xml.get_widget('idauthpage').reorder_child(self.msgctrl, 0)
 		if secureldap:
+			self.msgctrl.clear()
 			apply.set_tooltip_markup(None)
 		else:
-			apply.set_tooltip_markup("<span color='dark red'>%s</span>" % _("You must provide ldaps:// server address or use TLS for LDAP authentication."))
+			text = _("You must provide ldaps:// server address or use TLS for LDAP authentication.")
+			self.msgctrl.new_from_text_and_icon(gtk.STOCK_DIALOG_ERROR, text)
+			self.xml.get_widget('idauthpage').show_all()
+			apply.set_tooltip_markup("<span color='dark red'>%s</span>" % text)
 
 	def display_smartcard_opts(self, active, xml):
 		if self.scxml:
