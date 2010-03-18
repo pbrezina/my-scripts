@@ -1127,7 +1127,7 @@ sssdopt_map = {
 	'ldapBaseDN': 'ldap_search_base',
 	'enableLDAPS': 'ldap_id_use_start_tls',
 	'ldapSchema': 'ldap_schema',
-	'ldapCacertDir': 'ldap_tls_cacert',
+	'ldapCacertDir': 'ldap_tls_cacertdir',
 	'kerberosKDC': 'krb5_kdcip',
 	'kerberosAdminServer': 'krb5_kpasswd',
 	'kerberosRealm': 'krb5_realm'}
@@ -2787,6 +2787,16 @@ class AuthInfo:
 				pass
 		return True
 
+	def changeProvider(self, domain, newprovider, subtype):
+		try:
+			prov = domain.get_option(subtype + '_provider')
+		except SSSDConfig.NoOptionError:
+			prov = None
+		if prov != newprovider:
+			if prov != None:
+				domain.remove_provider(prov)
+			domain.add_provider(newprovider, subtype)
+
 	def writeSSSD(self):
 		if not self.sssdConfig:
 			return True
@@ -2800,31 +2810,16 @@ class AuthInfo:
 				self.sssdDomain = self.sssdConfig.get_domain(SSSD_AUTHCONFIG_DOMAIN)
 		domain = self.sssdDomain
 
-		try:
-			idprov = domain.get_option('id_provider')
-		except SSSDConfig.NoOptionError:
-			idprov = None
-		try:
-			authprov = domain.get_option('auth_provider')
-		except SSSDConfig.NoOptionError:
-			authprov = None
 		activate = False
 		if self.enableLDAP:
 			activate = True
-			if idprov != 'ldap':
-				if idprov != None:
-					domain.remove_provider(idprov, 'id')
-				domain.add_provider('ldap', 'id')
+			self.changeProvider(domain, 'ldap', 'id')
 		if self.enableKerberos:
-			if authprov != 'krb5':
-				if authprov != None:
-					domain.remove_provider('auth')
-				domain.add_provider('krb5', 'auth')
+			self.changeProvider(domain, 'krb5', 'auth')
+			self.changeProvider(domain, 'krb5', 'chpass')
 		elif self.enableLDAPAuth:
-			if authprov != 'ldap':
-				if authprov != None:
-					domain.remove_provider('auth')
-				domain.add_provider('ldap', 'auth')
+			self.changeProvider(domain, 'ldap', 'auth')
+			self.changeProvider(domain, 'ldap', 'chpass')
 		domain.set_active(activate)
 
 		for attr in sssdopt_map.keys():

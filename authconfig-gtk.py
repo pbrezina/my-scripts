@@ -365,11 +365,11 @@ class Authconfig:
 
 	def update_type(self, typemap, typevalue):
 		if typevalue == 'FreeIPA':
-			self.info.ldapschema = 'rfc2307bis'
+			self.info.ldapSchema = 'rfc2307bis'
 			typevalue = 'LDAP'
 		elif typevalue == 'LDAP':
 			# default is rfc2307
-			self.info.ldapschema = ''
+			self.info.ldapSchema = ''
 		for meth in typemap.keys():
 			if meth != 'local' and hasattr(self.info, 'enable' + meth):
 				setattr(self.info, 'enable' + meth, meth == typevalue)
