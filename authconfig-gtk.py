@@ -219,7 +219,7 @@ class Authconfig:
 	def winbindjoin_launch(self, button, map, xml, parent):
 		if not self.info.joinUser:
 			self.info.joinUser = "Administrator"
-		response = self.run_on_button(None, "winbindjoin",
+		response = self.run_on_button(None, "joinwbdomain",
 					      "winbindjoin_map", parent)
 		if (response == gtk.RESPONSE_OK):
 			self.info.joinDomain(True)

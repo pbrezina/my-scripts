@@ -2,7 +2,7 @@
 <glade-interface>
   <!-- interface-requires gtk+ 2.16 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <widget class="GtkDialog" id="winbindjoin">
+  <widget class="GtkDialog" id="joinwbdomain">
     <property name="visible">True</property>
     <property name="title" translatable="yes">Joining Winbind Domain</property>
     <property name="resizable">False</property>
@@ -437,7 +437,7 @@
                   <widget class="GtkLabel" id="topidentitylabel">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label">&lt;b&gt;User Account Configuration&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;User Account Configuration&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -500,7 +500,7 @@
                   <widget class="GtkLabel" id="topauthlabel">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label">&lt;b&gt;Authentication Configuration&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Authentication Configuration&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -1646,7 +1646,6 @@
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Card Re_moval Action:</property>
                 <property name="use_underline">True</property>
-                <property name="mnemonic_widget">action</property>
                 <accessibility>
                   <atkrelation type="label-for" target="scaction"/>
                 </accessibility>
