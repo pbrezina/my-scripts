@@ -2,10 +2,7 @@
 # Leonid Kanter <leon@geon.donetsk.ua>, 2003.
 # Leonid Kanter <leon@asplinux.ru>, 2003, 2004.
 # Andrew Martynov <andrewm@inventa.ru>, 2004, 2005, 2006, 2008.
-# Yuliya Poyarkova <ypoyarko@brisbane.redhat.com>, 2006.
-# Yulia Poyarkova <ypoyarko@redhat.com>, 2006.
-# Yulia Poyarkova <yulia.poyarkova@redhat.com>, 2008, 2009.
-# Yulia Poyarkova <yulia.poyarkova@gmail.com>, 2009.
+# Yulia <ypoyarko@redhat.com>, 2006, 2008, 2010.
 # translation of authconfig.tip.ru.po to
 # translation of ru.po to
 msgid ""
@@ -13,15 +10,14 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-18 15:11+0100\n"
-"PO-Revision-Date: 2009-09-18 12:24+1000\n"
-"Last-Translator: Yulia Poyarkova <yulia.poyarkova@redhat.com>\n"
-"Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
+"PO-Revision-Date: 2010-03-19 13:08+1100\n"
+"Last-Translator: Yulia <ypoyarko@redhat.com>\n"
+"Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../authconfig.py:81
 #, python-format
@@ -30,11 +26,11 @@ msgstr "Формат: %s [параметры]"
 
 #: ../authconfig.py:88
 msgid "enable shadowed passwords by default"
-msgstr "включить скрытые пароли"
+msgstr "включить скрытые пароли (по умолчанию)"
 
 #: ../authconfig.py:90
 msgid "disable shadowed passwords by default"
-msgstr "выключить скрытые пароли"
+msgstr "выключить скрытые пароли (по умолчанию)"
 
 #: ../authconfig.py:92
 msgid "enable MD5 passwords by default"
@@ -99,7 +95,7 @@ msgstr "<dn>"
 
 #: ../authconfig.py:119
 msgid "default LDAP base DN"
-msgstr "базовый DN сервера LDAP"
+msgstr "базовое DN сервера LDAP"
 
 #: ../authconfig.py:121
 msgid "enable use of TLS with LDAP (RFC-2830)"
@@ -111,11 +107,11 @@ msgstr "отключить использование TLS с LDAP (RFC-2830)"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "включить использование схемы RFC-2307bis для поиска информации о пользователе на LDAP"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "отключить использование схемы RFC-2307bis для поиска информации о пользователе на LDAP"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -163,19 +159,19 @@ msgstr "не использовать аутентификацию при пом
 
 #: ../authconfig.py:151
 msgid "enable kerberos authentication by default"
-msgstr "использовать аутентификацию kerberos"
+msgstr "использовать аутентификацию Kerberos"
 
 #: ../authconfig.py:153
 msgid "disable kerberos authentication by default"
-msgstr "не использовать аутентификацию kerberos"
+msgstr "не использовать аутентификацию Kerberos"
 
 #: ../authconfig.py:155
 msgid "default kerberos KDC"
-msgstr "kerberos KDC"
+msgstr "Kerberos KDC"
 
 #: ../authconfig.py:157
 msgid "default kerberos admin server"
-msgstr "сервер управления kerberos"
+msgstr "сервер управления Kerberos"
 
 #: ../authconfig.py:158 ../authconfig.py:188
 msgid "<realm>"
@@ -183,23 +179,23 @@ msgstr "<область>"
 
 #: ../authconfig.py:159
 msgid "default kerberos realm"
-msgstr "область kerberos"
+msgstr "область Kerberos"
 
 #: ../authconfig.py:161
 msgid "enable use of DNS to find kerberos KDCs"
-msgstr "включить использование DNS для поиска kerberos KDC"
+msgstr "включить использование DNS для поиска Kerberos KDC"
 
 #: ../authconfig.py:163
 msgid "disable use of DNS to find kerberos KDCs"
-msgstr "отключить использование DNS для поиска kerberos KDC"
+msgstr "отключить использование DNS для поиска Kerberos KDC"
 
 #: ../authconfig.py:165
 msgid "enable use of DNS to find kerberos realms"
-msgstr "включить использование DNS для поиска областей kerberos"
+msgstr "включить использование DNS для поиска областей Kerberos"
 
 #: ../authconfig.py:167
 msgid "disable use of DNS to find kerberos realms"
-msgstr "отключить использование DNS для поиска областей kerberos"
+msgstr "отключить использование DNS для поиска областей Kerberos"
 
 #: ../authconfig.py:170
 msgid "enable SMB authentication by default"
@@ -247,7 +243,7 @@ msgstr "режим безопасности для samba и winbind"
 
 #: ../authconfig.py:189
 msgid "default realm for samba and winbind when security=ads"
-msgstr "область (realm) по умолчанию для samba и winbind, если security=ads"
+msgstr "область по умолчанию для samba и winbind, если security=ads"
 
 #: ../authconfig.py:190 ../authconfig.py:192
 msgid "<lowest-highest>"
@@ -255,13 +251,11 @@ msgstr "<начальный-конечный>"
 
 #: ../authconfig.py:191
 msgid "uid range winbind will assign to domain or ads users"
-msgstr ""
-"диапазон uid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон uid, которые winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:193
 msgid "gid range winbind will assign to domain or ads users"
-msgstr ""
-"диапазон gid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон gid, которые winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:195
 msgid ""
@@ -332,8 +326,7 @@ msgstr "предпочитать использование dns, а не wins д
 
 #: ../authconfig.py:221
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr ""
-"не предпочитать использование dns вместо wins для разрешения имён узлов"
+msgstr "не предпочитать использование dns вместо wins для разрешения имён узлов"
 
 #: ../authconfig.py:224
 msgid "enable hesiod for user information by default"
@@ -423,8 +416,7 @@ msgstr "не изменять конфигурационные файлы, а т
 
 #: ../authconfig.py:274
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr ""
-"отображать \"Назад\" вместо \"Отмена\" в основном окне текстового интерфейса"
+msgstr "отображать \"Назад\" вместо \"Отмена\" в основном окне текстового интерфейса"
 
 #: ../authconfig.py:276
 msgid "do not display the deprecated text user interface"
@@ -750,13 +742,11 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-" <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
+msgstr " <Tab>/<Alt-Tab> между элементами  |  <Space> выбор  |  <F12> следующий экран"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Настраивает методы проверки пользователей, которые пытаются войти в систему"
+msgstr "Настраивает методы проверки пользователей, которые пытаются войти в систему"
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
@@ -792,8 +782,7 @@ msgid "Winbind password"
 msgstr "скрытые пароли"
 
 #: ../authconfig-gtk.py:418
-msgid ""
-"You must provide ldaps:// server address or use TLS for LDAP authentication."
+msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
 
 #: ../authconfig.glade.h:1
@@ -830,8 +819,7 @@ msgid ""
 msgstr ""
 
 #: ../authconfig.glade.h:8
-msgid ""
-"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
 
 #: ../authconfig.glade.h:9
@@ -932,8 +920,7 @@ msgstr "хэш/алгоритм для нового пароля"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"Имя узла или URI в формате ldap:// или ldaps:// для указания LDAP-сервера."
+msgstr "Имя узла или URI в формате ldap:// или ldaps:// для указания LDAP-сервера."
 
 #: ../authconfig.glade.h:31
 msgid ""
@@ -1002,9 +989,8 @@ msgstr ""
 "сертификата и ключа, связанного со смарт-картой."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Оболочка шаблона:"
+msgstr "О_болочка шаблона:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1021,9 +1007,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Использовать DNS для _поиска KDC для областей"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Использовать DNS для поиска узлов и областей"
+msgstr "_Использовать DNS для разрешения узлов для областей"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1047,58 +1032,48 @@ msgstr ""
 "использоваться для проверки подлинности при доступе пользователей."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "_Область Winbind ADS"
+msgstr "_Область ADS Winbind:"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Ко_нтроллеры домена Winbind"
+msgstr "Ко_нтроллеры домена Winbind:"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "_Домен Winbind"
+msgstr "_Домен Winbind:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Скачать сертификат CA"
+msgstr "_Загрузить сертификат CA..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Аутентификация"
+msgstr "_Идентификация и аутентификация"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Войти в домен"
+msgstr "_Подключиться к домену..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_Сервера KDC"
+msgstr "_KDC:"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "Ал_горитм хэширования пароля"
+msgstr "Ал_горитм хэширования пароля:"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Пароль:"
+msgstr "_Пароль:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Модель защиты:"
+msgstr "_Модель защиты:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "_База данных учётных записей пользователей:"
 
 #: ../authinfo.py:910 ../authinfo.py:1548 ../authinfo.py:2858
 msgid "Lock"
@@ -1121,169 +1096,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "Ошибка при загрузке сертификата CA"
 
-#~ msgid "<b>Fingerprint Reader</b>"
-#~ msgstr "<b>Сканер отпечатков</b>"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Параметры</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>Смарт-карта</b>"
-
-#~ msgid "A_uthentication"
-#~ msgstr "_Аутентификация"
-
-#~ msgid "Cache User _Information"
-#~ msgstr "_Кэшировать информацию о пользователе"
-
-#~ msgid "Check access.conf _during account authorization"
-#~ msgstr "_Проверять access.conf при проверке подлинности учетных записей"
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "Настроить H_esiod..."
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "Настроить K_erberos..."
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "Настроить L_DAP..."
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "Настроить NI_S..."
-
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "Настроить Смарт-_карту..."
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Настроить Win_bind..."
-
-#~ msgid "Domain"
-#~ msgstr "Домен"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "_Администратор домена"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Включить поддержку _Hesiod"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Включить поддержку _Kerberos"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "Включить поддержку _LDAP"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "Включить поддержку _NIS"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "Включить поддержку _Winbind"
-
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "Для учетных записей пользователей указанных в локальном файле /etc/passwd "
-#~ "система не будет проверять их подлинность при помощи сетевых служб, таких "
-#~ "как LDAP или Kerberos."
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod _LHS"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod _RHS"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod позволяет системному администратору опубликовать информацию о "
-#~ "пользователях и группах в DNS. Иногда используется в очень больших сетях."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos - это доверенная система аутентификации третьей стороны, которая "
-#~ "широко используется в средних и больших сетях."
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS (Network Information Service) широко используется в малых и средних "
-#~ "сетях."
-
-#~ msgid "Op_tions"
-#~ msgstr "_Параметры"
-
-#~ msgid "SMB Settings"
-#~ msgstr "Настройка SMB"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "Настройка смарт-карт"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "LDAP (Lightweight Directory Access Protocol) - стандартный способ поиска "
-#~ "в каталогах, которые могут содержать данные в структурированной иерархии. "
-#~ "LDAP все более широко используется в средних и больших сетях."
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "Использовать _DNS для поиска узлов и областей"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr ""
-#~ "Использовать _скрытые\n"
-#~ "пароли"
-
-#~ msgid "User Infor_mation"
-#~ msgstr "Ин_формация пользователя"
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "При включении разрешает сетевым службам, таким как LDAP или Kerberos, "
-#~ "проводить проверку подлинности системных учетных записей, включая root, "
-#~ "на этой машине."
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Winbind позволяет системе получить сведения о пользователях и проверить "
-#~ "их подлинность, используя сведения, сохранённые на сервере NTDOM или ADS. "
-#~ "Используется в средних и больших сетях."
-
-#~ msgid "_Admin Servers"
-#~ msgstr "Сервера _управления"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr "_Аутентификация системных уч. записей сетевыми службами"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "Контроллеры _домена"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr ""
-#~ "_Локальная проверка достаточна\n"
-#~ "для локальных пользователей"
-
-#~ msgid "_Password"
-#~ msgstr "_Пароль"
-
-#~ msgid "_Realm"
-#~ msgstr "_Область"
-
-#~ msgid "_Security Model"
-#~ msgstr "Модель _безопасности"
-
-#~ msgid "_Template Shell"
-#~ msgstr "Оболочка _шаблона:"
-
-#~ msgid "_Workgroup"
-#~ msgstr "_Рабочая группа"
