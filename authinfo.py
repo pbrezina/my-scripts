@@ -91,6 +91,8 @@ PATH_SSSD = "/usr/sbin/sssd"
 PATH_SSSD_PID = "/var/run/sssd.pid"
 PATH_YPBIND = "/sbin/ypbind"
 PATH_YPBIND_PID = "/var/run/ypbind.pid"
+PATH_ODDJOBD = "/usr/sbin/oddjobd"
+PATH_ODDJOBD_PID = "/var/run/oddjobd.pid"
 PATH_SEBOOL = "/usr/sbin/setsebool"
 PATH_SCEVENTD = "/usr/bin/pkcs11_eventmgr"
 PATH_SCEVENTD_PID = "/var/run/sceventd.pid"
@@ -1803,7 +1805,7 @@ class AuthInfo:
 				if args:
 					self.pamAccessArgs = args
 				continue
-			if module.startswith("pam_mkhomedir"):
+			if module.startswith("pam_mkhomedir") or module.startswith("pam_oddjob_mkhomedir"):
 				self.enableMkHomeDir = True
 				if args:
 					self.mkhomedirArgs = args
@@ -3190,10 +3192,11 @@ class AuthInfo:
 	def formatPAMModule(self, module, forcescard, warn):
 		stack = pam_stacks[module[STACK]]
 		logic = module[LOGIC]
+		name = module[NAME]
 		output = ""
 		if stack and logic:
 			args = ""
-			if module[NAME] == "pkcs11" and stack == "auth":
+			if name == "pkcs11" and stack == "auth":
 				if forcescard:
 					if self.enableKerberos:
 						logic = LOGIC_FORCE_PKCS11_KRB5
@@ -3203,36 +3206,40 @@ class AuthInfo:
 				else:
 					if self.enableKerberos:
 						logic = LOGIC_PKCS11_KRB5
-			if module[NAME] == "krb5" and stack == "account":
+			if name == "krb5" and stack == "account":
 				if self.enableSmartcard:
 					logic = LOGIC_IGNORE_AUTH_ERR
 				else:
 					logic = LOGIC_IGNORE_UNKNOWN
-			if module[NAME] == "succeed_if" and stack == "auth" and logic == LOGIC_SKIPNEXT:
+			if name == "succeed_if" and stack == "auth" and logic == LOGIC_SKIPNEXT:
 				if self.enableKerberos:
 					logic = LOGIC_SKIPNEXT3
+			# use oddjob_mkhomedir if available
+			if name == "mkhomedir" and os.access("%s/pam_%s.so"
+				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
+				name = "oddjob_mkhomedir"
 			output += "%-12s%-13s pam_%s.so" % (stack, logic,
-				module[NAME])
-			if warn and not module[NAME] in self.module_missing and not os.access("%s/pam_%s.so"
-				% (AUTH_MODULE_DIR, module[NAME]), os.X_OK):
+				name)
+			if warn and not name in self.module_missing and not os.access("%s/pam_%s.so"
+				% (AUTH_MODULE_DIR, name), os.X_OK):
 				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly." %
-					(AUTH_MODULE_DIR, module[NAME])))
-				self.module_missing[module[NAME]] = True
-			if module[NAME] == "cracklib":
+					(AUTH_MODULE_DIR, name)))
+				self.module_missing[name] = True
+			if name == "cracklib":
 				args = self.cracklibArgs
-			if module[NAME] == "passwdqc":
+			if name == "passwdqc":
 				args = self.passwdqcArgs
-			if module[NAME] == "localuser":
+			if name == "localuser":
 				args = self.localuserArgs
-			if module[NAME] == "access":
+			if name == "access":
 				args = self.pamAccessArgs
-			if module[NAME] == "mkhomedir":
+			if name == "mkhomedir" or name =="oddjob_mkhomedir":
 				args = self.mkhomedirArgs
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
-			if module[NAME] == "winbind" and self.winbindOffline:
+			if name == "winbind" and self.winbindOffline:
 				output += " cached_login"
-			if module[NAME] == "unix":
+			if name == "unix":
 				if stack == "password":
 					if self.passwordAlgorithm and self.passwordAlgorithm != "descrypt":
 						output += " " + self.passwordAlgorithm
@@ -3661,7 +3668,7 @@ class AuthInfo:
 			self.passwdqcArgs)
 		print "pam_access is %s (%s)" % (formatBool(self.enablePAMAccess),
 			self.pamAccessArgs)
-		print "pam_mkhomedir is %s (%s)" % (formatBool(self.enableMkHomeDir),
+		print "pam_mkhomedir or pam_oddjob_mkhomedir is %s (%s)" % (formatBool(self.enableMkHomeDir),
 			self.mkhomedirArgs)
 		print "Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),
 			self.localuserArgs)
@@ -3729,6 +3736,12 @@ class AuthInfo:
 		toggleSplatbindService(self.enableOdbcbind,
 			PATH_ODBCBIND, PATH_ODBCBIND_PID,
 			"odbcbind", nostart)
+		if self.enableMkHomeDir and os.access("%s/pam_%s.so"
+				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
+			# only switch on and only if pam_oddjob_mkhomedir exists
+			toggleSplatbindService(True,
+				PATH_ODDJOBD, PATH_ODDJOBD_PID,
+				"oddjobd", nostart)
 		toggleCachingService(self.enableCache, nostart)
 
 	def testLDAPCACerts(self):
