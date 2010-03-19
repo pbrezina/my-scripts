@@ -6,15 +6,15 @@
 # Tino Meinen <a.t.meinen@chello.nl>, 2003.
 # Peter van Egdom <p.van.egdom@gmail.com>, 2003, 2004, 2005, 2006, 2007, 2008.
 # R.E. van der Luit <nippur@fedoraproject.org>, 2009.
-# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
+# Geert Warrink <geert.warrink@onsnet.nu>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-18 15:11+0100\n"
-"PO-Revision-Date: 2009-09-17 11:49+0200\n"
+"PO-Revision-Date: 2010-03-18 19:58+0100\n"
 "Last-Translator: Geert Warrink <geert.warrink@onsnet.nu>\n"
-"Language-Team: nl <nl@li.org>\n"
+"Language-Team: nl <fedora-trans-list@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding:  \n"
@@ -110,10 +110,14 @@ msgstr "gebruik van TLS met LDAP (RFC-2830) uitzetten"
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"zet gebruik van RFC-2307bis schema voor LDAP aan voor het opzoeken van "
+"gebruiker informatie"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"zet gebruik van RFC-2307bis schema voor LDAP uit voor het opzoeken van "
+"gebruiker informatie"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -347,24 +351,20 @@ msgid "default hesiod RHS"
 msgstr "standaard hesiod RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "NIS voor gebruikersinformatie standaard aanzetten"
+msgstr "SSSD voor gebruiker informatie standaard aanzetten"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "NIS voor gebruikersinformatie standaard uitzetten"
+msgstr "SSSD voor gebruiker informatie standaard uitzetten"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "LDAP voor authenticatie standaard aanzetten"
+msgstr "SSSD voor authenticatie standaard aanzetten"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "LDAP voor authenticatie standaard uitzetten"
+msgstr "SSSD voor authenticatie standaard uitzetten"
 
 #: ../authconfig.py:242
 msgid "enable caching of user information by default"
@@ -771,41 +771,38 @@ msgstr ""
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
-msgstr ""
+msgstr "Alleen locale accounts"
 
 #: ../authconfig-gtk.py:102
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:117
-#, fuzzy
 msgid "Password"
-msgstr "Wachtwoord:"
+msgstr "Wachtwoord"
 
 #: ../authconfig-gtk.py:120
-#, fuzzy
 msgid "LDAP password"
-msgstr "Wachtwoord:"
+msgstr "LDAP wachtwoord"
 
 #: ../authconfig-gtk.py:123
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Kerberos wachtwoord"
 
 #: ../authconfig-gtk.py:126
-#, fuzzy
 msgid "NIS password"
-msgstr "Schaduw-wachtwoord"
+msgstr "NIS wachtwoord"
 
 #: ../authconfig-gtk.py:129
-#, fuzzy
 msgid "Winbind password"
-msgstr "Schaduw-wachtwoord"
+msgstr "Winbind wachtwoord"
 
 #: ../authconfig-gtk.py:418
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
+"Je moet ldaps:// server adres opgeven of TLS voor LDAP authenticatie "
+"gebruiken."
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -813,54 +810,52 @@ msgstr "*"
 
 # idem venstertitel
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Authenticatie configureren"
+msgstr "<b>Authenticatie configureren</b>"
 
 # idem venstertitel
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Authenticatie configureren"
+msgstr "<b>Loacale authenticatie configureren</b>"
 
 # idem venstertitel
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Authenticatie configureren"
+msgstr "<b>andere authenticatie configureren</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Smart Card authentication opties</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Gebruiker account configuratie</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>Tip:</b> Smart cards ondersteunen inloggen op zowel locale als "
+"centraal beheerde accounts.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
+"<small><b>Tip:</b> Dit wordt beheerd met /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Administratieserver:"
+msgstr "Ad_min servers:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "hesiod voor gebruikersinformatie standaard uitzetten"
+msgstr "Extra opties voor gebruiker informatie en authenticatie"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "Geavanceerde _opties"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -876,30 +871,28 @@ msgstr ""
 "terugzetten?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "Offline aanmelden _toestaan"
+msgstr "Offline in_loggen toestaan"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Authenticatie"
+msgstr "Aut_henticatie methode:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "Kaart verwijder_actie"
+msgstr "Kaart ver_wijder actie:"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "Certificaat _URL"
+msgstr "Certificaat _URL:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Klik op deze knop als je nog geen CA certificaat gedownload hebt of je hebt "
+"het CA certificaat nog niet op een andere manier ingesteld."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -911,27 +904,24 @@ msgstr "_Niet opslaan"
 
 # vertaling?
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Domeinbeheerder:"
+msgstr "Domein _beheerder:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "CA-certificaat downloaden"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "Ondersteuning Vingerafdruk Lezer aanzetten"
+msgstr "Ondersteuning _vingerafdruk lezer aanzetten"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Zet _locale toegangscontrole aan"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "S_martCard-ondersteuning aanzetten"
+msgstr "Zet _smart card ondersteuning aan"
 
 #: ../authconfig.glade.h:28
 msgid ""
@@ -942,9 +932,10 @@ msgstr ""
 "certificaat en een sleutel die geassocieerd zijn met een smartcard."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "Encryptie-algoritme voor nieuwe wachtwoorden"
+msgstr ""
+"Hashing of encryptie-algoritme wordt gebruikt voor het opslaan van "
+"wachtwoorden van locale gebruikers"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -964,34 +955,28 @@ msgstr "Lid worden van Winbind domein"
 
 # dubbelzinnig
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP-search _basis-DN"
+msgstr "LDAP zoek _basis-DN:"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP-_server"
+msgstr "LDAP-_server:"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS-_domein"
+msgstr "NIS-_domein:"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS-_server"
+msgstr "NIS-_server:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Omgeving:"
+msgstr "Omg_eving:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "Smartcard om aan te melden _vereisen"
+msgstr "Vereis smart car_d voor aanmelden"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -1008,6 +993,7 @@ msgstr "Terugzetten"
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
 msgstr ""
+"Stel servers in gebruikt voor authenticatie van gebruikers voor het systeem"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1019,9 +1005,8 @@ msgstr ""
 
 # vertaling?
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Template shell:"
+msgstr "Te_mplate shell:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1039,9 +1024,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "DNS gebruiken om KDCs voor omgevingen te _zoeken"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "DNS gebruiken om hosts naar omgevingen te resolven"
+msgstr "Gebruik D_NS om hosts naar omgevingen op te lossen"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1064,60 +1048,50 @@ msgstr ""
 "geraadpleegd voor autorisatie van gebruikerstoegang."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS-_omgeving"
+msgstr "Winbind ADS-omg_eving:"
 
 # vertaling?
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind domein_controllers"
+msgstr "Winbind domein co_ntrollers:"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind-_domein"
+msgstr "Winbind-_domein:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "CA-certificaat downloaden"
+msgstr "_Download CA-certificaat..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Authenticatie"
+msgstr "_Identiteit & authenticatie"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Lid worden van domein"
+msgstr "_Lid worden van domein..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDCs"
+msgstr "_KDCs:"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "_Wachtwoord encryptie-algoritme"
+msgstr "_Wachtwoord hashing-algoritme:"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Wachtwoord:"
+msgstr "_Wachtwoord:"
 
 # vertaling?
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Beveiligingsmodus:"
+msgstr "_Beveiligingsmodus:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "_Gebruiker account database:"
 
 #: ../authinfo.py:910 ../authinfo.py:1548 ../authinfo.py:2858
 msgid "Lock"
