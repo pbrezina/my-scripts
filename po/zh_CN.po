@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-18 15:11+0100\n"
+"POT-Creation-Date: 2010-03-19 09:30+0100\n"
 "PO-Revision-Date: 2009-10-07 13:42+0800\n"
 "Last-Translator: CyrusHMH <cyrushmh@vip.qq.com>\n"
 "Language-Team: cvsl10n <>\n"
@@ -359,112 +359,125 @@ msgid "disable SSSD for authentication by default"
 msgstr "默认禁用 LDAP 验证"
 
 #: ../authconfig.py:242
-msgid "enable caching of user information by default"
+#, fuzzy
+msgid "enable caching of user credentials in SSSD by default"
 msgstr "默认启用缓存用户信息"
 
 #: ../authconfig.py:244
-msgid "disable caching of user information by default"
+#, fuzzy
+msgid "disable caching of user credentials in SSSD by default"
 msgstr "默认禁用缓存用户信息"
 
 #: ../authconfig.py:247
+#, fuzzy
+msgid ""
+"enable caching of user information by default (automatically disabled when "
+"SSSD is used)"
+msgstr "默认启用缓存用户信息"
+
+#: ../authconfig.py:249
+msgid "disable caching of user information by default"
+msgstr "默认禁用缓存用户信息"
+
+#: ../authconfig.py:252
 msgid "local authorization is sufficient for local users"
 msgstr "本地用户可以使用本地授权"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:254
 msgid "authorize local users also through remote service"
 msgstr "通过远端服务授权本地用户"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:257
 msgid "check access.conf during account authorization"
 msgstr "在帐户验证过程中检查 access.conf"
 
-#: ../authconfig.py:254
+#: ../authconfig.py:259
 msgid "do not check access.conf during account authorization"
 msgstr "在帐户验证过程中不检查 access.conf"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:262
 msgid "authenticate system accounts by network services"
 msgstr "通过网络服务认证的系统帐号"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:264
 msgid "authenticate system accounts by local files only"
 msgstr "仅通过本地文件认证的系统帐号"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:267
 msgid "create home directories for users on their first login"
 msgstr "在用户首次登录时为其创建主目录"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:269
 msgid "do not create home directories for users on their first login"
 msgstr "不要为用户在其首次登录时创建主目录"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:272
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "不要启动或停止 portmap、ypbind 和 nscd"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:275
 msgid "do not update the configuration files, only print new settings"
 msgstr "不更新配置文件，只输出新的设置"
 
-#: ../authconfig.py:274
+#: ../authconfig.py:279
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "在 TUI 主要对话框中显示“返回”而非“取消”"
 
-#: ../authconfig.py:276
+#: ../authconfig.py:281
 msgid "do not display the deprecated text user interface"
 msgstr "不显示过时的文本用户界面"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:284
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "与 --test 相反，以修改过的设置升级配置文件"
 
-#: ../authconfig.py:282
+#: ../authconfig.py:287
 msgid "update all configuration files"
 msgstr "更新所有配置文件"
 
-#: ../authconfig.py:285
+#: ../authconfig.py:290
 msgid "probe network for defaults and print them"
 msgstr "探测网络默认值并输出它们"
 
-#: ../authconfig.py:287 ../authconfig.py:290
+#: ../authconfig.py:292 ../authconfig.py:295
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:288
+#: ../authconfig.py:293
 msgid "save a backup of all configuration files"
 msgstr "保存所有配置文件备份"
 
-#: ../authconfig.py:291
+#: ../authconfig.py:296
 msgid "restore the backup of configuration files"
 msgstr "恢复配置文件备份"
 
-#: ../authconfig.py:294
+#: ../authconfig.py:299
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr "在更改之前配置前恢复配置文件备份"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:304
 msgid "unexpected argument"
 msgstr "错误的参数"
 
-#: ../authconfig.py:428
+#: ../authconfig.py:434
 msgid "Bad smart card removal action specified."
 msgstr "指定的错误的智能卡删除动作"
 
-#: ../authconfig.py:437
+#: ../authconfig.py:443
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "指定未知密码散列算法，使用 sha256。"
 
-#: ../authconfig.py:470
+#: ../authconfig.py:476
 msgid "can only be run as root"
 msgstr "只能以根用户身份运行"
 
-#: ../authconfig.py:486
+#: ../authconfig.py:492
 msgid "dialog was cancelled"
 msgstr "对话被取消"
 
-#: ../authconfig.py:510
+#: ../authconfig.py:516
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -474,199 +487,199 @@ msgstr ""
 "没有找到 %s 文件。%s 需要这个文件。\n"
 "安装提供该文件的 %s 软件包。"
 
-#: ../authconfig.py:512 ../authconfig.py:858
+#: ../authconfig.py:518 ../authconfig.py:864
 msgid "Warning"
 msgstr "警告"
 
-#: ../authconfig.py:512 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:759
-#: ../authconfig.py:800 ../authconfig.py:858
+#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
+#: ../authconfig.py:806 ../authconfig.py:864
 msgid "Ok"
 msgstr "确定"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:522
 msgid "caching"
 msgstr "缓存"
 
-#: ../authconfig.py:517
+#: ../authconfig.py:523
 msgid "Fingerprint reader"
 msgstr "指纹读取器"
 
-#: ../authconfig.py:518
+#: ../authconfig.py:524
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:525
 msgid "LDAP authentication"
 msgstr "LDAP 验证"
 
-#: ../authconfig.py:520 ../authconfig-gtk.py:99
+#: ../authconfig.py:526 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:521 ../authconfig-gtk.py:105
+#: ../authconfig.py:527 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:522
+#: ../authconfig.py:528
 msgid "shadow password"
 msgstr "屏蔽密码"
 
-#: ../authconfig.py:523 ../authconfig.py:525 ../authconfig-gtk.py:108
+#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:524
+#: ../authconfig.py:530
 msgid "Winbind authentication"
 msgstr "Winbind 验证"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:536
 msgid "User Information"
 msgstr "用户信息"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:539
 msgid "Cache Information"
 msgstr "缓存信息"
 
-#: ../authconfig.py:537
+#: ../authconfig.py:543
 msgid "Use Hesiod"
 msgstr "使用 Hesiod"
 
-#: ../authconfig.py:540
+#: ../authconfig.py:546
 msgid "Use LDAP"
 msgstr "使用 LDAP"
 
-#: ../authconfig.py:544
+#: ../authconfig.py:550
 msgid "Use NIS"
 msgstr "使用 NIS"
 
-#: ../authconfig.py:548
+#: ../authconfig.py:554
 msgid "Use Winbind"
 msgstr "使用 Winbind"
 
-#: ../authconfig.py:554 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "验证"
 
-#: ../authconfig.py:557
+#: ../authconfig.py:563
 msgid "Use MD5 Passwords"
 msgstr "使用 MD5 密码"
 
-#: ../authconfig.py:560
+#: ../authconfig.py:566
 msgid "Use Shadow Passwords"
 msgstr "使用屏蔽密码"
 
-#: ../authconfig.py:564
+#: ../authconfig.py:570
 msgid "Use LDAP Authentication"
 msgstr "使用 LDAP 验证"
 
-#: ../authconfig.py:568
+#: ../authconfig.py:574
 msgid "Use Kerberos"
 msgstr "使用 Kerberos"
 
-#: ../authconfig.py:572
+#: ../authconfig.py:578
 msgid "Use Fingerprint reader"
 msgstr "使用指纹读取器"
 
-#: ../authconfig.py:577
+#: ../authconfig.py:583
 msgid "Use Winbind Authentication"
 msgstr "使用 Winbind 验证"
 
-#: ../authconfig.py:581
+#: ../authconfig.py:587
 msgid "Local authorization is sufficient"
 msgstr "使用本地授权"
 
-#: ../authconfig.py:591 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:800
+#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
 msgid "Back"
 msgstr "后退"
 
-#: ../authconfig.py:591 ../authconfig.py:759
+#: ../authconfig.py:597 ../authconfig.py:765
 msgid "Cancel"
 msgstr "取消"
 
-#: ../authconfig.py:592 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:800
+#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
 msgid "Next"
 msgstr "下一步"
 
-#: ../authconfig.py:603 ../authconfig-gtk.py:590 ../authconfig.glade.h:16
+#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
 msgid "Authentication Configuration"
 msgstr "验证配置"
 
-#: ../authconfig.py:726
+#: ../authconfig.py:732
 msgid "LHS:"
 msgstr "LHS："
 
-#: ../authconfig.py:727
+#: ../authconfig.py:733
 msgid "RHS:"
 msgstr "RHS："
 
-#: ../authconfig.py:728
+#: ../authconfig.py:734
 msgid "Hesiod Settings"
 msgstr "Hesiod 设置"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:738
 msgid "Use TLS"
 msgstr "使用 TLS"
 
-#: ../authconfig.py:733 ../authconfig.py:740
+#: ../authconfig.py:739 ../authconfig.py:746
 msgid "Server:"
 msgstr "服务器："
 
-#: ../authconfig.py:734
+#: ../authconfig.py:740
 msgid "Base DN:"
 msgstr "基本 DN："
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "LDAP Settings"
 msgstr "LDAP 设置"
 
-#: ../authconfig.py:739 ../authconfig.py:794 ../authconfig.glade.h:23
+#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
 msgid "Domain:"
 msgstr "域："
 
-#: ../authconfig.py:741
+#: ../authconfig.py:747
 msgid "NIS Settings"
 msgstr "NIS 设置"
 
-#: ../authconfig.py:745
+#: ../authconfig.py:751
 msgid "Realm:"
 msgstr "域："
 
-#: ../authconfig.py:746
+#: ../authconfig.py:752
 msgid "KDC:"
 msgstr "KDC："
 
-#: ../authconfig.py:747
+#: ../authconfig.py:753
 msgid "Admin Server:"
 msgstr "管理服务器："
 
-#: ../authconfig.py:748
+#: ../authconfig.py:754
 msgid "Use DNS to resolve hosts to realms"
 msgstr "使用 DNS 将主机解析到域"
 
-#: ../authconfig.py:749
+#: ../authconfig.py:755
 msgid "Use DNS to locate KDCs for realms"
 msgstr "通过 DNS 查找域的 KDC"
 
-#: ../authconfig.py:750
+#: ../authconfig.py:756
 msgid "Kerberos Settings"
 msgstr "Kerberos 设置"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:760
 msgid "Domain Administrator:"
 msgstr "域管理员："
 
-#: ../authconfig.py:755
+#: ../authconfig.py:761
 msgid "Password:"
 msgstr "密码："
 
-#: ../authconfig.py:758
+#: ../authconfig.py:764
 msgid "Join Settings"
 msgstr "加入设置"
 
-#: ../authconfig.py:768 ../authconfig.glade.h:43
+#: ../authconfig.py:774 ../authconfig.glade.h:43
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -675,45 +688,45 @@ msgstr ""
 "在继续之前，您应该把所做改变保存到磁盘上。如果您不保存它们，那么您加入域的尝"
 "试就会失败。保存改变吗？"
 
-#: ../authconfig.py:775
+#: ../authconfig.py:781
 msgid "Save Settings"
 msgstr "保存设置"
 
-#: ../authconfig.py:776
+#: ../authconfig.py:782
 msgid "No"
 msgstr "否"
 
-#: ../authconfig.py:776
+#: ../authconfig.py:782
 msgid "Yes"
 msgstr "是"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:793
+#: ../authconfig.py:799
 msgid "Security Model:"
 msgstr "安全模型："
 
-#: ../authconfig.py:795
+#: ../authconfig.py:801
 msgid "Domain Controllers:"
 msgstr "域控制器："
 
-#: ../authconfig.py:796
+#: ../authconfig.py:802
 msgid "ADS Realm:"
 msgstr "ADS 域："
 
-#: ../authconfig.py:797
+#: ../authconfig.py:803
 msgid "Template Shell:"
 msgstr "模板 Shell："
 
-#: ../authconfig.py:799
+#: ../authconfig.py:805
 msgid "Winbind Settings"
 msgstr "Winbind 设置"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:807
 msgid "Join Domain"
 msgstr "加入域"
 
-#: ../authconfig.py:853
+#: ../authconfig.py:859
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -726,7 +739,7 @@ msgstr ""
 "然后按“确定”按钮。"
 
 #. FIXME - version
-#: ../authconfig.py:867
+#: ../authconfig.py:873
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -736,40 +749,40 @@ msgstr "<Tab>/<Alt-Tab> 在元素间切换   |   <Space> 选择   |  <F12> 下�
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "控制系统对试图登录的用户的校验方式"
 
-#: ../authconfig-gtk.py:96
+#: ../authconfig-gtk.py:97
 msgid "Local accounts only"
 msgstr ""
 
-#: ../authconfig-gtk.py:102
+#: ../authconfig-gtk.py:103
 msgid "FreeIPA"
 msgstr ""
 
-#: ../authconfig-gtk.py:117
+#: ../authconfig-gtk.py:118
 #, fuzzy
 msgid "Password"
 msgstr "密码："
 
-#: ../authconfig-gtk.py:120
+#: ../authconfig-gtk.py:121
 #, fuzzy
 msgid "LDAP password"
 msgstr "密码："
 
-#: ../authconfig-gtk.py:123
+#: ../authconfig-gtk.py:124
 #, fuzzy
 msgid "Kerberos password"
 msgstr "Kerberos"
 
-#: ../authconfig-gtk.py:126
+#: ../authconfig-gtk.py:127
 #, fuzzy
 msgid "NIS password"
 msgstr "屏蔽密码"
 
-#: ../authconfig-gtk.py:129
+#: ../authconfig-gtk.py:130
 #, fuzzy
 msgid "Winbind password"
 msgstr "屏蔽密码"
 
-#: ../authconfig-gtk.py:418
+#: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -1063,22 +1076,22 @@ msgstr "安全模型："
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:910 ../authinfo.py:1548 ../authinfo.py:2858
+#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
 msgstr "锁定"
 
-#: ../authinfo.py:910 ../authinfo.py:1550
+#: ../authinfo.py:910 ../authinfo.py:1555
 msgid "Ignore"
 msgstr "忽略"
 
-#: ../authinfo.py:3208
+#: ../authinfo.py:3218
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr "缺少验证模块 %s/pam_%s.so 。验证可能无法正常进行。"
 
-#: ../authinfo.py:3743
+#: ../authinfo.py:3761
 msgid "Error downloading CA certificate"
 msgstr "下载 CA 证书错误"
 

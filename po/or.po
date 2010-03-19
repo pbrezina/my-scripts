@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip.or\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-18 15:11+0100\n"
+"POT-Creation-Date: 2010-03-19 09:30+0100\n"
 "PO-Revision-Date: 2009-09-23 12:47+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
 "Language-Team: Oriya <oriya-it@googlegroups.com>\n"
@@ -373,114 +373,127 @@ msgid "disable SSSD for authentication by default"
 msgstr "ବୈଧିକରଣ ପାଇଁ ଏଲ.ଡି.ଏ.ପି. କୁ ପୂର୍ବନିର୍ଦ୍ଧାରିତ ଭାବରେ ରଖ ନାହିଁ"
 
 #: ../authconfig.py:242
-msgid "enable caching of user information by default"
+#, fuzzy
+msgid "enable caching of user credentials in SSSD by default"
 msgstr "ଚାଳକ ର ସୂଚନା କୁ ପୂର୍ବନିର୍ଦ୍ଧାରିତ କରିବା ପାଇଁ ସ୍ବଲ୍ପକାଳ ସଞ୍ଚୟ କୁ ସକ୍ରିୟ କରନ୍ତୁ"
 
 #: ../authconfig.py:244
-msgid "disable caching of user information by default"
+#, fuzzy
+msgid "disable caching of user credentials in SSSD by default"
 msgstr "ଚାଳକ ର ସୂଚନା କୁ ପୂର୍ବନିର୍ଦ୍ଧାରିତ କରିବା ପାଇଁ ସ୍ବଲ୍ପକାଳ ସଞ୍ଚୟ କୁ ନିଷ୍କ୍ରିୟ କରନ୍ତୁ"
 
 #: ../authconfig.py:247
+#, fuzzy
+msgid ""
+"enable caching of user information by default (automatically disabled when "
+"SSSD is used)"
+msgstr "ଚାଳକ ର ସୂଚନା କୁ ପୂର୍ବନିର୍ଦ୍ଧାରିତ କରିବା ପାଇଁ ସ୍ବଲ୍ପକାଳ ସଞ୍ଚୟ କୁ ସକ୍ରିୟ କରନ୍ତୁ"
+
+#: ../authconfig.py:249
+msgid "disable caching of user information by default"
+msgstr "ଚାଳକ ର ସୂଚନା କୁ ପୂର୍ବନିର୍ଦ୍ଧାରିତ କରିବା ପାଇଁ ସ୍ବଲ୍ପକାଳ ସଞ୍ଚୟ କୁ ନିଷ୍କ୍ରିୟ କରନ୍ତୁ"
+
+#: ../authconfig.py:252
 msgid "local authorization is sufficient for local users"
 msgstr "ସ୍ଥାନୀୟ ଚାଳକ ମାନଙ୍କ ପାଇଁ ସ୍ଥାନୀୟ ବୈଧିକରଣ ଯଥେଷ୍ଟ ଅଟେ"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:254
 msgid "authorize local users also through remote service"
 msgstr "ଦୂରସ୍ଥାନ ସେବା ମାନଙ୍କ ଦ୍ବାରା ସ୍ଥାନୀୟ ଚାଳକ ମାନଙ୍କୁ ବୈଧିକ୍ରୁତ କରନ୍ତୁ"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:257
 msgid "check access.conf during account authorization"
 msgstr "ହିସାବ ଖାତା ବୈଧିକରଣ ସମୟରେ access.conf କୁ ଯାଞ୍ଚ କରନ୍ତୁ"
 
-#: ../authconfig.py:254
+#: ../authconfig.py:259
 msgid "do not check access.conf during account authorization"
 msgstr "ହିସାବ ଖାତା ବୈଧିକରଣ ସମୟରେ access.conf କୁ ଯାଞ୍ଚ କରନ୍ତୁ ନାହିଁ"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:262
 msgid "authenticate system accounts by network services"
 msgstr "ନେଟୱାର୍କ ସେବା ମାନଙ୍କ ଦ୍ବାରା ତନ୍ତ୍ର ର ହିସାବ ଖାତା କୁ ବୈଧିକ୍ରୁତ କରନ୍ତୁ"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:264
 msgid "authenticate system accounts by local files only"
 msgstr "କେବଳ ସ୍ଥାନୀୟ ଫାଇଲ ମାନଙ୍କ ଦ୍ବାରା ତନ୍ତ୍ର ର ହିସାବ ଖାତା କୁ ବୈଧିକ୍ରୁତ କର"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:267
 msgid "create home directories for users on their first login"
 msgstr "ଚାଳକ ତାର ପ୍ରଥମ ଲଗଇନ ପାଇଁ ମୂଳସ୍ଥାନ ପଞ୍ଜିକା ନିର୍ମାଣ କରନ୍ତୁ"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:269
 msgid "do not create home directories for users on their first login"
 msgstr "ଚାଳକ ତାର ପ୍ରଥମ ଲଗଇନ ପାଇଁ ମୂଳସ୍ଥାନ ପଞ୍ଜିକା ନିର୍ମାଣ କରନ୍ତୁ ନାହିଁ"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:272
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "ପୋର୍ଟ-ମ୍ଯାପ, ୱାଇ-ପି-ବାଇଣ୍ଡ, ଏବଂ ଏନ୍.ଏସ୍.ସି.ଡି. କୁ କେବେ ହେଲେ ଆରମ୍ଭ/ବନ୍ଦ କରନ୍ତୁ ନାହିଁ"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:275
 msgid "do not update the configuration files, only print new settings"
 msgstr "ବିନ୍ଯାସିତ ଫାଇଲ ମାନଙ୍କୁ ଅଦ୍ଯତନ କରନ୍ତୁ ନାହିଁ, କେବଳ ନୂତନ ବିନ୍ଯାସ ମାନଙ୍କୁ ମୁଦ୍ରଣ କରନ୍ତୁ"
 
-#: ../authconfig.py:274
+#: ../authconfig.py:279
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr ""
 "ଟି.ୟୁ.ଆଇ. ର ପ୍ରମୂଖ ସନ୍ଦେଶ କୁ ବାତିଲ କରିବା ପରିବର୍ତେ ପୂର୍ବବର୍ତ୍ତୀ କାର୍ଯ୍ଯ କଳାପ କୁ ପ୍ରଦର୍ଶନ କରନ୍ତୁ"
 
-#: ../authconfig.py:276
+#: ../authconfig.py:281
 msgid "do not display the deprecated text user interface"
 msgstr "ଅପସନ୍ଦ ପାଠ୍ଯ ଚାଳକ ଅନ୍ତରାପ୍ରୁଷ୍ଠ କୁ ପ୍ରଦର୍ଶନ କରନ୍ତୁ ନାହିଁ"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:284
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--ପରୀକ୍ଷଣ ର ବିପରୀତ, ପରିବର୍ତିତ ବିନ୍ଯାସ ମାନଙ୍କ ସହିତ ବିନ୍ଯାସିତ ଫାଇଲ ମାନଙ୍କୁ ଅଦ୍ଯତନ କରନ୍ତୁ"
 
-#: ../authconfig.py:282
+#: ../authconfig.py:287
 msgid "update all configuration files"
 msgstr "ସମସ୍ତ ବିନ୍ଯାସିତ ଫାଇଲ ମାନଙ୍କୁ ଅଦ୍ଯତନ କର"
 
-#: ../authconfig.py:285
+#: ../authconfig.py:290
 msgid "probe network for defaults and print them"
 msgstr "ପୂର୍ବନିର୍ଦ୍ଧାରିତ ମାନଙ୍କ ପାଇଁ ନେଟୱାର୍କ ରେ ଖୋଜନ୍ତୁ ଏବଂ ସେମାନଙ୍କୁ ମୁଦ୍ରଣ କରନ୍ତୁ"
 
-#: ../authconfig.py:287 ../authconfig.py:290
+#: ../authconfig.py:292 ../authconfig.py:295
 msgid "<name>"
 msgstr "<ନାମ>"
 
-#: ../authconfig.py:288
+#: ../authconfig.py:293
 msgid "save a backup of all configuration files"
 msgstr "ସମସ୍ତ ବିନ୍ଯାସିତ ଫାଇଲ ମାନଙ୍କର ନକଲ ସଂରକ୍ଷଣ କରନ୍ତୁ"
 
-#: ../authconfig.py:291
+#: ../authconfig.py:296
 msgid "restore the backup of configuration files"
 msgstr "ବିନ୍ଯାସିତ ଫାଇଲ ମାନଙ୍କର ନକଲ ସଂରକ୍ଷଣକୁ ପୁନଃସ୍ଥାପନ କରନ୍ତୁ"
 
-#: ../authconfig.py:294
+#: ../authconfig.py:299
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 "ପୂର୍ବ ବିନ୍ୟାସ ପରିବର୍ତ୍ତନ ପୂର୍ବରୁ ସଂରକ୍ଷିତ ବିନ୍ଯାସିତ ଫାଇଲ ମାନଙ୍କର ନକଲ ସଂରକ୍ଷଣକୁ ପୁନଃସ୍ଥାପନ କରନ୍ତୁ"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:304
 msgid "unexpected argument"
 msgstr "ଅପ୍ରତ୍ଯାଶିତ ସ୍ବତନ୍ତ୍ରଚର"
 
-#: ../authconfig.py:428
+#: ../authconfig.py:434
 msgid "Bad smart card removal action specified."
 msgstr "ଖରାପ ସ୍ମାର୍ଟ କାର୍ଡ ଅପସାରଣ କାର୍ଯ୍ଯକୁ ନିର୍ଦ୍ଦିଷ୍ଟ କରାଯାଇଛି।"
 
-#: ../authconfig.py:437
+#: ../authconfig.py:443
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "sha256 କୁ ବ୍ୟବହାର କରି ଅଜଣା ପ୍ରବେଶ ସଂକେତ ହ୍ୟାସିଙ୍ଗ ଆଲଗରିଦିମ ଉଲ୍ଲେଖିତ।"
 
-#: ../authconfig.py:470
+#: ../authconfig.py:476
 msgid "can only be run as root"
 msgstr "କେବଳ ମୂଖ୍ଯ ଚାଳକ ଭାବରେ ଚାଲି ପାରିବ"
 
-#: ../authconfig.py:486
+#: ../authconfig.py:492
 msgid "dialog was cancelled"
 msgstr "ସନ୍ଦେଶ ଟି ବାତିଲ ହୋଇଗଲା"
 
-#: ../authconfig.py:510
+#: ../authconfig.py:516
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -490,199 +503,199 @@ msgstr ""
 "%s ଫାଇଲ ଟି ମିଳିଲା ନାହିଁ, କିନ୍ତୁ %s ର ସହାୟକ କାର୍ଯ୍ଯ କୁ ସଠିକ ରୂପ ରେ ତୁଳାଇବା ପାଇଁ ଏହା ଆବଶ୍ଯକ।\n"
 "%s ପ୍ଯାକେଜ କୁ ସ୍ଥାପନ କରନ୍ତୁ, ଯାହାକି ଏହି ଫାଇଲ କୁ ପ୍ରଦାନ କରିଥାଏ।"
 
-#: ../authconfig.py:512 ../authconfig.py:858
+#: ../authconfig.py:518 ../authconfig.py:864
 msgid "Warning"
 msgstr "ଚେତାବନୀ"
 
-#: ../authconfig.py:512 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:759
-#: ../authconfig.py:800 ../authconfig.py:858
+#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
+#: ../authconfig.py:806 ../authconfig.py:864
 msgid "Ok"
 msgstr "ଠିକ ଅଛି"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:522
 msgid "caching"
 msgstr "ସ୍ବଲ୍ପକାଳ ପାଇଁ ସଞ୍ଚୟ କରୁଅଛି"
 
-#: ../authconfig.py:517
+#: ../authconfig.py:523
 msgid "Fingerprint reader"
 msgstr "ଅଙ୍ଗୁଳି ଚିହ୍ନ ପାଠକ"
 
-#: ../authconfig.py:518
+#: ../authconfig.py:524
 msgid "Kerberos"
 msgstr "କେର୍ବେରୋଶ"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:525
 msgid "LDAP authentication"
 msgstr "ଏଲ.ଡି.ଏ.ପି. ବୈଧିକରଣ"
 
-#: ../authconfig.py:520 ../authconfig-gtk.py:99
+#: ../authconfig.py:526 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "ଏଲ.ଡି.ଏ.ପି."
 
-#: ../authconfig.py:521 ../authconfig-gtk.py:105
+#: ../authconfig.py:527 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "ଏନ୍.ଆଇ.ଏସ୍."
 
-#: ../authconfig.py:522
+#: ../authconfig.py:528
 msgid "shadow password"
 msgstr "ଛାୟାଙ୍କିତ ପ୍ରବେଶ ସଙ୍କେତ"
 
-#: ../authconfig.py:523 ../authconfig.py:525 ../authconfig-gtk.py:108
+#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "ୱିନ-ବାଇଣ୍ଡ"
 
-#: ../authconfig.py:524
+#: ../authconfig.py:530
 msgid "Winbind authentication"
 msgstr "ୱିନ-ବାଇଣ୍ଡ ବୈଧିକରଣ"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:536
 msgid "User Information"
 msgstr "ଚାଳକ ର ସୂଚନା"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:539
 msgid "Cache Information"
 msgstr "ସ୍ବଲ୍ପ ସଞ୍ଚୟ ର ସୂଚନା"
 
-#: ../authconfig.py:537
+#: ../authconfig.py:543
 msgid "Use Hesiod"
 msgstr "ହେସିଓଡ୍ କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:540
+#: ../authconfig.py:546
 msgid "Use LDAP"
 msgstr "ଏଲ.ଡି.ଏ.ପି. କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:544
+#: ../authconfig.py:550
 msgid "Use NIS"
 msgstr "ଏନ୍.ଆଇ.ଏସ୍. କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:548
+#: ../authconfig.py:554
 msgid "Use Winbind"
 msgstr "ୱିନ-ବାଇଣ୍ଡ କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:554 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "ବୈଧିକରଣ"
 
-#: ../authconfig.py:557
+#: ../authconfig.py:563
 msgid "Use MD5 Passwords"
 msgstr "ଏମ.ଡି.୫ ପ୍ରବେଶ ସଙ୍କେତ କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:560
+#: ../authconfig.py:566
 msgid "Use Shadow Passwords"
 msgstr "ଛାୟାଙ୍କିତ ପ୍ରବେଶ ସଙ୍କେତ କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:564
+#: ../authconfig.py:570
 msgid "Use LDAP Authentication"
 msgstr "ଏଲ.ଡି.ଏ.ପି. ବୈଧିକରଣ କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:568
+#: ../authconfig.py:574
 msgid "Use Kerberos"
 msgstr "କେର୍ବେରୋଶ କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:572
+#: ../authconfig.py:578
 msgid "Use Fingerprint reader"
 msgstr "ଅଙ୍ଗୁଳି ଚିହ୍ନ ପାଠକକୁ ବ୍ୟବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:577
+#: ../authconfig.py:583
 msgid "Use Winbind Authentication"
 msgstr "ୱିନ-ବାଇଣ୍ଡ ବୈଧିକରଣ କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:581
+#: ../authconfig.py:587
 msgid "Local authorization is sufficient"
 msgstr "ସ୍ଥାନୀୟ ବୈଧିକରଣ ଯଥେଷ୍ଟ ଅଟେ"
 
-#: ../authconfig.py:591 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:800
+#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
 msgid "Back"
 msgstr "ପୂର୍ବବର୍ତ୍ତୀ"
 
-#: ../authconfig.py:591 ../authconfig.py:759
+#: ../authconfig.py:597 ../authconfig.py:765
 msgid "Cancel"
 msgstr "ବାତିଲ"
 
-#: ../authconfig.py:592 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:800
+#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
 msgid "Next"
 msgstr "ପରବର୍ତ୍ତୀ"
 
-#: ../authconfig.py:603 ../authconfig-gtk.py:590 ../authconfig.glade.h:16
+#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
 msgid "Authentication Configuration"
 msgstr "ବୈଧିକରଣ ର ବିନ୍ଯାସ"
 
-#: ../authconfig.py:726
+#: ../authconfig.py:732
 msgid "LHS:"
 msgstr "ଏଲ.ଏଚ୍.ଏସ୍.:"
 
-#: ../authconfig.py:727
+#: ../authconfig.py:733
 msgid "RHS:"
 msgstr "ଆର.ଏଚ୍.ଏସ୍.:"
 
-#: ../authconfig.py:728
+#: ../authconfig.py:734
 msgid "Hesiod Settings"
 msgstr "ହେସିଓଡ୍ ର ବିନ୍ଯାସ"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:738
 msgid "Use TLS"
 msgstr "ଟି.ଏଲ.ଏସ୍. କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:733 ../authconfig.py:740
+#: ../authconfig.py:739 ../authconfig.py:746
 msgid "Server:"
 msgstr "ସେବକ:"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:740
 msgid "Base DN:"
 msgstr "ଡି.ଏନ. ଆଧାରିତ:"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "LDAP Settings"
 msgstr "ଏଲ.ଡି.ଏ.ପି. ର ବିନ୍ଯାସ"
 
-#: ../authconfig.py:739 ../authconfig.py:794 ../authconfig.glade.h:23
+#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
 msgid "Domain:"
 msgstr "ପରିସର"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:747
 msgid "NIS Settings"
 msgstr "ଏନ୍.ଆଇ.ଏସ୍. ର ବିନ୍ଯାସ"
 
-#: ../authconfig.py:745
+#: ../authconfig.py:751
 msgid "Realm:"
 msgstr "ବିଶେଷ ଆକର୍ଷଣ:"
 
-#: ../authconfig.py:746
+#: ../authconfig.py:752
 msgid "KDC:"
 msgstr "କେ.ଡି.ସି.:"
 
-#: ../authconfig.py:747
+#: ../authconfig.py:753
 msgid "Admin Server:"
 msgstr "ପ୍ରଶାସନୀୟ ସେବକ:"
 
-#: ../authconfig.py:748
+#: ../authconfig.py:754
 msgid "Use DNS to resolve hosts to realms"
 msgstr "ପରିସର ମାନଙ୍କୁ ବିଶେଷ ଆକର୍ଷିତ କରିବ ପାଇଁ ଡି.ଏନ୍.ଏସ୍. କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:749
+#: ../authconfig.py:755
 msgid "Use DNS to locate KDCs for realms"
 msgstr "ବିଶେଷ ଆକର୍ଷଣ ପାଇଁ କେ.ଡି.ସି. କୁ ଖୋଜିବା ପାଇଁ ଡି.ଏନ୍.ଏସ୍. କୁ ବ୍ଯବହାର କରନ୍ତୁ"
 
-#: ../authconfig.py:750
+#: ../authconfig.py:756
 msgid "Kerberos Settings"
 msgstr "କେର୍ବେରୋଶ ର ବିନ୍ଯାସ"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:760
 msgid "Domain Administrator:"
 msgstr "ପରିସର ପ୍ରଶାସକ:"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:761
 msgid "Password:"
 msgstr "ପ୍ରବେଶ ସଙ୍କେତ:"
 
-#: ../authconfig.py:758
+#: ../authconfig.py:764
 msgid "Join Settings"
 msgstr "ବିନ୍ଯାସ ମାନଙ୍କୁ ଯୋଗ କରନ୍ତୁ"
 
-#: ../authconfig.py:768 ../authconfig.glade.h:43
+#: ../authconfig.py:774 ../authconfig.glade.h:43
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -692,45 +705,45 @@ msgstr ""
 "ସେମାଙ୍କୁ ସଂରକ୍ଷଣ ନକଲେ, ପରିସର ରେ ଯୋଗ ଦେବା ପାଇଁ ଆପଣଙ୍କ ର ପ୍ରଚେଷ୍ଟା ଅକ୍ରୁତକାର୍ଯ୍ଯ ହୋଇପାରେ। "
 "ପରିବର୍ତନ କୁ ସଂରକ୍ଷଣ କରିବେ କି?"
 
-#: ../authconfig.py:775
+#: ../authconfig.py:781
 msgid "Save Settings"
 msgstr "ବିନ୍ଯାସ ମାନଙ୍କୁ ସଂରକ୍ଷିତ କରନ୍ତୁ"
 
-#: ../authconfig.py:776
+#: ../authconfig.py:782
 msgid "No"
 msgstr "ନାଁ"
 
-#: ../authconfig.py:776
+#: ../authconfig.py:782
 msgid "Yes"
 msgstr "ହଁ"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:793
+#: ../authconfig.py:799
 msgid "Security Model:"
 msgstr "ସୁରକ୍ଷା ନମୁନା:"
 
-#: ../authconfig.py:795
+#: ../authconfig.py:801
 msgid "Domain Controllers:"
 msgstr "ପରିସର ନିୟନ୍ତ୍ରକ ମାନେ:"
 
-#: ../authconfig.py:796
+#: ../authconfig.py:802
 msgid "ADS Realm:"
 msgstr "ଏ.ଡି.ଏସ୍. ବିଶେଷ ଆକର୍ଷଣ"
 
-#: ../authconfig.py:797
+#: ../authconfig.py:803
 msgid "Template Shell:"
 msgstr "ଆବରଣ ର ଛାଞ୍ଚ:"
 
-#: ../authconfig.py:799
+#: ../authconfig.py:805
 msgid "Winbind Settings"
 msgstr "ୱିନ-ବାଇଣ୍ଡ ର ବିନ୍ଯାସ ମାନ"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:807
 msgid "Join Domain"
 msgstr "ପରିସର ରେ ଯୋଗ ଦିଅନ୍ତୁ"
 
-#: ../authconfig.py:853
+#: ../authconfig.py:859
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -744,7 +757,7 @@ msgstr ""
 "ତତ୍ ପଶ୍ଚାତ ଠିକ ଅଛି କୁ ଦବାନ୍ତୁ"
 
 #. FIXME - version
-#: ../authconfig.py:867
+#: ../authconfig.py:873
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -756,40 +769,40 @@ msgstr ""
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "ଲଗଇନ୍ କରାବା ପାଇଁ ପ୍ରଚେଷ୍ଟା କରୁଥିବା ଚାଳକ ମାନଙ୍କ ର ଯାଞ୍ଚ ପ୍ରକ୍ରିୟା କୁ ନିୟନ୍ତ୍ରଣ କରନ୍ତୁ"
 
-#: ../authconfig-gtk.py:96
+#: ../authconfig-gtk.py:97
 msgid "Local accounts only"
 msgstr ""
 
-#: ../authconfig-gtk.py:102
+#: ../authconfig-gtk.py:103
 msgid "FreeIPA"
 msgstr ""
 
-#: ../authconfig-gtk.py:117
+#: ../authconfig-gtk.py:118
 #, fuzzy
 msgid "Password"
 msgstr "ପ୍ରବେଶ ସଙ୍କେତ:"
 
-#: ../authconfig-gtk.py:120
+#: ../authconfig-gtk.py:121
 #, fuzzy
 msgid "LDAP password"
 msgstr "ପ୍ରବେଶ ସଙ୍କେତ:"
 
-#: ../authconfig-gtk.py:123
+#: ../authconfig-gtk.py:124
 #, fuzzy
 msgid "Kerberos password"
 msgstr "କେର୍ବେରୋଶ"
 
-#: ../authconfig-gtk.py:126
+#: ../authconfig-gtk.py:127
 #, fuzzy
 msgid "NIS password"
 msgstr "ଛାୟାଙ୍କିତ ପ୍ରବେଶ ସଙ୍କେତ"
 
-#: ../authconfig-gtk.py:129
+#: ../authconfig-gtk.py:130
 #, fuzzy
 msgid "Winbind password"
 msgstr "ଛାୟାଙ୍କିତ ପ୍ରବେଶ ସଙ୍କେତ"
 
-#: ../authconfig-gtk.py:418
+#: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -1095,15 +1108,15 @@ msgstr "ସୁରକ୍ଷା ନମୁନା:"
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:910 ../authinfo.py:1548 ../authinfo.py:2858
+#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
 msgstr "ତାଲା ଦେଇ ରଖନ୍ତୁ"
 
-#: ../authinfo.py:910 ../authinfo.py:1550
+#: ../authinfo.py:910 ../authinfo.py:1555
 msgid "Ignore"
 msgstr "ଆଗ୍ରହ୍ଯ କରିଦିଅନ୍ତୁ"
 
-#: ../authinfo.py:3208
+#: ../authinfo.py:3218
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -1111,7 +1124,7 @@ msgid ""
 msgstr ""
 "ବୈଧିକରଣ ଏକକାଂଶ %s/pam_%s.so ଟି ଅନୁପସ୍ଥିତ ଅଛି। ବୈଧିକରଣ ପ୍ରକ୍ରିୟାଟି ସଠିକ ଭାବରେ ଚାଲି ନପାରେ।"
 
-#: ../authinfo.py:3743
+#: ../authinfo.py:3761
 msgid "Error downloading CA certificate"
 msgstr "ସି.ଏ. ପ୍ରାମାଣପତ୍ରକୁ ଆହରଣ କରିବା ସମୟରେ ତ୍ରୁଟି"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip.ml\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-18 15:11+0100\n"
+"POT-Creation-Date: 2010-03-19 09:30+0100\n"
 "PO-Revision-Date: 2009-09-22 11:56+0530\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -370,115 +370,128 @@ msgid "disable SSSD for authentication by default"
 msgstr "തിരിച്ചറിയുന്നതിനായി LDAP സഹജമായി പ്രവര്‍ത്തന സജ്ജമാക്കുക"
 
 #: ../authconfig.py:242
-msgid "enable caching of user information by default"
+#, fuzzy
+msgid "enable caching of user credentials in SSSD by default"
 msgstr "ഉപയോക്താവിനു് കൂടുതല്‍ വിവരങ്ങള്‍ക്കായി കാഷിംഗ് സഹജമായി പ്രവര്‍ത്തന സജ്ജമാക്കുക"
 
 #: ../authconfig.py:244
-msgid "disable caching of user information by default"
+#, fuzzy
+msgid "disable caching of user credentials in SSSD by default"
 msgstr "ഉപയോക്താവിനു് കൂടുതല്‍ വിവരങ്ങള്‍ക്കായുളള കാഷിംഗ് സഹജമായി പ്രവര്‍ത്തന രഹിതമാക്കുക"
 
 #: ../authconfig.py:247
+#, fuzzy
+msgid ""
+"enable caching of user information by default (automatically disabled when "
+"SSSD is used)"
+msgstr "ഉപയോക്താവിനു് കൂടുതല്‍ വിവരങ്ങള്‍ക്കായി കാഷിംഗ് സഹജമായി പ്രവര്‍ത്തന സജ്ജമാക്കുക"
+
+#: ../authconfig.py:249
+msgid "disable caching of user information by default"
+msgstr "ഉപയോക്താവിനു് കൂടുതല്‍ വിവരങ്ങള്‍ക്കായുളള കാഷിംഗ് സഹജമായി പ്രവര്‍ത്തന രഹിതമാക്കുക"
+
+#: ../authconfig.py:252
 msgid "local authorization is sufficient for local users"
 msgstr "ലോക്കല്‍ ഉപയോക്താക്കള്‍ക്ക് ലോക്കല്‍ ഓഥറൈസേഷന്‍ മതിയാകും"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:254
 msgid "authorize local users also through remote service"
 msgstr "വിദൂര സര്‍വീസില്‍ കൂടിയും ലോക്കല്‍ ഉപയോക്താക്കളെ ഓഥറൈസ് ചെയ്യുക"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:257
 msgid "check access.conf during account authorization"
 msgstr "അക്കൌണ്ട് ഉറപ്പാക്കുന്നതിനിടയില്‍ access.conf പരിശോധിക്കുക"
 
-#: ../authconfig.py:254
+#: ../authconfig.py:259
 msgid "do not check access.conf during account authorization"
 msgstr "അക്കൌണ്ട് ഉറപ്പാക്കുന്നതിനിടയില്‍ access.conf പരിശോധിക്കാതിരിക്കുക"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:262
 msgid "authenticate system accounts by network services"
 msgstr "നെറ്റ്‌വര്‍ക്ക് സര്‍വീസുകള്‍ വഴി സിസ്റ്റം അക്കൌണ്ടുകള്‍ ഓഥന്റിക്കേറ്റ് ചെയ്യുക"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:264
 msgid "authenticate system accounts by local files only"
 msgstr "ലോക്കല്‍ ഫയലുകള്‍ വഴി സിസ്റ്റം അക്കൌണ്ടുകള്‍ ഓഥന്റിക്കേറ്റ് ചെയ്യുക"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:267
 msgid "create home directories for users on their first login"
 msgstr "ഉപയോക്താക്കള്‍ക്ക് ആദ്യത്തെ ലോഗിനിനുള്ള ഹോം ഡയറക്ടറികള്‍ ഉണ്ടാക്കുക"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:269
 msgid "do not create home directories for users on their first login"
 msgstr "ഉപയോക്താക്കള്‍ക്ക് ആദ്യത്തെ തവണ ലോഗിന്‍ ചെയ്യുമ്പോള്‍ ഹോം ഡയറക്ടറികള്‍ ഉണ്ടാക്കരുത്"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:272
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind, nscd എന്നിവ ആരംഭിക്കുകയോ/അവസനിപ്പിക്കുകയോ പാടില്ല"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:275
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
 "കോണ്‍ഫിഗറേഷന്‍ ഫയലുകള്‍ പുതുക്കുവാന്‍ പാടില്ല, പുതിയ ക്രമീകരണങ്ങള്‍\n"
 "മാത്രം പ്രിന്റ് ചെയ്യുക"
 
-#: ../authconfig.py:274
+#: ../authconfig.py:279
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "TUIയുടെ പ്രധാന ഡൈലോഗില്‍ റദ്ദാക്കുക എന്നതിന് പകരം പുറകോട്ട് പ്രദര്‍ശിപ്പിക്കുക"
 
-#: ../authconfig.py:276
+#: ../authconfig.py:281
 msgid "do not display the deprecated text user interface"
 msgstr "ഡെപ്രിക്കേറ്റഡ് ടെക്സ്റ്റ് യൂസര്‍ ഇന്റര്‍ഫെയിസ് പ്രദര്‍ശപ്പിക്കുവാന്‍ പാടില്ല"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:284
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "opposite of --test, ക്രമീകരണ ഫയലുകളില്‍ പുതിയ മാറ്റങ്ങള്‍ ഉല്‍പ്പെടുത്തുക"
 
-#: ../authconfig.py:282
+#: ../authconfig.py:287
 msgid "update all configuration files"
 msgstr "കോണ്‍ഫിഗറേഷന്‍ ഫൈലുകളെല്ലാം ഏറ്റവും പുതുതാക്കുക "
 
-#: ../authconfig.py:285
+#: ../authconfig.py:290
 msgid "probe network for defaults and print them"
 msgstr "സഹജമായുള്ളവയ്ക്കായി നെറ്റ്‌വര്‍ക്ക് തെരഞ്ഞ് പ്രിന്റ് ചെയ്യുക"
 
-#: ../authconfig.py:287 ../authconfig.py:290
+#: ../authconfig.py:292 ../authconfig.py:295
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:288
+#: ../authconfig.py:293
 msgid "save a backup of all configuration files"
 msgstr "എല്ലാ ക്രമികരണ ഫയലുകളുടേയും ഒരു ബാക്കപ്പ് സൂക്ഷിക്കുക"
 
-#: ../authconfig.py:291
+#: ../authconfig.py:296
 msgid "restore the backup of configuration files"
 msgstr "ക്രമികരണ ഫയലുകളുടെ ബാക്കപ്പ് വീണ്ടെടുക്കുക"
 
-#: ../authconfig.py:294
+#: ../authconfig.py:299
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 "ക്രമികരണങ്ങള്‍ക്ക് വരുത്തിയ മാറ്റങ്ങള്‍ക്ക് മുമ്പ് സൂക്ഷിച്ച ക്രമികരണ ഫയലുകളുടെ ബാക്കപ്പ് വീണ്ടെടുക്കുക"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:304
 msgid "unexpected argument"
 msgstr "അപ്രതീക്ഷിതമായ ആര്‍ഗ്യുമെന്റ്"
 
-#: ../authconfig.py:428
+#: ../authconfig.py:434
 msgid "Bad smart card removal action specified."
 msgstr "സ്മാര്‍ട്ട് കാര്‍ഡിന്റെ തെറ്റായ രീതിയിലുളള നീക്കം."
 
-#: ../authconfig.py:437
+#: ../authconfig.py:443
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "അപരിചിതമായ രഹസ്യവാക്ക് ഹാഷിങ് ആല്‍ഗോരിഥം നല്‍കിയിരിക്കുന്നു, sha256 ഉപയോഗിക്കുന്നു."
 
-#: ../authconfig.py:470
+#: ../authconfig.py:476
 msgid "can only be run as root"
 msgstr "റൂട്ട് ആയി മാത്രമേ പ്രവര്‍ത്തിക്കുവാന്‍ സാധിക്കൂ"
 
-#: ../authconfig.py:486
+#: ../authconfig.py:492
 msgid "dialog was cancelled"
 msgstr "ഡൈലോഗ് റദ്ദാക്കപ്പെട്ടിരുന്നു"
 
-#: ../authconfig.py:510
+#: ../authconfig.py:516
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -488,205 +501,205 @@ msgstr ""
 "%s എന്ന ഫയല്‍ കണ്ടുകിട്ടിയില്ല, പക്ഷേ  %sന്റെ ശരിയായ പ്രവര്‍ത്തനത്തിന് ഇത് ആവശ്യമുണ്ട്.\n"
 "ഇത് ലഭ്യമായ %s പാക്കേജ് ഇന്‍സ്റ്റോള്‍ ചെയ്യുക."
 
-#: ../authconfig.py:512 ../authconfig.py:858
+#: ../authconfig.py:518 ../authconfig.py:864
 msgid "Warning"
 msgstr "മുന്നറിയിപ്പ്"
 
-#: ../authconfig.py:512 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:759
-#: ../authconfig.py:800 ../authconfig.py:858
+#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
+#: ../authconfig.py:806 ../authconfig.py:864
 msgid "Ok"
 msgstr "ശരി"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:522
 msgid "caching"
 msgstr "കാഷിംഗ്"
 
-#: ../authconfig.py:517
+#: ../authconfig.py:523
 msgid "Fingerprint reader"
 msgstr "ഫിംഗര്‍പ്രിന്റ് റീഡര്‍"
 
-#: ../authconfig.py:518
+#: ../authconfig.py:524
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:525
 msgid "LDAP authentication"
 msgstr "LDAP ഓഥന്റിക്കേഷന്‍"
 
-#: ../authconfig.py:520 ../authconfig-gtk.py:99
+#: ../authconfig.py:526 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:521 ../authconfig-gtk.py:105
+#: ../authconfig.py:527 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:522
+#: ../authconfig.py:528
 msgid "shadow password"
 msgstr "ഷാഡോ രഹസ്യവാക്ക്"
 
-#: ../authconfig.py:523 ../authconfig.py:525 ../authconfig-gtk.py:108
+#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:524
+#: ../authconfig.py:530
 msgid "Winbind authentication"
 msgstr "Winbind ഓഥന്റിക്കേഷന്‍"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:536
 msgid "User Information"
 msgstr "ഉപയോക്താവിനെ സംബന്ധിച്ചുളള വിവരം"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:539
 msgid "Cache Information"
 msgstr "Cache സംബന്ധിച്ചുളള വിവരം"
 
-#: ../authconfig.py:537
+#: ../authconfig.py:543
 msgid "Use Hesiod"
 msgstr "Hesiod ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:540
+#: ../authconfig.py:546
 msgid "Use LDAP"
 msgstr "LDAP ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:544
+#: ../authconfig.py:550
 msgid "Use NIS"
 msgstr "NIS ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:548
+#: ../authconfig.py:554
 msgid "Use Winbind"
 msgstr "Winbind ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:554 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "ആധികാരികത ഉറപ്പാക്കല്‍"
 
-#: ../authconfig.py:557
+#: ../authconfig.py:563
 msgid "Use MD5 Passwords"
 msgstr "MD5 രഹസ്യവാക്കുകള്‍ ഉപയോഗിക്കുക "
 
-#: ../authconfig.py:560
+#: ../authconfig.py:566
 msgid "Use Shadow Passwords"
 msgstr "ഷാഡോ രഹസ്യവാക്കുകള്‍ ‍ ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:564
+#: ../authconfig.py:570
 msgid "Use LDAP Authentication"
 msgstr "LDAP ഓഥന്റിക്കേഷന്‍ ഉപയോഗിക്കുക "
 
-#: ../authconfig.py:568
+#: ../authconfig.py:574
 msgid "Use Kerberos"
 msgstr "Kerberos ഉപയോഗിക്കുക "
 
-#: ../authconfig.py:572
+#: ../authconfig.py:578
 msgid "Use Fingerprint reader"
 msgstr "ഫിംഗര്‍പ്രിന്റ് റീഡര്‍ ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:577
+#: ../authconfig.py:583
 msgid "Use Winbind Authentication"
 msgstr "Winbind ഓഥന്റിക്കേഷന്‍ ഉപയോഗിക്കുക "
 
-#: ../authconfig.py:581
+#: ../authconfig.py:587
 msgid "Local authorization is sufficient"
 msgstr "ലോക്കല്‍ ഓഥറൈസേഷന്‍ മതിയാകും"
 
-#: ../authconfig.py:591 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:800
+#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
 msgid "Back"
 msgstr "പുറകോട്ട്"
 
-#: ../authconfig.py:591 ../authconfig.py:759
+#: ../authconfig.py:597 ../authconfig.py:765
 msgid "Cancel"
 msgstr "റദ്ദാക്കുക"
 
-#: ../authconfig.py:592 ../authconfig.py:729 ../authconfig.py:736
-#: ../authconfig.py:742 ../authconfig.py:751 ../authconfig.py:800
+#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
+#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
 msgid "Next"
 msgstr "അടുത്തത്"
 
-#: ../authconfig.py:603 ../authconfig-gtk.py:590 ../authconfig.glade.h:16
+#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
 msgid "Authentication Configuration"
 msgstr ""
 "ആധികാരികത ഉറപ്പാക്കുന്നതിനുളള\n"
 "ക്രമീകരണം"
 
-#: ../authconfig.py:726
+#: ../authconfig.py:732
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:727
+#: ../authconfig.py:733
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:728
+#: ../authconfig.py:734
 msgid "Hesiod Settings"
 msgstr "Hesiod ക്രമീകരണങ്ങള്‍"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:738
 msgid "Use TLS"
 msgstr "TLS ഉപയോഗിക്കുക "
 
-#: ../authconfig.py:733 ../authconfig.py:740
+#: ../authconfig.py:739 ../authconfig.py:746
 msgid "Server:"
 msgstr "സര്‍വര്‍:"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:740
 msgid "Base DN:"
 msgstr "ബെയിസ് DN:"
 
-#: ../authconfig.py:735
+#: ../authconfig.py:741
 msgid "LDAP Settings"
 msgstr "LDAP ക്രമീകരണങ്ങള്‍"
 
-#: ../authconfig.py:739 ../authconfig.py:794 ../authconfig.glade.h:23
+#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
 msgid "Domain:"
 msgstr "ഡൊമെയിന്‍:"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:747
 msgid "NIS Settings"
 msgstr "NIS ക്രമീകരണങ്ങള്‍"
 
-#: ../authconfig.py:745
+#: ../authconfig.py:751
 msgid "Realm:"
 msgstr "സാമ്പ്രാജ്യം:"
 
-#: ../authconfig.py:746
+#: ../authconfig.py:752
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:747
+#: ../authconfig.py:753
 msgid "Admin Server:"
 msgstr "അഡ്മിന്‍ സര്‍വര്‍:"
 
-#: ../authconfig.py:748
+#: ../authconfig.py:754
 msgid "Use DNS to resolve hosts to realms"
 msgstr "സാമ്പ്രാജ്യത്തിന്‍ KDCകള്‍ പരിഹരിക്കുന്നതിനായി DNS ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:749
+#: ../authconfig.py:755
 msgid "Use DNS to locate KDCs for realms"
 msgstr ""
 "സാമ്പ്രാജ്യത്തിന്‍ KDCകള്‍ കണ്ടുപിടിക്കുന്നതിനായി\n"
 "DNS ഉപയോഗിക്കുക"
 
-#: ../authconfig.py:750
+#: ../authconfig.py:756
 msgid "Kerberos Settings"
 msgstr "Kerberos ക്രമികരണങ്ങള്‍"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:760
 msgid "Domain Administrator:"
 msgstr "ഡൊമെയിന്‍ അഡ്മിനിസ്ട്രേറ്റര്‍:"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:761
 msgid "Password:"
 msgstr "രഹസ്യവാക്ക്:"
 
-#: ../authconfig.py:758
+#: ../authconfig.py:764
 msgid "Join Settings"
 msgstr ""
 "ചേരുന്നതിനുളള\n"
 "ക്രമികരണങ്ങള്‍"
 
-#: ../authconfig.py:768 ../authconfig.glade.h:43
+#: ../authconfig.py:774 ../authconfig.glade.h:43
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -696,45 +709,45 @@ msgstr ""
 "ഡിസ്ക്കിലേക്ക് സംരക്ഷിക്കുക. ഇവ സംരക്ഷിച്ചില്ലായെങ്കില്‍, ഡൊമെയിനിലേക്ക് ചേരുവാനുളള ശ്രമം "
 "പരാജയപ്പെടും. മാറ്റങ്ങള്‍ സംരക്ഷിക്കണമോ?"
 
-#: ../authconfig.py:775
+#: ../authconfig.py:781
 msgid "Save Settings"
 msgstr "ക്രമികരങ്ങള്‍ സംരക്ഷിക്കുക"
 
-#: ../authconfig.py:776
+#: ../authconfig.py:782
 msgid "No"
 msgstr "ഇല്ല"
 
-#: ../authconfig.py:776
+#: ../authconfig.py:782
 msgid "Yes"
 msgstr "ശരി"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:793
+#: ../authconfig.py:799
 msgid "Security Model:"
 msgstr "സക്ക്യൂരിറ്റി മോഡല്‍:"
 
-#: ../authconfig.py:795
+#: ../authconfig.py:801
 msgid "Domain Controllers:"
 msgstr "ഡൊമെയിന്‍ കണ്‍ട്രോളേഴ്സ്:"
 
-#: ../authconfig.py:796
+#: ../authconfig.py:802
 msgid "ADS Realm:"
 msgstr "ADS സാമ്പ്രാജ്യം:"
 
-#: ../authconfig.py:797
+#: ../authconfig.py:803
 msgid "Template Shell:"
 msgstr "ടെംപ്ളേറ്റ് ഷെല്ല്:"
 
-#: ../authconfig.py:799
+#: ../authconfig.py:805
 msgid "Winbind Settings"
 msgstr "Winbind ക്രമീകരണങ്ങള്‍"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:807
 msgid "Join Domain"
 msgstr "ഡൊമൈനില്‍ ചേരുക"
 
-#: ../authconfig.py:853
+#: ../authconfig.py:859
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -748,7 +761,7 @@ msgstr ""
 "എന്നിട്ട് ശരി അമര്‍ത്തുക."
 
 #. FIXME - version
-#: ../authconfig.py:867
+#: ../authconfig.py:873
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -760,40 +773,40 @@ msgstr ""
 msgid "Control how the system verifies users who attempt to log in"
 msgstr "പ്രവേശിക്കുവാന്‍ ശ്രമിക്കുന്നു ഉപയോക്താക്കളെ സിസ്റ്റം പരിശോധിക്കുന്നതില്‍ ഉളള നിയന്ത്രണം"
 
-#: ../authconfig-gtk.py:96
+#: ../authconfig-gtk.py:97
 msgid "Local accounts only"
 msgstr ""
 
-#: ../authconfig-gtk.py:102
+#: ../authconfig-gtk.py:103
 msgid "FreeIPA"
 msgstr ""
 
-#: ../authconfig-gtk.py:117
+#: ../authconfig-gtk.py:118
 #, fuzzy
 msgid "Password"
 msgstr "രഹസ്യവാക്ക്:"
 
-#: ../authconfig-gtk.py:120
+#: ../authconfig-gtk.py:121
 #, fuzzy
 msgid "LDAP password"
 msgstr "രഹസ്യവാക്ക്:"
 
-#: ../authconfig-gtk.py:123
+#: ../authconfig-gtk.py:124
 #, fuzzy
 msgid "Kerberos password"
 msgstr "Kerberos"
 
-#: ../authconfig-gtk.py:126
+#: ../authconfig-gtk.py:127
 #, fuzzy
 msgid "NIS password"
 msgstr "ഷാഡോ രഹസ്യവാക്ക്"
 
-#: ../authconfig-gtk.py:129
+#: ../authconfig-gtk.py:130
 #, fuzzy
 msgid "Winbind password"
 msgstr "ഷാഡോ രഹസ്യവാക്ക്"
 
-#: ../authconfig-gtk.py:418
+#: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -1104,15 +1117,15 @@ msgstr "സക്ക്യൂരിറ്റി മോഡല്‍:"
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:910 ../authinfo.py:1548 ../authinfo.py:2858
+#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
 msgstr "പൂട്ട്"
 
-#: ../authinfo.py:910 ../authinfo.py:1550
+#: ../authinfo.py:910 ../authinfo.py:1555
 msgid "Ignore"
 msgstr "അവഗണിക്കുക"
 
-#: ../authinfo.py:3208
+#: ../authinfo.py:3218
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -1121,7 +1134,7 @@ msgstr ""
 "തിരിച്ചറിയല്‍ മോഡ്യൂളായ %s/pam_%s.so ലഭ്യമല്ല. ആയതിനാല്‍ തിരിച്ചറിയല്‍ പ്രക്രിയ ശരിയായി "
 "പ്രവര്‍ത്തിക്കുന്നതല്ല."
 
-#: ../authinfo.py:3743
+#: ../authinfo.py:3761
 msgid "Error downloading CA certificate"
 msgstr "CA സര്‍ട്ടിഫിക്കേറ്റ് ഡൌണ്‍ലോട് ചെയ്യുന്നതില്‍ പിശക്"
 
