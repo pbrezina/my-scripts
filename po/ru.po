@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-18 15:11+0100\n"
-"PO-Revision-Date: 2010-03-19 13:08+1100\n"
+"PO-Revision-Date: 2010-03-19 13:59+1100\n"
 "Last-Translator: Yulia <ypoyarko@redhat.com>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -34,23 +34,23 @@ msgstr "выключить скрытые пароли (по умолчанию)
 
 #: ../authconfig.py:92
 msgid "enable MD5 passwords by default"
-msgstr "включить пароли MD5"
+msgstr "включить пароли MD5 (по умолчанию)"
 
 #: ../authconfig.py:94
 msgid "disable MD5 passwords by default"
-msgstr "выключить пароли MD5"
+msgstr "выключить пароли MD5 (по умолчанию)"
 
 #: ../authconfig.py:97
 msgid "hash/crypt algorithm for new passwords"
-msgstr "хэш/алгоритм для нового пароля"
+msgstr "алгоритм хэширования/шифрования для новых паролей"
 
 #: ../authconfig.py:100
 msgid "enable NIS for user information by default"
-msgstr "включить NIS для получения информации о пользователях"
+msgstr "использовать NIS для обработки информации пользователей"
 
 #: ../authconfig.py:102
 msgid "disable NIS for user information by default"
-msgstr "не использовать NIS для получения информации о пользователях"
+msgstr "не использовать NIS для обработки информации пользователей"
 
 #: ../authconfig.py:103
 msgid "<domain>"
@@ -58,7 +58,7 @@ msgstr "<домен>"
 
 #: ../authconfig.py:104
 msgid "default NIS domain"
-msgstr "домен NIS"
+msgstr "домен NIS (по умолчанию)"
 
 #: ../authconfig.py:105 ../authconfig.py:116 ../authconfig.py:154
 #: ../authconfig.py:156
@@ -67,27 +67,27 @@ msgstr "<сервер>"
 
 #: ../authconfig.py:106
 msgid "default NIS server"
-msgstr "сервер NIS"
+msgstr "сервер NIS (по умолчанию)"
 
 #: ../authconfig.py:109
 msgid "enable LDAP for user information by default"
-msgstr "включить LDAP для получения информации о пользователях."
+msgstr "использовать LDAP для обработки информации пользователей"
 
 #: ../authconfig.py:111
 msgid "disable LDAP for user information by default"
-msgstr "не использовать LDAP для получения информации о пользователях"
+msgstr "не использовать LDAP для обработки информации пользователей"
 
 #: ../authconfig.py:113
 msgid "enable LDAP for authentication by default"
-msgstr "использовать аутентификацию LDAP"
+msgstr "использовать аутентификацию LDAP по умолчанию"
 
 #: ../authconfig.py:115
 msgid "disable LDAP for authentication by default"
-msgstr "не использовать аутентификацию LDAP"
+msgstr "не использовать аутентификацию LDAP по умолчанию"
 
 #: ../authconfig.py:117
 msgid "default LDAP server hostname or URI"
-msgstr "имя узла или URI стандартного LDAP-сервера"
+msgstr "имя узла или URI используемого по умолчанию LDAP-сервера"
 
 #: ../authconfig.py:118
 msgid "<dn>"
@@ -119,7 +119,7 @@ msgstr "<URL>"
 
 #: ../authconfig.py:129
 msgid "load CA certificate from the URL"
-msgstr "скачать сертификат CA по адресу URL"
+msgstr "загрузить сертификат CA с URL"
 
 #: ../authconfig.py:132
 msgid "enable authentication with smart card by default"
@@ -135,7 +135,7 @@ msgstr "требовать смарт-карту для аутентификац
 
 #: ../authconfig.py:138
 msgid "do not require smart card for authentication by default"
-msgstr "не требовать смарт-карту для аутентификацию"
+msgstr "не требовать смарт-карту для аутентификации"
 
 #: ../authconfig.py:139
 msgid "<module>"
@@ -171,7 +171,7 @@ msgstr "Kerberos KDC"
 
 #: ../authconfig.py:157
 msgid "default kerberos admin server"
-msgstr "сервер управления Kerberos"
+msgstr "сервер администратора Kerberos"
 
 #: ../authconfig.py:158 ../authconfig.py:188
 msgid "<realm>"
@@ -219,15 +219,15 @@ msgstr "<рабочая группа>"
 
 #: ../authconfig.py:176
 msgid "workgroup authentication servers are in"
-msgstr "серверы аутентификации рабочей группы в"
+msgstr "рабочая группа, которой принадлежат серверы аутентификации"
 
 #: ../authconfig.py:179
 msgid "enable winbind for user information by default"
-msgstr "использовать winbind для информации о пользователях"
+msgstr "использовать winbind для обработки информации пользователей"
 
 #: ../authconfig.py:181
 msgid "disable winbind for user information by default"
-msgstr "не использовать winbind для информации о пользователях"
+msgstr "не использовать winbind для обработки информации пользователей"
 
 #: ../authconfig.py:183
 msgid "enable winbind for authentication by default"
@@ -243,7 +243,7 @@ msgstr "режим безопасности для samba и winbind"
 
 #: ../authconfig.py:189
 msgid "default realm for samba and winbind when security=ads"
-msgstr "область по умолчанию для samba и winbind, если security=ads"
+msgstr "используемая по умолчанию область для samba и winbind, если security=ads"
 
 #: ../authconfig.py:190 ../authconfig.py:192
 msgid "<lowest-highest>"
@@ -251,11 +251,11 @@ msgstr "<начальный-конечный>"
 
 #: ../authconfig.py:191
 msgid "uid range winbind will assign to domain or ads users"
-msgstr "диапазон uid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон uid, из которого winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:193
 msgid "gid range winbind will assign to domain or ads users"
-msgstr "диапазон gid, которые winbind будет назначать пользователям домена или ads"
+msgstr "диапазон gid, из которого winbind будет назначать пользователям домена или ads"
 
 #: ../authconfig.py:195
 msgid ""
@@ -263,14 +263,14 @@ msgid ""
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
 "символ, который будет использоваться для разделения частей домена и "
-"пользователя в созданных winbind именах пользователей, если параметр "
+"пользователя в созданных при помощи winbind именах пользователей, если параметр "
 "winbindusedefaultdomain не установлен"
 
 #: ../authconfig.py:197
 msgid "the directory which winbind-created users will have as home directories"
 msgstr ""
 "каталог, который созданные при помощи winbind пользователи будут "
-"использовать для домашних каталогов"
+"использовать в качестве домашнего"
 
 #: ../authconfig.py:199
 msgid "the group which winbind-created users will have as their primary group"
@@ -289,24 +289,22 @@ msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
-"настраивает winbind таким образом, что пользователи, не имеющие домена в их "
-"именах, подразумеваются членами домена"
+"настраивает winbind так, что пользователи без домена в их "
+"именах рассматриваются как пользователи домена"
 
 #: ../authconfig.py:205
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr ""
-"настраивает winbind таким образом, что пользователи, не имеющие домена в их "
-"именах, подразумеваются не являющимися членами домена."
+msgstr "настраивает winbind так, что пользователи без домена в их именах не рассматриваются как пользователи домена"
 
 #: ../authconfig.py:207
 msgid "configures winbind to allow offline login"
-msgstr "настраивает winbind на разрешение offline входа"
+msgstr "настраивает winbind на разрешение автономного входа"
 
 #: ../authconfig.py:209
 msgid "configures winbind to prevent offline login"
-msgstr "настраивает winbind на запрет offline входа"
+msgstr "настраивает winbind на запрет автономного входа"
 
 #: ../authconfig.py:211
 msgid "join the winbind domain or ads realm now as this administrator"
@@ -314,27 +312,27 @@ msgstr "войти в домен winbind или область ads как это
 
 #: ../authconfig.py:214
 msgid "enable wins for hostname resolution"
-msgstr "включить wins для разрешения имён узлов"
+msgstr "использовать wins для разрешения имён узлов"
 
 #: ../authconfig.py:216
 msgid "disable wins for hostname resolution"
-msgstr "запретить wins для разрешения имён узлов"
+msgstr "не использовать wins для разрешения имён узлов"
 
 #: ../authconfig.py:219
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "предпочитать использование dns, а не wins для разрешения имён узлов"
+msgstr "предпочитать использование DNS вместо WINS или NIS для разрешения имён узлов"
 
 #: ../authconfig.py:221
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "не предпочитать использование dns вместо wins для разрешения имён узлов"
+msgstr "не предпочитать использование DNS вместо WINS или NIS для разрешения имён узлов"
 
 #: ../authconfig.py:224
 msgid "enable hesiod for user information by default"
-msgstr "использовать hesiod для информации о пользователях"
+msgstr "использовать hesiod для обработки информации пользователей"
 
 #: ../authconfig.py:226
 msgid "disable hesiod for user information by default"
-msgstr "не использовать hesiod для информации о пользователях"
+msgstr "не использовать hesiod для обработки информации пользователей"
 
 #: ../authconfig.py:228
 msgid "default hesiod LHS"
@@ -345,58 +343,52 @@ msgid "default hesiod RHS"
 msgstr "hesiod RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "включить NIS для получения информации о пользователях"
+msgstr "использовать SSSD для обработки информации о пользователях"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "не использовать NIS для получения информации о пользователях"
+msgstr "не использовать SSSD для обработки информации о пользователях"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "использовать аутентификацию LDAP"
+msgstr "использовать аутентификацию SSSD по умолчанию"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "не использовать аутентификацию LDAP"
+msgstr "не использовать аутентификацию SSSD по умолчанию"
 
 #: ../authconfig.py:242
 msgid "enable caching of user information by default"
-msgstr "использовать кэширование информации о пользователях"
+msgstr "использовать кэширование информации пользователей"
 
 #: ../authconfig.py:244
 msgid "disable caching of user information by default"
-msgstr "не использовать кэширование информации о пользователях"
+msgstr "не использовать кэширование информации пользователей"
 
 #: ../authconfig.py:247
 msgid "local authorization is sufficient for local users"
-msgstr "локальная аутентификация достаточна для локальных пользователей"
+msgstr "локальная авторизация достаточна для локальных пользователей"
 
 #: ../authconfig.py:249
 msgid "authorize local users also through remote service"
-msgstr "авторизовать локальных пользователей через внешние службы"
+msgstr "авторизовать локальных пользователей с помощью удалённой службы"
 
 #: ../authconfig.py:252
 msgid "check access.conf during account authorization"
-msgstr "проверять access.conf при проверке подлинности учетной записи"
+msgstr "проверять access.conf при авторизации учётной записи"
 
 #: ../authconfig.py:254
 msgid "do not check access.conf during account authorization"
-msgstr "не проверять access.conf при проверке подлинности учетной записи"
+msgstr "не проверять access.conf при авторизации учётной записи"
 
 #: ../authconfig.py:257
 msgid "authenticate system accounts by network services"
-msgstr "проверять подлинность системных уч. записей сетевыми службами"
+msgstr "выполнять аутентификацию учётных записей системы с помощью сетевых служб"
 
 #: ../authconfig.py:259
 msgid "authenticate system accounts by local files only"
-msgstr ""
-"проверять подлинность системных уч. записей только при помощи локальных "
-"файлов"
+msgstr "выполнять аутентификацию учётных записей системы с помощью локальных файлов"
 
 #: ../authconfig.py:262
 msgid "create home directories for users on their first login"
@@ -412,11 +404,11 @@ msgstr "не останавливать/запускать portmap, ypbind и ns
 
 #: ../authconfig.py:270
 msgid "do not update the configuration files, only print new settings"
-msgstr "не изменять конфигурационные файлы, а только вывести новые значения"
+msgstr "не изменять конфигурационные файлы, а только вывести новые настройки"
 
 #: ../authconfig.py:274
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr "отображать \"Назад\" вместо \"Отмена\" в основном окне текстового интерфейса"
+msgstr "показать «Назад» вместо «Отменить» в основном окне текстового интерфейса"
 
 #: ../authconfig.py:276
 msgid "do not display the deprecated text user interface"
@@ -424,27 +416,27 @@ msgstr "не показывать устаревший текстовый инт
 
 #: ../authconfig.py:279
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "в противоположность --test, внести изменения в файлы настроек"
+msgstr "в отличие от --test, сохранить изменения в файлы конфигурации"
 
 #: ../authconfig.py:282
 msgid "update all configuration files"
-msgstr "обновить все файлы настроек"
+msgstr "обновить все файлы конфигурации"
 
 #: ../authconfig.py:285
 msgid "probe network for defaults and print them"
-msgstr "определить сетевые параметры автоматически"
+msgstr "автоматический поиск стандартных настроек в сети и вывод результатов"
 
 #: ../authconfig.py:287 ../authconfig.py:290
 msgid "<name>"
-msgstr "<name>"
+msgstr "<имя>"
 
 #: ../authconfig.py:288
 msgid "save a backup of all configuration files"
-msgstr "сохранить резервные копии всех файлов настроек"
+msgstr "сохранить резервные копии всех файлов конфигурации"
 
 #: ../authconfig.py:291
 msgid "restore the backup of configuration files"
-msgstr "восстановить резервные копии файлов настроек"
+msgstr "восстановить резервные копии файлов конфигурации"
 
 #: ../authconfig.py:294
 msgid ""
@@ -456,7 +448,7 @@ msgstr ""
 
 #: ../authconfig.py:299
 msgid "unexpected argument"
-msgstr "неожиданный аргумент"
+msgstr "непредвиденный аргумент"
 
 #: ../authconfig.py:428
 msgid "Bad smart card removal action specified."
@@ -750,91 +742,81 @@ msgstr "Настраивает методы проверки пользоват�
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
-msgstr ""
+msgstr "Только локальные учётные записи"
 
 #: ../authconfig-gtk.py:102
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:117
-#, fuzzy
 msgid "Password"
-msgstr "Пароль:"
+msgstr "Пароль"
 
 #: ../authconfig-gtk.py:120
-#, fuzzy
 msgid "LDAP password"
-msgstr "Пароль:"
+msgstr "Пароль LDAP"
 
 #: ../authconfig-gtk.py:123
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Пароль Kerberos"
 
 #: ../authconfig-gtk.py:126
-#, fuzzy
 msgid "NIS password"
-msgstr "скрытые пароли"
+msgstr "Пароль NIS"
 
 #: ../authconfig-gtk.py:129
-#, fuzzy
 msgid "Winbind password"
-msgstr "скрытые пароли"
+msgstr "Пароль Winbind"
 
 #: ../authconfig-gtk.py:418
 msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
+msgstr "Необходимо указать адрес ldaps:// или использовать аутентификацию TLS для LDAP."
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Конфигурация аутентификации"
+msgstr "<b>Настройка аутентификации</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Конфигурация аутентификации"
+msgstr "<b>Опции локальной аутентификации</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Конфигурация аутентификации"
+msgstr "<b>Другие опции аутентификации</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Опции аутентификации смарт-карт</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Настройка учётной записи пользователя</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
-msgstr ""
+msgstr "<small><b>Подсказка:</b> Смарт-карты поддерживают возможности журналирования в локальных и централизованно управляемых учётных записях.</small>"
 
 #: ../authconfig.glade.h:8
 msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
+msgstr "<small><b>Подсказка:</b> Управление осуществляется в /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Сервер управления:"
+msgstr "С_ервер администратора:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "не использовать hesiod для информации о пользователях"
+msgstr "Дополнительные параметры для обработки информации пользователя и аутентификации"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "_Дополнительные параметры"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -849,30 +831,26 @@ msgstr ""
 "предыдущими изменениями настроек. Восстановить файлы?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "_Разрешить offline вход"
+msgstr "_Разрешить автономный вход"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Аутентификация"
+msgstr "С_пособ аутентификации:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "Действие при _извлечении карты"
+msgstr "Действие при _извлечении карты:"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "_URL адрес сертификата"
+msgstr "URL _сертификата:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
-msgstr ""
+msgstr "Нажмите эту кнопку, если вы не ещё не загрузили сертификат CA или сертификат ещё не настроен."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -883,44 +861,40 @@ msgid "Do_n't Save"
 msgstr "_Не сохранять"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Администратор домена:"
+msgstr "_Администратор домена:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "Скачать сертификат CA"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "Включить поддержку сканирования отпе_чатков"
+msgstr "Включить поддержку _чтения отпечатков"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Включить _локальное управление доступом"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "Включить поддержку _Смарт-карт"
+msgstr "Включить поддержку _cмарт-карт"
 
 #: ../authconfig.glade.h:28
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
 msgstr ""
-"Аутентификация отпечатков позволяет входить в систему при успешном "
+"Аутентификация с помощью отпечатков позволяет входить в систему при успешном "
 "сканировании отпечатка пальца."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "хэш/алгоритм для нового пароля"
+msgstr "Алгоритм хэширования или шифрования используется при хранении паролей локальных пользователей"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr "Имя узла или URI в формате ldap:// или ldaps:// для указания LDAP-сервера."
+msgstr "Имя узла или URI-адрес LDAP-сервера (ldap:// или ldaps://)."
 
 #: ../authconfig.glade.h:31
 msgid ""
@@ -935,34 +909,28 @@ msgid "Joining Winbind Domain"
 msgstr "Вход в домен Winbind"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "_Базовый DN для поиска в LDAP"
+msgstr "_Базовое DN для поиска LDAP:"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "_Сервер LDAP"
+msgstr "_Сервер LDAP:"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "_Домен NIS"
+msgstr "_Домен NIS:"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "Сервер _NIS"
+msgstr "С_ервер NIS:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Область:"
+msgstr "О_бласть:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "_Требовать наличие смарт-карты для входа"
+msgstr "Требовать наличие смарт-карты для авторизации"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -978,7 +946,7 @@ msgstr "Восстановить"
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "Настроить службы аутентификации пользователей в системе"
 
 #: ../authconfig.glade.h:42
 msgid ""
