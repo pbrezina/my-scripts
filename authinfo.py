@@ -1130,7 +1130,8 @@ sssdopt_map = {
 	'ldapCacertDir': 'ldap_tls_cacertdir',
 	'kerberosKDC': 'krb5_kdcip',
 	'kerberosAdminServer': 'krb5_kpasswd',
-	'kerberosRealm': 'krb5_realm'}
+	'kerberosRealm': 'krb5_realm',
+	'enableCacheCreds': 'cache_credentials'}
 
 class AuthInfo:
 	def __init__(self, msgcb):
@@ -1220,6 +1221,7 @@ class AuthInfo:
 		self.enableForceLegacy = None
 		self.implicitSSSD = None
 		self.implicitSSSDAuth = None
+		self.enableCacheCreds = True
 
 		# Not really options.
 		self.joinUser = ""
@@ -1526,9 +1528,12 @@ class AuthInfo:
 				authprov = None
 			if idprov in ('ldap') and authprov in ('ldap', 'krb5'):
 				self.sssdDomain = domain
-		for attr in sssdopt_map.keys():
+		for attr, opt in sssdopt_map.iteritems():
 			try:
-				setattr(self, attr, domain.get_option(sssdopt_map[attr]))
+				# Cache credentials value will be taken from sysconfig
+				# or enabled by default.
+				if attr != 'enableCacheCreds':
+					setattr(self, attr, domain.get_option(opt))
 			except SSSDConfig.NoOptionError:
 				pass
 
@@ -1994,6 +1999,10 @@ class AuthInfo:
 				self.enableForceLegacy = shv.getBoolValue("FORCELEGACY")
 			except ValueError:
 				pass
+			try:
+				self.enableCacheCreds = shv.getBoolValue("CACHECREDENTIALS")
+			except ValueError:
+				pass
 			algo = shv.getValue("PASSWDALGORITHM")
 			if algo in password_algorithms:
 				self.passwordAlgorithm = algo
@@ -2112,6 +2121,7 @@ class AuthInfo:
 		(self.brokenShadow != b.brokenShadow) or
 		(self.forceBrokenShadow != b.forceBrokenShadow) or
 		(self.enableForceLegacy != b.enableForceLegacy) or
+		(self.enableCacheCreds != b.enableCacheCreds) or
 
 		stringsDiffer(self.joinUser, b.joinUser, True) or
 		stringsDiffer(self.joinPassword, b.joinPassword, True))
@@ -3381,6 +3391,7 @@ class AuthInfo:
 		shv.setBoolValue("USEMKHOMEDIR", self.enableMkHomeDir)
 		shv.setBoolValue("USESYSNETAUTH", self.enableSysNetAuth)
 		shv.setBoolValue("FORCELEGACY", self.enableForceLegacy)
+		shv.setBoolValue("CACHECREDENTIALS", self.enableCacheCreds)
 
 		shv.write(0644)
 		shv.close()
@@ -3611,7 +3622,7 @@ class AuthInfo:
 		print " Winbind template shell = \"%s\"" % self.winbindTemplateShell
 		print " SMB idmap uid = \"%s\"" % self.smbIdmapUid
 		print " SMB idmap gid = \"%s\"" % self.smbIdmapGid
-		print "nss_sss is %s" % formatBool(self.enableSSSD)
+		print "nss_sss is %s by default" % formatBool(self.enableSSSD)
 		print "nss_wins is %s" % formatBool(self.enableWINS)
 		print "DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts)
 		print "pam_unix is always enabled"
@@ -3627,6 +3638,7 @@ class AuthInfo:
 		print " LDAP+TLS is %s" % formatBool(self.enableLDAPS)
 		print " LDAP server = \"%s\"" % self.ldapServer
 		print " LDAP base DN = \"%s\"" % self.ldapBaseDN
+		print " LDAP schema = \"%s\"" % (self.ldapSchema or "rfc2307")
 		print "pam_pkcs11 is %s" % formatBool(self.enableSmartcard)
 		print " use only smartcard for login is %s" % formatBool(self.forceSmartcard)
 		print " smartcard module = \"%s\"" % self.smartcardModule
@@ -3640,7 +3652,9 @@ class AuthInfo:
 		print " SMB servers = \"%s\"" % self.smbServers
 		print " SMB security = \"%s\"" % self.smbSecurity
 		print " SMB realm = \"%s\"" % self.smbRealm
-		print "pam_sss is %s" % formatBool(self.enableSSSDAuth)
+		print "pam_sss is %s by default" % formatBool(self.enableSSSDAuth)
+		print " credential caching in SSSD is %s" % formatBool(self.enableCacheCreds)
+		print " SSSD use instead of legacy services if possible is %s" % formatBool(not self.enableForceLegacy)
 		print "pam_cracklib is %s (%s)" % (formatBool(self.enableCracklib),
 			self.cracklibArgs)
 		print "pam_passwdqc is %s (%s)" % (formatBool(self.enablePasswdQC),

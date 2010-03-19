@@ -238,8 +238,13 @@ class Authconfig:
 		parser.add_option("--disablesssdauth", action="store_true",
 			help=_("disable SSSD for authentication by default"))
 
+		parser.add_option("--enablecachecreds", action="store_true",
+			help=_("enable caching of user credentials in SSSD by default"))
+		parser.add_option("--disablecachecreds", action="store_true",
+			help=_("disable caching of user credentials in SSSD by default"))
+
 		parser.add_option("--enablecache", action="store_true",
-			help=_("enable caching of user information by default"))
+			help=_("enable caching of user information by default (automatically disabled when SSSD is used)"))
 		parser.add_option("--disablecache", action="store_true",
 			help=_("disable caching of user information by default"))
 
@@ -366,6 +371,7 @@ class Authconfig:
 			"wins":"enableWINS",
 			"sssd":"enableSSSD",
 			"sssdauth":"enableSSSDAuth",
+			"cachecreds":"enableCacheCreds",
 			"preferdns":"preferDNSinHosts"}
 
 		string_settings = {"passalgo":"passwordAlgorithm",
