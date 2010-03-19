@@ -102,6 +102,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Mar 19 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.1-1
+- added credential caching enablement for SSSD
+- added msgarea for LDAP authentication requirements
+- fix spurious missing modules warnings and other minor changes
+
 * Thu Mar 18 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.0-1
 - new very much simplified GUI
 - use SSSD instead of legacy ldap/krb5 if the configuration is
