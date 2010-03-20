@@ -7,7 +7,7 @@
 # Damien Durand	<splinux@fedoraproject.org>, 2006.
 # Decroux Fabien <fdecroux@redhat.com>, 2006.
 # Alain PORTAL <aportal@univ-montp2.fr>, 2006.
-# Thomas Canniot <mrtom@fedoraproject.org>, 2006, 2007, 2008, 2009.
+# Thomas Canniot <mrtom@fedoraproject.org>, 2006, 2007, 2008, 2009, 2010.
 # Mathieu Schopfer <mat.schopfer@bluewin.ch>, 2008.
 # Gauthier Ancelin <gauthier.ancelin@laposte.net>, 2008.
 # Michaël Ughetto <telimektar1er@gmail.com>, 2008.
@@ -18,9 +18,9 @@ msgstr ""
 "Project-Id-Version: authconfig.tip\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-09-19 15:22+0200\n"
+"PO-Revision-Date: 2010-03-20 22:15+0100\n"
 "Last-Translator: Thomas Canniot <mrtom@fedoraproject.org>\n"
-"Language-Team: French <fedora-trans-fr@redhat.com>\n"
+"Language-Team: French <trans-fr@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -116,10 +116,14 @@ msgstr "désactiver l'utilisation de TLS avec LDAP (RFC-2830)"
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"Activer l'utilisation du schema RFC-2307bis pour les recherches des "
+"informations utilisateurs LDAP"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"Désactiver l'utilisation du schema RFC-2307bis pour les recherches des "
+"informations utilisateurs LDAP"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -362,41 +366,38 @@ msgid "default hesiod RHS"
 msgstr "RHS hesiod par défaut"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "activer NIS pour les informations utilisateur par défaut"
+msgstr "activer SSSD pour les informations utilisateur par défaut"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "désactiver NIS pour les informations utilisateur par défaut"
+msgstr "désactiver SSSD pour les informations utilisateur par défaut"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "activer LDAP pour l'authentification par défaut"
+msgstr "activer SSSD pour l'authentification par défaut"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "désactiver LDAP pour l'authentification par défaut"
+msgstr "désactiver SSSD pour l'authentification par défaut"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "activer la mise en cache des informations utilisateur par défaut"
+msgstr ""
+"activer la mise en cache des informations utilisateur par défaut dans SSSD"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "désactiver la mise en cache des informations utilisateur par défaut"
+msgstr ""
+"désactiver la mise en cache des informations utilisateur par défaut dans SSSD"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "activer la mise en cache des informations utilisateur par défaut"
+msgstr ""
+"activer la mise en cache des informations utilisateur par défaut (désactivée "
+"automatiquement quand SSSD est utilisé)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
@@ -799,93 +800,90 @@ msgstr ""
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "Comptes locaux uniquement"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "Mot de passe :"
+msgstr "Mot de passe"
 
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "Mot de passe :"
+msgstr "Mot de passe LDAP"
 
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "MOt de passe Kerberos"
 
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "Mot de passe masqué"
+msgstr "Mot de passe NIS"
 
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "Mot de passe masqué"
+msgstr "Mot de passe Winbind"
 
 #: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
+"Vous devez fournir l'adresse d'un serveur ldaps:// ou utiliser LTS pour "
+"l'authentification LDAP."
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Configuration de l'authentification"
+msgstr "<b>Configuration de l'authentification</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Configuration de l'authentification"
+msgstr "<b>Options pour l'authentification locale</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Configuration de l'authentification"
+msgstr "<b>Autres options d'authentification</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Options d'authentification des Smart Card</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Configuration des comptes utilisateurs</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>Astuce :</b> Les smart cards prennent en charge les connexions "
+"locales et en gestion de comptes centralisée.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
+"<small><b>Astuce :</b> Ceci est géré par /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Serveur Admin :"
+msgstr "Serveurs Ad_min :"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "désactiver hesiod pour les informations utilisateur par défaut"
+msgstr ""
+"Options additionnelles pour les informations utilisateur et "
+"l'authentification"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "_Options avancées"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -901,30 +899,29 @@ msgstr ""
 "partir de la sauvegarde. Annuler les changements ?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "_Autoriser la connexion hors ligne"
+msgstr "Autoriser la connexion hors _ligne"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Authentification"
+msgstr "Méthode d'aut_hentification :"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "_Action au retrait de la carte"
+msgstr "Action a_u retrait de la carte :"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "_URL du certificat"
+msgstr "_URL du certificat :"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Cliquez sur ce bouton si vous ne voulez pas télécharger le certificat CA "
+"maintenant ou si vous n'avez pas utilisé le certificat CA d'une autre "
+"manière."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -935,27 +932,24 @@ msgid "Do_n't Save"
 msgstr "_Ne pas enregistrer"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Administrateur du domaine :"
+msgstr "_Administrateur du domaine :"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "Téléchargement du certificat du CA"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "Activer le support du lecteur d'empreinte _digitale"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Activer le contrôle de l'accès _local"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "Activer la prise en charge des _cartes à puce"
+msgstr "Activer la pri_se en charge des cartes smart"
 
 #: ../authconfig.glade.h:28
 msgid ""
@@ -966,9 +960,10 @@ msgstr ""
 "faisant glisser votre doigt sur le lecteur d'empreinte digitale."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "algorithme de hachage/chiffrage pour les nouveaux mots de passe"
+msgstr ""
+"algorithme de hachage ou de chiffrage pour stocker les nouveaux mots de "
+"passe des utilisa locaux"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -987,34 +982,28 @@ msgid "Joining Winbind Domain"
 msgstr "Adhésion au domaine Winbind en cours"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "DN de la _base de recherche de LDAP"
+msgstr "DN de la _base de recherche de LDAP :"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "_Serveur LDAP"
+msgstr "_Serveur LDAP :"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "_Domaine NIS"
+msgstr "_Domaine NIS :"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "_Serveur NIS"
+msgstr "_Serveur NIS :"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Zone :"
+msgstr "Zon_e :"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "Nécessite une sma_rt card pour se connecter"
+msgstr "Nécessite une smart car_d pour se connecter"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -1031,6 +1020,8 @@ msgstr "Rétablir"
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
 msgstr ""
+"Installation des services utilisés pour l'authentification des utilisateurs "
+"sur le système"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1041,9 +1032,8 @@ msgstr ""
 "utilisant un certificat et une clé associés avec une carte à puce."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Modèle de shell :"
+msgstr "_Modèle de shell :"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1061,9 +1051,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Utiliser les DNS pour _localiser les KDC pour des zones"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Utiliser les DNS pour convertir les hôtes vers les zones"
+msgstr "Utiliser les D_NS pour convertir les hôtes vers les zones"
 
 # ce n'est pas utilisé, mais plutôt coché. Mais le sens n'est pas clair
 #: ../authconfig.glade.h:48
@@ -1087,58 +1076,48 @@ msgstr ""
 "autoriser l'accès des utilisateurs."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "_Zone Winbind ADS"
+msgstr "Zon_e Winbind ADS :"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Co_ntrôleurs de domaine Winbind"
+msgstr "Co_ntrôleurs de domaine Winbind :"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "_Domaine Winbind"
+msgstr "_Domaine Winbind :"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Téléchargement du certificat du CA"
+msgstr "Téléchargement _du certificat du CA"
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Utiliser l'authentification SMB"
+msgstr "_Identité et authentification"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
 msgstr "_Joindre le domaine"
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDC"
+msgstr "_KDC :"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "Algorithme de hachage du mot de _passe"
+msgstr "Algorithme de hachage du mot de _passe :"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
 msgstr "Mot de passe :"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
 msgstr "Modèle de sécurité :"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "Base de données des comptes _utilisateurs :"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
