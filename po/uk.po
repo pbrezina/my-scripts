@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2000-09-22 13:18+0200\n"
+"PO-Revision-Date: 2010-03-21 13:18+0200\n"
 "Last-Translator: Maxim Dzumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -102,11 +102,13 @@ msgstr "вимкнути використання TLS з LDAP (RFC-2830)"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "використовувати схему RFC-2307bis для пошуку інформації про користувача на LDAP"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"не використовувати схему RFC-2307bis для пошуку інформації про користувача на "
+"LDAP"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -340,45 +342,38 @@ msgid "default hesiod RHS"
 msgstr "типовий hesiod RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "увімкнути NIS для отримання інформації про користувачів"
+msgstr "увімкнути SSSD для отримання інформації про користувачів"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "не використовувати NIS для отримання інформації про користувачів"
+msgstr "не використовувати SSSD для отримання інформації про користувачів"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "використовувати автентифікацію LDAP"
+msgstr "використовувати автентифікацію SSSD"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "не використовувати автентифікацію LDAP"
+msgstr "не використовувати автентифікацію SSSD"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "використовувати кешування інформацій про користувачів"
+msgstr "використовувати кешування інформації про користувачів у SSSD"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "не використовувати кешування інформацій про користувачів"
+msgstr "не використовувати кешування інформації про користувачів у SSSD"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "використовувати кешування інформацій про користувачів"
+msgstr "використовувати кешування інформації про користувачів (автоматично вимкнено при використанні SSSD)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
-msgstr "не використовувати кешування інформацій про користувачів"
+msgstr "не використовувати кешування інформації про користувачів"
 
 #: ../authconfig.py:252
 msgid "local authorization is sufficient for local users"
@@ -763,93 +758,88 @@ msgstr "Визначає методи перевірки користувачі�
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "Лише локальні облікові записи"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "Пароль:"
+msgstr "Пароль"
 
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "Пароль:"
+msgstr "Пароль LDAP"
 
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Пароль Kerberos"
 
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "приховані паролі"
+msgstr "Пароль NIS"
 
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "приховані паролі"
+msgstr "Пароль Winbind"
 
 #: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
+"Треба вказати адресу ldaps:// або використовувати автентифікацію TLS для LDAP."
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Налаштовування автентифікації"
+msgstr "<b>Налаштовування автентифікації</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Налаштовування автентифікації"
+msgstr "<b>Налаштовування локальної автентифікації"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Налаштовування автентифікації"
+msgstr "<b>Налаштовування іншої автентифікації</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Параметри автентифікації смарт-карт</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Налаштовування облікового запису користувача</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>Підказка:</b> Смарт-карти підтримують можливості журналювання "
+"у локальних та централізовано керованих облікових записах.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
+"<small><b>Підказка:</b> Керування здійснюється у /etc/security/access."
+"conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Керуючий сервер:"
+msgstr "_Керівні сервери:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "не використовувати hesiod для інформації про користувачів"
+msgstr "Додаткові параметри для обробки інформації користувача та автентифікації"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "_Додаткові параметри"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -864,59 +854,54 @@ msgstr ""
 "зміною параметрів. Відновити файли?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "_Дозволити offline вхід"
+msgstr "_Дозволити автономний вхід"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Аутентифікація"
+msgstr "_Метод автентифікації:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "Дія при вит_ягування картки"
+msgstr "Дія при _витягуванні картки:"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "_URL сертифікату"
+msgstr "_URL сертифікату:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Натисніть цю кнопку, якщо ви досі не завантажили сертифікат CA або сертифікат "
+"ще не визначений."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
-msgstr "Створбвати _домашні каталоги при першому вході"
+msgstr "Створювати _домашні каталоги при першому вході"
 
 #: ../authconfig.glade.h:21
 msgid "Do_n't Save"
 msgstr "_Не зберігати"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Адміністратор домену:"
+msgstr "_Адміністратор домену:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "Завантажити сертифікат CA"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "Увімкнути підтримку _відбитків пальців"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Увімкнути _локальне керування доступом"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
 msgstr "Увімкнути підтримку с_март-карток"
 
@@ -929,9 +914,10 @@ msgstr ""
 "успішному скануванні відбитку пальця."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "хеш/алгоритм для нового пароля"
+msgstr ""
+"Алгоритм хешування/шифрування використовується при збереженні паролів "
+"локальних користувачів"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -951,34 +937,28 @@ msgid "Joining Winbind Domain"
 msgstr "Підключення до Winbind домену"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP Search _Base DN"
+msgstr "_Базовий DN для пошуку LDAP:"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "С_ервер LDAP"
+msgstr "_Сервер LDAP:"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
 msgstr "_Домен NIS:"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
 msgstr "С_ервер NIS:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Область:"
+msgstr "О_бласть:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "_Вимагати смарт-картку для входу у систему"
+msgstr "Вимагати с_март-картку для входу у систему"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -994,7 +974,7 @@ msgstr "Відновити:"
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "Налаштовування службу аутентифікації користувачів у системі"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1005,9 +985,8 @@ msgstr ""
 "сертифікату та ключа, що пов'язаний зі смарт-карткою."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Оболонка шаблону:"
+msgstr "_Оболонка шаблону:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1024,9 +1003,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Використовувати DNS для _пошуку KDC для областей"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Використовувати DNS для пошуку вузлів та областей"
+msgstr "_Використовувати DNS для пошуку вузлів та областей"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1050,58 +1028,48 @@ msgstr ""
 "використовуватись для перевірки автентичності при доступі користувачів."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS об_ласть"
+msgstr "_Область ADS Winbind:"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "_Контролери домену Winbind"
+msgstr "_Контролери домену Winbind:"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "_Домен Winbind"
+msgstr "_Домен Winbind:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Завантажити сертифікат CA"
+msgstr "_Завантажити сертифікат CA..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Аутентифікація"
+msgstr "_Аутентифікація"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Увійти в домен"
+msgstr "_Увійти в домен..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
 msgstr "_KDC"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "Ал_горитм хешування пароля"
+msgstr "Ал_горитм хешування паролю:"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Пароль:"
+msgstr "_Пароль:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Модель безпеки:"
+msgstr "_Модель безпеки:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "_База даних облікових записів користувачів:"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
@@ -1124,167 +1092,4 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "Помилка завантаження сертифікату CA"
 
-#~ msgid "<b>Fingerprint Reader</b>"
-#~ msgstr "<b>Сканер відбитків</b>"
 
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Параметри</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>Смарт-картки</b>"
-
-#~ msgid "A_uthentication"
-#~ msgstr "_Аутентифікація"
-
-#~ msgid "Cache User _Information"
-#~ msgstr "_Кешувати інформацію про користувача"
-
-#~ msgid "Check access.conf _during account authorization"
-#~ msgstr ""
-#~ "_Перевіряти access.conf при перевірці автентичності облікових записів"
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "Налаштувати H_esiod..."
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "Налаштувати K_erberos..."
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "_Налаштувати LDAP..."
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "Налаштувати NI_S..."
-
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "Налаштувати смарт-_картки..."
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Налаштувати Win_bind..."
-
-#~ msgid "Domain"
-#~ msgstr "Домен"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "_Адміністратор домену"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Ввімкнути підтримку _Hesiod"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Ввімкнути підтримку _Kerberos"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "Ввімкнути підтримку _LDAP"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "Ввімкнути підтримку _NIS"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "Увімкнути підтримку _Winbind"
-
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "У користувачів з локального системного файлу /etc/passwd не буде "
-#~ "перевіряти авторизацію від мережних служб таких як LDAP чи Kerberos."
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod _LHS"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod _RHS"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod дозволяє адміністратору публікувати інформацію про користувачів та "
-#~ "групи у DNS. Іноді використовується у дуже великих мережах."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos - це довірча система автентифікації третьою стороною, яка широко "
-#~ "використовується у середніх та великих мережах."
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS (Network Information Service) часто використовується у невеликих та "
-#~ "середніх мережах."
-
-#~ msgid "Op_tions"
-#~ msgstr "_Параметри"
-
-#~ msgid "SMB Settings"
-#~ msgstr "Параметри SMB"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "Параметри смарт-карток"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "LDAP (Lightweight Directory Access Protocol) - стандартний спосіб пошуку "
-#~ "каталогів, які можуть містити дані у ієрархічній структурі. LDAP набирає "
-#~ "популярність у маленьких, середніх та великих мережах."
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "Використовувати _DNS для пошуку вузлів та областей"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "Використовувати _приховані паролі"
-
-#~ msgid "User Infor_mation"
-#~ msgstr "_Інформація про користувача"
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "Якщо відмічено, дозволяє мережним службам LDAP чи Kerberos авторизувати "
-#~ "системних користувачів на цьому комп'ютері, включаючи root."
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Winbind дозволяє системі отримувати інформацію про користувачів та  "
-#~ "виконувати автентифікацію користувачів, використовуючи інформацію, що "
-#~ "зберігається на NTDOM або ADS сервері. Використовується у мережах від "
-#~ "великих до малих."
-
-#~ msgid "_Admin Servers"
-#~ msgstr "_Керуючі сервери"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr "_Авторизувати системних користувачів через мережні служби"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "Контролери _домену"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr ""
-#~ "_Локальної перевірки достатньо\n"
-#~ "для локальних користувачів"
-
-#~ msgid "_Password"
-#~ msgstr "_Пароль"
-
-#~ msgid "_Realm"
-#~ msgstr "_Realm"
-
-#~ msgid "_Security Model"
-#~ msgstr "Модель _безпеки"
-
-#~ msgid "_Template Shell"
-#~ msgstr "Оболонка _шаблону:"
-
-#~ msgid "_Workgroup"
-#~ msgstr "_Робочі групи"
