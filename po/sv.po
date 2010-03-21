@@ -1,17 +1,18 @@
 # Swedish messages for authconfig.
-# Copyright © 2006-2009 Free Software Foundation
+# Copyright © 2006-2010 Free Software Foundation
+# This file is distributed under the same license as the authconfig package.
 # Magnus Larsson <fedoratrans@gmail.com>, 2006, 2007, 2009
-# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005, 2006.
-# Göran Uddeborg <goeran@uddeborg.se>, 2008, 2009.
+# Christian Rose <menthos@menthos.com>, 2000-2006.
+# Göran Uddeborg <goeran@uddeborg.se>, 2008-2010.
 #
-# $Id: authconfig.po,v 1.6 2009-09-17 23:11:39+02 göran Exp $
+# $Id: authconfig.po,v 1.8 2010-03-21 18:23:25+01 göran Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-09-17 23:10+0200\n"
+"PO-Revision-Date: 2010-03-21 18:23+0100\n"
 "Last-Translator: Göran Uddeborg <goeran@uddeborg.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -106,11 +107,11 @@ msgstr "inaktivera användning av TLS med LDAP (RFC-2830)"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "aktivera användning av RFC-2307bis-schema för LDAP-uppslagning av användarinformation"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "inaktivera användning av RFC-2307bis-schema för LDAP-uppslagning av användarinformation"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -343,41 +344,34 @@ msgid "default hesiod RHS"
 msgstr "standard-RHS för hesiod"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "aktivera NIS för användarinformation som standard"
+msgstr "aktivera SSSD för användarinformation som standard"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "inaktivera NIS för användarinformation som standard"
+msgstr "inaktivera SSSD för användarinformation som standard"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "aktivera LDAP för autentisering som standard"
+msgstr "aktivera SSSD för autentisering som standard"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "inaktivera LDAP för autentisering som standard"
+msgstr "inaktivera SSSD för autentisering som standard"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "aktivera cachning av användarinformation som standard"
+msgstr "aktivera cachning av användarinformation i SSSD som standard"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "inaktivera cachning av användarinformation som standard"
+msgstr "inaktivera cachning av användarinformation i SSSD som standard"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "aktivera cachning av användarinformation som standard"
+msgstr "aktivera cachning av användarinformation som standard (inaktiveras automatiskt när SSSD används)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
@@ -768,93 +762,83 @@ msgstr "Styr hur systemet verifierar användare som försöker logga in"
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "Endast lokal konton"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "Lösenord:"
+msgstr "Lösenord"
 
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "Lösenord:"
+msgstr "LDAP-lösenord"
 
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Kerberoslösenord"
 
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "skugglösenord"
+msgstr "NIS-lösenord"
 
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "skugglösenord"
+msgstr "Winbind-lösenord"
 
 #: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
+msgstr "Du måste ange en ldaps:// serveradress eller använda TLS för LDAP-autentisering"
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Autentiseringskonfiguration"
+msgstr "<b>Autentiseringskonfiguration</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Autentiseringskonfiguration"
+msgstr "<b>Alternativ för lokal autentisering</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Autentiseringskonfiguration"
+msgstr "<b>Andra autentiseringsalternativ</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Alternativ för smartkortautentisering</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Konfiguration av användarkonton</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
-msgstr ""
+msgstr "<small><b>Tips:</b> Smartkort stödjer inloggning till både lokala och centralt hanterade konton.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
+msgstr "<small><b>Tips:</b> Detta hanteras via /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Administrationsserver:"
+msgstr "Ad_ministrationsservrar:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "inaktivera hesiod för användarinformation som standard"
+msgstr "Ytterligare alternativ för användarinformation och autentisering"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "Avancerade _alternativ"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -870,30 +854,26 @@ msgstr ""
 "säkerhetskopia.  Återställ ändringarna?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "_Tillåt offline-inloggning"
+msgstr "Tillåt offline-in_loggning"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Autentisering"
+msgstr "Au_tentiseringsmetod:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "_Åtgärd vid borttagning av kort"
+msgstr "Åtgärd vid _borttagning av kort:"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "Certifikat-_URL"
+msgstr "Certifikat-_URL:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
-msgstr ""
+msgstr "Klicka denna knapp om du inte har hämtat ett CA-certifikat ännu eller har satt upp CA-certifikatet på något annat sätt."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -904,27 +884,24 @@ msgid "Do_n't Save"
 msgstr "Spara i_nte"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Domänadministratör:"
+msgstr "Domän_administratör:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "Hämta CA-certifikat"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "Aktivera stöd för _fingeravtrycksläsare"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Aktivera _lokal åtkomstkontroll"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "Aktivera stöd för smarta _kort"
+msgstr "Aktivera stöd för smart_kort"
 
 #: ../authconfig.glade.h:28
 msgid ""
@@ -935,9 +912,8 @@ msgstr ""
 "ditt fingeravtryck med fingeravtrycksläsaren ."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "hash/krypto-algoritm för nya lösenord"
+msgstr "Hash- eller krypto-algoritm som används för att lagra lösenord för lokala användare"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -956,34 +932,28 @@ msgid "Joining Winbind Domain"
 msgstr "Går med i Winbind-domän"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "_Bassök-DN för LDAP"
+msgstr "_Bassök-DN för LDAP:"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP-_server"
+msgstr "LDAP-_server:"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS-domän"
+msgstr "NIS-_domän:"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS-_server"
+msgstr "NIS-_server:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Realm:"
+msgstr "R_ike:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "_Kräv smart kort för att logga in"
+msgstr "_Kräv smartkort för att logga in"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -999,7 +969,7 @@ msgstr "Återställ"
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "Sätt upp tjänster för autenticering av använder på systemet"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1010,9 +980,8 @@ msgstr ""
 "certifikat och en nyckel som är associerad med ett smart kort."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Mallskal:"
+msgstr "_Mallskal:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1030,9 +999,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Använd DNS för att _lokalisera KDC:er för realmer"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Använd DNS för att slå upp värdar till realmer"
+msgstr "Använd _DNS för att slå upp värdar till riken"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1055,58 +1023,48 @@ msgstr ""
 "autentisering av användares åtkomst."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS-_realm"
+msgstr "Winbind ADS-_rike:"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind-domän_kontrollanter"
+msgstr "Winbind-domän_kontrollanter:"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind-_domän"
+msgstr "Winbind-_domän:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Hämta CA-certifikat"
+msgstr "_Hämta CA-certifikat..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Autentisering"
+msgstr "_Identitet och autentisering"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Gå med i domän"
+msgstr "_Gå med i domän..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDC:er"
+msgstr "_KDC:er:"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "_Hasningsalgoritm för lösenord"
+msgstr "_Hasningsalgoritm för lösenord:"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Lösenord:"
+msgstr "_Lösenord:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Säkerhetsmodell:"
+msgstr "_Säkerhetsmodell:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "_Användarkontodatabas:"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
@@ -1116,9 +1074,6 @@ msgstr "Lås"
 msgid "Ignore"
 msgstr "Ignorera"
 
-# Buggrapporterat som
-# https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=177264
-#
 #: ../authinfo.py:3218
 #, python-format
 msgid ""
@@ -1131,167 +1086,3 @@ msgstr ""
 #: ../authinfo.py:3761
 msgid "Error downloading CA certificate"
 msgstr "Fel vid hämtning av CA-certifikat"
-
-#~ msgid "<b>Fingerprint Reader</b>"
-#~ msgstr "<b>Fingeravtrycksläsare</b>"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Alternativ</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>Smart kort</b>"
-
-#~ msgid "A_uthentication"
-#~ msgstr "A_utentisering"
-
-#~ msgid "Cache User _Information"
-#~ msgstr "_Lagra användarinformation i cache"
-
-#~ msgid "Check access.conf _during account authorization"
-#~ msgstr "Kontrollera _access.conf under kontoautentisering"
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "Konfigurera _Hesiod..."
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "Konfigurera _Kerberos..."
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "Konfigurera _LDAP..."
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "Konfigurera _NIS..."
-
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "Konfigurera sm_arta kort..."
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Konfigurera _Winbind..."
-
-#~ msgid "Domain"
-#~ msgstr "Domän"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "Domän_administratör"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Aktivera stöd för _Hesiod"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Aktivera stöd för _Kerberos"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "Aktivera stöd för _LDAP"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "Aktivera stöd för _NIS"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "Aktivera stöd för _Winbind"
-
-# Detta borde buggrapporteras!
-#
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "För användarkonton som underhålls i den lokala /etc/passwd-filen kommer "
-#~ "systemet inte att kontrollera auktorisering från nätverkstjänster som "
-#~ "exempelvis LDAP eller Kerberos."
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod-_LHS"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod-_RHS"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod låter en systemadministratör publicera användar- och "
-#~ "gruppinformation i DNS. Det används ibland i mycket stora nätverk."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos är autentiseringssystem för pålitliga tredjeparter som vanligen "
-#~ "används i mellanstora till stora nätverk."
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS är namninformationstjänsten (Name Information Service). Det används "
-#~ "vanligtvis på små till medelstora nätverk."
-
-#~ msgid "Op_tions"
-#~ msgstr "_Alternativ"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB-inställningar"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "Inställningar för smarta kort"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "LDAP (Lightweight Directory Access Protocol) är ett standardsätt för att "
-#~ "genomsöka en katalog som kan innehålla godtyckliga data i en strukturerad "
-#~ "hierarki. LDAP används mer och mer i små till stora nätverk."
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "Använd _DNS för att slå upp värdar till realmer"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "Använd _skugglösenord"
-
-#~ msgid "User Infor_mation"
-#~ msgstr "Användarinfor_mation"
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "När detta är aktiverat tillåts nätverkstjänster som exempelvis LDAP eller "
-#~ "Kerberos att autentisera systemkonton inklusive root på denna maskin."
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Winbind låter ett system hämta information om användare och autentisera "
-#~ "användare genom att använda information som lagras i en NTDOM- eller ADS-"
-#~ "server. Det används i små till medelstora nätverk."
-
-#~ msgid "_Admin Servers"
-#~ msgstr "_Administrationsservrar"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr "_Autentisera systemkonton genom nätverkstjänster"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "_Domänkontrollanter"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr "_Lokal auktorisering är tillräckligt för lokala användare"
-
-#~ msgid "_Password"
-#~ msgstr "_Lösenord"
-
-#~ msgid "_Realm"
-#~ msgstr "_Realm"
-
-#~ msgid "_Security Model"
-#~ msgstr "_Säkerhetsmodell"
-
-#~ msgid "_Template Shell"
-#~ msgstr "_Mallskal"
-
-#~ msgid "_Workgroup"
-#~ msgstr "_Arbetsgrupp"
