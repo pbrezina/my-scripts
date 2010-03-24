@@ -3,19 +3,21 @@
 # Copyright (C) 2004 authconfig's COPYRIGHT HOLDER.
 # Lauri Nurmi <lanurmi@iki.fi>, 2004, 2006.
 # Mikko Ikola <ikola@iki.fi>, 2004, 2005.
-# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2006-2009.
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2006-2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-12-17 20:38+0200\n"
-"Last-Translator: Ville Skyttä <ville.skytta@iki.fi>\n"
+"PO-Revision-Date: 2010-03-24 16:59+0300\n"
+"Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.5.2\n"
 
 #: ../authconfig.py:81
 #, python-format
@@ -105,11 +107,11 @@ msgstr "älä käytä TLS:tä LDAP:in kanssa (RFC-2830)"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "käytä RFC-2307bis-skeemaa käyttäjätietojen hakuun LDAP:stä"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "älä käytä RFC-2307bis-skeemaa käyttäjätietojen hakuun LDAP:stä"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -341,41 +343,37 @@ msgid "default hesiod RHS"
 msgstr "oletus hesiod RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "käytä NIS:iä käyttäjätietoihin oletuksena"
+msgstr "käytä SSSD:tä käyttäjätietoihin oletuksena"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "älä käytä NIS:iä käyttäjätietoihin oletuksena"
+msgstr "älä käytä SSSD:tä käyttäjätietoihin oletuksena"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "käytä LDAP:ia todennukseen oletuksena"
+msgstr "käytä SSD:tä todennukseen oletuksena"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "älä käytä LDAP:ia todennukseen oletuksena"
+msgstr "älä käytä SSSD:tä todennukseen oletuksena"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "ota käyttöön käyttäjätietojen tallentaminen välimuistiin oletuksena"
+msgstr ""
+"ota käyttöön käyttäjätietojen tallentaminen SSSD:n välimuistiin oletuksena"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "poista käyttäjätietojen tallentaminen välimuistiin oletuksena"
+msgstr "poista käyttäjätietojen tallentaminen SSSD:n välimuistiin oletuksena"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "ota käyttöön käyttäjätietojen tallentaminen välimuistiin oletuksena"
+msgstr ""
+"ota käyttöön käyttäjätietojen tallentaminen välimuistiin oletuksena "
+"(poistetaan automaattisesti käytöstä, kun SSSD on käytössä)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
@@ -765,93 +763,89 @@ msgstr ""
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "Vain paikalliset tilit"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "Salasana:"
+msgstr "Salasana"
 
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "Salasana:"
+msgstr "LDAP-salasana"
 
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Kerberos-salasana"
 
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "varjosalasana"
+msgstr "NIS-salasana"
 
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "varjosalasana"
+msgstr "Winbind-salasana"
 
 #: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
+"On annettava ldaps://-palvelimen osoite tai käytettävä TLS:ää LDAP-"
+"todennukseen"
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Todennusasetukset"
+msgstr "<b>Todennusasetukset</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Todennusasetukset"
+msgstr "<b>Paikalliset todennusasetukset</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Todennusasetukset"
+msgstr "<b>Muut todennusasetukset</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Älykortin todennusasetukset</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Käyttäjätunnusten asetukset</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>Vinkki:</b> Älykortit tukevat sekä paikallisille että keskitetysti "
+"hallituille tunnuksille kirjautumista.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
+"<small><b>Vinkki:</b> Tätä hallitaan tiedostosta "
+"/etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Pääpalvelin:"
+msgstr "_Pääpalvelimet:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "älä käytä hesiodia käyttäjätietoihin oletuksena"
+msgstr "Lisäasetuksia käyttäjätiedoista ja todennuksesta"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "Lisä_asetukset"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -866,30 +860,28 @@ msgstr ""
 "palautetaan varmuuskopiosta. Kumotaanko muutokset?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "_Salli yhteydetön kirjautuminen"
+msgstr "Salli yhteydetön _kirjautuminen"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Todennus"
+msgstr "Todennusmenetelmä:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "_Toimenpide korttia poistettaessa"
+msgstr "Toimenpide korttia _poistettaessa"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "Sertifikaatin _osoite"
+msgstr "Sertifikaatin _URL:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Napsauta tästä, jos et ladannut CA-sertifikaattia tai et ole asettanut CA-"
+"sertifikaattia muulla tavalla."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -900,25 +892,22 @@ msgid "Do_n't Save"
 msgstr "Ä_lä tallenna"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Toimialueen ylläpitäjä:"
+msgstr "Toimialueen _ylläpitäjä:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "Lataa CA-sertifikaatti"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "Ota käyttöön tuki _sormenjälkilukijalle"
+msgstr "Käytä _sormenjälkilukijatukea"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Käytä _paikallista pääsynhallintaa"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
 msgstr "Käytä _älykorttitukea"
 
@@ -929,9 +918,10 @@ msgid ""
 msgstr "Sisäänkirjautuminen on mahdollista käyttäen sormenjälkilukijaa."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "uusien salasanojen tiiviste-/salausalgoritmi"
+msgstr ""
+"Paikallisten käyttäjien salasanojen tallentamiseen käytettävä "
+"tiiviste-/salausalgoritmi"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -956,29 +946,24 @@ msgid "LDAP Search _Base DN:"
 msgstr "LDAP etsi _Base DN"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "_LDAP-palvelin"
+msgstr "LDAP-_palvelin:"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "N_IS-toimialue"
+msgstr "NIS-_toimialue:"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "_NIS-palvelin"
+msgstr "NIS-_palvelin:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Realm:"
+msgstr "R_ealm:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "_Vaadi älykortti sisäänkirjautumiseen"
+msgstr "Vaadi _älykortti sisäänkirjautumiseen"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -993,7 +978,7 @@ msgstr "Palauta"
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "Aseta palvelut, joita käytetään käyttäjien todentamiseen järjestelmässä"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1004,9 +989,8 @@ msgstr ""
 "liitettyä sertifikaattia ja avainta."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Mallikuori:"
+msgstr "_Mallikomentokehote:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1023,9 +1007,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Käytä DNS:ää paika_llistaaksesi KDC:t realmeja varten"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Käytä DNS:ää konenimien selvittämisessä realmeiksi"
+msgstr "Käytä D_NS:ää konenimien selvittämisessä realmeiksi"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1048,58 +1031,48 @@ msgstr ""
 "todentamiseen."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS _Realm"
+msgstr "Winbind ADS R_ealm:"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind-toimialueen ohjauskoneet"
+msgstr "Winbind-toimialueen _ohjauskoneet:"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind-_toimialue"
+msgstr "Winbind-_toimialue:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Lataa CA-sertifikaatti"
+msgstr "_Lataa CA-sertifikaatti..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Käytä SMB-todennusta"
+msgstr "_Identiteetti & todennus"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Liity toimialueeseen"
+msgstr "_Liity toimialueeseen..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDCs"
+msgstr "_KDC:t:"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "_Salasanojen tiivistealgoritmi"
+msgstr "_Salasanojen tiivistealgoritmi:"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Salasana:"
+msgstr "_Salasana:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Turvatyyppi:"
+msgstr "_Turvatyyppi:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "_Käyttäjätunnustietokanta:"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
