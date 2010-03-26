@@ -2806,7 +2806,7 @@ class AuthInfo:
 			prov = None
 		if prov != newprovider:
 			if prov != None:
-				domain.remove_provider(prov)
+				domain.remove_provider(subtype)
 			domain.add_provider(newprovider, subtype)
 
 	def writeSSSD(self):
