@@ -102,7 +102,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+* Mon Mar 29 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.2-1
 - fix SSSD provider change (#577263)
+- drop LDAP authentication from FreeIPA choice
+- updated translations
+- use pam_oddjob_mkhomedir if the appropriate package is installed (#552485)
 
 * Fri Mar 19 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.1-1
 - added credential caching enablement for SSSD
