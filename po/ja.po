@@ -1,4 +1,4 @@
-# translation of authconfig.ja.po to Japanese
+# translation of ja.po to Japanese
 # Japanese translations for Authconfig
 # Copyright (C) 2002 Red Hat, Inc.
 #
@@ -8,20 +8,20 @@
 # Kiyoto James Hashida <khashida@redhat.com>, 2006.
 # Noriko Mizumoto <noriko@redhat.com>, 2006, 2008, 2009.
 # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2007.
-# Kiyoto Hashida <khashida@redhat.com>, 2008, 2009.
+# Kiyoto Hashida <khashida@redhat.com>, 2008, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.ja\n"
+"Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-09-18 12:04+0900\n"
+"PO-Revision-Date: 2010-03-30 11:01+0900\n"
 "Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
 "Language-Team: Japanese <jp@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: Plural-Forms: nplurals=1; plural=0;\n\n"
 "\n"
 
 #: ../authconfig.py:81
@@ -132,11 +132,11 @@ msgstr "TLS と LDAP の併用を無効にする (RFC-2830)"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "LDAP ユーザー情報ルックアップ用の RFC-2307bis schema の使用を有効にする"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "LDAP ユーザー情報ルックアップ用の RFC-2307bis schema の使用を無効にする"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -289,8 +289,7 @@ msgstr "samba と winbind 用に使用するセキュリティモード"
 
 #: ../authconfig.py:189
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
-"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
+msgstr "セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
 
 #: ../authconfig.py:190 ../authconfig.py:192
 msgid "<lowest-highest>"
@@ -390,47 +389,42 @@ msgstr "デフォルトの hesiod RHS"
 
 # ../authconfig.c:728
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "ユーザー情報に関して NIS をデフォルトで有効にする"
+msgstr "ユーザー情報に関して SSSD をデフォルトで有効にする"
 
 # ../authconfig.c:730
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "ユーザー情報に関して NIS をデフォルトで無効にする"
+msgstr "ユーザー情報に関して SSSD をデフォルトで無効にする"
 
 # ../authconfig.c:736
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "LDAP 認証をデフォルトで有効にする"
+msgstr "認証の SSSD をデフォルトで有効にする"
 
 # ../authconfig.c:738
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "LDAP 認証をデフォルトで無効にする"
+msgstr "認証の SSSD をデフォルトで無効にする"
 
 # ../authconfig.c:756
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "ユーザー情報のキャッシュをデフォルトで有効にする"
+msgstr "SSSD 内のユーザー信任情報のキャッシュをデフォルトで有効にする"
 
 # ../authconfig.c:758
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "ユーザー情報のキャッシュをデフォルトで無効にする"
+msgstr "SSSD 内のユーザー信任情報のキャッシュをデフォルトで無効にする"
 
 # ../authconfig.c:756
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "ユーザー情報のキャッシュをデフォルトで有効にする"
+msgstr ""
+"ユーザー情報のキャッシュをデフォルトで有効にする（SSSD が使用される時に "
+"自動的に無効にする）"
 
 # ../authconfig.c:758
 #: ../authconfig.py:249
@@ -529,8 +523,7 @@ msgstr "不正なスマートカード取り出し動作が指定されました
 
 #: ../authconfig.py:443
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
-"不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
+msgstr "不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
 
 # ../authconfig.c:803
 #: ../authconfig.py:476
@@ -854,46 +847,40 @@ msgstr "ログインしようとするユーザーをシステムが確証する
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "ローカルアカウント専用"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 # ../authconfig.c:455
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "パスワード:"
+msgstr "パスワード"
 
 # ../authconfig.c:455
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "パスワード:"
+msgstr "LDAP パスワード"
 
 # ../authconfig.c:500
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Kerberos パスワード"
 
 # ../authconfig.c:450
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "シャドウパスワード"
+msgstr "NIS パスワード"
 
 # ../authconfig.c:450
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "シャドウパスワード"
+msgstr "Winbind パスワード"
 
 #: ../authconfig-gtk.py:425
-msgid ""
-"You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
+msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
+msgstr "ldaps:// サーバーアドレスを記入するか、または LDAP 認証用の TLS を使用しなければなりません。"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -901,56 +888,52 @@ msgstr "*"
 
 # ../authconfig.c:580
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "認証の設定"
+msgstr "<b>認証の設定</b>"
 
 # ../authconfig.c:580
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "認証の設定"
+msgstr "<b>ローカル認証のオプション</b>"
 
 # ../authconfig.c:580
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "認証の設定"
+msgstr "<b>他の認証のオプション</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>スマートカード認証のオプション</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>ユーザーアカウントの認証</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>ヒント:</b>スマートカードはローカルアカウントと中央管理のアカウントの両方のロギングを "
+"サポートします。</small>"
 
 #: ../authconfig.glade.h:8
-msgid ""
-"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
+msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgstr "<small><b>ヒント:</b> これは /etc/security/access.conf を介して管理されます。</small>"
 
 # ../authconfig.c:236
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "管理サーバー:"
+msgstr "管理サーバー（_M）:"
 
 # ../authconfig.c:758
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "ユーザー情報に関して hesiod をデフォルトで無効にする"
+msgstr "ユーザー情報と認証の為の追加のオプション"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "高度なオプション（_O）"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -965,31 +948,29 @@ msgstr ""
 "設定に復元できます。変更を戻しますか ？"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "オフラインログインを認める"
+msgstr "オフラインログインを許可（_L）"
 
 # ../authconfig.c:462
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "認証"
+msgstr "認証の方法（_H）:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "カード削除のアクション(_A)"
+msgstr "カード削除のアクション(_M):"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "証明書 URL (_U)"
+msgstr "証明書 URL (_U):"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"CA 証明書をまだダウンロードしていない場合や、他の方法で CA 証明書を "
+"設定していない場合は、このボタンをクリックします。"
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -1000,27 +981,24 @@ msgid "Do_n't Save"
 msgstr "保存しない(_N)"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "ドメインアドミニストレータ:"
+msgstr "ドメイン管理者（_A）:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "CA 証明書をダウンロードする"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "指紋読み取りサポートを有効にする(_F)"
+msgstr "指紋読み取りサポートを有効にする (_F)"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "ローカルアクセス制御を有効にする（_L）"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "スマートカードサポートを有効にする(_S)"
+msgstr "スマートカードサポートを有効にする (_S)"
 
 #: ../authconfig.glade.h:28
 msgid ""
@@ -1031,9 +1009,8 @@ msgstr ""
 "でログインが可能になります。"
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "新しいパスワードのためのハッシュ/暗号化アルゴリズム"
+msgstr "ローカルユーザーのパスワード保存に使用するハッシュ/暗号化アルゴリズム"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -1052,38 +1029,32 @@ msgid "Joining Winbind Domain"
 msgstr "Winbind ドメインに参加"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP 検索  ベースDN(_B)"
+msgstr "LDAP 検索ベース DN (_B):"
 
 # ../authconfig.c:740
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP サーバー(_S)"
+msgstr "LDAP サーバー (_S):"
 
 # ../authconfig.c:162
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS ドメイン(_D)"
+msgstr "NIS ドメイン (_D):"
 
 # ../authconfig.c:163 ../authconfig.c:201
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS サーバー(_S)"
+msgstr "NIS サーバー (_S):"
 
 # ../authconfig.c:234
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "レルム(Realm):"
+msgstr "レルム (_):"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "ログインにスマートカードを必要とする (_R)"
+msgstr "ログインにスマートカードを必要とする (_D)"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -1098,7 +1069,7 @@ msgstr "戻す"
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "ユーザーをシステムに認証する為に使用するサービスをセットアップ"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1109,9 +1080,8 @@ msgstr ""
 "を使用したログインが可能になります。"
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "テンプレートシェル:"
+msgstr "テンプレートシェル（_M）:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1128,9 +1098,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "DNS を使用してレルム用の KDC を見付ける(_l)"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "DNS を使用してレルムのホストを解決する"
+msgstr "DNS を使用してレルムのホストを解決する（_N）"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1153,63 +1122,53 @@ msgstr ""
 "れます。"
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS Realm(_R)"
+msgstr "Winbind ADS レルム (_E)"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind ドメインコントローラ(_n)"
+msgstr "Winbind ドメインコントローラ (_n):"
 
 # ../authconfig.c:162
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind ドメイン(_D)"
+msgstr "Winbind ドメイン (_D):"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "CA 証明書をダウンロードする"
+msgstr "CA 証明書をダウンロードする...（_D）"
 
 # ../authconfig.c:462
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "認証"
+msgstr "識別と認証（_I）"
 
 # ../authconfig.c:162
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "ドメインに参加(_J)"
+msgstr "ドメインに参加... (_J)"
 
 # ../authconfig.c:235
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "KDCs(_K)"
+msgstr "KDCs (_K):"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "パスワードハッシュアルゴリズム"
+msgstr "パスワードハッシュアルゴリズム（_P）:"
 
 # ../authconfig.c:455
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "パスワード:"
+msgstr "パスワード（_P）:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "セキュリティモデル:"
+msgstr "セキュリティモデル（_S）:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "ユーザーアカウントデータベース (_U) :"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
@@ -1232,173 +1191,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "CA 証明書のダウンロードでエラー"
 
-#~ msgid "<b>Fingerprint Reader</b>"
-#~ msgstr "<b>指紋読み取り</b>"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>オプション</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>スマートカード</b>"
-
-# ../authconfig.c:462
-#~ msgid "A_uthentication"
-#~ msgstr "認証(_U)"
-
-#~ msgid "Cache User _Information"
-#~ msgstr "キャッシュユーザー情報(_I)"
-
-#~ msgid "Check access.conf _during account authorization"
-#~ msgstr "アカウント認証中に access.conf をチェックする(_D)"
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "Hesiod. の設定(_E)..."
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "Kerberos の設定(_E)..."
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "LDAPの設定(_D)..."
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "NISの設定(_S)..."
-
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "スマートカードの設定(_A)..."
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Win bind の設定..."
-
-# ../authconfig.c:162
-#~ msgid "Domain"
-#~ msgstr "ドメイン"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "ドメインアドミニストレータ(_A)"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Hesiod サポートを有効にする(_H)"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Kerberos サポートを有効にする(_K)"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "LDAPサポートを有効にする(_L)"
-
-# ../authconfig.c:719
-#~ msgid "Enable _NIS Support"
-#~ msgstr "NIS サポートを有効にする(_N)"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "Winbind サポートを有効にする(_W)"
-
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "ローカルの /etc/passwd ファイルシステムでメンテナンスされたユーザーアカウ"
-#~ "ントは LDAP や Kerberos のようなネットワークサービスからの認証チェックをさ"
-#~ "れません。"
-
-# ../authconfig.c:760
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod LHS(_L)"
-
-# ../authconfig.c:762
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod RHS(_R)"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod はシステム管理者が DNS でユーザーとグループの情報を発行できるように"
-#~ "します。 これは時として大規模なネットワークで使用されます。"
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos は一般的に中規模から大規模のネットワークで使用される、信用できる"
-#~ "サードパーティ認証システムです。"
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS とはネットワークインフォメーションサービスのことです。一般的に小から中"
-#~ "サイズのネットワークで使用されます。"
-
-#~ msgid "Op_tions"
-#~ msgstr "オプション(_T)"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB 設定"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "スマートカードの設定"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Lightweight Directory Access Protocol とは階級構成の中の随意のデータを保持"
-#~ "するディレクトリを検索する標準的な手段です。LDAP は小規模から大規模なネッ"
-#~ "トワークでの使用が増加しています。"
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "DNS を使用してレルムのホストを解決する(_D)"
-
-# ../authconfig.c:450
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "シャドウパスワードを使用(_S)"
-
-#~ msgid "User Infor_mation"
-#~ msgstr "ユーザー情報(_M)"
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "有効になれば、このマシンの root を含むシステムアカウントを認証する LDAP "
-#~ "や Kerberos のようなネットワークサービスが許可されます。"
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Winbind を使用するとシステムが NTDOM か ADS サーバーに保存された情報を使っ"
-#~ "てユーザー情報を取り出しユーザーを承認します。これは小規模から大規模のネッ"
-#~ "トワークで使用されます。"
-
-# ../authconfig.c:236
-#~ msgid "_Admin Servers"
-#~ msgstr "管理 サーバー(_A)"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr "ネットワークサービスによる認証システムアカウント(_A)"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "ドメインコントローラ(_D)"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr "ローカル認証はローカルユーザー用として十分(_L)"
-
-# ../authconfig.c:455
-#~ msgid "_Password"
-#~ msgstr "パスワード(_P)"
-
-# ../authconfig.c:234
-#~ msgid "_Realm"
-#~ msgstr "Realm(_R)"
-
-#~ msgid "_Security Model"
-#~ msgstr "セキュリティモデル(_S)"
-
-#~ msgid "_Template Shell"
-#~ msgstr "テンプレートシェル(_T)"
-
-#~ msgid "_Workgroup"
-#~ msgstr "ワークグループ(_W)"
