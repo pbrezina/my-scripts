@@ -103,6 +103,7 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 
 %changelog
 - use ldap instead of sss for nsswitch maps unsupported by sssd (#578325)
+- call cacertdir_rehash also in case ldaps: server uri is used (#578219)
 
 * Mon Mar 29 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.2-1
 - fix SSSD provider change (#577263)

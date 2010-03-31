@@ -3765,7 +3765,7 @@ class AuthInfo:
 
 	def rehashLDAPCACerts(self):
 		if ((self.enableLDAP or self.enableLDAPAuth) and
-			self.enableLDAPS):
+			(self.enableLDAPS or 'ldaps:' in self.ldapServer)):
 			os.system("/usr/sbin/cacertdir_rehash " + self.ldapCacertDir)
 
 	def downloadLDAPCACert(self):
