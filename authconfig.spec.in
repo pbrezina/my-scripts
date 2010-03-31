@@ -102,6 +102,8 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+- use ldap instead of sss for nsswitch maps unsupported by sssd (#578325)
+
 * Mon Mar 29 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.2-1
 - fix SSSD provider change (#577263)
 - drop LDAP authentication from FreeIPA choice
