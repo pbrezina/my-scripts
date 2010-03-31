@@ -1,4 +1,4 @@
-# translation of authconfig.tip.po to Korean
+# translation of authconfig.ko.po to Korean
 # translation of ko.po to
 # translation of ko.po to
 # translation of ko.po to
@@ -10,13 +10,14 @@
 # Jinseok Seo <jsseo@postech.ac.kr>, 2004.
 # Michelle Ji Yeen Kim <mkim@redhat.com>, 2005, 2006.
 # Eunju Kim <eukim@redhat.com>, 2006, 2007, 2008, 2009.
+# Hyunsok Oh <hoh@redhat.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.tip\n"
+"Project-Id-Version: authconfig.ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-09-21 10:59+1000\n"
-"Last-Translator: Eunju Kim <eukim@redhat.com>\n"
+"PO-Revision-Date: 2010-03-30 13:22+1000\n"
+"Last-Translator: Hyunsok Oh <hoh@redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,11 +115,11 @@ msgstr "LDAP에 TLS를 사용하지 않음 (RFC-2830) "
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "LDAP 사용자 정보 검색을 위해 RFC-2307bis 스키마를 사용"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "LDAP 사용자 정보 검색을 위해 RFC-2307bis 스키마를 사용하지 않음"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -322,11 +323,11 @@ msgstr "호스트명 변환에 wins를 사용하지 않음"
 
 #: ../authconfig.py:219
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "호스트명 변환에 wins 또는 nis를 통해 dns 사용 선호 "
+msgstr "호스트명 변환에 wins 또는 nis보다 dns 사용 선호 "
 
 #: ../authconfig.py:221
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "호스트명 변환에 wins 또는 nis를 통해 dns 사용을 선호하지 않음 "
+msgstr "호스트명 변환에 wins 또는 nis보다 dns 사용을 선호하지 않음 "
 
 #: ../authconfig.py:224
 msgid "enable hesiod for user information by default"
@@ -345,45 +346,38 @@ msgid "default hesiod RHS"
 msgstr "기본 hesiod RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "사용자 정보 인증에 NIS를 기본적으로 사용함"
+msgstr "사용자 정보를 위해 SSSD를 사용"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "사용자 정보 인증에 NIS를 기본적으로 사용하지 않음"
+msgstr "사용자 정보를 위해 SSSD를 사용하지 않음"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "인증에 LDAP를 기본적으로 사용함"
+msgstr "사용자 인증에 SSSD를 기본적으로 사용"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "인증에 LDAP를 기본적으로 사용하지 않음"
+msgstr "사용자 인증에 SSSD를 기본적으로 사용하지 않음"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "사용자 정보를 저장하는 것을 기본적으로 사용함"
+msgstr "SSSD에서 사용자 인증 정보 캐시를 기본적으로 사용"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "사용자 정보를 저장하는 것을 기본적으로 사용하지 않음"
+msgstr "SSSD에서 사용자 인증 정보 캐시를 기본적으로 사용하지 않음"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "사용자 정보를 저장하는 것을 기본적으로 사용함"
+msgstr "사용자 정보 캐시를 기본적으로 사용(SSSD가 사용되면 자동으로 비활성화됨)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
-msgstr "사용자 정보를 저장하는 것을 기본적으로 사용하지 않음"
+msgstr "사용자 정보 캐시를 기본적으로 사용하지 않음"
 
 #: ../authconfig.py:252
 msgid "local authorization is sufficient for local users"
@@ -403,23 +397,23 @@ msgstr "계정을 인증하는 동안 access.conf를 확인하지 않음"
 
 #: ../authconfig.py:262
 msgid "authenticate system accounts by network services"
-msgstr "네트워크 서비스에 의한 인증 시스템 계정"
+msgstr "네트워크 서비스로 시스템 계정 인증"
 
 #: ../authconfig.py:264
 msgid "authenticate system accounts by local files only"
-msgstr "로컬 파일만에 의한 인증 시스템 계정"
+msgstr "로컬 파일만으로 시스템 계정 인증"
 
 #: ../authconfig.py:267
 msgid "create home directories for users on their first login"
-msgstr "처음 로그인 시 사용자 용 홈 디렉토리 생성 "
+msgstr "처음 로그인 시 사용자용 홈 디렉토리 생성 "
 
 #: ../authconfig.py:269
 msgid "do not create home directories for users on their first login"
-msgstr "처음 로그인 시 사용자 용 홈 디렉토리를 생성하지 않음 "
+msgstr "처음 로그인 시 사용자용 홈 디렉토리를 생성하지 않음 "
 
 #: ../authconfig.py:272
 msgid "do not start/stop portmap, ypbind, and nscd"
-msgstr "portmap, ypbind, nscd 명령을 '시작/정지' 하지 않음"
+msgstr "portmap, ypbind, nscd 명령을 시작/정지하지 않음"
 
 #: ../authconfig.py:275
 msgid "do not update the configuration files, only print new settings"
@@ -427,11 +421,11 @@ msgstr "설정 파일을 업데이트하지않고, 새 설정만 출력함"
 
 #: ../authconfig.py:279
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr "TUI의 주 대화창에 뒤로(Back) 대신 취소(Cancel)를 표시"
+msgstr "TUI의 주 대화창에 취소(Cancel) 대신 뒤로(Back)를 표시"
 
 #: ../authconfig.py:281
 msgid "do not display the deprecated text user interface"
-msgstr "사용되지 않는 텍스트 사용자 인터페이스를 표시하지 않음"
+msgstr "사용하지 않는 텍스트 사용자 인터페이스를 표시하지 않음"
 
 #: ../authconfig.py:284
 msgid "opposite of --test, update configuration files with changed settings"
@@ -455,7 +449,7 @@ msgstr "모든 설정 파일 백업 저장 "
 
 #: ../authconfig.py:296
 msgid "restore the backup of configuration files"
-msgstr "모든 설정 파일 백업 복구 "
+msgstr "설정 파일 백업 복구 "
 
 #: ../authconfig.py:299
 msgid ""
@@ -465,11 +459,11 @@ msgstr "이전 설정 사항을 변경하기 전에 저장된 설정 파일 백�
 
 #: ../authconfig.py:304
 msgid "unexpected argument"
-msgstr "예상외의 인수"
+msgstr "예상못한 인수"
 
 #: ../authconfig.py:434
 msgid "Bad smart card removal action specified."
-msgstr "잘못된 smart card 삭제 작업이 지정됨."
+msgstr "잘못된 smart card 삭제 동작이 지정됨."
 
 #: ../authconfig.py:443
 msgid "Unknown password hashing algorithm specified, using sha256."
@@ -481,7 +475,7 @@ msgstr "root 만이 실행할 수 있습니다"
 
 #: ../authconfig.py:492
 msgid "dialog was cancelled"
-msgstr "대화형 설정이 취소되었습니다"
+msgstr "대화 상자가 취소되었습니다"
 
 #: ../authconfig.py:516
 #, python-format
@@ -491,7 +485,8 @@ msgid ""
 "Install the %s package, which provides this file."
 msgstr ""
 "%s 파일을 찾을 수 없습니다. 이 파일은 %s (을)를 제대로 작동하도록 하기 위해서"
-"는 반드시 필요합니다.  이 파일이 포함되어 있는 %s 패키지를 설치해 주십시오."
+"는 반드시 필요합니다.\n"
+"이 파일이 포함되어 있는 %s 패키지를 설치해 주십시오."
 
 #: ../authconfig.py:518 ../authconfig.py:864
 msgid "Warning"
@@ -667,7 +662,7 @@ msgstr "DNS를 사용하여 호스트를 관리 영역으로 변환"
 
 #: ../authconfig.py:755
 msgid "Use DNS to locate KDCs for realms"
-msgstr "DNS를 사용하여 관리 영역으로 KDC를 배치"
+msgstr "DNS를 사용하여 관리 영역에 대한 KDC를 찾음"
 
 #: ../authconfig.py:756
 msgid "Kerberos Settings"
@@ -683,7 +678,7 @@ msgstr "암호:"
 
 #: ../authconfig.py:764
 msgid "Join Settings"
-msgstr "결합 설정"
+msgstr "참가 설정"
 
 #: ../authconfig.py:774 ../authconfig.glade.h:43
 msgid ""
@@ -692,7 +687,7 @@ msgid ""
 "may fail.  Save changes?"
 msgstr ""
 "계속 진행하기 전에 변경하신 설정을 디스크에 저장하셔야 합니다. 지금 저장하지 "
-"않으시면 도메인 결합에 실패할 수도 있습니다.  변경 사항을 저장하시겠습니까?"
+"않으시면 도메인 참가에 실패할 수도 있습니다.  변경 사항을 저장하시겠습니까?"
 
 #: ../authconfig.py:781
 msgid "Save Settings"
@@ -730,7 +725,7 @@ msgstr "Winbind 설정"
 
 #: ../authconfig.py:807
 msgid "Join Domain"
-msgstr "결합 도메인"
+msgstr "도메인 참가"
 
 #: ../authconfig.py:859
 #, python-format
@@ -740,17 +735,16 @@ msgid ""
 "the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"TLS 프로토콜을 사용하여 LDAP 서버에 적절히 연결하기 위해서는 서버의 인증서를 "
-"공증한 CA 인증서를 PEM 형식으로 '%s' 디렉토리에 복사하셔야 합니다.\n"
-"복사를 마친 후 확인 버튼을 눌러주세요."
+"TLS 프로토콜을 사용하여 LDAP 서버에 연결하기 위해서는 서버의 인증서로 서명된 CA 인증서가 "
+"필요합니다. 인증서를 PEM 포맷으로 '%s' 디렉토리에 복사하십시오.\n"
+"복사를 마친 후 확인 버튼을 누르십시오."
 
 #. FIXME - version
 #: ../authconfig.py:873
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-"      <Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
+msgstr "<Tab>/<Alt-Tab> 항목 이동   |   <Space> 선택   |   <F12> 다음 화면"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -758,93 +752,83 @@ msgstr "시스템이 로그인 하려는 사용자를 인증하는 방식을 제
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "로컬 계정만"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "암호:"
+msgstr "암호"
 
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "암호:"
+msgstr "LDAP 암호"
 
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "커베로스"
+msgstr "커베로스 암호"
 
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "섀도우 암호"
+msgstr "NIS 암호"
 
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "섀도우 암호"
+msgstr "Winbind 암호"
 
 #: ../authconfig-gtk.py:425
-msgid ""
-"You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
+msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
+msgstr "LDAP 인증에 TLS를 사용하려면 ladps:// 서버 주소를 지정하셔야 합니다."
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "인증 설정"
+msgstr "<b>인증 설정</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "인증 설정"
+msgstr "<b>로컬 인증 선택사항</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "인증 설정"
+msgstr "<b>다른 인증 선택사항</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>스마트카드 인증 선택사항</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>사용자 계정 설정</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>팁:</b> 스마트 카드는 로컬 계정과 중앙 관리 계정 모두에 대한 "
+"로그인을 지원합니다.</small>"
 
 #: ../authconfig.glade.h:8
-msgid ""
-"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
+msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgstr "<small><b>팁:</b> /etc/security/access.conf를 통해 이를 관리합니다.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "관리 서버:"
+msgstr "관리 서버(_M):"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "사용자 정보를 위한 hesiod를 기본적으로 사용하지 않음"
+msgstr "사용자 정보와 인증을 위한 추가 옵션"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "추가 옵션(_O)"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -855,34 +839,32 @@ msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
 msgstr ""
-"이전 인증 설정 변경에 의해 수정된 모든 설정 파일은 백업에서 복구됩니다. 변경 "
+"이전 인증 설정 변경에 의해 수정된 모든 설정 파일은 백업에서 원상 복구됩니다. 변경 "
 "사항을 복구하시겠습니까? "
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "오프라인 로그인 허용(_A)"
+msgstr "오프라인 로그인 허용(_L)"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "인증"
+msgstr "인증 방법(_H)"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "카드 제거 명령 (_A)"
+msgstr "카드 제거 동작 (_M)"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "URL 인증서(_U)"
+msgstr "인증서 _URL"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"CA 인증서를 아직 다운로드 하지 않았거나, 다른 방법으로 CA 인증서를 지정하지 않은 경우에 "
+"이 버튼을 클릭하십시오."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -893,85 +875,72 @@ msgid "Do_n't Save"
 msgstr "저장하지 않음(_N)"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "도메인 관리자:"
+msgstr "도메인 관리자(_A):"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
-msgstr "CA 인증서를 다운로드함"
+msgstr "CA 인증서를 다운로드"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "지문 인식기 지원 활성화(_F) "
+msgstr "지문 인식기 지원 활성화(_F)"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "로컬 억세스 컨트롤 활성화(_L)"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "Smart Card 지원 활성화(_S)  "
+msgstr "Smart Card 지원 활성화(_S)"
 
 #: ../authconfig.glade.h:28
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
-msgstr ""
-"지문 인증을 통해 지문 인식기로 지문을 스캐닝하여 로그인할 수 있습니다.   "
+msgstr "지문 인증을 사용하면 지문 인식기로 지문을 스캐닝하여 로그인할 수 있습니다."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "새 암호 용 해시/암호 알고리즘 "
+msgstr "로컬 사용자 암호를 저장시 쓸 해시/암호 알고리즘"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"호스트명 또는 ldap:// 또는 ldaps:// URI는 LDAP 서버를 가리키고 있습니다. "
+msgstr "호스트명 또는 LDAP 서버를 가리키는 ldap:// 또는 ldaps:// URI"
 
 #: ../authconfig.glade.h:31
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
-"사용자의 홈 디렉토리가 없을 경우, 이는 처음 로그인 시 자동으로 생성됩니다.  "
+msgstr "사용자의 홈 디렉토리가 없더라도, 처음 로그인 시 자동으로 생성됩니다."
 
 #: ../authconfig.glade.h:32
 msgid "Joining Winbind Domain"
-msgstr "결합 Winbind 도메인"
+msgstr "Winbind 도메인에 참가"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP 검색 기반 DN(_B)"
+msgstr "LDAP 검색 기반 DN(_B):"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP 서버(_S)"
+msgstr "LDAP 서버(_S):"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS 도메인(_D)"
+msgstr "NIS 도메인(_D):"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS 서버(_S)"
+msgstr "NIS 서버(_S):"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "관리 영역:"
+msgstr "관리 영역(_E):"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "로그인하기 위해 smart card가 필요함(_R)"
+msgstr "로그인하기 위해 smart card가 필요함(_D)"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -985,20 +954,17 @@ msgstr "복구 "
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "시스템에서 사용자 인증에 쓸 서비스 설정"
 
 #: ../authconfig.glade.h:42
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
-msgstr ""
-"Smart card 인증을 통하여 smart card에 부합하는 인증서와 키를 사용함으로써 로"
-"그인할 수 있습니다."
+msgstr "스마트 카드 인증을 사용하면 스마트 카드에 있는 인증서와 키를 사용해 로그인할 수 있습니다."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "템플리트 쉘:"
+msgstr "템플리트 쉘(_M):"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1007,25 +973,24 @@ msgid ""
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
 "TLS 프로토콜을 사용하여 LDAP 서버를 확인하기 위해서는 서버의 인증서를 공증한 "
-"CA 인증서가 필요합니다. PEM 형식으로 CA 인증서를 다운로드 할 수 있는 URL에서 "
-"작성해 주십시오.  "
+"CA 인증서가 필요합니다. PEM 형식으로 CA 인증서를 다운로드 할 수 있는 URL울 "
+"입력해 주십시오.  "
 
 #: ../authconfig.glade.h:46
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "DNS를 사용하여 관리 영역으로 KDC를 배치(_L)"
+msgstr "DNS를 사용하여 관리 영역을 위한 KDC를 찾음(_L)"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "DNS를 사용하여 호스트를 관리 영역으로 변환"
+msgstr "DNS로 관리영역에 대한 호스트 변환(_N)"
 
 #: ../authconfig.glade.h:48
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
 msgstr ""
-"RFC-2830에 의해 정의된 LDAP 대한 TLS (Transport Layer Security) 확장을 사용합"
-"니다. ldaps 서버 URI를 받게 해서는 안됩니다.  "
+"RFC-2830에 정의된 LDAP의 TLS (Transport Layer Security) 확장을 사용합"
+"니다. ldaps 서버 URI와 함께 체크되어서는 안됩니다."
 
 #: ../authconfig.glade.h:49
 msgid "Use _TLS to encrypt connections"
@@ -1035,63 +1000,51 @@ msgstr "TLS를 이용하여 접속을 암호화함(_T)"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
-"활성화일 때 /etc/security/access.conf가 사용자 액세스 인증할 것을 권장합니"
-"다. "
+msgstr "활성화되면, 사용자 액세스 인증시 /etc/security/access.conf를 참조합니다."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS 관리 영역(_R)"
+msgstr "Winbind ADS 관리 영역(_E):"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind 도메인 제어기(_N)"
+msgstr "Winbind 도메인 제어기(_N):"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind 도메인(_D)"
+msgstr "Winbind 도메인(_D):"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "CA 인증서를 다운로드함"
+msgstr "CA 인증서를 다운로드함(_D)..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "인증"
+msgstr "식별 및 인증(&I)"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "결합 도메인(_J)"
+msgstr "도메인 참가(_J)..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "KDC(_K)"
+msgstr "KDC들(_K):"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "암호 해시 알고리즘(_P)     "
+msgstr "암호 해시 알고리즘(_P):"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "암호:"
+msgstr "암호(_P):"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "보안 모델:"
+msgstr "보안 모델(_S):"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "사용자 계정 데이터베이스(_U):"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
@@ -1112,165 +1065,5 @@ msgstr ""
 
 #: ../authinfo.py:3761
 msgid "Error downloading CA certificate"
-msgstr "CA 인증서를 다운로드 하는 도중 오류 발생"
+msgstr "CA 인증서를 다운로드 하는 중 오류 발생"
 
-#~ msgid "<b>Fingerprint Reader</b>"
-#~ msgstr "<b>지문 인식기</b> "
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>옵션</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>Smart Card</b>"
-
-#~ msgid "A_uthentication"
-#~ msgstr "인증(_U) "
-
-#~ msgid "Cache User _Information"
-#~ msgstr "캐시(Cache) 사용자 정보(_I)"
-
-#~ msgid "Check access.conf _during account authorization"
-#~ msgstr "계정을 인증하는 동안 access.conf 확인(_D)  "
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "Hesiod 설정(_E)"
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "커베로스 설정(_E)"
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "LDAP 설정...(_D)"
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "NIS 설정(_S)..."
-
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "Smart Card 설정(_A)...  "
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Winbind 설정...(_B)"
-
-#~ msgid "Domain"
-#~ msgstr "도메인"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "도메인 관리자(_A)"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Hesiod 지원 활성화(_H)"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "커베로스 지원 활성화(_K)"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "LDAP 지원 활성화(_L)"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "NIS를 지원 활성화(_N)"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "Winbind 지원 활성화(_W)"
-
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "로컬 /etc/passwd 파일 시스템에서 관리되는 사용자 계정은 LDAP 이나 Keberos "
-#~ "와 같은 네트워크 서비스에서의 권한부여 과정을 거치지 않습니다"
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod LHS(_L)"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod RHS(_R)"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod는 시스템 관리자로 하여금 DNS에서 사용자와 그룹 정보를 출판하게 합니"
-#~ "다. 이것은 때때로 매우 큰 네트위크 상에서도 사용됩니다."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "커베로스는 신뢰되는 제삼자 인증 체제이며 보통 중간 규모나 큰 네트워크에서 "
-#~ "사용됩니다."
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS는 네트워크 정보 서비스(Network Information Service)로서 보통 중소 규모"
-#~ "의 네트워크에서 사용됩니다."
-
-#~ msgid "Op_tions"
-#~ msgstr "옵션(_T) "
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB 설정"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "Smart Card 설정"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "LDAP (Lightweight Directory Access Protocol)은 임의 자료들을 체계화된 계층"
-#~ "으로 담고 있는 디렉토리를 찾는 전형적인 방법입니다. LDAP은 작고 큰 네트워"
-#~ "크에서 급격히 사용량이 늘고 있습니다."
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "DNS를 사용하여 호스트를 관리 영역으로 변환(_D)"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "섀도우 암호 사용(_S)"
-
-#~ msgid "User Infor_mation"
-#~ msgstr "사용자 정보(_M) "
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "활성화일때 이것은 LDAP나 Kerberos같은 네트워크 서비스가 이 장치의 루트를 "
-#~ "포함한 시스템 계정을 인증하도록 허용합니다."
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Winbind는 시스템이 NTDOM이나 ADS 서버에 저장된 정보를 사용하여 사용자에 대"
-#~ "한 정보를 검색하거나 사용자를 인증할 수 있게 해줍니다.  winbind는 중대형 "
-#~ "네트워크에서 사용됩니다."
-
-#~ msgid "_Admin Servers"
-#~ msgstr "관리 서버(_A)"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr "네트워크 서비스에 의한 인증 시스템 계정(_A)"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "도메인 제어기(_D)"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr "로컬 사용자에겐 로컬 권한부여만으로 충분합니다(_L)"
-
-#~ msgid "_Password"
-#~ msgstr "암호(_P)"
-
-#~ msgid "_Realm"
-#~ msgstr "관리 영역(_R)"
-
-#~ msgid "_Security Model"
-#~ msgstr "보안 모델(_S)"
-
-#~ msgid "_Template Shell"
-#~ msgstr "템플리트 쉘(_T)"
-
-#~ msgid "_Workgroup"
-#~ msgstr "작업그룹(_W)"

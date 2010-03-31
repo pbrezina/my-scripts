@@ -1,3 +1,4 @@
+# translation of authconfig.default.po to
 # translation of authconfig.tip.de.po to
 # translation of authconfig.po to
 # Copyright (C) 2002 Red Hat, Inc.
@@ -6,18 +7,18 @@
 # Claudia Krug <fhonig@redhat.it>, 2001.
 # Bernd Groh <bgroh@redhat.com>, 2003,2004.
 # Severin Heiniger <severinheiniger@gmail.com>, 2005.
-# Timo Trinks <ttrinks@redhat.com>, 2006.
 # Fabian Affolter <fab@fedoraproject.org>, 2008-2009.
 # Hedda Peters <hpeters@redhat.com>, 2009.
 # Dominik Sandjaja <dominiksandjaja@fedoraproject.org>, 2009.
+# sknirT omiT <moc.tahder@sknirtt>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.tip.de\n"
+"Project-Id-Version: authconfig.default\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-09-20 13:22+0100\n"
-"Last-Translator: Dominik Sandjaja <dominiksandjaja@fedoraproject.org>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2010-03-31 09:00+1000\n"
+"Last-Translator: sknirT omiT <moc.tahder@sknirtt>\n"
+"Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -116,11 +117,11 @@ msgstr "Verwendung von TLS mit LDAP (RFC-2830) deaktivieren"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "Verwendung des RFC-2307bis-Schemas für Suchen nach Benutzerinformation via LDAP aktivieren"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "Verwendung des RFC-2307bis-Schemas für Suchen nach Benutzerinformation via LDAP deaktivieren"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -262,7 +263,7 @@ msgstr "Winbind für die Authentifizierung standardmäßig deaktivieren"
 
 #: ../authconfig.py:187
 msgid "security mode to use for samba and winbind"
-msgstr "Von Samba und Winbind zu verwendendes Sicherheitsmodell"
+msgstr "Von Samba und Winbind zu verwendender Sicherheitsmodus"
 
 #: ../authconfig.py:189
 msgid "default realm for samba and winbind when security=ads"
@@ -291,8 +292,7 @@ msgstr ""
 
 #: ../authconfig.py:197
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"das Verzeichnis, das von Winbind erzeugte Benutzer als Home-Verzeichnis haben"
+msgstr "das Verzeichnis, das von Winbind erzeugte Benutzer als Home-Verzeichnis haben"
 
 #: ../authconfig.py:199
 msgid "the group which winbind-created users will have as their primary group"
@@ -328,8 +328,7 @@ msgstr "konfiguriert Winbind, um Offline-Anmeldung zu verhindern"
 
 #: ../authconfig.py:211
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr ""
-"jetzt der Winbind-Domain oder ADS-Realm als dieser Administrator beitreten"
+msgstr "jetzt der Winbind-Domain oder ADS-Realm als dieser Administrator beitreten"
 
 #: ../authconfig.py:214
 msgid "enable wins for hostname resolution"
@@ -364,43 +363,38 @@ msgid "default hesiod RHS"
 msgstr "Standard-Hesiod-RRHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "NIS für Benutzerinformationen standardmäßig aktivieren"
+msgstr "SSSD für Benutzerinformationen standardmäßig aktivieren"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "NIS für Benutzerinformationen standardmäßig deaktivieren"
+msgstr "SSSD für Benutzerinformationen standardmäßig deaktivieren"
 
 # ../authconfig.c:444
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "LDAP zur Authentifizierung standardmäßig aktivieren"
+msgstr "SSSD zur Authentifizierung standardmäßig aktivieren"
 
 # ../authconfig.c:444
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "LDAP zur Authentifizierung standardmäßig deaktivieren"
+msgstr "SSSD zur Authentifizierung standardmäßig deaktivieren"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "Caching von Benutzerinformation standardmäßig aktivieren"
+msgstr "Caching von Benutzerinformation in SSSD standardmäßig aktivieren"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "Caching von Benutzerinformation standardmäßig deaktivieren"
+msgstr "Caching von Benutzerinformation in SSSD standardmäßig deaktivieren"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "Caching von Benutzerinformation standardmäßig aktivieren"
+msgstr ""
+"Caching von Benutzerinformation standardmäßig aktivieren (bei der Verwendung von "
+"SSSD automatisch deaktiviert)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
@@ -412,7 +406,7 @@ msgstr "lokale Autorisierung ist ausreichend für lokale Benutzer"
 
 #: ../authconfig.py:254
 msgid "authorize local users also through remote service"
-msgstr "autorisiere lokale Benutzer auch über Fernzugriff"
+msgstr "lokale Benutzer auch über Fernzugriff autorisieren"
 
 #: ../authconfig.py:257
 msgid "check access.conf during account authorization"
@@ -420,8 +414,7 @@ msgstr "access.conf während der Autorisierung des Benutzerkontos überprüfen"
 
 #: ../authconfig.py:259
 msgid "do not check access.conf during account authorization"
-msgstr ""
-"access.conf während der Autorisierung des Benutzerkontos nicht überprüfen"
+msgstr "access.conf während der Autorisierung des Benutzerkontos nicht überprüfen"
 
 #: ../authconfig.py:262
 msgid "authenticate system accounts by network services"
@@ -433,14 +426,11 @@ msgstr "authentifiziere Systembenutzer nur über lokale Dateien"
 
 #: ../authconfig.py:267
 msgid "create home directories for users on their first login"
-msgstr ""
-"Erzeuge persönliche Verzeichnisse für die Benutzer bei ihrer ersten Anmeldung"
+msgstr "Persönliche Benutzerverzeichnisse bei der ersten Anmeldung erzeugen"
 
 #: ../authconfig.py:269
 msgid "do not create home directories for users on their first login"
-msgstr ""
-"Erzeuge keine persönlichen Verzeichnisse für die Benutzer bei ihrer ersten "
-"Anmeldung"
+msgstr "Keine persönlichen Benutzerverzeichnisse bei der ersten Anmeldung erzeugen"
 
 #: ../authconfig.py:272
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -463,7 +453,7 @@ msgstr "die veraltete Text-Benutzerschnittstelle nicht anzeigen"
 #: ../authconfig.py:284
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
-"Gegenteil von --test, die Konfigurationsdateien mit geänderten Einstellungen "
+"Im Gegensatz zu --test, die Konfigurationsdateien mit geänderten Einstellungen "
 "aktualisieren"
 
 #: ../authconfig.py:287
@@ -480,19 +470,19 @@ msgstr "<name>"
 
 #: ../authconfig.py:293
 msgid "save a backup of all configuration files"
-msgstr "Speichere eine Sicherung alle Konfigurationsdateien"
+msgstr "Eine Sicherung aller Konfigurationsdateien speichern"
 
 #: ../authconfig.py:296
 msgid "restore the backup of configuration files"
-msgstr "Wiederherstellen der Sicherung der Konfigurationsdateien"
+msgstr "Eine Sicherung der Konfigurationsdateien wiederherstellen"
 
 #: ../authconfig.py:299
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
-"Wiederherstellen der gesicherten Konfigurationsdateien vor der letzten "
-"Konfigurationsänderung"
+"Die vor der letzten Konfigurationsänderung gesicherten Konfigurationsdateien "
+"wiederherstellen"
 
 # ../authconfig.c:745
 #: ../authconfig.py:304
@@ -501,7 +491,7 @@ msgstr "unerwartetes Argument"
 
 #: ../authconfig.py:434
 msgid "Bad smart card removal action specified."
-msgstr "Unzulässige Aktion bei Entfernung der Smartcard angegeben."
+msgstr "Unzulässige Aktion beim Entfernen der Smartcard angegeben."
 
 #: ../authconfig.py:443
 msgid "Unknown password hashing algorithm specified, using sha256."
@@ -510,7 +500,7 @@ msgstr "Unbekannter Passwort-Hashing-Algorithmus angegeben, benutze sha256."
 # ../authconfig.c:757
 #: ../authconfig.py:476
 msgid "can only be run as root"
-msgstr "kann nur als root ausgeführt werden"
+msgstr "kann nur als Root ausgeführt werden"
 
 # ../authconfig.c:880
 #: ../authconfig.py:492
@@ -525,7 +515,7 @@ msgid ""
 "properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"Die Datei %s, die für die Unterstützung von %s unbedingt erforderlich ist, "
+"Die Datei %s, die für die Unterstützung von %s erforderlich ist, "
 "wurde nicht gefunden.\n"
 "Installieren Sie das Paket %s, das diese Datei enthält."
 
@@ -825,51 +815,44 @@ msgstr ""
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Kontrolle, wie das System die Benutzer prüft, die sich anmelden möchten."
+msgstr "Kontrolle, wie das System die Benutzer prüft, die sich anmelden möchten."
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "Nur lokale Benutzerkonten"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 # ../authconfig.c:439
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "Passwort:"
+msgstr "Passwort"
 
 # ../authconfig.c:439
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "Passwort:"
+msgstr "LDAP-Passwort:"
 
 # ../authconfig.c:480
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Kerberos-Passwort"
 
 # ../authconfig.c:435
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "Shadow-Passwort"
+msgstr "NIS-Passwort"
 
 # ../authconfig.c:435
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "Shadow-Passwort"
+msgstr "Winbind-Passwort"
 
 #: ../authconfig-gtk.py:425
-msgid ""
-"You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
+msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
+msgstr "Sie müssen die ldaps:// Server-Adresse angeben oder TLS zur LDAP-Authentifikation verwenden."
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -877,55 +860,51 @@ msgstr "*"
 
 # ../authconfig.c:431
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Konfiguration der Authentifizierung"
+msgstr "<b>Konfiguration der Authentifizierung</b>"
 
 # ../authconfig.c:431
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Konfiguration der Authentifizierung"
+msgstr "<b>Lokale Authentifizierungsoptionen</b>"
 
 # ../authconfig.c:431
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Konfiguration der Authentifizierung"
+msgstr "<b>Weitere Authentifizierungsoptionen</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Smartcard Authentifizierungsoptionen</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Benutzerkonto-Konfiguration</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>Hinweis:</b> Smartcards unterstützen das Einloggen in lokale und "
+"zentral verwaltete Benutzerkonten.</small>"
 
 #: ../authconfig.glade.h:8
-msgid ""
-"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
+msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgstr "<small><b>Hinweis:</b> Dies wird via /etc/security/access.conf verwaltet.</small>"
 
 # ../authconfig.c:249
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Admin-Server:"
+msgstr "Ad_min-Server:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "Hesiod für die Benutzerinformationen standardmäßig deaktivieren"
+msgstr "Zusätzliche Optionen für Benutzerinformationen und Authentifizierung"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "Erweiterte _Optionen"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -941,60 +920,55 @@ msgstr ""
 "Sicherung wiederhergestellt. Änderungen rückgängig machen?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "Erlaube _Offline-Anmeldung"
+msgstr "Offline-Anme_ldung erlauben"
 
 # ../authconfig.c:444
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Authentifizierung"
+msgstr "Aut_hentifizierungsmethode:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "_Aktion bei Entfernen der Karte"
+msgstr "Aktion bei_m Entfernen der Karte:"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "Zertifikat _URL"
+msgstr "Zertifikat _URL:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Klicken Sie auf diese Schaltfläche, wenn Sie noch kein CA-Zertifikat heruntergeladen "
+"oder in sonstiger Form eingerichtet haben."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
-msgstr "Erzeuge _persönliche Verzeichnisse beim ersten Anmelden"
+msgstr "Persönliche Verzeic_hnisse beim ersten Anmelden erstellen"
 
 #: ../authconfig.glade.h:21
 msgid "Do_n't Save"
 msgstr "_Nicht speichern"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Domain-Administrator:"
+msgstr "Domain-_Administrator:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "CA-Zertifikat herunterladen"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "_Fingerabdruck-Leser-Unterstützung aktivieren"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "_Lokale Zugriffskontrolle aktivieren"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
 msgstr "_Smartcard-Unterstützung aktivieren"
 
@@ -1007,14 +981,12 @@ msgstr ""
 "Fingers mit dem Fingerabdruck-Leser einzuloggen."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "hash/crypt-Algorithmus für neue Passwörter"
+msgstr "Hash/Crypt-Algorithmen zur Speicherung von Passwörtern lokaler Benutzer"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"Hostname oder ldap:// oder ldaps:// URI, welche auf den LDAP-Server zeigt."
+msgstr "Hostname oder ldap:// oder ldaps:// URI, welche auf den LDAP-Server zeigt."
 
 #: ../authconfig.glade.h:31
 msgid ""
@@ -1029,36 +1001,30 @@ msgid "Joining Winbind Domain"
 msgstr "Winbind-Domain beitreten"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP Suche _Basis-DN"
+msgstr "LDAP Suche _Basis-DN:"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP-_Server"
+msgstr "LDAP-_Server:"
 
 # ../authconfig.c:156 ../authconfig.c:230
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS-_Domain"
+msgstr "NIS-_Domain:"
 
 # ../authconfig.c:157 ../authconfig.c:203
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS-_Server"
+msgstr "NIS-_Server:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Realm:"
+msgstr "R_ealm:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "Sma_rtcard für Login voraussetzen"
+msgstr "Smartcar_d für Anmeldung voraussetzen"
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -1075,7 +1041,7 @@ msgstr "Rückgängig machen"
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "Dienste zur Benutzer-Authentifizierung auf dem System einrichten"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1086,9 +1052,8 @@ msgstr ""
 "und Schlüssel einzuloggen, die mit einer Smartcard verknüpft sind."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Standard-Shell:"
+msgstr "Sta_ndard-Shell:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1103,12 +1068,11 @@ msgstr ""
 
 #: ../authconfig.glade.h:46
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "DNS benutzen, um KDCs für Realms zu _bestimmen"
+msgstr "DNS benutzen, um KDCs für Rea_lms zu bestimmen"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "DNS benutzen, um Rechner in Realms aufzulösen"
+msgstr "D_NS benutzen, um Rechner in Realms aufzulösen"
 
 # ticked=checked...andere Interpretationen? Fabian
 #: ../authconfig.glade.h:48
@@ -1128,66 +1092,56 @@ msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
-"Wenn aktiviert, wird /etc/security/access.conf zur Authentifizierung der "
+"Falls aktiviert, wird /etc/security/access.conf zur Authentifizierung der "
 "Benutzerzugriffe abgefragt."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind-ADS-_Realm"
+msgstr "Winbind-ADS-R_ealm:"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind-Domain-_Controller"
+msgstr "Winbind-Domain-Co_ntroller:"
 
 # ../authconfig.c:156 ../authconfig.c:230
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind-_Domain"
+msgstr "Winbind-_Domain:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "CA-Zertifikat herunterladen"
+msgstr "CA-Zertifikat herunterla_den..."
 
 # ../authconfig.c:444
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Authentifizierung"
+msgstr "_Identität & Authentifizierung"
 
 # ../authconfig.c:156 ../authconfig.c:230
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "Domain _beitreten"
+msgstr "Domain _beitreten..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDCs"
+msgstr "_KDCs:"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "_Passwort-Hashing-Algorithmus"
+msgstr "_Passwort-Hashing-Algorithmus:"
 
 # ../authconfig.c:439
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Passwort:"
+msgstr "_Passwort:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Sicherheitsmodell:"
+msgstr "_Sicherheitsmodell:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "Ben_utzerkonto-Datenbank:"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
@@ -1210,173 +1164,3 @@ msgstr ""
 msgid "Error downloading CA certificate"
 msgstr "Fehler beim Herunterladen des CA-Zertifikats"
 
-#~ msgid "<b>Fingerprint Reader</b>"
-#~ msgstr "<b>Fingerabdruck-Leser</b>"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Optionen</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>Smartcard</b>"
-
-# ../authconfig.c:444
-#~ msgid "A_uthentication"
-#~ msgstr "A_uthentifizierung"
-
-#~ msgid "Cache User _Information"
-#~ msgstr "Benutzer-_Informationen cachen"
-
-#~ msgid "Check access.conf _during account authorization"
-#~ msgstr ""
-#~ "a_ccess.conf während der Autorisierung des Benutzerkontos überprüfen"
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "H_esiod konfigurieren ..."
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "K_erberos konfigurieren ..."
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "L_DAP konfigurieren ..."
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "NI_S konfigurieren ..."
-
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "Sm_artcard konfigurieren ..."
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Win_bind konfigurieren ..."
-
-# ../authconfig.c:156 ../authconfig.c:230
-#~ msgid "Domain"
-#~ msgstr "Domain"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "_Domain-Administrator"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "_Hesiod-Unterstützung aktivieren"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "_Kerberos-Unterstützung aktivieren"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "_LDAP-Unterstützung aktivieren"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "_NIS-Unterstützung aktivieren"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "_Winbind-Unterstützung aktivieren"
-
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "Für Benutzerkonten, die in der lokalen /etc/passwd-Datei verwaltet "
-#~ "werden, wird das System keine Prüfung der Autorisierung über "
-#~ "Netzwerkdienste wie LDAP oder Kerberos durchführen."
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod-_LHS"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod-_RHS"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Mit Hesiod können System-Administratoren Informationen über Gruppen und "
-#~ "Benutzer im DNS veröffentlichen. Es wird gelegentlich in sehr großen "
-#~ "Netzwerken verwendet."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos ist ein sicheres Authentifizierungssystem eines anderen "
-#~ "Herstellers und wird im Allgemeinen in mittleren bis großen Netzwerken "
-#~ "verwendet."
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS (Network Information Service) bedeutet Netzwerk-Informationsservice. "
-#~ "Er wird im Allgemeinen in kleinen bis mittleren Netzwerken verwendet."
-
-#~ msgid "Op_tions"
-#~ msgstr "Op_tionen"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB-Einstellungen"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "Smartcard-Einstellungen"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Das Lightweight Directory Access Protocol ist ein Standard zum Suchen in "
-#~ "Verzeichnissen, die beliebige Daten in einer strukturierten Hierarchie "
-#~ "enthalten können. LDAP wird zunehmend in kleinen bis großen Netzwerken "
-#~ "verwendet."
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "_DNS benutzen, um Rechner in Realms aufzulösen"
-
-# ../authconfig.c:435
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "_Shadow-Passwörter verwenden"
-
-#~ msgid "User Infor_mation"
-#~ msgstr "Benutzerinfor_mationen"
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "Wenn aktiviert, können Systembenutzer (inklusive root) auf diesem Rechner "
-#~ "gegenüber Netzwerkdiensten wie LDAP oder Kerberos authentifiziert werden."
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Winbind erlaubt einem System Benutzerinformationen abzurufen und Benutzer "
-#~ "anhand von in NTDOM- oder ADS-Servern gespeicherten Informationen zu "
-#~ "authentifizieren. Es wird in kleinen bis großen Netzwerken verwendet."
-
-# ../authconfig.c:249
-#~ msgid "_Admin Servers"
-#~ msgstr "_Admin-Server"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr "_Authentifiziere Systembenutzer über Netzwerkdienste"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "_Domain-Controller"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr "_Lokale Autorisierung ist ausreichend für lokale Benutzer"
-
-# ../authconfig.c:439
-#~ msgid "_Password"
-#~ msgstr "_Passwort"
-
-#~ msgid "_Realm"
-#~ msgstr "_Realm"
-
-#~ msgid "_Security Model"
-#~ msgstr "_Sicherheitsmodell"
-
-#~ msgid "_Template Shell"
-#~ msgstr "S_tandard-Shell"
-
-#~ msgid "_Workgroup"
-#~ msgstr "Arbeits_gruppe"
