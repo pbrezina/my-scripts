@@ -1,0 +1,32 @@
+.de FN
+\fI\|\\$1\|\fP
+..
+.TH CACERTDIR_REHASH 8 "31 March 2010" "Red Hat, Inc."
+.SH NAME
+cacertdir_rehash \- simple script to create or update hash links to
+certificate files in a directory
+.SH SYNOPSIS
+\fBcacertdir_rehash\fR <directory>
+.SH DESCRIPTION
+\fBcacertdir_rehash\fR is a simple shell script that is called by
+\fBauthconfig\fR and \fBauthconfig-gtk\fR. It uses \fBopenssl\fR command
+line utility to create hash symbolic links of certificate files
+in the specified directory.
+
+.PD
+.SH NOTES
+The script is internal to \fBauthconfig\fR and its functionality and
+command line options might be changed in future.
+
+.PD
+.SH "RETURN CODES"
+\fBcacertdir_rehash\fR returns 0 on success, non-zero on error.
+
+.PD
+.SH "SEE ALSO"
+authconfig(8), authconfig-gtk(8), openssl(1)
+
+.SH AUTHORS
+.nf
+Tomas Mraz <tmraz@redhat.com>
+.fi

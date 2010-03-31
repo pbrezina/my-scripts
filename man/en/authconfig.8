@@ -1,8 +1,7 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "10 March 2008" "Red Hat, Inc."
-.UC 4
+.TH AUTHCONFIG 8 "31 March 2010" "Red Hat, Inc."
 .SH NAME
 authconfig, authconfig-tui \- an interface for configuring system authentication resources
 .SH SYNOPSIS
@@ -14,13 +13,16 @@ authconfig, authconfig-tui \- an interface for configuring system authentication
 \fBauthconfig\fR provides a simple method of configuring
 /etc/sysconfig/network to handle NIS, as well as /etc/passwd and
 /etc/shadow, the files used for shadow password support.  Basic LDAP,
-Kerberos 5, and SMB (authentication) client configuration is also provided.
+Kerberos 5, and Winbind client configuration is also provided.
 
 If \fB--test\fR action is specified, \fBauthconfig\fR can be run by
 users other then root, and any configuration changes are not saved but printed
 instead.
 If \fB--update\fR action is specified, \fBauthconfig\fR must be run by
-root (or through console helper), and configuration changes are saved.
+root (or through console helper), and configuration changes are saved. Only
+the files affected by the configuration changes are overwritten.
+If \fB--updateall\fR action is specified, \fBauthconfig\fR must be run by
+root (or through console helper), and all configuration files are written.
 The \fB--probe\fP action instructs \fBauthconfig\fP to use DNS and other means
 to guess at configuration information for the current host, print its guesses
 if it finds them to standard output, and exit.
@@ -56,6 +58,17 @@ The \fB--enablelocauthorize\fR option allows to bypass checking network
 authentication services for authorization and the \fB--enablesysnetauth\fR
 allows authentication of system accounts (with uid < 500) by these services.
 
+When the configuration settings allow use of \fISSSD\fR for user information services
+and authentication, \fISSSD\fR will be automatically used instead of the legacy
+services and the \fISSSD\fR configuration will be set up so there is a default
+domain populated with the settings required to connect the services. The \fB--enablesssd\fR
+and \fB--enablesssdauth\fR options force adding \fISSSD\fR to \fB/etc/nsswitch.conf\fP
+and \fB/etc/pam.d/system-auth\fP, but they do not set up the domain in the
+\fISSSD\fR configuration files. The \fISSSD\fR configuration has to be
+set up manually. The allowed configuration of services for \fISSSD\fR are: LDAP for
+user information (\fB--enableldap\fR) and either LDAP (\fB--enableldapauth\fR), or
+Kerberos (\fB--enablekrb5\fR) for authentication.
+
 The list of options mentioned here in the manual page is not exhaustive, please
 refer to \fBauthconfig --help\fR for the complete list of the options.
 
@@ -66,7 +79,7 @@ button is presented instead. If \fB--kickstart\fR is specified, no interactive
 screens will be seen. The values the program will use will be those specified by
 the other options (\fB--passalgo\fR, \fB--enableshadow\fR, etc.).
 
-For \fInamelist\R you may substitute either a single name or a 
+For \fInamelist\fR you may substitute either a single name or a 
 comma-separated list of names.
 .PD
 .SH NOTES
@@ -135,8 +148,8 @@ there.
 
 .PD
 .SH "SEE ALSO"
-passwd(5), shadow(5), pwconv(1), domainname(1), ypbind(8),
-nsswitch.conf(5), smb.conf(5)
+authconfig-gtk(8), system-auth-ac(5), passwd(5), shadow(5), pwconv(1),
+domainname(1), ypbind(8), nsswitch.conf(5), smb.conf(5)
 
 .SH AUTHORS
 .nf

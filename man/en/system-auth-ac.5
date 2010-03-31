@@ -1,7 +1,8 @@
-.TH SYSTEM-AUTH-AC 5 "2006 Feb 3" "Red Hat"
+.TH SYSTEM-AUTH-AC 5 "2010 March 31" "Red Hat, Inc."
 .SH NAME
 
-system-auth-ac \- Common configuration file for PAMified services 
+system-auth-ac, password-auth-ac, smartcard-auth-ac,
+fingerprint-auth-ac \- Common configuration files for PAMified services
 written by authconfig(8)
 
 .SH SYNOPSIS
@@ -25,8 +26,22 @@ replaces the default
 file with a symlink pointing to
 .BR system-auth-ac
 and writes the configuration to this file. The symlink is not changed on
-subsequent configuration changes even if it points elsewhere. This allows 
-system administrators to override the configuration written by authconfig. 
+subsequent configuration changes even if it points elsewhere. This allows
+system administrators to override the configuration written by authconfig.
+
+The authconfig now writes the authentication modules also into additional PAM
+configuration files \fB/etc/pam.d/password-auth-ac\fR,
+\fB/etc/pam.d/smartcard-auth-ac\fR, and \fB/etc/pam.d/fingerprint-auth-ac\fR.
+These configuration files contain only modules which perform
+authentication with the respective kinds of authentication tokens.
+For example \fB/etc/pam.d/smartcard-auth[-ac]\fR will not contain
+\fBpam_unix\fR and \fBpam_ldap\fR modules and \fB/etc/pam.d/password-auth[-ac]\fR
+will not contain \fBpam_pkcs11\fR and \fBpam_fprintd\fR modules.
+
+The PAM configuration files of services which are accessed by remote
+connections such as sshd or ftpd now include the \fB/etc/pam.d/password-auth\fR
+configuration file instead of \fB/etc/pam.d/system-auth\fR.
+
 
 .SH EXAMPLE
 Configure system to use pam_tally2 for configuration of maximum number of
@@ -59,4 +74,4 @@ session         include         system-auth-ac
 None known.
 
 .SH "SEE ALSO"
-pam(8), system-auth(5)
+authconfig(8), authconfig-gtk(8), pam(8), system-auth(5)

@@ -68,6 +68,8 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_sbindir}/cacertdir_rehash
 %{_sbindir}/authconfig
 %{_sbindir}/authconfig-tui
+%exclude %{_mandir}/man8/system-config-authentication.*
+%exclude %{_mandir}/man8/authconfig-gtk.*
 %{_mandir}/man8/*
 %{_mandir}/man5/*
 %{_libdir}/python*/site-packages/acutilmodule.so
@@ -88,6 +90,8 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_bindir}/system-config-authentication
 %{_sbindir}/authconfig-gtk
 %{_sbindir}/system-config-authentication
+%{_mandir}/man8/system-config-authentication.*
+%{_mandir}/man8/authconfig-gtk.*
 %{_datadir}/%{name}/authconfig.glade
 %{_datadir}/%{name}/authconfig-gtk.py*
 %config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
@@ -102,6 +106,7 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+- manual page improvements (#578258, #526164)
 - use ldap instead of sss for nsswitch maps unsupported by sssd (#578325)
 - call cacertdir_rehash also in case ldaps: server uri is used (#578219)
 
