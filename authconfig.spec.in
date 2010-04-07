@@ -106,9 +106,12 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed Apr  7 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.3-1
 - manual page improvements (#578258, #526164)
 - use ldap instead of sss for nsswitch maps unsupported by sssd (#578325)
 - call cacertdir_rehash also in case ldaps: server uri is used (#578219)
+- ldap_uri must be comma separated (#579881)
+- updated translations
 
 * Mon Mar 29 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.2-1
 - fix SSSD provider change (#577263)
