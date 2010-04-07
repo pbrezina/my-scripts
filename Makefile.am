@@ -1,4 +1,4 @@
-SUBDIRS = po man
+SUBDIRS = po man icons
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -15,8 +15,6 @@ sbin_SCRIPTS = cacertdir_rehash
 pkgdata_SCRIPTS = authconfig-gtk.py authconfig.py
 pkgdata_DATA = authconfig.glade authinfo.py shvfile.py dnsclient.py msgarea.py
 pythonsite_LTLIBRARIES = acutilmodule.la
-pixmapdir = $(datadir)/pixmaps
-pixmap_DATA = user_auth.png
 backupdir = $(localstatedir)/lib/authconfig
 backup_DATA =
 
@@ -54,10 +52,7 @@ install-data-local: authconfig.desktop
 	touch $(DESTDIR)/$(pamdir)/fingerprint-auth-ac
 	touch $(DESTDIR)/$(pamdir)/smartcard-auth-ac
 	mkdir -p $(DESTDIR)/$(datadir)/applications
-	desktop-file-install --vendor redhat \
-		--add-category=X-Red-Hat-Base \
-		--add-category=Application \
-		--add-category=System \
+	desktop-file-install \
 		--dir=$(DESTDIR)/$(datadir)/applications \
 		authconfig.desktop
 

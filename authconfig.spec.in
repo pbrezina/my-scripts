@@ -24,7 +24,7 @@ authentication schemes.
 Summary: Graphical tool for setting up authentication from network services
 Group: System Environment/Base
 Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.14.0
-Requires: usermode-gtk
+Requires: usermode-gtk, hicolor-icon-theme
 
 %description gtk
 Authconfig-gtk is a GUI program which can configure a workstation
@@ -103,7 +103,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
 %config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-tui
 %{_datadir}/applications/*
-%{_datadir}/pixmaps/*
+%{_datadir}/icons/hicolor/16x16/apps/system-config-authentication.*
+%{_datadir}/icons/hicolor/22x22/apps/system-config-authentication.*
+%{_datadir}/icons/hicolor/24x24/apps/system-config-authentication.*
+%{_datadir}/icons/hicolor/32x32/apps/system-config-authentication.*
+%{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
 * Wed Apr  7 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.3-1
@@ -112,6 +116,7 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 - call cacertdir_rehash also in case ldaps: server uri is used (#578219)
 - ldap_uri must be comma separated (#579881)
 - updated translations
+- new icon (#540249)
 
 * Mon Mar 29 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.2-1
 - fix SSSD provider change (#577263)
