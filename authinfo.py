@@ -1535,7 +1535,10 @@ class AuthInfo:
 				# Cache credentials value will be taken from sysconfig
 				# or enabled by default.
 				if attr != 'enableCacheCreds':
-					setattr(self, attr, domain.get_option(opt))
+					val = domain.get_option(opt)
+					if opt == 'ldap_uri':
+						val = " ".join(val.split(","))
+					setattr(self, attr, val)
 			except SSSDConfig.NoOptionError:
 				pass
 
@@ -2836,6 +2839,8 @@ class AuthInfo:
 		for attr, option in sssdopt_map.iteritems():
 			try:
 				val = getattr(self, attr)
+				if option == 'ldap_uri':
+					val = cleanList(val)
 				if type(val) == bool:
 					domain.set_option(option, val)
 				elif type(val) == str:
