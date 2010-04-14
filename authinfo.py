@@ -2312,7 +2312,7 @@ class AuthInfo:
 		return True
 
 	# Write LDAP setup to an ldap.conf using host and base as keys.
-	def writeLDAP2(self, filename, uri, host, base, writepadl, writeschema):
+	def writeLDAP2(self, filename, uri, host, base, writepadl, writeschema, writepam):
 		wrotebasedn = False
 		wroteserver = False
 		wrotessl = False
@@ -2377,7 +2377,7 @@ class AuthInfo:
 						output += " " + self.ldapCacertDir
 						output += "\n"
 						wrotecacertdir = True
-				elif writepadl and matchLine(ls, "pam_password"):
+				elif writepam and matchLine(ls, "pam_password"):
 					# If it's a 'pam_password' line, write the correct setting.
 					if not wrotepass:
 						output += "pam_password " + passalgo
@@ -2433,22 +2433,22 @@ class AuthInfo:
 		if os.path.isfile(all_configs[CFG_LDAP].origPath):
 			all_configs[CFG_LDAP].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_LDAP].origPath,
-					"uri", "host", "base", True, True)
+					"uri", "host", "base", True, True, True)
 		if os.path.isfile(all_configs[CFG_NSSLDAP].origPath):
 			all_configs[CFG_NSSLDAP].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_NSSLDAP].origPath,
-					"uri", "host", "base", True, True)
+					"uri", "host", "base", True, True, False)
 		if os.path.isfile(all_configs[CFG_PAMLDAP].origPath):
 			all_configs[CFG_PAMLDAP].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_PAMLDAP].origPath,
-					"uri", "host", "base", True, False)
+					"uri", "host", "base", True, False, True)
 		if os.path.isfile(all_configs[CFG_NSLCD].origPath):
 			all_configs[CFG_NSLCD].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_NSLCD].origPath,
-					"uri", "host", "base", True, False)
+					"uri", "host", "base", True, False, False)
 		all_configs[CFG_OPENLDAP].backup(self.backupDir)
 		ret = self.writeLDAP2(all_configs[CFG_OPENLDAP].origPath,
-					"URI", "HOST", "BASE", False, False)
+					"URI", "HOST", "BASE", False, False, False)
 		return ret
 
 	def cryptStyle(self):
