@@ -1,21 +1,21 @@
 # Translation of authconfig to Slovak
 # This file is distributed under the same license as the authconfig package.
-# Marek Mahut <mmahut@fedoraproject.org>, 2008.
-# Ondrej Šulek <feonsu@gmail.com>, 2008, 2009.
-# Pavol Šimo <palo.simo@gmail.com>, 2009.
 #
+# Marek Mahut <mmahut@fedoraproject.org>, 2008.
+# Ondrej Šulek <feonsu@gmail.com>, 2008, 2009, 2010.
+# Pavol Šimo <palo.simo@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-05-08 22:26+0200\n"
-"Last-Translator: Pavol Šimo <palo.simo@gmail.com>\n"
+"PO-Revision-Date: 2010-04-15 17:49+0200\n"
+"Last-Translator: Ondrej Šulek <feonsu@gmail.com>\n"
 "Language-Team: Slovak <fedora-trans-sk@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.3\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../authconfig.py:81
@@ -107,10 +107,14 @@ msgstr "zakázať použitie TLS s LDAP (RFC-2830)"
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"povoliť použitie schémy RFC-2307bis pre hľadanie používateľských informácií "
+"v LDAP"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"zakázať použitie schémy RFC-2307bis pre hľadanie používateľských informácií "
+"v LDAP"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -146,7 +150,7 @@ msgstr "predvolený modul smart karty, ktorý použiť"
 
 #: ../authconfig.py:143
 msgid "action to be taken on smart card removal"
-msgstr "akcia, ktorá bude zvolená pri odstraňovaní smart karty"
+msgstr "akcia, ktorá bude zvolená pri odstránení smart karty"
 
 #: ../authconfig.py:146
 msgid "enable authentication with fingerprint readers by default"
@@ -346,41 +350,36 @@ msgid "default hesiod RHS"
 msgstr "predvolené hesiod RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "predvolene povoliť NIS pre používateľské informácie"
+msgstr "predvolene povoliť SSSD pre používateľské informácie"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "predvolene zakázať NIS pre používateľské informácie"
+msgstr "predvolene zakázať SSSD pre používateľské informácie"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "predvolene povoliť LDAP pre overenie totožnosti"
+msgstr "predvolene povoliť SSSD pre overenie totožnosti"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "predvolene zakázať LDAP pre overenie totožnosti"
+msgstr "predvolene zakázať SSSD pre overenie totožnosti"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "predvolene povoliť kešovanie používateľských informácii"
+msgstr "predvolene povoliť kešovanie používateľských overení v SSSD"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "predvolene zakázať kešovanie používateľských informácii"
+msgstr "predvolene zakázať kešovanie používateľských overení v SSSD"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "predvolene povoliť kešovanie používateľských informácii"
+msgstr ""
+"predvolene povoliť kešovanie používateľských informácii (automaticky "
+"vypnuté, ak sa používa SSSD)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
@@ -764,94 +763,87 @@ msgstr ""
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "Len lokálne účty"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "Heslo:"
+msgstr "Heslo"
 
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "Heslo:"
+msgstr "LDAP heslo"
 
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Kerberos heslo"
 
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "tieňové heslá"
+msgstr "NIS heslo"
 
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "tieňové heslá"
+msgstr "Winbind heslo"
 
 #: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
+"Musíte zadať adresu servera ldaps:// alebo použiť TLS pre LDAP overenie."
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Nastavenia overovania totožnosti"
+msgstr "<b>Nastavenia overovania totožnosti</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Nastavenia overovania totožnosti"
+msgstr "<b>Voľby lokálneho overovania totožnosti</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Nastavenia overovania totožnosti"
+msgstr "<b>Ostatné voľby overovania totožnosti</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Voľby overenia totožnosti smart kartou</b>"
 
 #: ../authconfig.glade.h:6
-#, fuzzy
 msgid "<b>User Account Configuration</b>"
-msgstr "Konfigurácia overovania"
+msgstr "<b>Nastavenie užívateľského konta</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>Tip:</b> Smart karty podporujú prihlásenie k lokálne aj k "
+"centrálne spracovaným účtom.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
+"<small><b>Tip:</b> Toto je riadené súborom /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Administrátorský server:"
+msgstr "_Admin servery:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "Typ overovania:"
+msgstr "Ďalšie voľby pre používateľské informácie a overenie totožnosti"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "Pokročilé _voľby"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -866,30 +858,28 @@ msgstr ""
 "totožnosti budú obnovené zo zálohy. Chcete vrátiť stav pred zmenami?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "Povoliť nepri_ame prihlásenie"
+msgstr "Povoliť o_ffline prihlásenie"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Overenie totožnosti"
+msgstr "Me_tóda overenie totožnosti:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "_Akcia pri odstránení karty"
+msgstr "_Akcia pri odstránení karty:"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "_URL certifikátu"
+msgstr "_URL certifikátu:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Stlačte toto tlačidlo, ak ste ešte nestiahli certifikát CA, alebo "
+"nenastavili certifikát CA iným spôsobom."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -900,27 +890,24 @@ msgid "Do_n't Save"
 msgstr "_Neukladať"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Správca domény:"
+msgstr "_Administrátor domény:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "Prevziať certifikát CA"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "Povoliť podporu s_nímačov odtlačkov prstov"
+msgstr "Povoliť podporu s_nímača odtlačkov prstov"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Povoliť _lokálnu kontrolu prístupu"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "Povoliť podporu _Smart karty"
+msgstr "Povoliť podporu _smart karty"
 
 #: ../authconfig.glade.h:28
 msgid ""
@@ -931,9 +918,10 @@ msgstr ""
 "prsta pomocou snímača odtlačkov prstov."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "hash/crypt algoritmus pre nové heslá"
+msgstr ""
+"Hašovací lebo kryptovací algoritmus použitý pre ukladanie hesiel lokálnych "
+"používateľov"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -953,32 +941,26 @@ msgid "Joining Winbind Domain"
 msgstr "Pripájanie sa do Winbind domény"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP vyhľadávacie _Base DN"
+msgstr "_Base DN pre vyhľadávanie v LDAP:"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP _server"
+msgstr "LDAP _server:"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS _doména"
+msgstr "NIS _doména:"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS _server"
+msgstr "NIS _server:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Realm:"
+msgstr "R_ealm:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
 msgstr "Pre prihlásenie vyžadovať sma_rt kartu"
 
@@ -995,6 +977,7 @@ msgstr "Vrátiť"
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
 msgstr ""
+"Nastavenie služieb použitých pre overenie totožnosti používateľov do systému"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1005,9 +988,8 @@ msgstr ""
 "certifikátu a kľúča priradeným k smart karte."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Dočasný shell:"
+msgstr "Ša_blóna shellu:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1024,9 +1006,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Použiť DNS pre _lokalizáciu KDC pre realmy"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Použiť DNS pre prevod počítačov na realmy"
+msgstr "Použiť D_NS pre prevod počítačov na realmy"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1049,58 +1030,48 @@ msgstr ""
 "prístupu používateľov."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS _Realm"
+msgstr "Winbind ADS _Realm:"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Radiče domé_ny Winbind"
+msgstr "Radiče domé_ny Winbind:"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind _doména"
+msgstr "Winbind _doména:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Prevziať certifikát CA"
+msgstr "Prevziať _certifikát CA..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Použiť SMB autentifikáciu"
+msgstr "_Identita a overenie"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Pripojiť sa do domény"
+msgstr "_Pripojiť sa do domény..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDC"
+msgstr "_KDC:"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "_Algoritmus hesiel"
+msgstr "_Algoritmus hašovania hesiel:"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Heslo:"
+msgstr "_Heslo:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Bezpečnostný režim:"
+msgstr "_Model zabezpečenia:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "Databáza po_užívateľských účtov:"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
@@ -1111,13 +1082,13 @@ msgid "Ignore"
 msgstr "Ignorovať"
 
 #: ../authinfo.py:3218
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 "Chýba modul overovania totožnosti %s/pam_%s.so. Proces overenia totožnosti "
-"nebude pracovať správne."
+"nemusí pracovať správne."
 
 #: ../authinfo.py:3761
 msgid "Error downloading CA certificate"
