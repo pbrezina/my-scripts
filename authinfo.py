@@ -523,6 +523,8 @@ pam_modules[STANDARD] = [
 pam_modules[PASSWORD_ONLY] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[False, AUTH,		LOGIC_REQUIRED,
+	 "deny",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
@@ -610,6 +612,8 @@ pam_modules[PASSWORD_ONLY] = [
 pam_modules[FINGERPRINT] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "deny",		[]],
 	[False,  AUTH,		LOGIC_SUFFICIENT,
 	 "fprintd",		[]],
 	[True,  AUTH,		LOGIC_REQUIRED,
@@ -3341,6 +3345,7 @@ class AuthInfo:
 					(enableSmartcard and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_SKIPNEXT) or
 					(enableSmartcard and module[NAME] == "pkcs11") or 
+					(enableSmartcard and forceSmartcard and module[NAME] == "deny") or 
 					(enableFprintd and module[NAME] == "fprintd") or
 					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
