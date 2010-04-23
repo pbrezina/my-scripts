@@ -2414,7 +2414,7 @@ class AuthInfo:
 					output += "TLS_CACERTDIR"
 				output += " " + self.ldapCacertDir
 				output += "\n"
-			if writepadl and not wrotepass:
+			if writepam and not wrotepass:
 				output += "pam_password " + passalgo
 				output += "\n"
 			# Write it out and close it.
