@@ -476,8 +476,6 @@ pam_modules[STANDARD] = [
 	 "winbind",		[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "permit",		[]],
-	[False,  PASSWORD,	LOGIC_OPTIONAL,
-	 "pkcs11",		[]],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
 	 "cracklib",		argv_cracklib_password],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
