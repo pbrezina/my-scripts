@@ -159,7 +159,6 @@ class Authconfig:
 			"cacerturl" : ("ldapCacertURL", ""),
 		}
 		self.smartcard_map = {
-			"module" : ("smartcardModule", authinfo.getSmartcardModules(),()),
 			"scaction" : ("smartcardAction", authinfo.getSmartcardActions(),()),
 			"forcesmartcard" : ("forceSmartcard", ""),
 		}
@@ -271,7 +270,7 @@ class Authconfig:
 	def update_widgets(self, mapname, map, xml, topparent):
 		self.info.update()
 		if mapname == "smartcard_map":
-			widget = xml.get_widget("action")
+			widget = xml.get_widget("scaction")
 			if not os.access("/usr/bin/gnome-screensaver", os.X_OK):
 				widget.set_sensitive(False)
 		for entry in map.keys():
