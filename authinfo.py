@@ -310,10 +310,12 @@ argv_fprintd_auth = [
 ]
 
 argv_pkcs11_auth = [
+	"card_only"
 ]
 
 argv_force_pkcs11_auth = [
-	"wait_for_card"
+	"wait_for_card",
+	"card_only"
 ]
 
 argv_krb5_auth = [
@@ -664,7 +666,7 @@ pam_modules[SMARTCARD] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
 	[False,  AUTH,		LOGIC_PKCS11,
-	 "pkcs11",		argv_pkcs11_auth],
+	 "pkcs11",		argv_force_pkcs11_auth],
 	[False, AUTH,		LOGIC_OPTIONAL,
 	 "krb5",		argv_krb5_sc_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
@@ -2874,12 +2876,18 @@ class AuthInfo:
 		all_configs[CFG_PAM_PKCS11].backup(self.backupDir)
 		insact = "/usr/sbin/gdm-safe-restart"
 		rmact = "/usr/sbin/gdm-safe-restart"
+		lock = "none"
 		if self.smartcardAction == _("Lock"):
 			insact += ",/etc/pkcs11/lockhelper.sh -lock"
 			rmact += ",/etc/pkcs11/lockhelper.sh -deactivate"
+			lock = "lock_screen"
 
 		callPKCS11Setup(["use_module="+self.smartcardModule,
 			"ins_action="+insact, "rm_action="+rmact])
+
+		os.system("gconftool-2 --direct" +
+			  " --config-source=xml:readwrite:/etc/gconf/gconf.xml.mandatory" +
+			  " -s /desktop/gnome/peripherals/smartcard/removal_action %s --type string" % lock)
 		return True
 
 	def paramsWinbind(self):
@@ -3435,9 +3443,18 @@ class AuthInfo:
 
 		return True
 
+	def prewriteUpdate(self):
+		self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
+		if self.implicitSSSD:
+			# we force the update if in the pristine copy it was set to True
+			self.forceSSSDUpdate = False
+		modules = getSmartcardModules()
+		if len(modules) > 0 and self.smartcardModule not in modules:
+			self.smartcardModule = modules[0]
+
 	def write(self):
 		self.update()
-		self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
+		self.prewriteUpdate()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		try:
 			ret = self.writeLibuser()
@@ -3524,10 +3541,7 @@ class AuthInfo:
 
 		self.checkPAMLinked()
 		self.update()
-		self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
-		if self.implicitSSSD:
-			# we force the update if in the pristine copy it was set to True
-			self.forceSSSDUpdate = False
+		self.prewriteUpdate()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		ret = True
 		try:
