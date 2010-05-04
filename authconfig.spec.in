@@ -111,8 +111,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 
 %changelog
 * Tue May  4 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.4-1
-- set the new icon also for the windows
+- set the new icon also for the windows (#583330)
 - updated translations
+- disable non-smartcard PAM stacks if require smart card for authentication
+- remove pam_pkcs11 from the password PAM stack
+- do not write pam_password option to nslcd.conf (#585953)
 
 * Wed Apr  7 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.3-1
 - manual page improvements (#578258, #526164)
