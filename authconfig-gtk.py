@@ -611,6 +611,7 @@ if __name__ == '__main__':
 	module = Authconfig()
 	xml = gtk.glade.XML(gladepath,
 			    'authconfig', "authconfig")
+	gtk.window_set_default_icon_name("system-config-authentication")
 	dialog = module.get_main_widget(xml)
 	while True:
 		response = dialog.run()
