@@ -564,6 +564,8 @@ class Authconfig:
 		self.update_type(self.auth_map, self.currauth)
 		self.apply_idsettings()
 		self.apply_authsettings()
+		if self.scxml:
+			self.info_apply(self.smartcard_map, self.scxml)
 		self.info.testLDAPCACerts()
 		self.info.rehashLDAPCACerts()
 
