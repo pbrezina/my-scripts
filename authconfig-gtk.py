@@ -100,7 +100,7 @@ class Authconfig:
 			(_("LDAP"), ("Kerberos", "LDAPAuth"),
 			 "ldapoptions", "ldap_map", authinfo.PATH_LIBNSS_SSS, "sssd-client"),
 			"FreeIPA":
-			(_("FreeIPA"), ("Kerberos"),
+			(_("FreeIPA"), ("Kerberos",),
 			 "ldapoptions", "ldap_map", authinfo.PATH_LIBNSS_SSS, "sssd-client"),
 			"NIS":
 			(_("NIS"), ("NISAuth", "Kerberos"),
