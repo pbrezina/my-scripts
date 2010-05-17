@@ -146,8 +146,8 @@ class Authconfig:
 			"krbrealm" : ("kerberosRealm", ""),
 			"kdc" : ("kerberosKDC", ""),
 			"adminserver" : ("kerberosAdminServer", ""),
-			"dnsrealm" : ("kerberosRealmviaDNS", ""),
-			"dnskdc" : ("kerberosKDCviaDNS", ""),
+			"dnsrealm" : ("kerberosRealmviaDNS", "", "", "", self.kerberos_dns),
+			"dnskdc" : ("kerberosKDCviaDNS", "", "", "", self.kerberos_dns),
 		}
 		self.ldap_map = {
 			"ldaptls" : ("enableLDAPS", "", "", "", self.enable_cacert_download),
@@ -193,6 +193,9 @@ class Authconfig:
 		self.suspendchanges = False
 		self.scxml = None
 		self.msgctrl = None
+		self.oldrealm = ""
+		self.oldkdc = ""
+		self.oldadminserver = ""
 
 	def destroy_widget(self, button, widget):
 		widget.destroy()
@@ -426,6 +429,34 @@ class Authconfig:
 			self.xml.get_widget('idauthpage').show_all()
 			apply.set_tooltip_markup("<span color='dark red'>%s</span>" % text)
 
+	def kerberos_dns(self, active, xml):
+		dnsrealm = xml.get_widget('dnsrealm').get_active()
+		dnskdc = xml.get_widget('dnskdc').get_active()
+		krbrealm = xml.get_widget('krbrealm')
+		if dnsrealm:
+			if krbrealm.get_property("sensitive"):
+				self.oldrealm = krbrealm.get_text()
+			krbrealm.set_text("")
+		elif self.oldrealm:
+			krbrealm.set_text(self.oldrealm)
+		krbrealm.set_sensitive(not dnsrealm)
+		kdc = xml.get_widget('kdc')
+		adminserver = xml.get_widget('adminserver')
+		if dnskdc:
+			if kdc.get_property("sensitive"):
+				self.oldkdc = kdc.get_text()
+			if adminserver.get_property("sensitive"):
+				self.oldadminserver = adminserver.get_text()
+			kdc.set_text("")
+			adminserver.set_text("")
+		else:
+			if self.oldkdc:
+				kdc.set_text(self.oldkdc)
+			if self.oldadminserver:
+				adminserver.set_text(self.oldadminserver)
+		kdc.set_sensitive(not dnskdc)
+		adminserver.set_sensitive(not dnskdc)
+
 	def display_smartcard_opts(self, active, xml):
 		if self.scxml:
 			self.info_apply(self.smartcard_map, self.scxml)
@@ -610,12 +641,12 @@ if __name__ == '__main__':
 	gladepath = os.path.dirname(authinfo.__file__)+"/authconfig.glade"
 	if not os.access(gladepath, os.R_OK):
 		gladepath = "/usr/share/authconfig/authconfig.glade"
-	module = Authconfig()
-	xml = gtk.glade.XML(gladepath,
-			    'authconfig', "authconfig")
 	gtk.window_set_default_icon_name("system-config-authentication")
-	dialog = module.get_main_widget(xml)
 	while True:
+		module = Authconfig()
+		xml = gtk.glade.XML(gladepath,
+			    'authconfig', "authconfig")
+		dialog = module.get_main_widget(xml)
 		response = dialog.run()
 		if response == gtk.RESPONSE_OK:
 			module.apply()
@@ -628,8 +659,6 @@ if __name__ == '__main__':
 				module.info.restoreLast()
 				# reload module
 				dialog.destroy()
-				module = Authconfig()
-				dialog = module.get_main_widget()
 		else:
 			dialog.destroy()
 			sys.exit(1)

@@ -1278,6 +1278,9 @@ class AuthInfo:
 				num += 1
 		if num != 1:
 			return False
+		# realm via DNS is not supported by the current SSSD
+		if self.enableKerberos and self.kerberosRealmviaDNS:
+			return False
 		return True
 
 	# Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvfile
