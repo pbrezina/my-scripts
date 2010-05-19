@@ -299,7 +299,6 @@ class Authconfig:
 				widget.set_data("option_list", options)
 				widget.connect("changed", self.changeoption,
 					       map[entry], xml)
-				self.changeoption(widget, map[entry], xml)
 			if type(widget) == type(gtk.Button()):
 				widget.connect("clicked",
 					       getattr(self, map[entry][0]),
@@ -313,21 +312,29 @@ class Authconfig:
 				if len(map[entry]) > 4:
 					widget.connect("changed", self.changedentry,
 						entry, map[entry][4], xml)
-					self.changedentry(widget,
-						entry, map[entry][4], xml)
-
 			if type(widget) == type(gtk.CheckButton()):
 				widget.set_active(bool(getattr(self.info,
 							  map[entry][0])))
 				if len(map[entry]) > 4:
 					widget.connect("toggled", self.toggleboolean,
 						entry, map[entry][4], xml)
-					self.toggleboolean(widget,
-						entry, map[entry][4], xml)
 			if type(widget) == type(gtk.Label()):
 				if getattr(self.info, map[entry][0]):
 					widget.set_text(getattr(self.info,
 								map[entry][0]))
+		# now run all the triggers as the data is set
+		for entry in map.keys():
+			widget = xml.get_widget(entry)
+			if type(widget) == type(gtk.ComboBox()):
+				self.changeoption(widget, map[entry], xml)
+			if type(widget) == type(gtk.Entry()):
+				if len(map[entry]) > 4:
+					self.changedentry(widget,
+						entry, map[entry][4], xml)
+			if type(widget) == type(gtk.CheckButton()):
+				if len(map[entry]) > 4:
+					self.toggleboolean(widget,
+						entry, map[entry][4], xml)
 
 	# Create a vbox or dialog using the file, and return it. */
 	def run_on_button(self, button, top, mapname, parent=None, responses=()):
