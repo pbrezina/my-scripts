@@ -576,6 +576,8 @@ pam_modules[PASSWORD_ONLY] = [
 	[True,  PASSWORD,	LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
+	 "sss",			argv_sss_password],
+	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "afs",			argv_afs_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "afs.krb",		argv_afs_password],

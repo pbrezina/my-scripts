@@ -110,11 +110,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
-- disable the krb5 inputs if using dns discovery
-- fix GUI crash on revert
-
-* Fri May  7 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.5-1
+* Wed May 19 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.5-1
 - fix FreeIPA configuration (#589751)
+- disable the krb5 inputs if using dns discovery (#591681)
+- fix GUI crash on revert
+- add pam_sss to password-auth password stack (#592872)
 
 * Tue May  4 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.4-1
 - set the new icon also for the windows (#583330)
