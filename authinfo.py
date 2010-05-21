@@ -3449,10 +3449,11 @@ class AuthInfo:
 		return True
 
 	def prewriteUpdate(self):
-		self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
-		if self.implicitSSSD:
-			# we force the update if in the pristine copy it was set to True
-			self.forceSSSDUpdate = False
+		if not self.enableSSSD and not self.enableSSSDAuth:
+			self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
+			if self.implicitSSSD:
+				# we force the update if in the pristine copy it was set to True
+				self.forceSSSDUpdate = False
 		modules = getSmartcardModules()
 		if len(modules) > 0 and self.smartcardModule not in modules:
 			self.smartcardModule = modules[0]
@@ -3482,6 +3483,8 @@ class AuthInfo:
 				ret = ret and self.writeSMB()
 			if self.enableWinbind or self.enableWinbindAuth:
 				ret = ret and self.writeWinbind()
+			if self.implicitSSSD or self.implicitSSSDAuth:
+				ret = ret and self.writeSSSD()
 			ret = ret and self.writeNSS()
 			ret = ret and self.writePAM()
 			ret = ret and self.writeSysconfig()
