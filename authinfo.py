@@ -3113,7 +3113,7 @@ class AuthInfo:
 			if self.enableLDAP:
 				normal = normal.replace("sss", "ldap")
 			else:
-				normal = normal.replace("sss", "")
+				normal = normal.replace(" sss", "")
 
 			# Hostnames we treat specially.
 			hosts += " files"
