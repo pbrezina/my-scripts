@@ -3,7 +3,7 @@
 # Keld Simonsen <keld@dkuug.dk>, 2004, 2005.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
 # Keld Simonsen <keld@rap.dk>, 2005, 2006, 2007.
-# Kris Thomsen <lakristho@gmail.com>, 2009.
+# Kris Thomsen <lakristho@gmail.com>, 2009, 2010.
 #
 # Konventioner:
 # fingerprint reader => fingeraftrykslæser
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-19 09:30+0100\n"
-"PO-Revision-Date: 2009-09-17 13:46+0200\n"
+"PO-Revision-Date: 2010-05-30 16:51+0100\n"
 "Last-Translator: Kris Thomsen <lakristho@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -110,11 +110,11 @@ msgstr "deaktivér brug af TLS med LDAP (RFC-2830)"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "aktivér brug af RFC-2307bis-skema til LDAP-brugerinformationsopslag"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
+msgstr "deaktivér brug af RFC-2307bis-skema til LDAP-brugerinformationsopslag"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -130,7 +130,7 @@ msgstr "aktivér godkendelse med smartkort som standard"
 
 #: ../authconfig.py:134
 msgid "disable authentication with smart card by default"
-msgstr "deaktivér godkendelse med smartcard som standard"
+msgstr "deaktivér godkendelse med smartkort som standard"
 
 #: ../authconfig.py:136
 msgid "require smart card for authentication by default"
@@ -343,41 +343,36 @@ msgid "default hesiod RHS"
 msgstr "standard Hesiod-RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid "enable SSSD for user information by default"
-msgstr "aktivér NIS til brugerinformation som standard"
+msgstr "aktivér SSSD til brugerinformation som standard"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid "disable SSSD for user information by default"
-msgstr "deaktivér NIS til brugerinformation som standard"
+msgstr "deaktivér SSSD til brugerinformation som standard"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid "enable SSSD for authentication by default"
-msgstr "aktivér LDAP-godkendelse som standard"
+msgstr "aktivér SSSD-godkendelse som standard"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid "disable SSSD for authentication by default"
-msgstr "deaktivér LDAP-godkendelse som standard"
+msgstr "deaktivér SSSD-godkendelse som standard"
 
 #: ../authconfig.py:242
-#, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "aktivér mellemlagring af brugerinformation som standard"
+msgstr "aktivér mellemlagring af brugerakkreditiver i SSSD som standard"
 
 #: ../authconfig.py:244
-#, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "deaktivér mellemlagring af brugerinformation som standard"
+msgstr "deaktivér mellemlagring af brugerakkreditiver i SSSD som standard"
 
 #: ../authconfig.py:247
-#, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "aktivér mellemlagring af brugerinformation som standard"
+msgstr ""
+"aktivér mellemlagring af brugerinformation som standard (automatisk deaktiveret når "
+"SSSD er brugt)"
 
 #: ../authconfig.py:249
 msgid "disable caching of user information by default"
@@ -765,93 +760,87 @@ msgstr "Bestem hvorledes systemet kontrollerer brugere som prøver at logge ind"
 
 #: ../authconfig-gtk.py:97
 msgid "Local accounts only"
-msgstr ""
+msgstr "Kun lokale konti"
 
 #: ../authconfig-gtk.py:103
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:118
-#, fuzzy
 msgid "Password"
-msgstr "Adgangskode:"
+msgstr "Adgangskode"
 
 #: ../authconfig-gtk.py:121
-#, fuzzy
 msgid "LDAP password"
-msgstr "Adgangskode:"
+msgstr "LDAP-adgangskode"
 
 #: ../authconfig-gtk.py:124
-#, fuzzy
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr "Kerberos-adgangskode"
 
 #: ../authconfig-gtk.py:127
-#, fuzzy
 msgid "NIS password"
-msgstr "skyggeadgangskode"
+msgstr "NIS-adgangskode"
 
 #: ../authconfig-gtk.py:130
-#, fuzzy
 msgid "Winbind password"
-msgstr "skyggeadgangskode"
+msgstr "Winbind-adgangskode"
 
 #: ../authconfig-gtk.py:425
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
+"Du skal angive ldaps://-serveradressen eller bruge TLS til LDAP-godkendelse."
 
 #: ../authconfig.glade.h:1
 msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Godkendelseskonfiguration"
+msgstr "<b>Godkendelseskonfiguration</b>"
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Godkendelseskonfiguration"
+msgstr "<b>Lokale godkendelsesindstillinger</b>"
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Godkendelseskonfiguration"
+msgstr "<b>Andre godkendelsesindstillinger</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Godkendelsesindstillinger for smartkort</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Konfiguration af brugerkonto</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>Tip:</b> Smartkort understøtter indlogning til både lokalt og centralt "
+"håndterede konti.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
+"<small><b>Tip:</b> Dette er håndteret via /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Admin-server:"
+msgstr "Ad_min-servere:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
 msgid "Additional options for user information and authentication"
-msgstr "deaktivér Hesiod til brugerinformation som standard"
+msgstr "Ekstra indstillinger til brugerinformation og -godkendelse"
 
 #: ../authconfig.glade.h:11
 msgid "Advanced _Options"
-msgstr ""
+msgstr "Avancerede _indstillinger"
 
 #: ../authconfig.glade.h:12
 msgid "Alert"
@@ -867,30 +856,28 @@ msgstr ""
 "ændringerne?"
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "_Tillad frakoblet-logind"
+msgstr "Tillad frakoblet-_logind"
 
 #: ../authconfig.glade.h:15
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Godkendelse"
+msgstr "Go_dkendelsesmetode:"
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "_Handling ved fjernelse af kort"
+msgstr "_Handling ved fjernelse af kort:"
 
 #: ../authconfig.glade.h:18
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "Certifikat _URL"
+msgstr "Certifikat _URL:"
 
 #: ../authconfig.glade.h:19
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Tryk på denne knap, hvis du ikke har hentet et CA-certifikat endnu, eller du ikke "
+"har sat CA-certifikatet op endnu."
 
 #: ../authconfig.glade.h:20
 msgid "Create _home directories on the first login"
@@ -901,25 +888,22 @@ msgid "Do_n't Save"
 msgstr "Gem i_kke"
 
 #: ../authconfig.glade.h:22
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Domæne-Administrator:"
+msgstr "Domæne-_Administrator:"
 
 #: ../authconfig.glade.h:24
 msgid "Download CA Certificate"
 msgstr "Hent CA-certifikat"
 
 #: ../authconfig.glade.h:25
-#, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "Aktivér understøttelse af _fingeraftrykslæser"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _local access control"
-msgstr ""
+msgstr "Aktivér _lokal adgangskontrol"
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid "Enable _smart card support"
 msgstr "Aktivér understøttelse af _smartkort"
 
@@ -932,9 +916,8 @@ msgstr ""
 "finger med fingeraftrykslæseren."
 
 #: ../authconfig.glade.h:29
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "hash-/krypterings-algoritme for nye adgangskoder"
+msgstr "Hash-/krypterings-algoritme brugt til lagring af lokale brugeres adgangskoder"
 
 #: ../authconfig.glade.h:30
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -953,32 +936,26 @@ msgid "Joining Winbind Domain"
 msgstr "Går med i Winbind-domæne"
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP søgnings _base DN"
+msgstr "LDAP-søgnings_base DN:"
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP-_server"
+msgstr "LDAP-_server:"
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS-_domæne"
+msgstr "NIS-_domæne:"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS-_server"
+msgstr "NIS-_server:"
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Realm:"
+msgstr "R_ealm:"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Require smart car_d for login"
 msgstr "_Kræv smartkort til logind"
 
@@ -996,7 +973,7 @@ msgstr "Forkast"
 
 #: ../authconfig.glade.h:41
 msgid "Set up services used for authenticating users to the system"
-msgstr ""
+msgstr "Sæt tjenester op som skal bruges til godkendelse af brugere af systemet"
 
 #: ../authconfig.glade.h:42
 msgid ""
@@ -1007,9 +984,8 @@ msgstr ""
 "certifikat og en nøgle tilknyttet et smartkort."
 
 #: ../authconfig.glade.h:44
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Skabelon for skal:"
+msgstr "Ska_belon for skal:"
 
 #: ../authconfig.glade.h:45
 msgid ""
@@ -1026,9 +1002,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Brug DNS for at _finde KDC'er for realmer"
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Brug DNS for at slå værter til realmer op"
+msgstr "Brug D_NS for at slå værter til realmer op"
 
 #: ../authconfig.glade.h:48
 msgid ""
@@ -1051,58 +1026,48 @@ msgstr ""
 "godkendelse af brugeradgang."
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS-_realm"
+msgstr "Winbind ADS-_realm:"
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind-domæneko_ntrollere"
+msgstr "Winbind-domæneko_ntrollere:"
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind-_domæne"
+msgstr "Winbind-_domæne:"
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Hent CA-certifikat"
+msgstr "_Hent CA-certifikat..."
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Benyt SMB-godkendelse"
+msgstr "_Identitet & godkendelse"
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Vær med i domæne"
+msgstr "_Tilmeld domæne..."
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDC'er"
+msgstr "_KDC'er:"
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "Hashalgoritme for _adgangsgode"
+msgstr "Hashalgoritme for _adgangsgode:"
 
 #: ../authconfig.glade.h:59
-#, fuzzy
 msgid "_Password:"
-msgstr "Adgangskode:"
+msgstr "_Adgangskode:"
 
 #: ../authconfig.glade.h:60
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Sikkerhedsmodel:"
+msgstr "_Sikkerhedsmodel:"
 
 #: ../authconfig.glade.h:61
 msgid "_User Account Database:"
-msgstr ""
+msgstr "_Brugerkontodatabase:"
 
 #: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
 msgid "Lock"
