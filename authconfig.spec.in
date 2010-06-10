@@ -110,6 +110,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
+* Thu Jun 10 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.6-1
+- remove superfluous space in nsswitch.conf (#595265)
+- always write to 'default' domain in sssd.conf only (#598558)
+- update pam and nsswitch config only when needed
+
 * Wed May 19 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.5-1
 - fix FreeIPA configuration (#589751)
 - disable the krb5 inputs if using dns discovery (#591681)
