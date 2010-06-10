@@ -1537,8 +1537,6 @@ class AuthInfo:
 				authprov = domain.get_option('auth_provider')
 			except SSSDConfig.NoOptionError:
 				authprov = None
-			if idprov in ('ldap') and authprov in ('ldap', 'krb5'):
-				self.sssdDomain = domain
 		for attr, opt in sssdopt_map.iteritems():
 			try:
 				# Cache credentials value will be taken from sysconfig
