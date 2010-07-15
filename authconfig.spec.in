@@ -110,6 +110,10 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
+* Thu Jul 15 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.7-1
+- fix startup of NIS services (#614856)
+- fix packages for LDAP id and auth in authconfig-tui
+
 * Thu Jun 10 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.6-1
 - remove superfluous space in nsswitch.conf (#595265)
 - always write to 'default' domain in sssd.conf only (#598558)

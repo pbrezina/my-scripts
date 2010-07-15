@@ -69,8 +69,8 @@ else:
 
 AUTH_MODULE_DIR = LIBDIR + "/security"
 
-PATH_PORTMAP = "/sbin/portmap"
 PATH_PWCONV = "/usr/sbin/pwconv"
+PATH_RPCBIND = "/sbin/rpcbind"
 PATH_NSCD = "/usr/sbin/nscd"
 PATH_NSCD_PID = "/var/run/nscd/nscd.pid"
 PATH_NSLCD = "/usr/sbin/nslcd"
@@ -89,7 +89,7 @@ PATH_WINBIND = "/usr/sbin/winbindd"
 PATH_WINBIND_PID = "/var/run/winbindd.pid"
 PATH_SSSD = "/usr/sbin/sssd"
 PATH_SSSD_PID = "/var/run/sssd.pid"
-PATH_YPBIND = "/sbin/ypbind"
+PATH_YPBIND = "/usr/sbin/ypbind"
 PATH_YPBIND_PID = "/var/run/ypbind.pid"
 PATH_ODDJOBD = "/usr/sbin/oddjobd"
 PATH_ODDJOBD_PID = "/var/run/oddjobd.pid"
@@ -743,12 +743,12 @@ def toggleNisService(enableNis, nisDomain, nostart):
 		if not nostart:
 			os.system("/bin/domainname " + nisDomain)
 		try:
-			os.stat(PATH_PORTMAP)
-			os.system("/sbin/chkconfig --add portmap")
-			os.system("/sbin/chkconfig --level 345 portmap on")
+			os.stat(PATH_RPCBIND)
+			os.system("/sbin/chkconfig --add rpcbind")
+			os.system("/sbin/chkconfig --level 345 rpcbind on")
 			if not nostart:
-				os.system("/sbin/service portmap stop >/dev/null 2>&1")
-				os.system("/sbin/service portmap start")
+				os.system("/sbin/service rpcbind stop >/dev/null 2>&1")
+				os.system("/sbin/service rpcbind start")
 		except OSError:
 			pass
 		try:
