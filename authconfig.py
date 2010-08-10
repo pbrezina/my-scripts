@@ -230,13 +230,17 @@ class Authconfig:
 			help=_("default hesiod RHS"))
 
 		parser.add_option("--enablesssd", action="store_true",
-			help=_("enable SSSD for user information by default"))
+			help=_("enable SSSD for user information by default with manually managed configuration"))
 		parser.add_option("--disablesssd", action="store_true",
-			help=_("disable SSSD for user information by default"))
+			help=_("disable SSSD for user information by default (still used for supported configurations)"))
 		parser.add_option("--enablesssdauth", action="store_true",
-			help=_("enable SSSD for authentication by default"))
+			help=_("enable SSSD for authentication by default with manually managed configuration"))
 		parser.add_option("--disablesssdauth", action="store_true",
-			help=_("disable SSSD for authentication by default"))
+			help=_("disable SSSD for authentication by default (still used for supported configurations"))
+		parser.add_option("--enableforcelegacy", action="store_true",
+			help=_("never use SSSD implicitly even for supported configurations"))
+		parser.add_option("--disableforcelegacy", action="store_true",
+			help=_("use SSSD implicitly if it supports the configuration"))
 
 		parser.add_option("--enablecachecreds", action="store_true",
 			help=_("enable caching of user credentials in SSSD by default"))
@@ -371,6 +375,7 @@ class Authconfig:
 			"wins":"enableWINS",
 			"sssd":"enableSSSD",
 			"sssdauth":"enableSSSDAuth",
+			"forcelegacy":"enableForceLegacy",
 			"cachecreds":"enableCacheCreds",
 			"preferdns":"preferDNSinHosts"}
 
