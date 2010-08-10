@@ -649,24 +649,27 @@ if __name__ == '__main__':
 	if not os.access(gladepath, os.R_OK):
 		gladepath = "/usr/share/authconfig/authconfig.glade"
 	gtk.window_set_default_icon_name("system-config-authentication")
-	while True:
+	ret = -1
+	while ret == -1:
 		module = Authconfig()
 		xml = gtk.glade.XML(gladepath,
 			    'authconfig', "authconfig")
 		dialog = module.get_main_widget(xml)
-		response = dialog.run()
+
+		while True:
+			response = dialog.run()
+			if response == 1:
+				if module.run_on_button(None, "revertsettings",
+					"empty_map", dialog) == gtk.RESPONSE_OK:
+					module.info.restoreLast()
+					break
+			else:
+				break
+
 		if response == gtk.RESPONSE_OK:
 			module.apply()
-			dialog.destroy()
-			sys.exit(0)
-		elif response == 1:
-			response = module.run_on_button(None, "revertsettings",
-				"empty_map", dialog)
-			if (response == gtk.RESPONSE_OK):
-				module.info.restoreLast()
-				# reload module
-				dialog.destroy()
-		else:
-			dialog.destroy()
-			sys.exit(1)
-
+			ret = 0
+		elif response != 1:
+			ret = 1
+		dialog.destroy()
+	sys.exit(ret)
