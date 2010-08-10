@@ -1788,7 +1788,7 @@ class AuthInfo:
 				continue
 			if module.startswith("pam_pkcs11"):
 				self.enableSmartcard = True
-				if control == LOGIC_FORCE_PKCS11:
+				if "authinfo_unavail" not in control:
 					self.forceSmartcard = True
 				else:
 					self.forceSmartcard = False
