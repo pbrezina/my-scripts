@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: et\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-19 09:30+0100\n"
+"POT-Creation-Date: 2010-08-10 16:29+0200\n"
 "PO-Revision-Date: 2005-11-04 08:23+0200\n"
 "Last-Translator: Allan Sims <allan.sims@eau.ee>\n"
 "Language-Team: Estonian <Eesti>\n"
@@ -350,149 +350,164 @@ msgstr "vaikimisi hesiod RHS"
 
 #: ../authconfig.py:233
 #, fuzzy
-msgid "enable SSSD for user information by default"
+msgid ""
+"enable SSSD for user information by default with manually managed "
+"configuration"
 msgstr "vaikimisi lubatakse LDAP kasutaja infole"
 
 #: ../authconfig.py:235
 #, fuzzy
-msgid "disable SSSD for user information by default"
+msgid ""
+"disable SSSD for user information by default (still used for supported "
+"configurations)"
 msgstr "vaikimisi keelatakse LDAP kasutaja infole"
 
 #: ../authconfig.py:237
 #, fuzzy
-msgid "enable SSSD for authentication by default"
+msgid ""
+"enable SSSD for authentication by default with manually managed configuration"
 msgstr "luba LDAP vaikimisi autentimist"
 
 #: ../authconfig.py:239
 #, fuzzy
-msgid "disable SSSD for authentication by default"
+msgid ""
+"disable SSSD for authentication by default (still used for supported "
+"configurations"
 msgstr "keela LDAP vaikimisi autentimist"
 
-#: ../authconfig.py:242
+#: ../authconfig.py:241
+msgid "never use SSSD implicitly even for supported configurations"
+msgstr ""
+
+#: ../authconfig.py:243
+msgid "use SSSD implicitly if it supports the configuration"
+msgstr ""
+
+#: ../authconfig.py:246
 #, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
 msgstr "kasutaja info puhverdamine on vaikimisi lubatud"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:248
 #, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
 msgstr "kasutaja info puhverdamine on vaikimisi keelatud"
 
-#: ../authconfig.py:247
+#: ../authconfig.py:251
 #, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
 msgstr "kasutaja info puhverdamine on vaikimisi lubatud"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:253
 msgid "disable caching of user information by default"
 msgstr "kasutaja info puhverdamine on vaikimisi keelatud"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:256
 msgid "local authorization is sufficient for local users"
 msgstr "kohalik autoriseerimine on piisav kohalike kasutajate jaoks"
 
-#: ../authconfig.py:254
+#: ../authconfig.py:258
 msgid "authorize local users also through remote service"
 msgstr "autoriseeri kohalikke kasutajaid läbi kaugteenuse"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:261
 msgid "check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:259
+#: ../authconfig.py:263
 msgid "do not check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:262
+#: ../authconfig.py:266
 msgid "authenticate system accounts by network services"
 msgstr ""
 
-#: ../authconfig.py:264
+#: ../authconfig.py:268
 msgid "authenticate system accounts by local files only"
 msgstr ""
 
-#: ../authconfig.py:267
+#: ../authconfig.py:271
 msgid "create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:269
+#: ../authconfig.py:273
 msgid "do not create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:272
+#: ../authconfig.py:276
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "ei käivitata/peatata portmap, ypbind ja nscd"
 
-#: ../authconfig.py:275
+#: ../authconfig.py:279
 msgid "do not update the configuration files, only print new settings"
 msgstr "seadistuste faili ei uuendata, prinditakse ainult uued seaded"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:283
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "tekstilise kasutajaliidese peaaknas näidatakse Loobu asemel Tagasi"
 
-#: ../authconfig.py:281
+#: ../authconfig.py:285
 msgid "do not display the deprecated text user interface"
 msgstr "ei kuvata taunitud tekstilist kasutajaliidest"
 
-#: ../authconfig.py:284
+#: ../authconfig.py:288
 #, fuzzy
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "vastand --test-ile, uuendatakse seadistuste fail"
 
-#: ../authconfig.py:287
+#: ../authconfig.py:291
 #, fuzzy
 msgid "update all configuration files"
 msgstr "vastand --test-ile, uuendatakse seadistuste fail"
 
-#: ../authconfig.py:290
+#: ../authconfig.py:294
 msgid "probe network for defaults and print them"
 msgstr "proovi võrku vaikimisi ning prindi nendele"
 
-#: ../authconfig.py:292 ../authconfig.py:295
+#: ../authconfig.py:296 ../authconfig.py:299
 #, fuzzy
 msgid "<name>"
 msgstr "<piirkond>"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:297
 #, fuzzy
 msgid "save a backup of all configuration files"
 msgstr "vastand --test-ile, uuendatakse seadistuste fail"
 
-#: ../authconfig.py:296
+#: ../authconfig.py:300
 #, fuzzy
 msgid "restore the backup of configuration files"
 msgstr "vastand --test-ile, uuendatakse seadistuste fail"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:303
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:304
+#: ../authconfig.py:308
 msgid "unexpected argument"
 msgstr "ootamatu argument"
 
-#: ../authconfig.py:434
+#: ../authconfig.py:439
 msgid "Bad smart card removal action specified."
 msgstr ""
 
-#: ../authconfig.py:443
+#: ../authconfig.py:448
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:476
+#: ../authconfig.py:481
 msgid "can only be run as root"
 msgstr "võimalik käivitada ainult juurkasutajana"
 
-#: ../authconfig.py:492
+#: ../authconfig.py:497
 msgid "dialog was cancelled"
 msgstr "dialoog tühistati"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:521
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -503,200 +518,200 @@ msgstr ""
 "töötamist.\n"
 "Installeeri %s pakett, milles on fail olemas."
 
-#: ../authconfig.py:518 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:869
 msgid "Warning"
 msgstr "Hoiatus"
 
-#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
-#: ../authconfig.py:806 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:770
+#: ../authconfig.py:811 ../authconfig.py:869
 msgid "Ok"
 msgstr "Olgu"
 
-#: ../authconfig.py:522
+#: ../authconfig.py:527
 msgid "caching"
 msgstr "puhverdamine"
 
-#: ../authconfig.py:523
+#: ../authconfig.py:528
 #, fuzzy
 msgid "Fingerprint reader"
 msgstr "Winbind"
 
-#: ../authconfig.py:524
+#: ../authconfig.py:529
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:530
 msgid "LDAP authentication"
 msgstr "LDAP autentimine"
 
-#: ../authconfig.py:526 ../authconfig-gtk.py:100
+#: ../authconfig.py:531 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:106
+#: ../authconfig.py:532 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:528
+#: ../authconfig.py:533
 msgid "shadow password"
 msgstr "variparool"
 
-#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
+#: ../authconfig.py:534 ../authconfig.py:536 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:535
 msgid "Winbind authentication"
 msgstr "Winbind autentimine"
 
-#: ../authconfig.py:536
+#: ../authconfig.py:541
 msgid "User Information"
 msgstr "Kasutaja info"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:544
 msgid "Cache Information"
 msgstr "Puhvri info"
 
-#: ../authconfig.py:543
+#: ../authconfig.py:548
 msgid "Use Hesiod"
 msgstr "Kasuta Hesiod"
 
-#: ../authconfig.py:546
+#: ../authconfig.py:551
 msgid "Use LDAP"
 msgstr "Kasuta LDAP"
 
-#: ../authconfig.py:550
+#: ../authconfig.py:555
 msgid "Use NIS"
 msgstr "Kasuta NIS"
 
-#: ../authconfig.py:554
+#: ../authconfig.py:559
 msgid "Use Winbind"
 msgstr "Kasuta Winbind"
 
-#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:565 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Autentimine"
 
-#: ../authconfig.py:563
+#: ../authconfig.py:568
 msgid "Use MD5 Passwords"
 msgstr "Kasuta MD5 paroole"
 
-#: ../authconfig.py:566
+#: ../authconfig.py:571
 msgid "Use Shadow Passwords"
 msgstr "Kasuta variparoole"
 
-#: ../authconfig.py:570
+#: ../authconfig.py:575
 msgid "Use LDAP Authentication"
 msgstr "Kasuta LDAP autentimist"
 
-#: ../authconfig.py:574
+#: ../authconfig.py:579
 msgid "Use Kerberos"
 msgstr "Kasuta Kerberost"
 
-#: ../authconfig.py:578
+#: ../authconfig.py:583
 msgid "Use Fingerprint reader"
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:588
 msgid "Use Winbind Authentication"
 msgstr "Kasuta Winbind autentimist"
 
-#: ../authconfig.py:587
+#: ../authconfig.py:592
 msgid "Local authorization is sufficient"
 msgstr "Kohalik autoriseerimine on piisav"
 
-#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:602 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Back"
 msgstr "Tagasi"
 
-#: ../authconfig.py:597 ../authconfig.py:765
+#: ../authconfig.py:602 ../authconfig.py:770
 msgid "Cancel"
 msgstr "Loobu"
 
-#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:603 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Next"
 msgstr "Edasi"
 
-#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
+#: ../authconfig.py:614 ../authconfig-gtk.py:639 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "Autentimise seadistus"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:737
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:733
+#: ../authconfig.py:738
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:739
 msgid "Hesiod Settings"
 msgstr "Hesiod seaded"
 
-#: ../authconfig.py:738
+#: ../authconfig.py:743
 msgid "Use TLS"
 msgstr "Kasuta TLS"
 
-#: ../authconfig.py:739 ../authconfig.py:746
+#: ../authconfig.py:744 ../authconfig.py:751
 msgid "Server:"
 msgstr "Server:"
 
-#: ../authconfig.py:740
+#: ../authconfig.py:745
 msgid "Base DN:"
 msgstr "Baasnumber:"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:746
 msgid "LDAP Settings"
 msgstr "LDAP seaded"
 
-#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
+#: ../authconfig.py:750 ../authconfig.py:805 ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "Domeen:"
 
-#: ../authconfig.py:747
+#: ../authconfig.py:752
 msgid "NIS Settings"
 msgstr "NIS seaded"
 
-#: ../authconfig.py:751
+#: ../authconfig.py:756
 msgid "Realm:"
 msgstr "Piirkond:"
 
-#: ../authconfig.py:752
+#: ../authconfig.py:757
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:753
+#: ../authconfig.py:758
 msgid "Admin Server:"
 msgstr "Haldusserver:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:759
 msgid "Use DNS to resolve hosts to realms"
 msgstr "kasutatakse DNS-i lahendamaks piirkonna arvuteid"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:760
 msgid "Use DNS to locate KDCs for realms"
 msgstr "kasutatakse DNS-i leidmaks FDC-d piirkonnale"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:761
 msgid "Kerberos Settings"
 msgstr "Kerberos seaded"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:765
 msgid "Domain Administrator:"
 msgstr "Domeeni administraator:"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:766
 msgid "Password:"
 msgstr "Parool:"
 
-#: ../authconfig.py:764
+#: ../authconfig.py:769
 msgid "Join Settings"
 msgstr "Ühinemise seaded"
 
-#: ../authconfig.py:774 ../authconfig.glade.h:43
+#: ../authconfig.py:779 ../authconfig.glade.h:41
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -706,45 +721,45 @@ msgstr ""
 "jätkamist. Nende mittesalvestamise korral võib domeeniga ühendamise üritus "
 "ebaõnnestuda. Salvestada muudatused?"
 
-#: ../authconfig.py:781
+#: ../authconfig.py:786
 msgid "Save Settings"
 msgstr "Salvesta muutused"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "No"
 msgstr "Ei"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "Yes"
 msgstr "Jah"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:799
+#: ../authconfig.py:804
 msgid "Security Model:"
 msgstr "Turvalisuse mudel:"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:806
 msgid "Domain Controllers:"
 msgstr "Domeeni kontrollerid:"
 
-#: ../authconfig.py:802
+#: ../authconfig.py:807
 msgid "ADS Realm:"
 msgstr "ADS piirkond:"
 
-#: ../authconfig.py:803
+#: ../authconfig.py:808
 msgid "Template Shell:"
 msgstr "Mall kest:"
 
-#: ../authconfig.py:805
+#: ../authconfig.py:810
 msgid "Winbind Settings"
 msgstr "Winbind seaded"
 
-#: ../authconfig.py:807
+#: ../authconfig.py:812
 msgid "Join Domain"
 msgstr "Ühine domeeniga"
 
-#: ../authconfig.py:859
+#: ../authconfig.py:864
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -758,7 +773,7 @@ msgstr ""
 "Siis vajuta Olgu."
 
 #. FIXME - version
-#: ../authconfig.py:873
+#: ../authconfig.py:878
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -804,7 +819,7 @@ msgstr "variparool"
 msgid "Winbind password"
 msgstr "variparool"
 
-#: ../authconfig-gtk.py:425
+#: ../authconfig-gtk.py:434
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -853,159 +868,150 @@ msgid "Ad_min Servers:"
 msgstr "Haldusserver:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
-msgid "Additional options for user information and authentication"
-msgstr "kasutaja infole on hesiod vaikimisi keelatud"
-
-#: ../authconfig.glade.h:11
 msgid "Advanced _Options"
 msgstr ""
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:11
 msgid "Alert"
 msgstr "Alarm"
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:12
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
 msgstr ""
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:13
 msgid "Allow offline _login"
 msgstr ""
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:14
 #, fuzzy
 msgid "Aut_hentication Method:"
 msgstr "Autentimine"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:16
 msgid "Card Re_moval Action:"
 msgstr ""
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:17
 msgid "Certificate _URL:"
 msgstr ""
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:18
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
 msgstr ""
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:20
 msgid "Do_n't Save"
 msgstr "Ei sa_lvestata"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:21
 #, fuzzy
 msgid "Domain _administrator:"
 msgstr "Domeeni administraator:"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
 msgstr ""
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:24
 #, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "Luba _Winbind toetus"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:25
 msgid "Enable _local access control"
 msgstr ""
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:26
 #, fuzzy
 msgid "Enable _smart card support"
 msgstr "Luba SMB _toetus"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:27
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
 msgstr ""
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
 msgstr ""
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr ""
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:30
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
 msgstr "Winbind domeeniga ühinemine"
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:32
 #, fuzzy
 msgid "LDAP Search _Base DN:"
 msgstr "LDAP otsimise _baasnumber"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:33
 #, fuzzy
 msgid "LDAP _Server:"
 msgstr "LDAP _Server"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:34
 #, fuzzy
 msgid "NIS _Domain:"
 msgstr "NIS _domeen"
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:35
 #, fuzzy
 msgid "NIS _Server:"
 msgstr "NIS _Server"
 
-#: ../authconfig.glade.h:37
+#: ../authconfig.glade.h:36
 #, fuzzy
 msgid "R_ealm:"
 msgstr "Piirkond:"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:37
 #, fuzzy
 msgid "Require smart car_d for login"
 msgstr "luba LDAP vaikimisi autentimist"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:38
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr ""
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:39
 #, fuzzy
 msgid "Revert"
 msgstr "Server:"
 
-#: ../authconfig.glade.h:41
-msgid "Set up services used for authenticating users to the system"
-msgstr ""
-
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:40
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
 msgstr ""
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:42
 #, fuzzy
 msgid "Te_mplate Shell:"
 msgstr "Mall kest:"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:43
 #, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
@@ -1017,101 +1023,105 @@ msgstr ""
 "PEM vormingus kataloogi '%s'.\n"
 "Siis vajuta Olgu."
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Kasuta DNS-i leidmaks KDC-d piirkonna jaoks"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:45
 #, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
 msgstr "kasutatakse DNS-i lahendamaks piirkonna arvuteid"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:46
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
 msgstr ""
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
 msgstr "Kasutada _TLS-i ühenduste krüpteerimiseks"
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:48
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:49
 #, fuzzy
 msgid "Winbind ADS R_ealm:"
 msgstr "Winbind ADS _piirkond"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:50
 #, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
 msgstr "Winbind domeeni ko_ntrollerid"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:51
 #, fuzzy
 msgid "Winbind _Domain:"
 msgstr "Winbind _domeen"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:52
 msgid "_Download CA Certificate..."
 msgstr ""
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:53
 #, fuzzy
 msgid "_Identity & Authentication"
 msgstr "Kasuta SMB autentimist"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:54
 #, fuzzy
 msgid "_Join Domain..."
 msgstr "_Ühine domeeniga"
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:55
 #, fuzzy
 msgid "_KDCs:"
 msgstr "_KDCs"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:56
 msgid "_Password Hashing Algorithm:"
 msgstr ""
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:57
 #, fuzzy
 msgid "_Password:"
 msgstr "Parool:"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:58
 #, fuzzy
 msgid "_Security Model:"
 msgstr "Turvalisuse mudel:"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:59
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
+#: ../authinfo.py:926 ../authinfo.py:1574 ../authinfo.py:2896
 msgid "Lock"
 msgstr ""
 
-#: ../authinfo.py:910 ../authinfo.py:1555
+#: ../authinfo.py:926 ../authinfo.py:1576
 msgid "Ignore"
 msgstr ""
 
-#: ../authinfo.py:3218
+#: ../authinfo.py:3268
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:3761
+#: ../authinfo.py:3829
 msgid "Error downloading CA certificate"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Additional options for user information and authentication"
+#~ msgstr "kasutaja infole on hesiod vaikimisi keelatud"
 
 #, fuzzy
 #~ msgid "<b>Fingerprint Reader</b>"

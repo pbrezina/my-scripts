@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.default\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-19 09:30+0100\n"
+"POT-Creation-Date: 2010-08-10 16:29+0200\n"
 "PO-Revision-Date: 2010-03-30 11:59+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
@@ -111,11 +111,15 @@ msgstr "LDAP'র সাথে TLS'র ব্যবহার নিষ্ক্�
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr "LDAP মাধ্যমে ব্যবহারকারীর তথ্য অনুসন্ধারনের জন্য RFC-2307bis স্কিমার ব্যবহার সক্রিয় করা হবে"
+msgstr ""
+"LDAP মাধ্যমে ব্যবহারকারীর তথ্য অনুসন্ধারনের জন্য RFC-2307bis স্কিমার ব্যবহার সক্রিয় "
+"করা হবে"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr "LDAP মাধ্যমে ব্যবহারকারীর তথ্য অনুসন্ধারনের জন্য RFC-2307bis স্কিমার ব্যবহার নিষ্ক্রিয় করা হবে"
+msgstr ""
+"LDAP মাধ্যমে ব্যবহারকারীর তথ্য অনুসন্ধারনের জন্য RFC-2307bis স্কিমার ব্যবহার নিষ্ক্রিয় "
+"করা হবে"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -325,7 +329,8 @@ msgstr "হোস্টের নাম মীমাংসা করার জ�
 
 #: ../authconfig.py:221
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "হোস্টের নাম মীমাংসা করার জন্য wins অথবা nis-র পরিবর্তে dns বাছাই করা হবে না"
+msgstr ""
+"হোস্টের নাম মীমাংসা করার জন্য wins অথবা nis-র পরিবর্তে dns বাছাই করা হবে না"
 
 #: ../authconfig.py:224
 msgid "enable hesiod for user information by default"
@@ -344,117 +349,141 @@ msgid "default hesiod RHS"
 msgstr "ডিফল্ট hesiod RHS"
 
 #: ../authconfig.py:233
-msgid "enable SSSD for user information by default"
+#, fuzzy
+msgid ""
+"enable SSSD for user information by default with manually managed "
+"configuration"
 msgstr "ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্যর জন্য SSSD সক্রিয় করা হবে"
 
 #: ../authconfig.py:235
-msgid "disable SSSD for user information by default"
+#, fuzzy
+msgid ""
+"disable SSSD for user information by default (still used for supported "
+"configurations)"
 msgstr "ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্যর জন্য SSSD নিষ্ক্রিয় করা হবে"
 
 #: ../authconfig.py:237
-msgid "enable SSSD for authentication by default"
+#, fuzzy
+msgid ""
+"enable SSSD for authentication by default with manually managed configuration"
 msgstr "ডিফল্ট অবস্থায় অনুমোদনের জন্য SSSD সক্রিয় করা হবে"
 
 #: ../authconfig.py:239
-msgid "disable SSSD for authentication by default"
+#, fuzzy
+msgid ""
+"disable SSSD for authentication by default (still used for supported "
+"configurations"
 msgstr "ডিফল্ট অবস্থায় অনুমোদনের জন্য SSSD নিষ্ক্রিয় করা হবে"
 
-#: ../authconfig.py:242
+#: ../authconfig.py:241
+msgid "never use SSSD implicitly even for supported configurations"
+msgstr ""
+
+#: ../authconfig.py:243
+msgid "use SSSD implicitly if it supports the configuration"
+msgstr ""
+
+#: ../authconfig.py:246
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্য SSSD-র মধ্যে ক্যাশে করার প্রক্রিয়া সক্রিয় করা হবে"
+msgstr ""
+"ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্য SSSD-র মধ্যে ক্যাশে করার প্রক্রিয়া সক্রিয় করা হবে"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:248
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্য SSSD-র মধ্যে ক্যাশে করার প্রক্রিয়া নিষ্ক্রিয় করা হবে"
+msgstr ""
+"ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্য SSSD-র মধ্যে ক্যাশে করার প্রক্রিয়া নিষ্ক্রিয় করা হবে"
 
-#: ../authconfig.py:247
+#: ../authconfig.py:251
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্য ক্যাশে করার প্রক্রিয়া সক্রিয় করা হবে (SSSD ব্যবহার করা হলে স্বয়ংক্রিয়ভাবে নিষ্ক্রিয় করা হয়)"
+msgstr ""
+"ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্য ক্যাশে করার প্রক্রিয়া সক্রিয় করা হবে (SSSD ব্যবহার "
+"করা হলে স্বয়ংক্রিয়ভাবে নিষ্ক্রিয় করা হয়)"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:253
 msgid "disable caching of user information by default"
 msgstr "ডিফল্ট অবস্থায় ব্যবহারকারীর তথ্য ক্যাশে করার প্রক্রিয়া নিষ্ক্রিয় করা হবে"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:256
 msgid "local authorization is sufficient for local users"
 msgstr "স্থানীয় ব্যবহারকারীদের ক্ষেত্রে স্থানীয় অনুমোদন ব্যবস্থা যথেষ্ট"
 
-#: ../authconfig.py:254
+#: ../authconfig.py:258
 msgid "authorize local users also through remote service"
 msgstr "স্থানীয় ব্যবহারকারীদেরও দূরবর্তী পরিসেবার মাধ্যমে অনুমোদন করা হবে"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:261
 msgid "check access.conf during account authorization"
 msgstr "অ্যাকাউন্ট অনুমোদনের সময় access.conf পরীক্ষা করা হবে"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:263
 msgid "do not check access.conf during account authorization"
 msgstr "অ্যাকাউন্ট অনুমোদনের সময় access.conf পরীক্ষা করা হবে না"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:266
 msgid "authenticate system accounts by network services"
 msgstr "নেটওয়ার্ক পরিসেবার দ্বারা সিস্টেম অ্যাকউন্ট অনুমোদন করা হবে"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:268
 msgid "authenticate system accounts by local files only"
 msgstr "শুধুমাত্র স্থানীয় ফাইলের সাহায্যে সিস্টেম অ্যাকাউন্ট অনুমোদন করা হবে"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:271
 msgid "create home directories for users on their first login"
 msgstr ""
 "প্রথমবার লগ-ইন করার পরে, ব্যবহারকারীদের জন্য ব্যক্তিগত (home) ডিরেক্টরি নির্মাণ করা "
 "হবে"
 
-#: ../authconfig.py:269
+#: ../authconfig.py:273
 msgid "do not create home directories for users on their first login"
 msgstr ""
 "প্রথমবার লগ-ইন করার পরে, ব্যবহারকারীদের জন্য ব্যক্তিগত (home) ডিরেক্টরি নির্মাণ করা "
 "হবে না"
 
-#: ../authconfig.py:272
+#: ../authconfig.py:276
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind এবং nscd আরম্ভ/বন্ধ করা হবে না"
 
-#: ../authconfig.py:275
+#: ../authconfig.py:279
 msgid "do not update the configuration files, only print new settings"
 msgstr "কনফিগারেশন ফাইল আপডেট করা হবে না, শুধুমাত্র নতুন বৈশিষ্ট্য প্রিন্ট করা হবে"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:283
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr "TUI'র প্রধান ডায়লগ বক্সের মধ্যে বাতিল বাটনের পরিবর্তে পূর্ববর্তী বাটন প্রদর্শন করা হবে"
+msgstr ""
+"TUI'র প্রধান ডায়লগ বক্সের মধ্যে বাতিল বাটনের পরিবর্তে পূর্ববর্তী বাটন প্রদর্শন করা হবে"
 
-#: ../authconfig.py:281
+#: ../authconfig.py:285
 msgid "do not display the deprecated text user interface"
 msgstr "অবচিত টেক্সট ইউজার ইন্টারফেস প্রদর্শন করা হবে না"
 
-#: ../authconfig.py:284
+#: ../authconfig.py:288
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--test'র বিপরীত, পরিবর্তিত বৈশিষ্ট্য সহ কনফিগারেশন ফাইল আপডেট করা হবে"
 
-#: ../authconfig.py:287
+#: ../authconfig.py:291
 msgid "update all configuration files"
 msgstr "সমস্ত কনফিগারেশন ফাইল আপডেট করা হবে"
 
 # msgstr "ব্যবহারকারীর প্রেক্ষাপট প্রদর্শন করবে না"
-#: ../authconfig.py:290
+#: ../authconfig.py:294
 msgid "probe network for defaults and print them"
 msgstr "নেটওয়ার্কে ডিফল্ট মান অনুসন্ধান করে সেগুলি প্রিন্ট করা হবে"
 
-#: ../authconfig.py:292 ../authconfig.py:295
+#: ../authconfig.py:296 ../authconfig.py:299
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:297
 msgid "save a backup of all configuration files"
 msgstr "সমস্ত কনফিগারেশন ফাইলের ব্যাক-আপ সংরক্ষণ করা হবে"
 
-#: ../authconfig.py:296
+#: ../authconfig.py:300
 msgid "restore the backup of configuration files"
 msgstr "সমস্ত কনফিগারেশন ফাইল পুনরুদ্ধার করুন"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:303
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
@@ -462,27 +491,28 @@ msgstr ""
 "কনফিগারেশনের সর্বশেষ পরিবর্তনের পূর্বে সংরক্ষিত কনফিগারেশন ফাইলের ব্যাক-আপ পুনরুদ্ধার "
 "করুন"
 
-#: ../authconfig.py:304
+#: ../authconfig.py:308
 msgid "unexpected argument"
 msgstr "অপ্রত্যাশিত আর্গুমেন্ট"
 
-#: ../authconfig.py:434
+#: ../authconfig.py:439
 msgid "Bad smart card removal action specified."
 msgstr "স্মার্ট-কার্ড অপসারণ সংক্রান্ত ভুল কর্ম নির্ধারিত হয়েছে।"
 
-#: ../authconfig.py:443
+#: ../authconfig.py:448
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr "অজানা পাসওয়ার্ড হ্যাশ অ্যালগোরিদম প্রয়োগ উল্লিখিত হয়েছে। sha256 ব্যবহার করা হচ্ছে।"
+msgstr ""
+"অজানা পাসওয়ার্ড হ্যাশ অ্যালগোরিদম প্রয়োগ উল্লিখিত হয়েছে। sha256 ব্যবহার করা হচ্ছে।"
 
-#: ../authconfig.py:476
+#: ../authconfig.py:481
 msgid "can only be run as root"
 msgstr "শুধুমাত্র root পরিচয়ে সঞ্চালনযোগ্য"
 
-#: ../authconfig.py:492
+#: ../authconfig.py:497
 msgid "dialog was cancelled"
 msgstr "ডায়লগ বাতিল করা হয়েছে"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:521
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -492,199 +522,199 @@ msgstr ""
 "%s ফাইলটি পাওয়া যায়নি, কিন্তু %s সমর্থন সঠিকভাবে চালাতে হলে এটি প্রয়োজন।\n"
 "এই ফাইলটি প্রাপ্ত করতে %s প্যাকেজটি ইনস্টল করুন।"
 
-#: ../authconfig.py:518 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:869
 msgid "Warning"
 msgstr "সতর্কবাণী"
 
-#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
-#: ../authconfig.py:806 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:770
+#: ../authconfig.py:811 ../authconfig.py:869
 msgid "Ok"
 msgstr "ঠিক আছে"
 
-#: ../authconfig.py:522
+#: ../authconfig.py:527
 msgid "caching"
 msgstr "ক্যাশে করা হচ্ছে"
 
-#: ../authconfig.py:523
+#: ../authconfig.py:528
 msgid "Fingerprint reader"
 msgstr "ফিংগারপ্রিন্ট-রিডার"
 
-#: ../authconfig.py:524
+#: ../authconfig.py:529
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:530
 msgid "LDAP authentication"
 msgstr "LDAP-র অনুমোদন"
 
-#: ../authconfig.py:526 ../authconfig-gtk.py:100
+#: ../authconfig.py:531 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:106
+#: ../authconfig.py:532 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:528
+#: ../authconfig.py:533
 msgid "shadow password"
 msgstr "শেডো পাসওয়ার্ড"
 
-#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
+#: ../authconfig.py:534 ../authconfig.py:536 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:535
 msgid "Winbind authentication"
 msgstr "Winbind-র অনুমোদন"
 
-#: ../authconfig.py:536
+#: ../authconfig.py:541
 msgid "User Information"
 msgstr "ব্যবহারকারী সম্বন্ধীয় তথ্য"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:544
 msgid "Cache Information"
 msgstr "ক্যাশে সম্বন্ধীয় তথ্য"
 
-#: ../authconfig.py:543
+#: ../authconfig.py:548
 msgid "Use Hesiod"
 msgstr "Hesiod ব্যবহার করা হবে"
 
-#: ../authconfig.py:546
+#: ../authconfig.py:551
 msgid "Use LDAP"
 msgstr "LDAP ব্যবহার করা হবে"
 
-#: ../authconfig.py:550
+#: ../authconfig.py:555
 msgid "Use NIS"
 msgstr "NIS ব্যবহার করা হবে"
 
-#: ../authconfig.py:554
+#: ../authconfig.py:559
 msgid "Use Winbind"
 msgstr "Winbind ব্যবহার করা হবে"
 
-#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:565 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "অনুমোদন ব্যবস্থা"
 
-#: ../authconfig.py:563
+#: ../authconfig.py:568
 msgid "Use MD5 Passwords"
 msgstr "MD5 পাসওয়ার্ড ব্যবহার করা হবে"
 
-#: ../authconfig.py:566
+#: ../authconfig.py:571
 msgid "Use Shadow Passwords"
 msgstr "শেডো পাসওয়ার্ড ব্যবহার করা হবে"
 
-#: ../authconfig.py:570
+#: ../authconfig.py:575
 msgid "Use LDAP Authentication"
 msgstr "LDAP অনুমোদন ব্যবহার করা হবে"
 
-#: ../authconfig.py:574
+#: ../authconfig.py:579
 msgid "Use Kerberos"
 msgstr "Kerberos ব্যবহার করা হবে"
 
-#: ../authconfig.py:578
+#: ../authconfig.py:583
 msgid "Use Fingerprint reader"
 msgstr "ফিংগারপ্রিন্ট-রিডার ব্যবহার করা হবে"
 
-#: ../authconfig.py:583
+#: ../authconfig.py:588
 msgid "Use Winbind Authentication"
 msgstr "Winbind অনুমোদন ব্যবহার করা হবে"
 
-#: ../authconfig.py:587
+#: ../authconfig.py:592
 msgid "Local authorization is sufficient"
 msgstr "স্থানীয় অনুমোদন যথেষ্ট"
 
-#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:602 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Back"
 msgstr "পূর্ববর্তী"
 
-#: ../authconfig.py:597 ../authconfig.py:765
+#: ../authconfig.py:602 ../authconfig.py:770
 msgid "Cancel"
 msgstr "বাতিল"
 
-#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:603 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Next"
 msgstr "পরবর্তী"
 
-#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
+#: ../authconfig.py:614 ../authconfig-gtk.py:639 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "অনুমোদন ব্যবস্থার কনফিগারেশন"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:737
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:733
+#: ../authconfig.py:738
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:739
 msgid "Hesiod Settings"
 msgstr "Hesiod বৈশিষ্ট্যাবলী"
 
-#: ../authconfig.py:738
+#: ../authconfig.py:743
 msgid "Use TLS"
 msgstr "TLS ব্যবহার করা হবে"
 
-#: ../authconfig.py:739 ../authconfig.py:746
+#: ../authconfig.py:744 ../authconfig.py:751
 msgid "Server:"
 msgstr "সার্ভার:"
 
-#: ../authconfig.py:740
+#: ../authconfig.py:745
 msgid "Base DN:"
 msgstr "প্রধান DN:"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:746
 msgid "LDAP Settings"
 msgstr "LDAP-র বৈশিষ্ট্যাবলী"
 
-#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
+#: ../authconfig.py:750 ../authconfig.py:805 ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "ডোমেইন:"
 
-#: ../authconfig.py:747
+#: ../authconfig.py:752
 msgid "NIS Settings"
 msgstr "NIS-র বৈশিষ্ট্যাবলী"
 
-#: ../authconfig.py:751
+#: ../authconfig.py:756
 msgid "Realm:"
 msgstr "Realm:"
 
-#: ../authconfig.py:752
+#: ../authconfig.py:757
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:753
+#: ../authconfig.py:758
 msgid "Admin Server:"
 msgstr "অ্যাডমিন সার্ভার:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:759
 msgid "Use DNS to resolve hosts to realms"
 msgstr "realm'র সাথে হোস্ট নির্ণয় করতে DNS ব্যবহার করা হবে"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:760
 msgid "Use DNS to locate KDCs for realms"
 msgstr "realm'র জন্য KDC র অবস্থান নির্ণয় করতে DNS ব্যবহার করা হবে"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:761
 msgid "Kerberos Settings"
 msgstr "kerberos-র বৈশিষ্ট্যাবলী"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:765
 msgid "Domain Administrator:"
 msgstr "ডোমেইন অ্যাডমিনিস্ট্রেটর:"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:766
 msgid "Password:"
 msgstr "পাসওয়ার্ড:"
 
-#: ../authconfig.py:764
+#: ../authconfig.py:769
 msgid "Join Settings"
 msgstr "বৈশিষ্ট্য সংযুক্ত করা হবে"
 
-#: ../authconfig.py:774 ../authconfig.glade.h:43
+#: ../authconfig.py:779 ../authconfig.glade.h:41
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -694,45 +724,45 @@ msgstr ""
 "প্রয়োজন।  সংরক্ষণ না করলে ডোমেইনের সাথে সংযোগ স্থাপন করতে সক্ষম নাও হতে পারেন।  "
 "পরিবর্তনগুলি কি সংরক্ষণ করা হবে?"
 
-#: ../authconfig.py:781
+#: ../authconfig.py:786
 msgid "Save Settings"
 msgstr "বৈশিষ্ট্যাবলী সংরক্ষণ করুন"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "No"
 msgstr "না"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "Yes"
 msgstr "হ্যাঁ"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:799
+#: ../authconfig.py:804
 msgid "Security Model:"
 msgstr "নিরাপত্তার মডেল:"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:806
 msgid "Domain Controllers:"
 msgstr "ডোমেইন নিয়ন্ত্রণ ব্যবস্থা:"
 
-#: ../authconfig.py:802
+#: ../authconfig.py:807
 msgid "ADS Realm:"
 msgstr "ADS Realm:"
 
-#: ../authconfig.py:803
+#: ../authconfig.py:808
 msgid "Template Shell:"
 msgstr "টেমপ্লেট শেল:"
 
-#: ../authconfig.py:805
+#: ../authconfig.py:810
 msgid "Winbind Settings"
 msgstr "Winbind-র বৈশিষ্ট্যাবলী"
 
-#: ../authconfig.py:807
+#: ../authconfig.py:812
 msgid "Join Domain"
 msgstr "ডোমেইনের সাথে সংযোগ স্থাপন করা হবে"
 
-#: ../authconfig.py:859
+#: ../authconfig.py:864
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -746,7 +776,7 @@ msgstr ""
 "কর্ম সমাপ্ত হলে ঠিক আছে টিপুন।"
 
 #. FIXME - version
-#: ../authconfig.py:873
+#: ../authconfig.py:878
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -786,9 +816,12 @@ msgstr "NIS পাসওয়ার্ড"
 msgid "Winbind password"
 msgstr "Winbind পাসওয়ার্ড"
 
-#: ../authconfig-gtk.py:425
-msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr "TLS অথবা LDAP অনুমোদন ব্যবস্থা ব্যবহার করার জন্য ldaps:// server ঠিকানা উল্লেখ করা আবশ্যক।"
+#: ../authconfig-gtk.py:434
+msgid ""
+"You must provide ldaps:// server address or use TLS for LDAP authentication."
+msgstr ""
+"TLS অথবা LDAP অনুমোদন ব্যবস্থা ব্যবহার করার জন্য ldaps:// server ঠিকানা উল্লেখ করা "
+"আবশ্যক।"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -818,29 +851,30 @@ msgstr "<b>ব্যবহারকারীর অ্যাকাউন্ট �
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
-msgstr "<small><b>সূত্র:</b> স্মার্ট-কার্ডের সাহায্যে, স্থানীয় ও কেন্দ্রিয় অবস্থান থেকে পরিচালিত অ্যাকাউন্টে লগ-ইন করার প্রক্রিয়া সমর্থিত হবে।</small>"
+msgstr ""
+"<small><b>সূত্র:</b> স্মার্ট-কার্ডের সাহায্যে, স্থানীয় ও কেন্দ্রিয় অবস্থান থেকে "
+"পরিচালিত অ্যাকাউন্টে লগ-ইন করার প্রক্রিয়া সমর্থিত হবে।</small>"
 
 #: ../authconfig.glade.h:8
-msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr "<small><b>সূত্র:</b> /etc/security/access.conf ফাইলের মাধ্যমে এটি পরিচালিত হয়।</small>"
+msgid ""
+"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgstr ""
+"<small><b>সূত্র:</b> /etc/security/access.conf ফাইলের মাধ্যমে এটি পরিচালিত হয়।</"
+"small>"
 
 #: ../authconfig.glade.h:9
 msgid "Ad_min Servers:"
 msgstr "অ্যাডমিন সার্ভার: (_m)"
 
 #: ../authconfig.glade.h:10
-msgid "Additional options for user information and authentication"
-msgstr "ব্যবহারকারীর তথ্য ও অনুমোদন সংক্রান্ত অতিরিক্ত বিকল্প"
-
-#: ../authconfig.glade.h:11
 msgid "Advanced _Options"
 msgstr "উন্নত বিকল্প (_O)"
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:11
 msgid "Alert"
 msgstr "সাবধানবাণী"
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:12
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
@@ -848,57 +882,59 @@ msgstr ""
 "অনুমোদন সংক্রান্ত কনফিগারেশনের পূর্ববর্তী পরিবর্তনের ফলে পরিবর্তিত সকল কনফিগারেশন "
 "ফাইল ব্যাক-আপ থেকে পুনরুদ্ধার করা হবে। পূর্বাবস্থায় প্রত্যাবর্তন করা হবে কি?"
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:13
 msgid "Allow offline _login"
 msgstr "অফ-লাইন লগ-ইন অনুমোদন করা হবে (_l)"
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:14
 msgid "Aut_hentication Method:"
 msgstr "অনুমোদনের পদ্ধতি: (_h)"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:16
 msgid "Card Re_moval Action:"
 msgstr "কার্ড অপসারণে সঞ্চালিত কর্ম: (_m)"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:17
 msgid "Certificate _URL:"
 msgstr "সার্টিফিকেটের URL: (_U)"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:18
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
-msgstr "CA সার্টিফিকেট ডাউনলোড না করা হলে অথবা অন্য কোনো পদ্ধতিতে CA সার্টিফিকেট প্রস্তুত না করা হলে, এই বাটনটি ক্লিক করুন।"
+msgstr ""
+"CA সার্টিফিকেট ডাউনলোড না করা হলে অথবা অন্য কোনো পদ্ধতিতে CA সার্টিফিকেট প্রস্তুত "
+"না করা হলে, এই বাটনটি ক্লিক করুন।"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
 msgstr "প্রথম লগ-ইনের সময় ব্যক্তিগত ডিরেক্টরি নির্মাণ করা হবে (_h)"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:20
 msgid "Do_n't Save"
 msgstr "সংরক্ষণ করা হবে না (_n)"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:21
 msgid "Domain _administrator:"
 msgstr "ডোমেইন অ্যাডমিনিস্ট্রেটর: (_a)"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
 msgstr "CA সার্টিফিকেট ডাউনলোড করুন"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:24
 msgid "Enable _fingerprint reader support"
 msgstr "ফিংগারপ্রিন্ট-রিডার সমর্থন ব্যবস্থা সক্রিয় করা হবে (_f)"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:25
 msgid "Enable _local access control"
 msgstr "স্থানীয় ব্যবহারের নিয়ন্ত্রণ সক্রিয় করা হবে (_l)"
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:26
 msgid "Enable _smart card support"
 msgstr "স্মার্ট-কার্ড সমর্থন ব্যবস্থা সক্রিয় করা হবে (_s)"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:27
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
@@ -906,15 +942,15 @@ msgstr ""
 "ফিংগারপ্রিন্ট-রিডার সহযোগে অনুমোদনের ক্ষেত্রে ফিংগারপ্রিন্ট-রিডার দ্বারা ব্যবহারকারীর "
 "আঙ্গুলের ছাপ স্ক্যান করার পরে লগ-ইনে অনুমতি প্রদান করা হয়।"
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
 msgstr "স্থানীয় ব্যবহারকারীদের পাসওয়ার্ড সংরক্ষণের জন্য hash অথবা crypto অ্যালগোরিদম"
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr "LDAP সার্ভার চিহ্নকারী হোস্ট-নেম অথবা ldap:// অথবা ldaps:// URI।"
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:30
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
@@ -922,49 +958,46 @@ msgstr ""
 "ব্যবহারকারীর ব্যক্তিগত ডিরেক্টরি উপস্থিত না থাকলে, ব্যবহারকারী প্রথমবার লগ-ইন করার "
 "সময় তা নির্মিত হবে।"
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
 msgstr "Winbind ডোমেইন সংযুক্ত করা হচ্ছে"
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:32
 msgid "LDAP Search _Base DN:"
 msgstr "LDAP অনুসন্ধানের বেস DN: (_B)"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:33
 msgid "LDAP _Server:"
 msgstr "LDAP সার্ভার: (_S)"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:34
 msgid "NIS _Domain:"
 msgstr "NIS ডোমেইন: (_D)"
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:35
 msgid "NIS _Server:"
 msgstr "NIS সার্ভার: (_S)"
 
-#: ../authconfig.glade.h:37
+#: ../authconfig.glade.h:36
 msgid "R_ealm:"
 msgstr "R_ealm:"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:37
 msgid "Require smart car_d for login"
 msgstr "লগ-ইনের জন্য স্মার্ট-কার্ড আবশ্যক (_d)"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:38
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
-msgstr "কনফিগারেশনের পুর্ববর্তী পরিবর্তনের আগে ব্যাক-আপ করা কনফিগারেশন ফাইলগুলি পুনরুদ্ধার করুন"
+msgstr ""
+"কনফিগারেশনের পুর্ববর্তী পরিবর্তনের আগে ব্যাক-আপ করা কনফিগারেশন ফাইলগুলি পুনরুদ্ধার করুন"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:39
 msgid "Revert"
 msgstr "পূর্বাবস্থা"
 
-#: ../authconfig.glade.h:41
-msgid "Set up services used for authenticating users to the system"
-msgstr "সিস্টেমের মধ্যে ব্যবহারকারীদের অনুমোদন করতে প্রয়োগ করা পরিসেবাগুলি প্রস্তুত করুন"
-
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:40
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -972,11 +1005,11 @@ msgstr ""
 "স্মার্ট-কার্ড অনুমোদনের ক্ষেত্রে একটি স্মার্ট-কার্ডের সাথে যুক্ত সার্টিফিকেট ও কি দ্বারা "
 "লগ-ইন করা সম্ভব।"
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
 msgstr "টেমপ্লেট শেল: (_m)"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:43
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
@@ -986,15 +1019,15 @@ msgstr ""
 "স্বাক্ষরকারী CA সার্টিফিকেট আবশ্যক। CA সার্টিফিকেটটি PEM বিন্যাসে যে URL থেকে "
 "ডাউনলোড করা যাবে তা অনুগ্রহ করে পূর্ণ করুন।"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "realm'র জন্য KDC'র অবস্থান নির্ণয় করতে DNS ব্যবহার করা হবে (_l)"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:45
 msgid "Use D_NS to resolve hosts to realms"
 msgstr "realm-র সাথে হোস্ট নির্ণয় করতে DNS ব্যবহার করা হবে (_N)"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:46
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
@@ -1002,11 +1035,11 @@ msgstr ""
 "RFC-2830-র ব্যাখ্যা অনুযায়ী LDAP-র জন্য ট্রান্সপোর্ট লেয়ার সিকিউরিটি (TLS) এক্সটেনশন "
 "ব্যবহার করা হবে।  ldaps সার্ভার URI-র সাথে এটি নির্বাচন করা উচিত নয়।"
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
 msgstr "সংযোগ এনক্রিপ্ট করতে TLS ব্যবহার করা হবে (_T)"
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:48
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
@@ -1014,59 +1047,59 @@ msgstr ""
 "সক্রিয় হলে, ব্যবহারকারীদের অনুমোদন করার জন্য /etc/security/access.conf ফাইলের "
 "সহায়তা নেওয়া হবে।"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:49
 msgid "Winbind ADS R_ealm:"
 msgstr "Winbind ADS R_ealm:"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:50
 msgid "Winbind Domain Co_ntrollers:"
 msgstr "Winbind ডোমেইন নিয়ন্ত্রণ ব্যবস্থা: (_n)"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:51
 msgid "Winbind _Domain:"
 msgstr "Winbind ডোমেইন: (_D)"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:52
 msgid "_Download CA Certificate..."
 msgstr "CA সার্টিফিকেট ডাউনলোড করুন...(_D)"
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:53
 msgid "_Identity & Authentication"
 msgstr "পরিচয় ও অনুমোদন (_I)"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:54
 msgid "_Join Domain..."
 msgstr "ডোমেইনে যোগ করুন... (_J)"
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:55
 msgid "_KDCs:"
 msgstr "_KDCs:"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:56
 msgid "_Password Hashing Algorithm:"
 msgstr "পাসওয়ার্ড হ্যাশ অ্যালগোরিদম: (_P)"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:57
 msgid "_Password:"
 msgstr "পাসওয়ার্ড: (_P)"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:58
 msgid "_Security Model:"
 msgstr "নিরাপত্তার মডেল: (_S)"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:59
 msgid "_User Account Database:"
 msgstr "ব্যবহারকারী অ্যাকাউন্টের ডাটাবেস: (_U)"
 
-#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
+#: ../authinfo.py:926 ../authinfo.py:1574 ../authinfo.py:2896
 msgid "Lock"
 msgstr "লক করা হবে"
 
-#: ../authinfo.py:910 ../authinfo.py:1555
+#: ../authinfo.py:926 ../authinfo.py:1576
 msgid "Ignore"
 msgstr "অগ্রাহ্য করা হবে"
 
-#: ../authinfo.py:3218
+#: ../authinfo.py:3268
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -1075,7 +1108,13 @@ msgstr ""
 "অনুমোদনের জন্য প্রয়োজনীয় মডিউল %s/pam_%s.so উপস্থিত নেই। অনুমোদন ব্যবস্থা সঠিকরূপে "
 "চালানো সম্ভব হবে না।"
 
-#: ../authinfo.py:3761
+#: ../authinfo.py:3829
 msgid "Error downloading CA certificate"
 msgstr "CA সার্টিফিকেট ডাউনলোড করতে সমস্যা"
 
+#~ msgid "Additional options for user information and authentication"
+#~ msgstr "ব্যবহারকারীর তথ্য ও অনুমোদন সংক্রান্ত অতিরিক্ত বিকল্প"
+
+#~ msgid "Set up services used for authenticating users to the system"
+#~ msgstr ""
+#~ "সিস্টেমের মধ্যে ব্যবহারকারীদের অনুমোদন করতে প্রয়োগ করা পরিসেবাগুলি প্রস্তুত করুন"

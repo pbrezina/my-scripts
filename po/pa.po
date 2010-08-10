@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.tip.pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-19 09:30+0100\n"
+"POT-Creation-Date: 2010-08-10 16:29+0200\n"
 "PO-Revision-Date: 2010-03-30 12:11+0530\n"
 "Last-Translator: Jaswinder Singh <jsingh@redhat.com>\n"
 "Language-Team: Punjabi/Panjabi <kde-i18n-doc@kde.org>\n"
@@ -349,138 +349,157 @@ msgid "default hesiod RHS"
 msgstr "ਮੂਲ ਹਸੀਓਡ RHS"
 
 #: ../authconfig.py:233
-msgid "enable SSSD for user information by default"
+#, fuzzy
+msgid ""
+"enable SSSD for user information by default with manually managed "
+"configuration"
 msgstr "ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਲਈ SSSD ਯੋਗ ਕਰੋ"
 
 #: ../authconfig.py:235
-msgid "disable SSSD for user information by default"
+#, fuzzy
+msgid ""
+"disable SSSD for user information by default (still used for supported "
+"configurations)"
 msgstr "ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਲਈ SSSD ਅਯੋਗ ਕਰੋ"
 
 #: ../authconfig.py:237
-msgid "enable SSSD for authentication by default"
+#, fuzzy
+msgid ""
+"enable SSSD for authentication by default with manually managed configuration"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ SSSD ਮੂਲ ਹੀ ਯੋਗ ਕਰੋ"
 
 #: ../authconfig.py:239
-msgid "disable SSSD for authentication by default"
+#, fuzzy
+msgid ""
+"disable SSSD for authentication by default (still used for supported "
+"configurations"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ LDAP ਮੂਲ ਹੀ ਅਯੋਗ ਕਰੋ"
 
-#: ../authconfig.py:242
+#: ../authconfig.py:241
+msgid "never use SSSD implicitly even for supported configurations"
+msgstr ""
+
+#: ../authconfig.py:243
+msgid "use SSSD implicitly if it supports the configuration"
+msgstr ""
+
+#: ../authconfig.py:246
 msgid "enable caching of user credentials in SSSD by default"
 msgstr "SSSD ਵਿੱਚ ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਦੀ ਕੈਚਿੰਗ ਯੋਗ ਕਰੋ"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:248
 msgid "disable caching of user credentials in SSSD by default"
 msgstr "SSSD ਵਿੱਚ ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਦੀ ਕੈਚਿੰਗ ਅਯੋਗ ਕਰੋ"
 
-#: ../authconfig.py:247
+#: ../authconfig.py:251
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
 msgstr "ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਦੀ ਕੈਚਿੰਗ ਯੋਗ ਕਰੋ (SSSD ਵਰਤਣ ਤੇ ਆਟੋਮੈਟਿਕ ਅਯੋਗ ਹੁੰਦਾ ਹੈ)"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:253
 msgid "disable caching of user information by default"
 msgstr "ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਦੀ ਕੈਚਿੰਗ ਅਯੋਗ ਕਰੋ"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:256
 msgid "local authorization is sufficient for local users"
 msgstr "ਲੋਕਲ ਯੂਜ਼ਰਆਂ ਲਈ ਲੋਕਲ ਪ੍ਰਮਾਣਿਕਤਾ ਹੀ ਕਾਫੀ ਹੈ"
 
-#: ../authconfig.py:254
+#: ../authconfig.py:258
 msgid "authorize local users also through remote service"
 msgstr "ਰਿਮੋਟ ਸੇਵਾ ਰਾਹੀ ਲੋਕਲ ਯੂਜ਼ਰਆਂ ਨੂੰ ਵੀ ਪ੍ਰਮਾਣਿਤ ਕਰੋ"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:261
 msgid "check access.conf during account authorization"
 msgstr "ਖਾਤਾ ਅਧਿਕਾਰ ਦੌਰਾਨ access.conf ਦੀ ਜਾਂਚ ਕਰੋ"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:263
 msgid "do not check access.conf during account authorization"
 msgstr "ਖਾਤਾ ਅਧਿਕਾਰ ਦੌਰਾਨ access.conf ਦੀ ਜਾਂਚ ਨਾ ਕਰੋ"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:266
 msgid "authenticate system accounts by network services"
 msgstr "ਨੈੱਟਵਰਕ ਸੇਵਾਵਾਂ ਰਾਹੀਂ ਸਿਸਟਮ ਖਾਤਿਆਂ ਪਰਮਾਣਿਤ"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:268
 msgid "authenticate system accounts by local files only"
 msgstr "ਸਿਰਫ਼ ਲੋਕਲ ਫਾਇਲਾਂ ਰਾਹੀਂ ਸਿਸਟਮ ਖਾਤੇ ਪਰਮਾਣਿਤ"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:271
 msgid "create home directories for users on their first login"
 msgstr "ਪਹਿਲੇ ਲਾਗਇਨ ਤੇ ਯੂਜ਼ਰਆਂ ਲਈ ਘਰੇਲੂ ਡਾਇਰੈਕਟਰੀਆਂ ਬਣਾਓ"
 
-#: ../authconfig.py:269
+#: ../authconfig.py:273
 msgid "do not create home directories for users on their first login"
 msgstr "ਪਹਿਲੇ ਲਾਗਇਨ ਤੇ ਯੂਜ਼ਰਆਂ ਲਈ ਘਰੇਲੂ ਡਾਇਰੈਕਟਰੀਆਂ ਨਾ ਬਣਾਓ"
 
-#: ../authconfig.py:272
+#: ../authconfig.py:276
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "ਪੋਰਟਮੈਪ, ypbind, ਅਤੇ nscd ਨੂੰ ਸ਼ੁਰੂ/ਸਮਾਪਤ ਨਾ ਕਰੋ"
 
-#: ../authconfig.py:275
+#: ../authconfig.py:279
 msgid "do not update the configuration files, only print new settings"
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦਾ ਅੱਪਡੇਟ ਨਾ ਕਰੋ, ਸਿਰਫ ਨਵੀਂ ਸਥਾਪਨ ਛਾਪੋ"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:283
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "TUI ਦੇ ਮੁੱਖ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਰੱਦ ਦੀ ਬਜਾਏ ਪਿੱਛੇ ਵੇਖਾਓ"
 
-#: ../authconfig.py:281
+#: ../authconfig.py:285
 msgid "do not display the deprecated text user interface"
 msgstr "ਬਰਤਰਫ਼ ਪਾਠ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਨਾ ਵੇਖਾਓ"
 
-#: ../authconfig.py:284
+#: ../authconfig.py:288
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--test ਦੇ ਉਲਟ, ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਨਾਲ ਸਥਾਪਨ ਤਬਦੀਲ ਹੋਵੇਗਾ"
 
-#: ../authconfig.py:287
+#: ../authconfig.py:291
 msgid "update all configuration files"
 msgstr "ਸਭ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਅੱਪਡੇਟ ਕਰੋ"
 
-#: ../authconfig.py:290
+#: ../authconfig.py:294
 msgid "probe network for defaults and print them"
 msgstr "ਮੂਲ ਲਈ ਨੈੱਟਵਰਕ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਇਹਨਾਂ ਨੂੰ ਛਾਪੋ"
 
-#: ../authconfig.py:292 ../authconfig.py:295
+#: ../authconfig.py:296 ../authconfig.py:299
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:297
 msgid "save a backup of all configuration files"
 msgstr "ਸਭ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦਾ ਬੈਕਅੱਪ ਸੰਭਾਲੋ"
 
-#: ../authconfig.py:296
+#: ../authconfig.py:300
 msgid "restore the backup of configuration files"
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦਾ ਬੈਕਅੱਪ ਮੁੜ-ਸੰਭਾਲੋ"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:303
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr "ਪਿਛਲੀ ਸੰਰਚਨਾ ਤਬਦੀਲੀ ਤੋਂ ਪਹਿਲਾਂ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦੇ ਸੰਭਾਲੇ ਬੈਕਅੱਪ ਨੂੰ ਮੁੜ-ਸੰਭਾਲੋ।"
 
-#: ../authconfig.py:304
+#: ../authconfig.py:308
 msgid "unexpected argument"
 msgstr "ਬੇਲੋੜੀਂਦਾ ਆਰਗੂਮੈਂਟ "
 
-#: ../authconfig.py:434
+#: ../authconfig.py:439
 msgid "Bad smart card removal action specified."
 msgstr "ਗਲਤ ਸਮਾਰਟ ਕਾਰਡ ਹਟਾਉਣ ਕਾਰਵਾਈ ਦਿੱਤੀ ਗਈ ਹੈ।"
 
-#: ../authconfig.py:443
+#: ../authconfig.py:448
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "ਅਣਪਛਾਤੀ ਪਾਸਵਰਡ ਹੈਸ਼ਿਗ ਕਲਨ-ਵਿਧੀ ਨਿਰਧਾਰਤ ਕੀਤੀ ਗਈ ਹੈ, sha256 ਵਰਤ ਕੇ।"
 
-#: ../authconfig.py:476
+#: ../authconfig.py:481
 msgid "can only be run as root"
 msgstr "ਸਿਰਫ ਪ੍ਰਬੰਧਕ (root) ਹੀ ਚਲਾ ਸਕਦਾ ਹੈ"
 
-#: ../authconfig.py:492
+#: ../authconfig.py:497
 msgid "dialog was cancelled"
 msgstr "ਵਾਰਤਾਲਾਪ ਰੱਦ ਕੀਤਾ ਗਿਆ"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:521
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -490,199 +509,199 @@ msgstr ""
 "ਫਾਇਲ %s ਨਹੀ ਲੱਭੀ ਹੈ, ਪਰ ਇਹ %s ਦੇ ਠੀਕ ਕੰਮ ਕਰਨ ਲਈ ਲੋੜੀਂਦੀ ਹੈ।\n"
 "ਪੈਕੇਜ %s ਇੰਸਟਾਲ ਕਰੋ, ਜੋ ਕਿ ਇਹ ਫਾਇਲ ਉਪਲੱਬਧ ਕਰਵਾ ਸਕੇਗਾ।"
 
-#: ../authconfig.py:518 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:869
 msgid "Warning"
 msgstr "ਚੇਤਾਵਨੀ"
 
-#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
-#: ../authconfig.py:806 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:770
+#: ../authconfig.py:811 ../authconfig.py:869
 msgid "Ok"
 msgstr "ਠੀਕ ਹੈ"
 
-#: ../authconfig.py:522
+#: ../authconfig.py:527
 msgid "caching"
 msgstr "ਕੈਚਿੰਗ"
 
-#: ../authconfig.py:523
+#: ../authconfig.py:528
 msgid "Fingerprint reader"
 msgstr "ਵਿਨਬਾਈਂਡ ਸਹਿਯੋਗ ਯੋਗ(_W)"
 
-#: ../authconfig.py:524
+#: ../authconfig.py:529
 msgid "Kerberos"
 msgstr "ਕਰਬੀਰੋਸ"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:530
 msgid "LDAP authentication"
 msgstr "LDAP ਪ੍ਰਮਾਣਿਕਤਾ"
 
-#: ../authconfig.py:526 ../authconfig-gtk.py:100
+#: ../authconfig.py:531 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:106
+#: ../authconfig.py:532 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:528
+#: ../authconfig.py:533
 msgid "shadow password"
 msgstr "ਸ਼ੈਡੋ ਪਾਸਵਰਡ"
 
-#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
+#: ../authconfig.py:534 ../authconfig.py:536 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "ਵਿਨਬਾਈਂਡ"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:535
 msgid "Winbind authentication"
 msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਿਕਤਾ"
 
-#: ../authconfig.py:536
+#: ../authconfig.py:541
 msgid "User Information"
 msgstr "ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:544
 msgid "Cache Information"
 msgstr "ਕੈਚੇ ਜਾਣਕਾਰੀ"
 
-#: ../authconfig.py:543
+#: ../authconfig.py:548
 msgid "Use Hesiod"
 msgstr "ਹਸੀਓਡ ਵਰਤੋਂ"
 
-#: ../authconfig.py:546
+#: ../authconfig.py:551
 msgid "Use LDAP"
 msgstr "LDAP ਵਰਤੋਂ"
 
-#: ../authconfig.py:550
+#: ../authconfig.py:555
 msgid "Use NIS"
 msgstr "NIS ਵਰਤੋਂ"
 
-#: ../authconfig.py:554
+#: ../authconfig.py:559
 msgid "Use Winbind"
 msgstr "ਵਿਨਬਾਈਂਡ ਵਰਤੋਂ"
 
-#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:565 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ"
 
-#: ../authconfig.py:563
+#: ../authconfig.py:568
 msgid "Use MD5 Passwords"
 msgstr "MD5 ਪਾਸਵਰਡ ਵਰਤੋਂ"
 
-#: ../authconfig.py:566
+#: ../authconfig.py:571
 msgid "Use Shadow Passwords"
 msgstr "ਪਰਛਾਵਾਂ ਪਾਸਵਰਡ ਵਰਤੋਂ"
 
-#: ../authconfig.py:570
+#: ../authconfig.py:575
 msgid "Use LDAP Authentication"
 msgstr "LDAP ਪ੍ਰਮਾਣਿਕਤਾ ਵਰਤੋਂ"
 
-#: ../authconfig.py:574
+#: ../authconfig.py:579
 msgid "Use Kerberos"
 msgstr "ਕਰਬੀਰੋਸ ਵਰਤੋਂ"
 
-#: ../authconfig.py:578
+#: ../authconfig.py:583
 msgid "Use Fingerprint reader"
 msgstr "ਫਿੰਗਰਪ੍ਰਿੰਟ ਰੀਡਰ ਵਰਤੋ"
 
-#: ../authconfig.py:583
+#: ../authconfig.py:588
 msgid "Use Winbind Authentication"
 msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਿਕਤਾ ਵਰਤੋਂ"
 
-#: ../authconfig.py:587
+#: ../authconfig.py:592
 msgid "Local authorization is sufficient"
 msgstr "ਲੋਕਲ ਪ੍ਰਮਾਣਿਕਤਾ ਹੀ ਕਾਫੀ ਹੈ"
 
-#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:602 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Back"
 msgstr "ਪਿੱਛੇ"
 
-#: ../authconfig.py:597 ../authconfig.py:765
+#: ../authconfig.py:602 ../authconfig.py:770
 msgid "Cancel"
 msgstr "ਰੱਦ ਕਰੋ"
 
-#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:603 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Next"
 msgstr "ਅੱਗੇ"
 
-#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
+#: ../authconfig.py:614 ../authconfig-gtk.py:639 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਸੰਰਚਨਾ"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:737
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:733
+#: ../authconfig.py:738
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:739
 msgid "Hesiod Settings"
 msgstr "ਹੀਸਓਡ ਸਥਾਪਨ"
 
-#: ../authconfig.py:738
+#: ../authconfig.py:743
 msgid "Use TLS"
 msgstr "TLS ਵਰਤੋਂ"
 
-#: ../authconfig.py:739 ../authconfig.py:746
+#: ../authconfig.py:744 ../authconfig.py:751
 msgid "Server:"
 msgstr "ਸਰਵਰ:"
 
-#: ../authconfig.py:740
+#: ../authconfig.py:745
 msgid "Base DN:"
 msgstr "ਮੁੱਢਲਾ DN:"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:746
 msgid "LDAP Settings"
 msgstr "LDAP ਸਥਾਪਨ"
 
-#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
+#: ../authconfig.py:750 ../authconfig.py:805 ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "ਡੋਮੇਨ:"
 
-#: ../authconfig.py:747
+#: ../authconfig.py:752
 msgid "NIS Settings"
 msgstr "NIS ਸਥਾਪਨ"
 
-#: ../authconfig.py:751
+#: ../authconfig.py:756
 msgid "Realm:"
 msgstr "ਸੀਮਾ ਖੇਤਰ:"
 
-#: ../authconfig.py:752
+#: ../authconfig.py:757
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:753
+#: ../authconfig.py:758
 msgid "Admin Server:"
 msgstr "ਪਰਸ਼ਾਸ਼ਕ ਸਰਵਰ:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:759
 msgid "Use DNS to resolve hosts to realms"
 msgstr "ਮੇਜ਼ਬਾਨਾਂ ਦੇ ਸੀਮਾ-ਖੇਤਰ ਲਈ DNS ਵਰਤੋਂ"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:760
 msgid "Use DNS to locate KDCs for realms"
 msgstr "ਸੀਮਾ-ਖੇਤਰ ਲਈ KDC ਸਥਿਤ ਕਰਨ ਲਈ DNS ਵਰਤੋਂ"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:761
 msgid "Kerberos Settings"
 msgstr "ਕਰਬੀਰੋਸ ਸਥਾਪਨ"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:765
 msgid "Domain Administrator:"
 msgstr "ਡੋਮੇਨ ਪਰਸ਼ਾਸ਼ਕ:"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:766
 msgid "Password:"
 msgstr "ਪਾਸਵਰਡ:"
 
-#: ../authconfig.py:764
+#: ../authconfig.py:769
 msgid "Join Settings"
 msgstr "ਜੋੜ (ਜੁਆਇਨ) ਸਥਾਪਨ"
 
-#: ../authconfig.py:774 ../authconfig.glade.h:43
+#: ../authconfig.py:779 ../authconfig.glade.h:41
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -692,45 +711,45 @@ msgstr ""
 "ਜੇਕਰ ਤੁਸੀਂ ਇਸ ਤਰਾਂ ਨਾ ਕੀਤਾ ਤਾਂ ਡੋਮੇਨ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਣ ਦਾ ਤੁਹਾਡਾ ਜਤਨ ਅਸਫਲ ਹੋ ਸਕਦਾ ਹੈ।  ਕੀ "
 "ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੀਆਂ ਹਨ?"
 
-#: ../authconfig.py:781
+#: ../authconfig.py:786
 msgid "Save Settings"
 msgstr "ਸਥਾਪਨ ਸੰਭਾਲੋ"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "No"
 msgstr "ਨਹੀਂ"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "Yes"
 msgstr "ਹਾਂ"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:799
+#: ../authconfig.py:804
 msgid "Security Model:"
 msgstr "ਸੁਰੱਖਿਆ ਮਾਡਲ:"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:806
 msgid "Domain Controllers:"
 msgstr "ਡੋਮੇਨ ਕੰਟਰੋਲਰ"
 
-#: ../authconfig.py:802
+#: ../authconfig.py:807
 msgid "ADS Realm:"
 msgstr "ADS ਸੀਮਾ-ਖੇਤਰ:"
 
-#: ../authconfig.py:803
+#: ../authconfig.py:808
 msgid "Template Shell:"
 msgstr "ਨਮੂਨਾ ਸ਼ੈੱਲ:"
 
-#: ../authconfig.py:805
+#: ../authconfig.py:810
 msgid "Winbind Settings"
 msgstr "ਵਿਨਬਾਈਂਡ ਸਥਾਪਨ"
 
-#: ../authconfig.py:807
+#: ../authconfig.py:812
 msgid "Join Domain"
 msgstr "ਡੋਮੇਨ ਸ਼ਾਮਿਲ"
 
-#: ../authconfig.py:859
+#: ../authconfig.py:864
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -743,7 +762,7 @@ msgstr ""
 "ਇਸ ਉਪਰੰਤ ਠੀਕ ਹੈ ਦਬਾਓ।"
 
 #. FIXME - version
-#: ../authconfig.py:873
+#: ../authconfig.py:878
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -783,8 +802,9 @@ msgstr "NIS ਪਾਸਵਰਡ"
 msgid "Winbind password"
 msgstr "Winbind ਪਾਸਵਰਡ"
 
-#: ../authconfig-gtk.py:425
-msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
+#: ../authconfig-gtk.py:434
+msgid ""
+"You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr "ਤੁਹਾਨੂੰ LDAP ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ ldaps:// server address ਜਾਂ TLS ਵਰਤਣਾ ਪਵੇਗਾ।"
 
 #: ../authconfig.glade.h:1
@@ -816,31 +836,29 @@ msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
-"<small><b>ਟਿੱਪਣੀ:</b> ਸਮਾਰਟ ਕਾਰਡ ਲੋਕਲ ਅਤੇ ਕੇਂਦਰੀ ਪਰਬੰਧਿਤ ਦੋਨਾਂ ਖਾਤਿਆਂ ਵਿੱਚ ਲਾਗਿੰਗ ਨੂੰ ਸਹਿਯੋਗ "
-"ਦਿੰਦਾ ਹੈ।</small>"
+"<small><b>ਟਿੱਪਣੀ:</b> ਸਮਾਰਟ ਕਾਰਡ ਲੋਕਲ ਅਤੇ ਕੇਂਦਰੀ ਪਰਬੰਧਿਤ ਦੋਨਾਂ ਖਾਤਿਆਂ ਵਿੱਚ ਲਾਗਿੰਗ ਨੂੰ "
+"ਸਹਿਯੋਗ ਦਿੰਦਾ ਹੈ।</small>"
 
 #: ../authconfig.glade.h:8
-msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgid ""
+"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
-"<small><b>ਟਿੱਪਣੀ:</b> ਇਸਨੂੰ /etc/security/access.conf ਦੁਆਰਾ ਪਰਬੰਧਿਤ ਕੀਤਾ ਗਿਆ ਹੈ।</small>"
+"<small><b>ਟਿੱਪਣੀ:</b> ਇਸਨੂੰ /etc/security/access.conf ਦੁਆਰਾ ਪਰਬੰਧਿਤ ਕੀਤਾ ਗਿਆ ਹੈ।</"
+"small>"
 
 #: ../authconfig.glade.h:9
 msgid "Ad_min Servers:"
 msgstr "ਪਰਸ਼ਾਸ਼ਕ ਸਰਵਰ(_M):"
 
 #: ../authconfig.glade.h:10
-msgid "Additional options for user information and authentication"
-msgstr "ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਅਤੇ ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ ਵਾਧੂ ਚੋਣਾਂ"
-
-#: ../authconfig.glade.h:11
 msgid "Advanced _Options"
 msgstr "ਤਕਨੀਕੀ ਚੋਣਾਂ(_O)"
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:11
 msgid "Alert"
 msgstr "ਸਾਵਧਾਨ"
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:12
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
@@ -848,23 +866,23 @@ msgstr ""
 "ਸਭ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਜੋ ਪਿਛਲੀ ਪ੍ਰਮਾਣਿਕਤਾ ਸੰਰਚਨਾ ਤਬਦੀਲੀ ਨਾਲ ਸੋਧੀਆਂ ਗਈਆਂ ਹਨ, ਬੈਕਅੱਪ ਤੋਂ ਮੁੜ-"
 "ਸੰਭਾਲੀਆਂ ਜਾਣਗੀਆਂ। ਤਬਦੀਲੀ ਵਾਪਿਸ?"
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:13
 msgid "Allow offline _login"
 msgstr "ਆਫਲਾਈਨ ਲਾਗਇਨ ਮਨਜੂਰੀ ਦਿਓ(_L)"
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:14
 msgid "Aut_hentication Method:"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਢੰਗ(_H):"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:16
 msgid "Card Re_moval Action:"
 msgstr "ਕਾਰਡ ਹਟਾਉਣ ਕਾਰਵਾਈ(_M):"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:17
 msgid "Certificate _URL:"
 msgstr "ਸਰਟੀਫਿਕੇਟ _URL:"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:18
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
@@ -872,35 +890,35 @@ msgstr ""
 "ਇਹ ਬਟਨ ਦਬਾਓ ਜੇ ਤੁਸੀਂ ਹਾਲੇ ਇੱਕ CA ਸਾਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾਂ ਕਿਸੇ ਹੋਰ ਢੰਗ ਨਾਲ CA "
 "ਸਾਰਟੀਫਿਕੇਟ ਨਿਰਧਾਰਤ ਨਹੀਂ ਕੀਤਾ।"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
 msgstr "ਪਹਿਲੇ ਲਾਗਇਨ ਤੇ ਘਰੇਲੂ ਡਾਇਰੈਕਟਰੀ ਬਣਾਓ(_H)"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:20
 msgid "Do_n't Save"
 msgstr "ਨਾ ਸੰਭਾਲੋ(_n)"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:21
 msgid "Domain _administrator:"
 msgstr "ਡੋਮੇਨ ਪਰਸ਼ਾਸ਼ਕ(_A):"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
 msgstr "CA ਸਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:24
 msgid "Enable _fingerprint reader support"
 msgstr "ਫਿੰਗਰਪ੍ਰਿੰਟ ਰੀਡਰ ਸਪੋਰਟ ਯੋਗ(_F)"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:25
 msgid "Enable _local access control"
 msgstr "ਲੋਕਲ ਐਕਸੈੱਸ ਕੰਟਰੋਲ ਯੋਗ ਕਰੋ(_L)"
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:26
 msgid "Enable _smart card support"
 msgstr "ਸਮਾਰਟ ਕਾਰਡ ਸਹਿਯੋਗ ਯੋਗ ਕਰੋ(_S)"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:27
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
@@ -908,63 +926,59 @@ msgstr ""
 "ਫਿੰਗਰਪ੍ਰਿੰਟ ਪ੍ਰਮਾਣਿਕਤਾ ਤੁਹਾਨੂੰ ਇੱਕ ਸਰਟੀਫਿਕੇਟ ਅਤੇ ਸਮਾਰਟ ਕਾਰਡ ਨਾਲ ਸਬੰਧਿਤ ਕੁੰਜੀ ਨਾਲ ਨਾਲ "
 "ਲਾਗਇਨ ਕਰਨ ਦਿੰਦਾ ਹੈ।"
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
 msgstr "ਲੋਕਲ ਯੂਜ਼ਰਾਂ ਦਾ ਪਾਸਵਰਡ ਸੰਭਾਲਣ ਲਈ ਹੈਸ਼ਿੰਗ ਜਾਂ ਕਰਿਪਟੋ ਕਲਨ-ਵਿਧੀ"
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr "ਮੇਜ਼ਬਾਨ-ਨਾਂ ਜਾਂ ldap:// ਜਾਂ ldaps:// URI, LDAP ਸਰਵਰ ਵੱਲ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ।"
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:30
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr "ਜੇ ਯੂਜ਼ਰ ਦੀ ਘਰੇਲੂ ਡਾਇਰੈਕਟਰੀ ਮੌਜੂਦ ਨਹੀਂ ਤਾਂ ਇਹ ਪਹਿਲੇ ਲਾਗਇਨ ਤੇ ਆਪਣੇ-ਆਪ ਬਣ ਜਾਏਗੀ।"
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
 msgstr "ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਜੁੜ ਰਹੀ ਹੈ"
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:32
 msgid "LDAP Search _Base DN:"
 msgstr "LDAP ਖੋਜ ਅਧਾਰ DN(_B):"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:33
 msgid "LDAP _Server:"
 msgstr "LDAP ਸਰਵਰ(_S):"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:34
 msgid "NIS _Domain:"
 msgstr "NIS ਡੋਮੇਨ(_D):"
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:35
 msgid "NIS _Server:"
 msgstr "NI_S ਸਰਵਰ:"
 
-#: ../authconfig.glade.h:37
+#: ../authconfig.glade.h:36
 msgid "R_ealm:"
 msgstr "R_ealm:"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:37
 msgid "Require smart car_d for login"
 msgstr "ਲਾਗਇਨ ਸਮੇਂ ਸਮਾਰਟ ਕਾਰਡ ਲੋੜੀਂਦਾ(_R)"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:38
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr "ਪਿਛਲੀ ਸੰਰਚਨਾ ਤਬਦੀਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅੱਪ ਕੀਤੀਆਂ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਮੁੜ-ਸੰਭਾਲੋ"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:39
 msgid "Revert"
 msgstr "ਮੁੜ-ਪ੍ਰਾਪਤ"
 
-#: ../authconfig.glade.h:41
-msgid "Set up services used for authenticating users to the system"
-msgstr "ਸਿਸਟਮ ਲਈ ਯੂਜ਼ਰ ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਲਈ ਸਰਵਿਸ ਸੈੱਟਅੱਪ ਕਰੋ"
-
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:40
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -972,11 +986,11 @@ msgstr ""
 "ਸਮਾਰਟ ਕਾਰਡ ਪ੍ਰਮਾਣਿਕਤਾ ਤੁਹਾਨੂੰ ਇੱਕ ਸਰਟੀਫਿਕੇਟ ਅਤੇ ਸਮਾਰਟ ਕਾਰਡ ਨਾਲ ਸਬੰਧਿਤ ਕੁੰਜੀ ਨਾਲ ਨਾਲ "
 "ਲਾਗਇਨ ਕਰਨ ਦਿੰਦਾ ਹੈ।"
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
 msgstr "ਨਮੂਨਾ ਸ਼ੈੱਲ(_M):"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:43
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
@@ -986,15 +1000,15 @@ msgstr ""
 "ਸਰਵਰ ਦੇ ਸਾਰਟੀਫਿਕੇਟ ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਕਰੇ। ਕਿਰਪਾ ਕਰਕੇ URL ਦਿਓ ਜਿੱਥੋਂ PEM ਫਾਰਮਿਟ ਵਿੱਚ CA "
 "ਸਾਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ ਕੀਤ ਜਾ ਸਕਦਾ ਹੈ।"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "ਸੀਮਾ-ਖੇਤਰ ਲਈ KD_C ਸਥਿਤ ਕਰਨ ਲਈ DNS ਵਰਤੋਂ"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:45
 msgid "Use D_NS to resolve hosts to realms"
 msgstr "ਮੇਜ਼ਬਾਨਾਂ ਤੋਂ realms ਵੱਲ ਤਬਦੀਲੀ ਲਈ D_NS ਵਰਤੋ"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:46
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
@@ -1002,78 +1016,85 @@ msgstr ""
 "LDAP ਲਈ ਟਰਾਂਸ਼ਪੋਰਟ ਲੇਅਰ ਸਕਿਊਰਿਟੀ ਐਕਸਟੈਂਸ਼ਨ ਵਰਤੋ ਜਿਵੇਂ ਕਿ RFC-2830 ਦੁਆਰਾ ਦੱਸਿਆ ਗਿਆ ਹੈ। ਇਸ "
 "ਨੂੰ ldaps ਸਰਵਰ URI ਨਾਲ ਚੁਣਿਆ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ।"
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
 msgstr "ਇੰਕਰਿਪਟਿੰਡ ਕੁਨੈਕਸ਼ਨ ਲਈ _TLS ਵਰਤੋਂ"
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:48
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr "ਯੋਗ ਕਰਨ ਉਪਰੰਤ /etc/security/access.conf ਨੂੰ ਯੂਜ਼ਰ ਅਧਿਕਾਰਾਂ ਲਈ ਵਰਤਿਆ ਜਾਵੇਗਾ।"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:49
 msgid "Winbind ADS R_ealm:"
 msgstr "ਵਿਨਬਾਈਂਡ ADS R_ealm"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:50
 msgid "Winbind Domain Co_ntrollers:"
 msgstr "ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ ਕੰਟਰੋਲਰ(_N)"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:51
 msgid "Winbind _Domain:"
 msgstr "ਵਿਨਬਾਈਂਡ ਡੋਮੇਨ(_D):"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:52
 msgid "_Download CA Certificate..."
 msgstr "CA ਸਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ(_D)..."
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:53
 msgid "_Identity & Authentication"
 msgstr "ਪਛਾਣ ਤੇ ਪ੍ਰਮਾਣਿਕਤਾ(_I)"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:54
 msgid "_Join Domain..."
 msgstr "ਡੋਮੇਨ ਸ਼ਾਮਿਲ(_J)..."
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:55
 msgid "_KDCs:"
 msgstr "_KDCs:"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:56
 msgid "_Password Hashing Algorithm:"
 msgstr "ਪਾਸਵਰਡ ਹੈਸ਼ਿੰਗ ਕਲਨ-ਵਿਧੀ(_P):"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:57
 msgid "_Password:"
 msgstr "ਪਾਸਵਰਡ(_P):"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:58
 msgid "_Security Model:"
 msgstr "ਸੁਰੱਖਿਆ ਮਾਡਲ(_S):"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:59
 msgid "_User Account Database:"
 msgstr "ਯੂਜ਼ਰ ਖਾਤਾ ਡਾਟਾਬੇਸ(_U):"
 
-#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
+#: ../authinfo.py:926 ../authinfo.py:1574 ../authinfo.py:2896
 msgid "Lock"
 msgstr "ਲਾਕ"
 
-#: ../authinfo.py:910 ../authinfo.py:1555
+#: ../authinfo.py:926 ../authinfo.py:1576
 msgid "Ignore"
 msgstr "ਅਣਡਿੱਠਾ"
 
-#: ../authinfo.py:3218
+#: ../authinfo.py:3268
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
-msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਮੈਡਿਊਲ %s/pam_%s.so ਗੁੰਮ ਹੈ। ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਠੀਕ ਢੰਗ ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।"
+msgstr ""
+"ਪ੍ਰਮਾਣਿਕਤਾ ਮੈਡਿਊਲ %s/pam_%s.so ਗੁੰਮ ਹੈ। ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਠੀਕ ਢੰਗ ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।"
 
-#: ../authinfo.py:3761
+#: ../authinfo.py:3829
 msgid "Error downloading CA certificate"
 msgstr "CA ਸਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#~ msgid "Additional options for user information and authentication"
+#~ msgstr "ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਅਤੇ ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ ਵਾਧੂ ਚੋਣਾਂ"
+
+#~ msgid "Set up services used for authenticating users to the system"
+#~ msgstr "ਸਿਸਟਮ ਲਈ ਯੂਜ਼ਰ ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਲਈ ਸਰਵਿਸ ਸੈੱਟਅੱਪ ਕਰੋ"
 
 #~ msgid "<b>Fingerprint Reader</b>"
 #~ msgstr "<b>ਫਿੰਗਰਪ੍ਰਿੰਟ ਰੀਡਰ</b>"

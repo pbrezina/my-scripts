@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-19 09:30+0100\n"
+"POT-Creation-Date: 2010-08-10 16:29+0200\n"
 "PO-Revision-Date: 2007-01-23 15:42+0100\n"
 "Last-Translator: Adnan Hodzic <AbsintheSyringe@gmail.com>\n"
 "Language-Team: Bosnian <lokal@linux.org.ba>\n"
@@ -354,149 +354,164 @@ msgstr "Hesiod RHS u obliku zadane postavke"
 
 #: ../authconfig.py:233
 #, fuzzy
-msgid "enable SSSD for user information by default"
+msgid ""
+"enable SSSD for user information by default with manually managed "
+"configuration"
 msgstr "Omogući LDAP za korisničke podatke u obliku zadane postavke"
 
 #: ../authconfig.py:235
 #, fuzzy
-msgid "disable SSSD for user information by default"
+msgid ""
+"disable SSSD for user information by default (still used for supported "
+"configurations)"
 msgstr "Onemogući LDAP za korisničke podatke u obliku zadane postavke"
 
 #: ../authconfig.py:237
 #, fuzzy
-msgid "enable SSSD for authentication by default"
+msgid ""
+"enable SSSD for authentication by default with manually managed configuration"
 msgstr "Omogući LDAP za provjeru autentičnosti u obliku zadane postavke"
 
 #: ../authconfig.py:239
 #, fuzzy
-msgid "disable SSSD for authentication by default"
+msgid ""
+"disable SSSD for authentication by default (still used for supported "
+"configurations"
 msgstr "Onemogući LDAP za provjeru autentičnosti u obliku zadane postavke"
 
-#: ../authconfig.py:242
+#: ../authconfig.py:241
+msgid "never use SSSD implicitly even for supported configurations"
+msgstr ""
+
+#: ../authconfig.py:243
+msgid "use SSSD implicitly if it supports the configuration"
+msgstr ""
+
+#: ../authconfig.py:246
 #, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
 msgstr "Omogući pohranu korisničkih podataka u obliku zadane postavke"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:248
 #, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
 msgstr "Onemogući pohranjivanje korisničkih podataka u obliku zadane postavke"
 
-#: ../authconfig.py:247
+#: ../authconfig.py:251
 #, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
 msgstr "Omogući pohranu korisničkih podataka u obliku zadane postavke"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:253
 msgid "disable caching of user information by default"
 msgstr "Onemogući pohranjivanje korisničkih podataka u obliku zadane postavke"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:256
 msgid "local authorization is sufficient for local users"
 msgstr "Za lokalne je korisnike dovoljna lokalna provjera autentičnosti"
 
-#: ../authconfig.py:254
+#: ../authconfig.py:258
 msgid "authorize local users also through remote service"
 msgstr "Za lokalne korisnike provjeri autentičnosti i putem udaljene usluge"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:261
 msgid "check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:259
+#: ../authconfig.py:263
 msgid "do not check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:262
+#: ../authconfig.py:266
 msgid "authenticate system accounts by network services"
 msgstr "Provjeri autentičnost sistemskih naloga putem mrežnih usluga"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:268
 msgid "authenticate system accounts by local files only"
 msgstr "Provjeri autentičnost sistemskih naloga samo putem lokalnih datoteka"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:271
 msgid "create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:269
+#: ../authconfig.py:273
 msgid "do not create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:272
+#: ../authconfig.py:276
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "Ne pokreći/zaustavljaj portmap, ypbind, i nscd"
 
-#: ../authconfig.py:275
+#: ../authconfig.py:279
 msgid "do not update the configuration files, only print new settings"
 msgstr "Ne ažuriraj konfiguracijske datoteke, dovoljan je ispis novih postavki"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:283
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "Na glavnom TUI dijalogu prikaži 'Povratak' umjesto 'Odustani'"
 
-#: ../authconfig.py:281
+#: ../authconfig.py:285
 msgid "do not display the deprecated text user interface"
 msgstr "Ne prikazuj zanemarena tekstualna korisnička sučelja"
 
-#: ../authconfig.py:284
+#: ../authconfig.py:288
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "Suprotno od --test, ažuriraj konfiguracijske datoteka s izmijenjenim "
 "postavkama"
 
-#: ../authconfig.py:287
+#: ../authconfig.py:291
 msgid "update all configuration files"
 msgstr "Ažuriraj sve konfiguracijske datoteke"
 
-#: ../authconfig.py:290
+#: ../authconfig.py:294
 msgid "probe network for defaults and print them"
 msgstr "istraživanje mreže za zadane postavke i njihovo ispisivanje"
 
-#: ../authconfig.py:292 ../authconfig.py:295
+#: ../authconfig.py:296 ../authconfig.py:299
 #, fuzzy
 msgid "<name>"
 msgstr "<područje>"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:297
 #, fuzzy
 msgid "save a backup of all configuration files"
 msgstr "Ažuriraj sve konfiguracijske datoteke"
 
-#: ../authconfig.py:296
+#: ../authconfig.py:300
 #, fuzzy
 msgid "restore the backup of configuration files"
 msgstr "Ažuriraj sve konfiguracijske datoteke"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:303
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:304
+#: ../authconfig.py:308
 msgid "unexpected argument"
 msgstr "Neočekivani argument"
 
-#: ../authconfig.py:434
+#: ../authconfig.py:439
 msgid "Bad smart card removal action specified."
 msgstr "Zadana je nepravilna aktivnost za uklanjanje Smart Card modula."
 
-#: ../authconfig.py:443
+#: ../authconfig.py:448
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:476
+#: ../authconfig.py:481
 msgid "can only be run as root"
 msgstr "može biti pokrenut samo od korijenskog korisnika"
 
-#: ../authconfig.py:492
+#: ../authconfig.py:497
 msgid "dialog was cancelled"
 msgstr "Dijalog je otkazan"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:521
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -506,200 +521,200 @@ msgstr ""
 "Datoteka %s nije pronađena, li je potrebna za ispravan rad podrške %s.\n"
 "Instalirajte paket %s s kojim dolazi ova datoteka."
 
-#: ../authconfig.py:518 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:869
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
-#: ../authconfig.py:806 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:770
+#: ../authconfig.py:811 ../authconfig.py:869
 msgid "Ok"
 msgstr "U redu"
 
-#: ../authconfig.py:522
+#: ../authconfig.py:527
 msgid "caching"
 msgstr "pohranjivanje"
 
-#: ../authconfig.py:523
+#: ../authconfig.py:528
 #, fuzzy
 msgid "Fingerprint reader"
 msgstr "Omogući podršku za _Winbind"
 
-#: ../authconfig.py:524
+#: ../authconfig.py:529
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:530
 msgid "LDAP authentication"
 msgstr "LDAP provjera autentičnosti"
 
-#: ../authconfig.py:526 ../authconfig-gtk.py:100
+#: ../authconfig.py:531 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:106
+#: ../authconfig.py:532 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:528
+#: ../authconfig.py:533
 msgid "shadow password"
 msgstr "Lozinka u sjeni"
 
-#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
+#: ../authconfig.py:534 ../authconfig.py:536 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:535
 msgid "Winbind authentication"
 msgstr "Winbind provjera autentičnosti"
 
-#: ../authconfig.py:536
+#: ../authconfig.py:541
 msgid "User Information"
 msgstr "Korisnički podaci"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:544
 msgid "Cache Information"
 msgstr "Podaci o pohrani"
 
-#: ../authconfig.py:543
+#: ../authconfig.py:548
 msgid "Use Hesiod"
 msgstr "Upotrijebi Hesoid"
 
-#: ../authconfig.py:546
+#: ../authconfig.py:551
 msgid "Use LDAP"
 msgstr "Upotrijebi LDAP"
 
-#: ../authconfig.py:550
+#: ../authconfig.py:555
 msgid "Use NIS"
 msgstr "Upotrijebi NIS"
 
-#: ../authconfig.py:554
+#: ../authconfig.py:559
 msgid "Use Winbind"
 msgstr "Upotrijebi Winbind"
 
-#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:565 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Provjera vjerodostojnosti"
 
-#: ../authconfig.py:563
+#: ../authconfig.py:568
 msgid "Use MD5 Passwords"
 msgstr "Upotrijebi MD5 lozinke"
 
-#: ../authconfig.py:566
+#: ../authconfig.py:571
 msgid "Use Shadow Passwords"
 msgstr "Upotrijebi lozinke u sjeni"
 
-#: ../authconfig.py:570
+#: ../authconfig.py:575
 msgid "Use LDAP Authentication"
 msgstr "Upotrijebi LDAP provjeru autentičnosti"
 
-#: ../authconfig.py:574
+#: ../authconfig.py:579
 msgid "Use Kerberos"
 msgstr "Upotrijebi Kerberos"
 
-#: ../authconfig.py:578
+#: ../authconfig.py:583
 msgid "Use Fingerprint reader"
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:588
 msgid "Use Winbind Authentication"
 msgstr "Upotrijebi Winbind provjeru autentičnosti"
 
-#: ../authconfig.py:587
+#: ../authconfig.py:592
 msgid "Local authorization is sufficient"
 msgstr "Dovoljna je lokalna provjera autentičnosti"
 
-#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:602 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Back"
 msgstr "Povratak"
 
-#: ../authconfig.py:597 ../authconfig.py:765
+#: ../authconfig.py:602 ../authconfig.py:770
 msgid "Cancel"
 msgstr "Odustani"
 
-#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:603 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Next"
 msgstr "Sljedeće"
 
-#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
+#: ../authconfig.py:614 ../authconfig-gtk.py:639 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "Konfiguracija autentičnosti"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:737
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:733
+#: ../authconfig.py:738
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:739
 msgid "Hesiod Settings"
 msgstr "Hesiod postavke"
 
-#: ../authconfig.py:738
+#: ../authconfig.py:743
 msgid "Use TLS"
 msgstr "Upotrijebi TLS"
 
-#: ../authconfig.py:739 ../authconfig.py:746
+#: ../authconfig.py:744 ../authconfig.py:751
 msgid "Server:"
 msgstr "Poslužitelj:"
 
-#: ../authconfig.py:740
+#: ../authconfig.py:745
 msgid "Base DN:"
 msgstr "Osnovni DN:"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:746
 msgid "LDAP Settings"
 msgstr "LDAP postavke"
 
-#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
+#: ../authconfig.py:750 ../authconfig.py:805 ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "Domena:"
 
-#: ../authconfig.py:747
+#: ../authconfig.py:752
 msgid "NIS Settings"
 msgstr "NIS postavke"
 
-#: ../authconfig.py:751
+#: ../authconfig.py:756
 msgid "Realm:"
 msgstr "Područje:"
 
-#: ../authconfig.py:752
+#: ../authconfig.py:757
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:753
+#: ../authconfig.py:758
 msgid "Admin Server:"
 msgstr "Administrativni poslužitelj:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:759
 msgid "Use DNS to resolve hosts to realms"
 msgstr "Upotrijebi DNS za razrješavanje računala prema područjima"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:760
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Upotrijebi DNS za razrješavanje KDC-ova za područja"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:761
 msgid "Kerberos Settings"
 msgstr "Kerberos postavke"
 
-#: ../authconfig.py:760
+#: ../authconfig.py:765
 msgid "Domain Administrator:"
 msgstr "Administrator domene:"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:766
 msgid "Password:"
 msgstr "Lozinka:"
 
-#: ../authconfig.py:764
+#: ../authconfig.py:769
 msgid "Join Settings"
 msgstr "Postavke pridruživanja"
 
-#: ../authconfig.py:774 ../authconfig.glade.h:43
+#: ../authconfig.py:779 ../authconfig.glade.h:41
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -709,45 +724,45 @@ msgstr ""
 "prije nastavljanja. Ukoliko ih ne spremite vaš pokušaj pridruživanja domeni "
 "neće biti uspješan. Spremiti izmjene?"
 
-#: ../authconfig.py:781
+#: ../authconfig.py:786
 msgid "Save Settings"
 msgstr "Spremi postavke"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "No"
 msgstr "Ne"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "Yes"
 msgstr "Da"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:799
+#: ../authconfig.py:804
 msgid "Security Model:"
 msgstr "Model sigurnosti:"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:806
 msgid "Domain Controllers:"
 msgstr "Kontrolori domene:"
 
-#: ../authconfig.py:802
+#: ../authconfig.py:807
 msgid "ADS Realm:"
 msgstr "ADS područje"
 
-#: ../authconfig.py:803
+#: ../authconfig.py:808
 msgid "Template Shell:"
 msgstr "Predložak ljuske:"
 
-#: ../authconfig.py:805
+#: ../authconfig.py:810
 msgid "Winbind Settings"
 msgstr "Winbind postavke"
 
-#: ../authconfig.py:807
+#: ../authconfig.py:812
 msgid "Join Domain"
 msgstr "Pridruživanje domeni"
 
-#: ../authconfig.py:859
+#: ../authconfig.py:864
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -761,7 +776,7 @@ msgstr ""
 "Po završetku kliknite 'U redu'."
 
 #. FIXME - version
-#: ../authconfig.py:873
+#: ../authconfig.py:878
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -806,7 +821,7 @@ msgstr "Lozinka u sjeni"
 msgid "Winbind password"
 msgstr "Lozinka u sjeni"
 
-#: ../authconfig-gtk.py:425
+#: ../authconfig-gtk.py:434
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -855,81 +870,76 @@ msgid "Ad_min Servers:"
 msgstr "Administrativni poslužitelj:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
-msgid "Additional options for user information and authentication"
-msgstr "Onemogući hesoid za korisničke podatke u obliku zadane postavke"
-
-#: ../authconfig.glade.h:11
 msgid "Advanced _Options"
 msgstr ""
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:11
 msgid "Alert"
 msgstr "Upozorenje"
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:12
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
 msgstr ""
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:13
 msgid "Allow offline _login"
 msgstr ""
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:14
 #, fuzzy
 msgid "Aut_hentication Method:"
 msgstr "Provjera vjerodostojnosti"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:16
 #, fuzzy
 msgid "Card Re_moval Action:"
 msgstr "_Aktivnost pri uklanjanju kartice"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:17
 #, fuzzy
 msgid "Certificate _URL:"
 msgstr "_URL potvrde"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:18
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
 msgstr ""
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:20
 msgid "Do_n't Save"
 msgstr "_Ne spremaj"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:21
 #, fuzzy
 msgid "Domain _administrator:"
 msgstr "Administrator domene:"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
 msgstr "Preuzimanje CA potvrde"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:24
 #, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "Omogući podršku za _Winbind"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:25
 msgid "Enable _local access control"
 msgstr ""
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:26
 #, fuzzy
 msgid "Enable _smart card support"
 msgstr "Omogući podršku za Smart _Card"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:27
 #, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
@@ -938,70 +948,66 @@ msgstr ""
 "Provjera autentičnosti pomoću Smart Carda omogućuje vam prijavljivanje "
 "pomoću potvrde i ključa pridruženih kartici."
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
 msgstr ""
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr ""
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:30
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
 msgstr "Pridruživanje Winbind domeni"
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:32
 #, fuzzy
 msgid "LDAP Search _Base DN:"
 msgstr "LDAP pretraživanje _osnovnih DN-ova"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:33
 #, fuzzy
 msgid "LDAP _Server:"
 msgstr "_LDAP poslužitelj"
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:34
 #, fuzzy
 msgid "NIS _Domain:"
 msgstr "NID _domena"
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:35
 #, fuzzy
 msgid "NIS _Server:"
 msgstr "NIS _poslužitelj"
 
-#: ../authconfig.glade.h:37
+#: ../authconfig.glade.h:36
 #, fuzzy
 msgid "R_ealm:"
 msgstr "Područje:"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:37
 #, fuzzy
 msgid "Require smart car_d for login"
 msgstr "_Zahtijevaj Smart Card za prijavljivanje"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:38
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr ""
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:39
 #, fuzzy
 msgid "Revert"
 msgstr "Poslužitelj:"
 
-#: ../authconfig.glade.h:41
-msgid "Set up services used for authenticating users to the system"
-msgstr ""
-
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:40
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -1009,12 +1015,12 @@ msgstr ""
 "Provjera autentičnosti pomoću Smart Carda omogućuje vam prijavljivanje "
 "pomoću potvrde i ključa pridruženih kartici."
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:42
 #, fuzzy
 msgid "Te_mplate Shell:"
 msgstr "Predložak ljuske:"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:43
 #, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
@@ -1026,93 +1032,93 @@ msgstr ""
 "Certifikat u PEM obliku kopirajte u mapu '%s'.\n"
 "Po završetku kliknite 'U redu'."
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Upotrijebi DNS za pronalaženje KDC-ova za područja"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:45
 #, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
 msgstr "Upotrijebi DNS za razrješavanje računala prema područjima"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:46
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
 msgstr ""
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
 msgstr "Za šifriranje veza upotrijebi _TSL"
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:48
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
 msgstr ""
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:49
 #, fuzzy
 msgid "Winbind ADS R_ealm:"
 msgstr "_Winbind ADS područje"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:50
 #, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
 msgstr "Kontrolori _Winbind domene"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:51
 #, fuzzy
 msgid "Winbind _Domain:"
 msgstr "Winbind _domena"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:52
 #, fuzzy
 msgid "_Download CA Certificate..."
 msgstr "Preuzimanje CA potvrde"
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:53
 #, fuzzy
 msgid "_Identity & Authentication"
 msgstr "Upotrijebi SMB provjeru autentičnosti"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:54
 #, fuzzy
 msgid "_Join Domain..."
 msgstr "_Pridruživanje domeni"
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:55
 #, fuzzy
 msgid "_KDCs:"
 msgstr "_KDC-ovi"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:56
 msgid "_Password Hashing Algorithm:"
 msgstr ""
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:57
 #, fuzzy
 msgid "_Password:"
 msgstr "Lozinka:"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:58
 #, fuzzy
 msgid "_Security Model:"
 msgstr "Model sigurnosti:"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:59
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
+#: ../authinfo.py:926 ../authinfo.py:1574 ../authinfo.py:2896
 msgid "Lock"
 msgstr "Zaključaj"
 
-#: ../authinfo.py:910 ../authinfo.py:1555
+#: ../authinfo.py:926 ../authinfo.py:1576
 msgid "Ignore"
 msgstr "Ignoriraj"
 
-#: ../authinfo.py:3218
+#: ../authinfo.py:3268
 #, fuzzy, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -1121,9 +1127,13 @@ msgstr ""
 "Nedostaje modul provjere autentičnosti %s/pam_%s.so. Postupak provjere neće "
 "biti ispravno izveden."
 
-#: ../authinfo.py:3761
+#: ../authinfo.py:3829
 msgid "Error downloading CA certificate"
 msgstr "Pogreška pri preuzimanju CA potvrde"
+
+#, fuzzy
+#~ msgid "Additional options for user information and authentication"
+#~ msgstr "Onemogući hesoid za korisničke podatke u obliku zadane postavke"
 
 #~ msgid "<b>Options</b>"
 #~ msgstr "<b>Opcije</b>"

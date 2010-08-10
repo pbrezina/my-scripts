@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: authconfig.balochi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-19 09:30+0100\n"
+"POT-Creation-Date: 2010-08-10 16:29+0200\n"
 "PO-Revision-Date: 2008-03-17 22:04+0330\n"
 "Last-Translator: Mostafa Daneshvar <mostafa@daneshvar.org.uk>\n"
 "Language-Team: Balochi <fedora-trans-bal@redhat.com>\n"
@@ -344,144 +344,159 @@ msgstr "پیش فرضین  hesiod RHS"
 
 #: ../authconfig.py:233
 #, fuzzy
-msgid "enable SSSD for user information by default"
+msgid ""
+"enable SSSD for user information by default with manually managed "
+"configuration"
 msgstr "فعال کتن NIS په کارمزکنوکان اطلاعات په طور پیش فرض"
 
 #: ../authconfig.py:235
 #, fuzzy
-msgid "disable SSSD for user information by default"
+msgid ""
+"disable SSSD for user information by default (still used for supported "
+"configurations)"
 msgstr "غیر فعال کتن NIS په کامرز کنوکان اطلاعات په طور پیش فرض"
 
 #: ../authconfig.py:237
 #, fuzzy
-msgid "enable SSSD for authentication by default"
+msgid ""
+"enable SSSD for authentication by default with manually managed configuration"
 msgstr "فعال کتن LDAP په تصدیق په طور پیش فرض "
 
 #: ../authconfig.py:239
 #, fuzzy
-msgid "disable SSSD for authentication by default"
+msgid ""
+"disable SSSD for authentication by default (still used for supported "
+"configurations"
 msgstr "غیر فعال کتن LDAP په تصدیق په طور پیش فرض "
 
-#: ../authconfig.py:242
+#: ../authconfig.py:241
+msgid "never use SSSD implicitly even for supported configurations"
+msgstr ""
+
+#: ../authconfig.py:243
+msgid "use SSSD implicitly if it supports the configuration"
+msgstr ""
+
+#: ../authconfig.py:246
 #, fuzzy
 msgid "enable caching of user credentials in SSSD by default"
 msgstr "فعال کتن کش کتن اطلاعات کارمز کنوک په طور پیش فرض"
 
-#: ../authconfig.py:244
+#: ../authconfig.py:248
 #, fuzzy
 msgid "disable caching of user credentials in SSSD by default"
 msgstr "غیر فعال کتن کش کتن اطلاعات کارمز کنوک په طور پیش فرض"
 
-#: ../authconfig.py:247
+#: ../authconfig.py:251
 #, fuzzy
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
 msgstr "فعال کتن کش کتن اطلاعات کارمز کنوک په طور پیش فرض"
 
-#: ../authconfig.py:249
+#: ../authconfig.py:253
 msgid "disable caching of user information by default"
 msgstr "غیر فعال کتن کش کتن اطلاعات کارمز کنوک په طور پیش فرض"
 
-#: ../authconfig.py:252
+#: ../authconfig.py:256
 msgid "local authorization is sufficient for local users"
 msgstr "تصدیق محلی په کامرز کنوکان محلی بسنت."
 
-#: ../authconfig.py:254
+#: ../authconfig.py:258
 msgid "authorize local users also through remote service"
 msgstr "تصدیق کتن کارمزر کنوکان محلی از طریق سرویس دور"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:261
 msgid "check access.conf during account authorization"
 msgstr "کنترل کتن access.conf وهد تصدیق حساب"
 
-#: ../authconfig.py:259
+#: ../authconfig.py:263
 msgid "do not check access.conf during account authorization"
 msgstr "کنترل نه کتن access.conf وهد تصدیق حساب"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:266
 msgid "authenticate system accounts by network services"
 msgstr "تصدیق کن حسابان سیستما گون خدمات شبکه"
 
-#: ../authconfig.py:264
+#: ../authconfig.py:268
 msgid "authenticate system accounts by local files only"
 msgstr "تصدیق کتن حسابان سیستم گون فایلان محلی فقط"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:271
 msgid "create home directories for users on their first login"
 msgstr "مسیر لوگ شر کن په کارمرز کنوکان ته اولین ورودش"
 
-#: ../authconfig.py:269
+#: ../authconfig.py:273
 msgid "do not create home directories for users on their first login"
 msgstr "مسیر لوگ شر نه کتن په کارمرز کنوکان ته اولین ورودش"
 
-#: ../authconfig.py:272
+#: ../authconfig.py:276
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "شروع مکن portmap, ypbind, و nscd"
 
-#: ../authconfig.py:275
+#: ../authconfig.py:279
 msgid "do not update the configuration files, only print new settings"
 msgstr " فایلان تنظیما په روچ مکن، فقط نوکبن تنظیماتا چهاپ کن"
 
-#: ../authconfig.py:279
+#: ../authconfig.py:283
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "پیش دارگ ترگ په جاه کنسل ته دیالوگ اصلی TUI"
 
-#: ../authconfig.py:281
+#: ../authconfig.py:285
 msgid "do not display the deprecated text user interface"
 msgstr "دست بروک کارمرز متنی بدین آ پیش مدار"
 
-#: ../authconfig.py:284
+#: ../authconfig.py:288
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "ضد --آزمایش، گون تنظیمات بدل بوتگین فایلان تنظیمات په روچ کن"
 
-#: ../authconfig.py:287
+#: ../authconfig.py:291
 msgid "update all configuration files"
 msgstr "کل فایلان تنظیم آ په روچ کن"
 
-#: ../authconfig.py:290
+#: ../authconfig.py:294
 msgid "probe network for defaults and print them"
 msgstr "شبکه آ به تور په پیش فرضان و آیانا چهاپ کن"
 
-#: ../authconfig.py:292 ../authconfig.py:295
+#: ../authconfig.py:296 ../authconfig.py:299
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:297
 msgid "save a backup of all configuration files"
 msgstr "یک بک آپی چه تمام فایلان تنظیم ذخیره کن"
 
-#: ../authconfig.py:296
+#: ../authconfig.py:300
 msgid "restore the backup of configuration files"
 msgstr "بک آپ فایلان تنظیما واترین"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:303
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr "بک آپ فایلان تنظیما واترین ; پیش چه تغییر تنظیم ذخیره بیتگنت"
 
-#: ../authconfig.py:304
+#: ../authconfig.py:308
 msgid "unexpected argument"
 msgstr "نه لوٹین آرگومان"
 
-#: ../authconfig.py:434
+#: ../authconfig.py:439
 msgid "Bad smart card removal action specified."
 msgstr "بدین کار حذف کار هوشمند مشخص بیتگ"
 
-#: ../authconfig.py:443
+#: ../authconfig.py:448
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "نا شناسین الگوریتم درهم کتن مشخص بیتگ، چه sha256 استفاده کنیت."
 
-#: ../authconfig.py:476
+#: ../authconfig.py:481
 msgid "can only be run as root"
 msgstr "فقط په عنوان رووت تونیت اجرا بیت"
 
-#: ../authconfig.py:492
+#: ../authconfig.py:497
 msgid "dialog was cancelled"
 msgstr "دیالوگ کنسل بیت"
 
-#: ../authconfig.py:516
+#: ../authconfig.py:521
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -491,199 +506,199 @@ msgstr ""
 "فایل %s ودیگ نه بوت، بله په %s پشت داری مناسب کار لازمنت.\n"
 "بستگا %s نصب کنیت که ای فایلا بیاریت."
 
-#: ../authconfig.py:518 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:869
 msgid "Warning"
 msgstr "هوژاری"
 
-#: ../authconfig.py:518 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:765
-#: ../authconfig.py:806 ../authconfig.py:864
+#: ../authconfig.py:523 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:770
+#: ../authconfig.py:811 ../authconfig.py:869
 msgid "Ok"
 msgstr "هوبنت"
 
-#: ../authconfig.py:522
+#: ../authconfig.py:527
 msgid "caching"
 msgstr "کش کنگنت"
 
-#: ../authconfig.py:523
+#: ../authconfig.py:528
 msgid "Fingerprint reader"
 msgstr ""
 
-#: ../authconfig.py:524
+#: ../authconfig.py:529
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:525
+#: ../authconfig.py:530
 msgid "LDAP authentication"
 msgstr "تصدیق LDAP "
 
-#: ../authconfig.py:526 ../authconfig-gtk.py:100
+#: ../authconfig.py:531 ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP "
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:106
+#: ../authconfig.py:532 ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:528
+#: ../authconfig.py:533
 msgid "shadow password"
 msgstr "کلمه رمز ساهیل کن"
 
-#: ../authconfig.py:529 ../authconfig.py:531 ../authconfig-gtk.py:109
+#: ../authconfig.py:534 ../authconfig.py:536 ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:530
+#: ../authconfig.py:535
 msgid "Winbind authentication"
 msgstr "تصدیق Winbind"
 
-#: ../authconfig.py:536
+#: ../authconfig.py:541
 msgid "User Information"
 msgstr "اطلاعات کامرزکنوک"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:544
 msgid "Cache Information"
 msgstr "اطلاعات کش"
 
-#: ../authconfig.py:543
+#: ../authconfig.py:548
 msgid "Use Hesiod"
 msgstr "استفاده ی Hesiod"
 
-#: ../authconfig.py:546
+#: ../authconfig.py:551
 msgid "Use LDAP"
 msgstr "استفاده ی LDAP"
 
-#: ../authconfig.py:550
+#: ../authconfig.py:555
 msgid "Use NIS"
 msgstr "استفاده NIS"
 
-#: ../authconfig.py:554
+#: ../authconfig.py:559
 msgid "Use Winbind"
 msgstr "استفاده Winbind"
 
-#: ../authconfig.py:560 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:565 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "تصدیق"
 
-#: ../authconfig.py:563
+#: ../authconfig.py:568
 msgid "Use MD5 Passwords"
 msgstr "استفاده کلمه رمزان MD5 "
 
-#: ../authconfig.py:566
+#: ../authconfig.py:571
 msgid "Use Shadow Passwords"
 msgstr "استفاده کلمات رمز ساهیلی"
 
-#: ../authconfig.py:570
+#: ../authconfig.py:575
 msgid "Use LDAP Authentication"
 msgstr "استفاده تصدیق LDAP "
 
-#: ../authconfig.py:574
+#: ../authconfig.py:579
 msgid "Use Kerberos"
 msgstr "استفاده Kerberos"
 
-#: ../authconfig.py:578
+#: ../authconfig.py:583
 msgid "Use Fingerprint reader"
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:588
 msgid "Use Winbind Authentication"
 msgstr "استفاده تصدیق Winbind "
 
-#: ../authconfig.py:587
+#: ../authconfig.py:592
 msgid "Local authorization is sufficient"
 msgstr "محلی تصدیق بسنت."
 
-#: ../authconfig.py:597 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:602 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Back"
 msgstr "تررگ"
 
-#: ../authconfig.py:597 ../authconfig.py:765
+#: ../authconfig.py:602 ../authconfig.py:770
 msgid "Cancel"
 msgstr "کنسل"
 
-#: ../authconfig.py:598 ../authconfig.py:735 ../authconfig.py:742
-#: ../authconfig.py:748 ../authconfig.py:757 ../authconfig.py:806
+#: ../authconfig.py:603 ../authconfig.py:740 ../authconfig.py:747
+#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
 msgid "Next"
 msgstr "بعدی"
 
-#: ../authconfig.py:609 ../authconfig-gtk.py:600 ../authconfig.glade.h:16
+#: ../authconfig.py:614 ../authconfig-gtk.py:639 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "تنظیم تصدیق"
 
-#: ../authconfig.py:732
+#: ../authconfig.py:737
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:733
+#: ../authconfig.py:738
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:734
+#: ../authconfig.py:739
 msgid "Hesiod Settings"
 msgstr "تنظیمات Hesiod"
 
-#: ../authconfig.py:738
+#: ../authconfig.py:743
 msgid "Use TLS"
 msgstr "استفاده TLS"
 
-#: ../authconfig.py:739 ../authconfig.py:746
+#: ../authconfig.py:744 ../authconfig.py:751
 msgid "Server:"
 msgstr "سرور:"
 
-#: ../authconfig.py:740
+#: ../authconfig.py:745
 msgid "Base DN:"
 msgstr "اساس DN:"
 
-#: ../authconfig.py:741
+#: ../authconfig.py:746
 msgid "LDAP Settings"
 msgstr "تنظیمات LDAP "
 
-#: ../authconfig.py:745 ../authconfig.py:800 ../authconfig.glade.h:23
+#: ../authconfig.py:750 ../authconfig.py:805 ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "دمین"
 
-#: ../authconfig.py:747
+#: ../authconfig.py:752
 msgid "NIS Settings"
 msgstr "تنظیمات NIS "
 
-#: ../authconfig.py:751
+#: ../authconfig.py:756
 msgid "Realm:"
 msgstr "ناحیه:"
 
-#: ../authconfig.py:752
+#: ../authconfig.py:757
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:753
+#: ../authconfig.py:758
 msgid "Admin Server:"
 msgstr "مدیر سرور:"
 
-#: ../authconfig.py:754
+#: ../authconfig.py:759
 msgid "Use DNS to resolve hosts to realms"
 msgstr "استفاده چه DNS په درگیزگ هاست و نواحی"
 
-#: ../authconfig.py:755
+#: ../authconfig.py:760
 msgid "Use DNS to locate KDCs for realms"
 msgstr "استفاده چه DNS  په جاگه دهگ KDCs په نواحی"
 
-#: ../authconfig.py:756
+#: ../authconfig.py:761
 msgid "Kerberos Settings"
 msgstr "تنظیمات Kerberos "
 
-#: ../authconfig.py:760
+#: ../authconfig.py:765
 msgid "Domain Administrator:"
 msgstr "مدیر دمین"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:766
 msgid "Password:"
 msgstr "کلمه رمز"
 
-#: ../authconfig.py:764
+#: ../authconfig.py:769
 msgid "Join Settings"
 msgstr "تنظیمات هوربیگ"
 
-#: ../authconfig.py:774 ../authconfig.glade.h:43
+#: ../authconfig.py:779 ../authconfig.glade.h:41
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -693,45 +708,45 @@ msgstr ""
 "روگ. اگه شما آیانا ذخیره مکنیت، جهد شما په هور بیگ دمین پروش آ وارت. تغییرات "
 "ذخیره بنت؟"
 
-#: ../authconfig.py:781
+#: ../authconfig.py:786
 msgid "Save Settings"
 msgstr "ذخیره تنظیمات"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "No"
 msgstr "نه"
 
-#: ../authconfig.py:782
+#: ../authconfig.py:787
 msgid "Yes"
 msgstr "بله"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:799
+#: ../authconfig.py:804
 msgid "Security Model:"
 msgstr "حالت امنیت:"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:806
 msgid "Domain Controllers:"
 msgstr "کنترل کنوک دمین"
 
-#: ../authconfig.py:802
+#: ../authconfig.py:807
 msgid "ADS Realm:"
 msgstr "ناحیه ADS :"
 
-#: ../authconfig.py:803
+#: ../authconfig.py:808
 msgid "Template Shell:"
 msgstr "تمپلیت شل:"
 
-#: ../authconfig.py:805
+#: ../authconfig.py:810
 msgid "Winbind Settings"
 msgstr "تنظیمات Winbind "
 
-#: ../authconfig.py:807
+#: ../authconfig.py:812
 msgid "Join Domain"
 msgstr "هور دمین"
 
-#: ../authconfig.py:859
+#: ../authconfig.py:864
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -745,7 +760,7 @@ msgstr ""
 "بادن هوبت آ بجنیت."
 
 #. FIXME - version
-#: ../authconfig.py:873
+#: ../authconfig.py:878
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -789,7 +804,7 @@ msgstr "کلمه رمز ساهیل کن"
 msgid "Winbind password"
 msgstr "کلمه رمز ساهیل کن"
 
-#: ../authconfig-gtk.py:425
+#: ../authconfig-gtk.py:434
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -838,19 +853,14 @@ msgid "Ad_min Servers:"
 msgstr "مدیر سرور:"
 
 #: ../authconfig.glade.h:10
-#, fuzzy
-msgid "Additional options for user information and authentication"
-msgstr "غیر فعال کتن hesiod په اطلاعات کامرز کنوک په طور پیش فرض"
-
-#: ../authconfig.glade.h:11
 msgid "Advanced _Options"
 msgstr ""
 
-#: ../authconfig.glade.h:12
+#: ../authconfig.glade.h:11
 msgid "Alert"
 msgstr "اخطار"
 
-#: ../authconfig.glade.h:13
+#: ../authconfig.glade.h:12
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
@@ -858,64 +868,64 @@ msgstr ""
 "کل فایلان تنظیم که پیشگین تنظیم تصدیق عوض بیتگنت چه بک آپ واتر بنت. تغییراتآ "
 "ترینیت؟"
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:13
 #, fuzzy
 msgid "Allow offline _login"
 msgstr "ـاجزت دهگ وارد بیگ در از خط"
 
-#: ../authconfig.glade.h:15
+#: ../authconfig.glade.h:14
 #, fuzzy
 msgid "Aut_hentication Method:"
 msgstr "تصدیق"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:16
 #, fuzzy
 msgid "Card Re_moval Action:"
 msgstr "عملـ دور کتن کارت"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:17
 #, fuzzy
 msgid "Certificate _URL:"
 msgstr " ـURL تصدیق"
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:18
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
 msgstr "شر کتن مسیر ـلوگ ته اولین ورود"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:20
 msgid "Do_n't Save"
 msgstr "ذخیره مـکن"
 
-#: ../authconfig.glade.h:22
+#: ../authconfig.glade.h:21
 #, fuzzy
 msgid "Domain _administrator:"
 msgstr "مدیر دمین"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
 msgstr "ایرگیزگ تصدیق CA"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:24
 #, fuzzy
 msgid "Enable _fingerprint reader support"
 msgstr "فعال کتن حمایت _Winbind "
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:25
 msgid "Enable _local access control"
 msgstr ""
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:26
 #, fuzzy
 msgid "Enable _smart card support"
 msgstr "فعال کتن  حمایت کارـت هوشمند"
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:27
 #, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
@@ -924,16 +934,16 @@ msgstr ""
 "تصدیق کتن کارت هوشمند په شما اجازت دنت که با استفاده چه یک تصدیق و یک کلید "
 "همراه کارت هوشمند شما وارد بیت."
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:28
 #, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
 msgstr "الگورییتم کد/هور ته هور کتن په نوکین کلمات رمز"
 
-#: ../authconfig.glade.h:30
+#: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr ""
 
-#: ../authconfig.glade.h:31
+#: ../authconfig.glade.h:30
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
@@ -941,56 +951,52 @@ msgstr ""
 "اگه مسیر لوگ په یک کامرز کنوکی موجود نهنت هنگت، ته اولین ورود آی اتوماتیکی "
 "شر بیت."
 
-#: ../authconfig.glade.h:32
+#: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
 msgstr "هور گون دمین Winbind بیت"
 
-#: ../authconfig.glade.h:33
+#: ../authconfig.glade.h:32
 #, fuzzy
 msgid "LDAP Search _Base DN:"
 msgstr "تورگ LDAP  په اساس DN"
 
-#: ../authconfig.glade.h:34
+#: ../authconfig.glade.h:33
 #, fuzzy
 msgid "LDAP _Server:"
 msgstr "ـسرور LDAP "
 
-#: ../authconfig.glade.h:35
+#: ../authconfig.glade.h:34
 #, fuzzy
 msgid "NIS _Domain:"
 msgstr "دمین NIS "
 
-#: ../authconfig.glade.h:36
+#: ../authconfig.glade.h:35
 #, fuzzy
 msgid "NIS _Server:"
 msgstr "ـسرور NIS "
 
-#: ../authconfig.glade.h:37
+#: ../authconfig.glade.h:36
 #, fuzzy
 msgid "R_ealm:"
 msgstr "ناحیه:"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:37
 #, fuzzy
 msgid "Require smart car_d for login"
 msgstr "ـکارت هوشمند لوٹیت په گوزگ"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:38
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr ""
 "فایلان تغییرات آ که پیش تر ذخیره بیتگنت واترینت پیش چه پیشگین تغییرات تنظیم"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:39
 msgid "Revert"
 msgstr "ترینگ"
 
-#: ../authconfig.glade.h:41
-msgid "Set up services used for authenticating users to the system"
-msgstr ""
-
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:40
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
@@ -998,12 +1004,12 @@ msgstr ""
 "تصدیق کتن کارت هوشمند په شما اجازت دنت که با استفاده چه یک تصدیق و یک کلید "
 "همراه کارت هوشمند شما وارد بیت."
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:42
 #, fuzzy
 msgid "Te_mplate Shell:"
 msgstr "تمپلیت شل:"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:43
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
@@ -1013,26 +1019,26 @@ msgstr ""
 "سرور آ امضا کته داشته بیت. لطفا ته جاگه URL وارد کنیت که تصدیق CAپه فرمت "
 "PEM  داشته بیت داں بتونیت ایرگیزیت"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "چه DNS  استفاده کنیت په ـایرکتن KDCs په نواحی"
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:45
 #, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
 msgstr "استفاده چه DNS په درگیزگ هاست و نواحی"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:46
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
 msgstr ""
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
 msgstr "چه _TLS  په کد کتن اتصالات استفاده کن"
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:48
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
@@ -1040,78 +1046,82 @@ msgstr ""
 "وهد فعال کتن /etc/security/access.conf په تصدیق دست رسی کارمرز کنوکان مشورت "
 "بیت."
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:49
 #, fuzzy
 msgid "Winbind ADS R_ealm:"
 msgstr "Winbind  ناحیه ADS"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:50
 #, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
 msgstr "Winbind  دامنه کنـترول کنوکان"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:51
 #, fuzzy
 msgid "Winbind _Domain:"
 msgstr "Winbind ـدمین"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:52
 #, fuzzy
 msgid "_Download CA Certificate..."
 msgstr "ایرگیزگ تصدیق CA"
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:53
 #, fuzzy
 msgid "_Identity & Authentication"
 msgstr "استفاده تصدیق SMB "
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:54
 #, fuzzy
 msgid "_Join Domain..."
 msgstr "ـهور دمین"
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:55
 #, fuzzy
 msgid "_KDCs:"
 msgstr "_KDCs"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:56
 #, fuzzy
 msgid "_Password Hashing Algorithm:"
 msgstr "ـالگوریتم  درهم کتن کمله رمز"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:57
 #, fuzzy
 msgid "_Password:"
 msgstr "کلمه رمز"
 
-#: ../authconfig.glade.h:60
+#: ../authconfig.glade.h:58
 #, fuzzy
 msgid "_Security Model:"
 msgstr "حالت امنیت:"
 
-#: ../authconfig.glade.h:61
+#: ../authconfig.glade.h:59
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:910 ../authinfo.py:1553 ../authinfo.py:2868
+#: ../authinfo.py:926 ../authinfo.py:1574 ../authinfo.py:2896
 msgid "Lock"
 msgstr "کبل"
 
-#: ../authinfo.py:910 ../authinfo.py:1555
+#: ../authinfo.py:926 ../authinfo.py:1576
 msgid "Ignore"
 msgstr "شموشگ"
 
-#: ../authinfo.py:3218
+#: ../authinfo.py:3268
 #, fuzzy, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr "ماژول تصدیق %s/pam_%s.so گارنت. مرحله تصدیق په درستی کار نکنت."
 
-#: ../authinfo.py:3761
+#: ../authinfo.py:3829
 msgid "Error downloading CA certificate"
 msgstr "خطا په ایرگیزگ تصدیقCA"
+
+#, fuzzy
+#~ msgid "Additional options for user information and authentication"
+#~ msgstr "غیر فعال کتن hesiod په اطلاعات کامرز کنوک په طور پیش فرض"
 
 #~ msgid "SMB authentication"
 #~ msgstr "تصدیق SMB"
