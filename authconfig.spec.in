@@ -110,7 +110,8 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
-
+* Tue Aug 10 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.8-1
+- add pam_systemd to the PAM configuration (#612712)
 - fix force smarcard setting read when Kerberos enabled (#620475)
 
 * Thu Jul 15 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.7-1

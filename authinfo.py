@@ -504,6 +504,8 @@ pam_modules[STANDARD] = [
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "limits",		[]],
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "systemd",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "mkhomedir",		[]],
 	[True,  SESSION,	LOGIC_SKIPNEXT,
@@ -595,6 +597,8 @@ pam_modules[PASSWORD_ONLY] = [
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "limits",		[]],
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "systemd",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "mkhomedir",		[]],
 	[True,  SESSION,	LOGIC_SKIPNEXT,
@@ -646,6 +650,8 @@ pam_modules[FINGERPRINT] = [
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "limits",		[]],
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "systemd",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "mkhomedir",		[]],
 	[True,  SESSION,	LOGIC_SKIPNEXT,
@@ -699,6 +705,8 @@ pam_modules[SMARTCARD] = [
 	 "keyinit",		argv_keyinit_session],
 	[True,  SESSION,	LOGIC_REQUIRED,
 	 "limits",		[]],
+	[True,  SESSION,	LOGIC_OPTIONAL,
+	 "systemd",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "mkhomedir",		[]],
 	[True,  SESSION,	LOGIC_SKIPNEXT,
@@ -1239,6 +1247,7 @@ class AuthInfo:
 		self.localuserArgs = ""
 		self.pamAccessArgs = ""
 		self.mkhomedirArgs = ""
+		self.systemdArgs = ""
 		self.ldapCacertDir = ""
 		self.ldapCacertURL = ""
 		self.ldapSchema = ""
@@ -1824,6 +1833,10 @@ class AuthInfo:
 				self.enableLocAuthorize = True
 				if args:
 					self.localuserArgs = args
+				continue
+			if module.startswith("pam_systemd"):
+				if args:
+					self.systemdArgs = args
 				continue
 			if stack == "password":
 				if module.startswith("pam_unix"):
@@ -3244,6 +3257,10 @@ class AuthInfo:
 			if name == "mkhomedir" and os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
 				name = "oddjob_mkhomedir"
+			# the missing pam_systemd module should not be logged as error
+			if name == "systemd":
+				output += "-"
+				warn = False
 			output += "%-12s%-13s pam_%s.so" % (stack, logic,
 				name)
 			if warn and not name in self.module_missing and not os.access("%s/pam_%s.so"
@@ -3261,6 +3278,8 @@ class AuthInfo:
 				args = self.pamAccessArgs
 			if name == "mkhomedir" or name =="oddjob_mkhomedir":
 				args = self.mkhomedirArgs
+			if name == "systemd":
+				args = self.systemdArgs
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
 			if name == "winbind" and self.winbindOffline:
@@ -3534,7 +3553,7 @@ class AuthInfo:
 		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
-		("implicitSSSDAuth", "b")]),
+		("implicitSSSDAuth", "b"), ("systemdArgs", "c")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
