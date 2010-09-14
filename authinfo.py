@@ -111,7 +111,6 @@ PATH_LIBNSS_SSS = LIBDIR + "/libnss_sss.so.2"
 
 PATH_PAM_KRB5 = AUTH_MODULE_DIR + "/pam_krb5.so"
 PATH_PAM_LDAP = AUTH_MODULE_DIR + "/pam_ldap.so"
-PATH_PAM_SMB = AUTH_MODULE_DIR + "/pam_smb_auth.so"
 PATH_PAM_WINBIND = AUTH_MODULE_DIR + "/pam_winbind.so"
 PATH_PAM_PKCS11 = AUTH_MODULE_DIR + "/pam_pkcs11.so"
 PATH_PAM_FPRINTD = AUTH_MODULE_DIR + "/pam_fprintd.so"
@@ -345,11 +344,6 @@ argv_otp_auth = [
 	"use_first_pass"
 ]
 
-argv_smb_auth = [
-	"use_first_pass",
-	"nolocal"
-]
-
 argv_succeed_if_auth = [
 	"uid >= 500",
 	"quiet"
@@ -439,8 +433,6 @@ pam_modules[STANDARD] = [
 	 "ldap",		argv_ldap_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "otp",			argv_otp_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "smb_auth",		argv_smb_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth],
 	[True,  AUTH,		LOGIC_REQUIRED,
@@ -547,8 +539,6 @@ pam_modules[PASSWORD_ONLY] = [
 	 "ldap",		argv_ldap_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "otp",			argv_otp_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "smb_auth",		argv_smb_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth],
 	[True,  AUTH,		LOGIC_REQUIRED,
@@ -1109,13 +1099,12 @@ class CacheBackup(FileBackup):
 
 		return rv
 
-(CFG_HESIOD, CFG_PAM_SMB, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
+(CFG_HESIOD, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
-	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 23)
+	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 22)
 all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
-	FileBackup("pam_smb.conf", SYSCONFDIR+"/pam_smb.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
 	FileBackup("ldap.conf", SYSCONFDIR+"/ldap.conf"),
 	FileBackup("nss_ldap.conf", SYSCONFDIR+"/nss_ldap.conf"),
@@ -1221,7 +1210,6 @@ class AuthInfo:
 		self.enableOTP = None
 		self.enablePasswdQC = None
 		self.enableShadow = None
-		self.enableSMB = None
 		self.enableWinbindAuth = None
 		self.enableLocAuthorize = None
 		self.enablePAMAccess = None
@@ -1270,7 +1258,7 @@ class AuthInfo:
 			return False
 		# we just ignore things which have no support on command line
 		nssall = ('NIS', 'LDAP', 'Winbind', 'Hesiod')
-		pamall = ('Kerberos', 'LDAPAuth', 'WinbindAuth', 'SMB', 'Smartcard')
+		pamall = ('Kerberos', 'LDAPAuth', 'WinbindAuth', 'Smartcard')
 		idsupported = ('LDAP')
 		authsupported = ('Kerberos', 'LDAPAuth')
 		num = 0
@@ -1310,25 +1298,6 @@ class AuthInfo:
 		self.hesiodRHS = snipString(shv.getValue("rhs"))
 
 		shv.close()
-		return True
-
-	# Read SMB setup from /etc/pam_smb.conf.
-	def readSMB(self):
-		# Open the file.  Bail if it's not there or there's some problem
-		# reading it.
-		try:
-			f = open(all_configs[CFG_PAM_SMB].origPath, "r")
-		except IOError:
-			return False
-
-		# Read three lines.  The first is the workgroup, and subsequent
-		# lines are the PDC and BDC, respectively.
-		self.smbWorkgroup = snipString(f.readline())
-		servers = f.readlines()
-		servers = map(snipString, servers)
-		self.smbServers = ",".join(filter(None, servers))
-
-		f.close()
 		return True
 
 	# Read NIS setup from /etc/yp.conf.
@@ -1810,9 +1779,6 @@ class AuthInfo:
 				if args:
 					self.passwdqcArgs = args
 				continue
-			if module.startswith("pam_smb"):
-				self.enableSMB = True
-				continue
 			if module.startswith("pam_winbind"):
 				self.enableWinbindAuth = True
 				continue
@@ -1985,10 +1951,6 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
-				self.enableSMB = shv.getBoolValue("USESMBAUTH")
-			except ValueError:
-				pass
-			try:
 				self.enableWinbind = shv.getBoolValue("USEWINBIND")
 			except ValueError:
 				pass
@@ -2138,7 +2100,6 @@ class AuthInfo:
 		(self.enableOTP != b.enableOTP) or
 		(self.enablePasswdQC != b.enablePasswdQC) or
 		(self.enableShadow != b.enableShadow) or
-		(self.enableSMB != b.enableSMB) or
 		(self.enableLocAuthorize != b.enableLocAuthorize) or
 		(self.enablePAMAccess != b.enablePAMAccess) or
 		(self.enableMkHomeDir != b.enableMkHomeDir) or
@@ -2176,7 +2137,6 @@ class AuthInfo:
 		self.readNSS()
 		self.readPAM()
 		self.readHesiod()
-		self.readSMB()
 		self.readWinbind()
 		self.readNetwork()
 		self.readNIS()
@@ -2216,34 +2176,6 @@ class AuthInfo:
 		shv.write(0644)
 		shv.close()
 
-		return True
-
-	# Write SMB setup to /etc/pam_smb.conf.
-	def writeSMB(self):
-		f = None
-		all_configs[CFG_PAM_SMB].backup(self.backupDir)
-		try:
-			f = SafeFile(all_configs[CFG_PAM_SMB].origPath, 0644)
-
-			f.rewind()
-			f.write(self.smbWorkgroup+"\n")
-
-			servers = self.smbServers.replace(",", " ")
-			servers = servers.split(None)
-
-			if len(servers) > 0:
-				f.write(servers[0])
-			f.write("\n")
-			if len(servers) > 1:
-				f.write(servers[1])
-			f.write("\n")
-			f.save()
-		finally:
-			try:
-				if f:
-					f.close()
-			except IOError:
-				pass
 		return True
 
 	# Write NIS setup to /etc/yp.conf.
@@ -3379,7 +3311,6 @@ class AuthInfo:
 					(enableFprintd and module[NAME] == "fprintd") or
 					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
-					(self.enableSMB and module[NAME] == "smb_auth") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					((self.enableSSSDAuth or self.implicitSSSDAuth) and module[NAME] == "sss") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
@@ -3436,7 +3367,6 @@ class AuthInfo:
 		shv.setValue("PASSWDALGORITHM", self.passwordAlgorithm)
 		shv.setValue("USEMD5", None)
 		shv.setBoolValue("USESHADOW", self.enableShadow)
-		shv.setBoolValue("USESMBAUTH", self.enableSMB)
 		shv.setBoolValue("USEWINBINDAUTH", self.enableWinbindAuth)
 		shv.setBoolValue("USESSSDAUTH", self.enableSSSDAuth)
 		shv.setBoolValue("USELOCAUTHORIZE", self.enableLocAuthorize)
@@ -3496,8 +3426,6 @@ class AuthInfo:
 				ret = ret and self.writeSmartcard()
 			if self.enableNIS:
 				ret = ret and self.writeNIS()
-			if self.enableSMB:
-				ret = ret and self.writeSMB()
 			if self.enableWinbind or self.enableWinbindAuth:
 				ret = ret and self.writeWinbind()
 			if self.implicitSSSD or self.implicitSSSDAuth:
@@ -3514,7 +3442,6 @@ class AuthInfo:
 		save_groups = [
 	SaveGroup(self.writeCache, [("enableCache", "b"), ("implicitSSSD", "b")]),
 	SaveGroup(self.writeHesiod, [("hesiodLHS", "i"), ("hesiodRHS", "i")]),
-	SaveGroup(self.writeSMB, [("smbWorkgroup", "i"), ("smbServers", "i")]),
 	SaveGroup(self.writeNIS, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
 	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
 		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
@@ -3550,7 +3477,7 @@ class AuthInfo:
 		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
-		("enableOTP", "b"), ("enablePasswdQC", "b"), ("enableSMB", "b"),
+		("enableOTP", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
 		("implicitSSSDAuth", "b"), ("systemdArgs", "c")]),
@@ -3559,7 +3486,7 @@ class AuthInfo:
 		("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
-		("enableSMB", "b"), ("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
+		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
 		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
@@ -3706,9 +3633,6 @@ class AuthInfo:
 		print " smartcard module = \"%s\"" % self.smartcardModule
 		print " smartcard removal action = \"%s\"" % self.smartcardAction
 		print "pam_fprintd is %s" % formatBool(self.enableFprintd)
-		print "pam_smb_auth is %s" % formatBool(self.enableSMB)
-		print " SMB workgroup = \"%s\"" % self.smbWorkgroup
-		print " SMB servers = \"%s\"" % self.smbServers
 		print "pam_winbind is %s" % formatBool(self.enableWinbindAuth)
 		print " SMB workgroup = \"%s\"" % self.smbWorkgroup
 		print " SMB servers = \"%s\"" % self.smbServers

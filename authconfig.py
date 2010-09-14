@@ -53,7 +53,6 @@ class Authconfig:
 		self.kerberos_avail = False
 		self.ldap_avail = False
 		self.sssd_avail = False
-		self.smb_avail = False
 		self.cache_avail = False
 		self.fprintd_avail = False
 		self.retval = 0
@@ -166,15 +165,6 @@ class Authconfig:
 		parser.add_option("--disablekrb5realmdns", action="store_true",
 			help=_("disable use of DNS to find kerberos realms"))
 
-		parser.add_option("--enablesmbauth", action="store_true",
-			help=_("enable SMB authentication by default"))
-		parser.add_option("--disablesmbauth", action="store_true",
-			help=_("disable SMB authentication by default"))
-		parser.add_option("--smbservers", metavar=_("<servers>"),
-			help=_("names of servers to authenticate against"))
-		parser.add_option("--smbworkgroup", metavar=_("<workgroup>"),
-			help=_("workgroup authentication servers are in"))
-
 		parser.add_option("--enablewinbind", action="store_true",
 			help=_("enable winbind for user information by default"))
 		parser.add_option("--disablewinbind", action="store_true",
@@ -187,6 +177,10 @@ class Authconfig:
 			help=_("security mode to use for samba and winbind"))
 		parser.add_option("--smbrealm", metavar=_("<realm>"),
 			help=_("default realm for samba and winbind when security=ads"))
+		parser.add_option("--smbservers", metavar=_("<servers>"),
+			help=_("names of servers to authenticate against"))
+		parser.add_option("--smbworkgroup", metavar=_("<workgroup>"),
+			help=_("workgroup authentication servers are in"))
 		parser.add_option("--smbidmapuid", metavar=_("<lowest-highest>"),
 			help=_("uid range winbind will assign to domain or ads users"))
 		parser.add_option("--smbidmapgid", metavar=_("<lowest-highest>"),
@@ -344,7 +338,6 @@ class Authconfig:
 			os.access(authinfo.PATH_LIBNSS_LDAP, os.X_OK))
 		self.sssd_avail = (os.access(authinfo.PATH_PAM_SSS, os.X_OK) and
 			os.access(authinfo.PATH_LIBNSS_SSS, os.X_OK))
-		self.smb_avail = os.access(authinfo.PATH_PAM_SMB, os.X_OK)
 		self.cache_avail = os.access(authinfo.PATH_NSCD, os.X_OK)
 		self.fprintd_avail = os.access(authinfo.PATH_PAM_FPRINTD, os.X_OK)
 
@@ -367,7 +360,6 @@ class Authconfig:
 			"smartcard":"enableSmartcard",
 			"fingerprint":"enableFprintd",
 			"requiresmartcard":"forceSmartcard",
-			"smbauth":"enableSMB",
 			"winbind":"enableWinbind",
 			"winbindauth":"enableWinbindAuth",
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
@@ -824,7 +816,6 @@ class AuthconfigTUI(Authconfig):
 						self.info.enableLDAPAuth or
 						self.info.enableKerberos or
 						self.info.enableNIS or
-						self.info.enableSMB or
 						self.info.enableWinbind or
 						self.info.enableWinbindAuth)
 					rc = self.getHesiodSettings(more)
@@ -832,21 +823,18 @@ class AuthconfigTUI(Authconfig):
 				if self.info.enableLDAP or self.info.enableLDAPAuth:
 					more = (self.info.enableKerberos or
 						self.info.enableNIS or
-						self.info.enableSMB or
 						self.info.enableWinbind or
 						self.info.enableWinbindAuth)
 					rc = self.getLDAPSettings(more)
 			elif next == 4:
 				if self.info.enableNIS:
 					more = (self.info.enableKerberos or
-						self.info.enableSMB or
 						self.info.enableWinbind or
 						self.info.enableWinbindAuth)
 					rc = self.getNISSettings(more)
 			elif next == 5:
 				if self.info.enableKerberos:
-					more = (self.info.enableSMB or
-						self.info.enableWinbind or
+					more = (self.info.enableWinbind or
 						self.info.enableWinbindAuth)
 					rc = self.getKerberosSettings(more)
 			elif next == 6:
