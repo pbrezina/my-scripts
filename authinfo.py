@@ -926,15 +926,19 @@ class SaveGroup:
 		self.attrlist = attrlist
 
 	def attrsDiffer(self, a, b):
-		ret = False
 		for (aname, atype) in self.attrlist:
+			if aname in a.inconsistentAttrs:
+				return True
 			if atype == "b":
-				ret = ret or getattr(a, aname) != getattr(b, aname)
+				if getattr(a, aname) != getattr(b, aname):
+					return True
 			elif atype == "c":
-				ret = ret or stringsDiffer(getattr(a, aname), getattr(b, aname), True)
+				if stringsDiffer(getattr(a, aname), getattr(b, aname), True):
+					return True
 			elif atype == "i":
-				ret = ret or stringsDiffer(getattr(a, aname), getattr(b, aname), False)
-		return ret
+				if stringsDiffer(getattr(a, aname), getattr(b, aname), False):
+					return True
+		return False
 
 class SafeFile:
 	def __init__(self, filename, default_mode):
@@ -1099,6 +1103,7 @@ class CacheBackup(FileBackup):
 
 		return rv
 
+# indexes for the configs
 (CFG_HESIOD, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
@@ -1142,6 +1147,7 @@ class AuthInfo:
 	def __init__(self, msgcb):
 		self.messageCB = msgcb
 		self.backupDir = ""
+		self.inconsistentAttrs = []
 
 		# Service-specific settings.
 		self.hesiodLHS = ""
@@ -1252,6 +1258,64 @@ class AuthInfo:
 				self.forceSSSDUpdate = True
 			except IOError:
 				pass
+		self.save_groups = [
+	SaveGroup(self.writeCache, [("enableCache", "b"), ("implicitSSSD", "b")]),
+	SaveGroup(self.writeHesiod, [("hesiodLHS", "i"), ("hesiodRHS", "i")]),
+	SaveGroup(self.writeNIS, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
+	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
+		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
+	SaveGroup(self.writeLibuser, [("passwordAlgorithm", "i")]),
+	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]),
+	SaveGroup(self.writeKerberos, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
+		("smbSecurity", "i"), ("smbRealm", "c"), ("smbServers", "i"),
+		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
+		("kerberosKDCviaDNS", "b")]),
+	SaveGroup(self.writeSSSD, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
+		("ldapSchema", "c"), ("ldapCacertDir", "c"),
+		("kerberosRealm", "c"), ("kerberosKDC", "i"), ("kerberosAdminServer", "i"),
+		("forceSSSDUpdate", "b"), ("enableLDAP", "b"), ("enableKerberos", "b"),
+		("enableLDAPAuth", "b")]),
+	SaveGroup(self.writeSmartcard, [("smartcardAction", "i"), ("smartcardModule", "c")]),
+	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
+		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
+		("smbIdmapGid", "i"), ("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
+		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
+		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b")]),
+	SaveGroup(self.writeNSS, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
+		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
+		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
+		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
+		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
+		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
+	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
+		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
+		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
+		("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
+		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
+		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
+		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
+		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
+		("enableOTP", "b"), ("enablePasswdQC", "b"),
+		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
+		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
+		("implicitSSSDAuth", "b"), ("systemdArgs", "c")]),
+	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
+		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
+		("enableSmartcard", "b"), ("forceSmartcard", "b"),
+		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
+		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
+		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
+		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
+		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
+	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
+
+	def setParam(self, attr, value, ref):
+		oldval = getattr(self, attr)
+		if oldval != value:
+			setattr(self, attr, value)
+			if oldval != getattr(ref, attr):
+				print "Inconsistent attr:", attr
+				self.inconsistentAttrs.append(attr)
 
 	def sssdSupported(self):
 		if self.enableForceLegacy or not self.sssdConfig:
@@ -1284,7 +1348,7 @@ class AuthInfo:
 
 	# Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvfile
 	# can read it just fine.
-	def readHesiod(self):
+	def readHesiod(self, ref):
 		# Open the file.  Bail if it's not there.
 		try:
 			shv = shvfile.read(all_configs[CFG_HESIOD].origPath)
@@ -1292,16 +1356,16 @@ class AuthInfo:
 			return False
 
 		# Read the LHS.
-		self.hesiodLHS = snipString(shv.getValue("lhs"))
+		self.setParam("hesiodLHS", snipString(shv.getValue("lhs")), ref)
 
 		# Read the RHS.
-		self.hesiodRHS = snipString(shv.getValue("rhs"))
+		self.setParam("hesiodRHS", snipString(shv.getValue("rhs")), ref)
 
 		shv.close()
 		return True
 
 	# Read NIS setup from /etc/yp.conf.
-	def readNIS(self):
+	def readNIS(self, ref):
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		try:
@@ -1309,6 +1373,7 @@ class AuthInfo:
 		except IOError:
 			return False
 
+		nisserver = ""
 		for line in f:
 			line = line.strip()
 
@@ -1316,7 +1381,7 @@ class AuthInfo:
 			value = matchKey(line, "ypserver")
 			if value and self.nisLocalDomain:
 				# Save the server's name.
-				self.nisServer = commaAppend(self.nisServer, value)
+				nisserver = commaAppend(nisserver, value)
 				continue
 
 			# It had better be a "domain" statement, because the man page
@@ -1336,8 +1401,9 @@ class AuthInfo:
 				# Is it "server"?  If not, assume "broadcast".
 				value = matchKey(value, "server")
 				if value:
-					self.nisServer = commaAppend(self.nisServer, value)
+					nisserver = commaAppend(nisserver, value)
 
+		self.setParam("nisServer", nisserver, ref)
 		f.close()
 		return True
 
@@ -1355,9 +1421,8 @@ class AuthInfo:
 		return ret
 
 	# Read LDAP setup from /etc/ldap.conf.
-	def readLDAP(self):
+	def readLDAP(self, ref):
 		self.ldapCacertDir = PATH_LDAP_CACERTS
-		self.ldapServer = ""
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		try:
@@ -1381,29 +1446,29 @@ class AuthInfo:
 			value = matchKey(line, "base")
 			if value:
 				# Save the base DN.
-				self.ldapBaseDN = value
+				self.setParam("ldapBaseDN", value, ref)
 				continue
 			# Is it a "host" statement?
 			value = matchKey(line, "host")
 			if value:
 				# Save the host name or IP.
-				self.ldapServer += value
+				self.setParam("ldapServer", value, ref)
 				continue
 			# Is it a "uri" statement?
 			value = matchKey(line, "uri")
 			if value:
 				# Save the host name or IP.
-				self.ldapServer += value
+				self.setParam("ldapServer", value, ref)
 				continue
 			# Is it a "ssl" statement?
 			value = matchKey(line, "ssl")
 			if value:
-				self.enableLDAPS = matchLine(value, "start_tls")
+				self.setParam("enableLDAPS", matchLine(value, "start_tls"), ref)
 				continue
 			# Is it a "nss_schema" statement?
 			value = matchKey(line, "nss_schema")
 			if value:
-				self.ldapSchema = value
+				self.setParam("ldapSchema", value, ref)
 				continue
 			# We'll pull MD5/DES crypt ("pam_password") from the config
 			# file, or from the pam_unix PAM config lines.
@@ -1425,10 +1490,10 @@ class AuthInfo:
 		except KeyError:
 			return ""
 
-	def readKerberos(self):
+	def readKerberos(self, ref):
 		section = ""
 		self.allKerberosKDCs = {}
-		self.allKerberosAdminServers = {}		
+		self.allKerberosAdminServers = {}
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		try:
@@ -1449,16 +1514,16 @@ class AuthInfo:
 				# Check for the default realm setting.
 				value = matchKeyEquals(line, "default_realm")
 				if value:
-					self.kerberosRealm = value
+					self.setParam("kerberosRealm", value, ref)
 					continue;
 				# Check for the DNS settings.
 				value = matchKeyEquals(line, "dns_lookup_kdc")
 				if value:
-					self.kerberosKDCviaDNS = matchKey(value, "true") == ""
+					self.setParam("kerberosKDCviaDNS", matchKey(value, "true") == "", ref)
 					continue
 				value = matchKeyEquals(line, "dns_lookup_realm")
 				if value:
-					self.kerberosRealmviaDNS = matchKey(value, "true") == ""
+					self.setParam("kerberosRealmviaDNS", matchKey(value, "true") == "", ref)
 					continue;
 
 			elif section == "realms":
@@ -1474,6 +1539,7 @@ class AuthInfo:
 						subsection = ""
 						continue
 					if not self.kerberosRealm:
+						# No reason to use setParam here
 						self.kerberosRealm = subsection
 					# See if this is a key we care about.
 					value = matchKeyEquals(line, "kdc")
@@ -1484,12 +1550,63 @@ class AuthInfo:
 					if value:
 						self.allKerberosAdminServers[subsection] = commaAppend(self.getKerberosAdminServer(subsection), value)
 		if self.kerberosRealm:
-			self.kerberosKDC = self.getKerberosKDC(self.kerberosRealm)
-			self.kerberosAdminServer = self.getKerberosAdminServer(self.kerberosRealm)
+			self.setParam("kerberosKDC", self.getKerberosKDC(self.kerberosRealm), ref)
+			self.setParam("kerberosAdminServer", self.getKerberosAdminServer(self.kerberosRealm), ref)
 		f.close()
 		return True
 
-	def readSSSD(self):
+	def readLibuser(self, ref):
+		section = ""
+		# Open the file.  Bail if it's not there or there's some problem
+		# reading it.
+		try:
+			f = open(all_configs[CFG_LIBUSER].origPath, "r")
+		except IOError:
+			return False
+	
+		for line in f:
+			line = line.strip()
+
+			# If it's a new section, note which one we're "in".
+			if line[0:1] == "[":
+				section = line[1:-1]
+				subsection = ""
+				continue;
+
+			if section == "defaults":
+				# Check for the default realm setting.
+				value = matchKeyEquals(line, "crypt_style")
+				if value:
+					self.setParam("passwordAlgorithm", value.lower(), ref)
+					continue;
+		f.close()
+		return True
+
+	def readLogindefs(self, ref):
+		# Open the file.  Bail if it's not there or there's some problem
+		# reading it.
+		try:
+			f = open(all_configs[CFG_LOGIN_DEFS].origPath, "r")
+		except IOError:
+			return False
+
+		for line in f:
+			line = line.strip()
+
+			value = matchKey(line, "MD5_CRYPT_ENAB")
+			if value == "yes":
+				self.setParam("passwordAlgorithm", "md5", ref)
+				continue
+			value = matchKey(line, "ENCRYPT_METHOD")
+			if value:
+				if value == "DES":
+					value = "descrypt"
+				self.setParam("passwordAlgorithm", value.lower(), ref)
+				continue
+		f.close()
+		return True
+
+	def readSSSD(self, ref):
 		if not self.sssdConfig:
 			return True
 		try:
@@ -1523,16 +1640,17 @@ class AuthInfo:
 					val = domain.get_option(opt)
 					if opt == 'ldap_uri':
 						val = " ".join(val.split(","))
-					setattr(self, attr, val)
+					self.setParam(attr, val, ref)
 			except SSSDConfig.NoOptionError:
 				pass
 
-	def readSmartcard(self):
+	def readSmartcard(self, ref):
 		lock = False
-		self.smartcardModule = callPKCS11Setup(["use_module"])
-		if self.smartcardModule == None:
+		smartcardmodule = callPKCS11Setup(["use_module"])
+		if smartcardmodule == None:
+			self.smartcardModule = ""
 			return False
-		self.smartcardModule = self.smartcardModule[0]
+		self.setParam("smartcardModule", smartcardmodule[0], ref)
 		rmactions = callPKCS11Setup(["rm_action"])
 		if rmactions == None:
 			return False
@@ -1540,9 +1658,9 @@ class AuthInfo:
 			if "lockhelper.sh" in action:
 				lock = True
 		if lock:
-			self.smartcardAction = _("Lock")
+			self.setParam("smartcardAction", _("Lock"), ref)
 		else:
-			self.smartcardAction = _("Ignore")
+			self.setParam("smartcardAction", _("Ignore"), ref)
 		return True
 
 	# Read Samba setup from /etc/samba/smb.conf.
@@ -1588,60 +1706,60 @@ class AuthInfo:
 		return None
 
 	# Read winbind settings from /etc/samba/smb.conf.
-	def readWinbind(self):
+	def readWinbind(self, ref):
 		tmp = self.readWinbindGlobal("workgroup")
 		if tmp:
-			self.smbWorkgroup = tmp
+			self.setParam("smbWorkgroup", tmp, ref)
 
 		tmp = self.readWinbindGlobal("password server")
 		if tmp:
-			self.smbServers = tmp
+			self.setParam("smbServers", tmp, ref)
 		tmp = self.readWinbindGlobal("realm")
 		if tmp:
-			self.smbRealm = tmp
+			self.setParam("smbRealm", tmp, ref)
 		tmp = self.readWinbindGlobal("security")
 		if tmp:
-			self.smbSecurity = tmp
+			self.setParam("smbSecurity", tmp, ref)
 		if not self.smbSecurity:
 			self.smbSecurity = "user"
 		tmp = self.readWinbindGlobal("idmap uid")
 		if tmp:
-			self.smbIdmapUid = tmp
+			self.setParam("smbIdmapUid", tmp, ref)
 		if not self.smbIdmapUid:
 			# 2^24 to 2^25 - 1 should be safe
 			self.smbIdmapUid = "16777216-33554431"
 		tmp = self.readWinbindGlobal("idmap gid")
 		if tmp:
-			self.smbIdmapGid = tmp
+			self.setParam("smbIdmapGid", tmp, ref)
 
 		if not self.smbIdmapGid:
 			# 2^24 to 2^25 - 1 should be safe
 			self.smbIdmapGid = "16777216-33554431"
 		tmp = self.readWinbindGlobal("winbind separator")
 		if tmp:
-			self.winbindSeparator = tmp
+			self.setParam("winbindSeparator", tmp, ref)
 		tmp = self.readWinbindGlobal("template homedir")
 		if tmp:
-			self.winbindTemplateHomedir = tmp
+			self.setParam("winbindTemplateHomedir", tmp, ref)
 		tmp = self.readWinbindGlobal("template primary group")
 		if tmp:
-			self.winbindTemplatePrimaryGroup = tmp
+			self.setParam("winbindTemplatePrimaryGroup", tmp, ref)
 		tmp = self.readWinbindGlobal("template shell")
 		if tmp:
-			self.winbindTemplateShell = tmp
+			self.setParam("winbindTemplateShell", tmp, ref)
 		if not self.winbindTemplateShell:
 			self.winbindTemplateShell = "/bin/false"
 		tmp = self.readWinbindGlobalBool("winbind use default domain")
 		if tmp != None:
-			self.winbindUseDefaultDomain = tmp
+			self.setParam("winbindUseDefaultDomain", tmp, ref)
 		tmp = self.readWinbindGlobalBool("winbind offline logon")
 		if tmp != None:
-			self.winbindOffline = tmp
+			self.setParam("winbindOffline", tmp, ref)
 
 		return True
 
 	# Read NSS setup from /etc/nsswitch.conf.
-	def readNSS(self):
+	def readNSS(self, ref):
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		nssconfig = ""
@@ -1662,14 +1780,14 @@ class AuthInfo:
 				value = matchKey(line, "hosts:")
 				if value:
 					if checkNSS(value, "wins"):
-						self.enableWINS = True
+						self.setParam("enableWINS", True, ref)
 
 					nispos = checkNSS(value, "nis")
 					if nispos == None:
 						nispos = checkNSS(value, "wins")
 					dnspos = checkNSS(value, "dns")
 					if nispos != None and dnspos != None:
-						self.preferDNSinHosts = dnspos < nispos
+						self.setParam("preferDNSinHosts", dnspos < nispos, ref)
 
 		if nssconfig:
 			nssmap = (('Compat', 'compat'), ('DB', 'db'),
@@ -1678,19 +1796,19 @@ class AuthInfo:
 				  ('NIS3', 'nisplus'), ('Winbind', 'winbind'))
 			for attr, nssentry in nssmap:
 				if checkNSS(nssconfig, nssentry):
-					setattr(self, 'enable' + attr, True)
+					self.setParam('enable' + attr, True, ref)
 
-			self.implicitSSSD = bool(checkNSS(nssconfig, "sss"))
+			self.setParam("implicitSSSD", bool(checkNSS(nssconfig, "sss")), ref)
 		f.close()
 		return True
 
 	# Read whether or not caching is enabled.
-	def readCache(self):
-		self.enableCache = readCache()
+	def readCache(self, ref):
+		self.setParam("enableCache", readCache(), ref)
 		return True
 
 	# Read hints from the PAM control file.
-	def readPAM(self):
+	def readPAM(self, ref):
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		try:
@@ -1754,87 +1872,87 @@ class AuthInfo:
 				args = lst[1]
 
 			if module.startswith("pam_cracklib"):
-				self.enableCracklib = True
+				self.setParam("enableCracklib", True, ref)
 				if args:
-					self.cracklibArgs = args
+					self.setParam("cracklibArgs", args, ref)
 				continue
 			if module.startswith("pam_krb5"):
-				self.enableKerberos = True
+				self.setParam("enableKerberos", True, ref)
 				continue
 			if module.startswith("pam_ldap"):
-				self.enableLDAPAuth = True
+				self.setParam("enableLDAPAuth", True, ref)
 				continue
 			if module.startswith("pam_pkcs11"):
-				self.enableSmartcard = True
+				self.setParam("enableSmartcard", True, ref)
 				if "authinfo_unavail" not in control:
-					self.forceSmartcard = True
+					self.setParam("forceSmartcard", True, ref)
 				else:
-					self.forceSmartcard = False
+					self.setParam("forceSmartcard", False, ref)
 				continue
 			if module.startswith("pam_fprintd"):
-				self.enableFprintd = True
+				self.setParam("enableFprintd", True, ref)
 				continue
 			if module.startswith("pam_passwdqc"):
-				self.enablePasswdQC = True
+				self.setParam("enablePasswdQC", True, ref)
 				if args:
-					self.passwdqcArgs = args
+					self.setParam("passwdqcArgs", args, ref)
 				continue
 			if module.startswith("pam_winbind"):
-				self.enableWinbindAuth = True
+				self.setParam("enableWinbindAuth", True, ref)
 				continue
 			if module.startswith("pam_sss"):
-				self.implicitSSSDAuth = True
+				self.setParam("implicitSSSDAuth", True, ref)
 				continue
 			if module.startswith("pam_access"):
-				self.enablePAMAccess = True
+				self.setParam("enablePAMAccess", True, ref)
 				if args:
-					self.pamAccessArgs = args
+					self.setParam("pamAccessArgs", args, ref)
 				continue
 			if module.startswith("pam_mkhomedir") or module.startswith("pam_oddjob_mkhomedir"):
-				self.enableMkHomeDir = True
+				self.setParam("enableMkHomeDir", True, ref)
 				if args:
-					self.mkhomedirArgs = args
+					self.setParam("mkhomedirArgs", args, ref)
 				continue
 			if module.startswith("pam_localuser"):
-				self.enableLocAuthorize = True
+				self.setParam("enableLocAuthorize", True, ref)
 				if args:
-					self.localuserArgs = args
+					self.setParam("localuserArgs", args, ref)
 				continue
 			if module.startswith("pam_systemd"):
 				if args:
-					self.systemdArgs = args
+					self.setParam("systemdArgs", args, ref)
 				continue
 			if stack == "password":
 				if module.startswith("pam_unix"):
 					for algo in password_algorithms:
 						if args.find(algo) >= 0:
-							self.passwordAlgorithm = algo
+							self.setParam("passwordAlgorithm", algo, ref)
 					try:
 						ridx = args.index("rounds=")
 						rounds = args[ridx+7:].split(None,1)
-						self.algoRounds = str(int(rounds[0]))
+						self.setParam("algoRounds", str(int(rounds[0])), ref)
 					except (ValueError, IndexError):
 						pass
 					try:
 						os.stat("/etc/shadow")
-						self.enableShadow = True
+						self.setParam("enableShadow", True, ref)
 					except OSError:
-						self.enableShadow = False
+						self.setParam("enableShadow", False, ref)
 			if stack == "auth":
 				if module.startswith("pam_unix"):
-					self.enableNullOk = args.find("nullok") >= 0
+					self.setParam("enableNullOk", args.find("nullok") >= 0, ref)
 			if stack == "account":
 				if module.startswith("pam_unix"):
-					self.brokenShadow = args.find("broken_shadow") >= 0
+					self.setParam("brokenShadow", args.find("broken_shadow") >= 0, ref)
 
 		f.close()
 
 		# Special handling for pam_cracklib and pam_passwdqc: there can be
 		# only one.
 		if self.enableCracklib and self.enablePasswdQC:
-			self.enablePasswdQC = False
+			self.setParam("enablePasswdQC", False, ref)
 		if not self.enableCracklib and not self.enablePasswdQC:
-			self.enableCracklib = True
+			self.setParam("enableCracklib", True, ref)
 
 		# Special handling for broken_shadow option
 		if (self.brokenShadow and not self.enableLDAPAuth and
@@ -1847,6 +1965,7 @@ class AuthInfo:
 	def readSysconfig(self):
 		# Read settings from our config file, which provide defaults for anything we
 		# figure out by examination.
+		# We do not use setParam here as sysconfig is the default and read first
 		try:
 			shv = shvfile.read(all_configs[CFG_AUTHCONFIG].origPath)
 
@@ -1999,7 +2118,7 @@ class AuthInfo:
 		return True
 
 	# Read hints from the network control file.
-	def readNetwork(self):
+	def readNetwork(self, ref):
 		# Open the file.  Bail if it's not there.
 		try:
 			shv = shvfile.read(all_configs[CFG_NETWORK].origPath)
@@ -2013,105 +2132,24 @@ class AuthInfo:
 		shv.close()
 
 		if self.nisLocalDomain:
-			self.nisDomain = self.nisLocalDomain
+			self.setParam("nisDomain", self.nisLocalDomain, ref)
 
 		return True
 
 	# Compare two authInfoType structures and return True if they have any
 	# meaningful differences.
 	def differs(self, b):
-		self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
-		return (stringsDiffer(self.hesiodLHS, b.hesiodLHS, False) or
-		stringsDiffer(self.hesiodRHS, b.hesiodRHS, False) or
+		sssdsupported = self.sssdSupported()
+		if bool(b.implicitSSSD) != sssdsupported or bool(b.implicitSSSDAuth) != sssdsupported:
+			return True
 
-		stringsDiffer(self.ldapServer, b.ldapServer, False) or
-		stringsDiffer(self.ldapBaseDN, b.ldapBaseDN, True) or
-
-		stringsDiffer(self.kerberosRealm, b.kerberosRealm, True) or
-		(self.kerberosRealmviaDNS != b.kerberosRealmviaDNS) or
-		stringsDiffer(self.kerberosKDC, b.kerberosKDC, False) or
-		(self.kerberosKDCviaDNS != b.kerberosKDCviaDNS) or
-		stringsDiffer(self.kerberosAdminServer,
-			       b.kerberosAdminServer, False) or
-		stringsDiffer(self.nisServer, b.nisServer, True) or
-		stringsDiffer(self.nisDomain, b.nisDomain, True) or
-		stringsDiffer(self.nisLocalDomain, b.nisLocalDomain, True) or
-
-		stringsDiffer(self.smartcardModule, b.smartcardModule, True) or
-		stringsDiffer(self.smartcardAction, b.smartcardAction, True) or
-
-		stringsDiffer(self.smbWorkgroup, b.smbWorkgroup, False) or
-		stringsDiffer(self.smbRealm, b.smbRealm, True) or
-		stringsDiffer(self.smbServers, b.smbServers, False) or
-		stringsDiffer(self.smbSecurity, b.smbSecurity, False) or
-		stringsDiffer(self.smbIdmapUid, b.smbIdmapUid, False) or
-		stringsDiffer(self.smbIdmapGid, b.smbIdmapGid, False) or
-
-		stringsDiffer(self.winbindSeparator,
-			       b.winbindSeparator, True) or
-		stringsDiffer(self.winbindTemplateHomedir,
-			       b.winbindTemplateHomedir, True) or
-		stringsDiffer(self.winbindTemplatePrimaryGroup,
-			       b.winbindTemplatePrimaryGroup, True) or
-		stringsDiffer(self.winbindTemplateShell,
-			       b.winbindTemplateShell, True) or
-		
-		stringsDiffer(self.passwordAlgorithm,
-			       b.passwordAlgorithm, False) or
-		stringsDiffer(self.algoRounds,
-			       b.algoRounds, True) or
-		stringsDiffer(self.ldapSchema, b.ldapSchema, True) or
-
-		(self.winbindUseDefaultDomain != b.winbindUseDefaultDomain) or
-		(self.winbindOffline != b.winbindOffline) or
-		(self.enableCache != b.enableCache) or
-
-		(self.enableDB != b.enableDB) or
-		(self.enableDirectories != b.enableDirectories) or
-		(self.enableHesiod != b.enableHesiod) or
-		(self.enableLDAP != b.enableLDAP) or
-		(self.enableLDAPS != b.enableLDAPS) or
-		(self.enableNIS != b.enableNIS) or
-		(self.enableNIS3 != b.enableNIS3) or
-		(self.enableDBbind != b.enableDBbind) or
-		(self.enableDBIbind != b.enableDBIbind) or
-		(self.enableHesiodbind != b.enableHesiodbind) or
-		(self.enableLDAPbind != b.enableLDAPbind) or
-		(self.enableOdbcbind != b.enableOdbcbind) or
-		(self.enableWinbind != b.enableWinbind) or
-		(self.enableWinbindAuth != b.enableWinbindAuth) or
-		(self.enableSSSD != b.enableSSSD) or
-		(self.enableSSSDAuth != b.enableSSSDAuth) or
-		(self.implicitSSSD != b.implicitSSSD) or
-		(self.implicitSSSDAuth != b.implicitSSSDAuth) or
-		(self.enableWINS != b.enableWINS) or
-		(self.preferDNSinHosts != b.preferDNSinHosts) or
-
-		(self.enableAFS != b.enableAFS) or
-		(self.enableAFSKerberos != b.enableAFSKerberos) or
-		(self.enableNullOk != b.enableNullOk) or
-		(self.enableCracklib != b.enableCracklib) or
-		(self.enableEPS != b.enableEPS) or
-		(self.enableKerberos != b.enableKerberos) or
-		(self.enableLDAPAuth != b.enableLDAPAuth) or
-		(self.enableSmartcard != b.enableSmartcard) or
-		(self.enableFprintd != b.enableFprintd) or
-		(self.forceSmartcard != b.forceSmartcard) or
-		(self.enableOTP != b.enableOTP) or
-		(self.enablePasswdQC != b.enablePasswdQC) or
-		(self.enableShadow != b.enableShadow) or
-		(self.enableLocAuthorize != b.enableLocAuthorize) or
-		(self.enablePAMAccess != b.enablePAMAccess) or
-		(self.enableMkHomeDir != b.enableMkHomeDir) or
-		(self.enableSysNetAuth != b.enableSysNetAuth) or
-		(self.brokenShadow != b.brokenShadow) or
-		(self.forceBrokenShadow != b.forceBrokenShadow) or
-		(self.enableForceLegacy != b.enableForceLegacy) or
-		(self.enableCacheCreds != b.enableCacheCreds) or
-
-		stringsDiffer(self.joinUser, b.joinUser, True) or
-		stringsDiffer(self.joinPassword, b.joinPassword, True))
-
+		# There is slight inefficiency in that a few of the attributes
+		# are duplicated in the save groups, but better than maintain
+		# the whole list at two places.
+		for group in self.save_groups:
+			if group.attrsDiffer(self, b):
+				return True
+		return False
 
 	# There's some serious strangeness in here, because we get called in two
 	# different-but-closely-related scenarios.  The first case is when we're
@@ -2133,22 +2171,25 @@ class AuthInfo:
 		self.passwordAlgorithm = self.passwordAlgorithm.lower()
 
 	def read(self):
+		ref = self.copy()
 		self.readSysconfig()
-		self.readNSS()
-		self.readPAM()
-		self.readHesiod()
-		self.readWinbind()
-		self.readNetwork()
-		self.readNIS()
+		self.readNSS(ref)
+		self.readLibuser(ref)
+		self.readLogindefs(ref)
+		self.readPAM(ref)
+		self.readHesiod(ref)
+		self.readWinbind(ref)
+		self.readNetwork(ref)
+		self.readNIS(ref)
 		# if SSSD not implicitely enabled
 		if not self.implicitSSSD and not self.implicitSSSDAuth:
-			self.readSSSD()
-		self.readLDAP()
-		self.readKerberos()
+			self.readSSSD(ref)
+		self.readLDAP(ref)
+		self.readKerberos(ref)
 		if self.implicitSSSD or self.implicitSSSDAuth:
-			self.readSSSD()
-		self.readSmartcard()
-		self.readCache()
+			self.readSSSD(ref)
+		self.readSmartcard(ref)
+		self.readCache(ref)
 
 		self.update()
 
@@ -3439,65 +3480,13 @@ class AuthInfo:
 		return ret
 
 	def writeChanged(self, ref):
-		save_groups = [
-	SaveGroup(self.writeCache, [("enableCache", "b"), ("implicitSSSD", "b")]),
-	SaveGroup(self.writeHesiod, [("hesiodLHS", "i"), ("hesiodRHS", "i")]),
-	SaveGroup(self.writeNIS, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
-	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
-		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
-	SaveGroup(self.writeCache, [("enableCache", "b")]),
-	SaveGroup(self.writeLibuser, [("passwordAlgorithm", "i")]),
-	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]),
-	SaveGroup(self.writeKerberos, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
-		("smbSecurity", "i"), ("smbRealm", "c"), ("smbServers", "i"),
-		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
-		("kerberosKDCviaDNS", "b")]),
-	SaveGroup(self.writeSSSD, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
-		("ldapSchema", "c"), ("ldapCacertDir", "c"),
-		("kerberosRealm", "c"), ("kerberosKDC", "i"), ("kerberosAdminServer", "i"),
-		("forceSSSDUpdate", "b"), ("enableLDAP", "b"), ("enableKerberos", "b"),
-		("enableLDAPAuth", "b")]),
-	SaveGroup(self.writeSmartcard, [("smartcardAction", "i"), ("smartcardModule", "c")]),
-	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
-		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
-		("smbIdmapGid", "i"), ("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
-		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
-		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b")]),
-	SaveGroup(self.writeNSS, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
-		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
-		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
-		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
-		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
-		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
-	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
-		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
-		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
-		("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
-		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
-		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
-		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
-		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
-		("enableOTP", "b"), ("enablePasswdQC", "b"),
-		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
-		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
-		("implicitSSSDAuth", "b"), ("systemdArgs", "c")]),
-	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
-		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
-		("enableSmartcard", "b"), ("forceSmartcard", "b"),
-		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
-		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
-		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
-		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
-		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
-	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
-
 		self.checkPAMLinked()
 		self.update()
 		self.prewriteUpdate()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		ret = True
 		try:
-			for group in save_groups:
+			for group in self.save_groups:
 				if group.attrsDiffer(self, ref):
 					ret = ret and group.saveFunction()
 		except OSError, IOError:

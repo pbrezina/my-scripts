@@ -110,6 +110,12 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
+* Tue Sep 15 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.9-1
+- removed support for setting up pam_smb_auth authentication - long
+  ago deprecated
+- added code for better synchronization of files with duplicate
+  settings such as login.defs, libuser.conf and system-auth-ac (#565521)
+
 * Tue Aug 10 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.8-1
 - add pam_systemd to the PAM configuration (#612712)
 - fix force smarcard setting read when Kerberos enabled (#620475)
