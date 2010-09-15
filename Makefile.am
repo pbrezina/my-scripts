@@ -109,9 +109,6 @@ tag:
 force-tag forcetag:
 	hg tag --force $(TAG)
 
-authconfig.spec: authconfig.spec.in configure.in
-	./autogen.sh
-
 archive:
 	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.bz2
 	mkdir /tmp/$(PACKAGE) && \
