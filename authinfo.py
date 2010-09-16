@@ -3080,6 +3080,8 @@ class AuthInfo:
 			if self.enableDBbind:
 				normal += " dbbind"
 
+			netgroup = normal
+
 			# Generate the list for users and groups.  The same as most other
 			# services, just use "compat" instead of "files" if "compat" is
 			# enabled.
@@ -3142,7 +3144,7 @@ class AuthInfo:
 				elif matchLine(ls, "netgroup:"):
 					if not wrotenetgroup:
 						output += "netgroup:  "
-						output += normal
+						output += netgroup
 						output += "\n"
 						wrotenetgroup = True
 				# If it's a 'automount' line, insert ours instead.

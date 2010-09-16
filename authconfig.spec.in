@@ -110,6 +110,9 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
+* Thu Sep 17 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.9-2
+- netgroups are now supported by sssd
+
 * Tue Sep 15 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.9-1
 - removed support for setting up pam_smb_auth authentication - long
   ago deprecated
