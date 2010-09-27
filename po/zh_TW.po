@@ -1,27 +1,25 @@
-# translation of authconfig.default.po to Traditional Chinese
-# translation of authconfig.tip.po to
-# Translation of authconfig to Traditional Chinese
-# This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-#
+# Translation of authconfig to Traditional Chinese.
+# This file is distributed under the same license as the authconfig package.
+# Copyright (C) YEAR THE authconfig's COPYRIGHT HOLDER.
 # Ben Wu <hpwu@redhat.com>, 2002,2003, 2004.
 # Chester Cheng <ccheng@redhat.com>, 2004, 2005, 2006.
 # Waika Liu <wliu@redhat.com>, 2005.
 # Walter Cheuk <wwycheuk@netvigator.com>, 2005.
-# Terry Chuang <tchuang@redhat.com>, 2008, 2009.
-# Terry Chuang <tchuang at redhat>, 2010.
+# Terry Chuang <tchuang@redhat.com>, 2008, 2009, 2010.
+# Wei-Lun Chao <chaoweilun@gmail.com>, 2010.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.default\n"
+"Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-10 16:29+0200\n"
-"PO-Revision-Date: 2010-04-01 12:26+1000\n"
-"Last-Translator: Terry Chuang <tchuang at redhat>\n"
+"PO-Revision-Date: 2010-09-27 22:26+1000\n"
+"Last-Translator: Wei-Lun Chao <chaoweilun@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../authconfig.py:81
 #, python-format
@@ -103,11 +101,11 @@ msgstr "預設的 LDAP 基底 DN"
 
 #: ../authconfig.py:121
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "啟用 LDAP（RFC-2830）並使用 TLS"
+msgstr "啟用 LDAP (RFC-2830) 並使用 TLS"
 
 #: ../authconfig.py:123
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "停用 LDAP（RFC-2830）的 TLS"
+msgstr "停用 LDAP (RFC-2830) 的 TLS"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
@@ -338,39 +336,35 @@ msgid "default hesiod RHS"
 msgstr "預設的 hesiod RHS"
 
 #: ../authconfig.py:233
-#, fuzzy
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
-msgstr "預設啟用使用者資訊的 SSSD"
+msgstr "預設以手動管理的組態來啟用使用者資訊的 SSSD"
 
 #: ../authconfig.py:235
-#, fuzzy
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
-msgstr "預設停用使用者資訊的 SSSD"
+msgstr "預設停用使用者資訊的 SSSD (仍然用於支援的組態)"
 
 #: ../authconfig.py:237
-#, fuzzy
 msgid ""
 "enable SSSD for authentication by default with manually managed configuration"
-msgstr "預設啟用 SSSD 以進行認證"
+msgstr "預設以手動管理的組態來啟用 SSSD 以進行認證"
 
 #: ../authconfig.py:239
-#, fuzzy
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations"
-msgstr "預設停用 SSSD 以進行認證"
+msgstr "預設停用 SSSD 以進行認證 (仍然用於支援的組態)"
 
 #: ../authconfig.py:241
 msgid "never use SSSD implicitly even for supported configurations"
-msgstr ""
+msgstr "即使用於支援的組態也絕不隱含使用 SSSD"
 
 #: ../authconfig.py:243
 msgid "use SSSD implicitly if it supports the configuration"
-msgstr ""
+msgstr "如果它支援組態就隱含使用 SSSD"
 
 #: ../authconfig.py:246
 msgid "enable caching of user credentials in SSSD by default"
@@ -384,7 +378,7 @@ msgstr "預設停用以 SSSD 進行使用者憑證緩衝貯存"
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "預設啟用使用者資訊緩衝貯存（當使用了 SSSD 時將會自動停用）"
+msgstr "預設啟用使用者資訊緩衝貯存 (當使用了 SSSD 時將會自動停用)"
 
 #: ../authconfig.py:253
 msgid "disable caching of user information by default"
@@ -482,7 +476,7 @@ msgstr "指定了不明的密碼雜湊演算法則，使用了 sha256。"
 
 #: ../authconfig.py:481
 msgid "can only be run as root"
-msgstr "只能由系統管理者（root）執行"
+msgstr "只能由系統管理者 (root) 執行"
 
 #: ../authconfig.py:497
 msgid "dialog was cancelled"
@@ -660,7 +654,7 @@ msgstr "領域："
 
 #: ../authconfig.py:757
 msgid "KDC:"
-msgstr "Kerberos 機碼配送中心（KDC）："
+msgstr "Kerberos 機碼配送中心 (KDC)："
 
 #: ../authconfig.py:758
 msgid "Admin Server:"
@@ -832,7 +826,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:9
 msgid "Ad_min Servers:"
-msgstr "管理伺服器：(_m)"
+msgstr "管理伺服器：(_M)"
 
 #: ../authconfig.glade.h:10
 msgid "Advanced _Options"
@@ -852,15 +846,15 @@ msgstr ""
 
 #: ../authconfig.glade.h:13
 msgid "Allow offline _login"
-msgstr "允許離線登錄(_l)"
+msgstr "允許離線登錄(_L)"
 
 #: ../authconfig.glade.h:14
 msgid "Aut_hentication Method:"
-msgstr "認證方式：(_h)"
+msgstr "認證方式：(_H)"
 
 #: ../authconfig.glade.h:16
 msgid "Card Re_moval Action:"
-msgstr "移除卡片動作：(_m)"
+msgstr "移除卡片動作：(_M)"
 
 #: ../authconfig.glade.h:17
 msgid "Certificate _URL:"
@@ -876,15 +870,15 @@ msgstr ""
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
-msgstr "第一次進行登錄時建立家目錄(_h)"
+msgstr "第一次進行登錄時建立家目錄(_H)"
 
 #: ../authconfig.glade.h:20
 msgid "Do_n't Save"
-msgstr "不儲存(_n)"
+msgstr "不儲存(_N)"
 
 #: ../authconfig.glade.h:21
 msgid "Domain _administrator:"
-msgstr "網域管理員：(_a)"
+msgstr "網域管理員：(_A)"
 
 #: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
@@ -892,15 +886,15 @@ msgstr "下載 CA 憑證"
 
 #: ../authconfig.glade.h:24
 msgid "Enable _fingerprint reader support"
-msgstr "啟用指紋掃描器支援(_f)"
+msgstr "啟用指紋掃描器支援(_F)"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _local access control"
-msgstr "啟用本機存取控制(_l)"
+msgstr "啟用本機存取控制(_L)"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _smart card support"
-msgstr "啟用智慧卡支援(_s)"
+msgstr "啟用智慧卡支援(_S)"
 
 #: ../authconfig.glade.h:27
 msgid ""
@@ -945,11 +939,11 @@ msgstr "NIS 伺服器：(_S)"
 
 #: ../authconfig.glade.h:36
 msgid "R_ealm:"
-msgstr "領域：（_e）"
+msgstr "領域：(_E)"
 
 #: ../authconfig.glade.h:37
 msgid "Require smart car_d for login"
-msgstr "登入時需要智慧卡(_d)"
+msgstr "登入時需要智慧卡(_D)"
 
 #: ../authconfig.glade.h:38
 msgid ""
@@ -969,7 +963,7 @@ msgstr "Smart card 身份認證能讓您使用智慧卡的認證與金鑰來登�
 
 #: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
-msgstr "範本 Shell：(_m)"
+msgstr "範本 Shell：(_M)"
 
 #: ../authconfig.glade.h:43
 msgid ""
@@ -982,7 +976,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "使用 DNS 來找出領域中的 KDC(_l)"
+msgstr "使用 DNS 來找出領域中的 KDC(_L)"
 
 #: ../authconfig.glade.h:45
 msgid "Use D_NS to resolve hosts to realms"
@@ -1009,11 +1003,11 @@ msgstr ""
 
 #: ../authconfig.glade.h:49
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS 領域：(_e)"
+msgstr "Winbind ADS 領域：(_E)"
 
 #: ../authconfig.glade.h:50
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind 網域控制器：(_n)"
+msgstr "Winbind 網域控制器：(_N)"
 
 #: ../authconfig.glade.h:51
 msgid "Winbind _Domain:"
@@ -1021,7 +1015,7 @@ msgstr "Winbind 網域：(_D)"
 
 #: ../authconfig.glade.h:52
 msgid "_Download CA Certificate..."
-msgstr "下載 CA 憑證...(_D)"
+msgstr "下載 CA 憑證(_D)…"
 
 #: ../authconfig.glade.h:53
 msgid "_Identity & Authentication"
@@ -1029,7 +1023,7 @@ msgstr "身份和認證(_I)"
 
 #: ../authconfig.glade.h:54
 msgid "_Join Domain..."
-msgstr "加入網域...(_J)"
+msgstr "加入網域(_J)…"
 
 #: ../authconfig.glade.h:55
 msgid "_KDCs:"
