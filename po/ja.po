@@ -9,21 +9,21 @@
 # Noriko Mizumoto <noriko@redhat.com>, 2006, 2008, 2009.
 # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2007.
 # Kiyoto Hashida <khashida@redhat.com>, 2008, 2009, 2010.
+# Hajime Taira <htaira@redhat.com>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-10 16:29+0200\n"
-"PO-Revision-Date: 2010-03-30 11:01+0900\n"
-"Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
+"PO-Revision-Date: 2010-09-20 11:12+0900\n"
+"Last-Translator: Hajime Taira <htaira@redhat.com>\n"
 "Language-Team: Japanese <jp@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: Plural-Forms: nplurals=1; plural=0;\n"
-"\n"
-"\n"
 
 #: ../authconfig.py:81
 #, python-format
@@ -76,7 +76,9 @@ msgstr "デフォルトの NIS ドメイン"
 
 # ../authconfig.c:725 ../authconfig.c:740 ../authconfig.c:749
 # ../authconfig.c:751
-#: ../authconfig.py:105 ../authconfig.py:116 ../authconfig.py:154
+#: ../authconfig.py:105
+#: ../authconfig.py:116
+#: ../authconfig.py:154
 #: ../authconfig.py:156
 msgid "<server>"
 msgstr "<サーバー>"
@@ -133,13 +135,11 @@ msgstr "TLS と LDAP の併用を無効にする (RFC-2830)"
 
 #: ../authconfig.py:125
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-"LDAP ユーザー情報ルックアップ用の RFC-2307bis schema の使用を有効にする"
+msgstr "LDAP ユーザー情報ルックアップ用の RFC-2307bis schema の使用を有効にする"
 
 #: ../authconfig.py:127
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-"LDAP ユーザー情報ルックアップ用の RFC-2307bis schema の使用を無効にする"
+msgstr "LDAP ユーザー情報ルックアップ用の RFC-2307bis schema の使用を無効にする"
 
 #: ../authconfig.py:128
 msgid "<URL>"
@@ -212,7 +212,8 @@ msgid "default kerberos admin server"
 msgstr "デフォルトの Kerberos 管理サーバー"
 
 # ../authconfig.c:753
-#: ../authconfig.py:158 ../authconfig.py:188
+#: ../authconfig.py:158
+#: ../authconfig.py:188
 msgid "<realm>"
 msgstr "<レルム>"
 
@@ -292,10 +293,10 @@ msgstr "samba と winbind 用に使用するセキュリティモード"
 
 #: ../authconfig.py:189
 msgid "default realm for samba and winbind when security=ads"
-msgstr ""
-"セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
+msgstr "セキュリティが ads の時の samba と winbind 用のデフォルトのレルム(realm)"
 
-#: ../authconfig.py:190 ../authconfig.py:192
+#: ../authconfig.py:190
+#: ../authconfig.py:192
 msgid "<lowest-highest>"
 msgstr "<最低-最高>"
 
@@ -308,12 +309,8 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "winbind が domain 又は ads ユーザーに割り当てる gid の範囲"
 
 #: ../authconfig.py:195
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"winbindusedefaultdomain が有効でない場合に、winbind 作成のユーザー名内でドメ"
-"インとユーザーの部分を分離するのに使用する文字。"
+msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr "winbindusedefaultdomain が有効でない場合に、winbind 作成のユーザー名内でドメインとユーザーの部分を分離するのに使用する文字。"
 
 #: ../authconfig.py:197
 msgid "the directory which winbind-created users will have as home directories"
@@ -328,20 +325,12 @@ msgid "the shell which winbind-created users will have as their login shell"
 msgstr "ユーザーがそのログインシェルとして持つ winbind 作成のシェル"
 
 #: ../authconfig.py:203
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定するように"
-"winbind を設定する"
+msgid "configures winbind to assume that users with no domain in their user names are domain users"
+msgstr "ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定するようにwinbind を設定する"
 
 #: ../authconfig.py:205
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定しない様に"
-"winbind を設定する"
+msgid "configures winbind to assume that users with no domain in their user names are not domain users"
+msgstr "ユーザー名の中にドメインを持たないユーザーをドメインユーザーと想定しない様にwinbind を設定する"
 
 #: ../authconfig.py:207
 msgid "configures winbind to allow offline login"
@@ -393,42 +382,31 @@ msgstr "デフォルトの hesiod RHS"
 
 # ../authconfig.c:728
 #: ../authconfig.py:233
-#, fuzzy
-msgid ""
-"enable SSSD for user information by default with manually managed "
-"configuration"
-msgstr "ユーザー情報に関して SSSD をデフォルトで有効にする"
+msgid "enable SSSD for user information by default with manually managed configuration"
+msgstr "ユーザー情報に関して SSSD をデフォルトで有効にする。(手動管理の設定と一緒に)"
 
 # ../authconfig.c:730
 #: ../authconfig.py:235
-#, fuzzy
-msgid ""
-"disable SSSD for user information by default (still used for supported "
-"configurations)"
-msgstr "ユーザー情報に関して SSSD をデフォルトで無効にする"
+msgid "disable SSSD for user information by default (still used for supported configurations)"
+msgstr "ユーザー情報に関して SSSD をデフォルトで無効にする。(まだサポートされていない設定です)"
 
 # ../authconfig.c:736
 #: ../authconfig.py:237
-#, fuzzy
-msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
-msgstr "認証の SSSD をデフォルトで有効にする"
+msgid "enable SSSD for authentication by default with manually managed configuration"
+msgstr "認証の SSSD をデフォルトで有効にする。(手動管理の設定と一緒に)"
 
 # ../authconfig.c:738
 #: ../authconfig.py:239
-#, fuzzy
-msgid ""
-"disable SSSD for authentication by default (still used for supported "
-"configurations"
-msgstr "認証の SSSD をデフォルトで無効にする"
+msgid "disable SSSD for authentication by default (still used for supported configurations"
+msgstr "認証の SSSD をデフォルトで無効にする。(まだサポートされていない設定です)"
 
 #: ../authconfig.py:241
 msgid "never use SSSD implicitly even for supported configurations"
-msgstr ""
+msgstr "もしサポートされている設定であっても、暗黙のうちに SSSD を利用しないでください。"
 
 #: ../authconfig.py:243
 msgid "use SSSD implicitly if it supports the configuration"
-msgstr ""
+msgstr "もしサポートされている設定であれば、暗黙のうちに SSSD を利用する。"
 
 # ../authconfig.c:756
 #: ../authconfig.py:246
@@ -442,12 +420,8 @@ msgstr "SSSD 内のユーザー信任情報のキャッシュをデフォルト�
 
 # ../authconfig.c:756
 #: ../authconfig.py:251
-msgid ""
-"enable caching of user information by default (automatically disabled when "
-"SSSD is used)"
-msgstr ""
-"ユーザー情報のキャッシュをデフォルトで有効にする（SSSD が使用される時に 自動"
-"的に無効にする）"
+msgid "enable caching of user information by default (automatically disabled when SSSD is used)"
+msgstr "ユーザー情報のキャッシュをデフォルトで有効にする（SSSD が使用される時に 自動的に無効にする）"
 
 # ../authconfig.c:758
 #: ../authconfig.py:253
@@ -517,7 +491,8 @@ msgid "probe network for defaults and print them"
 msgstr "デフォルトのネットワークを検出して表示する"
 
 # ../authconfig.c:753
-#: ../authconfig.py:296 ../authconfig.py:299
+#: ../authconfig.py:296
+#: ../authconfig.py:299
 msgid "<name>"
 msgstr "<name>"
 
@@ -530,9 +505,7 @@ msgid "restore the backup of configuration files"
 msgstr "設定ファイルのバックアップを復元"
 
 #: ../authconfig.py:303
-msgid ""
-"restore the backup of configuration files saved before the previous "
-"configuration change"
+msgid "restore the backup of configuration files saved before the previous configuration change"
 msgstr "前回の設定変更の前に保存されている設定ファイルのバックアップを復元"
 
 # ../authconfig.c:794
@@ -546,8 +519,7 @@ msgstr "不正なスマートカード取り出し動作が指定されました
 
 #: ../authconfig.py:448
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr ""
-"不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
+msgstr "不明なパスワードハッシュアルゴリズムが指定されたので、sha256を使用します。"
 
 # ../authconfig.c:803
 #: ../authconfig.py:481
@@ -563,23 +535,27 @@ msgstr "ダイアログはキャンセルされました"
 #: ../authconfig.py:521
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"%s ファイルが見つかりませんが、このファイルは %s 用に正しく動作させるのをサ"
-"ポートするため必要です。\n"
+"%s ファイルが見つかりませんが、このファイルは %s 用に正しく動作させるのをサポートするため必要です。\n"
 "このファイルを提供している %s パッケージをインストールしてください。"
 
 # ../authconfig.c:154
-#: ../authconfig.py:523 ../authconfig.py:869
+#: ../authconfig.py:523
+#: ../authconfig.py:869
 msgid "Warning"
 msgstr "警告"
 
 # ../authconfig.c:154 ../authconfig.c:550 ../authconfig.c:563
-#: ../authconfig.py:523 ../authconfig.py:740 ../authconfig.py:747
-#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:770
-#: ../authconfig.py:811 ../authconfig.py:869
+#: ../authconfig.py:523
+#: ../authconfig.py:740
+#: ../authconfig.py:747
+#: ../authconfig.py:753
+#: ../authconfig.py:762
+#: ../authconfig.py:770
+#: ../authconfig.py:811
+#: ../authconfig.py:869
 msgid "Ok"
 msgstr "OK"
 
@@ -602,12 +578,14 @@ msgid "LDAP authentication"
 msgstr "LDAP 認証"
 
 # ../authconfig.c:305
-#: ../authconfig.py:531 ../authconfig-gtk.py:100
+#: ../authconfig.py:531
+#: ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
 # ../authconfig.c:275 ../authconfig.c:310 ../authconfig.c:467
-#: ../authconfig.py:532 ../authconfig-gtk.py:106
+#: ../authconfig.py:532
+#: ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
@@ -616,7 +594,9 @@ msgstr "NIS"
 msgid "shadow password"
 msgstr "シャドウパスワード"
 
-#: ../authconfig.py:534 ../authconfig.py:536 ../authconfig-gtk.py:109
+#: ../authconfig.py:534
+#: ../authconfig.py:536
+#: ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -653,7 +633,8 @@ msgid "Use Winbind"
 msgstr "Winbind を使用"
 
 # ../authconfig.c:462
-#: ../authconfig.py:565 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:565
+#: ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "認証"
 
@@ -691,24 +672,35 @@ msgid "Local authorization is sufficient"
 msgstr "ローカル認証は十分です"
 
 # ../authconfig.c:375 ../authconfig.c:551 ../authconfig.c:564
-#: ../authconfig.py:602 ../authconfig.py:740 ../authconfig.py:747
-#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
+#: ../authconfig.py:602
+#: ../authconfig.py:740
+#: ../authconfig.py:747
+#: ../authconfig.py:753
+#: ../authconfig.py:762
+#: ../authconfig.py:811
 msgid "Back"
 msgstr "戻る"
 
 # ../authconfig.c:375 ../authconfig.c:552
-#: ../authconfig.py:602 ../authconfig.py:770
+#: ../authconfig.py:602
+#: ../authconfig.py:770
 msgid "Cancel"
 msgstr "取り消し"
 
 # ../authconfig.c:374
-#: ../authconfig.py:603 ../authconfig.py:740 ../authconfig.py:747
-#: ../authconfig.py:753 ../authconfig.py:762 ../authconfig.py:811
+#: ../authconfig.py:603
+#: ../authconfig.py:740
+#: ../authconfig.py:747
+#: ../authconfig.py:753
+#: ../authconfig.py:762
+#: ../authconfig.py:811
 msgid "Next"
 msgstr "次"
 
 # ../authconfig.c:580
-#: ../authconfig.py:614 ../authconfig-gtk.py:639 ../authconfig.glade.h:15
+#: ../authconfig.py:614
+#: ../authconfig-gtk.py:639
+#: ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "認証の設定"
 
@@ -732,7 +724,8 @@ msgid "Use TLS"
 msgstr "TLS を使用"
 
 # ../authconfig.c:163 ../authconfig.c:201
-#: ../authconfig.py:744 ../authconfig.py:751
+#: ../authconfig.py:744
+#: ../authconfig.py:751
 msgid "Server:"
 msgstr "サーバー:"
 
@@ -746,7 +739,9 @@ msgid "LDAP Settings"
 msgstr "LDAP 設定"
 
 # ../authconfig.c:162
-#: ../authconfig.py:750 ../authconfig.py:805 ../authconfig.glade.h:22
+#: ../authconfig.py:750
+#: ../authconfig.py:805
+#: ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "ドメイン:"
 
@@ -794,15 +789,10 @@ msgstr "パスワード:"
 msgid "Join Settings"
 msgstr "Join 設定"
 
-#: ../authconfig.py:779 ../authconfig.glade.h:41
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
-msgstr ""
-"設定変更の内の幾つかは、継続する前にディスクに保存する必要があります。 変更を"
-"保存しない場合、ドメインに参加する操作が失敗することがあります。 変更を保存し"
-"ますか?"
+#: ../authconfig.py:779
+#: ../authconfig.glade.h:41
+msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
+msgstr "設定変更の内の幾つかは、継続する前にディスクに保存する必要があります。 変更を保存しない場合、ドメインに参加する操作が失敗することがあります。 変更を保存しますか?"
 
 #: ../authconfig.py:786
 msgid "Save Settings"
@@ -847,22 +837,16 @@ msgstr "ドメイン参加"
 #: ../authconfig.py:864
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"LDAP サーバーに TLS プロトコルを使って接続するには、あなたのサーバー認証の署"
-"名がある CA 認証が必要です。証明を '%s' ディレクトリに PEM フォーマットの認証"
-"をコピーしてください。\n"
+"LDAP サーバーに TLS プロトコルを使って接続するには、あなたのサーバー認証の署名がある CA 認証が必要です。証明を '%s' ディレクトリに PEM フォーマットの認証をコピーしてください。\n"
 "そして OK を押します。"
 
 # ../authconfig.c:912
 #. FIXME - version
 #: ../authconfig.py:878
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
 msgstr "<Tab>/<Alt-Tab> 項目間の移動   |   <Space> 選択   |  <F12> 次の画面"
 
 #: ../authconfig.desktop.in.h:2
@@ -903,11 +887,8 @@ msgid "Winbind password"
 msgstr "Winbind パスワード"
 
 #: ../authconfig-gtk.py:434
-msgid ""
-"You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
-"ldaps:// サーバーアドレスを記入するか、または LDAP 認証用の TLS を使用しなけ"
-"ればなりません。"
+msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
+msgstr "ldaps:// サーバーアドレスを記入するか、または LDAP 認証用の TLS を使用しなければなりません。"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -937,19 +918,12 @@ msgid "<b>User Account Configuration</b>"
 msgstr "<b>ユーザーアカウントの認証</b>"
 
 #: ../authconfig.glade.h:7
-msgid ""
-"<small><b>Tip:</b> Smart cards support logging into both local and centrally "
-"managed accounts.</small>"
-msgstr ""
-"<small><b>ヒント:</b>スマートカードはローカルアカウントと中央管理のアカウント"
-"の両方のロギングを サポートします。</small>"
+msgid "<small><b>Tip:</b> Smart cards support logging into both local and centrally managed accounts.</small>"
+msgstr "<small><b>ヒント:</b>スマートカードはローカルアカウントと中央管理のアカウントの両方のロギングを サポートします。</small>"
 
 #: ../authconfig.glade.h:8
-msgid ""
-"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
-"<small><b>ヒント:</b> これは /etc/security/access.conf を介して管理されます。"
-"</small>"
+msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgstr "<small><b>ヒント:</b> これは /etc/security/access.conf を介して管理されます。</small>"
 
 # ../authconfig.c:236
 #: ../authconfig.glade.h:9
@@ -965,12 +939,8 @@ msgid "Alert"
 msgstr "忠告"
 
 #: ../authconfig.glade.h:12
-msgid ""
-"All configuration files which were modified by the previous authentication "
-"configuration change will be restored from backup. Revert the changes?"
-msgstr ""
-"前回の認証設定変更により修正された全ての設定ファイルはバックアップから 以前の"
-"設定に復元できます。変更を戻しますか ？"
+msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
+msgstr "前回の認証設定変更により修正された全ての設定ファイルはバックアップから 以前の設定に復元できます。変更を戻しますか ？"
 
 #: ../authconfig.glade.h:13
 msgid "Allow offline _login"
@@ -990,12 +960,8 @@ msgid "Certificate _URL:"
 msgstr "証明書 URL (_U):"
 
 #: ../authconfig.glade.h:18
-msgid ""
-"Click this button if you did not download a CA certificate yet or you have "
-"not set the CA certificate up by other means."
-msgstr ""
-"CA 証明書をまだダウンロードしていない場合や、他の方法で CA 証明書を 設定して"
-"いない場合は、このボタンをクリックします。"
+msgid "Click this button if you did not download a CA certificate yet or you have not set the CA certificate up by other means."
+msgstr "CA 証明書をまだダウンロードしていない場合や、他の方法で CA 証明書を 設定していない場合は、このボタンをクリックします。"
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
@@ -1026,12 +992,8 @@ msgid "Enable _smart card support"
 msgstr "スマートカードサポートを有効にする (_S)"
 
 #: ../authconfig.glade.h:27
-msgid ""
-"Fingerprint authentication allows you to log in by scanning your finger with "
-"the fingerprint reader."
-msgstr ""
-"指紋読み取り認証を使用すると、指紋読み取りと関連付けられた自分の指のスキャン"
-"でログインが可能になります。"
+msgid "Fingerprint authentication allows you to log in by scanning your finger with the fingerprint reader."
+msgstr "指紋読み取り認証を使用すると、指紋読み取りと関連付けられた自分の指のスキャンでログインが可能になります。"
 
 #: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
@@ -1042,12 +1004,8 @@ msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr "ホスト名または ldap:// または ldaps:// LDAP サーバーをポイントする URI"
 
 #: ../authconfig.glade.h:30
-msgid ""
-"If the home directory of an user doesn't exist yet it will be created "
-"automatically on his first login."
-msgstr ""
-"利用者のホームディレクトリーがなければ、最初のログイン時に自動的に作成されま"
-"す。"
+msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
+msgstr "利用者のホームディレクトリーがなければ、最初のログイン時に自動的に作成されます。"
 
 #: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
@@ -1082,9 +1040,7 @@ msgid "Require smart car_d for login"
 msgstr "ログインにスマートカードを必要とする (_D)"
 
 #: ../authconfig.glade.h:38
-msgid ""
-"Restore the configuration files backed up before the previous configuration "
-"change"
+msgid "Restore the configuration files backed up before the previous configuration change"
 msgstr "前回の設定変更の前にバックアップされている設定ファイルを復元"
 
 # ../authconfig.c:163 ../authconfig.c:201
@@ -1093,26 +1049,16 @@ msgid "Revert"
 msgstr "戻す"
 
 #: ../authconfig.glade.h:40
-msgid ""
-"Smart card authentication allows you to log in using a certificate and key "
-"associated with a smart card."
-msgstr ""
-"スマートカード認証を使用すると、スマートカードと関連付けられた証明証及びキー"
-"を使用したログインが可能になります。"
+msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
+msgstr "スマートカード認証を使用すると、スマートカードと関連付けられた証明証及びキーを使用したログインが可能になります。"
 
 #: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
 msgstr "テンプレートシェル（_M）:"
 
 #: ../authconfig.glade.h:43
-msgid ""
-"To verify the LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed the server's certificate. Please fill in the URL "
-"where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"LDAP サーバーに TLS プロトコルを使って接続するには、あなたのサーバー認証の署"
-"名がある CA 認証が必要です。PEM フォーマットの CA 認証をダウンロードできる "
-"URL を記入してください。"
+msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
+msgstr "LDAP サーバーに TLS プロトコルを使って接続するには、あなたのサーバー認証の署名がある CA 認証が必要です。PEM フォーマットの CA 認証をダウンロードできる URL を記入してください。"
 
 #: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
@@ -1123,24 +1069,16 @@ msgid "Use D_NS to resolve hosts to realms"
 msgstr "DNS を使用してレルムのホストを解決する（_N）"
 
 #: ../authconfig.glade.h:46
-msgid ""
-"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
-"must not be ticked with ldaps server URI."
-msgstr ""
-"RFC-2830 で定義されているように LDAP に TLS 拡張を使用する。 ldaps サーバー "
-"URI で印を付けてはいけない。"
+msgid "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It must not be ticked with ldaps server URI."
+msgstr "RFC-2830 で定義されているように LDAP に TLS 拡張を使用する。 ldaps サーバー URI で印を付けてはいけない。"
 
 #: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
 msgstr "TLS を使用して接続を暗号化する(_T)"
 
 #: ../authconfig.glade.h:48
-msgid ""
-"When enabled /etc/security/access.conf will be consulted for authorization "
-"of users access."
-msgstr ""
-"有効ならば、/etc/security/access.conf がユーザーアクセスの許可のために利用さ"
-"れます。"
+msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
+msgstr "有効ならば、/etc/security/access.conf がユーザーアクセスの許可のために利用されます。"
 
 #: ../authconfig.glade.h:49
 msgid "Winbind ADS R_ealm:"
@@ -1191,30 +1129,23 @@ msgstr "セキュリティモデル（_S）:"
 msgid "_User Account Database:"
 msgstr "ユーザーアカウントデータベース (_U) :"
 
-#: ../authinfo.py:926 ../authinfo.py:1574 ../authinfo.py:2896
+#: ../authinfo.py:926
+#: ../authinfo.py:1574
+#: ../authinfo.py:2896
 msgid "Lock"
 msgstr "ロック"
 
-#: ../authinfo.py:926 ../authinfo.py:1576
+#: ../authinfo.py:926
+#: ../authinfo.py:1576
 msgid "Ignore"
 msgstr "無視"
 
 #: ../authinfo.py:3268
 #, python-format
-msgid ""
-"Authentication module %s/pam_%s.so is missing. Authentication process might "
-"not work correctly."
-msgstr ""
-"認証モジュール %s/pam_%s.so がありません。認証プロセスが正常に動作しないかも"
-"知れません。"
+msgid "Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly."
+msgstr "認証モジュール %s/pam_%s.so がありません。認証プロセスが正常に動作しないかも知れません。"
 
 #: ../authinfo.py:3829
 msgid "Error downloading CA certificate"
 msgstr "CA 証明書のダウンロードでエラー"
 
-# ../authconfig.c:758
-#~ msgid "Additional options for user information and authentication"
-#~ msgstr "ユーザー情報と認証の為の追加のオプション"
-
-#~ msgid "Set up services used for authenticating users to the system"
-#~ msgstr "ユーザーをシステムに認証する為に使用するサービスをセットアップ"
