@@ -3096,7 +3096,7 @@ class AuthInfo:
 			# Now replace sss with ldap or remove it
 			# in all non-user info entries - this might be changed in future
 			# if sssd is able to provide automounts, netgroups, and so on.
-			if self.enableLDAP:
+			if self.enableLDAP and self.implicitSSSD:
 				normal = normal.replace("sss", "ldap")
 			else:
 				normal = normal.replace(" sss", "")
