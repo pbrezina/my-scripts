@@ -98,16 +98,16 @@ class Authconfig:
 			 "identitylabel", "empty_map", "", ""),
 			"LDAP":
 			(_("LDAP"), ("Kerberos", "LDAPAuth"),
-			 "ldapoptions", "ldap_map", authinfo.PATH_LIBNSS_SSS, "sssd-client"),
+			 "ldapoptions", "ldap_map", (authinfo.PATH_LIBNSS_LDAP, authinfo.PATH_LIBNSS_SSS), ("nss-pam-ldapd", "sssd-client")),
 			"FreeIPA":
 			(_("FreeIPA"), ("Kerberos",),
-			 "ldapoptions", "ldap_map", authinfo.PATH_LIBNSS_SSS, "sssd-client"),
+			 "ldapoptions", "ldap_map", (authinfo.PATH_LIBNSS_LDAP, authinfo.PATH_LIBNSS_SSS), ("nss-pam-ldapd", "sssd-client")),
 			"NIS":
 			(_("NIS"), ("NISAuth", "Kerberos"),
 			 "nisoptions", "nis_map", authinfo.PATH_LIBNSS_NIS, "ypbind"),
 			"Winbind":
 			(_("Winbind"), ("WinbindAuth",),
-			 "winbindoptions", "winbind_map", authinfo.PATH_LIBNSS_WINBIND, "samba-client")
+			 "winbindoptions", "winbind_map", authinfo.PATH_WINBIND, "samba-winbind")
 		}
 		# to keep the order we need a tuple
 		self.id_keys = ("local", "LDAP", "FreeIPA", "NIS", "Winbind")
@@ -122,7 +122,7 @@ class Authconfig:
 			 "authlabel", "empty_map", "", ""),
 			"Kerberos":
 			(_("Kerberos password"),
-			 "kerberosoptions", "kerberos_map", authinfo.PATH_PAM_KRB5, "pam_krb5"),
+			 "kerberosoptions", "kerberos_map", (authinfo.PATH_PAM_KRB5, authinfo.PATH_PAM_SSS), ("pam_krb5", "sssd-client")),
 			"NISAuth":
 			(_("NIS password"),
 			 "authlabel", "empty_map", "", ""),
@@ -413,8 +413,25 @@ class Authconfig:
 		return bool(ldaptls.get_active() or
 			'ldaps:' in ldapserver.get_text())
 
-	def enable_cacert_download(self, active, xml):
+	def display_msgctrl(self, text):
 		apply = self.xml.get_widget('apply')
+		apply.set_sensitive(False)
+		if self.msgctrl == None:
+			self.msgctrl = msgarea.MsgAreaController()
+			self.xml.get_widget('idauthpage').pack_start(self.msgctrl)
+			self.xml.get_widget('idauthpage').reorder_child(self.msgctrl, 0)
+		self.msgctrl.new_from_text_and_icon(gtk.STOCK_DIALOG_ERROR, text)
+		self.xml.get_widget('idauthpage').show_all()
+		apply.set_tooltip_markup("<span color='dark red'>%s</span>" % text)
+
+	def clear_msgctrl(self):
+		apply = self.xml.get_widget('apply')
+		apply.set_sensitive(True)
+		if self.msgctrl != None:
+			self.msgctrl.clear()
+			apply.set_tooltip_markup(None)
+
+	def enable_cacert_download(self, active, xml):
 		downloadcacert = xml.get_widget('downloadcacert')
 		if downloadcacert:
 			secureldap = self.is_ldap_secure(xml)
@@ -422,19 +439,33 @@ class Authconfig:
 			secureldap = secureldap or self.currauth != "LDAPAuth"
 		else:
 			secureldap = True
-		apply.set_sensitive(secureldap)
-		if self.msgctrl == None:
-			self.msgctrl = msgarea.MsgAreaController()
-			self.xml.get_widget('idauthpage').pack_start(self.msgctrl)
-			self.xml.get_widget('idauthpage').reorder_child(self.msgctrl, 0)
 		if secureldap:
-			self.msgctrl.clear()
-			apply.set_tooltip_markup(None)
+			self.clear_msgctrl()
 		else:
 			text = _("You must provide ldaps:// server address or use TLS for LDAP authentication.")
-			self.msgctrl.new_from_text_and_icon(gtk.STOCK_DIALOG_ERROR, text)
-			self.xml.get_widget('idauthpage').show_all()
-			apply.set_tooltip_markup("<span color='dark red'>%s</span>" % text)
+			self.display_msgctrl(text)
+
+	def missing_package(self, path, package):
+		if type(path) == tuple:
+			if self.info.sssdSupported():
+				path = path[1]
+				package = package[1]
+			else:
+				path = path[0]
+				package = package[0]
+		try:
+			if path:
+				os.stat(path)
+			self.clear_msgctrl()
+		except:
+			text = _("Missing file %s, please install package %s or choose different identity or authentication method.")
+			self.display_msgctrl(text % (path, package))
+			return True
+		return False
+
+	def missing_packages(self):
+		return (self.missing_package(self.id_map[self.currid][4], self.id_map[self.currid][5]) or
+			self.missing_package(self.auth_map[self.currauth][3], self.auth_map[self.currauth][4]))
 
 	def kerberos_dns(self, active, xml):
 		dnsrealm = xml.get_widget('dnsrealm').get_active()
@@ -524,7 +555,10 @@ class Authconfig:
 				self.currauth)
 		if displayopts:
 			self.display_authopts(topparent)
-		self.enable_cacert_download(None, self.idxml)
+		self.update_type(self.id_map, self.currid)
+		self.update_type(self.auth_map, self.currauth)
+		if not self.missing_packages():
+			self.enable_cacert_download(None, self.idxml)
 
 	def display_authopts(self, topparent):
 		self.authxml = self.display_opts(self.auth_map[self.currauth][1], 'authsite',
@@ -536,7 +570,9 @@ class Authconfig:
 		self.apply_authsettings()
 		self.currauth = self.id_map[self.currid][1][combo.get_active()]
 		self.display_authopts(topparent)
-		self.enable_cacert_download(None, self.idxml)
+		self.update_type(self.auth_map, self.currauth)
+		if not self.missing_packages():
+			self.enable_cacert_download(None, self.idxml)
 
 	# Create a vbox with the right controls and return the vbox.
 	def get_main_widget(self, xml):
