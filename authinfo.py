@@ -1229,8 +1229,8 @@ class AuthInfo:
 		self.forceSmartcard = None
 		self.enableFprintd = None
 		self.enableForceLegacy = None
-		self.implicitSSSD = None
-		self.implicitSSSDAuth = None
+		self.implicitSSSD = False
+		self.implicitSSSDAuth = False
 		self.enableCacheCreds = True
 
 		# Not really options.
@@ -1251,11 +1251,10 @@ class AuthInfo:
 		global SSSDConfig
 		self.sssdConfig = None
 		self.sssdDomain = None
-		self.forceSSSDUpdate = False
+		self.forceSSSDUpdate = None
 		if SSSDConfig:
 			try:
 				self.sssdConfig = SSSDConfig.SSSDConfig()
-				self.forceSSSDUpdate = True
 			except IOError:
 				pass
 		self.save_groups = [
@@ -1314,7 +1313,6 @@ class AuthInfo:
 		if oldval != value:
 			setattr(self, attr, value)
 			if oldval != getattr(ref, attr):
-				print "Inconsistent attr:", attr
 				self.inconsistentAttrs.append(attr)
 
 	def sssdSupported(self):
@@ -3440,10 +3438,10 @@ class AuthInfo:
 
 	def prewriteUpdate(self):
 		if not self.enableSSSD and not self.enableSSSDAuth:
+			oldimplicit = self.implicitSSSD
 			self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
-			if self.implicitSSSD:
-				# we force the update if in the pristine copy it was set to True
-				self.forceSSSDUpdate = False
+			if self.implicitSSSD and not oldimplicit:
+				self.inconsistentAttrs.append('forceSSSDUpdate')
 		modules = getSmartcardModules()
 		if len(modules) > 0 and self.smartcardModule not in modules:
 			self.smartcardModule = modules[0]
