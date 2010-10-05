@@ -445,7 +445,7 @@ class Authconfig:
 			text = _("You must provide ldaps:// server address or use TLS for LDAP authentication.")
 			self.display_msgctrl(text)
 
-	def missing_package(self, path, package):
+	def missing_package(self, path, service, package):
 		if type(path) == tuple:
 			if self.info.sssdSupported():
 				path = path[1]
@@ -458,14 +458,16 @@ class Authconfig:
 				os.stat(path)
 			self.clear_msgctrl()
 		except:
-			text = _("Missing file %s, please install package %s or choose different identity or authentication method.")
-			self.display_msgctrl(text % (path, package))
+			text = _("The %s file was not found, but it is required for %s support to work properly.\nInstall the %s package, which provides this file.")
+			self.display_msgctrl(text % (path, service, package))
 			return True
 		return False
 
 	def missing_packages(self):
-		return (self.missing_package(self.id_map[self.currid][4], self.id_map[self.currid][5]) or
-			self.missing_package(self.auth_map[self.currauth][3], self.auth_map[self.currauth][4]))
+		return (self.missing_package(self.id_map[self.currid][4],
+				self.id_map[self.currid][0], self.id_map[self.currid][5]) or
+			self.missing_package(self.auth_map[self.currauth][3],
+				self.auth_map[self.currauth][0], self.auth_map[self.currauth][4]))
 
 	def kerberos_dns(self, active, xml):
 		dnsrealm = xml.get_widget('dnsrealm').get_active()
