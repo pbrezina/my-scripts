@@ -723,10 +723,11 @@ def domain2dn(domain):
 
 DEFAULT_DNS_QUERY_SIZE = 1024
 
-def toggleCachingService(enableCaching, nostart):
+def toggleCachingService(enableCaching, nostart, onlystart):
 	if not nostart:
 		if enableCaching:
-			os.system("/sbin/service nscd stop >/dev/null 2>&1")
+			if not onlystart:
+				os.system("/sbin/service nscd stop >/dev/null 2>&1")
 			os.system("/sbin/service nscd start")
 		else:
 			try:
@@ -736,7 +737,7 @@ def toggleCachingService(enableCaching, nostart):
 				pass
 	return True
 
-def toggleNisService(enableNis, nisDomain, nostart):
+def toggleNisService(enableNis, nisDomain, nostart, onlystart):
 	if enableNis and nisDomain:
 		if not nostart:
 			os.system("/bin/domainname " + nisDomain)
@@ -745,7 +746,8 @@ def toggleNisService(enableNis, nisDomain, nostart):
 			os.system("/sbin/chkconfig --add rpcbind")
 			os.system("/sbin/chkconfig --level 345 rpcbind on")
 			if not nostart:
-				os.system("/sbin/service rpcbind stop >/dev/null 2>&1")
+				if not onlystart:
+					os.system("/sbin/service rpcbind stop >/dev/null 2>&1")
 				os.system("/sbin/service rpcbind start")
 		except OSError:
 			pass
@@ -756,7 +758,8 @@ def toggleNisService(enableNis, nisDomain, nostart):
 			if not nostart:
 				try:
 					os.stat(PATH_YPBIND_PID)
-					os.system("/sbin/service ypbind restart")
+					if not onlystart:
+						os.system("/sbin/service ypbind restart")
 				except OSError:
 					os.system("/sbin/service ypbind start")
 		except OSError:
@@ -777,14 +780,15 @@ def toggleNisService(enableNis, nisDomain, nostart):
 			pass
 	return True
 
-def toggleSplatbindService(enable, path, pidfile, name, nostart):
+def toggleSplatbindService(enable, path, pidfile, name, nostart, onlystart):
 	if enable:
 		try:
 			os.stat(path)
 			os.system("/sbin/chkconfig --add " + name)
 			os.system("/sbin/chkconfig --level 345 " + name + " on")
 			if not nostart:
-				os.system("/sbin/service " + name +" stop >/dev/null 2>&1")
+				if not onlystart:
+					os.system("/sbin/service " + name +" stop >/dev/null 2>&1")
 				os.system("/sbin/service " + name +" start")
 		except OSError:
 			pass
@@ -1252,6 +1256,7 @@ class AuthInfo:
 		self.sssdConfig = None
 		self.sssdDomain = None
 		self.forceSSSDUpdate = None
+		self.confChanged = False
 		if SSSDConfig:
 			try:
 				self.sssdConfig = SSSDConfig.SSSDConfig()
@@ -1638,6 +1643,8 @@ class AuthInfo:
 					val = domain.get_option(opt)
 					if opt == 'ldap_uri':
 						val = " ".join(val.split(","))
+					elif opt == 'ldap_schema' and val == 'rfc2307':
+						continue
 					self.setParam(attr, val, ref)
 			except SSSDConfig.NoOptionError:
 				pass
@@ -3450,6 +3457,7 @@ class AuthInfo:
 		self.update()
 		self.prewriteUpdate()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
+		self.confChanged = True
 		try:
 			ret = self.writeLibuser()
 			ret = ret and self.writeLogindefs()
@@ -3488,6 +3496,7 @@ class AuthInfo:
 		try:
 			for group in self.save_groups:
 				if group.attrsDiffer(self, ref):
+					self.confChanged = True
 					ret = ret and group.saveFunction()
 		except OSError, IOError:
 			return False
@@ -3677,40 +3686,41 @@ class AuthInfo:
 
 	def post(self, nostart):
 		self.toggleShadow()
-		toggleNisService(self.enableNIS, self.nisDomain, nostart)
+		onlystart = not self.confChanged
+		toggleNisService(self.enableNIS, self.nisDomain, nostart, onlystart)
 		toggleSplatbindService(self.enableWinbind or self.enableWinbindAuth,
 			PATH_WINBIND, PATH_WINBIND_PID,
-			"winbind", nostart)
+			"winbind", nostart, onlystart)
 		toggleSplatbindService(self.enableSSSD or self.enableSSSDAuth or
 			self.implicitSSSD or self.implicitSSSDAuth,
 			PATH_SSSD, PATH_SSSD_PID,
-			"sssd", nostart)
+			"sssd", nostart, onlystart)
 		toggleSplatbindService((self.enableLDAP or self.enableLDAPAuth) and
 			not self.implicitSSSD,
 			PATH_NSLCD, PATH_NSLCD_PID,
-			"nslcd", nostart)
+			"nslcd", nostart, onlystart)
 		toggleSplatbindService(self.enableDBbind,
 			PATH_DBBIND, PATH_DBBIND_PID,
-			"dbbind", nostart)
+			"dbbind", nostart, onlystart)
 		toggleSplatbindService(self.enableDBIbind,
 			PATH_DBIBIND, PATH_DBIBIND_PID,
-			"dbibind", nostart)
+			"dbibind", nostart, onlystart)
 		toggleSplatbindService(self.enableHesiodbind,
 			PATH_HESIODBIND, PATH_HESIODBIND_PID,
-			"hesiodbind", nostart)
+			"hesiodbind", nostart, onlystart)
 		toggleSplatbindService(self.enableLDAPbind,
 			PATH_LDAPBIND, PATH_LDAPBIND_PID,
-			"ldapbind", nostart)
+			"ldapbind", nostart, onlystart)
 		toggleSplatbindService(self.enableOdbcbind,
 			PATH_ODBCBIND, PATH_ODBCBIND_PID,
-			"odbcbind", nostart)
+			"odbcbind", nostart, onlystart)
 		if self.enableMkHomeDir and os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
 			# only switch on and only if pam_oddjob_mkhomedir exists
 			toggleSplatbindService(True,
 				PATH_ODDJOBD, PATH_ODDJOBD_PID,
-				"oddjobd", nostart)
-		toggleCachingService(self.enableCache, nostart)
+				"oddjobd", nostart, onlystart)
+		toggleCachingService(self.enableCache, nostart, onlystart)
 
 	def testLDAPCACerts(self):
 		if self.enableLDAP or self.enableLDAPAuth:
