@@ -110,6 +110,13 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
+* Wed Oct  6 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.11-1
+- do not restart services when configuration did not change
+- dissallow setting identity or authentication services with missing
+  installed files (#590447)
+- eliminate unnecessary updates of PAM config files and sssd.conf (#639978)
+- updated translations from Transifex
+
 * Thu Sep 17 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.10-1
 - netgroups are now supported by sssd
 - updated translations from Transifex
