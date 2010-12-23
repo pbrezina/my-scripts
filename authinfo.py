@@ -1204,6 +1204,7 @@ class AuthInfo:
 		self.enableOdbcbind = None
 		self.enableWinbind = None
 		self.enableWINS = None
+		self.enableMDNS = None
 		self.preferDNSinHosts = None
 		self.enableSSSD = None
 
@@ -1289,7 +1290,8 @@ class AuthInfo:
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
 		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
-		("enableCompat", "b"), ("enableWINS", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
+		("enableCompat", "b"), ("enableWINS", "b"), ("enableMDNS", "b"),
+		("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
 	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
@@ -1786,6 +1788,8 @@ class AuthInfo:
 				if value:
 					if checkNSS(value, "wins"):
 						self.setParam("enableWINS", True, ref)
+					if checkNSS(value, "mdns4_minimal [NOTFOUND=return]"):
+						self.setParam("enableMDNS", True, ref)
 
 					nispos = checkNSS(value, "nis")
 					if nispos == None:
@@ -3108,6 +3112,8 @@ class AuthInfo:
 
 			# Hostnames we treat specially.
 			hosts += " files"
+			if self.enableMDNS:
+				hosts += " mdns4_minimal [NOTFOUND=return]"
 			if self.preferDNSinHosts:
 				hosts += " dns"
 			if self.enableWINS:
@@ -3611,6 +3617,7 @@ class AuthInfo:
 		print " SMB idmap gid = \"%s\"" % self.smbIdmapGid
 		print "nss_sss is %s by default" % formatBool(self.enableSSSD)
 		print "nss_wins is %s" % formatBool(self.enableWINS)
+		print "nss_mdns4_minimal is %s" % formatBool(self.enableMDNS)
 		print "DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts)
 		print "pam_unix is always enabled"
 		print " shadow passwords are %s" % formatBool(self.enableShadow)
