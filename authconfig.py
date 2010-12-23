@@ -503,24 +503,32 @@ class AuthconfigTUI(Authconfig):
 		if self.options.kickstart and self.options.winbindjoin:
 			self.info.joinDomain(True)
 
-	def warnCallback(self, data):
-		(comp, warning) = data
-		if not comp.selected():
+	def warn(self, toggle, warning):
+		if not toggle:
 			return
 
 		while warning:
-			if not os.access(warning[0], os.R_OK):
+			path = warning[0]
+			package = warning[2]
+			if type(path) == tuple:
+				if self.info.sssdSupported():
+					path = path[1]
+					package = package[1]
+				else:
+					path = path[0]
+					package = package[0]
+			if not os.access(path, os.R_OK):
 				text = (_("The %s file was not found, but it is required for %s support to work properly.\nInstall the %s package, which provides this file.") %
-					(warning[0], warning[1], warning[2]))
+					(path, warning[1], package))
 				snack.ButtonChoiceWindow(self.screen, _("Warning"), text, [_("Ok")])
 			warning = warning[3]
 
 	def getMainChoices(self):
 		warnCache = [authinfo.PATH_NSCD, _("caching"), "nscd", None]
 		warnFprintd = [authinfo.PATH_PAM_FPRINTD, _("Fingerprint reader"), "pam_fprintd", None]
-		warnKerberos = [authinfo.PATH_PAM_KRB5, _("Kerberos"), "pam_krb5", None]
-		warnLDAPAuth = [authinfo.PATH_PAM_LDAP, _("LDAP authentication"), "pam_ldap", None]
-		warnLDAP = [authinfo.PATH_LIBNSS_LDAP, _("LDAP"), "nss-pam-ldapd", None]
+		warnKerberos = [(authinfo.PATH_PAM_KRB5, authinfo.PATH_PAM_SSS), _("Kerberos"), ("pam_krb5", "sssd-client"), None]
+		warnLDAPAuth = [(authinfo.PATH_PAM_LDAP, authinfo.PATH_PAM_SSS), _("LDAP authentication"), ("pam_ldap", "sssd-client"), None]
+		warnLDAP = [(authinfo.PATH_LIBNSS_LDAP, authinfo.PATH_LIBNSS_SSS), _("LDAP"), ("nss-pam-ldapd", "sssd-client"), None]
 		warnNIS = [authinfo.PATH_YPBIND, _("NIS"), "ypbind", None]
 		warnShadow = [authinfo.PATH_PWCONV, _("shadow password"), "shadow-utils", None]
 		warnWinbindNet = [authinfo.PATH_WINBIND_NET, _("Winbind"), "samba-client", None]
@@ -535,18 +543,15 @@ class AuthconfigTUI(Authconfig):
 
 		cache = cb = snack.Checkbox(_("Cache Information"), bool(self.info.enableCache))
 		infoGrid.setField(cb, 0, 1, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnCache))
 
 		hesiod = cb =	snack.Checkbox(_("Use Hesiod"), bool(self.info.enableHesiod))
 		infoGrid.setField(cb, 0, 2, anchorLeft=1, growx=1)
 
 		ldap = cb = snack.Checkbox(_("Use LDAP"), bool(self.info.enableLDAP))
 		infoGrid.setField(cb, 0, 3, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnLDAP))
 
 		nis = cb = snack.Checkbox(_("Use NIS"), bool(self.info.enableNIS))
 		infoGrid.setField(cb, 0, 4, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnNIS))
 
 		winbind = cb = snack.Checkbox(_("Use Winbind"), bool(self.info.enableWinbind))
 		infoGrid.setField(cb, 0, 5, anchorLeft=1, growx=1)
@@ -562,24 +567,19 @@ class AuthconfigTUI(Authconfig):
 
 		shadow = cb = snack.Checkbox(_("Use Shadow Passwords"), bool(self.info.enableShadow))
 		authGrid.setField(cb, 0, 2, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnShadow))
 
 		ldapa = cb = snack.Checkbox(_("Use LDAP Authentication"), bool(self.info.enableLDAPAuth))
 		authGrid.setField(cb, 0, 3, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnLDAPAuth))
 
 		krb5 = cb = snack.Checkbox(_("Use Kerberos"), bool(self.info.enableKerberos))
 		authGrid.setField(cb, 0, 4, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnKerberos))
 
 		fprintd = cb = snack.Checkbox(_("Use Fingerprint reader"), bool(self.info.enableFprintd))
 		authGrid.setField(cb, 0, 5, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnFprintd))
 
 
 		winbindauth = cb = snack.Checkbox(_("Use Winbind Authentication"), bool(self.info.enableWinbindAuth))
 		authGrid.setField(cb, 0, 6, anchorLeft=1, growx=1)
-		cb.setCallback(self.warnCallback, (cb, warnWinbindAuth))
 
 		locauthorize = cb = snack.Checkbox(_("Local authorization is sufficient"), bool(self.info.enableLocAuthorize))
 		authGrid.setField(cb, 0, 7, anchorLeft=1, growx=1)
@@ -625,6 +625,13 @@ class AuthconfigTUI(Authconfig):
 			self.info.enableWinbindAuth = winbindauth.selected()
 			self.info.enableLocAuthorize = locauthorize.selected()
 			self.info.enableFprintd = fprintd.selected()
+			allwarnings = [(self.info.enableCache, warnCache), (self.info.enableLDAP, warnLDAP),
+				(self.info.enableNIS, warnNIS), (self.info.enableWinbind, warnWinbind),
+				(self.info.enableLDAPAuth, warnLDAPAuth), (self.info.enableKerberos, warnKerberos),
+				(self.info.enableFprintd, warnFprintd), (self.info.enableShadow, warnShadow),
+				(self.info.enableWinbindAuth, warnWinbindAuth)]
+			for warning in allwarnings:
+				self.warn(warning[0], warning[1])
 
 		self.screen.popWindow()
 
