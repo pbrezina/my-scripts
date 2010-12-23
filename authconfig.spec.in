@@ -110,6 +110,12 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
+* Thu Dec 23 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.12-1
+- give proper warnings on missing packages if configuration
+  supported by SSSD (#663882)
+- do not delete mdns4_minimal from nsswitch.conf (#645295)
+- updated translations from Transifex
+
 * Wed Oct  6 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.11-1
 - do not restart services when configuration did not change
 - dissallow setting identity or authentication services with missing
