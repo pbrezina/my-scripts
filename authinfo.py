@@ -51,6 +51,9 @@ SYSCONFDIR = "/etc"
 AUTH_PAM_SERVICE = "system-auth"
 AUTH_PAM_SERVICE_AC = "system-auth-ac"
 
+POSTLOGIN_PAM_SERVICE = "postlogin"
+POSTLOGIN_PAM_SERVICE_AC = "postlogin-ac"
+
 PASSWORD_AUTH_PAM_SERVICE = "password-auth"
 PASSWORD_AUTH_PAM_SERVICE_AC = "password-auth-ac"
 
@@ -386,6 +389,18 @@ argv_keyinit_session = [
 	"revoke"
 ]
 
+argv_ecryptfs_auth = [
+	"unwrap"
+]
+
+argv_ecryptfs_password = [
+	"unwrap"
+]
+
+argv_ecryptfs_session = [
+	"unwrap"
+]
+
 # Password hashing algorithms.
 password_algorithms = ["descrypt", "bigcrypt", "md5", "sha256", "sha512"]
 
@@ -396,9 +411,9 @@ pam_stacks = ["auth", "account", "session", "password"]
 
 (MANDATORY, STACK, LOGIC, NAME, ARGV) = range(0,5)
 
-(STANDARD, PASSWORD_ONLY, FINGERPRINT, SMARTCARD) = range(0,4)
+(STANDARD, POSTLOGIN, PASSWORD_ONLY, FINGERPRINT, SMARTCARD) = range(0,5)
 
-pam_modules = [[] for service in (STANDARD, PASSWORD_ONLY, FINGERPRINT, SMARTCARD)]
+pam_modules = [[] for service in (STANDARD, POSTLOGIN, PASSWORD_ONLY, FINGERPRINT, SMARTCARD)]
 
 # The list of stacks, module flags, and arguments, if there are any.
 # [ MANDATORY, STACK, LOGIC, NAME, ARGV ]
@@ -514,6 +529,15 @@ pam_modules[STANDARD] = [
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "ldap",		[]]
+]
+
+pam_modules[POSTLOGIN] = [
+	[False,  AUTH,		LOGIC_OPTIONAL,
+	 "ecryptfs",		argv_ecryptfs_auth],
+	[False,  PASSWORD,	LOGIC_OPTIONAL,
+	 "ecryptfs",		argv_ecryptfs_password],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "ecryptfs",		argv_ecryptfs_session],
 ]
 
 pam_modules[PASSWORD_ONLY] = [
@@ -1110,8 +1134,8 @@ class CacheBackup(FileBackup):
 # indexes for the configs
 (CFG_HESIOD, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
-	CFG_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
-	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 22)
+	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
+	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 23)
 all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
@@ -1127,6 +1151,7 @@ all_configs = [
 	FileBackup("nsswitch.conf", SYSCONFDIR+"/nsswitch.conf"),
 	CacheBackup("cacheenabled.conf", ""),
 	FileBackup("system-auth-ac", SYSCONFDIR+"/pam.d/"+AUTH_PAM_SERVICE_AC),
+	FileBackup("postlogin-ac", SYSCONFDIR+"/pam.d/"+POSTLOGIN_PAM_SERVICE_AC),
 	FileBackup("password-auth-ac", SYSCONFDIR+"/pam.d/"+PASSWORD_AUTH_PAM_SERVICE_AC),
 	FileBackup("fingerprint-auth-ac", SYSCONFDIR+"/pam.d/"+FINGERPRINT_AUTH_PAM_SERVICE_AC),
 	FileBackup("smartcard-auth-ac", SYSCONFDIR+"/pam.d/"+SMARTCARD_AUTH_PAM_SERVICE_AC),
@@ -1213,6 +1238,7 @@ class AuthInfo:
 		self.enableAFSKerberos = None
 		self.enableNullOk = True
 		self.enableCracklib = None
+		self.enableEcryptfs = None
 		self.enableEPS = None
 		self.enableKerberos = None
 		self.enableLDAPAuth = None
@@ -1301,13 +1327,13 @@ class AuthInfo:
 		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
-		("enableOTP", "b"), ("enablePasswdQC", "b"),
+		("enableEcryptfs", "b"), ("enableOTP", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
 		("implicitSSSDAuth", "b"), ("systemdArgs", "c")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
-		("enableSmartcard", "b"), ("forceSmartcard", "b"),
+		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
@@ -1818,8 +1844,8 @@ class AuthInfo:
 
 	# Read hints from the PAM control file.
 	def readPAM(self, ref):
-		# Open the file.  Bail if it's not there or there's some problem
-		# reading it.
+		# Open the system-auth file.  Bail if it's not there or
+		# there's some problem reading it.
 		try:
 			f = open(all_configs[CFG_PAM].origPath, "r")
 		except IOError:
@@ -1828,6 +1854,23 @@ class AuthInfo:
 			except IOError:
 				return False
 
+		self.readPAMFile(ref, f):
+		f.close()
+
+		# Open the postlogin file.  It's ok if it's not there.
+		try:
+			f = open(all_configs[CFG_POSTLOGIN_PAM].origPath, "r")
+		except IOError:
+			try:
+				f = open(SYSCONFDIR+"/pam.d/"+POSTLOGIN_PAM_SERVICE, "r")
+			except IOError:
+				return True
+
+		self.readPAMFile(ref, f):
+		f.close()
+		return True
+
+	def readPAMFile(self, ref, f):
 		prevline = ""
 		for line in f:
 			lst = line.split("#", 1)
@@ -1884,6 +1927,9 @@ class AuthInfo:
 				self.setParam("enableCracklib", True, ref)
 				if args:
 					self.setParam("cracklibArgs", args, ref)
+				continue
+			if module.startswith("pam_ecryptfs"):
+				self.setParam("enableEcryptfs", True, ref)
 				continue
 			if module.startswith("pam_krb5"):
 				self.setParam("enableKerberos", True, ref)
@@ -1954,8 +2000,6 @@ class AuthInfo:
 				if module.startswith("pam_unix"):
 					self.setParam("brokenShadow", args.find("broken_shadow") >= 0, ref)
 
-		f.close()
-
 		# Special handling for pam_cracklib and pam_passwdqc: there can be
 		# only one.
 		if self.enableCracklib and self.enablePasswdQC:
@@ -1968,8 +2012,6 @@ class AuthInfo:
 			not self.enableKerberos and not self.enableWinbindAuth and
 			not self.enableSSSDAuth and not self.enableSmartcard):
 			self.forceBrokenShadow = True
-
-		return True
 
 	def readSysconfig(self):
 		# Read settings from our config file, which provide defaults for anything we
@@ -2004,6 +2046,10 @@ class AuthInfo:
 				pass
 			try:
 				self.enableDirectories = shv.getBoolValue("USEDIRECTORIES")
+			except ValueError:
+				pass
+			try:
+				self.enableEcryptfs = shv.getBoolValue("USEECRYPTFS")
 			except ValueError:
 				pass
 			try:
@@ -3309,8 +3355,8 @@ class AuthInfo:
 				pass
 
 	def checkPAMLinked(self):
-		for dest in [AUTH_PAM_SERVICE, PASSWORD_AUTH_PAM_SERVICE, FINGERPRINT_AUTH_PAM_SERVICE,
-				SMARTCARD_AUTH_PAM_SERVICE]:
+		for dest in [AUTH_PAM_SERVICE, POSTLOGIN_PAM_SERVICE, PASSWORD_AUTH_PAM_SERVICE,
+                                FINGERPRINT_AUTH_PAM_SERVICE, SMARTCARD_AUTH_PAM_SERVICE]:
 			dest = SYSCONFDIR + "/pam.d/" + dest
 			f = os.path.isfile(dest)
 			l = os.path.islink(dest)
@@ -3351,6 +3397,7 @@ class AuthInfo:
 					(self.enableAFS and module[NAME] == "afs") or
 					(self.enableAFSKerberos and module[NAME] == "afs.krb") or
 					(self.enableCracklib and module[NAME] == "cracklib") or
+					(self.enableEcryptfs and module[NAME] == "ecryptfs") or
 					(self.enableEPS and module[NAME] == "eps") or
 					((self.enableKerberos and not self.implicitSSSDAuth)and module[NAME] == "krb5" and
 						not module[ARGV] == argv_krb5_sc_auth) or
@@ -3393,6 +3440,7 @@ class AuthInfo:
 	def writePAM(self):
 		self.module_missing = {}
 		self.writePAMService(STANDARD, CFG_PAM, AUTH_PAM_SERVICE_AC, AUTH_PAM_SERVICE)
+		self.writePAMService(POSTLOGIN, CFG_POSTLOGIN_PAM, POSTLOGIN_PAM_SERVICE_AC, POSTLOGIN_PAM_SERVICE)
 		self.writePAMService(PASSWORD_ONLY, CFG_PASSWORD_PAM, PASSWORD_AUTH_PAM_SERVICE_AC, PASSWORD_AUTH_PAM_SERVICE)
 		self.writePAMService(FINGERPRINT, CFG_FINGERPRINT_PAM, FINGERPRINT_AUTH_PAM_SERVICE_AC, FINGERPRINT_AUTH_PAM_SERVICE)
 		self.writePAMService(SMARTCARD, CFG_SMARTCARD_PAM, SMARTCARD_AUTH_PAM_SERVICE_AC, SMARTCARD_AUTH_PAM_SERVICE)
@@ -3410,6 +3458,7 @@ class AuthInfo:
 		shv.setBoolValue("USEHESIOD", self.enableHesiod)
 		shv.setBoolValue("USELDAP", self.enableLDAP)
 		shv.setBoolValue("USENIS", self.enableNIS)
+		shv.setBoolValue("USEECRYPTFS", self.enableEcryptfs)
 		shv.setBoolValue("USEPASSWDQC", self.enablePasswdQC)
 		shv.setBoolValue("USEWINBIND", self.enableWinbind)
 		shv.setBoolValue("USESSSD", self.enableSSSD)
@@ -3638,6 +3687,7 @@ class AuthInfo:
 		print " smartcard module = \"%s\"" % self.smartcardModule
 		print " smartcard removal action = \"%s\"" % self.smartcardAction
 		print "pam_fprintd is %s" % formatBool(self.enableFprintd)
+		print "pam_ecryptfs is %s" % (formatBool(self.enableEcryptfs))
 		print "pam_winbind is %s" % formatBool(self.enableWinbindAuth)
 		print " SMB workgroup = \"%s\"" % self.smbWorkgroup
 		print " SMB servers = \"%s\"" % self.smbServers

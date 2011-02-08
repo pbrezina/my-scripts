@@ -110,6 +110,10 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
 
 %changelog
+* Tue Feb  8 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.13-1
+- support for postlogin PAM configuration and pam_ecryptfs
+  patch by Paolo Bonzini
+
 * Thu Dec 23 2010 Tomas Mraz <tmraz@redhat.com> - 6.1.12-1
 - give proper warnings on missing packages if configuration
   supported by SSSD (#663882)

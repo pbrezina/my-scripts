@@ -146,6 +146,11 @@ class Authconfig:
 		parser.add_option("--disablefingerprint", action="store_true",
 			help=_("disable authentication with fingerprint readers by default"))
 
+		parser.add_option("--enableecryptfs", action="store_true",
+			help=_("enable automatic per-user ecryptfs"))
+		parser.add_option("--disableecryptfs", action="store_true",
+			help=_("disable automatic per-user ecryptfs"))
+
 		parser.add_option("--enablekrb5", action="store_true",
 			help=_("enable kerberos authentication by default"))
 		parser.add_option("--disablekrb5", action="store_true",
@@ -348,6 +353,7 @@ class Authconfig:
 			"sysnetauth":"enableSysNetAuth",
 			"mkhomedir":"enableMkHomeDir",
 			"cache":"enableCache",
+			"ecryptfs":"enableEcryptfs",
 			"hesiod":"enableHesiod",
 			"ldap":"enableLDAP",
 			"ldaptls":"enableLDAPS",

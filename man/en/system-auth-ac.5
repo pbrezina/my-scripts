@@ -2,8 +2,8 @@
 .SH NAME
 
 system-auth-ac, password-auth-ac, smartcard-auth-ac,
-fingerprint-auth-ac \- Common configuration files for PAMified services
-written by authconfig(8)
+fingerprint-auth-ac, postlogin-ac \- Common configuration files for
+PAMified services written by authconfig(8)
 
 .SH SYNOPSIS
 .B /etc/pam.d/system-auth-ac
@@ -37,6 +37,10 @@ authentication with the respective kinds of authentication tokens.
 For example \fB/etc/pam.d/smartcard-auth[-ac]\fR will not contain
 \fBpam_unix\fR and \fBpam_ldap\fR modules and \fB/etc/pam.d/password-auth[-ac]\fR
 will not contain \fBpam_pkcs11\fR and \fBpam_fprintd\fR modules.
+
+The file \fB/etc/pam.d/postlogin-ac\fR contains common services
+to be invoked after login. An example can be a module that encrypts an
+user's filesystem or user's keyring and is decrypted by his password.
 
 The PAM configuration files of services which are accessed by remote
 connections such as sshd or ftpd now include the \fB/etc/pam.d/password-auth\fR
