@@ -65,6 +65,7 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/password-auth-ac
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/fingerprint-auth-ac
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/smartcard-auth-ac
+%ghost %config(noreplace) %{_sysconfdir}/pam.d/postlogin-ac
 %{_sbindir}/cacertdir_rehash
 %{_sbindir}/authconfig
 %{_sbindir}/authconfig-tui

@@ -51,6 +51,7 @@ install-data-local: authconfig.desktop
 	touch $(DESTDIR)/$(pamdir)/password-auth-ac
 	touch $(DESTDIR)/$(pamdir)/fingerprint-auth-ac
 	touch $(DESTDIR)/$(pamdir)/smartcard-auth-ac
+	touch $(DESTDIR)/$(pamdir)/postlogin-ac
 	mkdir -p $(DESTDIR)/$(datadir)/applications
 	desktop-file-install \
 		--dir=$(DESTDIR)/$(datadir)/applications \
