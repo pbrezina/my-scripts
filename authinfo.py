@@ -1854,7 +1854,7 @@ class AuthInfo:
 			except IOError:
 				return False
 
-		self.readPAMFile(ref, f):
+		self.readPAMFile(ref, f)
 		f.close()
 
 		# Open the postlogin file.  It's ok if it's not there.
@@ -1866,7 +1866,7 @@ class AuthInfo:
 			except IOError:
 				return True
 
-		self.readPAMFile(ref, f):
+		self.readPAMFile(ref, f)
 		f.close()
 		return True
 
