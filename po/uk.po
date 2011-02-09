@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-08 21:38+0100\n"
-"PO-Revision-Date: 2010-09-15 17:56+0300\n"
+"PO-Revision-Date: 2011-02-09 11:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
 "X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -59,7 +59,9 @@ msgstr "<домен>"
 msgid "default NIS domain"
 msgstr "домен NIS"
 
-#: ../authconfig.py:104 ../authconfig.py:115 ../authconfig.py:158
+#: ../authconfig.py:104
+#: ../authconfig.py:115
+#: ../authconfig.py:158
 #: ../authconfig.py:160
 msgid "<server>"
 msgstr "<сервер>"
@@ -106,15 +108,11 @@ msgstr "вимкнути використання TLS з LDAP (RFC-2830)"
 
 #: ../authconfig.py:124
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-"використовувати схему RFC-2307bis для пошуку інформації про користувача на "
-"LDAP"
+msgstr "використовувати схему RFC-2307bis для пошуку інформації про користувача на LDAP"
 
 #: ../authconfig.py:126
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-"не використовувати схему RFC-2307bis для пошуку інформації про користувача "
-"на LDAP"
+msgstr "не використовувати схему RFC-2307bis для пошуку інформації про користувача на LDAP"
 
 #: ../authconfig.py:127
 msgid "<URL>"
@@ -162,11 +160,11 @@ msgstr "не використовувати автентифікацію за д
 
 #: ../authconfig.py:150
 msgid "enable automatic per-user ecryptfs"
-msgstr ""
+msgstr "увімкнути автоматичне шифрування ФС для окремих користувачів"
 
 #: ../authconfig.py:152
 msgid "disable automatic per-user ecryptfs"
-msgstr ""
+msgstr "увімкнути автоматичне шифрування ФС для окремих користувачів"
 
 #: ../authconfig.py:155
 msgid "enable kerberos authentication by default"
@@ -184,7 +182,8 @@ msgstr "kerberos KDC"
 msgid "default kerberos admin server"
 msgstr "керуючий сервер kerberos"
 
-#: ../authconfig.py:162 ../authconfig.py:183
+#: ../authconfig.py:162
+#: ../authconfig.py:183
 msgid "<realm>"
 msgstr "<область>"
 
@@ -248,7 +247,8 @@ msgstr "<робоча група>"
 msgid "workgroup authentication servers are in"
 msgstr "сервери автентифікації робочої групи у"
 
-#: ../authconfig.py:189 ../authconfig.py:191
+#: ../authconfig.py:189
+#: ../authconfig.py:191
 msgid "<lowest-highest>"
 msgstr "<нижній-верхній>"
 
@@ -261,47 +261,28 @@ msgid "gid range winbind will assign to domain or ads users"
 msgstr "діапазон gid, який winbind буде призначати домену або ads користувачам"
 
 #: ../authconfig.py:194
-msgid ""
-"the character which will be used to separate the domain and user part of "
-"winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"символ, який буде використовуватись для відокремлення частин домену та "
-"користувача у створюваних winbind іменах користувачів, якщо "
-"winbindusedefaultdomain не ввімкнено"
+msgid "the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"
+msgstr "символ, який буде використовуватись для відокремлення частин домену та користувача у створюваних winbind іменах користувачів, якщо winbindusedefaultdomain не ввімкнено"
 
 #: ../authconfig.py:196
 msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"каталог, який створені winbind користувачі будуть використовувати для "
-"домашніх каталогів"
+msgstr "каталог, який створені winbind користувачі будуть використовувати для домашніх каталогів"
 
 #: ../authconfig.py:198
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
-"група, яку створені winbind користувачі будуть використовувати у якості "
-"первинної групи"
+msgstr "група, яку створені winbind користувачі будуть використовувати у якості первинної групи"
 
 #: ../authconfig.py:200
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"оболонка, яку створені winbind користувачі будуть використовувати у якості "
-"оболонки входу"
+msgstr "оболонка, яку створені winbind користувачі будуть використовувати у якості оболонки входу"
 
 #: ../authconfig.py:202
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are domain users"
-msgstr ""
-"налаштовує winbind таким чином, що користувачі, які не містять домен у своїй "
-"назві, вважаються членами домену"
+msgid "configures winbind to assume that users with no domain in their user names are domain users"
+msgstr "налаштовує winbind таким чином, що користувачі, які не містять домен у своїй назві, вважаються членами домену"
 
 #: ../authconfig.py:204
-msgid ""
-"configures winbind to assume that users with no domain in their user names "
-"are not domain users"
-msgstr ""
-"налаштовує winbind таким чином, що користувачі, які не містять домен у своїй "
-"назві не вважаються членами домену"
+msgid "configures winbind to assume that users with no domain in their user names are not domain users"
+msgstr "налаштовує winbind таким чином, що користувачі, які не містять домен у своїй назві не вважаються членами домену"
 
 #: ../authconfig.py:206
 msgid "configures winbind to allow offline login"
@@ -341,52 +322,35 @@ msgstr "не використовувати hesiod для інформації �
 
 #: ../authconfig.py:227
 msgid "default hesiod LHS"
-msgstr "hesiod LHS"
+msgstr "типовий hesiod LHS"
 
 #: ../authconfig.py:229
 msgid "default hesiod RHS"
 msgstr "типовий hesiod RHS"
 
 #: ../authconfig.py:232
-msgid ""
-"enable SSSD for user information by default with manually managed "
-"configuration"
-msgstr ""
-"типово увімкнути надання даних користувачів SSSD з конфігурацією, що "
-"керується вручну"
+msgid "enable SSSD for user information by default with manually managed configuration"
+msgstr "типово увімкнути надання даних користувачів SSSD з конфігурацією, що керується вручну"
 
 #: ../authconfig.py:234
-msgid ""
-"disable SSSD for user information by default (still used for supported "
-"configurations)"
-msgstr ""
-"типово вимкнути надання даних користувачів SSSD (SSSD буде використано для "
-"конфігурацій, що підтримують SSSD)"
+msgid "disable SSSD for user information by default (still used for supported configurations)"
+msgstr "типово вимкнути надання даних користувачів SSSD (SSSD буде використано для конфігурацій, що підтримують SSSD)"
 
 #: ../authconfig.py:236
-msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
-msgstr ""
-"типово увімкнути розпізнавання з SSSD з конфігурацією, що керується вручну"
+msgid "enable SSSD for authentication by default with manually managed configuration"
+msgstr "типово увімкнути розпізнавання з SSSD з конфігурацією, що керується вручну"
 
 #: ../authconfig.py:238
-msgid ""
-"disable SSSD for authentication by default (still used for supported "
-"configurations"
-msgstr ""
-"типово вимкнути розпізнавання SSSD (SSSD буде використано для конфігурацій, "
-"що підтримують SSSD)"
+msgid "disable SSSD for authentication by default (still used for supported configurations"
+msgstr "типово вимкнути розпізнавання SSSD (SSSD буде використано для конфігурацій, що підтримують SSSD)"
 
 #: ../authconfig.py:240
 msgid "never use SSSD implicitly even for supported configurations"
-msgstr ""
-"ніколи не використовувати SSSD неявно, навіть для конфігурацій, у яких "
-"передбачено підтримку SSD"
+msgstr "ніколи не використовувати SSSD неявно, навіть для конфігурацій, у яких передбачено підтримку SSD"
 
 #: ../authconfig.py:242
 msgid "use SSSD implicitly if it supports the configuration"
-msgstr ""
-"використовувати SSSD неявно, якщо така можливість підтримується конфігурацією"
+msgstr "використовувати SSSD неявно, якщо така можливість підтримується конфігурацією"
 
 #: ../authconfig.py:245
 msgid "enable caching of user credentials in SSSD by default"
@@ -397,12 +361,8 @@ msgid "disable caching of user credentials in SSSD by default"
 msgstr "не використовувати кешування інформації про користувачів у SSSD"
 
 #: ../authconfig.py:250
-msgid ""
-"enable caching of user information by default (automatically disabled when "
-"SSSD is used)"
-msgstr ""
-"використовувати кешування інформації про користувачів (автоматично вимкнено "
-"при використанні SSSD)"
+msgid "enable caching of user information by default (automatically disabled when SSSD is used)"
+msgstr "використовувати кешування інформації про користувачів (автоматично вимкнено при використанні SSSD)"
 
 #: ../authconfig.py:252
 msgid "disable caching of user information by default"
@@ -422,8 +382,7 @@ msgstr "перевіряти access.conf при перевірці автент�
 
 #: ../authconfig.py:262
 msgid "do not check access.conf during account authorization"
-msgstr ""
-"не перевіряти access.conf при перевірці автентичності облікового запису"
+msgstr "не перевіряти access.conf при перевірці автентичності облікового запису"
 
 #: ../authconfig.py:265
 msgid "authenticate system accounts by network services"
@@ -451,9 +410,7 @@ msgstr "не оновлювати конфігураційні файли, ли�
 
 #: ../authconfig.py:282
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr ""
-"відображати у головному вікні текстового інтерфейсу кнопку Назад замість "
-"кнопки Скасувати"
+msgstr "відображати у головному вікні текстового інтерфейсу кнопку Назад замість кнопки Скасувати"
 
 #: ../authconfig.py:284
 msgid "do not display the deprecated text user interface"
@@ -461,8 +418,7 @@ msgstr "не відображати застарілий текстовий ін
 
 #: ../authconfig.py:287
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr ""
-"протилежність --test, оновлює змінені параметри у конфігураційних файлах"
+msgstr "протилежність --test, оновлює змінені параметри у конфігураційних файлах"
 
 #: ../authconfig.py:290
 msgid "update all configuration files"
@@ -472,9 +428,10 @@ msgstr "оновити всі конфігураційні файли"
 msgid "probe network for defaults and print them"
 msgstr "визначити параметри мережі автоматично"
 
-#: ../authconfig.py:295 ../authconfig.py:298
+#: ../authconfig.py:295
+#: ../authconfig.py:298
 msgid "<name>"
-msgstr "<name>"
+msgstr "<назва>"
 
 #: ../authconfig.py:296
 msgid "save a backup of all configuration files"
@@ -485,12 +442,8 @@ msgid "restore the backup of configuration files"
 msgstr "відновити резервні копії всіх файлів параметрів"
 
 #: ../authconfig.py:302
-msgid ""
-"restore the backup of configuration files saved before the previous "
-"configuration change"
-msgstr ""
-"відновлювати резервні копії файлів конфігурації, які були збережені перед "
-"останньою зміною параметрів"
+msgid "restore the backup of configuration files saved before the previous configuration change"
+msgstr "відновлювати резервні копії файлів конфігурації, які були збережені перед останньою зміною параметрів"
 
 #: ../authconfig.py:307
 msgid "unexpected argument"
@@ -512,24 +465,29 @@ msgstr "може виконуватись лише користувачем root
 msgid "dialog was cancelled"
 msgstr "діалог було перервано"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:461
+#: ../authconfig.py:527
+#: ../authconfig-gtk.py:461
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"Не знайдено файл %s, але він потрібен для забезпечення правильної роботи "
-"%s.\n"
+"Не знайдено файл %s, але він потрібен для забезпечення правильної роботи %s.\n"
 "Встановіть пакет %s, який містить цей файл."
 
-#: ../authconfig.py:529 ../authconfig.py:870
+#: ../authconfig.py:529
+#: ../authconfig.py:870
 msgid "Warning"
 msgstr "Попередження"
 
-#: ../authconfig.py:529 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:775
-#: ../authconfig.py:816 ../authconfig.py:870
+#: ../authconfig.py:529
+#: ../authconfig.py:745
+#: ../authconfig.py:752
+#: ../authconfig.py:758
+#: ../authconfig.py:767
+#: ../authconfig.py:775
+#: ../authconfig.py:816
+#: ../authconfig.py:870
 msgid "Ok"
 msgstr "Гаразд"
 
@@ -549,11 +507,13 @@ msgstr "Kerberos"
 msgid "LDAP authentication"
 msgstr "LDAP автентифікація"
 
-#: ../authconfig.py:537 ../authconfig-gtk.py:100
+#: ../authconfig.py:537
+#: ../authconfig-gtk.py:100
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:538 ../authconfig-gtk.py:106
+#: ../authconfig.py:538
+#: ../authconfig-gtk.py:106
 msgid "NIS"
 msgstr "NIS"
 
@@ -561,7 +521,9 @@ msgstr "NIS"
 msgid "shadow password"
 msgstr "приховані паролі"
 
-#: ../authconfig.py:540 ../authconfig.py:542 ../authconfig-gtk.py:109
+#: ../authconfig.py:540
+#: ../authconfig.py:542
+#: ../authconfig-gtk.py:109
 msgid "Winbind"
 msgstr "Winbind"
 
@@ -593,7 +555,8 @@ msgstr "Використовувати NIS"
 msgid "Use Winbind"
 msgstr "Використовувати Winbind"
 
-#: ../authconfig.py:568 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:568
+#: ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Аутентифікація"
 
@@ -625,21 +588,32 @@ msgstr "Викор. автентифікацію Winbind"
 msgid "Local authorization is sufficient"
 msgstr "Достатньо локальної авторизації"
 
-#: ../authconfig.py:600 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:816
+#: ../authconfig.py:600
+#: ../authconfig.py:745
+#: ../authconfig.py:752
+#: ../authconfig.py:758
+#: ../authconfig.py:767
+#: ../authconfig.py:816
 msgid "Back"
 msgstr "Назад"
 
-#: ../authconfig.py:600 ../authconfig.py:775
+#: ../authconfig.py:600
+#: ../authconfig.py:775
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: ../authconfig.py:601 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:816
+#: ../authconfig.py:601
+#: ../authconfig.py:745
+#: ../authconfig.py:752
+#: ../authconfig.py:758
+#: ../authconfig.py:767
+#: ../authconfig.py:816
 msgid "Next"
 msgstr "Далі"
 
-#: ../authconfig.py:612 ../authconfig-gtk.py:677 ../authconfig.glade.h:15
+#: ../authconfig.py:612
+#: ../authconfig-gtk.py:677
+#: ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "Налаштовування автентифікації"
 
@@ -659,7 +633,8 @@ msgstr "Параметри Hesiod"
 msgid "Use TLS"
 msgstr "Використовувати TLS"
 
-#: ../authconfig.py:749 ../authconfig.py:756
+#: ../authconfig.py:749
+#: ../authconfig.py:756
 msgid "Server:"
 msgstr "Сервер:"
 
@@ -671,7 +646,9 @@ msgstr "Базовий DN:"
 msgid "LDAP Settings"
 msgstr "Параметри LDAP"
 
-#: ../authconfig.py:755 ../authconfig.py:810 ../authconfig.glade.h:22
+#: ../authconfig.py:755
+#: ../authconfig.py:810
+#: ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "Домен:"
 
@@ -715,15 +692,10 @@ msgstr "Пароль:"
 msgid "Join Settings"
 msgstr "Параметри входу"
 
-#: ../authconfig.py:784 ../authconfig.glade.h:41
-msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
-"may fail.  Save changes?"
-msgstr ""
-"Перш ніж продовжити необхідно записати на диск деякі зроблені вами зміни у "
-"параметрах. Якщо ви їх не збережете, ваша спроба приєднатись до домену не "
-"вдасться. Зберегти зміни?"
+#: ../authconfig.py:784
+#: ../authconfig.glade.h:41
+msgid "Some of the configuration changes you've made should be saved to disk before continuing.  If you do not save them, then your attempt to join the domain may fail.  Save changes?"
+msgstr "Перш ніж продовжити необхідно записати на диск деякі зроблені вами зміни у параметрах. Якщо ви їх не збережете, ваша спроба приєднатись до домену не вдасться. Зберегти зміни?"
 
 #: ../authconfig.py:791
 msgid "Save Settings"
@@ -766,24 +738,16 @@ msgstr "Вхід у домен"
 #: ../authconfig.py:865
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"Щоб з'єднатись з сервером LDAP використовуючи TLS, треба мати сертифікат CA, "
-"яким підписаний сертифікат вашого сервера. Скопіюйте сертифікат у форматі "
-"PEM у каталог '%s'.\n"
+"Щоб з'єднатись з сервером LDAP використовуючи TLS, треба мати сертифікат CA, яким підписаний сертифікат вашого сервера. Скопіюйте сертифікат у форматі PEM у каталог '%s'.\n"
 "Потім натисніть Гаразд."
 
 #. FIXME - version
 #: ../authconfig.py:879
-msgid ""
-" <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-"screen"
-msgstr ""
-" <Tab>/<Alt-Tab> між елементами   |   <Space> вибір   |  <F12> наступний "
-"екран"
+msgid " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next screen"
+msgstr " <Tab>/<Alt-Tab> між елементами   |   <Space> вибір   |  <F12> наступний екран"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
@@ -818,11 +782,8 @@ msgid "Winbind password"
 msgstr "Пароль Winbind"
 
 #: ../authconfig-gtk.py:445
-msgid ""
-"You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
-"Треба вказати адресу ldaps:// або використовувати автентифікацію TLS для "
-"LDAP."
+msgid "You must provide ldaps:// server address or use TLS for LDAP authentication."
+msgstr "Треба вказати адресу ldaps:// або використовувати автентифікацію TLS для LDAP."
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -849,19 +810,12 @@ msgid "<b>User Account Configuration</b>"
 msgstr "<b>Налаштовування облікового запису користувача</b>"
 
 #: ../authconfig.glade.h:7
-msgid ""
-"<small><b>Tip:</b> Smart cards support logging into both local and centrally "
-"managed accounts.</small>"
-msgstr ""
-"<small><b>Підказка:</b> Смарт-карти підтримують можливості журналювання у "
-"локальних та централізовано керованих облікових записах.</small>"
+msgid "<small><b>Tip:</b> Smart cards support logging into both local and centrally managed accounts.</small>"
+msgstr "<small><b>Підказка:</b> Смарт-карти підтримують можливості журналювання у локальних та централізовано керованих облікових записах.</small>"
 
 #: ../authconfig.glade.h:8
-msgid ""
-"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
-"<small><b>Підказка:</b> Керування здійснюється у /etc/security/access.conf.</"
-"small>"
+msgid "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgstr "<small><b>Підказка:</b> Керування здійснюється у /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:9
 msgid "Ad_min Servers:"
@@ -876,12 +830,8 @@ msgid "Alert"
 msgstr "Увага"
 
 #: ../authconfig.glade.h:12
-msgid ""
-"All configuration files which were modified by the previous authentication "
-"configuration change will be restored from backup. Revert the changes?"
-msgstr ""
-"Будуть відновлені всі файли конфігурації, які було змінено попередньою "
-"зміною параметрів. Відновити файли?"
+msgid "All configuration files which were modified by the previous authentication configuration change will be restored from backup. Revert the changes?"
+msgstr "Будуть відновлені всі файли конфігурації, які було змінено попередньою зміною параметрів. Відновити файли?"
 
 #: ../authconfig.glade.h:13
 msgid "Allow offline _login"
@@ -900,12 +850,8 @@ msgid "Certificate _URL:"
 msgstr "_URL сертифікату:"
 
 #: ../authconfig.glade.h:18
-msgid ""
-"Click this button if you did not download a CA certificate yet or you have "
-"not set the CA certificate up by other means."
-msgstr ""
-"Натисніть цю кнопку, якщо ви досі не завантажили сертифікат CA або "
-"сертифікат ще не визначений."
+msgid "Click this button if you did not download a CA certificate yet or you have not set the CA certificate up by other means."
+msgstr "Натисніть цю кнопку, якщо ви досі не завантажили сертифікат CA або сертифікат ще не визначений."
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
@@ -936,31 +882,20 @@ msgid "Enable _smart card support"
 msgstr "Увімкнути підтримку с_март-карток"
 
 #: ../authconfig.glade.h:27
-msgid ""
-"Fingerprint authentication allows you to log in by scanning your finger with "
-"the fingerprint reader."
-msgstr ""
-"Автентифікація за відбитками пальців дозволяє входити у систему при "
-"успішному скануванні відбитку пальця."
+msgid "Fingerprint authentication allows you to log in by scanning your finger with the fingerprint reader."
+msgstr "Автентифікація за відбитками пальців дозволяє входити у систему при успішному скануванні відбитку пальця."
 
 #: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr ""
-"Алгоритм хешування/шифрування використовується при збереженні паролів "
-"локальних користувачів"
+msgstr "Алгоритм хешування/шифрування використовується при збереженні паролів локальних користувачів"
 
 #: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"Назва вузла чи URI у форматі ldap:// чи ldaps:// для вказування LDAP-сервера."
+msgstr "Назва вузла чи URI у форматі ldap:// чи ldaps:// для вказування LDAP-сервера."
 
 #: ../authconfig.glade.h:30
-msgid ""
-"If the home directory of an user doesn't exist yet it will be created "
-"automatically on his first login."
-msgstr ""
-"Якщо домашній каталог користувача ще не існує, він буде автоматично "
-"створений при першому вході."
+msgid "If the home directory of an user doesn't exist yet it will be created automatically on his first login."
+msgstr "Якщо домашній каталог користувача ще не існує, він буде автоматично створений при першому вході."
 
 #: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
@@ -991,38 +926,24 @@ msgid "Require smart car_d for login"
 msgstr "Вимагати с_март-картку для входу у систему"
 
 #: ../authconfig.glade.h:38
-msgid ""
-"Restore the configuration files backed up before the previous configuration "
-"change"
-msgstr ""
-"Відновлювати файли конфігурації, копії яких були збережені до набрання "
-"змінами сили"
+msgid "Restore the configuration files backed up before the previous configuration change"
+msgstr "Відновлювати файли конфігурації, копії яких були збережені до набуття змінами чинності"
 
 #: ../authconfig.glade.h:39
 msgid "Revert"
 msgstr "Відновити:"
 
 #: ../authconfig.glade.h:40
-msgid ""
-"Smart card authentication allows you to log in using a certificate and key "
-"associated with a smart card."
-msgstr ""
-"Автентифікація смарт-картками дозволяє входити у систему з використанням "
-"сертифікату та ключа, що пов'язаний зі смарт-карткою."
+msgid "Smart card authentication allows you to log in using a certificate and key associated with a smart card."
+msgstr "Автентифікація смарт-картками дозволяє входити у систему з використанням сертифікату та ключа, що пов'язаний зі смарт-карткою."
 
 #: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
 msgstr "_Оболонка шаблону:"
 
 #: ../authconfig.glade.h:43
-msgid ""
-"To verify the LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed the server's certificate. Please fill in the URL "
-"where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Для підключення до сервера LDAP з використанням TLS треба наявність "
-"сертифікату CA, яким підписаний сертифікат вашого сервера. Вкажіть адресу "
-"(URL), за якою можна звантажити сертифікат CA у форматі PEM."
+msgid "To verify the LDAP server with TLS protocol enabled you need a CA certificate which signed the server's certificate. Please fill in the URL where the CA certificate in the PEM format can be downloaded from."
+msgstr "Для підключення до сервера LDAP з використанням TLS треба наявність сертифікату CA, яким підписаний сертифікат вашого сервера. Вкажіть адресу (URL), за якою можна звантажити сертифікат CA у форматі PEM."
 
 #: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
@@ -1033,25 +954,16 @@ msgid "Use D_NS to resolve hosts to realms"
 msgstr "_Використовувати DNS для пошуку вузлів та областей"
 
 #: ../authconfig.glade.h:46
-msgid ""
-"Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
-"must not be ticked with ldaps server URI."
-msgstr ""
-"Використовувати розширені можливості TLS (Transport Layer Security) для LDAP "
-"(згідно RFC-2830). Не видирайте цей параметр, якщо використовується URI LDAP-"
-"сервера."
+msgid "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It must not be ticked with ldaps server URI."
+msgstr "Використовувати розширені можливості TLS (Transport Layer Security) для LDAP (згідно RFC-2830). Не видирайте цей параметр, якщо використовується URI LDAP-сервера."
 
 #: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
 msgstr "Використовувати _TLS для шифрування з'єднань"
 
 #: ../authconfig.glade.h:48
-msgid ""
-"When enabled /etc/security/access.conf will be consulted for authorization "
-"of users access."
-msgstr ""
-"Якщо параметр увімкнено, то файл /etc/security/access.conf буде "
-"використовуватись для перевірки автентичності при доступі користувачів."
+msgid "When enabled /etc/security/access.conf will be consulted for authorization of users access."
+msgstr "Якщо пункт позначено, файл /etc/security/access.conf буде використовуватись для перевірки автентичності при доступі користувачів."
 
 #: ../authconfig.glade.h:49
 msgid "Winbind ADS R_ealm:"
@@ -1097,22 +1009,21 @@ msgstr "_Модель безпеки:"
 msgid "_User Account Database:"
 msgstr "_База даних облікових записів користувачів:"
 
-#: ../authinfo.py:944 ../authinfo.py:1694 ../authinfo.py:2924
+#: ../authinfo.py:944
+#: ../authinfo.py:1694
+#: ../authinfo.py:2924
 msgid "Lock"
 msgstr "Блокувати"
 
-#: ../authinfo.py:944 ../authinfo.py:1696
+#: ../authinfo.py:944
+#: ../authinfo.py:1696
 msgid "Ignore"
 msgstr "Ігнорувати"
 
 #: ../authinfo.py:3300
 #, python-format
-msgid ""
-"Authentication module %s/pam_%s.so is missing. Authentication process might "
-"not work correctly."
-msgstr ""
-"Відсутній модуль аутентифікації %s/pam_%s.so. процес аутентифікації не буде "
-"коректним."
+msgid "Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly."
+msgstr "Не знайдено модуля аутентифікації %s/pam_%s.so. Процес аутентифікації не буде коректним."
 
 #: ../authinfo.py:3809
 msgid "Error downloading CA certificate"
@@ -1120,13 +1031,11 @@ msgstr "Помилка завантаження сертифікату CA"
 
 #~ msgid "enable SMB authentication by default"
 #~ msgstr "використовувати автентифікацію SMB"
-
 #~ msgid "disable SMB authentication by default"
 #~ msgstr "не використовувати автентифікацію SMB"
-
 #~ msgid "Additional options for user information and authentication"
 #~ msgstr ""
 #~ "Додаткові параметри для обробки інформації користувача та автентифікації"
-
 #~ msgid "Set up services used for authenticating users to the system"
 #~ msgstr "Налаштовування службу аутентифікації користувачів у системі"
+
