@@ -24,7 +24,6 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 import authinfo, acutil
-import msgarea
 import gettext, os, signal, sys
 _ = gettext.lgettext
 import locale
@@ -67,6 +66,8 @@ except RuntimeError, e:
 		sys.exit(1)
 	else:
 		raise e
+
+import msgarea
 
 class Authconfig:
 	def __init__(self):
