@@ -1167,7 +1167,7 @@ sssdopt_map = {
 	'enableLDAPS': 'ldap_id_use_start_tls',
 	'ldapSchema': 'ldap_schema',
 	'ldapCacertDir': 'ldap_tls_cacertdir',
-	'kerberosKDC': 'krb5_kdcip',
+	'kerberosKDC': 'krb5_server',
 	'kerberosAdminServer': 'krb5_kpasswd',
 	'kerberosRealm': 'krb5_realm',
 	'enableCacheCreds': 'cache_credentials'}
