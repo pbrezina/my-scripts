@@ -235,7 +235,7 @@ class Authconfig:
 		parser.add_option("--enablesssdauth", action="store_true",
 			help=_("enable SSSD for authentication by default with manually managed configuration"))
 		parser.add_option("--disablesssdauth", action="store_true",
-			help=_("disable SSSD for authentication by default (still used for supported configurations"))
+			help=_("disable SSSD for authentication by default (still used for supported configurations)"))
 		parser.add_option("--enableforcelegacy", action="store_true",
 			help=_("never use SSSD implicitly even for supported configurations"))
 		parser.add_option("--disableforcelegacy", action="store_true",
