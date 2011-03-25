@@ -53,19 +53,16 @@ firstbootservices = [
 
 if "--nox" in sys.argv:
 	sys.argv.remove('--nox')
-	os.execv('/usr/bin/authconfig', ['authconfig']+sys.argv[1:])
+	os.execv('/usr/sbin/authconfig', ['authconfig']+sys.argv[1:])
 	sys.exit(1)
 
 try:
 	import gtk, gtk.glade
 except RuntimeError, e:
-	if (os.isatty(sys.stdin.fileno()) and
-	    os.isatty(sys.stdout.fileno()) and
-	    os.isatty(sys.stderr.fileno())):
-		os.execv('/usr/bin/authconfig', ['authconfig']+sys.argv[1:])
-		sys.exit(1)
-	else:
-		raise e
+	sys.stderr.write("%s: %s\n" % (self.module(), _("Unable to initialize graphical environment. Most likely cause of failure\n"
+		"is that the tool was not run using a graphical environment. Please either\n"
+		"start your graphical user interface or set your DISPLAY variable.")))
+	sys.exit(2)
 
 import msgarea
 
