@@ -15,9 +15,9 @@ authconfig, authconfig-tui \- an interface for configuring system authentication
 /etc/shadow, the files used for shadow password support.  Basic LDAP,
 Kerberos 5, and Winbind client configuration is also provided.
 
-If \fB--test\fR action is specified, \fBauthconfig\fR can be run by
-users other then root, and any configuration changes are not saved but printed
-instead.
+If \fB--test\fR action is specified, the \fBauthconfig\fR just reads the
+current settings from the various configuration files and prints
+their values.
 If \fB--update\fR action is specified, \fBauthconfig\fR must be run by
 root (or through console helper), and configuration changes are saved. Only
 the files affected by the configuration changes are overwritten.
@@ -25,7 +25,7 @@ If \fB--updateall\fR action is specified, \fBauthconfig\fR must be run by
 root (or through console helper), and all configuration files are written.
 The \fB--probe\fP action instructs \fBauthconfig\fP to use DNS and other means
 to guess at configuration information for the current host, print its guesses
-if it finds them to standard output, and exit.
+if it finds them, to standard output, and exit.
 
 The \fB--restorebackup\fR, \fB--savebackup\fR, and \fB--restorelastbackup\fR
 actions provide a possibility to save and later restore a backup of configuration
@@ -89,6 +89,10 @@ comma-separated list of names.
 The \fBauthconfig-tui\fR is deprecated. No new configuration settings will be
 supported by its text user interface. Use \fBsystem-config-authentication\fR GUI
 application or the command line options instead.
+
+The \fB/usr/bin/authconfig\fR uses the \fBconsolehelper\fR to authenticate as the
+system user before it starts up. If you want to run it directly without the 
+authentication as the system user, run the \fB/usr/sbin/authconfig\fR command.
 
 .PD
 .SH "RETURN CODES"
