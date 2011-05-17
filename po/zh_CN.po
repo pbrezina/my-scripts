@@ -1,41 +1,34 @@
-# translation of authconfig.default.po to Wei Liu
-# Sarah Wang <sarahs@redhat.com>, 2003,2004, 2005.
-# Leah Liu <weliu@redhat.com>, 2005, 2006.
-# Xi Huang <xhuang@redhat.com>, 2006.
-# Leah Liu <lliu@redhat.com>, 2007, 2008, 2009, 2010.
-# CyrusHMH <cyrushmh@vip.qq.com>, 2009.
-# translation of zh_CN.po to
-# translation of zh_CN.po to
-# translation of zh_CN.po to
-# translation of zh_CN.po to
-# Copyright (C) 2003,2004, 2005, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.default\n"
+"Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-08 21:38+0100\n"
-"PO-Revision-Date: 2010-12-08 00:39+0800\n"
-"Last-Translator: chiachen <luojiazhen@gmail.com>\n"
-"Language-Team: Wei Liu\n"
-"Language: zh_CN\n"
+"POT-Creation-Date: 2011-02-15 16:27+0200\n"
+"PO-Revision-Date: 2011-04-11 12:58+0000\n"
+"Last-Translator: chen_tx <chenhuan126@126.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.net/projects/p/fedora/team/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #: ../authconfig.py:80
 #, python-format
 msgid "usage: %s [options]"
-msgstr "用法: %s [选项]"
+msgstr "用法：%s [选项]"
 
 #: ../authconfig.py:87
 msgid "enable shadowed passwords by default"
-msgstr "默认启用影子密码"
+msgstr "默认启用 shadow 密码"
 
 #: ../authconfig.py:89
 msgid "disable shadowed passwords by default"
-msgstr "默认禁用影子密码"
+msgstr "恢复在上一次配置更改前备份的配置文件"
 
 #: ../authconfig.py:91
 msgid "enable MD5 passwords by default"
@@ -47,19 +40,19 @@ msgstr "默认禁用 MD5 密码"
 
 #: ../authconfig.py:96
 msgid "hash/crypt algorithm for new passwords"
-msgstr "新密码的散列/加密算法"
+msgstr "用于新密码的散列/加密算法"
 
 #: ../authconfig.py:99
 msgid "enable NIS for user information by default"
-msgstr "默认在用户信息中启用 NIS"
+msgstr "默认启用 NIS 用于用户信息"
 
 #: ../authconfig.py:101
 msgid "disable NIS for user information by default"
-msgstr "默认在用户信息中禁用 NIS"
+msgstr "默认禁用 NIS 用于用户信息"
 
 #: ../authconfig.py:102
 msgid "<domain>"
-msgstr "<domain>"
+msgstr "<域>"
 
 #: ../authconfig.py:103
 msgid "default NIS domain"
@@ -68,7 +61,7 @@ msgstr "默认 NIS 域"
 #: ../authconfig.py:104 ../authconfig.py:115 ../authconfig.py:158
 #: ../authconfig.py:160
 msgid "<server>"
-msgstr "<server>"
+msgstr "<服务器>"
 
 #: ../authconfig.py:105
 msgid "default NIS server"
@@ -76,23 +69,23 @@ msgstr "默认 NIS 服务器"
 
 #: ../authconfig.py:108
 msgid "enable LDAP for user information by default"
-msgstr "默认在用户信息中启用 LDAP"
+msgstr "默认启用 LDAP 用于用户信息"
 
 #: ../authconfig.py:110
 msgid "disable LDAP for user information by default"
-msgstr "默认在用户信息中禁用 LDAP"
+msgstr "默认禁用 LDAP 用于用户信息"
 
 #: ../authconfig.py:112
 msgid "enable LDAP for authentication by default"
-msgstr "默认启用 LDAP 验证"
+msgstr "默认启用 LDAP 用于认证"
 
 #: ../authconfig.py:114
 msgid "disable LDAP for authentication by default"
-msgstr "默认禁用 LDAP 验证"
+msgstr "默认禁用 LDAP 用于认证"
 
 #: ../authconfig.py:116
 msgid "default LDAP server hostname or URI"
-msgstr "默认 LDAP 服务器主机名或者 URI"
+msgstr "默认 LDAP 服务器的主机名或 URI"
 
 #: ../authconfig.py:117
 msgid "<dn>"
@@ -100,23 +93,23 @@ msgstr "<dn>"
 
 #: ../authconfig.py:118
 msgid "default LDAP base DN"
-msgstr "默认 LDAP 基点 DN"
+msgstr "默认 LDAP 基础 DN"
 
 #: ../authconfig.py:120
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "启用使用 LDAP 的 TLS（RFC-2830）"
+msgstr "启用带 TLS 的 LDAP（RFC-2830）"
 
 #: ../authconfig.py:122
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "禁用使用 LDAP 的 TLS（RFC-2830）"
+msgstr "禁用带 TLS 的 LDAP (RFC-2830)"
 
 #: ../authconfig.py:124
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr "在 LDAP 用户信息查询中启用 RFC-2307bis 方案"
+msgstr "启用 RFC-2307bis 架构用于 LDAP 用户信息查询"
 
 #: ../authconfig.py:126
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr "在 LDAP 用户信息查询中禁用 RFC-2307bis 方案"
+msgstr "禁用 RFC-2307bis 架构用于 LDAP 用户信息查询"
 
 #: ../authconfig.py:127
 msgid "<URL>"
@@ -124,27 +117,27 @@ msgstr "<URL>"
 
 #: ../authconfig.py:128
 msgid "load CA certificate from the URL"
-msgstr "从这个 URL 载入 CA 证书"
+msgstr "从该 URL 加载 CA 证书"
 
 #: ../authconfig.py:131
 msgid "enable authentication with smart card by default"
-msgstr "默认启用智能卡验证"
+msgstr "默认启用通过智能卡认证"
 
 #: ../authconfig.py:133
 msgid "disable authentication with smart card by default"
-msgstr "默认禁用智能卡验证"
+msgstr "默认禁用通过智能卡认证"
 
 #: ../authconfig.py:135
 msgid "require smart card for authentication by default"
-msgstr "默认需要使用验证智能卡验证"
+msgstr "默认要求用智能卡认证"
 
 #: ../authconfig.py:137
 msgid "do not require smart card for authentication by default"
-msgstr "默认不需要使用智能卡验证"
+msgstr "默认不要求用智能卡认证"
 
 #: ../authconfig.py:138
 msgid "<module>"
-msgstr "<module>"
+msgstr "<模块>"
 
 #: ../authconfig.py:139
 msgid "default smart card module to use"
@@ -152,83 +145,83 @@ msgstr "默认使用的智能卡模块"
 
 #: ../authconfig.py:142
 msgid "action to be taken on smart card removal"
-msgstr "删除智能卡时进行的操作"
+msgstr "移除智能卡时采取的动作"
 
 #: ../authconfig.py:145
 msgid "enable authentication with fingerprint readers by default"
-msgstr "默认启用指纹读取器验证"
+msgstr "默认启用通过指纹读取器认证"
 
 #: ../authconfig.py:147
 msgid "disable authentication with fingerprint readers by default"
-msgstr "默认禁用指纹读取器验证"
+msgstr "默认禁用通过指纹读取器认证"
 
 #: ../authconfig.py:150
 msgid "enable automatic per-user ecryptfs"
-msgstr ""
+msgstr "启用自动基于用户的 ecryptfs"
 
 #: ../authconfig.py:152
 msgid "disable automatic per-user ecryptfs"
-msgstr ""
+msgstr "禁用自动基于用户的 ecryptfs"
 
 #: ../authconfig.py:155
 msgid "enable kerberos authentication by default"
-msgstr "默认启用 kerberos 验证"
+msgstr "默认启用 kerberos 认证"
 
 #: ../authconfig.py:157
 msgid "disable kerberos authentication by default"
-msgstr "默认禁用 kerberos 验证"
+msgstr "默认禁用 kerberos 认证"
 
 #: ../authconfig.py:159
 msgid "default kerberos KDC"
-msgstr "默认的 kerberos KDC"
+msgstr "默认 kerberos KDC"
 
 #: ../authconfig.py:161
 msgid "default kerberos admin server"
-msgstr "默认的 kerberos 管理服务器"
+msgstr "默认 kerberos 管理服务器"
 
 #: ../authconfig.py:162 ../authconfig.py:183
 msgid "<realm>"
-msgstr "<realm>"
+msgstr "<域>"
 
 #: ../authconfig.py:163
 msgid "default kerberos realm"
-msgstr "默认的 kerberos 域"
+msgstr "默认 kerberos 域"
 
 #: ../authconfig.py:165
 msgid "enable use of DNS to find kerberos KDCs"
-msgstr "启用 DNS 来查找 kerberos KDC"
+msgstr "启用通过 DNS 查找 kerberos KDC"
 
 #: ../authconfig.py:167
 msgid "disable use of DNS to find kerberos KDCs"
-msgstr "禁用 DNS 来查找 kerberos KDC"
+msgstr "禁用通过 DNS 查找 kerberos KDC"
 
 #: ../authconfig.py:169
 msgid "enable use of DNS to find kerberos realms"
-msgstr "启用 DNS 来查找 kerberos 域"
+msgstr "启用通过 DNS 查找 kerberos 域"
 
 #: ../authconfig.py:171
 msgid "disable use of DNS to find kerberos realms"
-msgstr "禁用 DNS 来查找 kerberos 域"
+msgstr "禁用通过 DNS 查找 kerberos 域"
 
 #: ../authconfig.py:174
 msgid "enable winbind for user information by default"
-msgstr "默认启用 winbind 来获取用户信息"
+msgstr "默认启用 winbind 用于用户信息"
 
 #: ../authconfig.py:176
 msgid "disable winbind for user information by default"
-msgstr "默认禁用 winbind 来获取用户信息"
+msgstr "默认禁用 winbind 用于用户信息"
 
 #: ../authconfig.py:178
 msgid "enable winbind for authentication by default"
-msgstr "默认启用 winbind 进行验证"
+msgstr "默认启用 winbind 用于认证"
 
 #: ../authconfig.py:180
 msgid "disable winbind for authentication by default"
-msgstr "默认禁用 winbind 进行验证"
+msgstr "默认禁用 winbind 用于认证"
 
 #: ../authconfig.py:182
 msgid "security mode to use for samba and winbind"
-msgstr "samba 和 winbind 使用的安全模式"
+msgstr "用于 samba 和 winbind 的安全模式"
 
 #: ../authconfig.py:184
 msgid "default realm for samba and winbind when security=ads"
@@ -236,146 +229,146 @@ msgstr "当 security=ads 时 samba 和 winbind 的默认域"
 
 #: ../authconfig.py:185
 msgid "<servers>"
-msgstr "<server>"
+msgstr "<服务器>"
 
 #: ../authconfig.py:186
 msgid "names of servers to authenticate against"
-msgstr "用来验证的服务器名称"
+msgstr "提供认证的服务器名"
 
 #: ../authconfig.py:187
 msgid "<workgroup>"
-msgstr "<workgroup>"
+msgstr "<工作组>"
 
 #: ../authconfig.py:188
 msgid "workgroup authentication servers are in"
-msgstr "验证服务器所在的工作组"
+msgstr "认证服务器所在工作组"
 
 #: ../authconfig.py:189 ../authconfig.py:191
 msgid "<lowest-highest>"
-msgstr "<lowest-highest>"
+msgstr "<最低值-最高值>"
 
 #: ../authconfig.py:190
 msgid "uid range winbind will assign to domain or ads users"
-msgstr "winbind 分配域或 ads 用户的 uid 范围"
+msgstr "winbind 将分配给域用户或 ads 用户的 uid 范围"
 
 #: ../authconfig.py:192
 msgid "gid range winbind will assign to domain or ads users"
-msgstr "winbind 分配域或 ads 用户的 gid 范围"
+msgstr "winbind 将分配给域用户或 ads 用户的 gid 范围"
 
 #: ../authconfig.py:194
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"如果没有启用 winbindusedefaultdomain，用来分隔 winbind 创建的用户名中域和用户"
-"部分的字符"
+msgstr "如果 winbindusedefaultdomain 未启用，此字符将用于分隔 winbind 所建用户名的域和用户部分"
 
 #: ../authconfig.py:196
-msgid "the directory which winbind-created users will have as home directories"
-msgstr "winbind 创建的用户的目录将会作为主目录"
+msgid ""
+"the directory which winbind-created users will have as home directories"
+msgstr "此目录将成为 winbind 所建用户的家目录"
 
 #: ../authconfig.py:198
 msgid "the group which winbind-created users will have as their primary group"
-msgstr "winbind 创建的用户组群将会作为主要组群"
+msgstr "此组将成为 winbind 所建用户的主要组"
 
 #: ../authconfig.py:200
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr "winbind 创建的用户 shell 将会作为登录 shell"
+msgstr "此 shell 将成为 winbind 所建用户的登录 shell"
 
 #: ../authconfig.py:202
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr "将 winbind 配置为假设那些用户名中没有域的用户为域用户"
+msgstr "配置 winbind 为假定用户名中没有域的用户是域用户"
 
 #: ../authconfig.py:204
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr "将 winbind 配置为假设那些用户名中没有域的用户不是域用户"
+msgstr "配置 winbind 为假定用户名中没有域的用户不是域用户"
 
 #: ../authconfig.py:206
 msgid "configures winbind to allow offline login"
-msgstr "将 winbind 配置为允许离线登录"
+msgstr "配置 winbind 为允许离线登录"
 
 #: ../authconfig.py:208
 msgid "configures winbind to prevent offline login"
-msgstr "将 winbind 配置为阻止离线登录"
+msgstr "配置 winbind 为阻止离线登录"
 
 #: ../authconfig.py:210
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr "立即作为系统管理员加入 winbind 域或 ads 域"
+msgstr "现在用管理员帐号加入 winbind 域或 ads 域"
 
 #: ../authconfig.py:213
 msgid "enable wins for hostname resolution"
-msgstr "启用 wins 进行主机名解析"
+msgstr "启用 wins  用于主机名解析"
 
 #: ../authconfig.py:215
 msgid "disable wins for hostname resolution"
-msgstr "禁用 wins 进行主机名解析"
+msgstr "禁用 wins 用于主机名解析"
 
 #: ../authconfig.py:218
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "首选使用 dns 而不是 wins 或者 nis 进行主机名解析"
+msgstr "首选 dns 而非 wins 或 nis 用于主机名解析"
 
 #: ../authconfig.py:220
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "在 dns、wins 或者 nis 中不首选使用 dns 进行主机名解析"
+msgstr "不首选 dns 而是 wins 或 nis 用于主机名解析"
 
 #: ../authconfig.py:223
 msgid "enable hesiod for user information by default"
-msgstr "默认启用 hesiod 来获取用户信息"
+msgstr "默认启用 hesiod 用于用户信息"
 
 #: ../authconfig.py:225
 msgid "disable hesiod for user information by default"
-msgstr "默认禁用 hesiod 来获取用户信息"
+msgstr "默认禁用 hesiod 用于用户信息"
 
 #: ../authconfig.py:227
 msgid "default hesiod LHS"
-msgstr "默认的 hesiod LHS"
+msgstr "默认 hesiod LHS"
 
 #: ../authconfig.py:229
 msgid "default hesiod RHS"
-msgstr "默认的 hesiod RHS "
+msgstr "默认 hesiod RHS"
 
 #: ../authconfig.py:232
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
-msgstr "手动管理配置时在用户信息中默认启用 SSSD"
+msgstr "使用手动管理的配置时默认启用 SSSD 用于用户信息"
 
 #: ../authconfig.py:234
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
-msgstr "在用户信息中默认禁用SSSD（仍然用于支持配置）"
+msgstr "默认禁用 SSSD 用于用户信息（仍用于支持的配置）"
 
 #: ../authconfig.py:236
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
-msgstr "手动管理配置时在验证中默认启用 SSSD"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
+msgstr "使用手动管理的配置时默认启用 SSSD 用于认证"
 
 #: ../authconfig.py:238
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations"
-msgstr "在验证中默认禁用SSSD（仍然用于支持配置）"
+msgstr "默认禁用 SSSD 用于认证（仍用于支持的配置）"
 
 #: ../authconfig.py:240
 msgid "never use SSSD implicitly even for supported configurations"
-msgstr "即使配置支持也不要使用SSSD"
+msgstr "绝不隐含使用 SSSD，甚至不用于支持的配置"
 
 #: ../authconfig.py:242
 msgid "use SSSD implicitly if it supports the configuration"
-msgstr "如果配置支持就是用SSSD"
+msgstr "隐含使用 SSSD，如果它支持此配置"
 
 #: ../authconfig.py:245
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "在 SSSD 中默认启用用户信用缓存"
+msgstr "默认启用 SSSD 中的用户凭证缓存"
 
 #: ../authconfig.py:247
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "在 SSSD 中默认禁用用户信用缓存"
+msgstr "默认禁用 SSSD 中的用户凭证缓存"
 
 #: ../authconfig.py:250
 msgid ""
@@ -389,7 +382,7 @@ msgstr "默认禁用用户信息缓存"
 
 #: ../authconfig.py:255
 msgid "local authorization is sufficient for local users"
-msgstr "本地用户使用本地授权即可"
+msgstr "本地授权对本地用户而言已足够"
 
 #: ../authconfig.py:257
 msgid "authorize local users also through remote service"
@@ -397,11 +390,11 @@ msgstr "也可通过远程服务授权本地用户"
 
 #: ../authconfig.py:260
 msgid "check access.conf during account authorization"
-msgstr "在帐户验证过程中检查 access.conf"
+msgstr "在帐户授权期间检查 access.conf"
 
 #: ../authconfig.py:262
 msgid "do not check access.conf during account authorization"
-msgstr "在帐户验证过程中不检查 access.conf"
+msgstr "在帐户授权期间不检查 access.conf"
 
 #: ../authconfig.py:265
 msgid "authenticate system accounts by network services"
@@ -409,35 +402,35 @@ msgstr "通过网络服务认证系统帐户"
 
 #: ../authconfig.py:267
 msgid "authenticate system accounts by local files only"
-msgstr "仅通过本地文件验证系统帐户"
+msgstr "仅通过本地文件认证系统帐户"
 
 #: ../authconfig.py:270
 msgid "create home directories for users on their first login"
-msgstr "在用户首次登录时为其创建主目录"
+msgstr "在用户首次登录时为其创建家目录"
 
 #: ../authconfig.py:272
 msgid "do not create home directories for users on their first login"
-msgstr "不要为用户在其首次登录时创建主目录"
+msgstr "不在用户首次登录时为其创建家目录"
 
 #: ../authconfig.py:275
 msgid "do not start/stop portmap, ypbind, and nscd"
-msgstr "不要启动/停止 portmap、ypbind 和 nscd"
+msgstr "不启动/停止 portmap、ypbind 和 nscd"
 
 #: ../authconfig.py:278
 msgid "do not update the configuration files, only print new settings"
-msgstr "不更新配置文件，只输出新的设置"
+msgstr "不更新配置文件，只显示新设置"
 
 #: ../authconfig.py:282
 msgid "display Back instead of Cancel in the main dialog of the TUI"
-msgstr "在 TUI 主对话框中显示“返回”而非“取消”"
+msgstr "在 TUI 主对话框中显示“后退”代替“取消”"
 
 #: ../authconfig.py:284
 msgid "do not display the deprecated text user interface"
-msgstr "不显示过时的文本用户界面"
+msgstr "不显示将被弃用的文本化用户界面"
 
 #: ../authconfig.py:287
 msgid "opposite of --test, update configuration files with changed settings"
-msgstr "与 --test 相反，使用修改过的设置升级配置文件"
+msgstr "与 --test 相反，用更改的设置更新配置文件"
 
 #: ../authconfig.py:290
 msgid "update all configuration files"
@@ -445,55 +438,54 @@ msgstr "更新所有配置文件"
 
 #: ../authconfig.py:293
 msgid "probe network for defaults and print them"
-msgstr "探测网络默认值并打印"
+msgstr "探测网络获取默认值并将其显示"
 
 #: ../authconfig.py:295 ../authconfig.py:298
 msgid "<name>"
-msgstr "<name>"
+msgstr "<名称>"
 
 #: ../authconfig.py:296
 msgid "save a backup of all configuration files"
-msgstr "保存所有配置文件备份"
+msgstr "保存所有配置文件的备份"
 
 #: ../authconfig.py:299
 msgid "restore the backup of configuration files"
-msgstr "恢复配置文件备份"
+msgstr "恢复配置文件的备份"
 
 #: ../authconfig.py:302
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
-msgstr "在更改之前配置前恢复配置文件备份"
+msgstr "恢复在上一次配置更改前保存的配置文件的备份"
 
 #: ../authconfig.py:307
 msgid "unexpected argument"
-msgstr "错误的参数"
+msgstr "意外参数"
 
 #: ../authconfig.py:437
 msgid "Bad smart card removal action specified."
-msgstr "指定的错误智能卡删除动作。"
+msgstr "指定了错误的智能卡移除动作。"
 
 #: ../authconfig.py:446
 msgid "Unknown password hashing algorithm specified, using sha256."
-msgstr "指定未知密码散列算法，使用 sha256。"
+msgstr "指定了未知的密码散列算法，现使用 sha256。"
 
 #: ../authconfig.py:479
 msgid "can only be run as root"
-msgstr "只能以根用户身份运行"
+msgstr "只能用 root 帐户运行"
 
 #: ../authconfig.py:495
 msgid "dialog was cancelled"
-msgstr "对话被取消"
+msgstr "对话框被按取消"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:461
+#: ../authconfig.py:527 ../authconfig-gtk.py:462
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
 msgstr ""
-"没有找到 %s 文件。%s 支持需要这个文件方可正常工作。\n"
-"安装提供该文件的 %s 软件包。"
+" %s 文件未找到，但 %s 支持需要此文件方可正常工作。\n"
+"请安装提供此文件的 %s 软件包。"
 
 #: ../authconfig.py:529 ../authconfig.py:870
 msgid "Warning"
@@ -507,7 +499,7 @@ msgstr "确定"
 
 #: ../authconfig.py:533
 msgid "caching"
-msgstr "缓存"
+msgstr "正在缓存"
 
 #: ../authconfig.py:534
 msgid "Fingerprint reader"
@@ -519,27 +511,27 @@ msgstr "Kerberos"
 
 #: ../authconfig.py:536
 msgid "LDAP authentication"
-msgstr "LDAP 验证"
+msgstr "LDAP 认证"
 
-#: ../authconfig.py:537 ../authconfig-gtk.py:100
+#: ../authconfig.py:537 ../authconfig-gtk.py:101
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:538 ../authconfig-gtk.py:106
+#: ../authconfig.py:538 ../authconfig-gtk.py:107
 msgid "NIS"
 msgstr "NIS"
 
 #: ../authconfig.py:539
 msgid "shadow password"
-msgstr "影子密码"
+msgstr "shadow 密码"
 
-#: ../authconfig.py:540 ../authconfig.py:542 ../authconfig-gtk.py:109
+#: ../authconfig.py:540 ../authconfig.py:542 ../authconfig-gtk.py:110
 msgid "Winbind"
 msgstr "Winbind"
 
 #: ../authconfig.py:541
 msgid "Winbind authentication"
-msgstr "Winbind 验证"
+msgstr "Winbind 认证"
 
 #: ../authconfig.py:547
 msgid "User Information"
@@ -567,7 +559,7 @@ msgstr "使用 Winbind"
 
 #: ../authconfig.py:568 ../authconfig.desktop.in.h:1
 msgid "Authentication"
-msgstr "验证"
+msgstr "认证"
 
 #: ../authconfig.py:571
 msgid "Use MD5 Passwords"
@@ -575,11 +567,11 @@ msgstr "使用 MD5 密码"
 
 #: ../authconfig.py:574
 msgid "Use Shadow Passwords"
-msgstr "使用影子密码"
+msgstr "使用 shadow 密码"
 
 #: ../authconfig.py:577
 msgid "Use LDAP Authentication"
-msgstr "使用 LDAP 验证"
+msgstr "使用 LDAP 认证"
 
 #: ../authconfig.py:580
 msgid "Use Kerberos"
@@ -591,7 +583,7 @@ msgstr "使用指纹读取器"
 
 #: ../authconfig.py:587
 msgid "Use Winbind Authentication"
-msgstr "使用 Winbind 验证"
+msgstr "使用 Winbind 认证"
 
 #: ../authconfig.py:590
 msgid "Local authorization is sufficient"
@@ -600,7 +592,7 @@ msgstr "本地授权即可"
 #: ../authconfig.py:600 ../authconfig.py:745 ../authconfig.py:752
 #: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:816
 msgid "Back"
-msgstr "返回"
+msgstr "后退"
 
 #: ../authconfig.py:600 ../authconfig.py:775
 msgid "Cancel"
@@ -611,9 +603,9 @@ msgstr "取消"
 msgid "Next"
 msgstr "下一步"
 
-#: ../authconfig.py:612 ../authconfig-gtk.py:677 ../authconfig.glade.h:15
+#: ../authconfig.py:612 ../authconfig-gtk.py:678 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
-msgstr "验证配置"
+msgstr "认证配置"
 
 #: ../authconfig.py:742
 msgid "LHS:"
@@ -637,7 +629,7 @@ msgstr "服务器："
 
 #: ../authconfig.py:750
 msgid "Base DN:"
-msgstr "基点 DN："
+msgstr "基础 DN："
 
 #: ../authconfig.py:751
 msgid "LDAP Settings"
@@ -665,11 +657,11 @@ msgstr "管理服务器："
 
 #: ../authconfig.py:764
 msgid "Use DNS to resolve hosts to realms"
-msgstr "使用 DNS 将主机解析到域"
+msgstr "使用 DNS 解析主机为域"
 
 #: ../authconfig.py:765
 msgid "Use DNS to locate KDCs for realms"
-msgstr "通过 DNS 查找域的 KDC"
+msgstr "使用 DNS 定位用于域的 KDC"
 
 #: ../authconfig.py:766
 msgid "Kerberos Settings"
@@ -689,12 +681,10 @@ msgstr "加入设置"
 
 #: ../authconfig.py:784 ../authconfig.glade.h:41
 msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
+"Some of the configuration changes you've made should be saved to disk before"
+" continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr ""
-"在继续操作前，您应该将所做配置修改保存到磁盘中。如果您不保存它们，那么您加入"
-"域的尝试就会失败。保存修改吗？"
+msgstr "在继续之前，您更改过的一些配置应保存到磁盘。如果您不将其保存，则您加入域的尝试可能失败。是否保存修改？"
 
 #: ../authconfig.py:791
 msgid "Save Settings"
@@ -737,13 +727,10 @@ msgstr "加入域"
 #: ../authconfig.py:865
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
 msgstr ""
-"要连接到使用 TLS 的 LDAP 服务器，您需要用来签署您服务器证书的 CA 证书。将这个"
-"证书以 PEM 的格式复制到 '%s' 目录中。\n"
+"要连到启用 TLS 的 LDAP 服务器，您需要一个签署您服务器证书的 CA 证书。将此PEM 格式的证书复制到“%s”目录中。⏎\n"
 "然后按“确定”。"
 
 #. FIXME - version
@@ -751,44 +738,44 @@ msgstr ""
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr "<Tab>/<Alt-Tab> 在元素间切换   |   <Space> 选择   |  <F12> 下一页"
+msgstr "<Tab>/<Alt-Tab> 在元素间切换   |   <Space> 选择   |  <F12> 下一屏"
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr "控制系统对试图登录的用户进行校验的方式"
+msgstr "控制系统如何验证试图登录的用户"
 
-#: ../authconfig-gtk.py:97
+#: ../authconfig-gtk.py:98
 msgid "Local accounts only"
-msgstr "仅限于本地帐户"
+msgstr "仅限本地帐户"
 
-#: ../authconfig-gtk.py:103
+#: ../authconfig-gtk.py:104
 msgid "FreeIPA"
 msgstr "FreeIPA"
 
-#: ../authconfig-gtk.py:118
+#: ../authconfig-gtk.py:119
 msgid "Password"
 msgstr "密码"
 
-#: ../authconfig-gtk.py:121
+#: ../authconfig-gtk.py:122
 msgid "LDAP password"
 msgstr "LDAP 密码"
 
-#: ../authconfig-gtk.py:124
+#: ../authconfig-gtk.py:125
 msgid "Kerberos password"
 msgstr "Kerberos 密码"
 
-#: ../authconfig-gtk.py:127
+#: ../authconfig-gtk.py:128
 msgid "NIS password"
 msgstr "NIS 密码"
 
-#: ../authconfig-gtk.py:130
+#: ../authconfig-gtk.py:131
 msgid "Winbind password"
 msgstr "Winbind 密码"
 
-#: ../authconfig-gtk.py:445
+#: ../authconfig-gtk.py:446
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr "您必须提供 ldaps:// 服务器地址或者使用 TLS 进行 LDAP 验证。"
+msgstr "您必须提供 ldaps:// 服务器地址 或者使用 TLS 用于 LDAP 验证。"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -796,19 +783,19 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Authentication Configuration</b>"
-msgstr "<b>验证配置</b>"
+msgstr "<b>认证配置</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Local Authentication Options</b>"
-msgstr "<b>本地验证选项</b>"
+msgstr "<b>本地认证选项</b>"
 
 #: ../authconfig.glade.h:4
 msgid "<b>Other Authentication Options</b>"
-msgstr "<b>其它验证选项</b>"
+msgstr "<b>其它认证选项</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr "<b>智能卡验证选项</b>"
+msgstr "<b>智能卡认证选项</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
@@ -816,19 +803,18 @@ msgstr "<b>用户帐户配置</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
-"<small><b>Tip:</b> Smart cards support logging into both local and centrally "
-"managed accounts.</small>"
-msgstr "<small><b>提示：</b>智能卡可支持登录到本地和集中管理的帐户。</small>"
+"<small><b>Tip:</b> Smart cards support logging into both local and centrally"
+" managed accounts.</small>"
+msgstr "<small><b>提示：</b>智能卡既支持登录本地帐户，也支持登录集中管理的帐户。</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
-"<small><b>提示：</b>这是使用 /etc/security/access.conf 进行管理。</small>"
+msgstr "<small><b>提示：</b>这通过 /etc/security/access.conf 管理。</small>"
 
 #: ../authconfig.glade.h:9
 msgid "Ad_min Servers:"
-msgstr "管理服务器（_m）："
+msgstr "管理服务器（_M）："
 
 #: ../authconfig.glade.h:10
 msgid "Advanced _Options"
@@ -836,48 +822,47 @@ msgstr "高级选项（_O）"
 
 #: ../authconfig.glade.h:11
 msgid "Alert"
-msgstr "警告"
+msgstr "警报"
 
 #: ../authconfig.glade.h:12
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
-msgstr "将从备份中恢复之前由验证配置更改修改的所有配置文件。恢复修改？"
+msgstr "所有上一次认证配置更改所修改的配置文件将从备份中恢复。是否恢复？"
 
 #: ../authconfig.glade.h:13
 msgid "Allow offline _login"
-msgstr "允许离线登录（_l）"
+msgstr "允许离线登录（_L）"
 
 #: ../authconfig.glade.h:14
 msgid "Aut_hentication Method:"
-msgstr "验证（_h）方法："
+msgstr "认证方法（_H）："
 
 #: ../authconfig.glade.h:16
 msgid "Card Re_moval Action:"
-msgstr "删除卡的操作（_m）："
+msgstr "智能卡移除操作（_M）："
 
 #: ../authconfig.glade.h:17
 msgid "Certificate _URL:"
-msgstr "证书 URL(_U)："
+msgstr "证书 URL（_U）："
 
 #: ../authconfig.glade.h:18
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
-msgstr ""
-"如果您还没有下载 CA 证书或者还没有使用其它方法设置 CA 证书，请点击这个按钮。"
+msgstr "如果您还未下载 CA 证书或还未使用其它方法设定 CA 证书，请点击此按钮。"
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
-msgstr "在首次登录时创建主目录（_h）"
+msgstr "在首次登录时创建家目录（_H）"
 
 #: ../authconfig.glade.h:20
 msgid "Do_n't Save"
-msgstr "不保存（_n）"
+msgstr "不保存（_N）"
 
 #: ../authconfig.glade.h:21
 msgid "Domain _administrator:"
-msgstr "域管理员（_a）："
+msgstr "域管理员（_A）："
 
 #: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
@@ -885,43 +870,43 @@ msgstr "下载 CA 证书"
 
 #: ../authconfig.glade.h:24
 msgid "Enable _fingerprint reader support"
-msgstr "启用指纹读取器支持（_f）"
+msgstr "启用指纹读取器支持（_F）"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _local access control"
-msgstr "启用本地访问控制（_l）"
+msgstr "启用本地访问控制（_L）"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _smart card support"
-msgstr "启用智能卡支持（_s）"
+msgstr "启用智能卡支持（_S）"
 
 #: ../authconfig.glade.h:27
 msgid ""
-"Fingerprint authentication allows you to log in by scanning your finger with "
-"the fingerprint reader."
-msgstr "指纹验证允许您通过使用指纹读取器扫描指纹登录。"
+"Fingerprint authentication allows you to log in by scanning your finger with"
+" the fingerprint reader."
+msgstr "指纹认证允许您使用指纹读取器扫描指纹登录。"
 
 #: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "保存本地用户密码的散列或者加密算法"
+msgstr "用于保存本地用户密码的散列或加密算法"
 
 #: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr "指向 LDAP 服务器的主机名或者 ldap:// 或者 ldaps:// URI。"
+msgstr "指向 LDAP 服务器的主机名、 ldap:// 或 ldaps:// URI。"
 
 #: ../authconfig.glade.h:30
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr "如果某个用户的主目录还不存在，就会在该用户首次登录时创建。"
+msgstr "如果用户的主目录还不存在，它将在其首次登录时被自动创建。"
 
 #: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
-msgstr "加入 Winbind 域"
+msgstr "正在加入 Winbind 域"
 
 #: ../authconfig.glade.h:32
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP 搜索基点 DN (_B)："
+msgstr "LDAP 搜索基础 DN (_B)："
 
 #: ../authconfig.glade.h:33
 msgid "LDAP _Server:"
@@ -937,31 +922,31 @@ msgstr "NIS 服务器(_S)："
 
 #: ../authconfig.glade.h:36
 msgid "R_ealm:"
-msgstr "域（_e）："
+msgstr "域（_E）："
 
 #: ../authconfig.glade.h:37
 msgid "Require smart car_d for login"
-msgstr "要求使用智能卡登录（_d）"
+msgstr "需要使用智能卡登录（_D）"
 
 #: ../authconfig.glade.h:38
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
-msgstr "恢复在之前进行的配置更改前备份的配置文件"
+msgstr "恢复份的配置文件状态"
 
 #: ../authconfig.glade.h:39
 msgid "Revert"
-msgstr "恢复："
+msgstr "恢复"
 
 #: ../authconfig.glade.h:40
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
-msgstr "智能卡认证允许您使用一个证书和一个与智能卡关联的密钥进行登录。"
+msgstr "智能卡认证允许您使用与智能卡关联的证书和密钥进行登录。"
 
 #: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
-msgstr "模板 Shell（_m）："
+msgstr "模板 Shell（_M）："
 
 #: ../authconfig.glade.h:43
 msgid ""
@@ -969,42 +954,39 @@ msgid ""
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"要确定启用了带有 TLS 协议的 LDAP 服务器，您需要签署了服务器证书的 CA证书。请"
-"填写可下载 PEM 格式 CA 证书的 URL。"
+"要验证已启用 TLS 协议的 LDAP 服务器，您需要一个签署此服务器证书的 CA 证书。请填写能下载 PEM 格式的 CA 证书的 URL。"
 
 #: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "通过 DNS 查找领域的 KDC (_l)"
+msgstr "使用 DNS 定位用于域的 KDC（_L）"
 
 #: ../authconfig.glade.h:45
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "使用 DNS 将主机解析到域（_N）"
+msgstr "用 DNS 将主机解析为域（_N）"
 
 #: ../authconfig.glade.h:46
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
-"使用 RFC－2830 为 LDAP 定义的传输层安全性扩展。一定不要将其与 ldaps 服务器 "
-"URI 一同选择。"
+msgstr "使用 RFC-2830 中定义的用于 LDAP 的传输层安全扩展。不能将其与 ldaps 服务器 URI 同时勾选。"
 
 #: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
-msgstr "使用 TLS 来加密连接 (_T)"
+msgstr "用 TLS 加密连接 (_T)"
 
 #: ../authconfig.glade.h:48
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr "启用 /etc/security/access.conf 将在用户访问时询问授权。"
+msgstr "启用后，在用户访问的授权中将参考 /etc/security/access.conf。"
 
 #: ../authconfig.glade.h:49
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS 域（_r）："
+msgstr "Winbind ADS 域（_E）："
 
 #: ../authconfig.glade.h:50
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind 域控制器（_n）："
+msgstr "Winbind 域控制器（_N）："
 
 #: ../authconfig.glade.h:51
 msgid "Winbind _Domain:"
@@ -1012,15 +994,15 @@ msgstr "Winbind 域（_D）："
 
 #: ../authconfig.glade.h:52
 msgid "_Download CA Certificate..."
-msgstr "下载 CA 证书（_D）......"
+msgstr "下载 CA 证书（_D）..."
 
 #: ../authconfig.glade.h:53
 msgid "_Identity & Authentication"
-msgstr "识别（_I）和验证"
+msgstr "身份&验证（_I）"
 
 #: ../authconfig.glade.h:54
 msgid "_Join Domain..."
-msgstr "加入域（_J）......"
+msgstr "加入域（_J）..."
 
 #: ../authconfig.glade.h:55
 msgid "_KDCs:"
@@ -1055,20 +1037,8 @@ msgstr "忽略"
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
-msgstr "缺少验证模块 %s/pam_%s.so 。验证进程可能无法正常进行。"
+msgstr "缺少验证模块 %s/pam_%s.so 。认证进程可能无法正常工作。"
 
 #: ../authinfo.py:3809
 msgid "Error downloading CA certificate"
-msgstr "下载 CA 证书错误"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "默认启用 SMB 验证"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "默认禁用 SMB 验证"
-
-#~ msgid "Additional options for user information and authentication"
-#~ msgstr "用户信息和验证的附加选项"
-
-#~ msgid "Set up services used for authenticating users to the system"
-#~ msgstr "设置为系统验证用户的服务"
+msgstr "下载 CA 证书时出错"
