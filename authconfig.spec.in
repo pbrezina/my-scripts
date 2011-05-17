@@ -109,8 +109,14 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/24x24/apps/system-config-authentication.*
 %{_datadir}/icons/hicolor/32x32/apps/system-config-authentication.*
 %{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
+%{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Tue May 17 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.14-1
+- new hi-res icon (#702666)
+- use krb5_server instead of krb5_kdcip (#677766)
+- print error message if authconfig-gtk is not run within proper X environment
+
 * Tue Feb  8 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.13-1
 - support for postlogin PAM configuration and pam_ecryptfs
   patch by Paolo Bonzini
