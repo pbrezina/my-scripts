@@ -31,6 +31,7 @@ import locale
 locale.setlocale(locale.LC_ALL, '')
 
 firstbootservices = [
+	"autofs",
 	"crond",
 	"dovecot",
 	"messagebus",
@@ -651,14 +652,8 @@ class Authconfig:
 		self.info.post(False)
 		if "--firstboot" in sys.argv:
 			for service in firstbootservices:
-				if os.access("/etc/init.d/" + service, os.X_OK):
-					os.system("/etc/init.d/" + service + " condrestart")
-			if os.access("/etc/init.d/autofs", os.X_OK):
-				if self.info.enableNIS:
-					cond = ""
-				else:
-					cond = "cond"
-				os.system("/etc/init.d/autofs " + cond + "restart")
+				if authinfo.Service.isEnabled(service):
+					authinfo.Service.tryRestart(service)
 
 	def ldap_cacerts_test(self, parent):
 		if self.info.enableLDAPS and self.info.testLDAPCACerts():

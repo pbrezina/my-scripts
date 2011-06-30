@@ -75,30 +75,18 @@ AUTH_MODULE_DIR = LIBDIR + "/security"
 PATH_PWCONV = "/usr/sbin/pwconv"
 PATH_RPCBIND = "/sbin/rpcbind"
 PATH_NSCD = "/usr/sbin/nscd"
-PATH_NSCD_PID = "/var/run/nscd/nscd.pid"
 PATH_NSLCD = "/usr/sbin/nslcd"
-PATH_NSLCD_PID = "/var/run/nslcd/nslcd.pid"
 PATH_DBBIND = "/usr/sbin/dbbind"
-PATH_DBBIND_PID = "/var/run/dbbind.pid"
 PATH_DBIBIND = "/usr/sbin/dbibind"
-PATH_DBIBIND_PID = "/var/run/dbibind.pid"
 PATH_HESIODBIND = "/usr/sbin/hesiodbind"
-PATH_HESIODBIND_PID = "/var/run/hesiodbind.pid"
 PATH_LDAPBIND = "/usr/sbin/ldapbind"
-PATH_LDAPBIND_PID = "/var/run/ldapbind.pid"
 PATH_ODBCBIND = "/usr/sbin/odbcbind"
-PATH_ODBCBIND_PID = "/var/run/odbcbind.pid"
 PATH_WINBIND = "/usr/sbin/winbindd"
-PATH_WINBIND_PID = "/var/run/winbindd.pid"
 PATH_SSSD = "/usr/sbin/sssd"
-PATH_SSSD_PID = "/var/run/sssd.pid"
 PATH_YPBIND = "/usr/sbin/ypbind"
-PATH_YPBIND_PID = "/var/run/ypbind.pid"
 PATH_ODDJOBD = "/usr/sbin/oddjobd"
-PATH_ODDJOBD_PID = "/var/run/oddjobd.pid"
 PATH_SEBOOL = "/usr/sbin/setsebool"
 PATH_SCEVENTD = "/usr/bin/pkcs11_eventmgr"
-PATH_SCEVENTD_PID = "/var/run/sceventd.pid"
 PATH_SCSETUP = "/usr/bin/pkcs11_setup"
 
 PATH_LIBNSS_DB = LIBDIR + "/libnss_db.so.2"
@@ -747,16 +735,64 @@ def domain2dn(domain):
 
 DEFAULT_DNS_QUERY_SIZE = 1024
 
+class SysVInitService:
+	def start(self, service):
+		os.system("/sbin/service " + service + " start")
+
+	def stop(self, service):
+		os.system("/sbin/service " + service + " stop >/dev/null 2>&1")
+
+	def enable(self, service):
+		os.system("/sbin/chkconfig --add " + service)
+		os.system("/sbin/chkconfig --level 345 " + service + " on")
+
+	def disable(self, service):
+		os.system("/sbin/chkconfig --level 345 " + service + " off")
+
+	def isEnabled(self, service):
+		rv = os.system("/sbin/chkconfig " + service + " >/dev/null 2>&1")
+		return os.WIFEXITED(rv) and os.WEXITSTATUS(rv) == 0
+
+	def tryRestart(self, service):
+		os.system("/sbin/service " + service + " condrestart >/dev/null 2>&1")
+
+class SystemdService:
+	def start(self, service):
+		os.system("/bin/systemctl start " + service + ".service")
+
+	def stop(self, service):
+		os.system("/bin/systemctl stop " + service + ".service >/dev/null 2>&1")
+
+	def enable(self, service):
+		os.system("/bin/systemctl enable " + service + ".service >/dev/null 2>&1")
+
+	def disable(self, service):
+		os.system("/bin/systemctl disable " + service + ".service >/dev/null 2>&1")
+
+	def isEnabled(self, service):
+		rv = os.system("/bin/systemctl is-enabled " + service + ".service >/dev/null 2>&1")
+		return os.WIFEXITED(rv) and os.WEXITSTATUS(rv) == 0
+
+	def tryRestart(self, service):
+		os.system("/bin/systemctl try-restart " + service + ".service >/dev/null 2>&1")
+
+try:
+	if "systemd" in os.readlink("/sbin/init"):
+		Service = SystemdService()
+	else:
+		Service = SysVInitService()
+except OSError:
+	Service = SysVInitService()
+
 def toggleCachingService(enableCaching, nostart, onlystart):
 	if not nostart:
 		if enableCaching:
 			if not onlystart:
-				os.system("/sbin/service nscd stop >/dev/null 2>&1")
-			os.system("/sbin/service nscd start")
+				Service.stop("nscd")
+			Service.start("nscd")
 		else:
 			try:
-				os.stat(PATH_NSCD_PID)
-				os.system("/sbin/service nscd stop")
+				Service.stop("nscd")
 			except OSError:
 				pass
 	return True
@@ -767,25 +803,20 @@ def toggleNisService(enableNis, nisDomain, nostart, onlystart):
 			os.system("/bin/domainname " + nisDomain)
 		try:
 			os.stat(PATH_RPCBIND)
-			os.system("/sbin/chkconfig --add rpcbind")
-			os.system("/sbin/chkconfig --level 345 rpcbind on")
+			Service.enable("rpcbind")
 			if not nostart:
 				if not onlystart:
-					os.system("/sbin/service rpcbind stop >/dev/null 2>&1")
-				os.system("/sbin/service rpcbind start")
+					Service.stop("rpcbind")
+				Service.start("rpcbind")
 		except OSError:
 			pass
 		try:
 			os.stat(PATH_YPBIND)
-			os.system("/sbin/chkconfig --add ypbind")
-			os.system("/sbin/chkconfig --level 345 ypbind on")
+			Service.enable("ypbind")
 			if not nostart:
-				try:
-					os.stat(PATH_YPBIND_PID)
-					if not onlystart:
-						os.system("/sbin/service ypbind restart")
-				except OSError:
-					os.system("/sbin/service ypbind start")
+				if not onlystart:
+					Service.stop("ypbind")
+				Service.start("ypbind")
 		except OSError:
 			pass
 	else:
@@ -795,25 +826,23 @@ def toggleNisService(enableNis, nisDomain, nostart, onlystart):
 			os.stat(PATH_YPBIND)
 			if not nostart:
 				try:
-					os.stat(PATH_YPBIND_PID)
-					os.system("/sbin/service ypbind stop")
+					Service.stop("ypbind")
 				except OSError:
 					pass
-			os.system("/sbin/chkconfig --level 345 ypbind off")
+			Service.disable("ypbind")
 		except OSError:
 			pass
 	return True
 
-def toggleSplatbindService(enable, path, pidfile, name, nostart, onlystart):
+def toggleSplatbindService(enable, path, name, nostart, onlystart):
 	if enable:
 		try:
 			os.stat(path)
-			os.system("/sbin/chkconfig --add " + name)
-			os.system("/sbin/chkconfig --level 345 " + name + " on")
+			Service.enable(name)
 			if not nostart:
 				if not onlystart:
-					os.system("/sbin/service " + name +" stop >/dev/null 2>&1")
-				os.system("/sbin/service " + name +" start")
+					Service.stop(name)
+				Service.start(name)
 		except OSError:
 			pass
 	else:
@@ -821,12 +850,10 @@ def toggleSplatbindService(enable, path, pidfile, name, nostart, onlystart):
 			os.stat(path)
 			if not nostart:
 				try:
-					os.stat(pidfile)
-					os.system("/sbin/service " + name +" stop")
+					Service.stop(name)
 				except OSError:
 					pass
-
-			os.system("/sbin/chkconfig --level 345 " + name + " off")
+			Service.disable(name)
 		except OSError:
 			pass
 	return True
@@ -1065,17 +1092,15 @@ class FileBackup:
 		return rv
 
 def readCache():
-	rv = os.system("/sbin/chkconfig nscd >/dev/null 2>&1")
-	return os.WIFEXITED(rv) and os.WEXITSTATUS(rv) == 0
+	return Service.isEnabled("nscd")
 
 def writeCache(enabled):
 	if enabled:
-		os.system("/sbin/chkconfig --add nscd")
-		os.system("/sbin/chkconfig --level 345 nscd on")
+		Service.enable("nscd")
 	else:
 		try:
 			os.stat(PATH_NSCD)
-			os.system("/sbin/chkconfig --level 345 nscd off");
+			Service.disable("nscd")
 		except OSError:
 			pass
 	return True
@@ -3746,36 +3771,36 @@ class AuthInfo:
 		onlystart = not self.confChanged
 		toggleNisService(self.enableNIS, self.nisDomain, nostart, onlystart)
 		toggleSplatbindService(self.enableWinbind or self.enableWinbindAuth,
-			PATH_WINBIND, PATH_WINBIND_PID,
+			PATH_WINBIND,
 			"winbind", nostart, onlystart)
 		toggleSplatbindService(self.enableSSSD or self.enableSSSDAuth or
 			self.implicitSSSD or self.implicitSSSDAuth,
-			PATH_SSSD, PATH_SSSD_PID,
+			PATH_SSSD,
 			"sssd", nostart, onlystart)
 		toggleSplatbindService((self.enableLDAP or self.enableLDAPAuth) and
 			not self.implicitSSSD,
-			PATH_NSLCD, PATH_NSLCD_PID,
+			PATH_NSLCD,
 			"nslcd", nostart, onlystart)
 		toggleSplatbindService(self.enableDBbind,
-			PATH_DBBIND, PATH_DBBIND_PID,
+			PATH_DBBIND,
 			"dbbind", nostart, onlystart)
 		toggleSplatbindService(self.enableDBIbind,
-			PATH_DBIBIND, PATH_DBIBIND_PID,
+			PATH_DBIBIND,
 			"dbibind", nostart, onlystart)
 		toggleSplatbindService(self.enableHesiodbind,
-			PATH_HESIODBIND, PATH_HESIODBIND_PID,
+			PATH_HESIODBIND,
 			"hesiodbind", nostart, onlystart)
 		toggleSplatbindService(self.enableLDAPbind,
-			PATH_LDAPBIND, PATH_LDAPBIND_PID,
+			PATH_LDAPBIND,
 			"ldapbind", nostart, onlystart)
 		toggleSplatbindService(self.enableOdbcbind,
-			PATH_ODBCBIND, PATH_ODBCBIND_PID,
+			PATH_ODBCBIND,
 			"odbcbind", nostart, onlystart)
 		if self.enableMkHomeDir and os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
 			# only switch on and only if pam_oddjob_mkhomedir exists
 			toggleSplatbindService(True,
-				PATH_ODDJOBD, PATH_ODDJOBD_PID,
+				PATH_ODDJOBD,
 				"oddjobd", nostart, onlystart)
 		toggleCachingService(self.enableCache, nostart, onlystart)
 
