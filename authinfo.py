@@ -1,12 +1,15 @@
 # -*- coding: UTF-8 -*-
 #
 # Authconfig - client authentication configuration program
-# Copyright (c) 1999-2008 Red Hat, Inc.
+# Copyright (c) 1999-2011 Red Hat, Inc.
 #
 # Authors: Preston Brown <pbrown@redhat.com>
 #          Nalin Dahyabhai <nalin@redhat.com>
 #          Matt Wilson <msw@redhat.com>
 #          Tomas Mraz <tmraz@redhat.com>
+#          Ray Strode <rstrode@redhat.com>
+#          Paolo Bonzini <pbonzini@redhat.com>
+#          Miloslav Trmac <mitr@redhat.com>
 #
 # This is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -24,6 +27,7 @@
 #
 
 import string
+import re
 import os
 import copy
 import fcntl
@@ -336,12 +340,14 @@ argv_otp_auth = [
 ]
 
 argv_succeed_if_auth = [
-	"uid >= 500",
+	"uid >=",
+	"500", # this must be the second arg - to be replaced
 	"quiet"
 ]
 
 argv_succeed_if_account = [
-	"uid < 500",
+	"uid <",
+	"500", # this must be the second arg - to be replaced
 	"quiet"
 ]
 
@@ -734,6 +740,17 @@ def domain2dn(domain):
 	return output
 
 DEFAULT_DNS_QUERY_SIZE = 1024
+
+# No, this is not particularly nice, but "compatible" is more important than
+# "beautiful".
+ld_line_re = re.compile(r'^[ \t]*'     # Initial whitespace
+                       r'([^ \t]+)'    # Variable name
+                       r'[ \t][ \t"]*' # Separator - yes, may have multiple "s
+                       r'(([^"]*)".*'  # Value, case 1 - terminated by "
+                       r'|([^"]*\S)?\s*' # Value, case 2 - only drop trailing \s
+                       r')$')
+# for matching uid in succeeded if options
+succ_if_re = re.compile(r'^.*[ \t]*uid[ \t]+(<|>=)[ \t]+([0-9]+)')
 
 class SysVInitService:
 	def start(self, service):
@@ -1269,6 +1286,7 @@ class AuthInfo:
 		self.enableLDAPAuth = None
 		self.passwordAlgorithm = ""
 		self.algoRounds = ""
+		self.uidMin = None
 		self.enableOTP = None
 		self.enablePasswdQC = None
 		self.enableShadow = None
@@ -1321,7 +1339,7 @@ class AuthInfo:
 	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
 		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
 	SaveGroup(self.writeLibuser, [("passwordAlgorithm", "i")]),
-	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]),
+	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]), # for now we do not rewrite uidMin
 	SaveGroup(self.writeKerberos, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
 		("smbSecurity", "i"), ("smbRealm", "c"), ("smbServers", "i"),
 		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
@@ -1355,7 +1373,7 @@ class AuthInfo:
 		("enableEcryptfs", "b"), ("enableOTP", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
-		("implicitSSSDAuth", "b"), ("systemdArgs", "c")]),
+		("implicitSSSDAuth", "b"), ("systemdArgs", "c"), ("uidMin", "i")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
@@ -1647,18 +1665,28 @@ class AuthInfo:
 			return False
 
 		for line in f:
-			line = line.strip()
-
-			value = matchKey(line, "MD5_CRYPT_ENAB")
-			if value == "yes":
+			match = ld_line_re.match(line)
+			if match is not None:
+				name = match.group(1)
+				if name.startswith('#'):
+					continue
+				value = match.group(3)
+				if value is None:
+					value = match.group(4)
+				if value is None:
+					value = ''
+			else:
+				continue
+			if name == "MD5_CRYPT_ENAB" and value == "yes":
 				self.setParam("passwordAlgorithm", "md5", ref)
 				continue
-			value = matchKey(line, "ENCRYPT_METHOD")
-			if value:
+			if name == "ENCRYPT_METHOD":
 				if value == "DES":
 					value = "descrypt"
 				self.setParam("passwordAlgorithm", value.lower(), ref)
 				continue
+			if name == "UID_MIN":
+				self.setParam("uidMin", value, ref)
 		f.close()
 		return True
 
@@ -2024,6 +2052,11 @@ class AuthInfo:
 			if stack == "account":
 				if module.startswith("pam_unix"):
 					self.setParam("brokenShadow", args.find("broken_shadow") >= 0, ref)
+			if stack == "auth" or stack == "account":
+				if module.startswith("pam_succeed_if"):
+					match = succ_if_re.match(args)
+					if match != None and match.group(2) != None:
+						self.setParam("uidMin", match.group(2), ref)
 
 		# Special handling for pam_cracklib and pam_passwdqc: there can be
 		# only one.
@@ -2255,8 +2288,8 @@ class AuthInfo:
 		self.readSysconfig()
 		self.readNSS(ref)
 		self.readLibuser(ref)
-		self.readLogindefs(ref)
 		self.readPAM(ref)
+		self.readLogindefs(ref)
 		self.readHesiod(ref)
 		self.readWinbind(ref)
 		self.readNetwork(ref)
@@ -2609,14 +2642,27 @@ class AuthInfo:
 
 			# Read in the old file.
 			for line in f.file:
-				ls = line.strip()
+				match = ld_line_re.match(line)
+				if match is not None:
+					name = match.group(1)
+					if name.startswith('#'):
+						output += line
+						continue
+					value = match.group(3)
+					if value is None:
+						value = match.group(4)
+					if value is None:
+						value = ''
+				else:
+					output += line
+					continue
 
-				if matchLine(ls, "MD5_CRYPT_ENAB"):
+				if name == "MD5_CRYPT_ENAB":
 					output += md5crypt
 					wrotemd5crypt = True
 					continue
 
-				if matchLine(ls, "ENCRYPT_METHOD"):
+				if name == "ENCRYPT_METHOD":
 					output += encmethod
 					wroteencmethod = True
 					continue
@@ -3307,9 +3353,15 @@ class AuthInfo:
 					logic = LOGIC_IGNORE_AUTH_ERR
 				else:
 					logic = LOGIC_IGNORE_UNKNOWN
-			if name == "succeed_if" and stack == "auth" and logic == LOGIC_SKIPNEXT:
-				if self.enableKerberos:
-					logic = LOGIC_SKIPNEXT3
+			if name == "succeed_if":
+				if stack == "auth" and logic == LOGIC_SKIPNEXT:
+					if self.enableKerberos:
+						logic = LOGIC_SKIPNEXT3
+				elif stack == "auth" or stack == "account":
+					if self.uidMin != None:
+						argv = module[ARGV][0:] # shallow copy
+						argv[1] = self.uidMin
+						args = " ".join(argv)
 			# use oddjob_mkhomedir if available
 			if name == "mkhomedir" and os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
