@@ -1,7 +1,7 @@
 .de FN
 \fI\|\\$1\|\fP
 ..
-.TH AUTHCONFIG 8 "31 March 2010" "Red Hat, Inc."
+.TH AUTHCONFIG 8 "22 July 2011" "Red Hat, Inc."
 .SH NAME
 authconfig, authconfig-tui \- an interface for configuring system authentication resources
 .SH SYNOPSIS
@@ -111,7 +111,9 @@ Used to track whether or not particular authentication mechanisms are enabled.
 Currently includes variables named USESHADOW, USEMD5, USEKERBEROS, USELDAPAUTH,
 USESMBAUTH, USEWINBIND, USEWINBINDAUTH, USEHESIOD, USENIS, USELDAP, and others.
 .TP
-.FN /etc/passwd, /etc/shadow
+.FN /etc/passwd
+.TP
+.FN /etc/shadow
 Used for shadow password support.
 .TP
 .FN /etc/yp.conf
@@ -121,26 +123,32 @@ Configuration file for NIS support.
 Another configuration file for NIS support.
 .TP
 .FN /etc/ldap.conf
+.TP
+.FN /etc/nss_ldap.conf
+.TP
+.FN /etc/pam_ldap.conf
+.TP
+.FN /etc/nslcd.conf
+.TP
 .FN /etc/openldap/ldap.conf
-Used to configure LDAP (and OpenLDAP, respectively).
+Used to configure nss_ldap, pam_ldap, nslcd, and the OpenLDAP library. Only
+the files already existing on the system are modified.
 .TP
 .FN /etc/krb5.conf
 Used to configure Kerberos 5.
 .TP
-.FN /etc/krb.conf
-Used to configure Kerberos IV (write-only).
-.TP
 .FN /etc/hesiod.conf
 Used to configure Hesiod.
-.TP
-.FN /etc/pam_smb.conf
-Used to configure SMB authentication.
 .TP
 .FN /etc/samba/smb.conf
 Used to configure winbind authentication.
 .TP
 .FN /etc/nsswitch.conf
 Used to configure user information services.
+.TP
+.FN /etc/login.defs
+Used to configure parameters of user accounts (minimum UID of a regular user,
+password hashing algorithm).
 .TP
 .FN /etc/pam.d/system-auth
 Common PAM configuration for system services which include it using the
@@ -156,7 +164,7 @@ there.
 .PD
 .SH "SEE ALSO"
 authconfig-gtk(8), system-auth-ac(5), passwd(5), shadow(5), pwconv(1),
-domainname(1), ypbind(8), nsswitch.conf(5), smb.conf(5)
+domainname(1), ypbind(8), nsswitch.conf(5), smb.conf(5), sssd(8)
 
 .SH AUTHORS
 .nf
