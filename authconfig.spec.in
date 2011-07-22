@@ -124,6 +124,13 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Fri Jul 22 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.15-1
+- add support for reading UID_MIN from login.defs (#717112)
+- use systemctl if available instead of chkconfig/service (#696490)
+- mention the /usr/sbin/authconfig in the manual page (#698377)
+- drop the no longer touched files from authconfig manual page
+  add the newly touched ones (#708850)
+
 * Tue May 17 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.14-1
 - new hi-res icon (#702666)
 - use krb5_server instead of krb5_kdcip (#677766)
