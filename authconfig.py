@@ -27,7 +27,7 @@
 import authinfo, acutil
 import gettext, os, signal, sys
 _ = gettext.lgettext
-from optparse import OptionParser
+from optparse import OptionParser, IndentedHelpFormatter
 import locale
 locale.setlocale(locale.LC_ALL, '')
 
@@ -46,6 +46,42 @@ class UnihelpOptionParser(OptionParser):
 		if not encoding or encoding == "ascii":
 			encoding = srcencoding
 		file.write(self.format_help().decode(srcencoding).encode(encoding, "replace"))
+
+class NonWrapFormatter(IndentedHelpFormatter):
+	def format_option(self, option):
+	        # The help for each option consists of two parts:
+	        #   * the opt strings and metavars
+	        #     eg. ("-x", or "-fFILENAME, --file=FILENAME")
+	        #   * the user-supplied help string
+	        #     eg. ("turn on expert mode", "read data from FILENAME")
+	        #
+	        # If possible, we write both of these on the same line:
+	        #   -x      turn on expert mode
+	        #
+	        # But if the opt string list is too long, we put the help
+	        # string on a second line, indented to the same column it would
+	        # start in if it fit on the first line.
+	        #   -fFILENAME, --file=FILENAME
+	        #           read data from FILENAME
+		# We cannot wrap the help text as it can be in any language and
+                # encoding and so we do not know how to wrap it correctly.
+	        result = []
+	        opts = self.option_strings[option]
+	        opt_width = self.help_position - self.current_indent - 2
+	        if len(opts) > opt_width:
+	            opts = "%*s%s\n" % (self.current_indent, "", opts)
+	            indent_first = self.help_position
+	        else:                       # start help on same line as opts
+	            opts = "%*s%-*s  " % (self.current_indent, "", opt_width, opts)
+	            opts = "%*s%-*s  " % (self.current_indent, "", opt_width, opts)
+	            indent_first = 0
+	        result.append(opts)
+	        if option.help:
+	            help_text = self.expand_default(option)
+	            result.append("%*s%s\n" % (indent_first, "", help_text))
+	        elif opts[-1] != "\n":
+	            result.append("\n")
+	        return "".join(result)
 
 class Authconfig:
 	def __init__(self):
@@ -81,7 +117,9 @@ class Authconfig:
 		if self.module() == "authconfig":
 			usage += " {--update|--updateall|--test|--probe|--restorebackup <name>|--savebackup <name>|--restorelastbackup}"
 
-		parser = UnihelpOptionParser(usage)
+		parser = UnihelpOptionParser(usage, add_help_option=False, formatter=NonWrapFormatter())
+		parser.add_option("-h", "--help", action="help",
+			help=_("show this help message and exit"))
 
 		parser.add_option("--enableshadow", "--useshadow", action="store_true",
 			help=_("enable shadowed passwords by default"))
