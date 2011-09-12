@@ -1,270 +1,269 @@
-# translation of tr.po to Turkish
-# Copyright (C) 1999-2002,2003, 2007 Free Software Foundation, Inc.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 #
-#
-# Erçin EKER <erc.caldera@gmx.net>, 2003.
-# Burçin Dönmez <bdonmez@cisunix.unh.edu>, 2004.
-# Ismail ASCI <ismail.asci@fedora-tr.org>, 2006.
-# Bahadır Yağan <bahadir.yagan@mht.com.tr>, 2006.
+# Translators:
+# Dimitris Glezos <glezos@indifex.com>, 2011.
 # Egemen Metin Turan <mturan@aegee-ankara.org>, 2007.
+# Ismail ASCI <ismail.asci@fedora-tr.org>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: tr\n"
+"Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-08 21:38+0100\n"
-"PO-Revision-Date: 2007-01-25 17:16+0200\n"
-"Last-Translator: Egemen Metin Turan <mturan@aegee-ankara.org>\n"
-"Language-Team: Turkish <fedora-trans-tr@redhat.com>\n"
+"POT-Creation-Date: 2011-09-12 21:24+0200\n"
+"PO-Revision-Date: 2011-09-07 13:00+0000\n"
+"Last-Translator: tmraz <tmraz@fedoraproject.org>\n"
+"Language-Team: Turkish (http://www.transifex.net/projects/p/fedora/team/"
+"tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
-#: ../authconfig.py:80
+#: ../authconfig.py:116
 #, python-format
 msgid "usage: %s [options]"
 msgstr "kullanımı: %s [options]"
 
-#: ../authconfig.py:87
+#: ../authconfig.py:122
+msgid "show this help message and exit"
+msgstr ""
+
+#: ../authconfig.py:125
 msgid "enable shadowed passwords by default"
 msgstr "gölge parolaları öntanımlı kullan"
 
-#: ../authconfig.py:89
+#: ../authconfig.py:127
 msgid "disable shadowed passwords by default"
 msgstr "gölge parolaları kullanma"
 
-#: ../authconfig.py:91
+#: ../authconfig.py:129
 msgid "enable MD5 passwords by default"
 msgstr "MD5 parolaları öntanımlı kullan"
 
-#: ../authconfig.py:93
+#: ../authconfig.py:131
 msgid "disable MD5 passwords by default"
 msgstr "ön tanımlı olarak MD5 parolalarını kullanma"
 
-#: ../authconfig.py:96
+#: ../authconfig.py:134
 msgid "hash/crypt algorithm for new passwords"
 msgstr ""
 
-#: ../authconfig.py:99
+#: ../authconfig.py:137
 msgid "enable NIS for user information by default"
 msgstr "kullanıcı bilgisi için öntanımlı olarak LDAP kullanılsın"
 
-#: ../authconfig.py:101
+#: ../authconfig.py:139
 msgid "disable NIS for user information by default"
 msgstr "kullanıcı bilgisi için öntanımlı olarak LDAP kullanılmasın"
 
-#: ../authconfig.py:102
+#: ../authconfig.py:140
 msgid "<domain>"
 msgstr "<alan>"
 
-#: ../authconfig.py:103
+#: ../authconfig.py:141
 msgid "default NIS domain"
 msgstr "öntanımlı NIS alanı"
 
-#: ../authconfig.py:104 ../authconfig.py:115 ../authconfig.py:158
-#: ../authconfig.py:160
+#: ../authconfig.py:142 ../authconfig.py:153 ../authconfig.py:196
+#: ../authconfig.py:198
 msgid "<server>"
 msgstr "<sunucu>"
 
-#: ../authconfig.py:105
+#: ../authconfig.py:143
 msgid "default NIS server"
 msgstr "öntanımlı NIS sunucusu"
 
-#: ../authconfig.py:108
+#: ../authconfig.py:146
 msgid "enable LDAP for user information by default"
 msgstr "kullanıcı bilgisi için LDAP kullanılsın"
 
-#: ../authconfig.py:110
+#: ../authconfig.py:148
 msgid "disable LDAP for user information by default"
 msgstr "kullanıcı bilgisi için LDAP'ı kullanılmasın"
 
-#: ../authconfig.py:112
+#: ../authconfig.py:150
 msgid "enable LDAP for authentication by default"
 msgstr "öntanımlı kimlik denetimi için LDAP kullanılsın"
 
-#: ../authconfig.py:114
+#: ../authconfig.py:152
 msgid "disable LDAP for authentication by default"
 msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
 
-#: ../authconfig.py:116
-#, fuzzy
+#: ../authconfig.py:154
 msgid "default LDAP server hostname or URI"
-msgstr "öntanımlı LDAP sunucusu"
-
-#: ../authconfig.py:117
-msgid "<dn>"
-msgstr "<dn>"
-
-#: ../authconfig.py:118
-msgid "default LDAP base DN"
-msgstr "öntanımlı LDAP taban DN"
-
-#: ../authconfig.py:120
-#, fuzzy
-msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr "LDAP ile birlikte TLS kullanılsın"
-
-#: ../authconfig.py:122
-#, fuzzy
-msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr "LDAP ile TLS kullanılmasın"
-
-#: ../authconfig.py:124
-msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-
-#: ../authconfig.py:126
-msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-
-#: ../authconfig.py:127
-msgid "<URL>"
-msgstr "<URl>"
-
-#: ../authconfig.py:128
-msgid "load CA certificate from the URL"
-msgstr "URL'den CA sertifikası yükle"
-
-#: ../authconfig.py:131
-msgid "enable authentication with smart card by default"
-msgstr "kimlik denetimi öntanımlı olarak Akıllıkart ile yapılsın"
-
-#: ../authconfig.py:133
-msgid "disable authentication with smart card by default"
-msgstr "kimlik denetimleri öntanımlı olarak Akıllıkart ile yapılmasın"
-
-#: ../authconfig.py:135
-msgid "require smart card for authentication by default"
-msgstr "öntanımlı kimlik denetimi için Akıllıkart talep et"
-
-#: ../authconfig.py:137
-msgid "do not require smart card for authentication by default"
-msgstr "kimlik denetimi için öntanımlı olarak Akıllıkart talep edilmesin"
-
-#: ../authconfig.py:138
-msgid "<module>"
-msgstr "<modül>"
-
-#: ../authconfig.py:139
-msgid "default smart card module to use"
-msgstr "kullanım için öntanımlı Akıllıkart modülü"
-
-#: ../authconfig.py:142
-msgid "action to be taken on smart card removal"
-msgstr "smart kart çıkarılınca yapılacak işlem"
-
-#: ../authconfig.py:145
-#, fuzzy
-msgid "enable authentication with fingerprint readers by default"
-msgstr "kimlik denetimi öntanımlı olarak Akıllıkart ile yapılsın"
-
-#: ../authconfig.py:147
-#, fuzzy
-msgid "disable authentication with fingerprint readers by default"
-msgstr "kimlik denetimleri öntanımlı olarak Akıllıkart ile yapılmasın"
-
-#: ../authconfig.py:150
-msgid "enable automatic per-user ecryptfs"
-msgstr ""
-
-#: ../authconfig.py:152
-msgid "disable automatic per-user ecryptfs"
 msgstr ""
 
 #: ../authconfig.py:155
+msgid "<dn>"
+msgstr "<dn>"
+
+#: ../authconfig.py:156
+msgid "default LDAP base DN"
+msgstr "öntanımlı LDAP taban DN"
+
+#: ../authconfig.py:158
+msgid "enable use of TLS with LDAP (RFC-2830)"
+msgstr ""
+
+#: ../authconfig.py:160
+msgid "disable use of TLS with LDAP (RFC-2830)"
+msgstr ""
+
+#: ../authconfig.py:162
+msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
+msgstr ""
+
+#: ../authconfig.py:164
+msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
+msgstr ""
+
+#: ../authconfig.py:165
+msgid "<URL>"
+msgstr "<URl>"
+
+#: ../authconfig.py:166
+msgid "load CA certificate from the URL"
+msgstr "URL'den CA sertifikası yükle"
+
+#: ../authconfig.py:169
+msgid "enable authentication with smart card by default"
+msgstr "kimlik denetimi öntanımlı olarak Akıllıkart ile yapılsın"
+
+#: ../authconfig.py:171
+msgid "disable authentication with smart card by default"
+msgstr "kimlik denetimleri öntanımlı olarak Akıllıkart ile yapılmasın"
+
+#: ../authconfig.py:173
+msgid "require smart card for authentication by default"
+msgstr "öntanımlı kimlik denetimi için Akıllıkart talep et"
+
+#: ../authconfig.py:175
+msgid "do not require smart card for authentication by default"
+msgstr "kimlik denetimi için öntanımlı olarak Akıllıkart talep edilmesin"
+
+#: ../authconfig.py:176
+msgid "<module>"
+msgstr "<modül>"
+
+#: ../authconfig.py:177
+msgid "default smart card module to use"
+msgstr "kullanım için öntanımlı Akıllıkart modülü"
+
+#: ../authconfig.py:180
+msgid "action to be taken on smart card removal"
+msgstr "smart kart çıkarılınca yapılacak işlem"
+
+#: ../authconfig.py:183
+msgid "enable authentication with fingerprint readers by default"
+msgstr ""
+
+#: ../authconfig.py:185
+msgid "disable authentication with fingerprint readers by default"
+msgstr ""
+
+#: ../authconfig.py:188
+msgid "enable automatic per-user ecryptfs"
+msgstr ""
+
+#: ../authconfig.py:190
+msgid "disable automatic per-user ecryptfs"
+msgstr ""
+
+#: ../authconfig.py:193
 msgid "enable kerberos authentication by default"
 msgstr "öntanımlı olarak kerberos kimlik denetimi kullanılsın"
 
-#: ../authconfig.py:157
+#: ../authconfig.py:195
 msgid "disable kerberos authentication by default"
 msgstr "kerberos kimlik denetimi kullanılmasın"
 
-#: ../authconfig.py:159
+#: ../authconfig.py:197
 msgid "default kerberos KDC"
 msgstr "öntanımlı kerberos KDC"
 
-#: ../authconfig.py:161
+#: ../authconfig.py:199
 msgid "default kerberos admin server"
 msgstr "öntanımlı kerberos yönetim sunucusu"
 
-#: ../authconfig.py:162 ../authconfig.py:183
+#: ../authconfig.py:200 ../authconfig.py:221
 msgid "<realm>"
 msgstr "<bölge>"
 
-#: ../authconfig.py:163
+#: ../authconfig.py:201
 msgid "default kerberos realm"
 msgstr "öntanımlı kerberos bölgesi"
 
-#: ../authconfig.py:165
+#: ../authconfig.py:203
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "Kerberos KDC'lerini bulmak için DNS kullanımını seçilir kıl"
 
-#: ../authconfig.py:167
+#: ../authconfig.py:205
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "Kerberos·KDC'lerini·bulmak·için·DNS·kullanımını·seçilemez·kıl"
 
-#: ../authconfig.py:169
+#: ../authconfig.py:207
 msgid "enable use of DNS to find kerberos realms"
 msgstr "Kerberos alanlarını bulmak için DNS kullanımını seçilir kıl"
 
-#: ../authconfig.py:171
+#: ../authconfig.py:209
 msgid "disable use of DNS to find kerberos realms"
 msgstr "Kerberos·alanlarını·bulmak·için·DNS·kullanılmasın"
 
-#: ../authconfig.py:174
+#: ../authconfig.py:212
 msgid "enable winbind for user information by default"
 msgstr "öntanımlı olarak kullanıcı bilgisi için winbindauth kullanılsın"
 
-#: ../authconfig.py:176
+#: ../authconfig.py:214
 msgid "disable winbind for user information by default"
 msgstr "öntanımlı olarak kullanıcı bilgisi için winbindauth kullanılmasın"
 
-#: ../authconfig.py:178
+#: ../authconfig.py:216
 msgid "enable winbind for authentication by default"
 msgstr "kimlik denetimi için öntanımlı olarak winbind kullanılsın"
 
-#: ../authconfig.py:180
+#: ../authconfig.py:218
 msgid "disable winbind for authentication by default"
 msgstr "kimlik denetimi için öntanımlı olarak winbind kullanılmasın"
 
-#: ../authconfig.py:182
+#: ../authconfig.py:220
 msgid "security mode to use for samba and winbind"
 msgstr "Samba ve winbind için kullanılacak güvenlik modu."
 
-#: ../authconfig.py:184
+#: ../authconfig.py:222
 msgid "default realm for samba and winbind when security=ads"
 msgstr "güvenlik=ads iken samba ve winbind öntanımlı alanları."
 
-#: ../authconfig.py:185
+#: ../authconfig.py:223
 msgid "<servers>"
 msgstr "<sunucular>"
 
-#: ../authconfig.py:186
+#: ../authconfig.py:224
 msgid "names of servers to authenticate against"
 msgstr "kimlik denetimi sunucularının isimleri"
 
-#: ../authconfig.py:187
+#: ../authconfig.py:225
 msgid "<workgroup>"
 msgstr "<çalışmagrubu>"
 
-#: ../authconfig.py:188
+#: ../authconfig.py:226
 msgid "workgroup authentication servers are in"
 msgstr "çalışmagrubu kimlik denetimi sunucularının yeri"
 
-#: ../authconfig.py:189 ../authconfig.py:191
+#: ../authconfig.py:227 ../authconfig.py:229
 msgid "<lowest-highest>"
 msgstr "<en düşük-en yüksek>"
 
-#: ../authconfig.py:190
+#: ../authconfig.py:228
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "sunucu veya ads kullanıcılarına winbind'in atayacağı uid aralığı"
 
-#: ../authconfig.py:192
+#: ../authconfig.py:230
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "sunucu·veya·ads·kullanıcılarına·winbind'in·atayacağı·gid·aralığı"
 
-#: ../authconfig.py:194
+#: ../authconfig.py:232
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -272,27 +271,27 @@ msgstr ""
 "winbindusedefaultdomain yapılandırılmadığında, sunucu ve winbind'in "
 "yarattığı kullanıcı isimlerini ayırmak için kullanılacak karakter"
 
-#: ../authconfig.py:196
+#: ../authconfig.py:234
 msgid "the directory which winbind-created users will have as home directories"
 msgstr "winbind'in yarattığı kullanıcıların sahip olacağı başlangıç dizini"
 
-#: ../authconfig.py:198
+#: ../authconfig.py:236
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "winbind'in·yarattığı·kullanıcıların·sahip·olacağı ana grup"
 
-#: ../authconfig.py:200
+#: ../authconfig.py:238
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr ""
 "Kullanıcıların giriş kabuğu olarak kullanacağı winbind'in oluşturduğu "
 "kullanıcı kabuğu"
 
-#: ../authconfig.py:202
+#: ../authconfig.py:240
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr "alan·adı·olan·kullanıcı·isimlerinin·alan·kullanıcıları·olmadığını·varsayarakwinbind'i·yapılandırır"
 
-#: ../authconfig.py:204
+#: ../authconfig.py:242
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
@@ -300,212 +299,200 @@ msgstr ""
 "alan adı olmayan kullanıcı isimlerinin alan kullanıcıları olmadığını "
 "varsayarakwinbind'i yapılandırır"
 
-#: ../authconfig.py:206
+#: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
 msgstr ""
 
-#: ../authconfig.py:208
+#: ../authconfig.py:246
 msgid "configures winbind to prevent offline login"
 msgstr ""
 
-#: ../authconfig.py:210
+#: ../authconfig.py:248
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr ""
 "winbind alan adına veya ads bölgesine şu anki sistem yöneticisi olarak gir"
 
-#: ../authconfig.py:213
+#: ../authconfig.py:251
 msgid "enable wins for hostname resolution"
 msgstr "Makina ismi çözünürlüğü için wins'i yapılandır"
 
-#: ../authconfig.py:215
+#: ../authconfig.py:253
 msgid "disable wins for hostname resolution"
 msgstr "isim çözümlemesi için wins kullanma"
 
-#: ../authconfig.py:218
-#, fuzzy
+#: ../authconfig.py:256
 msgid "prefer dns over wins or nis for hostname resolution"
-msgstr "Makina ismi çözünürlüğü için wins'i yapılandır"
+msgstr ""
 
-#: ../authconfig.py:220
-#, fuzzy
+#: ../authconfig.py:258
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "Makina ismi çözünürlüğü için wins'i yapılandır"
+msgstr ""
 
-#: ../authconfig.py:223
+#: ../authconfig.py:261
 msgid "enable hesiod for user information by default"
 msgstr "kullanıcı bilgisi için hesiod kullanılsın"
 
-#: ../authconfig.py:225
+#: ../authconfig.py:263
 msgid "disable hesiod for user information by default"
 msgstr "kullanıcı bilgisi için hesiod kullanılmasın"
 
-#: ../authconfig.py:227
+#: ../authconfig.py:265
 msgid "default hesiod LHS"
 msgstr "öntanımlı hesiod LHS"
 
-#: ../authconfig.py:229
+#: ../authconfig.py:267
 msgid "default hesiod RHS"
 msgstr "öntanımlı hesiod RHS"
 
-#: ../authconfig.py:232
-#, fuzzy
+#: ../authconfig.py:270
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
-msgstr "kullanıcı bilgisi için öntanımlı olarak LDAP kullanılsın"
+msgstr ""
 
-#: ../authconfig.py:234
-#, fuzzy
+#: ../authconfig.py:272
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
-msgstr "kullanıcı bilgisi için öntanımlı olarak LDAP kullanılmasın"
+msgstr ""
 
-#: ../authconfig.py:236
-#, fuzzy
+#: ../authconfig.py:274
 msgid ""
 "enable SSSD for authentication by default with manually managed configuration"
-msgstr "öntanımlı kimlik denetimi için LDAP kullanılsın"
+msgstr ""
 
-#: ../authconfig.py:238
-#, fuzzy
+#: ../authconfig.py:276
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
-"configurations"
-msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
+"configurations)"
+msgstr ""
 
-#: ../authconfig.py:240
+#: ../authconfig.py:278
 msgid "never use SSSD implicitly even for supported configurations"
 msgstr ""
 
-#: ../authconfig.py:242
+#: ../authconfig.py:280
 msgid "use SSSD implicitly if it supports the configuration"
 msgstr ""
 
-#: ../authconfig.py:245
-#, fuzzy
+#: ../authconfig.py:283
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılsın"
+msgstr ""
 
-#: ../authconfig.py:247
-#, fuzzy
+#: ../authconfig.py:285
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "kullanıcı bilgisi öntanımlı olarak bellekte saklanmasın"
+msgstr ""
 
-#: ../authconfig.py:250
-#, fuzzy
+#: ../authconfig.py:288
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "öntanımlı olarak kullanıcı bilgisi önbelleklemesi kullanılsın"
+msgstr ""
 
-#: ../authconfig.py:252
+#: ../authconfig.py:290
 msgid "disable caching of user information by default"
 msgstr "kullanıcı bilgisi öntanımlı olarak bellekte saklanmasın"
 
-#: ../authconfig.py:255
+#: ../authconfig.py:293
 msgid "local authorization is sufficient for local users"
 msgstr "yerel kullanıcılar için yerel yetkilendirme yeterlidir"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:295
 msgid "authorize local users also through remote service"
 msgstr "yerel kullanıcıları uzak servis üzerinden de yetkilendir"
 
-#: ../authconfig.py:260
+#: ../authconfig.py:298
 msgid "check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:262
+#: ../authconfig.py:300
 msgid "do not check access.conf during account authorization"
 msgstr ""
 
-#: ../authconfig.py:265
+#: ../authconfig.py:303
 msgid "authenticate system accounts by network services"
 msgstr "sistem kullanıcılarının ağ hizmetleri üzerinden girişlerine izin ver"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:305
 msgid "authenticate system accounts by local files only"
 msgstr ""
 "sistem kullanıcılarının sadece yerel dosyalar üzerinden girişlerine izin ver"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:308
 msgid "create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:272
+#: ../authconfig.py:310
 msgid "do not create home directories for users on their first login"
 msgstr ""
 
-#: ../authconfig.py:275
+#: ../authconfig.py:313
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind, ncsd'yi çalıştırMa/durdurMa"
 
-#: ../authconfig.py:278
+#: ../authconfig.py:316
 msgid "do not update the configuration files, only print new settings"
 msgstr "konfigürasyon ayarlarını güncelleme,yalnızca yeni ayarları yazdır"
 
-#: ../authconfig.py:282
+#: ../authconfig.py:320
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "TUI'nin ana mesajında İptal yerine Geri göster"
 
-#: ../authconfig.py:284
+#: ../authconfig.py:322
 msgid "do not display the deprecated text user interface"
 msgstr "metin tipi kullanıcı arayüzü gösterme"
 
-#: ../authconfig.py:287
+#: ../authconfig.py:325
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--testin karşıtı, konfigurasyon dosyalarını değişe ayarla güncelle"
 
-#: ../authconfig.py:290
+#: ../authconfig.py:328
 msgid "update all configuration files"
 msgstr "bütün konfigürasyon dosyalarını güncelle"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:331
 msgid "probe network for defaults and print them"
 msgstr "öntanımlılar için ağı tara ve onları göster"
 
-#: ../authconfig.py:295 ../authconfig.py:298
-#, fuzzy
+#: ../authconfig.py:333 ../authconfig.py:336
 msgid "<name>"
-msgstr "<bölge>"
+msgstr ""
 
-#: ../authconfig.py:296
-#, fuzzy
+#: ../authconfig.py:334
 msgid "save a backup of all configuration files"
-msgstr "bütün konfigürasyon dosyalarını güncelle"
+msgstr ""
 
-#: ../authconfig.py:299
-#, fuzzy
+#: ../authconfig.py:337
 msgid "restore the backup of configuration files"
-msgstr "bütün konfigürasyon dosyalarını güncelle"
+msgstr ""
 
-#: ../authconfig.py:302
+#: ../authconfig.py:340
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:307
+#: ../authconfig.py:345
 msgid "unexpected argument"
 msgstr "beklenmeyen argüman"
 
-#: ../authconfig.py:437
+#: ../authconfig.py:475
 msgid "Bad smart card removal action specified."
 msgstr "Akıllıkart kaldırmak için kötü bir eylem belirtildi."
 
-#: ../authconfig.py:446
+#: ../authconfig.py:484
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:479
+#: ../authconfig.py:517
 msgid "can only be run as root"
 msgstr "sadece \"root\" kullanıcısı tarafından çalıştırılabilir"
 
-#: ../authconfig.py:495
+#: ../authconfig.py:533
 msgid "dialog was cancelled"
 msgstr "diyalog iptal edildi"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:461
+#: ../authconfig.py:565 ../authconfig-gtk.py:460
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -515,200 +502,199 @@ msgstr ""
 "%s dosyası bulunamadı, %s desteğinin doğru çalışması için gerekiyor. Lütfen "
 "bu dosyayı içeren %s paketini kurun."
 
-#: ../authconfig.py:529 ../authconfig.py:870
+#: ../authconfig.py:567 ../authconfig.py:908
 msgid "Warning"
 msgstr "Uyarı"
 
-#: ../authconfig.py:529 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:775
-#: ../authconfig.py:816 ../authconfig.py:870
+#: ../authconfig.py:567 ../authconfig.py:783 ../authconfig.py:790
+#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:813
+#: ../authconfig.py:854 ../authconfig.py:908
 msgid "Ok"
 msgstr "Tamam"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:571
 msgid "caching"
 msgstr "önbelleğe alma"
 
-#: ../authconfig.py:534
-#, fuzzy
+#: ../authconfig.py:572
 msgid "Fingerprint reader"
-msgstr "_Winbind Desteğini Yapılandır"
+msgstr ""
 
-#: ../authconfig.py:535
+#: ../authconfig.py:573
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:536
+#: ../authconfig.py:574
 msgid "LDAP authentication"
 msgstr "LDAP kimlik sınaması "
 
-#: ../authconfig.py:537 ../authconfig-gtk.py:100
+#: ../authconfig.py:575 ../authconfig-gtk.py:99
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:538 ../authconfig-gtk.py:106
+#: ../authconfig.py:576 ../authconfig-gtk.py:105
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:577
 msgid "shadow password"
 msgstr "shadow parolası"
 
-#: ../authconfig.py:540 ../authconfig.py:542 ../authconfig-gtk.py:109
+#: ../authconfig.py:578 ../authconfig.py:580 ../authconfig-gtk.py:108
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:541
+#: ../authconfig.py:579
 msgid "Winbind authentication"
 msgstr "Winbind kimlik denetimi "
 
-#: ../authconfig.py:547
+#: ../authconfig.py:585
 msgid "User Information"
 msgstr "Kullanıcı Bilgileri"
 
-#: ../authconfig.py:550
+#: ../authconfig.py:588
 msgid "Cache Information"
 msgstr "Önbellek Bilgisi"
 
-#: ../authconfig.py:553
+#: ../authconfig.py:591
 msgid "Use Hesiod"
 msgstr "Hesiod Kullan"
 
-#: ../authconfig.py:556
+#: ../authconfig.py:594
 msgid "Use LDAP"
 msgstr "LDAP Kullan"
 
-#: ../authconfig.py:559
+#: ../authconfig.py:597
 msgid "Use NIS"
 msgstr "NIS Kullan"
 
-#: ../authconfig.py:562
+#: ../authconfig.py:600
 msgid "Use Winbind"
 msgstr "Winbind Kullan"
 
-#: ../authconfig.py:568 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:606 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Kimlik Denetimi"
 
-#: ../authconfig.py:571
+#: ../authconfig.py:609
 msgid "Use MD5 Passwords"
 msgstr "MD5 Parolaları kullan"
 
-#: ../authconfig.py:574
+#: ../authconfig.py:612
 msgid "Use Shadow Passwords"
 msgstr "Shadow Parolaları Kullan"
 
-#: ../authconfig.py:577
+#: ../authconfig.py:615
 msgid "Use LDAP Authentication"
 msgstr "LDAP Kimlik Sınaması Kullan"
 
-#: ../authconfig.py:580
+#: ../authconfig.py:618
 msgid "Use Kerberos"
 msgstr "Kerberos Kullan"
 
-#: ../authconfig.py:583
+#: ../authconfig.py:621
 msgid "Use Fingerprint reader"
 msgstr ""
 
-#: ../authconfig.py:587
+#: ../authconfig.py:625
 msgid "Use Winbind Authentication"
 msgstr "Winbind Kimlik Denetimini Kullan"
 
-#: ../authconfig.py:590
+#: ../authconfig.py:628
 msgid "Local authorization is sufficient"
 msgstr "yerel yetkilendirme yeterlidir"
 
-#: ../authconfig.py:600 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:816
+#: ../authconfig.py:638 ../authconfig.py:783 ../authconfig.py:790
+#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:854
 msgid "Back"
 msgstr "Geri"
 
-#: ../authconfig.py:600 ../authconfig.py:775
+#: ../authconfig.py:638 ../authconfig.py:813
 msgid "Cancel"
 msgstr "İptal"
 
-#: ../authconfig.py:601 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:816
+#: ../authconfig.py:639 ../authconfig.py:783 ../authconfig.py:790
+#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:854
 msgid "Next"
 msgstr "Sonraki"
 
-#: ../authconfig.py:612 ../authconfig-gtk.py:677 ../authconfig.glade.h:15
+#: ../authconfig.py:650 ../authconfig-gtk.py:670 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "Kimlik Bilgisi Yapılandırması"
 
-#: ../authconfig.py:742
+#: ../authconfig.py:780
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:743
+#: ../authconfig.py:781
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:744
+#: ../authconfig.py:782
 msgid "Hesiod Settings"
 msgstr "Hesiod Ayarları"
 
-#: ../authconfig.py:748
+#: ../authconfig.py:786
 msgid "Use TLS"
 msgstr "TLS Kullan"
 
-#: ../authconfig.py:749 ../authconfig.py:756
+#: ../authconfig.py:787 ../authconfig.py:794
 msgid "Server:"
 msgstr "Sunucu:"
 
-#: ../authconfig.py:750
+#: ../authconfig.py:788
 msgid "Base DN:"
 msgstr "Taban DN:"
 
-#: ../authconfig.py:751
+#: ../authconfig.py:789
 msgid "LDAP Settings"
 msgstr "LDAP Ayarları"
 
-#: ../authconfig.py:755 ../authconfig.py:810 ../authconfig.glade.h:22
+#: ../authconfig.py:793 ../authconfig.py:848 ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "Alan:"
 
-#: ../authconfig.py:757
+#: ../authconfig.py:795
 msgid "NIS Settings"
 msgstr "NIS Ayarları"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:799
 msgid "Realm:"
 msgstr "Alan:"
 
-#: ../authconfig.py:762
+#: ../authconfig.py:800
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:763
+#: ../authconfig.py:801
 msgid "Admin Server:"
 msgstr "Yetkili Sunucu:"
 
-#: ../authconfig.py:764
+#: ../authconfig.py:802
 msgid "Use DNS to resolve hosts to realms"
 msgstr "Makinaları alanlardan ayırmak için DNS'i kullan"
 
-#: ../authconfig.py:765
+#: ../authconfig.py:803
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Alanlar için KDC'leri bulmak için DNS'i kullan"
 
-#: ../authconfig.py:766
+#: ../authconfig.py:804
 msgid "Kerberos Settings"
 msgstr "Kerberos Ayarları"
 
-#: ../authconfig.py:770
+#: ../authconfig.py:808
 msgid "Domain Administrator:"
 msgstr "Alan Adı Yetkilisi:"
 
-#: ../authconfig.py:771
+#: ../authconfig.py:809
 msgid "Password:"
 msgstr "Şifre:"
 
-#: ../authconfig.py:774
+#: ../authconfig.py:812
 msgid "Join Settings"
 msgstr "Ayarları Birleştir"
 
-#: ../authconfig.py:784 ../authconfig.glade.h:41
+#: ../authconfig.py:822 ../authconfig.glade.h:41
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -718,45 +704,45 @@ msgstr ""
 "gerekiyor.Yapmazsanız, alana birleşme denemeniz başarısız olabilir. "
 "Değişiklikleri saklayayım mı?"
 
-#: ../authconfig.py:791
+#: ../authconfig.py:829
 msgid "Save Settings"
 msgstr "Ayarları Kaydet"
 
-#: ../authconfig.py:792
+#: ../authconfig.py:830
 msgid "No"
 msgstr "Hayır"
 
-#: ../authconfig.py:792
+#: ../authconfig.py:830
 msgid "Yes"
 msgstr "Evet"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:809
+#: ../authconfig.py:847
 msgid "Security Model:"
 msgstr "Güvenlik Modeli:"
 
-#: ../authconfig.py:811
+#: ../authconfig.py:849
 msgid "Domain Controllers:"
 msgstr "Alan Adı Denetçileri:"
 
-#: ../authconfig.py:812
+#: ../authconfig.py:850
 msgid "ADS Realm:"
 msgstr "ADS Alanı:"
 
-#: ../authconfig.py:813
+#: ../authconfig.py:851
 msgid "Template Shell:"
 msgstr "Şablon Kabuğu:"
 
-#: ../authconfig.py:815
+#: ../authconfig.py:853
 msgid "Winbind Settings"
 msgstr "Winbind Ayarları"
 
-#: ../authconfig.py:817
+#: ../authconfig.py:855
 msgid "Join Domain"
 msgstr "Alanları Birleştir"
 
-#: ../authconfig.py:865
+#: ../authconfig.py:903
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -770,7 +756,7 @@ msgstr ""
 "Sonra Tamam'a basın."
 
 #. FIXME - version
-#: ../authconfig.py:879
+#: ../authconfig.py:917
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -782,40 +768,42 @@ msgid "Control how the system verifies users who attempt to log in"
 msgstr ""
 "Sisteme giriş yapmak isteyen kullanıcıların nasıl doğrulanacağını denetler"
 
-#: ../authconfig-gtk.py:97
+#: ../authconfig-gtk.py:63
+msgid ""
+"Unable to initialize graphical environment. Most likely cause of failure\n"
+"is that the tool was not run using a graphical environment. Please either\n"
+"start your graphical user interface or set your DISPLAY variable.\n"
+msgstr ""
+
+#: ../authconfig-gtk.py:96
 msgid "Local accounts only"
 msgstr ""
 
-#: ../authconfig-gtk.py:103
+#: ../authconfig-gtk.py:102
 msgid "FreeIPA"
 msgstr ""
 
-#: ../authconfig-gtk.py:118
-#, fuzzy
+#: ../authconfig-gtk.py:117
 msgid "Password"
-msgstr "Şifre:"
+msgstr ""
 
-#: ../authconfig-gtk.py:121
-#, fuzzy
+#: ../authconfig-gtk.py:120
 msgid "LDAP password"
-msgstr "Şifre:"
+msgstr ""
 
-#: ../authconfig-gtk.py:124
-#, fuzzy
+#: ../authconfig-gtk.py:123
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr ""
 
-#: ../authconfig-gtk.py:127
-#, fuzzy
+#: ../authconfig-gtk.py:126
 msgid "NIS password"
-msgstr "shadow parolası"
+msgstr ""
 
-#: ../authconfig-gtk.py:130
-#, fuzzy
+#: ../authconfig-gtk.py:129
 msgid "Winbind password"
-msgstr "shadow parolası"
+msgstr ""
 
-#: ../authconfig-gtk.py:445
+#: ../authconfig-gtk.py:444
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -825,19 +813,16 @@ msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Kimlik Bilgisi Yapılandırması"
+msgstr ""
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Kimlik Bilgisi Yapılandırması"
+msgstr ""
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Kimlik Bilgisi Yapılandırması"
+msgstr ""
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
@@ -859,9 +844,8 @@ msgid ""
 msgstr ""
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Yetkili Sunucu:"
+msgstr ""
 
 #: ../authconfig.glade.h:10
 msgid "Advanced _Options"
@@ -882,19 +866,16 @@ msgid "Allow offline _login"
 msgstr ""
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Kimlik Denetimi"
+msgstr ""
 
 #: ../authconfig.glade.h:16
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "Kart-Çıkarma _İşlemi"
+msgstr ""
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "Sertifika _URL"
+msgstr ""
 
 #: ../authconfig.glade.h:18
 msgid ""
@@ -911,36 +892,30 @@ msgid "Do_n't Save"
 msgstr "_Saklama"
 
 #: ../authconfig.glade.h:21
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Alan Adı Yetkilisi:"
+msgstr ""
 
 #: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
 msgstr "CA Sertifikası İndir"
 
 #: ../authconfig.glade.h:24
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "_Winbind Desteğini Yapılandır"
+msgstr ""
 
 #: ../authconfig.glade.h:25
 msgid "Enable _local access control"
 msgstr ""
 
 #: ../authconfig.glade.h:26
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "Akıllı_kart desteğini etkinleştir"
+msgstr ""
 
 #: ../authconfig.glade.h:27
-#, fuzzy
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
 msgstr ""
-"Smart Kart kimlik denetimi smart kart üstündeki sertifika ve anahtar "
-"kullanılarak oturum açmanızı sağlar"
 
 #: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
@@ -961,34 +936,28 @@ msgid "Joining Winbind Domain"
 msgstr "Winbind Alanını Birleştiriyor"
 
 #: ../authconfig.glade.h:32
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "LDAP Arama _Tabanı DN"
+msgstr ""
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "LDAP _Sunucu"
+msgstr ""
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "NIS _Alanı"
+msgstr ""
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "NIS _Sunucu"
+msgstr ""
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Alan:"
+msgstr ""
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "_Oturum açmak için Smart Kart gerekli"
+msgstr ""
 
 #: ../authconfig.glade.h:38
 msgid ""
@@ -997,9 +966,8 @@ msgid ""
 msgstr ""
 
 #: ../authconfig.glade.h:39
-#, fuzzy
 msgid "Revert"
-msgstr "Sunucu:"
+msgstr ""
 
 #: ../authconfig.glade.h:40
 msgid ""
@@ -1010,30 +978,23 @@ msgstr ""
 "kullanılarak oturum açmanızı sağlar"
 
 #: ../authconfig.glade.h:42
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Şablon Kabuğu:"
+msgstr ""
 
 #: ../authconfig.glade.h:43
-#, fuzzy
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
 msgstr ""
-"Bir LDAP sunucusuna doğru bir şekilde TLS kullanarak bağlanabilmek için, "
-"sunucunuzun sertifikasını imzalayan CA sertifikası gerekmektedir. "
-"Sertifikayı PEM biçeminde %s dizinine kopyalayınız.\n"
-"Sonra Tamam'a basın."
 
 #: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "Alanlar için KDC'leri bulmak için DNS'i kullan"
 
 #: ../authconfig.glade.h:45
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Makinaları alanlardan ayırmak için DNS'i kullan"
+msgstr ""
 
 #: ../authconfig.glade.h:46
 msgid ""
@@ -1052,277 +1013,64 @@ msgid ""
 msgstr ""
 
 #: ../authconfig.glade.h:49
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS _Alanları"
+msgstr ""
 
 #: ../authconfig.glade.h:50
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Winbind Alan _Denetleyicileri"
+msgstr ""
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "Winbind _Sunucusu"
+msgstr ""
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "CA Sertifikası İndir"
+msgstr ""
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "SMB Kimlik Sınaması Kullan"
+msgstr ""
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "Etki Alanını _Birleştir"
+msgstr ""
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDCs"
+msgstr ""
 
 #: ../authconfig.glade.h:56
 msgid "_Password Hashing Algorithm:"
 msgstr ""
 
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_Password:"
-msgstr "Şifre:"
+msgstr ""
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Güvenlik Modeli:"
+msgstr ""
 
 #: ../authconfig.glade.h:59
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:944 ../authinfo.py:1694 ../authinfo.py:2924
+#: ../authinfo.py:988 ../authinfo.py:1747 ../authinfo.py:2995
 msgid "Lock"
 msgstr "Kilitle"
 
-#: ../authinfo.py:944 ../authinfo.py:1696
+#: ../authinfo.py:988 ../authinfo.py:1749
 msgid "Ignore"
 msgstr "Görmezden gel"
 
-#: ../authinfo.py:3300
-#, fuzzy, python-format
+#: ../authinfo.py:3377
+#, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
-"Kimlik denetim modülü·%s/pam_%s.so·kayıp.·Kimlik denetim süreci düzgün "
-"çalışmayacak."
 
-#: ../authinfo.py:3809
+#: ../authinfo.py:3886
 msgid "Error downloading CA certificate"
 msgstr "CA sertifikasını indirmede hata"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "öntanımlı olarak SMB kimlik denetimi kullanılsın"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "öntanımlı kimlik denetimi için SMB kullanılmasın"
-
-#, fuzzy
-#~ msgid "Additional options for user information and authentication"
-#~ msgstr "kullanıcı bilgisi için hesiod kullanılmasın"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Seçenekler</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>Smart Kart</b>"
-
-#, fuzzy
-#~ msgid "A_uthentication"
-#~ msgstr "Kimlik Denetimi"
-
-#~ msgid "Cache User _Information"
-#~ msgstr "Kullanıcı Bilgisini _Önbellekle"
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "Hesiod'u _Yapılandır..."
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "Kerberos'u _Yapılandır..."
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "LDAP'ı _Yapılandır..."
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "NIS'i _Yapılandır..."
-
-#, fuzzy
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "Akıllıka_rt'ı Yapılandır..."
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Win_bind'i Yapılandır..."
-
-#~ msgid "Domain"
-#~ msgstr "Alan"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "Alan Adı _Yetkilisi"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "_Hesiod Desteğini Etkinleştir"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "_Kerberos Desteğini Etkinleştir"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "_LDAP Desteğini Etkinleştir"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "_NIS Desteğini Etkinleştir"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "_Winbind Desteğini Yapılandır"
-
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "Kullanıcı bilgileri /etc/passwd dosyasında tutuluyorsa sistem LDAP veya "
-#~ "Kerberos gibi ağ üzerinden yetkilendirme sistemlerini kontrol etmeyecektir"
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod _LHS"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod _RHS"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Hesiod, DNS'deki kullanıcı ve grup bilgilerini yayınlamakta kullanılır. "
-#~ "Bazan çok büyük ağlarda da kullanılabilmektedir."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Kerberos, orta ve geniş büyüklükteki ağlarda kullanılan güvenli bir "
-#~ "kimlik sınama sistemidir."
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "NIS Alan Adı Bilgilendirme Hizmetidir.  Çoğunlukla küçük ve orta "
-#~ "büyüklükteki ağlarda kullanılmaktadır."
-
-#, fuzzy
-#~ msgid "Op_tions"
-#~ msgstr "Seçenekler"
-
-#~ msgid "SMB Settings"
-#~ msgstr "SMB Ayarları"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "Akıllıkart Ayarları"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Hafif Dizin Erişim Protokolü, yapısal bir hiyerarşi içinde çeşitli "
-#~ "bilgilerin tutulduğu bir dizinde arama için standart bir yöntemdir. LDAP "
-#~ "küçük büyük her türlü ağ tarafından giderek artan bir yoğunlukta "
-#~ "kullanılmaktadır."
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "Makinaları alanlara çözümlemek için DNS'i kullan"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "_Gölge Parolalar Kullanılsın"
-
-#, fuzzy
-#~ msgid "User Infor_mation"
-#~ msgstr "Kullanıcı Bilgileri"
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "Eğer açılırsa LDAP veya Kerberos gibi ağ servisleri üzerinden "
-#~ "yetkilendirmeye imkan tanır. root da buradan yetkilenebilir."
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Winbind NTDOM veya ADS sunucularında saklanan bilgileri kullanarak "
-#~ "sistemin kullanıcılar hakkındaki bilgilere ulaşmasına ve girişine izin "
-#~ "verir.  Küçükten büyüğe her ağda kullanılır."
-
-#~ msgid "_Admin Servers"
-#~ msgstr "_Yönetim Sunucuları"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr ""
-#~ "Sistem kullanıcılarının ağ hizmetleri üzerinden girişlerine _izin ver"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "Alan Adı _Denetçileri"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr "Yerel kimlik denetimi yerel kullanıcılar için yeterlidir"
-
-#~ msgid "_Password"
-#~ msgstr "Ş_ifre"
-
-#~ msgid "_Realm"
-#~ msgstr "_Alan"
-
-#~ msgid "_Security Model"
-#~ msgstr "_Güvenlik Modeli"
-
-#~ msgid "_Template Shell"
-#~ msgstr "Şablon _Kabuğu"
-
-#~ msgid "_Workgroup"
-#~ msgstr "Çalışma _Grubu"
-
-#~ msgid "SMB authentication"
-#~ msgstr "SMB kimlik sınaması"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Çalışmagrubu:"
-
-#~ msgid "Servers:"
-#~ msgstr "Sunucular:"
-
-#~ msgid "Shell:"
-#~ msgstr "Kabuk:"
-
-#~ msgid "Con_figure SMB..."
-#~ msgstr "SMB'yi _Yapılandır"
-
-#~ msgid "Enable SMB S_upport"
-#~ msgstr "_SMB Desteği Etkinleştirilsin"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "SMB Kimlik Sınaması, SMB (sistem ileti bloğu) protokolu kullanan bir "
-#~ "sunucuya bağlanmaya çalışarak kullanıcı parolalarını doğrular."
-
-#~ msgid "LDAP CA Certificate Check"
-#~ msgstr "LDAP CA Sertifika Kontrolü"
-
-#~ msgid "Use _MD5 Passwords"
-#~ msgstr "_MD5 Parolalar Kullanılsın"

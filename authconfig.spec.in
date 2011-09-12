@@ -124,6 +124,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Mon Sep 12 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.16-1
+- fix broken --help output for languages without spaces (#734355)
+- enable translation of the --help option description (#734303)
+- updated translations from Transifex
+
 * Fri Jul 22 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.15-1
 - add support for reading UID_MIN from login.defs (#717112)
 - use systemctl if available instead of chkconfig/service (#696490)

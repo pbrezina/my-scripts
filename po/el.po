@@ -1,267 +1,269 @@
-# translation of authconfig.tip.po to Greek Fedora team
-# Greek translation of authconfig.
-# Copyright (C) 2002, 2006, 2007, 2008 Free Software Foundation, Inc.
-# Simos Xenitellis <simos@hellug.gr>, 2002.
-# simos: 93 messages, 26Oct2002, initial translation.
-# Dimitris Glezos <dimitris@glezos.com>, 2006, 2007, 2008, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
 # Dimitrios Michelinakis <dimitris@michelinakis.gr>, 2006.
-#
-#
+# Dimitris Glezos <dimitris@glezos.com>, 2006, 2007, 2008, 2009.
+# Dimitris Glezos <glezos@indifex.com>, 2011.
+# Simos Xenitellis <simos@hellug.gr>, 2002.
 msgid ""
 msgstr ""
-"Project-Id-Version: authconfig.tip\n"
+"Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-08 21:38+0100\n"
-"PO-Revision-Date: 2009-11-01 13:02+0200\n"
-"Last-Translator: \n"
-"Language-Team: Greek Fedora team <fedora-trans-el@redhat.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2011-09-12 21:24+0200\n"
+"PO-Revision-Date: 2011-09-07 13:00+0000\n"
+"Last-Translator: tmraz <tmraz@fedoraproject.org>\n"
+"Language-Team: Greek <trans-el@lists.fedoraproject.org>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Greek\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: ../authconfig.py:80
+#: ../authconfig.py:116
 #, python-format
 msgid "usage: %s [options]"
 msgstr "χρήση: %s [επιλογές]"
 
-#: ../authconfig.py:87
+#: ../authconfig.py:122
+msgid "show this help message and exit"
+msgstr ""
+
+#: ../authconfig.py:125
 msgid "enable shadowed passwords by default"
 msgstr "ενεργοποίηση κωδικών shadow από προεπιλογή"
 
-#: ../authconfig.py:89
+#: ../authconfig.py:127
 msgid "disable shadowed passwords by default"
 msgstr "απενεργοποίηση κωδικών shadow από προεπιλογή"
 
-#: ../authconfig.py:91
+#: ../authconfig.py:129
 msgid "enable MD5 passwords by default"
 msgstr "ενεργοποίηση κωδικών MD5 από προεπιλογή"
 
-#: ../authconfig.py:93
+#: ../authconfig.py:131
 msgid "disable MD5 passwords by default"
 msgstr "απενεργοποίηση κωδικών MD5 από προεπιλογή"
 
-#: ../authconfig.py:96
+#: ../authconfig.py:134
 msgid "hash/crypt algorithm for new passwords"
 msgstr "αλγόριθμος hash/crypt για νέα συνθηματικά"
 
-#: ../authconfig.py:99
+#: ../authconfig.py:137
 msgid "enable NIS for user information by default"
 msgstr "ενεργοποίηση NIS για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:101
+#: ../authconfig.py:139
 msgid "disable NIS for user information by default"
 msgstr "απενεργοποίηση NIS για πληροφορίες χρήστη από προεπιλογή"
 
-#
-#: ../authconfig.py:102
+#: ../authconfig.py:140
 msgid "<domain>"
 msgstr "<τομέας>"
 
-#: ../authconfig.py:103
+#: ../authconfig.py:141
 msgid "default NIS domain"
 msgstr "προεπιλεγμένος τομέας NIS"
 
-#: ../authconfig.py:104 ../authconfig.py:115 ../authconfig.py:158
-#: ../authconfig.py:160
+#: ../authconfig.py:142 ../authconfig.py:153 ../authconfig.py:196
+#: ../authconfig.py:198
 msgid "<server>"
 msgstr "<εξυπηρετητής>"
 
-#: ../authconfig.py:105
+#: ../authconfig.py:143
 msgid "default NIS server"
 msgstr "προεπιλεγμένος εξυπηρετητής NIS"
 
-#: ../authconfig.py:108
+#: ../authconfig.py:146
 msgid "enable LDAP for user information by default"
 msgstr "ενεργοποίηση LDAP για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:110
+#: ../authconfig.py:148
 msgid "disable LDAP for user information by default"
 msgstr "απενεργοποίηση LDAP για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:112
+#: ../authconfig.py:150
 msgid "enable LDAP for authentication by default"
 msgstr "ενεργοποίηση LDAP για πιστοποίηση από προεπιλογή"
 
-#: ../authconfig.py:114
+#: ../authconfig.py:152
 msgid "disable LDAP for authentication by default"
 msgstr "απενεργοποίηση LDAP για πιστοποίηση από προεπιλογή"
 
-#: ../authconfig.py:116
+#: ../authconfig.py:154
 msgid "default LDAP server hostname or URI"
 msgstr "προεπιλεγμένος εξυπηρετητής LDAP ή URI"
 
-#: ../authconfig.py:117
+#: ../authconfig.py:155
 msgid "<dn>"
 msgstr "<dn>"
 
-#: ../authconfig.py:118
+#: ../authconfig.py:156
 msgid "default LDAP base DN"
 msgstr "προεπιλεγμένη βάση DN του LDAP"
 
-#: ../authconfig.py:120
+#: ../authconfig.py:158
 msgid "enable use of TLS with LDAP (RFC-2830)"
 msgstr "ενεργοποίηση χρήσης TLS με LDAP (RFC-2830)"
 
-#: ../authconfig.py:122
+#: ../authconfig.py:160
 msgid "disable use of TLS with LDAP (RFC-2830)"
 msgstr "απενεργοποίηση χρήσης TLS με LDAP (RFC-2830)"
 
-#: ../authconfig.py:124
+#: ../authconfig.py:162
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
 
-#: ../authconfig.py:126
+#: ../authconfig.py:164
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
 
-#: ../authconfig.py:127
+#: ../authconfig.py:165
 msgid "<URL>"
 msgstr "<URL>"
 
-#: ../authconfig.py:128
+#: ../authconfig.py:166
 msgid "load CA certificate from the URL"
 msgstr "φόρτωση πιστοποιητικού CA από URL"
 
-#: ../authconfig.py:131
+#: ../authconfig.py:169
 msgid "enable authentication with smart card by default"
 msgstr "ενεργοποίηση πιστοποίησης με έξυπνη κάρτα από προεπιλογή"
 
-#: ../authconfig.py:133
+#: ../authconfig.py:171
 msgid "disable authentication with smart card by default"
 msgstr "απενεργοποίηση πιστοποίησης με έξυπνη κάρτα από προεπιλογή"
 
-#: ../authconfig.py:135
+#: ../authconfig.py:173
 msgid "require smart card for authentication by default"
 msgstr "απαίτηση έξυπνης κάρτας για πιστοποίηση από προεπιλογή"
 
-#: ../authconfig.py:137
+#: ../authconfig.py:175
 msgid "do not require smart card for authentication by default"
 msgstr "μη απαίτηση έξυπνης κάρτας για πιστοποίηση από προεπιλογή"
 
-#: ../authconfig.py:138
+#: ../authconfig.py:176
 msgid "<module>"
 msgstr "<άρθρωμα>"
 
-#: ../authconfig.py:139
+#: ../authconfig.py:177
 msgid "default smart card module to use"
 msgstr "προεπιλεγμένο άρθρωμα έξυπνης κάρτας για χρήση"
 
-#: ../authconfig.py:142
+#: ../authconfig.py:180
 msgid "action to be taken on smart card removal"
 msgstr "εκτελούμενη ενέργεια κατά την αφαίρεση της έξυπνης κάρτας"
 
-#: ../authconfig.py:145
+#: ../authconfig.py:183
 msgid "enable authentication with fingerprint readers by default"
 msgstr "ενεργοποίηση πιστοποίησης με αναγνώστες αποτυπωμάτων από προεπιλογή"
 
-#: ../authconfig.py:147
+#: ../authconfig.py:185
 msgid "disable authentication with fingerprint readers by default"
 msgstr "απενεργοποίηση πιστοποίησης με αναγνώστες αποτυπωμάτων από προεπιλογή"
 
-#: ../authconfig.py:150
+#: ../authconfig.py:188
 msgid "enable automatic per-user ecryptfs"
 msgstr ""
 
-#: ../authconfig.py:152
+#: ../authconfig.py:190
 msgid "disable automatic per-user ecryptfs"
 msgstr ""
 
-#: ../authconfig.py:155
+#: ../authconfig.py:193
 msgid "enable kerberos authentication by default"
 msgstr "ενεργοποίηση πιστοποίησης kerberos από προεπιλογή"
 
-#: ../authconfig.py:157
+#: ../authconfig.py:195
 msgid "disable kerberos authentication by default"
 msgstr "απενεργοποίηση πιστοποίησης kerberos από προεπιλογή"
 
-#: ../authconfig.py:159
+#: ../authconfig.py:197
 msgid "default kerberos KDC"
 msgstr "προεπιλεγμένο KDC για kerberos"
 
-#: ../authconfig.py:161
+#: ../authconfig.py:199
 msgid "default kerberos admin server"
 msgstr "προεπιλεγμένος εξυπηρετητής διαχείρισης για kerberos"
 
-#: ../authconfig.py:162 ../authconfig.py:183
+#: ../authconfig.py:200 ../authconfig.py:221
 msgid "<realm>"
 msgstr "<περιοχή>"
 
-#: ../authconfig.py:163
+#: ../authconfig.py:201
 msgid "default kerberos realm"
 msgstr "προεπιλεγμένη περιοχή για kerberos"
 
-#: ../authconfig.py:165
+#: ../authconfig.py:203
 msgid "enable use of DNS to find kerberos KDCs"
 msgstr "ενεργοποίηση χρήσης DNS για εύρεση KDCs για kerberos"
 
-#: ../authconfig.py:167
+#: ../authconfig.py:205
 msgid "disable use of DNS to find kerberos KDCs"
 msgstr "απενεργοποίηση χρήσης DNS για εύρεση KDCs για kerberos"
 
-#: ../authconfig.py:169
+#: ../authconfig.py:207
 msgid "enable use of DNS to find kerberos realms"
 msgstr "ενεργοποίηση χρήσης DNS για εύρεση περιοχών για kerberos"
 
-#: ../authconfig.py:171
+#: ../authconfig.py:209
 msgid "disable use of DNS to find kerberos realms"
 msgstr "απενεργοποίηση χρήσης DNS για εύρεση περιοχών για kerberos"
 
-#: ../authconfig.py:174
+#: ../authconfig.py:212
 msgid "enable winbind for user information by default"
 msgstr "ενεργοποίηση winbind για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:176
+#: ../authconfig.py:214
 msgid "disable winbind for user information by default"
 msgstr "απενεργοποίηση winbind για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:178
+#: ../authconfig.py:216
 msgid "enable winbind for authentication by default"
 msgstr "ενεργοποίηση winbind για πιστοποίηση από προεπιλογή"
 
-#: ../authconfig.py:180
+#: ../authconfig.py:218
 msgid "disable winbind for authentication by default"
 msgstr "απενεργοποίηση winbind για πιστοποίηση από προεπιλογή"
 
-#: ../authconfig.py:182
+#: ../authconfig.py:220
 msgid "security mode to use for samba and winbind"
 msgstr "λειτουργία ασφάλειας για χρήση σε samba και winbind"
 
-#: ../authconfig.py:184
+#: ../authconfig.py:222
 msgid "default realm for samba and winbind when security=ads"
 msgstr "προεπιλεγμένη περιοχή για samba και winbind όταν security=ads"
 
-#: ../authconfig.py:185
+#: ../authconfig.py:223
 msgid "<servers>"
 msgstr "<εξυπηρετητές>"
 
-#: ../authconfig.py:186
+#: ../authconfig.py:224
 msgid "names of servers to authenticate against"
 msgstr "ονόματα εξυπηρετητών για παροχή πιστοποίησης"
 
-#: ../authconfig.py:187
+#: ../authconfig.py:225
 msgid "<workgroup>"
 msgstr "<ομάδα εργασίας>"
 
-#: ../authconfig.py:188
+#: ../authconfig.py:226
 msgid "workgroup authentication servers are in"
 msgstr "οι εξυπηρετητές πιστοποίησης ομάδας εργασίας βρίσκονται σε"
 
-#: ../authconfig.py:189 ../authconfig.py:191
+#: ../authconfig.py:227 ../authconfig.py:229
 msgid "<lowest-highest>"
 msgstr "<χαμηλότερο-ψηλότερο>"
 
-#: ../authconfig.py:190
+#: ../authconfig.py:228
 msgid "uid range winbind will assign to domain or ads users"
 msgstr "εύρος uid το οποίο το winbind θα αναθέσει σε τομείς ή χρήστες ads"
 
-#: ../authconfig.py:192
+#: ../authconfig.py:230
 msgid "gid range winbind will assign to domain or ads users"
 msgstr "εύρος gid το οποίο το winbind θα αναθέσει σε τομείς ή χρήστες ads"
 
-#: ../authconfig.py:194
+#: ../authconfig.py:232
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
@@ -270,20 +272,20 @@ msgstr ""
 "του χρήστη των ονομάτων χρήστη που δημιούργησε το winbind, αν δεν έχει "
 "ενεργοποιηθεί το winbindusedefaultdomain"
 
-#: ../authconfig.py:196
+#: ../authconfig.py:234
 msgid "the directory which winbind-created users will have as home directories"
 msgstr ""
 "ο κατάλογος τον οποίο οι winbind χρήστες θα έχουν ως αρχικό κατάλογο τους"
 
-#: ../authconfig.py:198
+#: ../authconfig.py:236
 msgid "the group which winbind-created users will have as their primary group"
 msgstr "η ομάδα την οποία οι winbind χρήστες θα έχουν ως πρωτεύουσα ομάδα τυος"
 
-#: ../authconfig.py:200
+#: ../authconfig.py:238
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr "ο φλοιός τον οποίο οι winbind χρήστες θα έχουν ως φλοιό σύνδεσης της"
 
-#: ../authconfig.py:202
+#: ../authconfig.py:240
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
@@ -291,7 +293,7 @@ msgstr ""
 "ρυθμίζει το winbind να υποθέτει ότι οι χρήστες χωρίς τομέα στο όνομα χρήστη "
 "είναι χρήστες τομέα"
 
-#: ../authconfig.py:204
+#: ../authconfig.py:242
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
@@ -299,183 +301,176 @@ msgstr ""
 "ρυθμίζει το winbind να υποθέτει ότι οι χρήστες χωρίς τομέα στο όνομα χρήστη "
 "δεν είναι χρήστες τομέα"
 
-#: ../authconfig.py:206
+#: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
 msgstr "ρυθμίζει το winbind ώστε να επιτρέπονται offline συνδέσεις"
 
-#: ../authconfig.py:208
+#: ../authconfig.py:246
 msgid "configures winbind to prevent offline login"
 msgstr "ρυθμίζει το winbind ώστε να μην επιτρέπονται offline συνδέσεις"
 
-#: ../authconfig.py:210
+#: ../authconfig.py:248
 msgid "join the winbind domain or ads realm now as this administrator"
 msgstr ""
 "σύνδεση τώρα στον τομέα winbind ή στο ads realm σαν αυτός ο διαχειριστής"
 
-#: ../authconfig.py:213
+#: ../authconfig.py:251
 msgid "enable wins for hostname resolution"
 msgstr "ενεργοποίηση wins για ανάλυση ονόματος συστήματος"
 
-#: ../authconfig.py:215
+#: ../authconfig.py:253
 msgid "disable wins for hostname resolution"
 msgstr "απενεργοποίηση wins για ανάλυση ονόματος συστήματος"
 
-#: ../authconfig.py:218
+#: ../authconfig.py:256
 msgid "prefer dns over wins or nis for hostname resolution"
 msgstr "προτίμηση wins αντί wins για ανάλυση ονόματος συστήματος"
 
-#: ../authconfig.py:220
+#: ../authconfig.py:258
 msgid "do not prefer dns over wins or nis for hostname resolution"
 msgstr "να μη γίνει προτίμηση wins για ανάλυση ονόματος συστήματος"
 
-#: ../authconfig.py:223
+#: ../authconfig.py:261
 msgid "enable hesiod for user information by default"
 msgstr "ενεργοποίηση hesiod για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:225
+#: ../authconfig.py:263
 msgid "disable hesiod for user information by default"
 msgstr "απενεργοποίηση hesiod για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:227
+#: ../authconfig.py:265
 msgid "default hesiod LHS"
 msgstr "προεπιλεγμένο hesiod LHS"
 
-#: ../authconfig.py:229
+#: ../authconfig.py:267
 msgid "default hesiod RHS"
 msgstr "προεπιλεγμένο hesiod RHS"
 
-#: ../authconfig.py:232
-#, fuzzy
+#: ../authconfig.py:270
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
-msgstr "ενεργοποίηση NIS για πληροφορίες χρήστη από προεπιλογή"
+msgstr ""
 
-#: ../authconfig.py:234
-#, fuzzy
+#: ../authconfig.py:272
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
-msgstr "απενεργοποίηση NIS για πληροφορίες χρήστη από προεπιλογή"
+msgstr ""
 
-#: ../authconfig.py:236
-#, fuzzy
+#: ../authconfig.py:274
 msgid ""
 "enable SSSD for authentication by default with manually managed configuration"
-msgstr "ενεργοποίηση LDAP για πιστοποίηση από προεπιλογή"
+msgstr ""
 
-#: ../authconfig.py:238
-#, fuzzy
+#: ../authconfig.py:276
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
-"configurations"
-msgstr "απενεργοποίηση LDAP για πιστοποίηση από προεπιλογή"
+"configurations)"
+msgstr ""
 
-#: ../authconfig.py:240
+#: ../authconfig.py:278
 msgid "never use SSSD implicitly even for supported configurations"
 msgstr ""
 
-#: ../authconfig.py:242
+#: ../authconfig.py:280
 msgid "use SSSD implicitly if it supports the configuration"
 msgstr ""
 
-#: ../authconfig.py:245
-#, fuzzy
+#: ../authconfig.py:283
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "ενεργοποίηση caching για πληροφορίες χρήστη από προεπιλογή"
+msgstr ""
 
-#: ../authconfig.py:247
-#, fuzzy
+#: ../authconfig.py:285
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "απενεργοποίηση caching για πληροφορίες χρήστη από προεπιλογή"
+msgstr ""
 
-#: ../authconfig.py:250
-#, fuzzy
+#: ../authconfig.py:288
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "ενεργοποίηση caching για πληροφορίες χρήστη από προεπιλογή"
+msgstr ""
 
-#: ../authconfig.py:252
+#: ../authconfig.py:290
 msgid "disable caching of user information by default"
 msgstr "απενεργοποίηση caching για πληροφορίες χρήστη από προεπιλογή"
 
-#: ../authconfig.py:255
+#: ../authconfig.py:293
 msgid "local authorization is sufficient for local users"
 msgstr "Η τοπική πιστοποίηση επαρκεί για τους τοπικούς χρήστες"
 
-#: ../authconfig.py:257
+#: ../authconfig.py:295
 msgid "authorize local users also through remote service"
 msgstr "επίτρεψη τοπικών χρηστών επίσης μέσω απομακρυσμένης υπηρεσίας"
 
-#: ../authconfig.py:260
+#: ../authconfig.py:298
 msgid "check access.conf during account authorization"
 msgstr "έλεγχος του access.conf κατά την πιστοποίηση λογαριασμού"
 
-#: ../authconfig.py:262
+#: ../authconfig.py:300
 msgid "do not check access.conf during account authorization"
 msgstr "να μη γίνει έλεγχος του access.conf κατά την πιστοποίηση λογαριασμού"
 
-#: ../authconfig.py:265
+#: ../authconfig.py:303
 msgid "authenticate system accounts by network services"
 msgstr "πιστοποίηση λογαριασμών συστήματος μέσω δικτυακών υπηρεσιών"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:305
 msgid "authenticate system accounts by local files only"
 msgstr "πιστοποίηση λογαριασμών συστήματος μέσω τοπικών αρχείων μόνο"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:308
 msgid "create home directories for users on their first login"
 msgstr ""
 "δημιουργία αρχικών προσωπικών καταλόγων για χρήστες στην πρώτη τους σύνδεση"
 
-#: ../authconfig.py:272
+#: ../authconfig.py:310
 msgid "do not create home directories for users on their first login"
 msgstr ""
 "να μη γίνει δημιουργία αρχικών καταλόγων για χρήστες στην πρώτη τους σύνδεση"
 
-#: ../authconfig.py:275
+#: ../authconfig.py:313
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "να μη γίνει έναρξη/διακοπή των portmap, ypbind, και nscd"
 
-#: ../authconfig.py:278
+#: ../authconfig.py:316
 msgid "do not update the configuration files, only print new settings"
 msgstr "να μη γίνει ανανέωση αρχείων ρυθμίσεων, μόνο εκτύπωση νέων ρυθμίσεων"
 
-#: ../authconfig.py:282
+#: ../authconfig.py:320
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "εμφάνιση Πίσω αντί Ακύρωσης στον κύριο διάλογο του TUI"
 
-#: ../authconfig.py:284
+#: ../authconfig.py:322
 msgid "do not display the deprecated text user interface"
 msgstr "απόκρυψη παρωχημένης διεπαφής κειμένου χρήστη"
 
-#: ../authconfig.py:287
+#: ../authconfig.py:325
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "αντίθετο του --test, ενημέρωση αρχείων ρύθμισης με αλλαγμένες ρυθμίσεις"
 
-#: ../authconfig.py:290
+#: ../authconfig.py:328
 msgid "update all configuration files"
 msgstr "ενημέρωση όλων των αρχείων ρυθμίσεων"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:331
 msgid "probe network for defaults and print them"
 msgstr "αναζήτηση στο δίκτυο για προεπιλογές και εκτύπωση αυτών"
 
-#: ../authconfig.py:295 ../authconfig.py:298
+#: ../authconfig.py:333 ../authconfig.py:336
 msgid "<name>"
 msgstr "<όνομα>"
 
-#: ../authconfig.py:296
+#: ../authconfig.py:334
 msgid "save a backup of all configuration files"
 msgstr "αποθήκευση αντιγράφων ασφαλείας για όλα τα αρχεία ρυθμίσεων"
 
-#: ../authconfig.py:299
+#: ../authconfig.py:337
 msgid "restore the backup of configuration files"
 msgstr "ανάκτηση των αντιγράφων ασφαλείας για τα αρχεία ρυθμίσεων"
 
-#: ../authconfig.py:302
+#: ../authconfig.py:340
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
@@ -483,28 +478,28 @@ msgstr ""
 "ανάκτηση των αντιγράφων ασφαλείας για τα αρχεία ρυθμίσεων που αποθηκεύτηκαν "
 "πριν την προηγούμενη αλλαγή ρυθμίσεων"
 
-#: ../authconfig.py:307
+#: ../authconfig.py:345
 msgid "unexpected argument"
 msgstr "απροσδόκητο όρισμα"
 
-#: ../authconfig.py:437
+#: ../authconfig.py:475
 msgid "Bad smart card removal action specified."
 msgstr "Ορίστηκε μη έγκυρη ενέργεια αφαίρεσης smart card."
 
-#: ../authconfig.py:446
+#: ../authconfig.py:484
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 "Ορίστηκε άγνωστος αλγόριθμος hashing για συνθηματικά, γίνεται χρήση sha256."
 
-#: ../authconfig.py:479
+#: ../authconfig.py:517
 msgid "can only be run as root"
 msgstr "μπορεί να εκτελεστεί μόνο σαν υπερχρήστης"
 
-#: ../authconfig.py:495
+#: ../authconfig.py:533
 msgid "dialog was cancelled"
 msgstr "ο διάλογος ακυρώθηκε"
 
-#: ../authconfig.py:527 ../authconfig-gtk.py:461
+#: ../authconfig.py:565 ../authconfig-gtk.py:460
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -515,202 +510,199 @@ msgstr ""
 "λειτουργεί κανονικά.\n"
 "Εγκαταστήστε το πακέτο %s, το οποίο παρέχει αυτό το αρχείο."
 
-#: ../authconfig.py:529 ../authconfig.py:870
+#: ../authconfig.py:567 ../authconfig.py:908
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: ../authconfig.py:529 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:775
-#: ../authconfig.py:816 ../authconfig.py:870
+#: ../authconfig.py:567 ../authconfig.py:783 ../authconfig.py:790
+#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:813
+#: ../authconfig.py:854 ../authconfig.py:908
 msgid "Ok"
 msgstr "Εντάξει"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:571
 msgid "caching"
 msgstr "caching"
 
-#: ../authconfig.py:534
+#: ../authconfig.py:572
 msgid "Fingerprint reader"
 msgstr "Αναγνώστης αποτυπωμάτων"
 
-#: ../authconfig.py:535
+#: ../authconfig.py:573
 msgid "Kerberos"
 msgstr "Kerberos"
 
-#: ../authconfig.py:536
+#: ../authconfig.py:574
 msgid "LDAP authentication"
 msgstr "Πιστοποίηση LDAP "
 
-#: ../authconfig.py:537 ../authconfig-gtk.py:100
+#: ../authconfig.py:575 ../authconfig-gtk.py:99
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:538 ../authconfig-gtk.py:106
+#: ../authconfig.py:576 ../authconfig-gtk.py:105
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:539
+#: ../authconfig.py:577
 msgid "shadow password"
 msgstr "κωδικός shadow"
 
-#: ../authconfig.py:540 ../authconfig.py:542 ../authconfig-gtk.py:109
+#: ../authconfig.py:578 ../authconfig.py:580 ../authconfig-gtk.py:108
 msgid "Winbind"
 msgstr "Winbind"
 
-#: ../authconfig.py:541
+#: ../authconfig.py:579
 msgid "Winbind authentication"
 msgstr "Πιστοποίηση Winbind"
 
-#: ../authconfig.py:547
+#: ../authconfig.py:585
 msgid "User Information"
 msgstr "Πληροφορίες χρήστη"
 
-#: ../authconfig.py:550
+#: ../authconfig.py:588
 msgid "Cache Information"
 msgstr "Πληροφορίες λανθάνουσας μνήμης"
 
-#: ../authconfig.py:553
+#: ../authconfig.py:591
 msgid "Use Hesiod"
 msgstr "Χρήση Hesiod"
 
-# sysdeps/names/procuid.c:57
-#: ../authconfig.py:556
+#: ../authconfig.py:594
 msgid "Use LDAP"
 msgstr "Χρήση LDAP"
 
-#: ../authconfig.py:559
+#: ../authconfig.py:597
 msgid "Use NIS"
 msgstr "Χρήση NIS"
 
-#: ../authconfig.py:562
+#: ../authconfig.py:600
 msgid "Use Winbind"
 msgstr "Χρήση Winbind"
 
-#: ../authconfig.py:568 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:606 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "Πιστοποίηση"
 
-#: ../authconfig.py:571
+#: ../authconfig.py:609
 msgid "Use MD5 Passwords"
 msgstr "Χρήση κωδικών MD5"
 
-#: ../authconfig.py:574
+#: ../authconfig.py:612
 msgid "Use Shadow Passwords"
 msgstr "Χρήση κωδικών Shadow"
 
-#: ../authconfig.py:577
+#: ../authconfig.py:615
 msgid "Use LDAP Authentication"
 msgstr "Χρήση πιστοποίησης LDAP"
 
-#: ../authconfig.py:580
+#: ../authconfig.py:618
 msgid "Use Kerberos"
 msgstr "Χρήση Kerberos"
 
-#: ../authconfig.py:583
+#: ../authconfig.py:621
 msgid "Use Fingerprint reader"
 msgstr "Χρήση αναγνώστη αποτυπωμάτων"
 
-#: ../authconfig.py:587
+#: ../authconfig.py:625
 msgid "Use Winbind Authentication"
 msgstr "Χρήση πιστοποίησης Winbind"
 
-#: ../authconfig.py:590
+#: ../authconfig.py:628
 msgid "Local authorization is sufficient"
 msgstr "Η τοπική αναγνώριση αρκεί"
 
-#: ../authconfig.py:600 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:816
+#: ../authconfig.py:638 ../authconfig.py:783 ../authconfig.py:790
+#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:854
 msgid "Back"
 msgstr "Πίσω"
 
-#: ../authconfig.py:600 ../authconfig.py:775
+#: ../authconfig.py:638 ../authconfig.py:813
 msgid "Cancel"
 msgstr "Άκυρο"
 
-#
-#: ../authconfig.py:601 ../authconfig.py:745 ../authconfig.py:752
-#: ../authconfig.py:758 ../authconfig.py:767 ../authconfig.py:816
+#: ../authconfig.py:639 ../authconfig.py:783 ../authconfig.py:790
+#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:854
 msgid "Next"
 msgstr "Επόμενο"
 
-#: ../authconfig.py:612 ../authconfig-gtk.py:677 ../authconfig.glade.h:15
+#: ../authconfig.py:650 ../authconfig-gtk.py:670 ../authconfig.glade.h:15
 msgid "Authentication Configuration"
 msgstr "Ρύθμιση πιστοποίησης"
 
-#: ../authconfig.py:742
+#: ../authconfig.py:780
 msgid "LHS:"
 msgstr "LHS:"
 
-#: ../authconfig.py:743
+#: ../authconfig.py:781
 msgid "RHS:"
 msgstr "RHS:"
 
-#: ../authconfig.py:744
+#: ../authconfig.py:782
 msgid "Hesiod Settings"
 msgstr "Ρυθμίσεις Hesiod"
 
-#: ../authconfig.py:748
+#: ../authconfig.py:786
 msgid "Use TLS"
 msgstr "Χρήση TLS"
 
-#: ../authconfig.py:749 ../authconfig.py:756
+#: ../authconfig.py:787 ../authconfig.py:794
 msgid "Server:"
 msgstr "Εξυπηρετητής:"
 
-#: ../authconfig.py:750
+#: ../authconfig.py:788
 msgid "Base DN:"
 msgstr "DN Βάσης:"
 
-#: ../authconfig.py:751
+#: ../authconfig.py:789
 msgid "LDAP Settings"
 msgstr "Ρυθμίσεις LDAP"
 
-#: ../authconfig.py:755 ../authconfig.py:810 ../authconfig.glade.h:22
+#: ../authconfig.py:793 ../authconfig.py:848 ../authconfig.glade.h:22
 msgid "Domain:"
 msgstr "Τομέας:"
 
-#: ../authconfig.py:757
+#: ../authconfig.py:795
 msgid "NIS Settings"
 msgstr "Ρυθμίσεις NIS"
 
-#: ../authconfig.py:761
+#: ../authconfig.py:799
 msgid "Realm:"
 msgstr "Περιοχή:"
 
-#: ../authconfig.py:762
+#: ../authconfig.py:800
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:763
+#: ../authconfig.py:801
 msgid "Admin Server:"
 msgstr "Εξυπηρετητής διαχείρισης:"
 
-#: ../authconfig.py:764
+#: ../authconfig.py:802
 msgid "Use DNS to resolve hosts to realms"
 msgstr "Χρήση DNS για αντιστοίχηση hosts σε realms"
 
-#: ../authconfig.py:765
+#: ../authconfig.py:803
 msgid "Use DNS to locate KDCs for realms"
 msgstr "Χρήση DNS για αναζήτηση KDCs για realms"
 
-#: ../authconfig.py:766
+#: ../authconfig.py:804
 msgid "Kerberos Settings"
 msgstr "Ρυθμίσεις Kerberos"
 
-#: ../authconfig.py:770
+#: ../authconfig.py:808
 msgid "Domain Administrator:"
 msgstr "Διαχειριστής τομέα:"
 
-# #-#-#-#-#  eel.gnome-2-0.el.po (eel 2.0.4)  #-#-#-#-#
-#: ../authconfig.py:771
+#: ../authconfig.py:809
 msgid "Password:"
 msgstr "Κωδικός:"
 
-#: ../authconfig.py:774
+#: ../authconfig.py:812
 msgid "Join Settings"
 msgstr "Συνένωση ρυθμίσεων"
 
-#: ../authconfig.py:784 ../authconfig.glade.h:41
+#: ../authconfig.py:822 ../authconfig.glade.h:41
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -720,45 +712,45 @@ msgstr ""
 "δίσκο πριν συνεχίσετε.  Αν δεν τις αποθηκεύσετε, τότε η προσπάθεια σας για "
 "σύνδεση στον τομέα μπορεί να αποτύχει.  Αποθήκευση αλλαγών;"
 
-#: ../authconfig.py:791
+#: ../authconfig.py:829
 msgid "Save Settings"
 msgstr "Αποθήκευση ρυθμίσεων"
 
-#: ../authconfig.py:792
+#: ../authconfig.py:830
 msgid "No"
 msgstr "Όχι"
 
-#: ../authconfig.py:792
+#: ../authconfig.py:830
 msgid "Yes"
 msgstr "Ναι"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:809
+#: ../authconfig.py:847
 msgid "Security Model:"
 msgstr "Μοντέλο ασφάλειας:"
 
-#: ../authconfig.py:811
+#: ../authconfig.py:849
 msgid "Domain Controllers:"
 msgstr "Ελεγκτές τομέα:"
 
-#: ../authconfig.py:812
+#: ../authconfig.py:850
 msgid "ADS Realm:"
 msgstr "ADS Realm:"
 
-#: ../authconfig.py:813
+#: ../authconfig.py:851
 msgid "Template Shell:"
 msgstr "Πρότυπο κέλυφος:"
 
-#: ../authconfig.py:815
+#: ../authconfig.py:853
 msgid "Winbind Settings"
 msgstr "Ρυθμίσεις Winbind"
 
-#: ../authconfig.py:817
+#: ../authconfig.py:855
 msgid "Join Domain"
 msgstr "Συνένωση τομέα"
 
-#: ../authconfig.py:865
+#: ../authconfig.py:903
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -772,7 +764,7 @@ msgstr ""
 "Πατήστε ΟΚ για συνέχεια."
 
 #. FIXME - version
-#: ../authconfig.py:879
+#: ../authconfig.py:917
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -786,42 +778,42 @@ msgstr ""
 "Έλεγχος του τρόπου που το σύστημα πιστοποιεί τους χρήστες που επιχειρούν να "
 "συνδεθούν"
 
-#: ../authconfig-gtk.py:97
+#: ../authconfig-gtk.py:63
+msgid ""
+"Unable to initialize graphical environment. Most likely cause of failure\n"
+"is that the tool was not run using a graphical environment. Please either\n"
+"start your graphical user interface or set your DISPLAY variable.\n"
+msgstr ""
+
+#: ../authconfig-gtk.py:96
 msgid "Local accounts only"
 msgstr ""
 
-#: ../authconfig-gtk.py:103
+#: ../authconfig-gtk.py:102
 msgid "FreeIPA"
 msgstr ""
 
-# #-#-#-#-#  eel.gnome-2-0.el.po (eel 2.0.4)  #-#-#-#-#
-#: ../authconfig-gtk.py:118
-#, fuzzy
+#: ../authconfig-gtk.py:117
 msgid "Password"
-msgstr "Κωδικός:"
+msgstr ""
 
-# #-#-#-#-#  eel.gnome-2-0.el.po (eel 2.0.4)  #-#-#-#-#
-#: ../authconfig-gtk.py:121
-#, fuzzy
+#: ../authconfig-gtk.py:120
 msgid "LDAP password"
-msgstr "Κωδικός:"
+msgstr ""
 
-#: ../authconfig-gtk.py:124
-#, fuzzy
+#: ../authconfig-gtk.py:123
 msgid "Kerberos password"
-msgstr "Kerberos"
+msgstr ""
 
-#: ../authconfig-gtk.py:127
-#, fuzzy
+#: ../authconfig-gtk.py:126
 msgid "NIS password"
-msgstr "κωδικός shadow"
+msgstr ""
 
-#: ../authconfig-gtk.py:130
-#, fuzzy
+#: ../authconfig-gtk.py:129
 msgid "Winbind password"
-msgstr "κωδικός shadow"
+msgstr ""
 
-#: ../authconfig-gtk.py:445
+#: ../authconfig-gtk.py:444
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
@@ -831,19 +823,16 @@ msgid "*"
 msgstr "*"
 
 #: ../authconfig.glade.h:2
-#, fuzzy
 msgid "<b>Authentication Configuration</b>"
-msgstr "Ρύθμιση πιστοποίησης"
+msgstr ""
 
 #: ../authconfig.glade.h:3
-#, fuzzy
 msgid "<b>Local Authentication Options</b>"
-msgstr "Ρύθμιση πιστοποίησης"
+msgstr ""
 
 #: ../authconfig.glade.h:4
-#, fuzzy
 msgid "<b>Other Authentication Options</b>"
-msgstr "Ρύθμιση πιστοποίησης"
+msgstr ""
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
@@ -865,9 +854,8 @@ msgid ""
 msgstr ""
 
 #: ../authconfig.glade.h:9
-#, fuzzy
 msgid "Ad_min Servers:"
-msgstr "Εξυπηρετητής διαχείρισης:"
+msgstr ""
 
 #: ../authconfig.glade.h:10
 msgid "Advanced _Options"
@@ -887,24 +875,20 @@ msgstr ""
 "ασφαλείας. Να γίνει επαναφορά των αλλαγών;"
 
 #: ../authconfig.glade.h:13
-#, fuzzy
 msgid "Allow offline _login"
-msgstr "Να επιτρέπεται η offline σύ_νδεση"
+msgstr ""
 
 #: ../authconfig.glade.h:14
-#, fuzzy
 msgid "Aut_hentication Method:"
-msgstr "Πιστοποίηση"
+msgstr ""
 
 #: ../authconfig.glade.h:16
-#, fuzzy
 msgid "Card Re_moval Action:"
-msgstr "Ενέ_ργεια αφαίρεσης κάρτας"
+msgstr ""
 
 #: ../authconfig.glade.h:17
-#, fuzzy
 msgid "Certificate _URL:"
-msgstr "_URL πιστοποιητικού"
+msgstr ""
 
 #: ../authconfig.glade.h:18
 msgid ""
@@ -921,27 +905,24 @@ msgid "Do_n't Save"
 msgstr "Να _μη γίνει αποθήκευση"
 
 #: ../authconfig.glade.h:21
-#, fuzzy
 msgid "Domain _administrator:"
-msgstr "Διαχειριστής τομέα:"
+msgstr ""
 
 #: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
 msgstr "Μεταφόρτωση πιστοποιητικού CA"
 
 #: ../authconfig.glade.h:24
-#, fuzzy
 msgid "Enable _fingerprint reader support"
-msgstr "Ενεργοποίηση υποστήριξης _αναγνώστη αποτυπωμάτων"
+msgstr ""
 
 #: ../authconfig.glade.h:25
 msgid "Enable _local access control"
 msgstr ""
 
 #: ../authconfig.glade.h:26
-#, fuzzy
 msgid "Enable _smart card support"
-msgstr "Ενεργοποίηση υποστήριξης έ_ξυπνης κάρτας"
+msgstr ""
 
 #: ../authconfig.glade.h:27
 msgid ""
@@ -952,9 +933,8 @@ msgstr ""
 "σάρωση ενός δακτύλου σας από τον αναγνώστη αποτυπωμάτων."
 
 #: ../authconfig.glade.h:28
-#, fuzzy
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr "αλγόριθμος hash/crypt για νέα συνθηματικά"
+msgstr ""
 
 #: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
@@ -975,34 +955,28 @@ msgid "Joining Winbind Domain"
 msgstr "Σύνδεση σε τομέα Winbind"
 
 #: ../authconfig.glade.h:32
-#, fuzzy
 msgid "LDAP Search _Base DN:"
-msgstr "Αναζήτηση LDAP _Base DN"
+msgstr ""
 
 #: ../authconfig.glade.h:33
-#, fuzzy
 msgid "LDAP _Server:"
-msgstr "Εξυπηρετητής _LDAP"
+msgstr ""
 
 #: ../authconfig.glade.h:34
-#, fuzzy
 msgid "NIS _Domain:"
-msgstr "Τομέας _NIS"
+msgstr ""
 
 #: ../authconfig.glade.h:35
-#, fuzzy
 msgid "NIS _Server:"
-msgstr "Εξυπηρετητής _NIS"
+msgstr ""
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "R_ealm:"
-msgstr "Περιοχή:"
+msgstr ""
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "Require smart car_d for login"
-msgstr "Α_παίτηση έξυπνης κάρτας για σύνδεση"
+msgstr ""
 
 #: ../authconfig.glade.h:38
 msgid ""
@@ -1026,9 +1000,8 @@ msgstr ""
 "κάρτα (smart card)."
 
 #: ../authconfig.glade.h:42
-#, fuzzy
 msgid "Te_mplate Shell:"
-msgstr "Πρότυπο κέλυφος:"
+msgstr ""
 
 #: ../authconfig.glade.h:43
 msgid ""
@@ -1046,9 +1019,8 @@ msgid "Use DNS to _locate KDCs for realms"
 msgstr "Χρήση DNS για ανα_ζήτηση KDCs για realms"
 
 #: ../authconfig.glade.h:45
-#, fuzzy
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Χρήση DNS για αντιστοίχηση hosts σε realms"
+msgstr ""
 
 #: ../authconfig.glade.h:46
 msgid ""
@@ -1071,69 +1043,58 @@ msgstr ""
 "για πιστοποίηση της πρόσβασης χρηστών."
 
 #: ../authconfig.glade.h:49
-#, fuzzy
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS _Realm"
+msgstr ""
 
 #: ../authconfig.glade.h:50
-#, fuzzy
 msgid "Winbind Domain Co_ntrollers:"
-msgstr "Ελε_γκτές τομέων Winbind"
+msgstr ""
 
 #: ../authconfig.glade.h:51
-#, fuzzy
 msgid "Winbind _Domain:"
-msgstr "_Τομέας Winbind"
+msgstr ""
 
 #: ../authconfig.glade.h:52
-#, fuzzy
 msgid "_Download CA Certificate..."
-msgstr "Μεταφόρτωση πιστοποιητικού CA"
+msgstr ""
 
 #: ../authconfig.glade.h:53
-#, fuzzy
 msgid "_Identity & Authentication"
-msgstr "Χρήση πιστοποίησης SMB"
+msgstr ""
 
 #: ../authconfig.glade.h:54
-#, fuzzy
 msgid "_Join Domain..."
-msgstr "_Σύνδεση στον τομέα"
+msgstr ""
 
 #: ../authconfig.glade.h:55
-#, fuzzy
 msgid "_KDCs:"
-msgstr "_KDC"
+msgstr ""
 
 #: ../authconfig.glade.h:56
-#, fuzzy
 msgid "_Password Hashing Algorithm:"
-msgstr "Αλγόριθμος hashing σ_υνθηματικού"
+msgstr ""
 
-# #-#-#-#-#  eel.gnome-2-0.el.po (eel 2.0.4)  #-#-#-#-#
 #: ../authconfig.glade.h:57
-#, fuzzy
 msgid "_Password:"
-msgstr "Κωδικός:"
+msgstr ""
 
 #: ../authconfig.glade.h:58
-#, fuzzy
 msgid "_Security Model:"
-msgstr "Μοντέλο ασφάλειας:"
+msgstr ""
 
 #: ../authconfig.glade.h:59
 msgid "_User Account Database:"
 msgstr ""
 
-#: ../authinfo.py:944 ../authinfo.py:1694 ../authinfo.py:2924
+#: ../authinfo.py:988 ../authinfo.py:1747 ../authinfo.py:2995
 msgid "Lock"
 msgstr "Κλείδωμα"
 
-#: ../authinfo.py:944 ../authinfo.py:1696
+#: ../authinfo.py:988 ../authinfo.py:1749
 msgid "Ignore"
 msgstr "Παράβλεψη"
 
-#: ../authinfo.py:3300
+#: ../authinfo.py:3377
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -1142,207 +1103,6 @@ msgstr ""
 "Λείπει η μονάδα πιστοποίησης %s/pam_%s.so. Η διαδικασία πιστοποίησης δεν θα "
 "λειτουργήσει σωστά."
 
-#: ../authinfo.py:3809
+#: ../authinfo.py:3886
 msgid "Error downloading CA certificate"
 msgstr "Σφάλμα κατά τη μεταφόρτωση του πιστοποιητικού CA"
-
-#~ msgid "enable SMB authentication by default"
-#~ msgstr "ενεργοποίηση πιστοποίησης SMB από προεπιλογή"
-
-#~ msgid "disable SMB authentication by default"
-#~ msgstr "απενεργοποίηση πιστοποίησης SMB από προεπιλογή"
-
-#, fuzzy
-#~ msgid "Additional options for user information and authentication"
-#~ msgstr "απενεργοποίηση hesiod για πληροφορίες χρήστη από προεπιλογή"
-
-#~ msgid "<b>Fingerprint Reader</b>"
-#~ msgstr "<b>Αναγνώστης αποτυπωμάτων</b>"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Επιλογές</b>"
-
-#~ msgid "<b>Smart Card</b>"
-#~ msgstr "<b>Έξυπνη κάρτα</b>"
-
-#~ msgid "A_uthentication"
-#~ msgstr "Π_ιστοποίηση"
-
-#~ msgid "Cache User _Information"
-#~ msgstr "_Διατήρηση στη μνήμη των πληροφοριών χρήστη"
-
-#~ msgid "Check access.conf _during account authorization"
-#~ msgstr "Έ_λεγχoς του access.conf κατά την πιστοποίηση λογαριασμού"
-
-#~ msgid "Configure H_esiod..."
-#~ msgstr "_Ρύθμιση Hesiod..."
-
-#~ msgid "Configure K_erberos..."
-#~ msgstr "_Ρύθμιση Kerberos..."
-
-#~ msgid "Configure L_DAP..."
-#~ msgstr "_Ρύθμιση LDAP..."
-
-#~ msgid "Configure NI_S..."
-#~ msgstr "_Ρύθμιση NIS..."
-
-#~ msgid "Configure Sm_art Card..."
-#~ msgstr "Ρύθμιση έξ_υπνης κάρτας..."
-
-#~ msgid "Configure Win_bind..."
-#~ msgstr "Ρύθμιση Win_bind..."
-
-#~ msgid "Domain"
-#~ msgstr "Τομέας"
-
-#~ msgid "Domain _Administrator"
-#~ msgstr "Διαχειριστής τ_ομέα"
-
-#~ msgid "Enable _Hesiod Support"
-#~ msgstr "Ενεργοποίηση υποστήριξης _Hesiod"
-
-#~ msgid "Enable _Kerberos Support"
-#~ msgstr "Ενεργοποίηση υποστήριξης _Kerberos"
-
-#~ msgid "Enable _LDAP Support"
-#~ msgstr "Ενεργοποίηση υποστήριξης _LDAP"
-
-#~ msgid "Enable _NIS Support"
-#~ msgstr "Ενεργοποίηση υποστήριξης _NIS"
-
-#~ msgid "Enable _Winbind Support"
-#~ msgstr "Ενεργοποίηση υποστήριξης _Winbind"
-
-#~ msgid ""
-#~ "For user accounts maintained in local /etc/passwd file system will not "
-#~ "check authorization from network services such as LDAP or Kerberos."
-#~ msgstr ""
-#~ "Δε θα γίνει έλεγχος πιστοποίησης από δικτυακές υπηρεσίες όπως το LDAP ή "
-#~ "το Kerberos, για λογαριασμούς χρηστών που υπάρχουν στο αρχείο /etc/passwd "
-#~ "του τοπικού συστήματος αρχείων."
-
-#~ msgid "Hesiod _LHS"
-#~ msgstr "Hesiod _LHS"
-
-#~ msgid "Hesiod _RHS"
-#~ msgstr "Hesiod _RHS"
-
-#~ msgid ""
-#~ "Hesiod allows a system administrator to publish user and group "
-#~ "information in DNS.  It is sometimes used in very large networks."
-#~ msgstr ""
-#~ "Το Hesiod επιτρέπει σε ένα διαχειριστή συστήματος να δημοσιεύσει τις "
-#~ "πληροφορίες χρηστών και ομάδων στο DNS.  Χρησιμοποιείται μερικές φορές σε "
-#~ "πολύ μεγάλα δίκτυα."
-
-#~ msgid ""
-#~ "Kerberos is a trusted third-party authentication system which is commonly "
-#~ "used in medium to large networks."
-#~ msgstr ""
-#~ "Το Kerberos είναι ένα third-party σύστημα πιστοποίησης το οποίο "
-#~ "χρησιμοποιείται συχνά σε μεσαίου προς μεγάλου μεγέθους δίκτυα."
-
-#~ msgid ""
-#~ "NIS is the Network Information Service.  It is commonly used on small to "
-#~ "medium networks."
-#~ msgstr ""
-#~ "Το NIS είναι μια υπηρεσία πληροφοριών δικτύου.  Χρησιμοποιείται συχνά σε "
-#~ "μικρού προς μεσαίου μεγέθους δίκτυα."
-
-#~ msgid "Op_tions"
-#~ msgstr "Επιλο_γές"
-
-#~ msgid "SMB Settings"
-#~ msgstr "Ρυθμίσεις SMB"
-
-#~ msgid "Smart Card Settings"
-#~ msgstr "Ρυθμίσεις έξυπνης κάρτας"
-
-#~ msgid ""
-#~ "The Lightweight Directory Access Protocol is a standard way of searching "
-#~ "a directory, which can hold arbitrary data in a structured hierarchy. "
-#~ "LDAP is increasingly being used in small to large networks."
-#~ msgstr ""
-#~ "Το Lightweight Directory Access Protocol είναι μία πρότυπη μέθοδος για "
-#~ "αναζητήσεις καταλόγων, με τυχαία δεδομένα σε δομημένη μορφή. Το πρότυπο "
-#~ "LDAP χρησιμοποιείται σε όλο και περισσότερα μικρά και μεγάλα δίκτυα."
-
-#~ msgid "Use _DNS to resolve hosts to realms"
-#~ msgstr "Χρήση _DNS για αντιστοίχηση ονομάτων συστημάτων σε realms"
-
-#~ msgid "Use _Shadow Passwords"
-#~ msgstr "Χρήση κωδικών _Shadow"
-
-#~ msgid "User Infor_mation"
-#~ msgstr "Π_ληροφορίες χρήστη"
-
-#~ msgid ""
-#~ "When enabled allows network services such as LDAP or Kerberos to "
-#~ "authenticate system accounts including root on this machine."
-#~ msgstr ""
-#~ "Με την ενεργοποίηση επιτρέπει σε υπηρεσίες δικτύων όπως LDAP ή Kerberos "
-#~ "να πιστοποιούν χρήστες του συστήματος, συμπεριλαμβανομένου και του "
-#~ "υπερχρήστη."
-
-#~ msgid ""
-#~ "Winbind allows a system to retrieve information about users and to "
-#~ "authenticate users by using information stored in an NTDOM or ADS "
-#~ "server.  It is used in small to large networks."
-#~ msgstr ""
-#~ "Το Winbind επιτρέπει στο σύστημα να λαμβάνει πληροφορίες για τους χρήστες "
-#~ "και να πιστοποιεί χρήστες μέσο πληροφοριών καταχωρημένων σε διακομιστή "
-#~ "NTDOM ή ADS.  Χρησιμοποιείται σε μικρά και μεγάλα δίκτυα."
-
-#~ msgid "_Admin Servers"
-#~ msgstr "_Διαχείριση εξυπηρετητών"
-
-#~ msgid "_Authenticate system accounts by network services"
-#~ msgstr "Πιστοποίηση λογαριασμών συστήματος μέσω δικτυακών υπηρεσιών"
-
-#~ msgid "_Domain Controllers"
-#~ msgstr "Ελεγ_κτές τομέα"
-
-#~ msgid "_Local authorization is sufficient for local users"
-#~ msgstr "Η τοπι_κή πιστοποίηση αρκεί για τους τοπικούς χρήστες"
-
-# #-#-#-#-#  eel.gnome-2-0.el.po (eel 2.0.4)  #-#-#-#-#
-#~ msgid "_Password"
-#~ msgstr "_Κωδικός"
-
-#~ msgid "_Realm"
-#~ msgstr "_Περιοχή"
-
-#~ msgid "_Security Model"
-#~ msgstr "Μοντέλο α_σφάλειας"
-
-#~ msgid "_Template Shell"
-#~ msgstr "Πρότυπος _φλοιός"
-
-#~ msgid "_Workgroup"
-#~ msgstr "_Ομάδα εργασίας"
-
-#~ msgid "SMB authentication"
-#~ msgstr "SMB πιστοποίηση"
-
-#~ msgid "Workgroup:"
-#~ msgstr "Ομάδα εργασίας:"
-
-#~ msgid "Servers:"
-#~ msgstr "Εξυπηρετητές:"
-
-#~ msgid "Shell:"
-#~ msgstr "Κέλυφος:"
-
-#~ msgid "Con_figure SMB..."
-#~ msgstr "_Ρύθμιση SMB..."
-
-#~ msgid "Enable SMB S_upport"
-#~ msgstr "Ενεργοποίηση υποστήριξης _SMB"
-
-#~ msgid ""
-#~ "SMB authentication verifies user passwords by attempting to connect to a "
-#~ "server which uses the SMB (system message block) protocol suite."
-#~ msgstr ""
-#~ "Η αναγνώριση SMB πιστοποιεί συνθηματικά χρήστη προσπαθώντας να συνδεθεί "
-#~ "σε ένα εξυπηρετητή ο οποίος χρησιμοποιεί τη σουίτα πρωτοκόλλων SMB "
-#~ "(system message block)."
