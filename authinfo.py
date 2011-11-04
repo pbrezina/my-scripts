@@ -3269,7 +3269,7 @@ class AuthInfo:
 						output += users
 						output += "\n"
 						wrotegroup = True
-				# If it's a 'group' line, insert ours instead.
+				# If it's a 'initgroups' line, insert ours instead.
 				elif matchLine(ls, "initgroups:"):
 					if not wroteinitgroups:
 						output += "initgroups: "
