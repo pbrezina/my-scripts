@@ -3171,6 +3171,7 @@ class AuthInfo:
 		wrotenetgroup = False
 		wroteautomount = False
 		wrotehosts = False
+		wroteinitgroups = False
 		f = None
 		output = ""
 		all_configs[CFG_NSSWITCH].backup(self.backupDir)
@@ -3268,6 +3269,13 @@ class AuthInfo:
 						output += users
 						output += "\n"
 						wrotegroup = True
+				# If it's a 'group' line, insert ours instead.
+				elif matchLine(ls, "initgroups:"):
+					if not wroteinitgroups:
+						output += "initgroups: "
+						output += users
+						output += "\n"
+						wroteinitgroups = True
 				# If it's a 'netgroup' line, insert ours instead.
 				elif matchLine(ls, "netgroup:"):
 					if not wrotenetgroup:
@@ -3318,6 +3326,8 @@ class AuthInfo:
 				output += "hosts:     "
 				output += hosts
 				output += "\n"
+			# For now we do not write initgroups
+			# line if not encountered
 
 			# Write it out and close it.
 			f.rewind()
