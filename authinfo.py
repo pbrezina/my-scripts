@@ -342,7 +342,7 @@ argv_otp_auth = [
 argv_succeed_if_auth = [
 	"uid >=",
 	"500", # this must be the second arg - to be replaced
-	"quiet"
+	"quiet_success"
 ]
 
 argv_succeed_if_account = [
