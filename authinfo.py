@@ -1051,10 +1051,15 @@ class FileBackup:
 		rv = True
 		srcfd = None
 		destfile = None
+
+		try:
+			srcfd = openfdLocked(src, os.O_RDONLY, 0)
+		except IOError:
+			return True
+
 		try:
 			destfile = SafeFile(dest, 0644)
 			destfile.rewind()
-			srcfd = openfdLocked(src, os.O_RDONLY, 0)
 		except IOError:
 			rv = False
 		try:
