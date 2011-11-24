@@ -11,15 +11,17 @@
 # Decroux Fabien <fdecroux@redhat.com>, 2006.
 # Dimitris Glezos <glezos@indifex.com>, 2011.
 # Gauthier Ancelin <gauthier.ancelin@laposte.net>, 2008.
+# Kévin Raymond <shaiton@fedoraproject.org>, 2011.
 # Mathieu Schopfer <mat.schopfer@bluewin.ch>, 2008.
 # Thomas Canniot <mrtom@fedoraproject.org>, 2006, 2007, 2008, 2009, 2010.
+# Vincent Herber <vincent.herber@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 21:24+0200\n"
-"PO-Revision-Date: 2011-09-07 13:00+0000\n"
-"Last-Translator: tmraz <tmraz@fedoraproject.org>\n"
+"POT-Creation-Date: 2011-11-24 13:07+0100\n"
+"PO-Revision-Date: 2011-11-10 00:14+0000\n"
+"Last-Translator: shaiton <shaiton@fedoraproject.org>\n"
 "Language-Team: French <trans-fr@lists.fedoraproject.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +36,7 @@ msgstr "utilisation : %s [options]"
 
 #: ../authconfig.py:122
 msgid "show this help message and exit"
-msgstr ""
+msgstr "afficher ce message d'aide et quitter"
 
 #: ../authconfig.py:125
 msgid "enable shadowed passwords by default"
@@ -126,7 +128,7 @@ msgstr ""
 #: ../authconfig.py:164
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
-"Désactiver l'utilisation du schema RFC-2307bis pour les recherches des "
+"désactiver l'utilisation du schema RFC-2307bis pour les recherches des "
 "informations utilisateurs LDAP"
 
 #: ../authconfig.py:165
@@ -291,19 +293,19 @@ msgstr ""
 #: ../authconfig.py:234
 msgid "the directory which winbind-created users will have as home directories"
 msgstr ""
-"le répertoire que les utilisateurs créés par winbind utiliseront comme "
-"répertoire personnel"
+"le répertoire que les utilisateurs créeront avec winbind seront utilisés "
+"comme répertoire personnel"
 
 #: ../authconfig.py:236
 msgid "the group which winbind-created users will have as their primary group"
 msgstr ""
-"le groupe que les utilisateurs créés par winbind se verront attribué comme "
-"groupe primaire"
+"le groupe que les utilisateurs créeront avec winbind sera utilisé comme "
+"groupe principal"
 
 #: ../authconfig.py:238
 msgid "the shell which winbind-created users will have as their login shell"
 msgstr ""
-"le shell que les utilisateurs créés par winbind auront comme shell de "
+"le shell que les utilisateurs créeront avec winbind sera leur shell de "
 "connexion"
 
 #: ../authconfig.py:240
@@ -320,9 +322,8 @@ msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
-"configure winbind pour qu'il considère la mise en cache des informations "
-"utilisateur par défautque les utilisateurs dont les noms d'utilisateur ne "
-"contenant pas de domaine ne soient pas des utilisateurs de domaine"
+"configure winbind pour qu'il considère que les utilisateurs dont les noms ne "
+"contiennent pas de domaine ne soient pas des utilisateurs de domaine"
 
 #: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
@@ -352,7 +353,7 @@ msgstr "préférer dns à wins ou nis pour la résolution de nom d'hôte"
 
 #: ../authconfig.py:258
 msgid "do not prefer dns over wins or nis for hostname resolution"
-msgstr "ne préférer pas dns à wins ou nis pour la résolution de nom d'hôte"
+msgstr "ne pas préférer dns à wins ou nis pour la résolution de nom d'hôte"
 
 #: ../authconfig.py:261
 msgid "enable hesiod for user information by default"
@@ -398,6 +399,8 @@ msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations)"
 msgstr ""
+"désactiver SSSD pour l'authentification par défaut (toujours utilisé pour "
+"les configurations prises en charge)"
 
 #: ../authconfig.py:278
 msgid "never use SSSD implicitly even for supported configurations"
@@ -591,7 +594,7 @@ msgstr "NIS"
 
 #: ../authconfig.py:577
 msgid "shadow password"
-msgstr "Mot de passe masqué"
+msgstr "mot de passe masqué"
 
 #: ../authconfig.py:578 ../authconfig.py:580 ../authconfig-gtk.py:108
 msgid "Winbind"
@@ -831,6 +834,12 @@ msgid ""
 "is that the tool was not run using a graphical environment. Please either\n"
 "start your graphical user interface or set your DISPLAY variable.\n"
 msgstr ""
+"Impossible d'initialiser l'environnement graphique. La cause la plus "
+"probable\n"
+"de défaillance est que l'outil n'a pas été exécutée en utilisant un "
+"environnement\n"
+"graphique. Veuillez démarrez votre interface graphique ou définir la "
+"variable DISPLAY.\n"
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
@@ -1140,15 +1149,15 @@ msgstr "Modèle de sécurité :"
 msgid "_User Account Database:"
 msgstr "Base de données des comptes _utilisateurs :"
 
-#: ../authinfo.py:988 ../authinfo.py:1747 ../authinfo.py:2995
+#: ../authinfo.py:988 ../authinfo.py:1752 ../authinfo.py:3000
 msgid "Lock"
 msgstr "Verrouiller"
 
-#: ../authinfo.py:988 ../authinfo.py:1749
+#: ../authinfo.py:988 ../authinfo.py:1754
 msgid "Ignore"
 msgstr "Ignorer"
 
-#: ../authinfo.py:3377
+#: ../authinfo.py:3392
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -1157,6 +1166,6 @@ msgstr ""
 "Le module d'authentification %s/pam_%s.so n'est pas présent. Le processus "
 "d'authentification peut ne pas fonctionner correctement."
 
-#: ../authinfo.py:3886
+#: ../authinfo.py:3901
 msgid "Error downloading CA certificate"
 msgstr "Erreur lors de la récupération du certificat du CA"

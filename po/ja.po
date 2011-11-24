@@ -12,13 +12,14 @@
 # Kiyoto James Hashida <khashida@redhat.com>, 2006.
 # Noriko Mizumoto <noriko@redhat.com>, 2006, 2008, 2009.
 # Tadashi Jokagi <fedora@elf.no-ip.org>, 2004.
+#   <www.carrotsoft@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 21:24+0200\n"
-"PO-Revision-Date: 2011-09-07 13:00+0000\n"
-"Last-Translator: tmraz <tmraz@fedoraproject.org>\n"
+"POT-Creation-Date: 2011-11-24 13:07+0100\n"
+"PO-Revision-Date: 2011-11-03 08:34+0000\n"
+"Last-Translator: htaira <htaira@redhat.com>\n"
 "Language-Team: Japanese <trans-ja@lists.fedoraproject.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +34,7 @@ msgstr "使用方法: %s [オプション]"
 
 #: ../authconfig.py:122
 msgid "show this help message and exit"
-msgstr ""
+msgstr "このヘルプメッセージを表示して終了"
 
 #: ../authconfig.py:125
 msgid "enable shadowed passwords by default"
@@ -164,11 +165,11 @@ msgstr "スマートカードの取り出し時に行う動作"
 
 #: ../authconfig.py:183
 msgid "enable authentication with fingerprint readers by default"
-msgstr "指紋読み取りによる認証をデフォルトで有効にする"
+msgstr "指紋リーダーによる認証をデフォルトで有効にする"
 
 #: ../authconfig.py:185
 msgid "disable authentication with fingerprint readers by default"
-msgstr "指紋読み取りによる認証をデフォルトで無効にする"
+msgstr "指紋リーダーによる認証をデフォルトで無効にする"
 
 #: ../authconfig.py:188
 msgid "enable automatic per-user ecryptfs"
@@ -375,6 +376,7 @@ msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations)"
 msgstr ""
+"認証用のSSSDはデフォルトでは無効です (設定は現在もサポートされています)"
 
 #: ../authconfig.py:278
 msgid "never use SSSD implicitly even for supported configurations"
@@ -534,7 +536,7 @@ msgstr "キャッシュ化"
 
 #: ../authconfig.py:572
 msgid "Fingerprint reader"
-msgstr "指紋読み取り"
+msgstr "指紋リーダー"
 
 #: ../authconfig.py:573
 msgid "Kerberos"
@@ -610,7 +612,7 @@ msgstr "Kerberos 5 を使用"
 
 #: ../authconfig.py:621
 msgid "Use Fingerprint reader"
-msgstr "指紋読み取りを使用"
+msgstr "指紋リーダーを使用"
 
 #: ../authconfig.py:625
 msgid "Use Winbind Authentication"
@@ -788,6 +790,9 @@ msgid ""
 "is that the tool was not run using a graphical environment. Please either\n"
 "start your graphical user interface or set your DISPLAY variable.\n"
 msgstr ""
+"グラフィカル環境を初期化できません。最も可能性の高い原因は、グラフィカルモー"
+"ドで起動されていないことです。GUIを起動するか、DISPLAY 値を設定してくださ"
+"い。\n"
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
@@ -854,7 +859,7 @@ msgid ""
 "managed accounts.</small>"
 msgstr ""
 "<small><b>ヒント:</b>スマートカードはローカルアカウントと中央管理のアカウント"
-"の両方のロギングをサポートします。</small>"
+"の両方のログインをサポートします。</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
@@ -925,7 +930,7 @@ msgstr "CA証明書をダウンロードする"
 
 #: ../authconfig.glade.h:24
 msgid "Enable _fingerprint reader support"
-msgstr "指紋読み取りサポートを有効にする(_F)"
+msgstr "指紋リーダーサポートを有効にする(_F)"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _local access control"
@@ -940,8 +945,8 @@ msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
 msgstr ""
-"指紋読み取り認証を使用すると、指紋読み取りと関連付けられた自分の指のスキャン"
-"でログインが可能になります。"
+"指紋認証を使用すると、指紋読み取りと関連付けられた自分の指のスキャンでログイ"
+"ンが可能になります。"
 
 #: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
@@ -1091,15 +1096,15 @@ msgstr "セキュリティモデル(_S):"
 msgid "_User Account Database:"
 msgstr "ユーザーアカウントデータベース(_U):"
 
-#: ../authinfo.py:988 ../authinfo.py:1747 ../authinfo.py:2995
+#: ../authinfo.py:988 ../authinfo.py:1752 ../authinfo.py:3000
 msgid "Lock"
 msgstr "ロック"
 
-#: ../authinfo.py:988 ../authinfo.py:1749
+#: ../authinfo.py:988 ../authinfo.py:1754
 msgid "Ignore"
 msgstr "無視"
 
-#: ../authinfo.py:3377
+#: ../authinfo.py:3392
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -1108,6 +1113,6 @@ msgstr ""
 "認証モジュール %s/pam_%s.so がありません。認証プロセスが正常に動作しないかも"
 "知れません。"
 
-#: ../authinfo.py:3886
+#: ../authinfo.py:3901
 msgid "Error downloading CA certificate"
 msgstr "CA証明書のダウンロードでエラー"

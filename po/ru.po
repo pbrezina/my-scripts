@@ -8,13 +8,14 @@
 # Leonid Kanter <leon@asplinux.ru>, 2003, 2004.
 # Leonid Kanter <leon@geon.donetsk.ua>, 2003.
 # Yulia <ypoyarko@redhat.com>, 2006, 2008, 2010.
+# Игорь Горбунов <igor.gorbounov@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 21:24+0200\n"
-"PO-Revision-Date: 2011-09-07 13:00+0000\n"
-"Last-Translator: tmraz <tmraz@fedoraproject.org>\n"
+"POT-Creation-Date: 2011-11-24 13:07+0100\n"
+"PO-Revision-Date: 2011-09-23 16:49+0000\n"
+"Last-Translator: igorbounov <igor.gorbounov@gmail.com>\n"
 "Language-Team: Russian <trans-ru@lists.fedoraproject.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +31,7 @@ msgstr "Формат: %s [параметры]"
 
 #: ../authconfig.py:122
 msgid "show this help message and exit"
-msgstr ""
+msgstr "показать эту справку и выйти"
 
 #: ../authconfig.py:125
 msgid "enable shadowed passwords by default"
@@ -392,6 +393,8 @@ msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations)"
 msgstr ""
+"отключить SSSD для проверки подлинности по умолчанию (все еще используется "
+"для поддерживаемых конфигураций)"
 
 #: ../authconfig.py:278
 msgid "never use SSSD implicitly even for supported configurations"
@@ -806,6 +809,10 @@ msgid ""
 "is that the tool was not run using a graphical environment. Please either\n"
 "start your graphical user interface or set your DISPLAY variable.\n"
 msgstr ""
+"Не удается инициализировать графическую среду. Наиболее вероятной причиной "
+"отказа может быть то, что это средство не запускалось с использованием "
+"графической среды. Либо запустите свой графический интерфейс пользователя, "
+"либо установите переменную DISPLAY.\n"
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
@@ -1113,23 +1120,23 @@ msgstr "_Модель защиты:"
 msgid "_User Account Database:"
 msgstr "_База данных учётных записей пользователей:"
 
-#: ../authinfo.py:988 ../authinfo.py:1747 ../authinfo.py:2995
+#: ../authinfo.py:988 ../authinfo.py:1752 ../authinfo.py:3000
 msgid "Lock"
 msgstr "Блокировать"
 
-#: ../authinfo.py:988 ../authinfo.py:1749
+#: ../authinfo.py:988 ../authinfo.py:1754
 msgid "Ignore"
 msgstr "Игнорировать"
 
-#: ../authinfo.py:3377
+#: ../authinfo.py:3392
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
-"Отсутствует модуль аутентификации %s/pam_%s.so. Работа процесса "
-"аутентификации может быть нарушена."
+"Отсутствует модуль проверки подлинности %s/pam_%s.so. Работа процесса "
+"проверки подлинности может быть нарушена."
 
-#: ../authinfo.py:3886
+#: ../authinfo.py:3901
 msgid "Error downloading CA certificate"
 msgstr "Ошибка при загрузке сертификата CA"

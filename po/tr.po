@@ -6,13 +6,14 @@
 # Dimitris Glezos <glezos@indifex.com>, 2011.
 # Egemen Metin Turan <mturan@aegee-ankara.org>, 2007.
 # Ismail ASCI <ismail.asci@fedora-tr.org>, 2006.
+# Onur Baysan <onurbaysan@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 21:24+0200\n"
-"PO-Revision-Date: 2011-09-07 13:00+0000\n"
-"Last-Translator: tmraz <tmraz@fedoraproject.org>\n"
+"POT-Creation-Date: 2011-11-24 13:07+0100\n"
+"PO-Revision-Date: 2011-10-07 09:09+0000\n"
+"Last-Translator: stall10n <onurbaysan@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.net/projects/p/fedora/team/"
 "tr/)\n"
 "Language: tr\n"
@@ -28,7 +29,7 @@ msgstr "kullanımı: %s [options]"
 
 #: ../authconfig.py:122
 msgid "show this help message and exit"
-msgstr ""
+msgstr "bu yardım mesajını göster ve çık"
 
 #: ../authconfig.py:125
 msgid "enable shadowed passwords by default"
@@ -48,7 +49,7 @@ msgstr "ön tanımlı olarak MD5 parolalarını kullanma"
 
 #: ../authconfig.py:134
 msgid "hash/crypt algorithm for new passwords"
-msgstr ""
+msgstr "yeni şifreler için kıyım/şifre algoritması"
 
 #: ../authconfig.py:137
 msgid "enable NIS for user information by default"
@@ -93,7 +94,7 @@ msgstr "öntanımlı kimlik denetimi için LDAP kullanılmasın"
 
 #: ../authconfig.py:154
 msgid "default LDAP server hostname or URI"
-msgstr ""
+msgstr "varsayılan LDAP sunucu host adı veya URI"
 
 #: ../authconfig.py:155
 msgid "<dn>"
@@ -105,11 +106,11 @@ msgstr "öntanımlı LDAP taban DN"
 
 #: ../authconfig.py:158
 msgid "enable use of TLS with LDAP (RFC-2830)"
-msgstr ""
+msgstr "LDAP(RFC-2830) ile birlikte TLS kullanımını seçilir kıl"
 
 #: ../authconfig.py:160
 msgid "disable use of TLS with LDAP (RFC-2830)"
-msgstr ""
+msgstr "LDAP(RFC-2830) ile birlikte TLS kullanımını seçilemez kıl"
 
 #: ../authconfig.py:162
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
@@ -302,10 +303,12 @@ msgstr ""
 #: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
 msgstr ""
+"winbind'i çevrimdışı oturum açma işlemine izin verecek şekilde yapılandır "
 
 #: ../authconfig.py:246
 msgid "configures winbind to prevent offline login"
 msgstr ""
+"winbind'i çevrimdışı oturum açma işlemini  engelleyecek şekilde yapılandır "
 
 #: ../authconfig.py:248
 msgid "join the winbind domain or ads realm now as this administrator"
@@ -403,11 +406,11 @@ msgstr "yerel kullanıcıları uzak servis üzerinden de yetkilendir"
 
 #: ../authconfig.py:298
 msgid "check access.conf during account authorization"
-msgstr ""
+msgstr "hesap yetkilendirmesi süresince access.conf u kontrol et"
 
 #: ../authconfig.py:300
 msgid "do not check access.conf during account authorization"
-msgstr ""
+msgstr "hesap yetkilendirmesi süresince access.conf u kontrol etme"
 
 #: ../authconfig.py:303
 msgid "authenticate system accounts by network services"
@@ -420,11 +423,11 @@ msgstr ""
 
 #: ../authconfig.py:308
 msgid "create home directories for users on their first login"
-msgstr ""
+msgstr "kullanıcılar ilk kez oturum açtıklarında ana dizini yarat"
 
 #: ../authconfig.py:310
 msgid "do not create home directories for users on their first login"
-msgstr ""
+msgstr "kullanıcılar ilk kez oturum açtıklarında ana dizini yaratma"
 
 #: ../authconfig.py:313
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -456,21 +459,23 @@ msgstr "öntanımlılar için ağı tara ve onları göster"
 
 #: ../authconfig.py:333 ../authconfig.py:336
 msgid "<name>"
-msgstr ""
+msgstr "<isim>"
 
 #: ../authconfig.py:334
 msgid "save a backup of all configuration files"
-msgstr ""
+msgstr "tüm yapılandırma dosyalarının yedeklerini kaydet"
 
 #: ../authconfig.py:337
 msgid "restore the backup of configuration files"
-msgstr ""
+msgstr "tüm yapılandırma dosyalarının yedeklerini geri yükle"
 
 #: ../authconfig.py:340
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
+"önceki yapılandırma değişmeden önce tüm yapılandırma dosyalarının "
+"yedeklerini geri yükle"
 
 #: ../authconfig.py:345
 msgid "unexpected argument"
@@ -518,7 +523,7 @@ msgstr "önbelleğe alma"
 
 #: ../authconfig.py:572
 msgid "Fingerprint reader"
-msgstr ""
+msgstr "Parmak izi okuyucu"
 
 #: ../authconfig.py:573
 msgid "Kerberos"
@@ -594,7 +599,7 @@ msgstr "Kerberos Kullan"
 
 #: ../authconfig.py:621
 msgid "Use Fingerprint reader"
-msgstr ""
+msgstr "Parmak izi okuyucuyu kullan"
 
 #: ../authconfig.py:625
 msgid "Use Winbind Authentication"
@@ -777,36 +782,38 @@ msgstr ""
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
-msgstr ""
+msgstr "Sadece yerel hesaplar"
 
 #: ../authconfig-gtk.py:102
 msgid "FreeIPA"
-msgstr ""
+msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:117
 msgid "Password"
-msgstr ""
+msgstr "Şifre"
 
 #: ../authconfig-gtk.py:120
 msgid "LDAP password"
-msgstr ""
+msgstr "LDAP şifresi"
 
 #: ../authconfig-gtk.py:123
 msgid "Kerberos password"
-msgstr ""
+msgstr "Kerberos şifresi"
 
 #: ../authconfig-gtk.py:126
 msgid "NIS password"
-msgstr ""
+msgstr "NIS şifresi"
 
 #: ../authconfig-gtk.py:129
 msgid "Winbind password"
-msgstr ""
+msgstr "Winbind şifresi"
 
 #: ../authconfig-gtk.py:444
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
 msgstr ""
+"ldaps:// sunucu adresi belirtmelisiniz yada LDAP yetkilendirmesi için TLS "
+"kullanmalısınız"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -814,42 +821,45 @@ msgstr "*"
 
 #: ../authconfig.glade.h:2
 msgid "<b>Authentication Configuration</b>"
-msgstr ""
+msgstr "<b>Kimlik Denetimi Yapılandırması</b>"
 
 #: ../authconfig.glade.h:3
 msgid "<b>Local Authentication Options</b>"
-msgstr ""
+msgstr "<b>Yerel Kimlik Denetimi Seçenekleri</b>"
 
 #: ../authconfig.glade.h:4
 msgid "<b>Other Authentication Options</b>"
-msgstr ""
+msgstr "<b>Diğer Kimlik Denetimi Seçenekleri</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Smart Card Authentication Options</b>"
-msgstr ""
+msgstr "<b>Akıllı Kard Kimlik Denetimi Seçenekleri</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>User Account Configuration</b>"
-msgstr ""
+msgstr "<b>Kullanıcı Hesabı Yapılandırması</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
 "<small><b>Tip:</b> Smart cards support logging into both local and centrally "
 "managed accounts.</small>"
 msgstr ""
+"<small><b>İpucu:</b>Akıllı kartlar hem yerelde hem de merkezi yönetilen "
+"hesaplarda oturum açmayı destekler.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
 msgstr ""
+"<small><b>İpucu:</b> Bu etc/security/access.conf ile yönetilir.</small>"
 
 #: ../authconfig.glade.h:9
 msgid "Ad_min Servers:"
-msgstr ""
+msgstr "Yö_netici Sunucular:"
 
 #: ../authconfig.glade.h:10
 msgid "Advanced _Options"
-msgstr ""
+msgstr "Gelişmiş_Seçenekler"
 
 #: ../authconfig.glade.h:11
 msgid "Alert"
@@ -863,29 +873,31 @@ msgstr ""
 
 #: ../authconfig.glade.h:13
 msgid "Allow offline _login"
-msgstr ""
+msgstr "Çevrimdışı _oturum açmaya izin ver"
 
 #: ../authconfig.glade.h:14
 msgid "Aut_hentication Method:"
-msgstr ""
+msgstr "Kim_lik Denetimi Yöntemi:"
 
 #: ../authconfig.glade.h:16
 msgid "Card Re_moval Action:"
-msgstr ""
+msgstr "Kart Ka_ldırma İşlemi:"
 
 #: ../authconfig.glade.h:17
 msgid "Certificate _URL:"
-msgstr ""
+msgstr "Sertifika_URLsi:"
 
 #: ../authconfig.glade.h:18
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
 msgstr ""
+"Henüz bir CA Sertifikası indirmediyseniz yada  CA sertifikası kurmadıysanız "
+"bu butona tıklayın ."
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
-msgstr ""
+msgstr "İlk kez oturum açıldığında _ana dizinleri yarat"
 
 #: ../authconfig.glade.h:20
 msgid "Do_n't Save"
@@ -893,7 +905,7 @@ msgstr "_Saklama"
 
 #: ../authconfig.glade.h:21
 msgid "Domain _administrator:"
-msgstr ""
+msgstr "Domain_yöneticisi:"
 
 #: ../authconfig.glade.h:23
 msgid "Download CA Certificate"
@@ -901,35 +913,41 @@ msgstr "CA Sertifikası İndir"
 
 #: ../authconfig.glade.h:24
 msgid "Enable _fingerprint reader support"
-msgstr ""
+msgstr "_Parmak izi okuyucu desteğini seçilir kıl"
 
 #: ../authconfig.glade.h:25
 msgid "Enable _local access control"
-msgstr ""
+msgstr "_Yerel erişim kontrolünü seçilir kıl"
 
 #: ../authconfig.glade.h:26
 msgid "Enable _smart card support"
-msgstr ""
+msgstr "_Akıllı kart desteğini seçilir kıl"
 
 #: ../authconfig.glade.h:27
 msgid ""
 "Fingerprint authentication allows you to log in by scanning your finger with "
 "the fingerprint reader."
 msgstr ""
+"Parmak izi kimlik denetimi , parmak izi okuyucuya parmağınızın "
+"taratılmasından sonra oturum açma izni verir."
 
 #: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
 msgstr ""
+"Yerel kullanıcıların şifrelerini saklamak için kullanılan kıyım yada kripto "
+"algoritması"
 
 #: ../authconfig.glade.h:29
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
+msgstr "Ana makina yada ldap:// yada LDAP sunucusunu gösteren ldaps:// URI "
 
 #: ../authconfig.glade.h:30
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
 msgstr ""
+"Bir kullanıcının ana dizini henüz mevcut değilse , ana dizin ilk oturum açma "
+"işleminde otomatik olarak oluşturulur."
 
 #: ../authconfig.glade.h:31
 msgid "Joining Winbind Domain"
@@ -937,19 +955,19 @@ msgstr "Winbind Alanını Birleştiriyor"
 
 #: ../authconfig.glade.h:32
 msgid "LDAP Search _Base DN:"
-msgstr ""
+msgstr "LDAP Arama_Taban DN:"
 
 #: ../authconfig.glade.h:33
 msgid "LDAP _Server:"
-msgstr ""
+msgstr "LDAP _Sunucusu:"
 
 #: ../authconfig.glade.h:34
 msgid "NIS _Domain:"
-msgstr ""
+msgstr "NIS _Domaini:"
 
 #: ../authconfig.glade.h:35
 msgid "NIS _Server:"
-msgstr ""
+msgstr "NIS _Sunucusu:"
 
 #: ../authconfig.glade.h:36
 msgid "R_ealm:"
@@ -957,17 +975,19 @@ msgstr ""
 
 #: ../authconfig.glade.h:37
 msgid "Require smart car_d for login"
-msgstr ""
+msgstr "Oturum açmak için akıllı kar_t gerekli"
 
 #: ../authconfig.glade.h:38
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr ""
+"Önceki yapılandırma değişmeden önce yedeklenmiş olan yapılandırma "
+"dosyalarını geri yükle"
 
 #: ../authconfig.glade.h:39
 msgid "Revert"
-msgstr ""
+msgstr "Dön"
 
 #: ../authconfig.glade.h:40
 msgid ""
@@ -979,7 +999,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
-msgstr ""
+msgstr "Şa_blon Kabuk:"
 
 #: ../authconfig.glade.h:43
 msgid ""
@@ -990,7 +1010,7 @@ msgstr ""
 
 #: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "Alanlar için KDC'leri bulmak için DNS'i kullan"
+msgstr ""
 
 #: ../authconfig.glade.h:45
 msgid "Use D_NS to resolve hosts to realms"
@@ -1018,19 +1038,19 @@ msgstr ""
 
 #: ../authconfig.glade.h:50
 msgid "Winbind Domain Co_ntrollers:"
-msgstr ""
+msgstr "Winbind Domain Ko_ntrolleri:"
 
 #: ../authconfig.glade.h:51
 msgid "Winbind _Domain:"
-msgstr ""
+msgstr "Winbind _Domaini:"
 
 #: ../authconfig.glade.h:52
 msgid "_Download CA Certificate..."
-msgstr ""
+msgstr "CA Sertifikası _indir"
 
 #: ../authconfig.glade.h:53
 msgid "_Identity & Authentication"
-msgstr ""
+msgstr "_Kimlik & Kimlik Denetimi"
 
 #: ../authconfig.glade.h:54
 msgid "_Join Domain..."
@@ -1038,39 +1058,39 @@ msgstr ""
 
 #: ../authconfig.glade.h:55
 msgid "_KDCs:"
-msgstr ""
+msgstr "_KDCler:"
 
 #: ../authconfig.glade.h:56
 msgid "_Password Hashing Algorithm:"
-msgstr ""
+msgstr "_Şifre Kıyım Algoritması:"
 
 #: ../authconfig.glade.h:57
 msgid "_Password:"
-msgstr ""
+msgstr "_Şifre:"
 
 #: ../authconfig.glade.h:58
 msgid "_Security Model:"
-msgstr ""
+msgstr "_Güvenlik Modeli:"
 
 #: ../authconfig.glade.h:59
 msgid "_User Account Database:"
-msgstr ""
+msgstr "_Kullanıcı Hesabı Veritabanı:"
 
-#: ../authinfo.py:988 ../authinfo.py:1747 ../authinfo.py:2995
+#: ../authinfo.py:988 ../authinfo.py:1752 ../authinfo.py:3000
 msgid "Lock"
 msgstr "Kilitle"
 
-#: ../authinfo.py:988 ../authinfo.py:1749
+#: ../authinfo.py:988 ../authinfo.py:1754
 msgid "Ignore"
 msgstr "Görmezden gel"
 
-#: ../authinfo.py:3377
+#: ../authinfo.py:3392
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:3886
+#: ../authinfo.py:3901
 msgid "Error downloading CA certificate"
 msgstr "CA sertifikasını indirmede hata"
