@@ -205,7 +205,7 @@ def openfdLocked(filename, mode, perms):
 			fcntl.lockf(fd, fcntl.LOCK_SH)
 		else:
 			fcntl.lockf(fd, fcntl.LOCK_EX)
-	except OSError, (errno, strerr):
+	except OSError as (errno, strerr):
 		if fd != -1:
 			try:
 				os.close(fd)
@@ -913,7 +913,7 @@ def feedFork(command, echo, query, response):
 		c = ""
 		try:
 			c = os.read(master, 1)
-		except OSError, (err, text):
+		except OSError as (err, text):
 			if err == errno.EINTR or err == errno.EAGAIN:
 				pass
 			elif err == errno.EIO:
@@ -1089,7 +1089,7 @@ class FileBackup:
 		try:
 			if not os.path.isdir(destdir):
 				os.mkdir(destdir)
-		except OSError, IOError:
+		except (OSError, IOError):
 			rv = False
 
 		backuppath = destdir+"/"+self.backupName
@@ -1104,7 +1104,7 @@ class FileBackup:
 		try:
 			if not os.path.isdir(backupdir):
 				return False
-		except IOError, OSError:
+		except (IOError, OSError):
 			rv = False
 
 		backuppath = backupdir+"/"+self.backupName
@@ -1133,7 +1133,7 @@ class CacheBackup(FileBackup):
 		try:
 			if not os.path.isdir(destdir):
 				os.mkdir(destdir)
-		except OSError, IOError:
+		except (OSError, IOError):
 			rv = False
 
 		backuppath = destdir+"/"+self.backupName
@@ -1161,7 +1161,7 @@ class CacheBackup(FileBackup):
 		try:
 			if not os.path.isdir(backupdir):
 				return False
-		except IOError, OSError:
+		except (IOError, OSError):
 			rv = False
 
 		backuppath = backupdir+"/"+self.backupName
@@ -1700,7 +1700,7 @@ class AuthInfo:
 			return True
 		try:
 			self.sssdConfig.import_config(all_configs[CFG_SSSD].origPath)
-		except IOError, SSSDConfig.ParsingError:
+		except (IOError, SSSDConfig.ParsingError):
 			self.sssdConfig.new_config()
 		try:
 			domain = self.sssdDomain = self.sssdConfig.get_domain(SSSD_AUTHCONFIG_DOMAIN)
@@ -3630,7 +3630,7 @@ class AuthInfo:
 			ret = ret and self.writePAM()
 			ret = ret and self.writeSysconfig()
 			ret = ret and self.writeNetwork()
-		except OSError, IOError:
+		except (OSError, IOError):
 			return False
 		return ret
 
@@ -3645,7 +3645,7 @@ class AuthInfo:
 				if group.attrsDiffer(self, ref):
 					self.confChanged = True
 					ret = ret and group.saveFunction()
-		except OSError, IOError:
+		except (OSError, IOError):
 			return False
 		return ret
 
@@ -3875,7 +3875,7 @@ class AuthInfo:
 		if self.enableLDAP or self.enableLDAPAuth:
 			try:
 				os.stat(self.ldapCacertDir)
-			except OSError, (err, text):
+			except OSError as (err, text):
 				if err == errno.ENOENT:
 					os.mkdir(self.ldapCacertDir, 0755)
 

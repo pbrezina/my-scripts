@@ -59,7 +59,7 @@ if "--nox" in sys.argv:
 
 try:
 	import gtk, gtk.glade
-except RuntimeError, e:
+except RuntimeError:
 	sys.stderr.write(_("Unable to initialize graphical environment. Most likely cause of failure\n"
 		"is that the tool was not run using a graphical environment. Please either\n"
 		"start your graphical user interface or set your DISPLAY variable.\n"))
