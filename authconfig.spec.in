@@ -124,6 +124,11 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Thu Nov 24 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.17-1
+- fix wrong exit value of --savebackup action
+- do not crash on broken SSSD configuration
+- use pam_pwquality instead of pam_cracklib
+
 * Mon Sep 12 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.16-1
 - fix broken --help output for languages without spaces (#734355)
 - enable translation of the --help option description (#734303)
