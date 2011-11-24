@@ -276,13 +276,13 @@ argv_afs_auth = [
 
 argv_afs_password = [
 	# It looks like current pam_afs (from OpenAFS 1.1.1) doesn't support
-	# "use_authtok", so it'll probably interact badly with pam_cracklib,
+	# "use_authtok", so it'll probably interact badly with pam_pwquality,
 	# but thanks to stack-traversal changes in Linux-PAM 0.75 and higher,
 	# the password-changing should work anyway.
 	"use_first_pass"
 ]
 
-argv_cracklib_password = [
+argv_pwquality_password = [
 	"try_first_pass",
 	"retry=3",
 	"type="
@@ -480,7 +480,7 @@ pam_modules[STANDARD] = [
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "permit",		[]],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
-	 "cracklib",		argv_cracklib_password],
+	 "pwquality",		argv_pwquality_password],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
 	 "passwdqc",		argv_passwdqc_password],
 	[True,  PASSWORD,	LOGIC_SUFFICIENT,
@@ -580,7 +580,7 @@ pam_modules[PASSWORD_ONLY] = [
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "permit",		[]],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
-	 "cracklib",		argv_cracklib_password],
+	 "pwquality",		argv_pwquality_password],
 	[False,  PASSWORD,	LOGIC_REQUISITE,
 	 "passwdqc",		argv_passwdqc_password],
 	[True,  PASSWORD,	LOGIC_SUFFICIENT,
@@ -1284,7 +1284,7 @@ class AuthInfo:
 		self.enableAFS = None
 		self.enableAFSKerberos = None
 		self.enableNullOk = True
-		self.enableCracklib = None
+		self.enablePWQuality = None
 		self.enableEcryptfs = None
 		self.enableEPS = None
 		self.enableKerberos = None
@@ -1315,7 +1315,7 @@ class AuthInfo:
 		# Not really options.
 		self.joinUser = ""
 		self.joinPassword = ""
-		self.cracklibArgs = ""
+		self.pwqualityArgs = ""
 		self.passwdqcArgs = ""
 		self.localuserArgs = ""
 		self.pamAccessArgs = ""
@@ -1367,14 +1367,14 @@ class AuthInfo:
 		("enableCompat", "b"), ("enableWINS", "b"), ("enableMDNS", "b"),
 		("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
-	SaveGroup(self.writePAM, [("cracklibArgs", "c"), ("passwdqcArgs", "c"),
+	SaveGroup(self.writePAM, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
 		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
 		("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
 		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
-		("enableAFSKerberos", "b"), ("enableCracklib", "b"), ("enableEPS", "b"),
+		("enableAFSKerberos", "b"), ("enablePWQuality", "b"), ("enableEPS", "b"),
 		("enableEcryptfs", "b"), ("enableOTP", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
@@ -1383,7 +1383,7 @@ class AuthInfo:
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
-		("enableHesiod", "b"), ("enableCracklib", "b"), ("enablePasswdQC", "b"),
+		("enableHesiod", "b"), ("enablePWQuality", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
 		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
@@ -1981,10 +1981,10 @@ class AuthInfo:
 			if len(lst) == 2:
 				args = lst[1]
 
-			if module.startswith("pam_cracklib"):
-				self.setParam("enableCracklib", True, ref)
+			if module.startswith("pam_cracklib") or module.startswith("pam_pwquality"):
+				self.setParam("enablePWQuality", True, ref)
 				if args:
-					self.setParam("cracklibArgs", args, ref)
+					self.setParam("pwqualityArgs", args, ref)
 				continue
 			if module.startswith("pam_ecryptfs"):
 				self.setParam("enableEcryptfs", True, ref)
@@ -2063,12 +2063,12 @@ class AuthInfo:
 					if match != None and match.group(2) != None:
 						self.setParam("uidMin", match.group(2), ref)
 
-		# Special handling for pam_cracklib and pam_passwdqc: there can be
+		# Special handling for pam_pwquality and pam_passwdqc: there can be
 		# only one.
-		if self.enableCracklib and self.enablePasswdQC:
+		if self.enablePWQuality and self.enablePasswdQC:
 			self.setParam("enablePasswdQC", False, ref)
-		if not self.enableCracklib and not self.enablePasswdQC:
-			self.setParam("enableCracklib", True, ref)
+		if not self.enablePWQuality and not self.enablePasswdQC:
+			self.setParam("enablePWQuality", True, ref)
 
 		# Special handling for broken_shadow option
 		if (self.brokenShadow and not self.enableLDAPAuth and
@@ -2096,7 +2096,7 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
-				self.enableCracklib = shv.getBoolValue("USECRACKLIB")
+				self.enablePWQuality = shv.getBoolValue("USEPWQUALITY")
 			except ValueError:
 				pass
 			try:
@@ -3392,8 +3392,8 @@ class AuthInfo:
 				self.messageCB(_("Authentication module %s/pam_%s.so is missing. Authentication process might not work correctly." %
 					(AUTH_MODULE_DIR, name)))
 				self.module_missing[name] = True
-			if name == "cracklib":
-				args = self.cracklibArgs
+			if name == "pwquality":
+				args = self.pwqualityArgs
 			if name == "passwdqc":
 				args = self.passwdqcArgs
 			if name == "localuser":
@@ -3488,7 +3488,7 @@ class AuthInfo:
 				if (module[MANDATORY] or
 					(self.enableAFS and module[NAME] == "afs") or
 					(self.enableAFSKerberos and module[NAME] == "afs.krb") or
-					(self.enableCracklib and module[NAME] == "cracklib") or
+					(self.enablePWQuality and module[NAME] == "pwquality") or
 					(self.enableEcryptfs and module[NAME] == "ecryptfs") or
 					(self.enableEPS and module[NAME] == "eps") or
 					((self.enableKerberos and not self.implicitSSSDAuth)and module[NAME] == "krb5" and
@@ -3545,7 +3545,7 @@ class AuthInfo:
 		except IOError:
 			return False
 
-		shv.setBoolValue("USECRACKLIB", self.enableCracklib)
+		shv.setBoolValue("USEPWQUALITY", self.enablePWQuality)
 		shv.setBoolValue("USEDB", self.enableDB)
 		shv.setBoolValue("USEHESIOD", self.enableHesiod)
 		shv.setBoolValue("USELDAP", self.enableLDAP)
@@ -3788,8 +3788,8 @@ class AuthInfo:
 		print "pam_sss is %s by default" % formatBool(self.enableSSSDAuth)
 		print " credential caching in SSSD is %s" % formatBool(self.enableCacheCreds)
 		print " SSSD use instead of legacy services if possible is %s" % formatBool(not self.enableForceLegacy)
-		print "pam_cracklib is %s (%s)" % (formatBool(self.enableCracklib),
-			self.cracklibArgs)
+		print "pam_pwquality is %s (%s)" % (formatBool(self.enablePWQuality),
+			self.pwqualityArgs)
 		print "pam_passwdqc is %s (%s)" % (formatBool(self.enablePasswdQC),
 			self.passwdqcArgs)
 		print "pam_access is %s (%s)" % (formatBool(self.enablePAMAccess),
