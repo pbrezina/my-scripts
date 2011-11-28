@@ -3274,12 +3274,11 @@ class AuthInfo:
 						output += users
 						output += "\n"
 						wrotegroup = True
-				# If it's a 'initgroups' line, insert ours instead.
+				# If it's a 'initgroups' line, comment it out instead.
 				elif matchLine(ls, "initgroups:"):
 					if not wroteinitgroups:
-						output += "initgroups: "
-						output += users
-						output += "\n"
+						output += "#"
+						output += line
 						wroteinitgroups = True
 				# If it's a 'netgroup' line, insert ours instead.
 				elif matchLine(ls, "netgroup:"):
@@ -3332,7 +3331,7 @@ class AuthInfo:
 				output += hosts
 				output += "\n"
 			# For now we do not write initgroups
-			# line if not encountered
+			# line if not encountered.
 
 			# Write it out and close it.
 			f.rewind()
