@@ -20,7 +20,9 @@ import gtk, gobject
 
 # This file is a Python translation of gedit/gedit/gedit-message-area.c
 
-class MsgArea(gtk.HBox):
+if gtk.pygtk_version < (2, 17):
+
+  class MsgArea(gtk.HBox):
     __gsignals__ = {
         "response" : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_INT,)),                    
         "close" : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, [])
@@ -202,6 +204,69 @@ class MsgArea(gtk.HBox):
             secondary_label.set_alignment(0, 0.5)
     
         self.set_contents(hbox_content)
+
+else:
+
+    class MsgArea(gtk.InfoBar):
+        def __init__(self, buttons):
+            super(MsgArea, self).__init__()
+            self._current_contents = None
+	    if buttons:
+	        self.add_buttons(buttons)
+
+        def add_buttons(self, args):
+            for (btext, respid) in args:
+                self.add_button(btext, respid)
+
+        def clear_buttons(self):
+            for child in self.get_action_area().get_children():
+                self.get_action_area().remove(child)
+                child.destroy()
+
+        def set_contents(self, contents):
+            content_area = self.get_content_area()
+            if self._current_contents is not None:
+                content_area.remove(self._current_contents)
+
+            self._current_contents = contents
+            content_area.pack_start(contents, True, True, 0)
+
+	def set_text_and_icon(self, stockid, primary_text, secondary_text=None):
+            hbox_content = gtk.HBox(False, 8)
+            hbox_content.show()
+
+            image = gtk.Image()
+            image.set_from_stock(stockid, gtk.ICON_SIZE_BUTTON)
+            image.show()
+            hbox_content.pack_start(image, False, False, 0)
+            image.set_alignment(0.5, 0.5)
+
+            vbox = gtk.VBox(False, 6)
+            vbox.show()
+            hbox_content.pack_start (vbox, True, True, 0)
+
+            primary_markup = "%s" % (primary_text,)
+            primary_label = gtk.Label(primary_markup)
+            primary_label.show()
+            vbox.pack_start(primary_label, True, True, 0)
+            primary_label.set_use_markup(True)
+            primary_label.set_line_wrap(True)
+            primary_label.set_alignment(0, 0.5)
+            primary_label.set_flags(gtk.CAN_FOCUS)
+            primary_label.set_selectable(True)
+
+            if secondary_text:
+                secondary_markup = "<small>%s</small>" % (secondary_text,)
+                secondary_label = gtk.Label(secondary_markup)
+                secondary_label.show()
+                vbox.pack_start(secondary_label, True, True, 0)
+                secondary_label.set_flags(gtk.CAN_FOCUS)
+                secondary_label.set_use_markup(True)
+                secondary_label.set_line_wrap(True)
+                secondary_label.set_selectable(True)
+                secondary_label.set_alignment(0, 0.5)
+
+            self.set_contents(hbox_content)
 
 class MsgAreaController(gtk.HBox):
     def __init__(self):
