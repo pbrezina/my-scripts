@@ -247,6 +247,23 @@ class Authconfig:
 		parser.add_option("--winbindjoin", metavar="<Administrator>",
 			help=_("join the winbind domain or ads realm now as this administrator"))
 
+		parser.add_option("--enableipav2", action="store_true",
+			help=_("enable IPAv2 for user information and authentication by default"))
+		parser.add_option("--disableipav2", action="store_true",
+			help=_("disable IPAv2 for user information and authentication by default"))
+		parser.add_option("--ipav2domain", metavar=_("<domain>"),
+			help=_("the IPAv2 domain the system should be part of"))
+		parser.add_option("--ipav2realm", metavar=_("<realm>"),
+			help=_("the realm for the IPAv2 domain"))
+		parser.add_option("--ipav2server", metavar=_("<servers>"),
+			help=_("the server for the IPAv2 domain"))
+		parser.add_option("--enableipav2nontp", action="store_true",
+			help=_("do not setup the NTP against the IPAv2 domain"))
+		parser.add_option("--disableipav2nontp", action="store_true",
+			help=_("setup the NTP against the IPAv2 domain (default)"))
+		parser.add_option("--ipav2join", metavar="<account>",
+			help=_("join the IPAv2 domain as this account"))
+
 		parser.add_option("--enablewins", action="store_true",
 			help=_("enable wins for hostname resolution"))
 		parser.add_option("--disablewins", action="store_true",
@@ -408,6 +425,8 @@ class Authconfig:
 			"winbindauth":"enableWinbindAuth",
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
 			"winbindoffline":"winbindOffline",
+			"ipav2":"enableIPAv2",
+			"ipav2nontp":"ipav2NoNTP",
 			"wins":"enableWINS",
 			"sssd":"enableSSSD",
 			"sssdauth":"enableSSSDAuth",
@@ -437,7 +456,10 @@ class Authconfig:
 			"winbindseparator":"winbindSeparator",
 			"winbindtemplatehomedir":"winbindTemplateHomedir",
 			"winbindtemplateprimarygroup":"winbindTemplatePrimaryGroup",
-			"winbindtemplateshell":"winbindTemplateShell"}
+			"winbindtemplateshell":"winbindTemplateShell",
+			"ipav2domain":"ipav2Domain",
+			"ipav2realm":"ipav2Realm",
+			"ipav2server":"ipav2Server"}
 
 		for opt, aival in bool_settings.iteritems():
 			if getattr(self.options, "enable"+opt):
@@ -467,6 +489,9 @@ class Authconfig:
 			if len(lst) > 1:
 				self.info.joinPassword = lst[1]
 
+		if self.options.ipav2join != None:
+			self.info.joinUser = self.options.ipav2join
+
 		if self.options.smartcardaction:
 			try:
 				idx = int(self.options.smartcardaction)
@@ -491,6 +516,8 @@ class Authconfig:
 	def joinDomain(self):
 		if self.options.winbindjoin:
 			self.info.joinDomain(True)
+		if self.options.ipav2join != None:
+			self.info.joinIPADomain(True)
 
 	def writeAuthInfo(self):
 		self.info.testLDAPCACerts()
@@ -588,13 +615,13 @@ class AuthconfigTUI(Authconfig):
 		cache = cb = snack.Checkbox(_("Cache Information"), bool(self.info.enableCache))
 		infoGrid.setField(cb, 0, 1, anchorLeft=1, growx=1)
 
-		hesiod = cb =	snack.Checkbox(_("Use Hesiod"), bool(self.info.enableHesiod))
+		ldap = cb = snack.Checkbox(_("Use LDAP"), bool(self.info.enableLDAP))
 		infoGrid.setField(cb, 0, 2, anchorLeft=1, growx=1)
 
-		ldap = cb = snack.Checkbox(_("Use LDAP"), bool(self.info.enableLDAP))
+		nis = cb = snack.Checkbox(_("Use NIS"), bool(self.info.enableNIS))
 		infoGrid.setField(cb, 0, 3, anchorLeft=1, growx=1)
 
-		nis = cb = snack.Checkbox(_("Use NIS"), bool(self.info.enableNIS))
+		ipav2 = cb = snack.Checkbox(_("Use IPAv2"), bool(self.info.enableIPAv2))
 		infoGrid.setField(cb, 0, 4, anchorLeft=1, growx=1)
 
 		winbind = cb = snack.Checkbox(_("Use Winbind"), bool(self.info.enableWinbind))
@@ -655,7 +682,7 @@ class AuthconfigTUI(Authconfig):
 
 		if comp != cancel:
 			self.info.enableCache = cache.selected()
-			self.info.enableHesiod = hesiod.selected()
+			self.info.enableIPAv2 = ipav2.selected()
 			self.info.enableLDAP = ldap.selected()
 			self.info.enableNIS = nis.selected()
 			self.info.enableWinbind = winbind.selected()
@@ -776,11 +803,13 @@ class AuthconfigTUI(Authconfig):
 		self.screen.popWindow()
 		return comp != cancel
 
-	def getHesiodSettings(self, next):
-		questions = [("svalue", _("LHS:"), "hesiodLHS", 0),
-			("svalue", _("RHS:"), "hesiodRHS", 0)]
-		return self.getGenericChoices(_("Hesiod Settings"),
-			questions, _("Back"), next and _("Next") or _("Ok"))
+	def getIPAv2Settings(self, next):
+		questions = [("svalue", _("Domain:"), "ipav2Domain", 0),
+			("svalue", _("Realm:"), "ipav2Realm", 0),
+			("svalue", _("Server:"), "ipav2Server", 0)]
+		return self.getGenericChoices(_("IPAv2 Settings"),
+			questions, _("Back"), next and _("Next") or _("Ok"),
+			anothertxt=_("Join Domain"), anothercb=self.maybeGetJoinSettings)
 
 	def getLDAPSettings(self, next):
 		questions = [("tfvalue", _("Use TLS"), "enableLDAPS", None),
@@ -813,7 +842,10 @@ class AuthconfigTUI(Authconfig):
 			questions, _("Cancel"), _("Ok")):
 			self.screen.suspend()
 			self.info.update()
-			self.info.joinDomain(True)
+			if self.info.enableWinbind:
+				self.info.joinDomain(True)
+			elif self.info.enableIPAv2:
+				self.info.joinIPADomain(True)
 			self.screen.resume()
 		return True
 
@@ -862,14 +894,14 @@ class AuthconfigTUI(Authconfig):
 			if next == 1:
 				rc = self.getMainChoices()
 			elif next == 2:
-				if self.info.enableHesiod:
+				if self.info.enableIPAv2:
 					more = (self.info.enableLDAP or
 						self.info.enableLDAPAuth or
 						self.info.enableKerberos or
 						self.info.enableNIS or
 						self.info.enableWinbind or
 						self.info.enableWinbindAuth)
-					rc = self.getHesiodSettings(more)
+					rc = self.getIPAv2Settings(more)
 			elif next == 3:
 				if self.info.enableLDAP or self.info.enableLDAPAuth:
 					more = (self.info.enableKerberos or

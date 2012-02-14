@@ -112,6 +112,7 @@ PATH_PAM_FPRINTD = AUTH_MODULE_DIR + "/pam_fprintd.so"
 PATH_PAM_SSS = AUTH_MODULE_DIR + "/pam_sss.so"
 
 PATH_WINBIND_NET = "/usr/bin/net"
+PATH_IPA_CLIENT_INSTALL = "/usr/sbin/ipa-client-install"
 
 PATH_LDAP_CACERTS = "/etc/openldap/cacerts"
 LDAP_CACERT_DOWNLOADED = "authconfig_downloaded.pem"
@@ -139,6 +140,8 @@ def snipString(s):
 
 # Make a list presentable.
 def cleanList(lst):
+	if not lst:
+		return lst
 	s = lst.replace("\t"," ")
 	return ",".join(filter(None, s.split(" ")))
 
@@ -885,7 +888,7 @@ def feedFork(command, echo, query, response):
 	try:
 		(pid, master) = os.forkpty()
 	except OSError:
-		return
+		return 255
 	if not pid:
 		# child
 		os.system(command)
@@ -945,10 +948,12 @@ def feedFork(command, echo, query, response):
 		os.kill(pid, signal.SIGTERM)
 	except OSError:
 		pass
+	status = 255
 	try:
 		(child, status) = os.waitpid(pid, 0)
 	except OSError, (err, text):
 		sys.stderr.write("waitpid: " + text + "\n")
+	return status
 
 def isEmptyDir(path):
 	try:
@@ -1255,7 +1260,13 @@ class AuthInfo:
 		self.winbindTemplateShell = ""
 		self.winbindUseDefaultDomain = None
 		self.winbindOffline = None
-		
+
+		self.ipav2Server = None
+		self.ipav2Domain = None
+		self.ipav2Realm = None
+		self.ipav2NoNTP = None
+		self.ipaDomainJoined = False
+
 		self.smartcardModule = ""
 		self.smartcardAction = ""
 
@@ -1279,6 +1290,7 @@ class AuthInfo:
 		self.enableMDNS = None
 		self.preferDNSinHosts = None
 		self.enableSSSD = None
+		self.enableIPAv2 = None
 
 		# Authentication setup.
 		self.enableAFS = None
@@ -1353,7 +1365,7 @@ class AuthInfo:
 		("ldapSchema", "c"), ("ldapCacertDir", "c"),
 		("kerberosRealm", "c"), ("kerberosKDC", "i"), ("kerberosAdminServer", "i"),
 		("forceSSSDUpdate", "b"), ("enableLDAP", "b"), ("enableKerberos", "b"),
-		("enableLDAPAuth", "b")]),
+		("enableLDAPAuth", "b"), ("enableIPAv2", "b")]),
 	SaveGroup(self.writeSmartcard, [("smartcardAction", "i"), ("smartcardModule", "c")]),
 	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
@@ -1365,7 +1377,7 @@ class AuthInfo:
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
 		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
 		("enableCompat", "b"), ("enableWINS", "b"), ("enableMDNS", "b"),
-		("enableNIS3", "b"), ("enableNIS", "b"),
+		("enableNIS3", "b"), ("enableNIS", "b"), ("enableIPAv2", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
 	SaveGroup(self.writePAM, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
@@ -1378,7 +1390,7 @@ class AuthInfo:
 		("enableEcryptfs", "b"), ("enableOTP", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
-		("implicitSSSDAuth", "b"), ("systemdArgs", "c"), ("uidMin", "i")]),
+		("implicitSSSDAuth", "b"), ("systemdArgs", "c"), ("uidMin", "i"), ("enableIPAv2", "b")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
@@ -1386,7 +1398,9 @@ class AuthInfo:
 		("enableHesiod", "b"), ("enablePWQuality", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
-		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
+		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b"),
+		("ipav2Server", "i"), ("ipav2Domain", "i"), ("ipav2Realm", "c"),
+		("enableIPAv2", "b"), ("ipaDomainJoined", "b"), ("ipav2NoNTP", "b")]),
 	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
 
 	def setParam(self, attr, value, ref):
@@ -1400,7 +1414,7 @@ class AuthInfo:
 		if self.enableForceLegacy or not self.sssdConfig:
 			return False
 		# we just ignore things which have no support on command line
-		nssall = ('NIS', 'LDAP', 'Winbind', 'Hesiod')
+		nssall = ('NIS', 'LDAP', 'Winbind', 'Hesiod', 'IPAv2')
 		pamall = ('Kerberos', 'LDAPAuth', 'WinbindAuth', 'Smartcard')
 		idsupported = ('LDAP')
 		authsupported = ('Kerberos', 'LDAPAuth')
@@ -2227,6 +2241,21 @@ class AuthInfo:
 				self.enableCacheCreds = shv.getBoolValue("CACHECREDENTIALS")
 			except ValueError:
 				pass
+			try:
+				self.enableIPAv2 = shv.getBoolValue("USEIPAV2")
+			except ValueError:
+				pass
+			try:
+				self.ipaDomainJoined = shv.getBoolValue("IPADOMAINJOINED")
+			except ValueError:
+				pass
+			try:
+				self.ipav2NoNTP = shv.getBoolValue("IPAV2NONTP")
+			except ValueError:
+				pass
+			self.ipav2Server = shv.getValue("IPAV2SERVER")
+			self.ipav2Domain = shv.getValue("IPAV2DOMAIN")
+			self.ipav2Realm = shv.getValue("IPAV2REALM")
 			algo = shv.getValue("PASSWDALGORITHM")
 			if algo in password_algorithms:
 				self.passwordAlgorithm = algo
@@ -2277,6 +2306,7 @@ class AuthInfo:
 	# compensate for the change.
 	def update(self):
 		self.smbServers = cleanList(self.smbServers)
+		self.ipav2Server = cleanList(self.ipav2Server)
 		self.kerberosKDC = cleanList(self.kerberosKDC)
 		self.kerberosAdminServer = cleanList(self.kerberosAdminServer)
 		self.ldapServer = self.ldapHostsToURIs(self.ldapServer)
@@ -2942,6 +2972,10 @@ class AuthInfo:
 
 		all_configs[CFG_SSSD].backup(self.backupDir)
 
+		if self.enableIPAv2:
+			# just save the backup
+			return True
+
 		if not self.sssdDomain:
 			try:
 				self.sssdDomain = self.sssdConfig.new_domain(SSSD_AUTHCONFIG_DOMAIN)
@@ -3197,7 +3231,7 @@ class AuthInfo:
 				normal += " nisplus"
 			if self.enableNIS:
 				normal += " nis"
-			if self.enableSSSD or self.implicitSSSD:
+			if self.enableSSSD or self.implicitSSSD or self.enableIPAv2:
 				normal += " sss"
 			if self.enableLDAPbind:
 				normal += " ldapbind"
@@ -3504,7 +3538,7 @@ class AuthInfo:
 					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
-					((self.enableSSSDAuth or self.implicitSSSDAuth) and module[NAME] == "sss") or
+					((self.enableSSSDAuth or self.implicitSSSDAuth or self.enableIPAv2) and module[NAME] == "sss") or
 					(self.enableLocAuthorize and module[NAME] == "localuser") or
 					(self.enablePAMAccess and module[NAME] == "access") or
 					(self.enableMkHomeDir and module[NAME] == "mkhomedir") or
@@ -3569,6 +3603,12 @@ class AuthInfo:
 		shv.setBoolValue("USESYSNETAUTH", self.enableSysNetAuth)
 		shv.setBoolValue("FORCELEGACY", self.enableForceLegacy)
 		shv.setBoolValue("CACHECREDENTIALS", self.enableCacheCreds)
+		shv.setBoolValue("USEIPAV2", self.enableIPAv2)
+		shv.setBoolValue("IPADOMAINJOINED", self.ipaDomainJoined)
+		shv.setBoolValue("IPAV2NONTP", self.ipav2NoNTP)
+		shv.setValue("IPAV2SERVER", self.ipav2Server)
+		shv.setValue("IPAV2DOMAIN", self.ipav2Domain)
+		shv.setValue("IPAV2REALM", self.ipav2Realm)
 
 		shv.write(0644)
 		shv.close()
@@ -3787,6 +3827,11 @@ class AuthInfo:
 		print "pam_sss is %s by default" % formatBool(self.enableSSSDAuth)
 		print " credential caching in SSSD is %s" % formatBool(self.enableCacheCreds)
 		print " SSSD use instead of legacy services if possible is %s" % formatBool(not self.enableForceLegacy)
+		print "IPAv2 is %s" % formatBool(self.enableIPAv2)
+		print "IPAv2 domain was %sjoined" % (not self.ipaDomainJoined and "not " or "")
+		print " IPAv2 server = \"%s\"" % self.ipav2Server
+		print " IPAv2 realm = \"%s\"" % self.ipav2Realm
+		print " IPAv2 domain = \"%s\"" % self.ipav2Domain
 		print "pam_pwquality is %s (%s)" % (formatBool(self.enablePWQuality),
 			self.pwqualityArgs)
 		print "pam_passwdqc is %s (%s)" % (formatBool(self.enablePasswdQC),
@@ -3832,6 +3877,36 @@ class AuthInfo:
 			else:
 				os.system(cmd)
 
+	def joinIPADomain(self, echo):
+		if self.enableIPAv2:
+			server = self.ipav2Server
+			domain = self.ipav2Domain
+			realm = self.ipav2Realm
+			principal = self.joinUser
+			password = self.joinPassword
+			if self.ipav2NoNTP:
+				nontp = "-N"
+			else:
+				nontp = ""
+			cmd = PATH_IPA_CLIENT_INSTALL + " %s%s %s%s %s%s %s%s %s %s" % (
+				domain and "--domain=" or "", domain,
+				server and "--server=" or "", server,
+				realm and "--realm=" or "", realm,
+				principal and "--principal=" or "", principal,
+				nontp,
+				password and "-W" or "")
+			
+			if echo:
+				sys.stderr.write("[%s]\n" % cmd)
+			if self.joinPassword:
+				status = feedFork(cmd, echo, "sword:", self.joinPassword)
+			else:
+				status = os.system(cmd)
+			if status == 0:
+				self.ipaDomainJoined = True
+			else:
+				self.messageCB(_("IPAv2 domain join was not succesful. The ipa-client-install command failed."))
+
 	def post(self, nostart):
 		self.toggleShadow()
 		onlystart = not self.confChanged
@@ -3840,7 +3915,7 @@ class AuthInfo:
 			PATH_WINBIND,
 			"winbind", nostart, onlystart)
 		toggleSplatbindService(self.enableSSSD or self.enableSSSDAuth or
-			self.implicitSSSD or self.implicitSSSDAuth,
+			self.implicitSSSD or self.implicitSSSDAuth or self.enableIPAv2,
 			PATH_SSSD,
 			"sssd", nostart, onlystart)
 		toggleSplatbindService((self.enableLDAP or self.enableLDAPAuth) and

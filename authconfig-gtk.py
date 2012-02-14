@@ -106,10 +106,13 @@ class Authconfig:
 			 "nisoptions", "nis_map", authinfo.PATH_LIBNSS_NIS, "ypbind"),
 			"Winbind":
 			(_("Winbind"), ("WinbindAuth",),
-			 "winbindoptions", "winbind_map", authinfo.PATH_WINBIND, "samba-winbind")
+			 "winbindoptions", "winbind_map", authinfo.PATH_WINBIND, "samba-winbind"),
+			"IPAv2":
+			(_("IPAv2"), ("IPAv2Auth",),
+			 "ipav2options", "ipav2_map", authinfo.PATH_IPA_CLIENT_INSTALL, "freeipa-client")
 		}
 		# to keep the order we need a tuple
-		self.id_keys = ("local", "LDAP", "FreeIPA", "NIS", "Winbind")
+		self.id_keys = ("local", "LDAP", "IPAv2", "FreeIPA", "NIS", "Winbind")
 		# "auth type": localized name,
 		# option widget, option map name, file, package
 		self.auth_map = {
@@ -127,6 +130,9 @@ class Authconfig:
 			 "authlabel", "empty_map", "", ""),
 			"WinbindAuth":
 			(_("Winbind password"),
+			 "authlabel", "empty_map", "", ""),
+			"IPAv2Auth":
+			(_("IPAv2 password"),
 			 "authlabel", "empty_map", "", ""),
 		}
 		# entry or label / button / checkbox / option menu :
@@ -181,6 +187,18 @@ class Authconfig:
 			"winbindoffline" : ("winbindOffline", ""),
 			"winbindjoin" : ("winbindjoin_maybe_launch", "")
 		}
+		self.ipav2join_map = {
+			"domain" : ("ipav2Domain", ""),
+			"joinuser" : ("joinUser", ""),
+			"joinpassword" : ("joinPassword", ""),
+		}
+		self.ipav2_map = {
+			"ipav2domain" : ("ipav2Domain", "", "", "", self.ipa_need_join),
+			"ipav2realm" : ("ipav2Realm", "", "", "", self.ipa_need_join),
+			"ipav2server" : ("ipav2Server", "", "", "", self.ipa_need_join),
+			"ipav2nontp" : ("ipav2NoNTP", ""),
+			"ipav2join" : ("ipav2join_maybe_launch", "")
+		}
 		self.info = authinfo.read(self.message_callback)
 		self.pristineinfo = self.info.copy()
 		if self.info.enableLocAuthorize == None:
@@ -199,7 +217,7 @@ class Authconfig:
 	def destroy_widget(self, button, widget):
 		widget.destroy()
 
-	def winbindjoin_maybe_launch(self, button, map, xml, parent):
+	def apply_settings(self, map, xml, parent):
 		backup = self.info.copy()
 		pristine = authinfo.read(self.message_callback)
 		self.info_apply(map, xml)
@@ -208,7 +226,7 @@ class Authconfig:
 						      "empty_map", parent,
 						      (0, 1))
 			if (response == gtk.RESPONSE_CANCEL):
-				return
+				return None
 			# Don't save.
 			if (response == 0):
 				self.info = backup
@@ -216,6 +234,12 @@ class Authconfig:
 			if (response == 1):
 				self.apply()
 				backup = self.info
+		return backup
+
+	def winbindjoin_maybe_launch(self, button, map, xml, parent):
+		backup = self.apply_settings(map, xml, parent)
+		if not backup:
+			return
 		self.winbindjoin_launch(button, map, xml, parent)
 		self.info = backup
 
@@ -228,6 +252,19 @@ class Authconfig:
 			self.info.joinDomain(True)
 		self.info.joinUser = None
 		self.info.joinPassword = None
+
+	def ipav2join_maybe_launch(self, button, map, xml, parent):
+		backup = self.apply_settings(map, xml, parent)
+		if not backup:
+			return
+		self.ipav2join_launch(button, map, xml, parent)
+		self.info = backup
+
+	def ipav2join_launch(self, button, map, xml, parent):
+		response = self.run_on_button(None, "joinipadomain",
+					      "ipav2join_map", parent)
+		if (response == gtk.RESPONSE_OK):
+			self.info.joinIPADomain(True)
 
 	def info_apply(self, map, xml):
 		for entry in map.keys():
@@ -444,6 +481,13 @@ class Authconfig:
 			text = _("You must provide ldaps:// server address or use TLS for LDAP authentication.")
 			self.display_msgctrl(text)
 
+	def ipa_need_join(self, active, xml):
+		if self.currid != "IPAv2" or self.info.ipaDomainJoined:
+			self.clear_msgctrl()
+		else:
+			text = _("Use the \"Join Domain\" button to join the IPAv2 domain.")
+			self.display_msgctrl(text)
+
 	def missing_package(self, path, service, package):
 		if type(path) == tuple:
 			if self.info.sssdSupported():
@@ -560,6 +604,7 @@ class Authconfig:
 		self.update_type(self.auth_map, self.currauth)
 		if not self.missing_packages():
 			self.enable_cacert_download(None, self.idxml)
+			self.ipa_need_join(None, self.idxml)
 
 	def display_authopts(self, topparent):
 		self.authxml = self.display_opts(self.auth_map[self.currauth][1], 'authsite',
@@ -574,6 +619,7 @@ class Authconfig:
 		self.update_type(self.auth_map, self.currauth)
 		if not self.missing_packages():
 			self.enable_cacert_download(None, self.idxml)
+			self.ipa_need_join(None, self.idxml)
 
 	# Create a vbox with the right controls and return the vbox.
 	def get_main_widget(self, xml):
