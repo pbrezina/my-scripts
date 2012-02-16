@@ -1,10 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Dimitris Glezos <glezos@indifex.com>, 2011.
 # Eunju Kim <eukim@redhat.com>, 2006, 2007, 2008, 2009.
+# Eun-Ju Kim <eukim@redhat.com>, 2012.
 # Hyunsok Oh <hoh@redhat.com>, 2010.
 # Jinseok Seo <jsseo@postech.ac.kr>, 2004.
 # Michelle Ji Yeen Kim <mkim@redhat.com>, 2005, 2006.
@@ -16,13 +17,13 @@ msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-24 13:07+0100\n"
-"PO-Revision-Date: 2011-11-14 02:02+0000\n"
-"Last-Translator: mkim33 <mkim33@gmail.com>\n"
-"Language-Team: Korean (http://www.transifex.net/projects/p/fedora/team/ko/)\n"
-"Language: ko\n"
+"PO-Revision-Date: 2012-02-06 05:09+0000\n"
+"Last-Translator: eukim <eukim@redhat.com>\n"
+"Language-Team: Korean (http://www.transifex.net/projects/p/fedora/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #: ../authconfig.py:116
@@ -169,11 +170,11 @@ msgstr "지문 인식기 인증을 기본적으로 사용하지 않음 "
 
 #: ../authconfig.py:188
 msgid "enable automatic per-user ecryptfs"
-msgstr ""
+msgstr "사용자마다 자동 cryptfs 활성화 "
 
 #: ../authconfig.py:190
 msgid "disable automatic per-user ecryptfs"
-msgstr ""
+msgstr "사용자마다 자동 ecryptfs 비활성화 "
 
 #: ../authconfig.py:193
 msgid "enable kerberos authentication by default"
@@ -271,12 +272,11 @@ msgstr "winbind는 도메인과 ads 사용자에게 gid 범위를 할당할 것�
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"winbindusedefaultdomain이 활성화되지 않은 경우 winbind로 생성된 사용자 이름에"
-"서 도메인과 사용자 부분을 구분하는데 사용될 문자"
+msgstr "winbindusedefaultdomain이 활성화되지 않은 경우 winbind로 생성된 사용자 이름에서 도메인과 사용자 부분을 구분하는데 사용될 문자"
 
 #: ../authconfig.py:234
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr "winbind로 생성된 사용자가 홈 디렉토리로 사용할 디렉토리"
 
 #: ../authconfig.py:236
@@ -291,17 +291,13 @@ msgstr "winbind로 생성된 사용자가 로그인 쉘로 사용할 쉘"
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr ""
-"사용자 이름에 도메인이 없는 사용자는 도메인 사용자라고 추측하도록 winbind를 "
-"설정"
+msgstr "사용자 이름에 도메인이 없는 사용자는 도메인 사용자라고 추측하도록 winbind를 설정"
 
 #: ../authconfig.py:242
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr ""
-"사용자 이름에 도메인이 없는 사용자는 도메인 사용자가 아니라고 추측하도록 "
-"winbind를 설정"
+msgstr "사용자 이름에 도메인이 없는 사용자는 도메인 사용자가 아니라고 추측하도록 winbind를 설정"
 
 #: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
@@ -351,32 +347,33 @@ msgstr "기본 hesiod RHS"
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
-msgstr ""
+msgstr "수동 관리 설정과 함께 디폴트로 사용자 정보에 대해 SSSD를 활성화함 "
 
 #: ../authconfig.py:272
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
-msgstr ""
+msgstr "사용자 정보에 대해 디폴트로 SSSD를 비활성화함 (아직 지원되는 설정으로 사용됨) "
 
 #: ../authconfig.py:274
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
-msgstr ""
+"enable SSSD for authentication by default with manually managed "
+"configuration"
+msgstr "수동 관리 설정과 함께 디폴트로 인증을 위해 SSSD를 활성화함  "
 
 #: ../authconfig.py:276
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations)"
-msgstr ""
+msgstr "인증을 위해 디폴트로 SSSD를 비활성화함 (아직 지원되는 설정으로 사용됨) "
 
 #: ../authconfig.py:278
 msgid "never use SSSD implicitly even for supported configurations"
-msgstr ""
+msgstr "지원되는 설정이라도 암시적으로 SSSD를 사용하지 않음 "
 
 #: ../authconfig.py:280
 msgid "use SSSD implicitly if it supports the configuration"
-msgstr ""
+msgstr "설정을 지원하는 경우 암시적으로 SSSD를 사용함 "
 
 #: ../authconfig.py:283
 msgid "enable caching of user credentials in SSSD by default"
@@ -390,8 +387,7 @@ msgstr "SSSD에서 사용자 인증 정보 캐시를 기본적으로 사용하�
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr ""
-"사용자 정보 캐시를 기본적으로 사용(SSSD가 사용되면 자동으로 비활성화됨)"
+msgstr "사용자 정보 캐시를 기본적으로 사용(SSSD가 사용되면 자동으로 비활성화됨)"
 
 #: ../authconfig.py:290
 msgid "disable caching of user information by default"
@@ -498,13 +494,9 @@ msgstr "대화 상자가 취소되었습니다"
 #: ../authconfig.py:565 ../authconfig-gtk.py:460
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
-msgstr ""
-"%s 파일을 찾을 수 없습니다. 이 파일은 %s (을)를 제대로 작동하도록 하기 위해서"
-"는 반드시 필요합니다.\n"
-"이 파일이 포함되어 있는 %s 패키지를 설치해 주십시오."
+msgstr "%s 파일을 찾을 수 없습니다. 이 파일은 %s (을)를 제대로 작동하도록 하기 위해서는 반드시 필요합니다.\n이 파일이 포함되어 있는 %s 패키지를 설치해 주십시오."
 
 #: ../authconfig.py:567 ../authconfig.py:908
 msgid "Warning"
@@ -700,12 +692,10 @@ msgstr "참가 설정"
 
 #: ../authconfig.py:822 ../authconfig.glade.h:41
 msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
+"Some of the configuration changes you've made should be saved to disk before"
+" continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr ""
-"계속 진행하기 전에 변경하신 설정을 디스크에 저장하셔야 합니다. 지금 저장하지 "
-"않으시면 도메인 참가에 실패할 수도 있습니다.  변경 사항을 저장하시겠습니까?"
+msgstr "계속 진행하기 전에 변경하신 설정을 디스크에 저장하셔야 합니다. 지금 저장하지 않으시면 도메인 참가에 실패할 수도 있습니다.  변경 사항을 저장하시겠습니까?"
 
 #: ../authconfig.py:829
 msgid "Save Settings"
@@ -748,14 +738,9 @@ msgstr "도메인 참가"
 #: ../authconfig.py:903
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
-msgstr ""
-"TLS 프로토콜을 사용하여 LDAP 서버에 연결하기 위해서는 서버의 인증서로 서명된 "
-"CA 인증서가 필요합니다. 인증서를 PEM 포맷으로 '%s' 디렉토리에 복사하십시오.\n"
-"복사를 마친 후 확인 버튼을 누르십시오."
+msgstr "TLS 프로토콜을 사용하여 LDAP 서버에 연결하기 위해서는 서버의 인증서로 서명된 CA 인증서가 필요합니다. 인증서를 PEM 포맷으로 '%s' 디렉토리에 복사하십시오.\n복사를 마친 후 확인 버튼을 누르십시오."
 
 #. FIXME - version
 #: ../authconfig.py:917
@@ -773,7 +758,7 @@ msgid ""
 "Unable to initialize graphical environment. Most likely cause of failure\n"
 "is that the tool was not run using a graphical environment. Please either\n"
 "start your graphical user interface or set your DISPLAY variable.\n"
-msgstr ""
+msgstr "그래픽 환경을 초기화할 수 없습니다. 가장 큰 원인은 그래픽 환경에서 도구가 실행되지 않기\n때문입니다. 그래픽 사용자 인터페이스를 시작하거나 DISPLAY 값을 설정하십시오. \n"
 
 #: ../authconfig-gtk.py:96
 msgid "Local accounts only"
@@ -834,17 +819,14 @@ msgstr "<b>사용자 계정 설정</b>"
 
 #: ../authconfig.glade.h:7
 msgid ""
-"<small><b>Tip:</b> Smart cards support logging into both local and centrally "
-"managed accounts.</small>"
-msgstr ""
-"<small><b>팁:</b> 스마트 카드는 로컬 계정과 중앙 관리 계정 모두에 대한 로그인"
-"을 지원합니다.</small>"
+"<small><b>Tip:</b> Smart cards support logging into both local and centrally"
+" managed accounts.</small>"
+msgstr "<small><b>팁:</b> 스마트 카드는 로컬 계정과 중앙 관리 계정 모두에 대한 로그인을 지원합니다.</small>"
 
 #: ../authconfig.glade.h:8
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
-"<small><b>팁:</b> /etc/security/access.conf를 통해 이를 관리합니다.</small>"
+msgstr "<small><b>팁:</b> /etc/security/access.conf를 통해 이를 관리합니다.</small>"
 
 #: ../authconfig.glade.h:9
 msgid "Ad_min Servers:"
@@ -862,9 +844,7 @@ msgstr "주의"
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
-msgstr ""
-"이전 인증 설정 변경에 의해 수정된 모든 설정 파일은 백업에서 원상 복구됩니다. "
-"변경 사항을 복구하시겠습니까? "
+msgstr "이전 인증 설정 변경에 의해 수정된 모든 설정 파일은 백업에서 원상 복구됩니다. 변경 사항을 복구하시겠습니까? "
 
 #: ../authconfig.glade.h:13
 msgid "Allow offline _login"
@@ -886,9 +866,7 @@ msgstr "인증서 _URL"
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
-msgstr ""
-"CA 인증서를 아직 다운로드 하지 않았거나, 다른 방법으로 CA 인증서를 지정하지 "
-"않은 경우에 이 버튼을 클릭하십시오."
+msgstr "CA 인증서를 아직 다운로드 하지 않았거나, 다른 방법으로 CA 인증서를 지정하지 않은 경우에 이 버튼을 클릭하십시오."
 
 #: ../authconfig.glade.h:19
 msgid "Create _home directories on the first login"
@@ -920,10 +898,9 @@ msgstr "Smart Card 지원 활성화(_S)"
 
 #: ../authconfig.glade.h:27
 msgid ""
-"Fingerprint authentication allows you to log in by scanning your finger with "
-"the fingerprint reader."
-msgstr ""
-"지문 인증을 사용하면 지문 인식기로 지문을 스캐닝하여 로그인할 수 있습니다."
+"Fingerprint authentication allows you to log in by scanning your finger with"
+" the fingerprint reader."
+msgstr "지문 인증을 사용하면 지문 인식기로 지문을 스캐닝하여 로그인할 수 있습니다."
 
 #: ../authconfig.glade.h:28
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
@@ -981,9 +958,7 @@ msgstr "복구 "
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
-msgstr ""
-"스마트 카드 인증을 사용하면 스마트 카드에 있는 인증서와 키를 사용해 로그인할 "
-"수 있습니다."
+msgstr "스마트 카드 인증을 사용하면 스마트 카드에 있는 인증서와 키를 사용해 로그인할 수 있습니다."
 
 #: ../authconfig.glade.h:42
 msgid "Te_mplate Shell:"
@@ -994,10 +969,7 @@ msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"TLS 프로토콜을 사용하여 LDAP 서버를 확인하기 위해서는 서버의 인증서를 공증한 "
-"CA 인증서가 필요합니다. PEM 형식으로 CA 인증서를 다운로드 할 수 있는 URL울 입"
-"력해 주십시오.  "
+msgstr "TLS 프로토콜을 사용하여 LDAP 서버를 확인하기 위해서는 서버의 인증서를 공증한 CA 인증서가 필요합니다. PEM 형식으로 CA 인증서를 다운로드 할 수 있는 URL울 입력해 주십시오.  "
 
 #: ../authconfig.glade.h:44
 msgid "Use DNS to _locate KDCs for realms"
@@ -1011,9 +983,7 @@ msgstr "DNS로 관리영역에 대한 호스트 변환(_N)"
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
-"RFC-2830에 정의된 LDAP의 TLS (Transport Layer Security) 확장을 사용합니다. "
-"ldaps 서버 URI와 함께 체크되어서는 안됩니다."
+msgstr "RFC-2830에 정의된 LDAP의 TLS (Transport Layer Security) 확장을 사용합니다. ldaps 서버 URI와 함께 체크되어서는 안됩니다."
 
 #: ../authconfig.glade.h:47
 msgid "Use _TLS to encrypt connections"
@@ -1023,8 +993,7 @@ msgstr "TLS를 이용하여 접속을 암호화함(_T)"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
-"활성화되면, 사용자 액세스 인증시 /etc/security/access.conf를 참조합니다."
+msgstr "활성화되면, 사용자 액세스 인증시 /etc/security/access.conf를 참조합니다."
 
 #: ../authconfig.glade.h:49
 msgid "Winbind ADS R_ealm:"
@@ -1083,9 +1052,7 @@ msgstr "무시"
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
-msgstr ""
-"%s/pam_%s.so 인증 모듈이 없습니다. 이 모듈이 없이는 인증 절차가 제대로 작동하"
-"지 않을 것입니다. "
+msgstr "%s/pam_%s.so 인증 모듈이 없습니다. 이 모듈이 없이는 인증 절차가 제대로 작동하지 않을 것입니다. "
 
 #: ../authinfo.py:3901
 msgid "Error downloading CA certificate"
