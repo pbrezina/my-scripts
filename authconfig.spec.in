@@ -124,6 +124,10 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Thu Feb 16 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.0-1
+- add support for password requirements settings
+- add support for joining IPAv2 domains
+
 * Thu Nov 24 2011 Tomas Mraz <tmraz@redhat.com> - 6.1.17-1
 - fix wrong exit value of --savebackup action
 - do not crash on broken SSSD configuration

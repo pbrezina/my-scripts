@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Dimitris Glezos <glezos@indifex.com>, 2011.
 # Krishna Babu K <kkrothap@redhat.com>, 2007, 2008, 2009, 2010.
@@ -11,14 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-24 13:07+0100\n"
+"POT-Creation-Date: 2012-02-16 17:48+0100\n"
 "PO-Revision-Date: 2011-09-07 13:00+0000\n"
 "Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Telugu (http://www.transifex.net/projects/p/fedora/language/te/)\n"
+"Language-Team: Telugu (http://www.transifex.net/projects/p/fedora/language/"
+"te/)\n"
+"Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../authconfig.py:116
@@ -58,7 +59,7 @@ msgstr "NISని వినియోగదారుని సమాచారం�
 msgid "disable NIS for user information by default"
 msgstr "NISని వినియోగదారుని సమాచారంకోసం సిద్ధంగా ఉంచటం సాధ్యంకాదు"
 
-#: ../authconfig.py:140
+#: ../authconfig.py:140 ../authconfig.py:254
 msgid "<domain>"
 msgstr "<domain>"
 
@@ -187,7 +188,7 @@ msgstr "సిద్ధ కెర్బెరోస్ KDC"
 msgid "default kerberos admin server"
 msgstr "సిద్ధ కెర్బెరోస్ నిర్వహణ సర్వరు"
 
-#: ../authconfig.py:200 ../authconfig.py:221
+#: ../authconfig.py:200 ../authconfig.py:221 ../authconfig.py:256
 msgid "<realm>"
 msgstr "<realm>"
 
@@ -235,7 +236,7 @@ msgstr "సాంబా మరియూ విన్ బిండ్ ఉపయ�
 msgid "default realm for samba and winbind when security=ads"
 msgstr "రక్షణ=ads గా ఉన్నప్పుడు సాంబ మరియూ విన్ బిన్ కోసం సిద్ధ realm"
 
-#: ../authconfig.py:223
+#: ../authconfig.py:223 ../authconfig.py:258
 msgid "<servers>"
 msgstr "<servers>"
 
@@ -267,11 +268,12 @@ msgstr "gid స్థాయి విన్‌బైండ్ డొమైన్
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr "క్షేత్రాన్ని మరియూ వినియోగదారుని winbind-created వినియోగ నామాలను వేరుచేయటానికి ఉపయోగించబడుతుందో అది ఒకవేళ winbindusedefaultdomain ఉపయోగానికి పనికిరాకపోతే ఉపయోగపడుతుంది"
+msgstr ""
+"క్షేత్రాన్ని మరియూ వినియోగదారుని winbind-created వినియోగ నామాలను వేరుచేయటానికి ఉపయోగించబడుతుందో అది "
+"ఒకవేళ winbindusedefaultdomain ఉపయోగానికి పనికిరాకపోతే ఉపయోగపడుతుంది"
 
 #: ../authconfig.py:234
-msgid ""
-"the directory which winbind-created users will have as home directories"
+msgid "the directory which winbind-created users will have as home directories"
 msgstr "winbind-created వినియోగదారులు హోం డైరెక్టరీ కలిగి ఉండాలి"
 
 #: ../authconfig.py:236
@@ -286,13 +288,17 @@ msgstr "winbind-created వినియోగదారుల షల్ వాళ
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr "విన్‌బైండ్‌ని వినియోగదారులను ఏ క్షేత్రమూ వాళ్ల వినియీగదారుల పేర్లలో లేనట్లు అవి క్షేత్ర వినియోగదారులుగా కానట్లు ఆకృతీకరించండి"
+msgstr ""
+"విన్‌బైండ్‌ని వినియోగదారులను ఏ క్షేత్రమూ వాళ్ల వినియీగదారుల పేర్లలో లేనట్లు అవి క్షేత్ర వినియోగదారులుగా కానట్లు "
+"ఆకృతీకరించండి"
 
 #: ../authconfig.py:242
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr "విన్‌బైండ్‌ని వినియోగదారులను ఏ క్షేత్రమూ వాళ్ల వినియీగదారుల పేర్లలో లేనట్లు అవి క్షేత్ర వినియోగదారులుగా ఉన్నట్లు ఆకృతీకరించండి"
+msgstr ""
+"విన్‌బైండ్‌ని వినియోగదారులను ఏ క్షేత్రమూ వాళ్ల వినియీగదారుల పేర్లలో లేనట్లు అవి క్షేత్ర వినియోగదారులుగా ఉన్నట్లు "
+"ఆకృతీకరించండి"
 
 #: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
@@ -307,438 +313,537 @@ msgid "join the winbind domain or ads realm now as this administrator"
 msgstr "విన్‌బైండ్ డొమైన్‌ లేదా ads realmని నిర్వాహకుడిగా కలపండి"
 
 #: ../authconfig.py:251
+#, fuzzy
+msgid "enable IPAv2 for user information and authentication by default"
+msgstr "NISని వినియోగదారుని సమాచారంకోసం సిద్ధంగా ఉంచటం సాధ్యం"
+
+#: ../authconfig.py:253
+#, fuzzy
+msgid "disable IPAv2 for user information and authentication by default"
+msgstr "NISని వినియోగదారుని సమాచారంకోసం సిద్ధంగా ఉంచటం సాధ్యంకాదు"
+
+#: ../authconfig.py:255
+msgid "the IPAv2 domain the system should be part of"
+msgstr ""
+
+#: ../authconfig.py:257
+msgid "the realm for the IPAv2 domain"
+msgstr ""
+
+#: ../authconfig.py:259
+msgid "the server for the IPAv2 domain"
+msgstr ""
+
+#: ../authconfig.py:261
+msgid "do not setup the NTP against the IPAv2 domain"
+msgstr ""
+
+#: ../authconfig.py:263
+msgid "setup the NTP against the IPAv2 domain (default)"
+msgstr ""
+
+#: ../authconfig.py:265
+msgid "join the IPAv2 domain as this account"
+msgstr ""
+
+#: ../authconfig.py:268
 msgid "enable wins for hostname resolution"
 msgstr "winలను ఆతిధేయ తీర్మానాలకు ఉపయోగించవచ్చు"
 
-#: ../authconfig.py:253
+#: ../authconfig.py:270
 msgid "disable wins for hostname resolution"
 msgstr "winలను ఆతిధేయ తీర్మానాలకు ఉపయోగించలేము"
 
-#: ../authconfig.py:256
+#: ../authconfig.py:273
 msgid "prefer dns over wins or nis for hostname resolution"
 msgstr "హోస్టుపేరు రెజొల్యూషన్ కొరకు wins లేదా nis పైన dns యెంచుము"
 
-#: ../authconfig.py:258
+#: ../authconfig.py:275
 msgid "do not prefer dns over wins or nis for hostname resolution"
 msgstr "హోస్టునామము రెజొల్యూషన్ కొరకు wins లేదా nis పైన dns యెంచవద్దు"
 
-#: ../authconfig.py:261
+#: ../authconfig.py:278
 msgid "enable hesiod for user information by default"
 msgstr "hesiodని వినియోగదారుని సమాచారంకోసం సిద్ధంగా ఉపయోగించవచ్చు"
 
-#: ../authconfig.py:263
+#: ../authconfig.py:280
 msgid "disable hesiod for user information by default"
 msgstr "hesiodని వినియోగదారుని సమాచారంకోసం సిద్ధంగా ఉపయోగించలేము"
 
-#: ../authconfig.py:265
+#: ../authconfig.py:282
 msgid "default hesiod LHS"
 msgstr "సిద్ధ hesiod LHS"
 
-#: ../authconfig.py:267
+#: ../authconfig.py:284
 msgid "default hesiod RHS"
 msgstr "సిద్ధ hesiod RHS"
 
-#: ../authconfig.py:270
+#: ../authconfig.py:287
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
 msgstr "వాడుకరి సమాచారం కొరకు మానవీయంగా నిర్వహించిన ఆకృతీకరణతో అప్రమేయంగా SSSD చేతనపరచుము"
 
-#: ../authconfig.py:272
+#: ../authconfig.py:289
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
-msgstr "అప్రమేయంగా వాడుకరి సమాచారము కొరకు SSSDను అచేతనముచేయి (తోడ్పాటునిచ్చు ఆకృతీకరణల కొరకు వుపయోగించబడును)"
+msgstr ""
+"అప్రమేయంగా వాడుకరి సమాచారము కొరకు SSSDను అచేతనముచేయి (తోడ్పాటునిచ్చు ఆకృతీకరణల కొరకు "
+"వుపయోగించబడును)"
 
-#: ../authconfig.py:274
+#: ../authconfig.py:291
 msgid ""
-"enable SSSD for authentication by default with manually managed "
-"configuration"
+"enable SSSD for authentication by default with manually managed configuration"
 msgstr "మానవీయంగా నిర్వహించు ఆకృతీకరణతో అప్రమేయంగా ధృవీకరణ కొరకు SSSD ను చేతనముచేయి"
 
-#: ../authconfig.py:276
+#: ../authconfig.py:293
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations)"
 msgstr ""
 
-#: ../authconfig.py:278
+#: ../authconfig.py:295
 msgid "never use SSSD implicitly even for supported configurations"
 msgstr "తొడ్పాటు వున్న ఆకృతీకరణలకు కూడా యెప్పుడూ SSSD పూర్తిగా వుపయోగించవద్దు"
 
-#: ../authconfig.py:280
+#: ../authconfig.py:297
 msgid "use SSSD implicitly if it supports the configuration"
 msgstr "ఆకృతీకరణకు తోడ్పాటును యిస్తుంటే SSSD పూర్తిగా వుపయోగించు"
 
-#: ../authconfig.py:283
+#: ../authconfig.py:300
 msgid "enable caching of user credentials in SSSD by default"
 msgstr "SSSD నందు అప్రమేయంగా వినియోగదారి వివరములను క్యాచింగ్‌ చేయుట చేతనముచేయి"
 
-#: ../authconfig.py:285
+#: ../authconfig.py:302
 msgid "disable caching of user credentials in SSSD by default"
 msgstr "SSSD నందు అప్రమేయంగా వినియోగదారి వివరముల యొక్క క్యాచింగ్‌ను అచేతనముచేయి"
 
-#: ../authconfig.py:288
+#: ../authconfig.py:305
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "అప్రమేయంగా వినియోగదారి సమాచారము యొక్క క్యాచింగ్‌ను చేతనముచేయి (SSSD వుపయోగించబడునప్పుడు స్వయంచాలకంగా అచేతనము చేయబడింది)"
+msgstr ""
+"అప్రమేయంగా వినియోగదారి సమాచారము యొక్క క్యాచింగ్‌ను చేతనముచేయి (SSSD వుపయోగించబడునప్పుడు స్వయంచాలకంగా "
+"అచేతనము చేయబడింది)"
 
-#: ../authconfig.py:290
+#: ../authconfig.py:307
 msgid "disable caching of user information by default"
 msgstr "వినియోగదారుని సమాచారాన్ని సిద్ధంగా caching చేయటం వీలవ్వదు"
 
-#: ../authconfig.py:293
+#: ../authconfig.py:310
 msgid "local authorization is sufficient for local users"
 msgstr "స్థానిక వినియోగదారులకు స్థానికారం సరిపోతుంది"
 
-#: ../authconfig.py:295
+#: ../authconfig.py:312
 msgid "authorize local users also through remote service"
 msgstr "అధికార పూర్వక స్థానిక వినియోగదారులు దూరస్థ సేవలద్వారా కూడా ఉండవచ్చు"
 
-#: ../authconfig.py:298
+#: ../authconfig.py:315
 msgid "check access.conf during account authorization"
 msgstr "ఖాతా దృవీకరణలో access.conf ను పరిశీలించు"
 
-#: ../authconfig.py:300
+#: ../authconfig.py:317
 msgid "do not check access.conf during account authorization"
 msgstr "ఖాతా దృవీకరణలో access.conf ను పరిశీలించవద్దు"
 
-#: ../authconfig.py:303
+#: ../authconfig.py:320
 msgid "authenticate system accounts by network services"
 msgstr "నెట్వర్కు సేవలద్వారా ధృవీకృత కంప్యూటరు ఖాతాలు"
 
-#: ../authconfig.py:305
+#: ../authconfig.py:322
 msgid "authenticate system accounts by local files only"
 msgstr "స్థానిక ఫైళ్లద్వారా మాత్రమే ధృవీకృత కంప్యూటరు ఖాతాలు"
 
-#: ../authconfig.py:308
+#: ../authconfig.py:325
 msgid "create home directories for users on their first login"
 msgstr "వినియోగదారులకు వారి మొదటి లాగిన్ నందు నివాస సంచయాలను సృష్టించుము"
 
-#: ../authconfig.py:310
+#: ../authconfig.py:327
 msgid "do not create home directories for users on their first login"
 msgstr "వినియోగదారులకు వారి మొదటి లాగిన్ నందు నివాస సంచయాలను సృష్టించవద్దు"
 
-#: ../authconfig.py:313
+#: ../authconfig.py:329 ../authconfig.py:331 ../authconfig.py:333
+#: ../authconfig.py:335
+msgid "<number>"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid "minimum length of a password"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "minimum number of character classes in a password"
+msgstr ""
+
+#: ../authconfig.py:334
+msgid "maximum number of same consecutive characters in a password"
+msgstr ""
+
+#: ../authconfig.py:336
+msgid "maximum number of consecutive characters of same class in a password"
+msgstr ""
+
+#: ../authconfig.py:338
+msgid "require at least one lowercase character in a password"
+msgstr ""
+
+#: ../authconfig.py:340
+msgid "do not require lowercase characters in a password"
+msgstr ""
+
+#: ../authconfig.py:342
+msgid "do not require uppercase characters in a password"
+msgstr ""
+
+#: ../authconfig.py:344
+msgid "do not require digits in a password"
+msgstr ""
+
+#: ../authconfig.py:346
+msgid "do not require other characters in a password"
+msgstr ""
+
+#: ../authconfig.py:349
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "పోర్టుమాప్పును ప్రారంభం/ఆపటం చేయకు, ypbind, మరియూ nscd"
 
-#: ../authconfig.py:316
+#: ../authconfig.py:352
 msgid "do not update the configuration files, only print new settings"
 msgstr "ఆకృతీకరణ ఫైళ్లను నవీకరించకు, కొత్త అమర్పులను మాత్రమే ముద్రించు"
 
-#: ../authconfig.py:320
+#: ../authconfig.py:356
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "TUI ప్రధాన డైలాగులో రద్దుకు బదులు వెనుకను ప్రదర్శించు"
 
-#: ../authconfig.py:322
+#: ../authconfig.py:358
 msgid "do not display the deprecated text user interface"
 msgstr "తగ్గిన పాఠ వినియోగదారుని అంతర్ముఖీనతను ప్రదర్శించకు"
 
-#: ../authconfig.py:325
+#: ../authconfig.py:361
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--పాఠ వ్యతిరేకం ఆకృతీకరణ ఫైలును మార్చిన అమర్పులతో నవీకరించు"
 
-#: ../authconfig.py:328
+#: ../authconfig.py:364
 msgid "update all configuration files"
 msgstr "అన్ని ఆకృతీకరణ ఫైళ్లనూ నవీకరించు"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:367
 msgid "probe network for defaults and print them"
 msgstr "సిద్ధాలకు probe network మరియూ వాటిని ముద్రించు"
 
-#: ../authconfig.py:333 ../authconfig.py:336
+#: ../authconfig.py:369 ../authconfig.py:372
 msgid "<name>"
 msgstr "<నామము>"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:370
 msgid "save a backup of all configuration files"
 msgstr "అన్ని ఆకృతీకరణ దస్త్రాలను బ్యాక్అప్ తీయుము"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:373
 msgid "restore the backup of configuration files"
 msgstr "ఆకృతీకరణ దస్త్రాల బ్యాక్అప్‌ను తిరిగివుంచుము"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:376
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr "గత ఆకృతీకరణ మార్పుకు ముందుగా దాసిన ఆకృతీకరణ దస్త్రాల యొక్క బ్యాక్అప్‌ను తిరిగివుంచుము"
 
-#: ../authconfig.py:345
+#: ../authconfig.py:381
 msgid "unexpected argument"
 msgstr "ఊహించని వాదన"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:512
+msgid "The passminlen option value is not an integer"
+msgstr ""
+
+#: ../authconfig.py:517
+msgid "The passminclass option value is not an integer"
+msgstr ""
+
+#: ../authconfig.py:522
+msgid "The passmaxrepeat option value is not an integer"
+msgstr ""
+
+#: ../authconfig.py:527
+msgid "The passmaxclassrepeat option value is not an integer"
+msgstr ""
+
+#: ../authconfig.py:548
 msgid "Bad smart card removal action specified."
 msgstr "చెడ్డ స్మార్టు కార్డు తొలగింపు క్రియ తెలుపబడిం."
 
-#: ../authconfig.py:484
+#: ../authconfig.py:557
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "తెలియని సంకేతపదము హాషింగ్ అల్గార్ధెమ్ తెలుపబడింది, sha256 ఉపయోగిస్తూ."
 
-#: ../authconfig.py:517
+#: ../authconfig.py:592
 msgid "can only be run as root"
 msgstr "రూటుగా మాత్రమే నడుస్తుంది"
 
-#: ../authconfig.py:533
+#: ../authconfig.py:608
 msgid "dialog was cancelled"
 msgstr "డైలాగ్ రద్దయ్యింది"
 
-#: ../authconfig.py:565 ../authconfig-gtk.py:460
+#: ../authconfig.py:640 ../authconfig-gtk.py:523
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work properly.\n"
+"The %s file was not found, but it is required for %s support to work "
+"properly.\n"
 "Install the %s package, which provides this file."
-msgstr "ఈ %s ఫైలు కనుగొనబడలేదు, కానీ ఇది సరిగా పనిచేయటానికి %s మద్దతుకావాలి.\nఏది ఈ ఫైలును సమకూర్చుతుందో, ఆ %s ప్యాకేజీని సంస్థాపించండి."
+msgstr ""
+"ఈ %s ఫైలు కనుగొనబడలేదు, కానీ ఇది సరిగా పనిచేయటానికి %s మద్దతుకావాలి.\n"
+"ఏది ఈ ఫైలును సమకూర్చుతుందో, ఆ %s ప్యాకేజీని సంస్థాపించండి."
 
-#: ../authconfig.py:567 ../authconfig.py:908
+#: ../authconfig.py:642 ../authconfig.py:988
 msgid "Warning"
 msgstr "హెచ్చరిక"
 
-#: ../authconfig.py:567 ../authconfig.py:783 ../authconfig.py:790
-#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:813
-#: ../authconfig.py:854 ../authconfig.py:908
+#: ../authconfig.py:642 ../authconfig.py:859 ../authconfig.py:867
+#: ../authconfig.py:873 ../authconfig.py:882 ../authconfig.py:890
+#: ../authconfig.py:934 ../authconfig.py:988
 msgid "Ok"
 msgstr "సరే"
 
-#: ../authconfig.py:571
+#: ../authconfig.py:646
 msgid "caching"
 msgstr "చేజింగు"
 
-#: ../authconfig.py:572
+#: ../authconfig.py:647
 msgid "Fingerprint reader"
 msgstr "వ్రేలిముద్ర చదువరి"
 
-#: ../authconfig.py:573
+#: ../authconfig.py:648
 msgid "Kerberos"
 msgstr "కెర్బెరోస్"
 
-#: ../authconfig.py:574
+#: ../authconfig.py:649
 msgid "LDAP authentication"
 msgstr "LDAP దృవీకరణ"
 
-#: ../authconfig.py:575 ../authconfig-gtk.py:99
+#: ../authconfig.py:650 ../authconfig-gtk.py:115
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:576 ../authconfig-gtk.py:105
+#: ../authconfig.py:651 ../authconfig-gtk.py:121
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:577
+#: ../authconfig.py:652
 msgid "shadow password"
 msgstr "షాడో అనుమతిపదం"
 
-#: ../authconfig.py:578 ../authconfig.py:580 ../authconfig-gtk.py:108
+#: ../authconfig.py:653 ../authconfig.py:655 ../authconfig-gtk.py:124
 msgid "Winbind"
 msgstr "విన్‌బిండ్"
 
-#: ../authconfig.py:579
+#: ../authconfig.py:654
 msgid "Winbind authentication"
 msgstr "విన్‌బైండ్ ధృవీకరణ"
 
-#: ../authconfig.py:585
+#: ../authconfig.py:660
 msgid "User Information"
 msgstr "వినియోగదారును సమాచారం"
 
-#: ../authconfig.py:588
+#: ../authconfig.py:663
 msgid "Cache Information"
 msgstr "Cache సమాచారం"
 
-#: ../authconfig.py:591
-msgid "Use Hesiod"
-msgstr "Hesiodని ఉపయోగించు"
-
-#: ../authconfig.py:594
+#: ../authconfig.py:666
 msgid "Use LDAP"
 msgstr "LDAPని వినియోగించు"
 
-#: ../authconfig.py:597
+#: ../authconfig.py:669
 msgid "Use NIS"
 msgstr "NISని వినియోగించు"
 
-#: ../authconfig.py:600
+#: ../authconfig.py:672
+#, fuzzy
+msgid "Use IPAv2"
+msgstr "NISని వినియోగించు"
+
+#: ../authconfig.py:675
 msgid "Use Winbind"
 msgstr "విన్‌బైండ్‌ని వినియోగించు"
 
-#: ../authconfig.py:606 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:681 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "ధృవీకరణ"
 
-#: ../authconfig.py:609
+#: ../authconfig.py:684
 msgid "Use MD5 Passwords"
 msgstr "MD5 అనుమతిపదాలను ఉపయోగించు"
 
-#: ../authconfig.py:612
+#: ../authconfig.py:687
 msgid "Use Shadow Passwords"
 msgstr "షాడో అనుమతిపదాలను ఉపయోగించు"
 
-#: ../authconfig.py:615
+#: ../authconfig.py:690
 msgid "Use LDAP Authentication"
 msgstr "LDAP ధృవీకరణలను ఉపయోగించు"
 
-#: ../authconfig.py:618
+#: ../authconfig.py:693
 msgid "Use Kerberos"
 msgstr "కెర్బెరోసును వినియోగించు"
 
-#: ../authconfig.py:621
+#: ../authconfig.py:696
 msgid "Use Fingerprint reader"
 msgstr "వ్రేలిముద్ర చదువరిని వుపయోగించుము"
 
-#: ../authconfig.py:625
+#: ../authconfig.py:700
 msgid "Use Winbind Authentication"
 msgstr "విన్ బిండ్ ధృవీకరణను ఉపయోగించు"
 
-#: ../authconfig.py:628
+#: ../authconfig.py:703
 msgid "Local authorization is sufficient"
 msgstr "స్థానిక ధృవీకరణ చాలినంత ఉంది"
 
-#: ../authconfig.py:638 ../authconfig.py:783 ../authconfig.py:790
-#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:854
+#: ../authconfig.py:713 ../authconfig.py:859 ../authconfig.py:867
+#: ../authconfig.py:873 ../authconfig.py:882 ../authconfig.py:934
 msgid "Back"
 msgstr "వెనుక"
 
-#: ../authconfig.py:638 ../authconfig.py:813
+#: ../authconfig.py:713 ../authconfig.py:890
 msgid "Cancel"
 msgstr "రద్దు"
 
-#: ../authconfig.py:639 ../authconfig.py:783 ../authconfig.py:790
-#: ../authconfig.py:796 ../authconfig.py:805 ../authconfig.py:854
+#: ../authconfig.py:714 ../authconfig.py:859 ../authconfig.py:867
+#: ../authconfig.py:873 ../authconfig.py:882 ../authconfig.py:934
 msgid "Next"
 msgstr "తరువాత"
 
-#: ../authconfig.py:650 ../authconfig-gtk.py:670 ../authconfig.glade.h:15
+#: ../authconfig.py:725 ../authconfig-gtk.py:746 ../authconfig.glade.h:19
 msgid "Authentication Configuration"
 msgstr "ప్రామాణీకరణ యొక్క ధృవీకరణ"
 
-#: ../authconfig.py:780
-msgid "LHS:"
-msgstr "LHS:"
-
-#: ../authconfig.py:781
-msgid "RHS:"
-msgstr "RHS:"
-
-#: ../authconfig.py:782
-msgid "Hesiod Settings"
-msgstr "Hesiod అమర్పులు"
-
-#: ../authconfig.py:786
-msgid "Use TLS"
-msgstr "TLSను వినియోగించు"
-
-#: ../authconfig.py:787 ../authconfig.py:794
-msgid "Server:"
-msgstr "సర్వరు:"
-
-#: ../authconfig.py:788
-msgid "Base DN:"
-msgstr "మూల DN:"
-
-#: ../authconfig.py:789
-msgid "LDAP Settings"
-msgstr "LDAP అమర్పులు"
-
-#: ../authconfig.py:793 ../authconfig.py:848 ../authconfig.glade.h:22
+#: ../authconfig.py:855 ../authconfig.py:870 ../authconfig.py:928
+#: ../authconfig.glade.h:28
 msgid "Domain:"
 msgstr "డొమైన్‌:"
 
-#: ../authconfig.py:795
-msgid "NIS Settings"
-msgstr "NIS అమర్పులు"
-
-#: ../authconfig.py:799
+#: ../authconfig.py:856 ../authconfig.py:876
 msgid "Realm:"
 msgstr "Realm:"
 
-#: ../authconfig.py:800
+#: ../authconfig.py:857 ../authconfig.py:864 ../authconfig.py:871
+msgid "Server:"
+msgstr "సర్వరు:"
+
+#: ../authconfig.py:858
+#, fuzzy
+msgid "IPAv2 Settings"
+msgstr "NIS అమర్పులు"
+
+#: ../authconfig.py:860 ../authconfig.py:935
+msgid "Join Domain"
+msgstr "డొమైన్‌ చేర్చుము"
+
+#: ../authconfig.py:863
+msgid "Use TLS"
+msgstr "TLSను వినియోగించు"
+
+#: ../authconfig.py:865
+msgid "Base DN:"
+msgstr "మూల DN:"
+
+#: ../authconfig.py:866
+msgid "LDAP Settings"
+msgstr "LDAP అమర్పులు"
+
+#: ../authconfig.py:872
+msgid "NIS Settings"
+msgstr "NIS అమర్పులు"
+
+#: ../authconfig.py:877
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:801
+#: ../authconfig.py:878
 msgid "Admin Server:"
 msgstr "నిర్వహణ సర్వరు:"
 
-#: ../authconfig.py:802
+#: ../authconfig.py:879
 msgid "Use DNS to resolve hosts to realms"
 msgstr "DNSను realms ఆతిధేయాలను తొలగించటానికి ఉపయోగించు"
 
-#: ../authconfig.py:803
+#: ../authconfig.py:880
 msgid "Use DNS to locate KDCs for realms"
 msgstr "DNSను realms కోసం KDCsను స్థాపించటానికి ఉపయోగించు"
 
-#: ../authconfig.py:804
+#: ../authconfig.py:881
 msgid "Kerberos Settings"
 msgstr "కెర్బెరోస్ అమర్పులు"
 
-#: ../authconfig.py:808
+#: ../authconfig.py:885
 msgid "Domain Administrator:"
 msgstr "క్షేత్ర నిర్వాహకుడు:"
 
-#: ../authconfig.py:809
+#: ../authconfig.py:886
 msgid "Password:"
 msgstr "అనుమతిపదం:"
 
-#: ../authconfig.py:812
+#: ../authconfig.py:889
 msgid "Join Settings"
 msgstr "మేళన అమర్పులు"
 
-#: ../authconfig.py:822 ../authconfig.glade.h:41
+#: ../authconfig.py:902 ../authconfig.glade.h:54
 msgid ""
-"Some of the configuration changes you've made should be saved to disk before"
-" continuing.  If you do not save them, then your attempt to join the domain "
+"Some of the configuration changes you've made should be saved to disk before "
+"continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr "మీరు చేసిన కొన్ని ఆకృతీకరణ మార్పులు మీరు కొనసాగించటానికి ముందే భద్రపరచవలసి ఉంది.  మీరు వాటిని భద్రపరచకపోతే, డొమైన్‌లో చేరటానికి మీ ప్రయత్నం విఫలం కావచ్చు.  మార్పులను భద్రపరచండి?"
+msgstr ""
+"మీరు చేసిన కొన్ని ఆకృతీకరణ మార్పులు మీరు కొనసాగించటానికి ముందే భద్రపరచవలసి ఉంది.  మీరు వాటిని "
+"భద్రపరచకపోతే, డొమైన్‌లో చేరటానికి మీ ప్రయత్నం విఫలం కావచ్చు.  మార్పులను భద్రపరచండి?"
 
-#: ../authconfig.py:829
+#: ../authconfig.py:909
 msgid "Save Settings"
 msgstr "అమర్పులను భద్రపరువు"
 
-#: ../authconfig.py:830
+#: ../authconfig.py:910
 msgid "No"
 msgstr "కాదు"
 
-#: ../authconfig.py:830
+#: ../authconfig.py:910
 msgid "Yes"
 msgstr "అవును"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:847
+#: ../authconfig.py:927
 msgid "Security Model:"
 msgstr "రక్షణ రీతి:"
 
-#: ../authconfig.py:849
+#: ../authconfig.py:929
 msgid "Domain Controllers:"
 msgstr "క్షేత్ర నియంత్రణలు:"
 
-#: ../authconfig.py:850
+#: ../authconfig.py:930
 msgid "ADS Realm:"
 msgstr "ADS Realm:"
 
-#: ../authconfig.py:851
+#: ../authconfig.py:931
 msgid "Template Shell:"
 msgstr "Template Shell:"
 
-#: ../authconfig.py:853
+#: ../authconfig.py:933
 msgid "Winbind Settings"
 msgstr "విన్‌బైండ్ అమర్పులు"
 
-#: ../authconfig.py:855
-msgid "Join Domain"
-msgstr "డొమైన్‌ చేర్చుము"
-
-#: ../authconfig.py:903
+#: ../authconfig.py:983
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA "
+"certificate which signed your server's certificate. Copy the certificate in "
+"the PEM format to the '%s' directory.\n"
 "Then press OK."
-msgstr "LDAP సర్వరుకు TLS ప్రోటోకాలుతో అనుసంధించటం సాధ్యం మీకు మీ సర్వరు ధృవీకరణను చేసే ఒక CA ధృవీకరణ పత్రం కావలసి ఉంది. ధృవీకరణ పత్రాన్ని PEM ఆకృతిలో '%s' డైరెక్టరీకి కాపీ చేయండి.\nThen press OK."
+msgstr ""
+"LDAP సర్వరుకు TLS ప్రోటోకాలుతో అనుసంధించటం సాధ్యం మీకు మీ సర్వరు ధృవీకరణను చేసే ఒక CA "
+"ధృవీకరణ పత్రం కావలసి ఉంది. ధృవీకరణ పత్రాన్ని PEM ఆకృతిలో '%s' డైరెక్టరీకి కాపీ చేయండి.\n"
+"Then press OK."
 
 #. FIXME - version
-#: ../authconfig.py:917
+#: ../authconfig.py:997
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -755,38 +860,52 @@ msgid ""
 "start your graphical user interface or set your DISPLAY variable.\n"
 msgstr ""
 
-#: ../authconfig-gtk.py:96
+#: ../authconfig-gtk.py:112
 msgid "Local accounts only"
 msgstr "స్థానిక ఖాతాలు మాత్రమే"
 
-#: ../authconfig-gtk.py:102
+#: ../authconfig-gtk.py:118
 msgid "FreeIPA"
 msgstr "FreeIPA"
 
-#: ../authconfig-gtk.py:117
+#: ../authconfig-gtk.py:127
+msgid "IPAv2"
+msgstr ""
+
+#: ../authconfig-gtk.py:136
 msgid "Password"
 msgstr "సంకేతపదము"
 
-#: ../authconfig-gtk.py:120
+#: ../authconfig-gtk.py:139
 msgid "LDAP password"
 msgstr "LDAP సంకేతపదము"
 
-#: ../authconfig-gtk.py:123
+#: ../authconfig-gtk.py:142
 msgid "Kerberos password"
 msgstr "కేర్బరోస్ సంకేతపదము"
 
-#: ../authconfig-gtk.py:126
+#: ../authconfig-gtk.py:145
 msgid "NIS password"
 msgstr "NIS సేకతపదము"
 
-#: ../authconfig-gtk.py:129
+#: ../authconfig-gtk.py:148
 msgid "Winbind password"
 msgstr "విన్‌బైండ్ సంకేతపదము"
 
-#: ../authconfig-gtk.py:444
+#: ../authconfig-gtk.py:151
+#, fuzzy
+msgid "IPAv2 password"
+msgstr "NIS సేకతపదము"
+
+#: ../authconfig-gtk.py:500
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr "LDAP దృవీకరణ కొరకు మీరు తప్పక ldaps:// సర్వర్ చిరునామాను అందించాలి లేదా TLS వుపయోగించాలి."
+msgstr ""
+"LDAP దృవీకరణ కొరకు మీరు తప్పక ldaps:// సర్వర్ చిరునామాను అందించాలి లేదా TLS వుపయోగించాలి."
+
+#: ../authconfig-gtk.py:507
+msgid "Use the \"Join Domain\" button to join the IPAv2 domain."
+msgstr ""
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -801,254 +920,364 @@ msgid "<b>Local Authentication Options</b>"
 msgstr "<b>స్థానిక ధృవీకరణ ఐచ్చికములు</b>"
 
 #: ../authconfig.glade.h:4
+msgid "<b>Maximal Consecutive Character Repetition</b>"
+msgstr ""
+
+#: ../authconfig.glade.h:5
+msgid "<b>Minimal Password Requirements</b>"
+msgstr ""
+
+#: ../authconfig.glade.h:6
 msgid "<b>Other Authentication Options</b>"
 msgstr "<b>ఇతర ధృవీకరణ ఐచ్చికములు</b>"
 
-#: ../authconfig.glade.h:5
+#: ../authconfig.glade.h:7
+msgid "<b>Required Character Classes</b>"
+msgstr ""
+
+#: ../authconfig.glade.h:8
 msgid "<b>Smart Card Authentication Options</b>"
 msgstr "<b>స్మార్ట్ కార్డ్ దృవీకరణ ఐచ్చికములు</b>"
 
-#: ../authconfig.glade.h:6
+#: ../authconfig.glade.h:9
 msgid "<b>User Account Configuration</b>"
 msgstr "<b>వినియోగదారి ఖాతా ఆకృతీకరణ</b>"
 
-#: ../authconfig.glade.h:7
-msgid ""
-"<small><b>Tip:</b> Smart cards support logging into both local and centrally"
-" managed accounts.</small>"
-msgstr "<small><b>చిట్కా:</b> స్థానికమైన వాటిలోకి మరియు కేంద్రీయంగా నిర్వరించు ఖాతాలలోనికి లాగిన్ అవుటను స్మార్ట్ కార్డ్స్ మద్దతించును.</small>"
-
-#: ../authconfig.glade.h:8
-msgid ""
-"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr "<small><b>చిట్కా:</b> ఇది /etc/security/access.conf. ద్వారా నిర్వహించబడును.</small>"
-
-#: ../authconfig.glade.h:9
-msgid "Ad_min Servers:"
-msgstr "నిర్వహణ సర్వర్లు (_m):"
-
 #: ../authconfig.glade.h:10
-msgid "Advanced _Options"
-msgstr "అధునాతన ఐచ్చికములు (_O)"
+msgid ""
+"<small><b>Tip:</b> Smart cards support logging into both local and centrally "
+"managed accounts.</small>"
+msgstr ""
+"<small><b>చిట్కా:</b> స్థానికమైన వాటిలోకి మరియు కేంద్రీయంగా నిర్వరించు ఖాతాలలోనికి లాగిన్ అవుటను స్మార్ట్ "
+"కార్డ్స్ మద్దతించును.</small>"
 
 #: ../authconfig.glade.h:11
-msgid "Alert"
-msgstr "అప్రమత్తం"
+#, fuzzy
+msgid "<small><b>Tip:</b> These checks are disabled if the value is 0.</small>"
+msgstr ""
+"<small><b>చిట్కా:</b> ఇది /etc/security/access.conf. ద్వారా నిర్వహించబడును.</small>"
 
 #: ../authconfig.glade.h:12
 msgid ""
-"All configuration files which were modified by the previous authentication "
-"configuration change will be restored from backup. Revert the changes?"
-msgstr "గత దృవీకరణ ఆకృతీకరణము మార్పుతో సవరించబడిన అన్ని ఆకృతీకరణ దస్త్రాలు బ్యాక్అప్ నుండి తిరిగివుంచ బడినవి. మార్పులను తిప్పివుంచాలా?"
+"<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
+msgstr ""
+"<small><b>చిట్కా:</b> ఇది /etc/security/access.conf. ద్వారా నిర్వహించబడును.</small>"
 
 #: ../authconfig.glade.h:13
+msgid "Ad_min Servers:"
+msgstr "నిర్వహణ సర్వర్లు (_m):"
+
+#: ../authconfig.glade.h:14
+msgid "Advanced _Options"
+msgstr "అధునాతన ఐచ్చికములు (_O)"
+
+#: ../authconfig.glade.h:15
+msgid "Alert"
+msgstr "అప్రమత్తం"
+
+#: ../authconfig.glade.h:16
+msgid ""
+"All configuration files which were modified by the previous authentication "
+"configuration change will be restored from backup. Revert the changes?"
+msgstr ""
+"గత దృవీకరణ ఆకృతీకరణము మార్పుతో సవరించబడిన అన్ని ఆకృతీకరణ దస్త్రాలు బ్యాక్అప్ నుండి తిరిగివుంచ "
+"బడినవి. మార్పులను తిప్పివుంచాలా?"
+
+#: ../authconfig.glade.h:17
 msgid "Allow offline _login"
 msgstr "ఆఫ్‌లైన్ లాగిన్‌ను అనుమతించుము (_l)"
 
-#: ../authconfig.glade.h:14
+#: ../authconfig.glade.h:18
 msgid "Aut_hentication Method:"
 msgstr "ధృవీకరణ విధానము (_h):"
 
-#: ../authconfig.glade.h:16
+#: ../authconfig.glade.h:20
+msgid "C_haracter Classes:"
+msgstr ""
+
+#: ../authconfig.glade.h:21
 msgid "Card Re_moval Action:"
 msgstr "కార్డు తొలగింపు చర్య (_m):"
 
-#: ../authconfig.glade.h:17
+#: ../authconfig.glade.h:22
 msgid "Certificate _URL:"
 msgstr "ధృవీకరణపత్రము _URL:"
 
-#: ../authconfig.glade.h:18
+#: ../authconfig.glade.h:23
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
-msgstr "మీరు CA దృవీకరణపత్రమును యిప్పటివరకు దిగుమతి చేయకపోయినా లేక యితరత్రా యేవిధంగాను CA ధృవీకరణపత్రమును అమర్చకపోయినా యీ బటన్‌ను నొక్కుము."
+msgstr ""
+"మీరు CA దృవీకరణపత్రమును యిప్పటివరకు దిగుమతి చేయకపోయినా లేక యితరత్రా యేవిధంగాను CA ధృవీకరణపత్రమును "
+"అమర్చకపోయినా యీ బటన్‌ను నొక్కుము."
 
-#: ../authconfig.glade.h:19
+#: ../authconfig.glade.h:24
 msgid "Create _home directories on the first login"
 msgstr "మొదటి లాగిన్ నందు నివాస సంచయాలను సృష్టించుము(_h)"
 
-#: ../authconfig.glade.h:20
+#: ../authconfig.glade.h:25
+msgid "Do not configure _NTP"
+msgstr ""
+
+#: ../authconfig.glade.h:26
 msgid "Do_n't Save"
 msgstr "భద్రపరవకు (_n)"
 
-#: ../authconfig.glade.h:21
+#: ../authconfig.glade.h:27
 msgid "Domain _administrator:"
 msgstr "డొమైన్ నిర్వహణాధికారి (_a):"
 
-#: ../authconfig.glade.h:23
+#: ../authconfig.glade.h:29
 msgid "Download CA Certificate"
 msgstr "CA ధృవీకరణ పత్రాన్ని దిగుమతిచేయి"
 
-#: ../authconfig.glade.h:24
+#: ../authconfig.glade.h:30
 msgid "Enable _fingerprint reader support"
 msgstr "వ్రేలిముద్ర చదువరి మద్దతును చేతనముచేయుము (_f)"
 
-#: ../authconfig.glade.h:25
+#: ../authconfig.glade.h:31
 msgid "Enable _local access control"
 msgstr "స్థానిక యాక్సెస్ నియంత్రణను చేతనము చేయి (_l)"
 
-#: ../authconfig.glade.h:26
+#: ../authconfig.glade.h:32
 msgid "Enable _smart card support"
 msgstr "స్మార్టు కార్డు మద్దతును చేతనము చేయుము (_s)"
 
-#: ../authconfig.glade.h:27
+#: ../authconfig.glade.h:33
 msgid ""
-"Fingerprint authentication allows you to log in by scanning your finger with"
-" the fingerprint reader."
-msgstr "వ్రేలిముద్ర చదువరితో మీ వ్రేలును స్కాను చేయుట ద్వారా వ్రేలిముద్ర దృవీకరణ మిమ్ములను లాగిన్ అవ్వుటకు అనుమతిస్తుంది."
+"Fingerprint authentication allows you to log in by scanning your finger with "
+"the fingerprint reader."
+msgstr ""
+"వ్రేలిముద్ర చదువరితో మీ వ్రేలును స్కాను చేయుట ద్వారా వ్రేలిముద్ర దృవీకరణ మిమ్ములను లాగిన్ అవ్వుటకు "
+"అనుమతిస్తుంది."
 
-#: ../authconfig.glade.h:28
+#: ../authconfig.glade.h:34
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
 msgstr "స్థానిక వినియోగదారుల యొక్క సంకేతపదములను నిల్వవుంచుటకు వుపయోగించు హాషింగ్ లేదా క్రిప్టో అల్గార్దెమ్"
 
-#: ../authconfig.glade.h:29
+#: ../authconfig.glade.h:35
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr "హోస్టుపేరు లేదా ldap:// లేదా ldaps:// URI అనునది LDAP సేవికను సూచిస్తుంది."
 
-#: ../authconfig.glade.h:30
-msgid ""
-"If the home directory of an user doesn't exist yet it will be created "
-"automatically on his first login."
-msgstr "ఒక వినియోగదారుని నివాస సంచయం ఇంకా లేకపోతే అది అతని మొదటి లాగిన్ నందు స్వయంచాలకంగా సృష్టించబడుతుంది."
-
-#: ../authconfig.glade.h:31
-msgid "Joining Winbind Domain"
-msgstr "విన్‌బైండ్ డొమైన్‌లో చేరుతోంది"
-
-#: ../authconfig.glade.h:32
-msgid "LDAP Search _Base DN:"
-msgstr "LDAP సెర్చ్ బేస్ DN (_B):"
-
-#: ../authconfig.glade.h:33
-msgid "LDAP _Server:"
-msgstr "LDAP సర్వరు (_S):"
-
-#: ../authconfig.glade.h:34
-msgid "NIS _Domain:"
-msgstr "NIS డొమైన్ (_D):"
-
-#: ../authconfig.glade.h:35
-msgid "NIS _Server:"
-msgstr "NIS సర్వరు (_S):"
-
 #: ../authconfig.glade.h:36
-msgid "R_ealm:"
+#, fuzzy
+msgid "IPA R_ealm:"
 msgstr "రియాల్మ్ (_e):"
 
 #: ../authconfig.glade.h:37
+#, fuzzy
+msgid "IPA _Domain:"
+msgstr "NIS డొమైన్ (_D):"
+
+#: ../authconfig.glade.h:38
+#, fuzzy
+msgid "IPA _Server:"
+msgstr "NIS సర్వరు (_S):"
+
+#: ../authconfig.glade.h:39
+msgid ""
+"If the home directory of an user doesn't exist yet it will be created "
+"automatically on his first login."
+msgstr ""
+"ఒక వినియోగదారుని నివాస సంచయం ఇంకా లేకపోతే అది అతని మొదటి లాగిన్ నందు స్వయంచాలకంగా సృష్టించబడుతుంది."
+
+#: ../authconfig.glade.h:40
+msgid "Joining Winbind Domain"
+msgstr "విన్‌బైండ్ డొమైన్‌లో చేరుతోంది"
+
+#: ../authconfig.glade.h:41
+msgid "LDAP Search _Base DN:"
+msgstr "LDAP సెర్చ్ బేస్ DN (_B):"
+
+#: ../authconfig.glade.h:42
+msgid "LDAP _Server:"
+msgstr "LDAP సర్వరు (_S):"
+
+#: ../authconfig.glade.h:43
+msgid "Low_ercase"
+msgstr ""
+
+#: ../authconfig.glade.h:44
+msgid "NIS _Domain:"
+msgstr "NIS డొమైన్ (_D):"
+
+#: ../authconfig.glade.h:45
+msgid "NIS _Server:"
+msgstr "NIS సర్వరు (_S):"
+
+#: ../authconfig.glade.h:46
+msgid "O_ther characters"
+msgstr ""
+
+#: ../authconfig.glade.h:47
+#, fuzzy
+msgid "Pass_word Options"
+msgstr "సంకేతపదము"
+
+#: ../authconfig.glade.h:48
+msgid "R_ealm:"
+msgstr "రియాల్మ్ (_e):"
+
+#: ../authconfig.glade.h:49
 msgid "Require smart car_d for login"
 msgstr "లాగిన్ కొరకు స్మార్ట్ కార్డ్ అవసరము (_d)"
 
-#: ../authconfig.glade.h:38
+#: ../authconfig.glade.h:50
 msgid ""
 "Restore the configuration files backed up before the previous configuration "
 "change"
 msgstr "గత ఆకృతీకరణము మార్పుకు ముందుగా బ్యాక్అప్ వుంచిన ఆకృతీకరణ దస్త్రాలను తిరిగివుంచుము"
 
-#: ../authconfig.glade.h:39
+#: ../authconfig.glade.h:51
 msgid "Revert"
 msgstr "తిప్పివుంచు"
 
-#: ../authconfig.glade.h:40
+#: ../authconfig.glade.h:52
+msgid "Sa_me Class:"
+msgstr ""
+
+#: ../authconfig.glade.h:53
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
-msgstr "Smart కార్డు ధృవీకరణ smart కార్డుతో కూడి యున్న ధృవీకరణ లేదా కీకి ప్రవేశించటానికి ఉపయోగించటానికి అనుమతిస్తుంది."
+msgstr ""
+"Smart కార్డు ధృవీకరణ smart కార్డుతో కూడి యున్న ధృవీకరణ లేదా కీకి ప్రవేశించటానికి ఉపయోగించటానికి "
+"అనుమతిస్తుంది."
 
-#: ../authconfig.glade.h:42
+#: ../authconfig.glade.h:55
 msgid "Te_mplate Shell:"
 msgstr "మాదిరి(టెంప్లేట్) షెల్ (_m):"
 
-#: ../authconfig.glade.h:43
+#: ../authconfig.glade.h:56
 msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr "LDAP సర్వరుకు TLS ప్రోటోకాలుతో అనుసంధించటం సాధ్యం మీకు మీ సర్వరు ధృవీకరణను చేసే ఒక CA ధృవీకరణ పత్రం కావలసి ఉంది. PEM రూపంలోని CA దృవీకరణ పత్రము ఎక్కడనుండి దిగుమతి చేయగలమో దయచేసి URL నింపండి."
+msgstr ""
+"LDAP సర్వరుకు TLS ప్రోటోకాలుతో అనుసంధించటం సాధ్యం మీకు మీ సర్వరు ధృవీకరణను చేసే ఒక CA "
+"ధృవీకరణ పత్రం కావలసి ఉంది. PEM రూపంలోని CA దృవీకరణ పత్రము ఎక్కడనుండి దిగుమతి చేయగలమో దయచేసి "
+"URL నింపండి."
 
-#: ../authconfig.glade.h:44
+#: ../authconfig.glade.h:57
 msgid "Use DNS to _locate KDCs for realms"
 msgstr "DNSని KDCలను ఉంచటానికి realmsకోసం ఉపయోగించు(_l)"
 
-#: ../authconfig.glade.h:45
+#: ../authconfig.glade.h:58
 msgid "Use D_NS to resolve hosts to realms"
 msgstr "హోస్టులను రియాల్మ్స్‍కు నిష్కృతి చేయుటకు D_NS వుపయోగించుము"
 
-#: ../authconfig.glade.h:46
+#: ../authconfig.glade.h:59
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr "RFC-2830 చేత నిర్వచించబడినట్లుగా ట్రాన్సుపోర్టు లేయర్ సెక్యూరిటీ పొడిగింపును LDAP కొరకు వుపయోగించుము. అది ldaps URIతో టిక్ కాబడరాదు."
+msgstr ""
+"RFC-2830 చేత నిర్వచించబడినట్లుగా ట్రాన్సుపోర్టు లేయర్ సెక్యూరిటీ పొడిగింపును LDAP కొరకు "
+"వుపయోగించుము. అది ldaps URIతో టిక్ కాబడరాదు."
 
-#: ../authconfig.glade.h:47
+#: ../authconfig.glade.h:60
 msgid "Use _TLS to encrypt connections"
 msgstr "TLSని encrypt అనుసంధానాలకు ఉపయోగించు(_T)"
 
-#: ../authconfig.glade.h:48
+#: ../authconfig.glade.h:61
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr "/etc/security/access.conf ను చేతనం చేసినప్పుడు వినియోగదారుల వాడుక దృవీకరణ కొరకు సంప్రదించబడుతుంది."
+msgstr ""
+"/etc/security/access.conf ను చేతనం చేసినప్పుడు వినియోగదారుల వాడుక దృవీకరణ కొరకు "
+"సంప్రదించబడుతుంది."
 
-#: ../authconfig.glade.h:49
+#: ../authconfig.glade.h:62
 msgid "Winbind ADS R_ealm:"
 msgstr "విన్‌బైండ్ ADS రియాల్మ్ (_e):"
 
-#: ../authconfig.glade.h:50
+#: ../authconfig.glade.h:63
 msgid "Winbind Domain Co_ntrollers:"
 msgstr "విన్‌బైండ్ డొమైన్ నియంత్రికలు (_n):"
 
-#: ../authconfig.glade.h:51
+#: ../authconfig.glade.h:64
 msgid "Winbind _Domain:"
 msgstr "విన్‌బైండ్ క్షేత్రము (_D):"
 
-#: ../authconfig.glade.h:52
+#: ../authconfig.glade.h:65
+msgid "_Digits"
+msgstr ""
+
+#: ../authconfig.glade.h:66
 msgid "_Download CA Certificate..."
 msgstr "CA ధృవీకరణ పత్రాన్ని దిగుమతిచేయి... (_D)"
 
-#: ../authconfig.glade.h:53
+#: ../authconfig.glade.h:67
 msgid "_Identity & Authentication"
 msgstr "గుర్తించు & ధృవీకరణ (_I)"
 
-#: ../authconfig.glade.h:54
+#: ../authconfig.glade.h:68
 msgid "_Join Domain..."
 msgstr "డొమైన్ చేర్చుము... (_J)"
 
-#: ../authconfig.glade.h:55
+#: ../authconfig.glade.h:69
 msgid "_KDCs:"
 msgstr "_KDCs:"
 
-#: ../authconfig.glade.h:56
+#: ../authconfig.glade.h:70
+msgid "_Length:"
+msgstr ""
+
+#: ../authconfig.glade.h:71
 msgid "_Password Hashing Algorithm:"
 msgstr "సంకేతపదము హాషింగ్ అల్గార్దెమ్ (_P):"
 
-#: ../authconfig.glade.h:57
+#: ../authconfig.glade.h:72
 msgid "_Password:"
 msgstr "సంకేతపదము (_P):"
 
-#: ../authconfig.glade.h:58
+#: ../authconfig.glade.h:73
+msgid "_Same Character:"
+msgstr ""
+
+#: ../authconfig.glade.h:74
 msgid "_Security Model:"
 msgstr "రక్షణ రీతి (_S):"
 
-#: ../authconfig.glade.h:59
+#: ../authconfig.glade.h:75
+msgid "_Uppercase"
+msgstr ""
+
+#: ../authconfig.glade.h:76
 msgid "_User Account Database:"
 msgstr "వినియోగదారి ఖాతా డాటాబేస్ (_U):"
 
-#: ../authinfo.py:988 ../authinfo.py:1752 ../authinfo.py:3000
+#: ../authinfo.py:993 ../authinfo.py:1845 ../authinfo.py:3227
 msgid "Lock"
 msgstr "లాక్"
 
-#: ../authinfo.py:988 ../authinfo.py:1754
+#: ../authinfo.py:993 ../authinfo.py:1847
 msgid "Ignore"
 msgstr "వదిలేయి"
 
-#: ../authinfo.py:3392
+#: ../authinfo.py:3618
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr "ధృవీకృత గుణకం %s/pam_%s.so తప్పిపోయింది. ధృవీకరణ విధానం సరిగ్గా పనిచేస్తూ వుండకపోవచ్చు."
 
-#: ../authinfo.py:3901
+#: ../authinfo.py:4101
+msgid ""
+"IPAv2 domain join was not succesful. The ipa-client-install command failed."
+msgstr ""
+
+#: ../authinfo.py:4168
 msgid "Error downloading CA certificate"
 msgstr "CA ధృవీకరణ పత్రాన్ని దిగుమతిచేయటంలో దోషం"
+
+#~ msgid "Use Hesiod"
+#~ msgstr "Hesiodని ఉపయోగించు"
+
+#~ msgid "LHS:"
+#~ msgstr "LHS:"
+
+#~ msgid "RHS:"
+#~ msgstr "RHS:"
+
+#~ msgid "Hesiod Settings"
+#~ msgstr "Hesiod అమర్పులు"
