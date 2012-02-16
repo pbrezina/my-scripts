@@ -88,6 +88,22 @@ class Authconfig:
 			 ["DESCRYPT", "BIGCRYPT", "MD5", "SHA256", "SHA512"]),
 			"enablemkhomedir" :
 			("enableMkHomeDir", "", "", "", None),
+                        "minlen" :
+                        ("passMinLen", "", "", "", None),
+                        "minclass" :
+                        ("passMinClass", "", "", "", None),
+                        "maxrepeat" :
+                        ("passMaxRepeat", "", "", "", None),
+                        "maxclassrepeat" :
+                        ("passMaxClassRepeat", "", "", "", None),
+                        "reqlower" :
+                        ("passReqLower", "", "", "", None),
+                        "requpper" :
+                        ("passReqUpper", "", "", "", None),
+                        "reqdigit" :
+                        ("passReqDigit", "", "", "", None),
+                        "reqother" :
+                        ("passReqOther", "", "", "", None),
 		}
 		# "id type": localized name, tuple of allowed auth types,
 		# option widget, option map name, file, package
@@ -305,6 +321,9 @@ class Authconfig:
 	def combochanged(self, combo, entry):
 		option = entry[4][combo.get_active()]
 		setattr(self.info, entry[0], option)
+
+        def entrychanged(self, widget, entry):
+                setattr(self.info, entry[0], widget.get_text())
 
 	def update_widgets(self, mapname, map, xml, topparent):
 		self.info.update()
@@ -642,13 +661,14 @@ class Authconfig:
 		# Hook up checkboxes and entry fields.
 		for entry in self.main_map.keys():
 			widget = xml.get_widget(entry)
-			try:
-				if self.main_map[entry][1]:
-					os.stat(self.main_map[entry][1])
-			except:
-				widget.set_sensitive(False)
-			else:
-				widget.set_active(bool(getattr(self.info,
+       			try:
+               			if self.main_map[entry][1]:
+       					os.stat(self.main_map[entry][1])
+       			except:
+       				widget.set_sensitive(False)
+       			else:
+                                if type(widget) == type(gtk.CheckButton()):
+        				widget.set_active(bool(getattr(self.info,
 						  self.main_map[entry][0])))
 			if type(widget) == type(gtk.CheckButton()):
 				widget.connect("toggled", self.toggleboolean,
@@ -673,6 +693,16 @@ class Authconfig:
 					options.insert(0, option)
 				widget.connect("changed", self.combochanged,
 					       self.main_map[entry])
+                        elif type(widget) == type(gtk.SpinButton()):
+ 				if getattr(self.info, self.main_map[entry][0]):
+                                        try:
+        					widget.set_value(float(getattr(self.info,
+							self.main_map[entry][0])))
+                                        except ValueError:
+                                                pass
+				widget.connect("changed", self.entrychanged,
+					       self.main_map[entry])
+                               
 			# if no tokens are installed, don't enable smartcard
 			# login
 			if entry == "enablesmartcard" and len(authinfo.getSmartcardModules()) == 0:

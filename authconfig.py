@@ -326,6 +326,25 @@ class Authconfig:
 		parser.add_option("--disablemkhomedir", action="store_true",
 			help=_("do not create home directories for users on their first login"))
 
+                parser.add_option("--passminlen", metavar=_("<number>"),
+                        help=_("minimum length of a password"))
+                parser.add_option("--passminclass", metavar=_("<number>"),
+                        help=_("minimum number of character classes in a password"))
+                parser.add_option("--passmaxrepeat", metavar=_("<number>"),
+                        help=_("maximum number of same consecutive characters in a password"))
+                parser.add_option("--passmaxclassrepeat", metavar=_("<number>"),
+                        help=_("maximum number of consecutive characters of same class in a password"))
+                parser.add_option("--enablereqlower", action="store_true",
+                        help=_("require at least one lowercase character in a password"))
+                parser.add_option("--disablereqlower", action="store_true",
+                        help=_("do not require lowercase characters in a password"))
+                parser.add_option("--disablerequpper", action="store_true",
+                        help=_("do not require uppercase characters in a password"))
+                parser.add_option("--disablereqdigit", action="store_true",
+                        help=_("do not require digits in a password"))
+                parser.add_option("--disablereqother", action="store_true",
+                        help=_("do not require other characters in a password"))
+
 		parser.add_option("--nostart", action="store_true",
 			help=_("do not start/stop portmap, ypbind, and nscd"))
 
@@ -432,7 +451,11 @@ class Authconfig:
 			"sssdauth":"enableSSSDAuth",
 			"forcelegacy":"enableForceLegacy",
 			"cachecreds":"enableCacheCreds",
-			"preferdns":"preferDNSinHosts"}
+			"preferdns":"preferDNSinHosts",
+                        "reqlower":"passReqLower",
+                        "requpper":"passReqUpper",
+                        "reqdigit":"passReqDigit",
+                        "reqother":"passReqOther"}
 
 		string_settings = {"passalgo":"passwordAlgorithm",
 			"hesiodlhs":"hesiodLHS",
@@ -459,7 +482,11 @@ class Authconfig:
 			"winbindtemplateshell":"winbindTemplateShell",
 			"ipav2domain":"ipav2Domain",
 			"ipav2realm":"ipav2Realm",
-			"ipav2server":"ipav2Server"}
+			"ipav2server":"ipav2Server",
+                        "passminlen":"passMinLen",
+                        "passminclass":"passMinClass",
+                        "passmaxrepeat":"passMaxRepeat",
+                        "passmaxclassrepeat":"passMaxClassRepeat"}
 
 		for opt, aival in bool_settings.iteritems():
 			if getattr(self.options, "enable"+opt):
@@ -478,6 +505,27 @@ class Authconfig:
 		if self.options.krb5realm and self.options.krb5realm != self.info.kerberosRealm:
 			self.info.kerberosKDC = self.info.getKerberosKDC(self.options.krb5realm)
 			self.info.kerberosAdminServer = self.info.getKerberosAdminServer(self.options.krb5realm)
+
+                try:
+                        val = int(self.options.passminlen)
+                except ValueError:
+                        self.printError(_("The passminlen option value is not an integer"))
+                        self.options.passminlen = None
+                try:
+                        val = int(self.options.passminclass)
+                except ValueError:
+                        self.printError(_("The passminclass option value is not an integer"))
+                        self.options.passminclass = None
+                try:
+                        val = int(self.options.passmaxrepeat)
+                except ValueError:
+                        self.printError(_("The passmaxrepeat option value is not an integer"))
+                        self.options.passmaxrepeat = None
+                try:
+                        val = int(self.options.passmaxclassrepeat)
+                except ValueError:
+                        self.printError(_("The passmaxclassrepeat option value is not an integer"))
+                        self.options.passmaxclassrepeat = None
 
 		for opt, aival in string_settings.iteritems():
 			if getattr(self.options, opt) != None:

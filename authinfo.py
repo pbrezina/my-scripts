@@ -1186,8 +1186,8 @@ class CacheBackup(FileBackup):
 # indexes for the configs
 (CFG_HESIOD, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
-	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER,
-	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 23)
+	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER, CFG_PWQUALITY,
+	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 24)
 all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
@@ -1210,6 +1210,7 @@ all_configs = [
 	FileBackup("authconfig", SYSCONFDIR+"/sysconfig/authconfig"),
 	FileBackup("network", SYSCONFDIR+"/sysconfig/network"),
 	FileBackup("libuser.conf", SYSCONFDIR+"/libuser.conf"),
+	FileBackup("pwquality.conf", SYSCONFDIR+"/security/pwquality.conf"),
 	FileBackup("login.defs", SYSCONFDIR+"/login.defs"),
 	FileBackup("sssd.conf", SYSCONFDIR+"/sssd/sssd.conf")]
 
@@ -1324,6 +1325,16 @@ class AuthInfo:
 		self.implicitSSSDAuth = False
 		self.enableCacheCreds = True
 
+                # Password quality
+                self.passMinLen = "9"
+                self.passMinClass = "1"
+                self.passMaxRepeat = "0"
+                self.passMaxClassRepeat = "0"
+                self.passReqLower = None
+                self.passReqUpper = None
+                self.passReqDigit = None
+                self.passReqOther = None
+
 		# Not really options.
 		self.joinUser = ""
 		self.joinPassword = ""
@@ -1357,6 +1368,9 @@ class AuthInfo:
 		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
 	SaveGroup(self.writeLibuser, [("passwordAlgorithm", "i")]),
 	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]), # for now we do not rewrite uidMin
+        SaveGroup(self.writePWQuality, [("passMinLen", "c"), ("passMinClass", "c"),
+                ("passMaxRepeat", "c"), ("passMaxClassRepeat", "c"), ("passReqLower", "b"),
+                ("passReqUpper", "b"), ("passReqDigit", "b"), ("passReqOther", "b")]),
 	SaveGroup(self.writeKerberos, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
 		("smbSecurity", "i"), ("smbRealm", "c"), ("smbServers", "i"),
 		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
@@ -1409,6 +1423,22 @@ class AuthInfo:
 			setattr(self, attr, value)
 			if oldval != getattr(ref, attr):
 				self.inconsistentAttrs.append(attr)
+
+        def setIntParam(self, attr, value, ref):
+                try:
+                        value = int(value)
+                except ValueError:
+                        return
+                return self.setParam(attr, value, ref)
+
+        def setClassReqParam(self, attr, value, ref):
+                try:
+                        value = int(value)
+                except ValueError:
+                        return
+                if value < 0:
+                        return self.setParam(attr, True, ref)
+                return self.setParam(attr, False, ref)
 
 	def sssdSupported(self):
 		if self.enableForceLegacy or not self.sssdConfig:
@@ -1667,7 +1697,7 @@ class AuthInfo:
 				continue;
 
 			if section == "defaults":
-				# Check for the default realm setting.
+				# Check for the crypt style setting.
 				value = matchKeyEquals(line, "crypt_style")
 				if value:
 					self.setParam("passwordAlgorithm", value.lower(), ref)
@@ -1706,6 +1736,55 @@ class AuthInfo:
 				continue
 			if name == "UID_MIN":
 				self.setParam("uidMin", value, ref)
+		f.close()
+		return True
+
+	def readPWQuality(self, ref):
+		section = ""
+		# Open the file.  Bail if it's not there or there's some problem
+		# reading it.
+		try:
+			f = open(all_configs[CFG_PWQUALITY].origPath, "r")
+		except IOError:
+			return False
+	
+		for line in f:
+                        line = line.split('#')[0]
+			line = line.strip()
+
+			# Check for the settings that interest us.
+			value = matchKeyEquals(line, "minlen")
+			if value:
+				self.setIntParam("passMinLen", value, ref)
+				continue;
+			value = matchKeyEquals(line, "minclass")
+			if value:
+				self.setIntParam("passMinClass", value, ref)
+				continue;
+			value = matchKeyEquals(line, "maxrepeat")
+			if value:
+				self.setIntParam("passMaxRepeat", value, ref)
+				continue;
+			value = matchKeyEquals(line, "maxclassrepeat")
+			if value:
+				self.setIntParam("passMaxClassRepeat", value, ref)
+				continue;
+			value = matchKeyEquals(line, "lcredit")
+			if value:
+				self.setClassReqParam("passReqLower", value, ref)
+				continue;
+			value = matchKeyEquals(line, "ucredit")
+			if value:
+				self.setClassReqParam("passReqUpper", value, ref)
+				continue;
+			value = matchKeyEquals(line, "dcredit")
+			if value:
+				self.setClassReqParam("passReqDigit", value, ref)
+				continue;
+			value = matchKeyEquals(line, "ocredit")
+			if value:
+				self.setClassReqParam("passReqOther", value, ref)
+				continue;
 		f.close()
 		return True
 
@@ -2325,6 +2404,7 @@ class AuthInfo:
 		self.readLibuser(ref)
 		self.readPAM(ref)
 		self.readLogindefs(ref)
+                self.readPWQuality(ref)
 		self.readHesiod(ref)
 		self.readWinbind(ref)
 		self.readNetwork(ref)
@@ -2709,6 +2789,119 @@ class AuthInfo:
 				output += md5crypt
 			if not wroteencmethod:
 				output += encmethod
+			# Write it out and close it.
+			f.rewind()
+			f.write(output)
+			f.save()
+		finally:
+			try:
+				if f:
+					f.close()
+			except IOError:
+				pass
+		return True
+
+        def formatClassReqParam(self, line, value):
+                ls = line.split('=')
+                if len(ls) <= 1:
+                        ls = line.split(' ')
+                if len(ls) > 1:
+                        try:
+                                oldval = int(ls[1])
+                                if value == None:
+                                        return line
+                                if value and oldval >= 0:
+                                        return ls[0] + " = -1"
+                                if not value and oldval < 0:
+                                        return ls[0] + " = 0"
+                        except ValueError:
+                                pass
+                if value:
+                        value = "-1"
+                else:
+                        value = "0"
+                return ls[0] + " = " + value
+
+	# Write pwquality password requirements settings to /etc/security/pwquality.conf.
+	def writePWQuality(self):
+		wroteminlen = False
+                wroteminclass = False
+                wrotemaxrepeat = False
+                wrotemaxclassrepeat = False
+                wrotereqlower = False
+                wroterequpper = False
+                wrotereqdigit = False
+                wrotereqother = False
+		f = None
+		output = ""
+		all_configs[CFG_PWQUALITY].backup(self.backupDir)
+		try:
+			f = SafeFile(all_configs[CFG_PWQUALITY].origPath, 0644)
+
+			# Read in the old file.
+			for line in f.file:
+				ls = line.split('#')[0].strip()
+
+				if matchLine(ls, "minlen"):
+                                        if not wroteminlen:
+        					output += "minlen = " + self.passMinLen + "\n"
+	        				wroteminlen = True
+					continue
+				if matchLine(ls, "minclass"):
+                                        if not wroteminclass:
+        					output += "minclass = " + self.passMinClass + "\n"
+	        				wroteminclass = True
+					continue
+				if matchLine(ls, "maxrepeat"):
+                                        if not wrotemaxrepeat:
+        					output += "maxrepeat = " + self.passMaxRepeat + "\n"
+	        				wrotemaxrepeat = True
+					continue
+				if matchLine(ls, "maxclassrepeat"):
+                                        if not wrotemaxclassrepeat:
+        					output += "maxclassrepeat = " + self.passMaxClassRepeat + "\n"
+	        				wrotemaxclassrepeat = True
+					continue
+				if matchLine(ls, "lcredit"):
+                                        if not wrotereqlower:
+        					output += self.formatClassReqParam(ls, self.passReqLower) + "\n"
+	        				wrotereqlower = True
+					continue
+				if matchLine(ls, "ucredit"):
+                                        if not wroterequpper:
+        					output += self.formatClassReqParam(ls, self.passReqUpper) + "\n"
+	        				wroterequpper = True
+					continue
+				if matchLine(ls, "dcredit"):
+                                        if not wrotereqdigit:
+        					output += self.formatClassReqParam(ls, self.passReqDigit) + "\n"
+        					wrotereqdigit = True
+					continue
+				if matchLine(ls, "ocredit"):
+                                        if not wrotereqother:
+        					output += self.formatClassReqParam(ls, self.passReqOther) + "\n"
+	        				wrotereqother = True
+					continue
+
+				output += line
+
+                        if not wroteminlen:
+        			output += "minlen = " + self.passMinLen + "\n"
+                        if not wroteminclass:
+				output += "minclass = " + self.passMinClass + "\n"
+                        if not wrotemaxrepeat:
+				output += "maxrepeat = " + self.passMaxRepeat + "\n"
+                        if not wrotemaxclassrepeat:
+				output += "maxclassrepeat = " + self.passMaxClassRepeat + "\n"
+                        if not wrotereqlower:
+        			output += self.formatClassReqParam("lcredit", self.passReqLower) + "\n"
+                        if not wroterequpper:
+				output += self.formatClassReqParam("ucredit", self.passReqUpper) + "\n"
+                        if not wrotereqdigit:
+        		        output += self.formatClassReqParam("dcredit", self.passReqDigit) + "\n"
+                        if not wrotereqother:
+				output += self.formatClassReqParam("ocredit", self.passReqOther) + "\n"
+
 			# Write it out and close it.
 			f.rewind()
 			f.write(output)
