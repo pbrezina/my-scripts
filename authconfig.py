@@ -338,10 +338,16 @@ class Authconfig:
                         help=_("require at least one lowercase character in a password"))
                 parser.add_option("--disablereqlower", action="store_true",
                         help=_("do not require lowercase characters in a password"))
+                parser.add_option("--enablerequpper", action="store_true",
+                        help=_("require at least one uppercase character in a password"))
                 parser.add_option("--disablerequpper", action="store_true",
                         help=_("do not require uppercase characters in a password"))
+                parser.add_option("--enablereqdigit", action="store_true",
+                        help=_("require at least one digit in a password"))
                 parser.add_option("--disablereqdigit", action="store_true",
                         help=_("do not require digits in a password"))
+                parser.add_option("--enablereqother", action="store_true",
+                        help=_("require at least one other character in a password"))
                 parser.add_option("--disablereqother", action="store_true",
                         help=_("do not require other characters in a password"))
 
