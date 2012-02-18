@@ -1429,7 +1429,7 @@ class AuthInfo:
                         value = int(value)
                 except ValueError:
                         return
-                return self.setParam(attr, value, ref)
+                return self.setParam(attr, str(value), ref)
 
         def setClassReqParam(self, attr, value, ref):
                 try:
