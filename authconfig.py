@@ -513,22 +513,30 @@ class Authconfig:
 			self.info.kerberosAdminServer = self.info.getKerberosAdminServer(self.options.krb5realm)
 
                 try:
-                        val = int(self.options.passminlen)
+            		val = self.options.passminlen
+            		if val != None:
+            			val = int(val)
                 except ValueError:
                         self.printError(_("The passminlen option value is not an integer"))
                         self.options.passminlen = None
                 try:
-                        val = int(self.options.passminclass)
+            		val = self.options.passminclass
+            		if val != None:
+            			val = int(val)
                 except ValueError:
                         self.printError(_("The passminclass option value is not an integer"))
                         self.options.passminclass = None
                 try:
-                        val = int(self.options.passmaxrepeat)
+            		val = self.options.passmaxrepeat
+            		if val != None:
+            			val = int(val)
                 except ValueError:
                         self.printError(_("The passmaxrepeat option value is not an integer"))
                         self.options.passmaxrepeat = None
                 try:
-                        val = int(self.options.passmaxclassrepeat)
+            		val = self.options.passmaxclassrepeat
+            		if val != None:
+            			val = int(val)
                 except ValueError:
                         self.printError(_("The passmaxclassrepeat option value is not an integer"))
                         self.options.passmaxclassrepeat = None
