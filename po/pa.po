@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-16 17:48+0100\n"
-"PO-Revision-Date: 2012-02-15 06:47+0000\n"
-"Last-Translator: Jaswinder Singh <j.phulewala@gmail.com>\n"
+"POT-Creation-Date: 2012-02-18 10:34+0100\n"
+"PO-Revision-Date: 2012-02-16 17:07+0000\n"
+"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
 "Language-Team: Panjabi (Punjabi) <punjabi-users@lists.sf.net>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
@@ -317,14 +317,12 @@ msgid "join the winbind domain or ads realm now as this administrator"
 msgstr "ਵਿਨ-ਬਾਈ ਡੋਮੇਨ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਵੇ ਜਾਂ ਇਸ ਪਰਸ਼ਾਸ਼ਕ ਦੇ ਤੌਰ ਤੇ ਸੀਮਾ-ਖੇਤਰ ਸ਼ਾਮਿਲ ਕਰੋ"
 
 #: ../authconfig.py:251
-#, fuzzy
 msgid "enable IPAv2 for user information and authentication by default"
-msgstr "ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਲਈ NIS ਯੋਗ ਕਰੋ"
+msgstr ""
 
 #: ../authconfig.py:253
-#, fuzzy
 msgid "disable IPAv2 for user information and authentication by default"
-msgstr "ਮੂਲ ਹੀ ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ ਲਈ NIS ਅਯੋਗ ਕਰੋ"
+msgstr ""
 
 #: ../authconfig.py:255
 msgid "the IPAv2 domain the system should be part of"
@@ -494,100 +492,112 @@ msgid "do not require lowercase characters in a password"
 msgstr ""
 
 #: ../authconfig.py:342
-msgid "do not require uppercase characters in a password"
+msgid "require at least one uppercase character in a password"
 msgstr ""
 
 #: ../authconfig.py:344
-msgid "do not require digits in a password"
+msgid "do not require uppercase characters in a password"
 msgstr ""
 
 #: ../authconfig.py:346
+msgid "require at least one digit in a password"
+msgstr ""
+
+#: ../authconfig.py:348
+msgid "do not require digits in a password"
+msgstr ""
+
+#: ../authconfig.py:350
+msgid "require at least one other character in a password"
+msgstr ""
+
+#: ../authconfig.py:352
 msgid "do not require other characters in a password"
 msgstr ""
 
-#: ../authconfig.py:349
+#: ../authconfig.py:355
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "ਪੋਰਟਮੈਪ, ypbind, ਅਤੇ nscd ਨੂੰ ਸ਼ੁਰੂ/ਸਮਾਪਤ ਨਾ ਕਰੋ"
 
-#: ../authconfig.py:352
+#: ../authconfig.py:358
 msgid "do not update the configuration files, only print new settings"
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦਾ ਅੱਪਡੇਟ ਨਾ ਕਰੋ, ਸਿਰਫ ਨਵੀਂ ਸਥਾਪਨ ਛਾਪੋ"
 
-#: ../authconfig.py:356
+#: ../authconfig.py:362
 msgid "display Back instead of Cancel in the main dialog of the TUI"
 msgstr "TUI ਦੇ ਮੁੱਖ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਰੱਦ ਦੀ ਬਜਾਏ ਪਿੱਛੇ ਵੇਖਾਓ"
 
-#: ../authconfig.py:358
+#: ../authconfig.py:364
 msgid "do not display the deprecated text user interface"
 msgstr "ਬਰਤਰਫ਼ ਪਾਠ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਨਾ ਵੇਖਾਓ"
 
-#: ../authconfig.py:361
+#: ../authconfig.py:367
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "--test ਦੇ ਉਲਟ, ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਨਾਲ ਸਥਾਪਨ ਤਬਦੀਲ ਹੋਵੇਗਾ"
 
-#: ../authconfig.py:364
+#: ../authconfig.py:370
 msgid "update all configuration files"
 msgstr "ਸਭ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਅੱਪਡੇਟ ਕਰੋ"
 
-#: ../authconfig.py:367
+#: ../authconfig.py:373
 msgid "probe network for defaults and print them"
 msgstr "ਮੂਲ ਲਈ ਨੈੱਟਵਰਕ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਇਹਨਾਂ ਨੂੰ ਛਾਪੋ"
 
-#: ../authconfig.py:369 ../authconfig.py:372
+#: ../authconfig.py:375 ../authconfig.py:378
 msgid "<name>"
 msgstr "<name>"
 
-#: ../authconfig.py:370
+#: ../authconfig.py:376
 msgid "save a backup of all configuration files"
 msgstr "ਸਭ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦਾ ਬੈਕਅੱਪ ਸੰਭਾਲੋ"
 
-#: ../authconfig.py:373
+#: ../authconfig.py:379
 msgid "restore the backup of configuration files"
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦਾ ਬੈਕਅੱਪ ਮੁੜ-ਸੰਭਾਲੋ"
 
-#: ../authconfig.py:376
+#: ../authconfig.py:382
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr "ਪਿਛਲੀ ਸੰਰਚਨਾ ਤਬਦੀਲੀ ਤੋਂ ਪਹਿਲਾਂ ਸੰਰਚਨਾ ਫਾਇਲਾਂ ਦੇ ਸੰਭਾਲੇ ਬੈਕਅੱਪ ਨੂੰ ਮੁੜ-ਸੰਭਾਲੋ।"
 
-#: ../authconfig.py:381
+#: ../authconfig.py:387
 msgid "unexpected argument"
 msgstr "ਬੇਲੋੜੀਂਦਾ ਆਰਗੂਮੈਂਟ "
 
-#: ../authconfig.py:512
+#: ../authconfig.py:518
 msgid "The passminlen option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:517
+#: ../authconfig.py:523
 msgid "The passminclass option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:522
+#: ../authconfig.py:528
 msgid "The passmaxrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:527
+#: ../authconfig.py:533
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:548
+#: ../authconfig.py:554
 msgid "Bad smart card removal action specified."
 msgstr "ਗਲਤ ਸਮਾਰਟ ਕਾਰਡ ਹਟਾਉਣ ਕਾਰਵਾਈ ਦਿੱਤੀ ਗਈ ਹੈ।"
 
-#: ../authconfig.py:557
+#: ../authconfig.py:563
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "ਅਣਪਛਾਤੀ ਪਾਸਵਰਡ ਹੈਸ਼ਿਗ ਕਲਨ-ਵਿਧੀ ਨਿਰਧਾਰਤ ਕੀਤੀ ਗਈ ਹੈ, sha256 ਵਰਤ ਕੇ।"
 
-#: ../authconfig.py:592
+#: ../authconfig.py:598
 msgid "can only be run as root"
 msgstr "ਸਿਰਫ ਪ੍ਰਬੰਧਕ (root) ਹੀ ਚਲਾ ਸਕਦਾ ਹੈ"
 
-#: ../authconfig.py:608
+#: ../authconfig.py:614
 msgid "dialog was cancelled"
 msgstr "ਵਾਰਤਾਲਾਪ ਰੱਦ ਕੀਤਾ ਗਿਆ"
 
-#: ../authconfig.py:640 ../authconfig-gtk.py:523
+#: ../authconfig.py:646 ../authconfig-gtk.py:523
 #, python-format
 msgid ""
 "The %s file was not found, but it is required for %s support to work "
@@ -597,198 +607,196 @@ msgstr ""
 "ਫਾਇਲ %s ਨਹੀ ਲੱਭੀ ਹੈ, ਪਰ ਇਹ %s ਦੇ ਠੀਕ ਕੰਮ ਕਰਨ ਲਈ ਲੋੜੀਂਦੀ ਹੈ।\n"
 "ਪੈਕੇਜ %s ਇੰਸਟਾਲ ਕਰੋ, ਜੋ ਕਿ ਇਹ ਫਾਇਲ ਉਪਲੱਬਧ ਕਰਵਾ ਸਕੇਗਾ।"
 
-#: ../authconfig.py:642 ../authconfig.py:988
+#: ../authconfig.py:648 ../authconfig.py:994
 msgid "Warning"
 msgstr "ਚੇਤਾਵਨੀ"
 
-#: ../authconfig.py:642 ../authconfig.py:859 ../authconfig.py:867
-#: ../authconfig.py:873 ../authconfig.py:882 ../authconfig.py:890
-#: ../authconfig.py:934 ../authconfig.py:988
+#: ../authconfig.py:648 ../authconfig.py:865 ../authconfig.py:873
+#: ../authconfig.py:879 ../authconfig.py:888 ../authconfig.py:896
+#: ../authconfig.py:940 ../authconfig.py:994
 msgid "Ok"
 msgstr "ਠੀਕ ਹੈ"
 
-#: ../authconfig.py:646
+#: ../authconfig.py:652
 msgid "caching"
 msgstr "ਕੈਚਿੰਗ"
 
-#: ../authconfig.py:647
+#: ../authconfig.py:653
 msgid "Fingerprint reader"
 msgstr "ਵਿਨਬਾਈਂਡ ਸਹਿਯੋਗ ਯੋਗ(_W)"
 
-#: ../authconfig.py:648
+#: ../authconfig.py:654
 msgid "Kerberos"
 msgstr "ਕਰਬੀਰੋਸ"
 
-#: ../authconfig.py:649
+#: ../authconfig.py:655
 msgid "LDAP authentication"
 msgstr "LDAP ਪ੍ਰਮਾਣਿਕਤਾ"
 
-#: ../authconfig.py:650 ../authconfig-gtk.py:115
+#: ../authconfig.py:656 ../authconfig-gtk.py:115
 msgid "LDAP"
 msgstr "LDAP"
 
-#: ../authconfig.py:651 ../authconfig-gtk.py:121
+#: ../authconfig.py:657 ../authconfig-gtk.py:121
 msgid "NIS"
 msgstr "NIS"
 
-#: ../authconfig.py:652
+#: ../authconfig.py:658
 msgid "shadow password"
 msgstr "ਸ਼ੈਡੋ ਪਾਸਵਰਡ"
 
-#: ../authconfig.py:653 ../authconfig.py:655 ../authconfig-gtk.py:124
+#: ../authconfig.py:659 ../authconfig.py:661 ../authconfig-gtk.py:124
 msgid "Winbind"
 msgstr "ਵਿਨਬਾਈਂਡ"
 
-#: ../authconfig.py:654
+#: ../authconfig.py:660
 msgid "Winbind authentication"
 msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਿਕਤਾ"
 
-#: ../authconfig.py:660
+#: ../authconfig.py:666
 msgid "User Information"
 msgstr "ਯੂਜ਼ਰ ਜਾਣਕਾਰੀ"
 
-#: ../authconfig.py:663
+#: ../authconfig.py:669
 msgid "Cache Information"
 msgstr "ਕੈਚੇ ਜਾਣਕਾਰੀ"
 
-#: ../authconfig.py:666
+#: ../authconfig.py:672
 msgid "Use LDAP"
 msgstr "LDAP ਵਰਤੋਂ"
 
-#: ../authconfig.py:669
+#: ../authconfig.py:675
 msgid "Use NIS"
 msgstr "NIS ਵਰਤੋਂ"
 
-#: ../authconfig.py:672
-#, fuzzy
+#: ../authconfig.py:678
 msgid "Use IPAv2"
-msgstr "NIS ਵਰਤੋਂ"
+msgstr ""
 
-#: ../authconfig.py:675
+#: ../authconfig.py:681
 msgid "Use Winbind"
 msgstr "ਵਿਨਬਾਈਂਡ ਵਰਤੋਂ"
 
-#: ../authconfig.py:681 ../authconfig.desktop.in.h:1
+#: ../authconfig.py:687 ../authconfig.desktop.in.h:1
 msgid "Authentication"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ"
 
-#: ../authconfig.py:684
+#: ../authconfig.py:690
 msgid "Use MD5 Passwords"
 msgstr "MD5 ਪਾਸਵਰਡ ਵਰਤੋਂ"
 
-#: ../authconfig.py:687
+#: ../authconfig.py:693
 msgid "Use Shadow Passwords"
 msgstr "ਪਰਛਾਵਾਂ ਪਾਸਵਰਡ ਵਰਤੋਂ"
 
-#: ../authconfig.py:690
+#: ../authconfig.py:696
 msgid "Use LDAP Authentication"
 msgstr "LDAP ਪ੍ਰਮਾਣਿਕਤਾ ਵਰਤੋਂ"
 
-#: ../authconfig.py:693
+#: ../authconfig.py:699
 msgid "Use Kerberos"
 msgstr "ਕਰਬੀਰੋਸ ਵਰਤੋਂ"
 
-#: ../authconfig.py:696
+#: ../authconfig.py:702
 msgid "Use Fingerprint reader"
 msgstr "ਫਿੰਗਰਪ੍ਰਿੰਟ ਰੀਡਰ ਵਰਤੋ"
 
-#: ../authconfig.py:700
+#: ../authconfig.py:706
 msgid "Use Winbind Authentication"
 msgstr "ਵਿਨਬਾਈਂਡ ਪ੍ਰਮਾਣਿਕਤਾ ਵਰਤੋਂ"
 
-#: ../authconfig.py:703
+#: ../authconfig.py:709
 msgid "Local authorization is sufficient"
 msgstr "ਲੋਕਲ ਪ੍ਰਮਾਣਿਕਤਾ ਹੀ ਕਾਫੀ ਹੈ"
 
-#: ../authconfig.py:713 ../authconfig.py:859 ../authconfig.py:867
-#: ../authconfig.py:873 ../authconfig.py:882 ../authconfig.py:934
+#: ../authconfig.py:719 ../authconfig.py:865 ../authconfig.py:873
+#: ../authconfig.py:879 ../authconfig.py:888 ../authconfig.py:940
 msgid "Back"
 msgstr "ਪਿੱਛੇ"
 
-#: ../authconfig.py:713 ../authconfig.py:890
+#: ../authconfig.py:719 ../authconfig.py:896
 msgid "Cancel"
 msgstr "ਰੱਦ ਕਰੋ"
 
-#: ../authconfig.py:714 ../authconfig.py:859 ../authconfig.py:867
-#: ../authconfig.py:873 ../authconfig.py:882 ../authconfig.py:934
+#: ../authconfig.py:720 ../authconfig.py:865 ../authconfig.py:873
+#: ../authconfig.py:879 ../authconfig.py:888 ../authconfig.py:940
 msgid "Next"
 msgstr "ਅੱਗੇ"
 
-#: ../authconfig.py:725 ../authconfig-gtk.py:746 ../authconfig.glade.h:19
+#: ../authconfig.py:731 ../authconfig-gtk.py:746 ../authconfig.glade.h:19
 msgid "Authentication Configuration"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਸੰਰਚਨਾ"
 
-#: ../authconfig.py:855 ../authconfig.py:870 ../authconfig.py:928
+#: ../authconfig.py:861 ../authconfig.py:876 ../authconfig.py:934
 #: ../authconfig.glade.h:28
 msgid "Domain:"
 msgstr "ਡੋਮੇਨ:"
 
-#: ../authconfig.py:856 ../authconfig.py:876
+#: ../authconfig.py:862 ../authconfig.py:882
 msgid "Realm:"
 msgstr "ਸੀਮਾ ਖੇਤਰ:"
 
-#: ../authconfig.py:857 ../authconfig.py:864 ../authconfig.py:871
+#: ../authconfig.py:863 ../authconfig.py:870 ../authconfig.py:877
 msgid "Server:"
 msgstr "ਸਰਵਰ:"
 
-#: ../authconfig.py:858
-#, fuzzy
+#: ../authconfig.py:864
 msgid "IPAv2 Settings"
-msgstr "NIS ਸਥਾਪਨ"
+msgstr ""
 
-#: ../authconfig.py:860 ../authconfig.py:935
+#: ../authconfig.py:866 ../authconfig.py:941
 msgid "Join Domain"
 msgstr "ਡੋਮੇਨ ਸ਼ਾਮਿਲ"
 
-#: ../authconfig.py:863
+#: ../authconfig.py:869
 msgid "Use TLS"
 msgstr "TLS ਵਰਤੋਂ"
 
-#: ../authconfig.py:865
+#: ../authconfig.py:871
 msgid "Base DN:"
 msgstr "ਮੁੱਢਲਾ DN:"
 
-#: ../authconfig.py:866
+#: ../authconfig.py:872
 msgid "LDAP Settings"
 msgstr "LDAP ਸਥਾਪਨ"
 
-#: ../authconfig.py:872
+#: ../authconfig.py:878
 msgid "NIS Settings"
 msgstr "NIS ਸਥਾਪਨ"
 
-#: ../authconfig.py:877
+#: ../authconfig.py:883
 msgid "KDC:"
 msgstr "KDC:"
 
-#: ../authconfig.py:878
+#: ../authconfig.py:884
 msgid "Admin Server:"
 msgstr "ਪਰਸ਼ਾਸ਼ਕ ਸਰਵਰ:"
 
-#: ../authconfig.py:879
+#: ../authconfig.py:885
 msgid "Use DNS to resolve hosts to realms"
 msgstr "ਮੇਜ਼ਬਾਨਾਂ ਦੇ ਸੀਮਾ-ਖੇਤਰ ਲਈ DNS ਵਰਤੋਂ"
 
-#: ../authconfig.py:880
+#: ../authconfig.py:886
 msgid "Use DNS to locate KDCs for realms"
 msgstr "ਸੀਮਾ-ਖੇਤਰ ਲਈ KDC ਸਥਿਤ ਕਰਨ ਲਈ DNS ਵਰਤੋਂ"
 
-#: ../authconfig.py:881
+#: ../authconfig.py:887
 msgid "Kerberos Settings"
 msgstr "ਕਰਬੀਰੋਸ ਸਥਾਪਨ"
 
-#: ../authconfig.py:885
+#: ../authconfig.py:891
 msgid "Domain Administrator:"
 msgstr "ਡੋਮੇਨ ਪਰਸ਼ਾਸ਼ਕ:"
 
-#: ../authconfig.py:886
+#: ../authconfig.py:892
 msgid "Password:"
 msgstr "ਪਾਸਵਰਡ:"
 
-#: ../authconfig.py:889
+#: ../authconfig.py:895
 msgid "Join Settings"
 msgstr "ਜੋੜ (ਜੁਆਇਨ) ਸਥਾਪਨ"
 
-#: ../authconfig.py:902 ../authconfig.glade.h:54
+#: ../authconfig.py:908 ../authconfig.glade.h:54
 msgid ""
 "Some of the configuration changes you've made should be saved to disk before "
 "continuing.  If you do not save them, then your attempt to join the domain "
@@ -798,41 +806,41 @@ msgstr ""
 "ਜੇਕਰ ਤੁਸੀਂ ਇਸ ਤਰਾਂ ਨਾ ਕੀਤਾ ਤਾਂ ਡੋਮੇਨ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਣ ਦਾ ਤੁਹਾਡਾ ਜਤਨ ਅਸਫਲ ਹੋ ਸਕਦਾ ਹੈ।  ਕੀ "
 "ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੀਆਂ ਹਨ?"
 
-#: ../authconfig.py:909
+#: ../authconfig.py:915
 msgid "Save Settings"
 msgstr "ਸਥਾਪਨ ਸੰਭਾਲੋ"
 
-#: ../authconfig.py:910
+#: ../authconfig.py:916
 msgid "No"
 msgstr "ਨਹੀਂ"
 
-#: ../authconfig.py:910
+#: ../authconfig.py:916
 msgid "Yes"
 msgstr "ਹਾਂ"
 
 #. Why does your favorite shell not show up in the list?  Because it won't
 #. fit, that's why!
-#: ../authconfig.py:927
+#: ../authconfig.py:933
 msgid "Security Model:"
 msgstr "ਸੁਰੱਖਿਆ ਮਾਡਲ:"
 
-#: ../authconfig.py:929
+#: ../authconfig.py:935
 msgid "Domain Controllers:"
 msgstr "ਡੋਮੇਨ ਕੰਟਰੋਲਰ"
 
-#: ../authconfig.py:930
+#: ../authconfig.py:936
 msgid "ADS Realm:"
 msgstr "ADS ਸੀਮਾ-ਖੇਤਰ:"
 
-#: ../authconfig.py:931
+#: ../authconfig.py:937
 msgid "Template Shell:"
 msgstr "ਨਮੂਨਾ ਸ਼ੈੱਲ:"
 
-#: ../authconfig.py:933
+#: ../authconfig.py:939
 msgid "Winbind Settings"
 msgstr "ਵਿਨਬਾਈਂਡ ਸਥਾਪਨ"
 
-#: ../authconfig.py:983
+#: ../authconfig.py:989
 #, python-format
 msgid ""
 "To connect to a LDAP server with TLS protocol enabled you need a CA "
@@ -845,7 +853,7 @@ msgstr ""
 "ਇਸ ਉਪਰੰਤ ਠੀਕ ਹੈ ਦਬਾਓ।"
 
 #. FIXME - version
-#: ../authconfig.py:997
+#: ../authconfig.py:1003
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
@@ -900,9 +908,8 @@ msgid "Winbind password"
 msgstr "Winbind ਪਾਸਵਰਡ"
 
 #: ../authconfig-gtk.py:151
-#, fuzzy
 msgid "IPAv2 password"
-msgstr "NIS ਪਾਸਵਰਡ"
+msgstr ""
 
 #: ../authconfig-gtk.py:500
 msgid ""
@@ -958,11 +965,8 @@ msgstr ""
 "ਸਹਿਯੋਗ ਦਿੰਦਾ ਹੈ।</small>"
 
 #: ../authconfig.glade.h:11
-#, fuzzy
 msgid "<small><b>Tip:</b> These checks are disabled if the value is 0.</small>"
 msgstr ""
-"<small><b>ਟਿੱਪਣੀ:</b> ਇਸਨੂੰ /etc/security/access.conf ਦੁਆਰਾ ਪਰਬੰਧਿਤ ਕੀਤਾ ਗਿਆ ਹੈ।</"
-"small>"
 
 #: ../authconfig.glade.h:12
 msgid ""
@@ -1068,19 +1072,16 @@ msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
 msgstr "ਮੇਜ਼ਬਾਨ-ਨਾਂ ਜਾਂ ldap:// ਜਾਂ ldaps:// URI, LDAP ਸਰਵਰ ਵੱਲ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ।"
 
 #: ../authconfig.glade.h:36
-#, fuzzy
 msgid "IPA R_ealm:"
-msgstr "R_ealm:"
+msgstr ""
 
 #: ../authconfig.glade.h:37
-#, fuzzy
 msgid "IPA _Domain:"
-msgstr "NIS ਡੋਮੇਨ(_D):"
+msgstr ""
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "IPA _Server:"
-msgstr "NI_S ਸਰਵਰ:"
+msgstr ""
 
 #: ../authconfig.glade.h:39
 msgid ""
@@ -1117,9 +1118,8 @@ msgid "O_ther characters"
 msgstr ""
 
 #: ../authconfig.glade.h:47
-#, fuzzy
 msgid "Pass_word Options"
-msgstr "ਪਾਸਵਰਡ"
+msgstr ""
 
 #: ../authconfig.glade.h:48
 msgid "R_ealm:"
@@ -1275,15 +1275,3 @@ msgstr ""
 #: ../authinfo.py:4168
 msgid "Error downloading CA certificate"
 msgstr "CA ਸਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
-
-#~ msgid "Use Hesiod"
-#~ msgstr "ਹਸੀਓਡ ਵਰਤੋਂ"
-
-#~ msgid "LHS:"
-#~ msgstr "LHS:"
-
-#~ msgid "RHS:"
-#~ msgstr "RHS:"
-
-#~ msgid "Hesiod Settings"
-#~ msgstr "ਹੀਸਓਡ ਸਥਾਪਨ"
