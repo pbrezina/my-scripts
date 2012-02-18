@@ -105,6 +105,9 @@ class Authconfig:
                         "reqother" :
                         ("passReqOther", "", "", "", None),
 		}
+		self.pass_keys = ("minlen", "minclass",
+			 "maxrepeat", "maxclassrepeat",
+			 "reqlower", "requpper", "reqdigit", "reqother")
 		# "id type": localized name, tuple of allowed auth types,
 		# option widget, option map name, file, package
 		self.id_map = {
@@ -288,7 +291,7 @@ class Authconfig:
 			if type(widget) == type(gtk.ComboBox()):
 				setattr(self.info, map[entry][0],
 					widget.get_data("option_list")[widget.get_active()])
-			if type(widget) == type(gtk.Entry()):
+			if type(widget) == type(gtk.Entry()) or type(widget) == type(gtk.SpinButton()):
 				setattr(self.info, map[entry][0],
 					widget.get_text())
 			if type(widget) == type(gtk.CheckButton()):
@@ -600,6 +603,13 @@ class Authconfig:
 		if mapname != "empty_map":
 			self.info_apply(getattr(self, mapname), self.authxml)
 
+	def apply_passsettings(self):
+		passmap = {}
+		for k, v in self.main_map.iteritems():
+			if k in self.pass_keys:
+				passmap[k] = v
+		self.info_apply(passmap, self.xml)
+
 	def display_idopts(self, topparent):
 		self.idxml = self.display_opts(self.id_map[self.currid][2], 'identitysite',
 			self.id_map[self.currid][3], topparent)
@@ -715,6 +725,7 @@ class Authconfig:
 		self.update_type(self.auth_map, self.currauth)
 		self.apply_idsettings()
 		self.apply_authsettings()
+		self.apply_passsettings()
 		if self.scxml:
 			self.info_apply(self.smartcard_map, self.scxml)
 		self.info.testLDAPCACerts()
