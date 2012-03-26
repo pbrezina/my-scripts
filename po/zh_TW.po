@@ -4,11 +4,11 @@
 # 
 # Translators:
 # Ben Wu <hpwu@redhat.com>, 2002, 2003, 2004.
-# Cheng-Chia Tseng <pswo10680@gmail.com>, 2011.
+# Cheng-Chia Tseng <pswo10680@gmail.com>, 2011, 2012.
 # Chester Cheng <ccheng@redhat.com>, 2004, 2005, 2006.
 # Dimitris Glezos <glezos@indifex.com>, 2011.
 # Terry Chuang <tchuang at redhat>, 2010.
-# Terry Chuang <tchuang@redhat.com>, 2008, 2009.
+# Terry Chuang <tchuang@redhat.com>, 2008, 2009, 2012.
 # Waika Liu <wliu@redhat.com>, 2005.
 # Walter Cheuk <wwycheuk@netvigator.com>, 2005.
 msgid ""
@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-18 10:34+0100\n"
-"PO-Revision-Date: 2012-02-18 09:42+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
+"PO-Revision-Date: 2012-03-10 11:09+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <trans-zh_TW@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,7 +129,7 @@ msgstr "<URL>"
 
 #: ../authconfig.py:166
 msgid "load CA certificate from the URL"
-msgstr "由 URL 載入 CA 憑證"
+msgstr "從網址載入 CA 憑證"
 
 #: ../authconfig.py:169
 msgid "enable authentication with smart card by default"
@@ -169,11 +169,11 @@ msgstr "預設停用透過指紋掃描器的認證"
 
 #: ../authconfig.py:188
 msgid "enable automatic per-user ecryptfs"
-msgstr "啟用自動每使用者 ecryptfs"
+msgstr "啟用自動各使用者 ecryptfs"
 
 #: ../authconfig.py:190
 msgid "disable automatic per-user ecryptfs"
-msgstr "停用自動每使用者 ecryptfs"
+msgstr "停用自動各使用者 ecryptfs"
 
 #: ../authconfig.py:193
 msgid "enable kerberos authentication by default"
@@ -189,7 +189,7 @@ msgstr "預設的 kerberos KDC"
 
 #: ../authconfig.py:199
 msgid "default kerberos admin server"
-msgstr "預設的 kerberos 管理主控台"
+msgstr "預設的 kerberos 管理伺服器"
 
 #: ../authconfig.py:200 ../authconfig.py:221 ../authconfig.py:256
 msgid "<realm>"
@@ -245,7 +245,7 @@ msgstr "<伺服器>"
 
 #: ../authconfig.py:224
 msgid "names of servers to authenticate against"
-msgstr "用來對照認證的伺服器名稱"
+msgstr "用來比對認證的伺服器名稱"
 
 #: ../authconfig.py:225
 msgid "<workgroup>"
@@ -300,11 +300,11 @@ msgstr "設定 winbind 以假設使用者名稱不含網域資訊的使用者非
 
 #: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
-msgstr "配置 winbind 來允許離線登錄"
+msgstr "設定 winbind 允許離線登入"
 
 #: ../authconfig.py:246
 msgid "configures winbind to prevent offline login"
-msgstr "配置 winbind 來避免離線登錄"
+msgstr "設定 winbind 避免離線登入"
 
 #: ../authconfig.py:248
 msgid "join the winbind domain or ads realm now as this administrator"
@@ -312,35 +312,35 @@ msgstr "現在以管理員身份結合 winbind 網域或 ads 領域"
 
 #: ../authconfig.py:251
 msgid "enable IPAv2 for user information and authentication by default"
-msgstr ""
+msgstr "就預設值啟用使用者資訊與認證的 IPAv2 "
 
 #: ../authconfig.py:253
 msgid "disable IPAv2 for user information and authentication by default"
-msgstr ""
+msgstr "就預設值停用使用者資訊與認證的 IPAv2 "
 
 #: ../authconfig.py:255
 msgid "the IPAv2 domain the system should be part of"
-msgstr ""
+msgstr "系統應屬於其一部分的 IPAv2 區域"
 
 #: ../authconfig.py:257
 msgid "the realm for the IPAv2 domain"
-msgstr ""
+msgstr "IPAv2 網域的領域"
 
 #: ../authconfig.py:259
 msgid "the server for the IPAv2 domain"
-msgstr ""
+msgstr "IPAv2 網域的伺服器"
 
 #: ../authconfig.py:261
 msgid "do not setup the NTP against the IPAv2 domain"
-msgstr ""
+msgstr "不針對於 IPAv2 區域設定 NTP"
 
 #: ../authconfig.py:263
 msgid "setup the NTP against the IPAv2 domain (default)"
-msgstr ""
+msgstr "針對於 IPAv2 區域設定 NTP (預設值)"
 
 #: ../authconfig.py:265
 msgid "join the IPAv2 domain as this account"
-msgstr ""
+msgstr "以此帳號加入 IPAv2 區域"
 
 #: ../authconfig.py:268
 msgid "enable wins for hostname resolution"
@@ -368,11 +368,11 @@ msgstr "預設停用 hesiod 作為使用者資訊來源"
 
 #: ../authconfig.py:282
 msgid "default hesiod LHS"
-msgstr "預設的 hesiod LHS"
+msgstr "預設 hesiod LHS"
 
 #: ../authconfig.py:284
 msgid "default hesiod RHS"
-msgstr "預設的 hesiod RHS"
+msgstr "預設 hesiod RHS"
 
 #: ../authconfig.py:287
 msgid ""
@@ -408,21 +408,21 @@ msgstr "如果它支援組態就隱含使用 SSSD"
 
 #: ../authconfig.py:300
 msgid "enable caching of user credentials in SSSD by default"
-msgstr "預設啟用以 SSSD 進行使用者憑證緩衝貯存"
+msgstr "預設啟用對 SSSD 中的使用者憑證進行快取"
 
 #: ../authconfig.py:302
 msgid "disable caching of user credentials in SSSD by default"
-msgstr "預設停用以 SSSD 進行使用者憑證緩衝貯存"
+msgstr "預設停用對 SSSD 中的使用者憑證進行快起"
 
 #: ../authconfig.py:305
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr "預設啟用使用者資訊緩衝貯存 (當使用了 SSSD 時將會自動停用)"
+msgstr "預設啟用對使用者資訊進行快取 (當使用 SSSD 時將會自動停用)"
 
 #: ../authconfig.py:307
 msgid "disable caching of user information by default"
-msgstr "預設停用使用者資訊緩衝貯存"
+msgstr "預設停用對使用者資訊進行快取"
 
 #: ../authconfig.py:310
 msgid "local authorization is sufficient for local users"
@@ -450,64 +450,64 @@ msgstr "僅供本機檔案使用的認證系統帳號"
 
 #: ../authconfig.py:325
 msgid "create home directories for users on their first login"
-msgstr "當使用者第一次登錄時為他們建立家目錄"
+msgstr "當使用者第一次登入時為他們建立家目錄"
 
 #: ../authconfig.py:327
 msgid "do not create home directories for users on their first login"
-msgstr "當使用者第一次登錄時不為他們建立家目錄"
+msgstr "當使用者第一次登入時不為他們建立家目錄"
 
 #: ../authconfig.py:329 ../authconfig.py:331 ../authconfig.py:333
 #: ../authconfig.py:335
 msgid "<number>"
-msgstr ""
+msgstr "<數字>"
 
 #: ../authconfig.py:330
 msgid "minimum length of a password"
-msgstr ""
+msgstr "密碼的最小長度"
 
 #: ../authconfig.py:332
 msgid "minimum number of character classes in a password"
-msgstr ""
+msgstr "密碼中字元型別的最小數"
 
 #: ../authconfig.py:334
 msgid "maximum number of same consecutive characters in a password"
-msgstr ""
+msgstr "密碼中相同連續字元的最大數"
 
 #: ../authconfig.py:336
 msgid "maximum number of consecutive characters of same class in a password"
-msgstr ""
+msgstr "密碼中連續的相同型別字元的最大數"
 
 #: ../authconfig.py:338
 msgid "require at least one lowercase character in a password"
-msgstr ""
+msgstr "密碼中需要至少一個小寫字母字元"
 
 #: ../authconfig.py:340
 msgid "do not require lowercase characters in a password"
-msgstr ""
+msgstr "密碼中無需使用小寫字母字元"
 
 #: ../authconfig.py:342
 msgid "require at least one uppercase character in a password"
-msgstr ""
+msgstr "密碼中需要至少一個大寫字母字元"
 
 #: ../authconfig.py:344
 msgid "do not require uppercase characters in a password"
-msgstr ""
+msgstr "密碼中無需使用大寫字母字元"
 
 #: ../authconfig.py:346
 msgid "require at least one digit in a password"
-msgstr ""
+msgstr "密碼中需要至少一個數字"
 
 #: ../authconfig.py:348
 msgid "do not require digits in a password"
-msgstr ""
+msgstr "密碼中無需使用數字"
 
 #: ../authconfig.py:350
 msgid "require at least one other character in a password"
-msgstr ""
+msgstr "密碼中需要至少一個其他字元"
 
 #: ../authconfig.py:352
 msgid "do not require other characters in a password"
-msgstr ""
+msgstr "密碼中無需使用其他字元"
 
 #: ../authconfig.py:355
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -523,7 +523,7 @@ msgstr "在文字使用者介面的主對話窗視顯示「上一步」而非「
 
 #: ../authconfig.py:364
 msgid "do not display the deprecated text user interface"
-msgstr "不要顯示已過時的文字介面"
+msgstr "不要顯示已過時的文字使用者介面"
 
 #: ../authconfig.py:367
 msgid "opposite of --test, update configuration files with changed settings"
@@ -531,11 +531,11 @@ msgstr "與 --test 選項相反，將改動更新到設定值"
 
 #: ../authconfig.py:370
 msgid "update all configuration files"
-msgstr "更新所有設定檔"
+msgstr "更新所有組態檔"
 
 #: ../authconfig.py:373
 msgid "probe network for defaults and print them"
-msgstr "偵測預設的網路然後列出來"
+msgstr "探測預設的網路然後列出來"
 
 #: ../authconfig.py:375 ../authconfig.py:378
 msgid "<name>"
@@ -561,19 +561,19 @@ msgstr "非預期的參數"
 
 #: ../authconfig.py:518
 msgid "The passminlen option value is not an integer"
-msgstr ""
+msgstr "passminlen 選項值非數字"
 
 #: ../authconfig.py:523
 msgid "The passminclass option value is not an integer"
-msgstr ""
+msgstr "passminclass 選項值非數字"
 
 #: ../authconfig.py:528
 msgid "The passmaxrepeat option value is not an integer"
-msgstr ""
+msgstr "passmaxrepeat 選項值非數字"
 
 #: ../authconfig.py:533
 msgid "The passmaxclassrepeat option value is not an integer"
-msgstr ""
+msgstr "passmaxclassrepeat 選項值非數字"
 
 #: ../authconfig.py:554
 msgid "Bad smart card removal action specified."
@@ -662,7 +662,7 @@ msgstr "使用 NIS"
 
 #: ../authconfig.py:678
 msgid "Use IPAv2"
-msgstr ""
+msgstr "使用 IPAv2"
 
 #: ../authconfig.py:681
 msgid "Use Winbind"
@@ -733,7 +733,7 @@ msgstr "伺服器："
 
 #: ../authconfig.py:864
 msgid "IPAv2 Settings"
-msgstr ""
+msgstr "IPAv2 設定值"
 
 #: ../authconfig.py:866 ../authconfig.py:941
 msgid "Join Domain"
@@ -769,7 +769,7 @@ msgstr "使用 DNS 將主機解析為領域"
 
 #: ../authconfig.py:886
 msgid "Use DNS to locate KDCs for realms"
-msgstr "使用 DNS 找出領域中的 KDC"
+msgstr "使用 DNS 來定位領域中的 KDC"
 
 #: ../authconfig.py:887
 msgid "Kerberos Settings"
@@ -810,7 +810,7 @@ msgstr "是"
 #. fit, that's why!
 #: ../authconfig.py:933
 msgid "Security Model:"
-msgstr "安全模式："
+msgstr "安全模型："
 
 #: ../authconfig.py:935
 msgid "Domain Controllers:"
@@ -822,7 +822,7 @@ msgstr "ADS 領域："
 
 #: ../authconfig.py:937
 msgid "Template Shell:"
-msgstr "樣板 Shell："
+msgstr "模板 Shell："
 
 #: ../authconfig.py:939
 msgid "Winbind Settings"
@@ -863,7 +863,7 @@ msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:127
 msgid "IPAv2"
-msgstr ""
+msgstr "IPAv2"
 
 #: ../authconfig-gtk.py:136
 msgid "Password"
@@ -887,7 +887,7 @@ msgstr "Winbind 密碼"
 
 #: ../authconfig-gtk.py:151
 msgid "IPAv2 password"
-msgstr ""
+msgstr "IPAv2 密碼"
 
 #: ../authconfig-gtk.py:500
 msgid ""
@@ -896,7 +896,7 @@ msgstr "您必須提供 ldaps:// 伺服器位址或使用 TLS 以進行 LDAP 認
 
 #: ../authconfig-gtk.py:507
 msgid "Use the \"Join Domain\" button to join the IPAv2 domain."
-msgstr ""
+msgstr "使用「結合網域」按鈕來加入 IPAv2 網域。"
 
 #: ../authconfig.glade.h:1
 msgid "*"
@@ -912,11 +912,11 @@ msgstr "<b>本機認證選項</b>"
 
 #: ../authconfig.glade.h:4
 msgid "<b>Maximal Consecutive Character Repetition</b>"
-msgstr ""
+msgstr "<b>最大連續字元重複數</b>"
 
 #: ../authconfig.glade.h:5
 msgid "<b>Minimal Password Requirements</b>"
-msgstr ""
+msgstr "<b>最小密碼需求</b>"
 
 #: ../authconfig.glade.h:6
 msgid "<b>Other Authentication Options</b>"
@@ -924,7 +924,7 @@ msgstr "<b>其他認證選項</b>"
 
 #: ../authconfig.glade.h:7
 msgid "<b>Required Character Classes</b>"
-msgstr ""
+msgstr "<b>需求的字元型別</b>"
 
 #: ../authconfig.glade.h:8
 msgid "<b>Smart Card Authentication Options</b>"
@@ -943,7 +943,7 @@ msgstr "<small><b>提示：</b>智慧卡支援登入本機與中央管理的帳�
 #: ../authconfig.glade.h:11
 msgid ""
 "<small><b>Tip:</b> These checks are disabled if the value is 0.</small>"
-msgstr ""
+msgstr "<small><b>秘訣：</b>如果值為 0，會停用這些檢查。</small>"
 
 #: ../authconfig.glade.h:12
 msgid ""
@@ -978,7 +978,7 @@ msgstr "認證方法(_H)："
 
 #: ../authconfig.glade.h:20
 msgid "C_haracter Classes:"
-msgstr ""
+msgstr "字元型別(_H)："
 
 #: ../authconfig.glade.h:21
 msgid "Card Re_moval Action:"
@@ -986,7 +986,7 @@ msgstr "卡片移除動作(_M)："
 
 #: ../authconfig.glade.h:22
 msgid "Certificate _URL:"
-msgstr "憑證 URL(_U)："
+msgstr "憑證網址(_U)："
 
 #: ../authconfig.glade.h:23
 msgid ""
@@ -996,11 +996,11 @@ msgstr "若您尚未下載 CA 憑證，或是您沒有利用其它方式來設�
 
 #: ../authconfig.glade.h:24
 msgid "Create _home directories on the first login"
-msgstr "第一次進行登錄時建立家目錄(_H)"
+msgstr "第一次進行登入時建立家目錄(_H)"
 
 #: ../authconfig.glade.h:25
 msgid "Do not configure _NTP"
-msgstr ""
+msgstr "不要設定 _NTP"
 
 #: ../authconfig.glade.h:26
 msgid "Do_n't Save"
@@ -1042,21 +1042,21 @@ msgstr "指向了 LDAP 伺服器的主機名稱或是 ldap:// 或是 ldaps:// UR
 
 #: ../authconfig.glade.h:36
 msgid "IPA R_ealm:"
-msgstr ""
+msgstr "IPA 領域(_E)："
 
 #: ../authconfig.glade.h:37
 msgid "IPA _Domain:"
-msgstr ""
+msgstr "IPA 網域(_D)："
 
 #: ../authconfig.glade.h:38
 msgid "IPA _Server:"
-msgstr ""
+msgstr "IPA 伺服器(_S)："
 
 #: ../authconfig.glade.h:39
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr "若某個使用者的家目錄不存在的話，這將會在該使用者第一次登錄時被自動建立。"
+msgstr "若某個使用者的家目錄不存在的話，這將會在該使用者第一次登入時被自動建立。"
 
 #: ../authconfig.glade.h:40
 msgid "Joining Winbind Domain"
@@ -1072,7 +1072,7 @@ msgstr "LDAP 伺服器(_S)："
 
 #: ../authconfig.glade.h:43
 msgid "Low_ercase"
-msgstr ""
+msgstr "小寫(_E)"
 
 #: ../authconfig.glade.h:44
 msgid "NIS _Domain:"
@@ -1084,11 +1084,11 @@ msgstr "NIS 伺服器(_S)："
 
 #: ../authconfig.glade.h:46
 msgid "O_ther characters"
-msgstr ""
+msgstr "其他字元(_T)"
 
 #: ../authconfig.glade.h:47
 msgid "Pass_word Options"
-msgstr ""
+msgstr "密碼選項(_W)"
 
 #: ../authconfig.glade.h:48
 msgid "R_ealm:"
@@ -1110,7 +1110,7 @@ msgstr "復原"
 
 #: ../authconfig.glade.h:52
 msgid "Sa_me Class:"
-msgstr ""
+msgstr "相同型別(_M)："
 
 #: ../authconfig.glade.h:53
 msgid ""
@@ -1167,7 +1167,7 @@ msgstr "Winbind 網域(_D)："
 
 #: ../authconfig.glade.h:65
 msgid "_Digits"
-msgstr ""
+msgstr "數字(_D)"
 
 #: ../authconfig.glade.h:66
 msgid "_Download CA Certificate..."
@@ -1175,7 +1175,7 @@ msgstr "下載 CA 憑證(_D)…"
 
 #: ../authconfig.glade.h:67
 msgid "_Identity & Authentication"
-msgstr "身份和認證(_I)"
+msgstr "辨識身份和認證(_I)"
 
 #: ../authconfig.glade.h:68
 msgid "_Join Domain..."
@@ -1187,7 +1187,7 @@ msgstr "KDCs(_K)："
 
 #: ../authconfig.glade.h:70
 msgid "_Length:"
-msgstr ""
+msgstr "長度(_L)："
 
 #: ../authconfig.glade.h:71
 msgid "_Password Hashing Algorithm:"
@@ -1199,7 +1199,7 @@ msgstr "密碼(_P)："
 
 #: ../authconfig.glade.h:73
 msgid "_Same Character:"
-msgstr ""
+msgstr "相同字元(_S)："
 
 #: ../authconfig.glade.h:74
 msgid "_Security Model:"
@@ -1207,7 +1207,7 @@ msgstr "安全模型(_S)："
 
 #: ../authconfig.glade.h:75
 msgid "_Uppercase"
-msgstr ""
+msgstr "大寫(_U)"
 
 #: ../authconfig.glade.h:76
 msgid "_User Account Database:"
@@ -1231,7 +1231,7 @@ msgstr "找不到認證模組 %s/pam_%s.so。認證程序可能無法正確地�
 #: ../authinfo.py:4101
 msgid ""
 "IPAv2 domain join was not succesful. The ipa-client-install command failed."
-msgstr ""
+msgstr "IPAv2 網域加入不成功。ipa-client-install 指令執行失敗。"
 
 #: ../authinfo.py:4168
 msgid "Error downloading CA certificate"
