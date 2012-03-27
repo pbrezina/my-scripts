@@ -125,6 +125,12 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Tue Mar 27 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.2-1
+- use the new --noac option with ipa-client-install
+- add sss to the services entry in nsswitch.conf
+- call res_init() to reread resolv.conf before res_send()
+- updated translations
+
 * Sat Feb 18 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.1-1
 - fix traceback in the command-line ui (#794900)
 - updated translations
