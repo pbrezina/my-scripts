@@ -20,6 +20,8 @@
 
 #include "config.h"
 #include <Python.h>
+#include <netinet/in.h>
+#include <arpa/nameser.h>
 #include <resolv.h>
 #include <unistd.h>
 

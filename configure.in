@@ -32,14 +32,17 @@ AC_SUBST(NEWT_LIBS)
 AC_CHECK_FUNC(res_init,,[AC_CHECK_LIB(resolv,res_init,,
 [
 AC_MSG_CHECKING([for res_init in -lc])
-AC_TRY_COMPILE([#include <resolv.h>],[res_init()],
-               [AC_MSG_RESULT([found])
-	        LIBS="-lresolv $LIBS"],
+AC_TRY_COMPILE([#include <netinet/in.h>
+#include <arpa/nameser.h>
+#include <resolv.h>],[res_init()],
+               [AC_MSG_RESULT([found])],
                [AC_MSG_RESULT([not found])
 AC_MSG_CHECKING([for res_init in -lresolv])
 libs="$LIBS"
 LIBS="-lresolv $LIBS"
-AC_TRY_COMPILE([#include <resolv.h>],[res_init()],
+AC_TRY_COMPILE([#include <netinet/in.h>
+#include <arpa/nameser.h>
+#include <resolv.h>],[res_init()],
                [AC_MSG_RESULT([found])],
                [AC_MSG_RESULT([not found])
                 LIBS="$libs"
