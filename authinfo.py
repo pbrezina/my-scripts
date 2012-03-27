@@ -3404,6 +3404,7 @@ class AuthInfo:
 		wroteautomount = False
 		wrotehosts = False
 		wroteinitgroups = False
+		wroteservices = False
 		f = None
 		output = ""
 		all_configs[CFG_NSSWITCH].backup(self.backupDir)
@@ -3416,6 +3417,7 @@ class AuthInfo:
 			if self.enableDB:
 				normal += " db"
 			normal += " files"
+			services = normal
 			if self.enableDirectories:
 				normal += " directories"
 			if self.enableOdbcbind:
@@ -3426,6 +3428,7 @@ class AuthInfo:
 				normal += " nis"
 			if self.enableSSSD or self.implicitSSSD or self.enableIPAv2:
 				normal += " sss"
+				services += " sss"
 			if self.enableLDAPbind:
 				normal += " ldapbind"
 			if self.enableLDAP and not self.implicitSSSD:
@@ -3528,6 +3531,13 @@ class AuthInfo:
 						output += hosts
 						output += "\n"
 						wrotehosts = True
+				# If it's a 'services' line, insert ours instead.
+				elif matchLine(ls, "services:"):
+					if not wroteservices:
+						output += "services:  "
+						output += services
+						output += "\n"
+						wroteservices = True
 				# Otherwise, just copy the current line out.
 				else:
 					output += line
@@ -3556,6 +3566,10 @@ class AuthInfo:
 			if not wrotehosts:
 				output += "hosts:     "
 				output += hosts
+				output += "\n"
+			if not wroteservices:
+				output += "services:  "
+				output += services
 				output += "\n"
 			# For now we do not write initgroups
 			# line if not encountered.
