@@ -891,8 +891,8 @@ def feedFork(command, echo, query, response):
 		return 255
 	if not pid:
 		# child
-		os.system(command)
-		os._exit(0)
+		status = os.system(command)
+		os._exit(status)
 	output = ""
 	try:
 		i = fcntl.fcntl(master, fcntl.F_GETFL)
