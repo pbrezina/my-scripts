@@ -60,6 +60,7 @@ resolver_send(PyObject *self, PyObject *args)
 	
 	asize = DEFAULT_ASIZE;
 	ans = malloc(asize);
+	res_init();
 	do {
 		rv = res_send(req, reqlen, ans, asize);
 		if (rv >= asize) {
