@@ -393,7 +393,8 @@ class Authconfig:
 			and not self.options.restorelastbackup):
 			# --update (== --kickstart) or --test or --probe must be specified
 			# this will print usage and call sys.exit()
-			parser.parse_args(["-h"])
+			parser.print_help()
+			sys.exit(2)
 
 	def probe(self):
 		info = authinfo.AuthInfo(self.printError)
