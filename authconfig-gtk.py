@@ -27,6 +27,7 @@ import authinfo, acutil
 import gettext, os, signal, sys
 _ = gettext.lgettext
 import locale
+import dbus
 
 locale.setlocale(locale.LC_ALL, '')
 
@@ -66,6 +67,9 @@ except RuntimeError:
 	sys.exit(2)
 
 import msgarea
+
+from dbus.mainloop.glib import DBusGMainLoop
+DBusGMainLoop(set_as_default=True)
 
 class Authconfig:
 	def __init__(self):
@@ -471,14 +475,28 @@ class Authconfig:
 		return bool(ldaptls.get_active() or
 			'ldaps:' in ldapserver.get_text())
 
-	def display_msgctrl(self, text):
+	#
+	# if a 'fix' button is desired, use button_label and button_action
+	# button_action is a function object.
+	#
+	def display_msgctrl(self, text, button_label=None, button_action=None):
 		apply = self.xml.get_widget('apply')
 		apply.set_sensitive(False)
 		if self.msgctrl == None:
 			self.msgctrl = msgarea.MsgAreaController()
 			self.xml.get_widget('idauthpage').pack_start(self.msgctrl)
 			self.xml.get_widget('idauthpage').reorder_child(self.msgctrl, 0)
-		self.msgctrl.new_from_text_and_icon(gtk.STOCK_DIALOG_ERROR, text)
+		area = self.msgctrl.new_from_text_and_icon(gtk.STOCK_DIALOG_ERROR, text)
+
+		# Create a "fix this" action button for the message
+		if button_label:
+			button = None
+			def on_area_response(self, respid):
+				if respid == gtk.RESPONSE_YES:
+					button_action()
+			button = area.add_button(button_label, gtk.RESPONSE_YES)
+			area.connect("response", on_area_response)
+
 		self.xml.get_widget('idauthpage').show_all()
 		apply.set_tooltip_markup("<span color='dark red'>%s</span>" % text)
 
@@ -510,6 +528,25 @@ class Authconfig:
 			text = _("Use the \"Join Domain\" button to join the IPAv2 domain.")
 			self.display_msgctrl(text)
 
+	def install_package(self, package):
+		parent=self.xml.get_widget('authconfig')
+
+		def error_handler(exception):
+			pass
+		def reply_handler():
+			self.clear_msgctrl()
+
+		try:
+			bus = dbus.SessionBus()
+			proxy = bus.get_object('org.freedesktop.PackageKit', '/org/freedesktop/PackageKit')
+			iface = dbus.Interface(proxy, 'org.freedesktop.PackageKit.Modify')
+			iface.InstallPackageNames(dbus.UInt32(parent.window.xid), [package],
+			                          "show-confirm-search, show-confirm-deps, hide-finished",
+			                          error_handler=error_handler,
+			                          reply_handler=reply_handler)
+		except dbus.DBusException, e:
+			self.display_msgctl("Failure using package kit: %s" % str(e))
+
 	def missing_package(self, path, service, package):
 		if type(path) == tuple:
 			if self.info.sssdSupported():
@@ -524,7 +561,9 @@ class Authconfig:
 			self.clear_msgctrl()
 		except:
 			text = _("The %s file was not found, but it is required for %s support to work properly.\nInstall the %s package, which provides this file.")
-			self.display_msgctrl(text % (path, service, package))
+			self.display_msgctrl(text % (path, service, package),
+			                     button_label="Install",
+			                     button_action=lambda:self.install_package(package))
 			return True
 		return False
 
