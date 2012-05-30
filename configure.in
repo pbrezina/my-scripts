@@ -29,27 +29,10 @@ fi
 LIBS="$libs"
 AC_SUBST(NEWT_LIBS)
 
-AC_CHECK_FUNC(res_init,,[AC_CHECK_LIB(resolv,res_init,,
-[
-AC_MSG_CHECKING([for res_init in -lc])
-AC_TRY_COMPILE([#include <netinet/in.h>
-#include <arpa/nameser.h>
-#include <resolv.h>],[res_init()],
-               [AC_MSG_RESULT([found])],
-               [AC_MSG_RESULT([not found])
-AC_MSG_CHECKING([for res_init in -lresolv])
-libs="$LIBS"
-LIBS="-lresolv $LIBS"
-AC_TRY_COMPILE([#include <netinet/in.h>
-#include <arpa/nameser.h>
-#include <resolv.h>],[res_init()],
-               [AC_MSG_RESULT([found])],
-               [AC_MSG_RESULT([not found])
-                LIBS="$libs"
-])
-])
-]
-)])
+AC_CHECK_HEADERS(netinet/in.h arpa/nameser.h resolv.h,,)
+
+AC_CHECK_FUNC(res_init,,[AC_CHECK_LIB(resolv,res_init,,[
+ AC_CHECK_LIB(resolv,__res_init,,)])])
 
 AC_ARG_WITH(python-rev,
             [  --with-pythonrev=2.2    version of python for which modules should be built],

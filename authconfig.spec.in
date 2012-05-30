@@ -37,7 +37,6 @@ authentication schemes.
 %setup -q -n %{name}-%{version}
 
 %build
-CFLAGS="$RPM_OPT_FLAGS -fPIC"; export CFLAGS
 %configure
 make
 
@@ -125,6 +124,9 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Wed May 30 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.3-1
+- fix missing linkage to libresolv
+
 * Tue Mar 27 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.2-1
 - use the new --noac option with ipa-client-install
 - add sss to the services entry in nsswitch.conf
