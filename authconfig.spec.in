@@ -14,6 +14,7 @@ Conflicts: nss_ldap < 254, sssd < 0.99.1
 Conflicts: freeipa-client < 2.2.0, ipa-client < 2.2.0
 BuildRequires: glib2-devel, python >= 2.6, python-devel
 BuildRequires: desktop-file-utils, intltool, gettext, perl-XML-Parser
+Requires: /usr/bin/openssl
 
 %description 
 Authconfig is a command line utility which can configure a workstation
@@ -126,6 +127,7 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %changelog
 * Wed May 30 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.3-1
 - fix missing linkage to libresolv
+- add missing requires of openssl binary for cacertdir_rehash
 
 * Tue Mar 27 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.2-1
 - use the new --noac option with ipa-client-install
