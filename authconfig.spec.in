@@ -125,9 +125,15 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
-* Wed May 30 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.3-1
+* Thu Jul 19 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.3-1
 - fix missing linkage to libresolv
 - add missing requires of openssl binary for cacertdir_rehash
+- install missing packages via PackageKit (original patch by Stef Walter)
+- add pam_lastlog to postlogin PAM configuration to display failed login
+  attempts
+- enable the allow_ypbind SELinux boolean when enabling NIS
+- try to preserve the dns_lookup_kdc and dns_lookup_realm settings
+- do not use cached_login in password stack for pam_winbind
 
 * Tue Mar 27 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.2-1
 - use the new --noac option with ipa-client-install

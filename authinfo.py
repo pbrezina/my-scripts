@@ -771,8 +771,8 @@ DEFAULT_DNS_QUERY_SIZE = 1024
 # "beautiful".
 ld_line_re = re.compile(r'^[ \t]*'     # Initial whitespace
                        r'([^ \t]+)'    # Variable name
-                       r'[ \t][ \t"]*' # Separator - yes, may have multiple "s
-                       r'(([^"]*)".*'  # Value, case 1 - terminated by "
+                       r'[ \t][ \t"]*' # Separator - yes, may have multiple \"s
+                       r'(([^"]*)".*'  # Value, case 1 - terminated by \"
                        r'|([^"]*\S)?\s*' # Value, case 2 - only drop trailing \s
                        r')$')
 # for matching uid in succeeded if options
