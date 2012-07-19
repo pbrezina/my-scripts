@@ -531,21 +531,15 @@ class Authconfig:
 	def install_package(self, package):
 		parent=self.xml.get_widget('authconfig')
 
-		def error_handler(exception):
-			pass
-		def reply_handler():
-			self.clear_msgctrl()
-
 		try:
 			bus = dbus.SessionBus()
 			proxy = bus.get_object('org.freedesktop.PackageKit', '/org/freedesktop/PackageKit')
 			iface = dbus.Interface(proxy, 'org.freedesktop.PackageKit.Modify')
 			iface.InstallPackageNames(dbus.UInt32(parent.window.xid), [package],
-			                          "show-confirm-search, show-confirm-deps, hide-finished",
-			                          error_handler=error_handler,
-			                          reply_handler=reply_handler)
+			                          "show-confirm-search, show-confirm-deps, hide-finished")
 		except dbus.DBusException, e:
-			self.display_msgctl("Failure using package kit: %s" % str(e))
+			self.display_msgctrl("Failure using package kit: %s" % str(e))
+		self.missing_packages()
 
 	def missing_package(self, path, service, package):
 		if type(path) == tuple:
