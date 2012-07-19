@@ -133,6 +133,7 @@ LOGIC_PKCS11_KRB5 = "[success=ok authinfo_unavail=2 ignore=2 default=die]"
 LOGIC_FORCE_PKCS11_KRB5 = "[success=ok ignore=2 default=die]"
 LOGIC_SKIPNEXT = "[success=1 default=ignore]"
 LOGIC_SKIPNEXT3 = "[success=3 default=ignore]"
+LOGIC_ALWAYS_SKIP = "[default=1]"
 
 # Snip off line terminators and final whitespace from a passed-in string.
 def snipString(s):
@@ -398,6 +399,22 @@ argv_ecryptfs_session = [
 	"unwrap"
 ]
 
+argv_succeed_if_not_gdm = [
+	"service !~ gdm*",
+	"quiet"
+]
+
+argv_lastlog_gdm = [
+	"nowtmp",
+	"showfailed"
+]
+
+argv_lastlog_not_gdm = [
+	"silent",
+	"noupdate",
+	"showfailed"
+]
+
 # Password hashing algorithms.
 password_algorithms = ["descrypt", "bigcrypt", "md5", "sha256", "sha512"]
 
@@ -529,12 +546,18 @@ pam_modules[STANDARD] = [
 ]
 
 pam_modules[POSTLOGIN] = [
-	[False,  AUTH,		LOGIC_OPTIONAL,
+	[False, AUTH,		LOGIC_OPTIONAL,
 	 "ecryptfs",		argv_ecryptfs_auth],
-	[False,  PASSWORD,	LOGIC_OPTIONAL,
+	[False, PASSWORD,	LOGIC_OPTIONAL,
 	 "ecryptfs",		argv_ecryptfs_password],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "ecryptfs",		argv_ecryptfs_session],
+	[True,  SESSION,	LOGIC_SKIPNEXT,
+	 "succeed_if",		argv_succeed_if_not_gdm],
+	[True,  SESSION,	LOGIC_ALWAYS_SKIP,
+	 "lastlog",		argv_lastlog_gdm],
+	[True,  SESSION,	LOGIC_REQUIRED,
+	 "lastlog",		argv_lastlog_not_gdm],
 ]
 
 pam_modules[PASSWORD_ONLY] = [
