@@ -84,7 +84,6 @@ AM_CFLAGS = @CFLAGS@ @PYTHON_CFLAGS@ -Wall
 
 acutilmodule_la_SOURCES = acutilmodule.c
 acutilmodule_la_LDFLAGS = -module -avoid-version -export-dynamic @LDFLAGS@
-acutilmodule_la_LIBADD = -lresolv
 
 EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd \
 	authconfig.console authconfig-tui.console authconfig-gtk.console \
