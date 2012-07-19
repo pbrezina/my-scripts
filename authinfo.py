@@ -3089,12 +3089,12 @@ class AuthInfo:
 							output += defaultrealm
 							output +=  "\n"
 							wrotedefaultrealm = True
-						if not wrotednsrealm:
+						if self.kerberosRealmviaDNS != None and not wrotednsrealm:
 							output += " dns_lookup_realm = "
 							output += str(bool(self.kerberosRealmviaDNS)).lower()
 							output += "\n"
 							wrotednsrealm = True
-						if not wrotednskdc:
+						if self.kerberosKDCviaDNS != None and not wrotednskdc:
 							output += " dns_lookup_kdc = "
 							output += str(bool(self.kerberosKDCviaDNS)).lower()
 							output += "\n"
@@ -3134,11 +3134,11 @@ class AuthInfo:
 					output += " default_realm = "
 					output += defaultrealm
 					output +=  "\n"
-				if not wrotednsrealm:
+				if self.kerberosRealmviaDNS != None and not wrotednsrealm:
 					output += " dns_lookup_realm = "
 					output += str(bool(self.kerberosRealmviaDNS)).lower()
 					output += "\n"
-				if not wrotednskdc:
+				if self.kerberosKDCviaDNS != None and not wrotednskdc:
 					output += " dns_lookup_kdc = "
 					output += str(bool(self.kerberosKDCviaDNS)).lower()
 					output += "\n"

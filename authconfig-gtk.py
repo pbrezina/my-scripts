@@ -375,8 +375,14 @@ class Authconfig:
 					widget.connect("changed", self.changedentry,
 						entry, map[entry][4], xml)
 			if type(widget) == type(gtk.CheckButton()):
-				widget.set_active(bool(getattr(self.info,
-							  map[entry][0])))
+				boolval = bool(getattr(self.info, map[entry][0]))
+				if (map[entry][0] == "kerberosRealmviaDNS" and
+					self.info.kerberosRealmviaDNS == None):
+						boolval = False
+				elif (map[entry][0] == "kerberosKDCviaDNS" and
+					self.info.kerberosKDCviaDNS == None):
+						boolval = True
+				widget.set_active(boolval)
 				if len(map[entry]) > 4:
 					widget.connect("toggled", self.toggleboolean,
 						entry, map[entry][4], xml)
