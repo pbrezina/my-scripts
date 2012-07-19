@@ -3671,7 +3671,7 @@ class AuthInfo:
 				args = self.systemdArgs
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
-			if name == "winbind" and self.winbindOffline:
+			if name == "winbind" and self.winbindOffline and stack != "password":
 				output += " cached_login"
 			if name == "unix":
 				if stack == "password":
