@@ -845,6 +845,7 @@ def toggleNisService(enableNis, nisDomain, nostart, onlystart):
 		if not nostart:
 			os.system("/bin/domainname " + nisDomain)
 		try:
+			os.system("setsebool -P allow_ypbind 1")
 			os.stat(PATH_RPCBIND)
 			Service.enable("rpcbind")
 			if not nostart:
@@ -866,6 +867,7 @@ def toggleNisService(enableNis, nisDomain, nostart, onlystart):
 		if not nostart:
 			os.system("/bin/domainname \"(none)\"")
 		try:
+			os.system("setsebool -P allow_ypbind 0")
 			os.stat(PATH_YPBIND)
 			if not nostart:
 				try:
