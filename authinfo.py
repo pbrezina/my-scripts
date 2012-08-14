@@ -1348,7 +1348,7 @@ class AuthInfo:
 		self.enableForceLegacy = None
 		self.implicitSSSD = False
 		self.implicitSSSDAuth = False
-		self.enableCacheCreds = True
+		self.enableCacheCreds = None
 
                 # Password quality
                 self.passMinLen = "9"
@@ -1401,7 +1401,7 @@ class AuthInfo:
 		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
 		("kerberosKDCviaDNS", "b")]),
 	SaveGroup(self.writeSSSD, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
-		("ldapSchema", "c"), ("ldapCacertDir", "c"),
+		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("enableCacheCreds", "b"),
 		("kerberosRealm", "c"), ("kerberosKDC", "i"), ("kerberosAdminServer", "i"),
 		("forceSSSDUpdate", "b"), ("enableLDAP", "b"), ("enableKerberos", "b"),
 		("enableLDAPAuth", "b"), ("enableIPAv2", "b")]),
@@ -1435,7 +1435,7 @@ class AuthInfo:
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enablePWQuality", "b"), ("enablePasswdQC", "b"),
-		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"),
+		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"), ("enableCacheCreds", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
 		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b"),
 		("ipav2Server", "i"), ("ipav2Domain", "i"), ("ipav2Realm", "c"),
@@ -1841,15 +1841,12 @@ class AuthInfo:
 				authprov = None
 		for attr, opt in sssdopt_map.iteritems():
 			try:
-				# Cache credentials value will be taken from sysconfig
-				# or enabled by default.
-				if attr != 'enableCacheCreds':
-					val = domain.get_option(opt)
-					if opt == 'ldap_uri':
-						val = " ".join(val.split(","))
-					elif opt == 'ldap_schema' and val == 'rfc2307':
-						continue
-					self.setParam(attr, val, ref)
+				val = domain.get_option(opt)
+				if opt == 'ldap_uri':
+					val = " ".join(val.split(","))
+				elif opt == 'ldap_schema' and val == 'rfc2307':
+					continue
+				self.setParam(attr, val, ref)
 			except SSSDConfig.NoOptionError:
 				pass
 
@@ -2421,6 +2418,8 @@ class AuthInfo:
 			if self.smbRealm:
 				self.smbRealm = self.smbRealm.upper()
 		self.passwordAlgorithm = self.passwordAlgorithm.lower()
+		if self.enableCacheCreds == None:
+			self.enableCacheCreds = True # enabled by default
 
 	def read(self):
 		ref = self.copy()
