@@ -556,7 +556,7 @@ pam_modules[POSTLOGIN] = [
 	 "succeed_if",		argv_succeed_if_not_gdm],
 	[True,  SESSION,	LOGIC_ALWAYS_SKIP,
 	 "lastlog",		argv_lastlog_gdm],
-	[True,  SESSION,	LOGIC_REQUIRED,
+	[True,  SESSION,	LOGIC_OPTIONAL,
 	 "lastlog",		argv_lastlog_not_gdm],
 ]
 
