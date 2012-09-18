@@ -202,7 +202,7 @@ def checkNSS(configuration, candidate):
 	return None
 
 def openfdLocked(filename, mode, perms):
-	fd = -1
+	fd = None
 	try:
 		fd = os.open(filename, mode, perms)
 		if mode == os.O_RDONLY:
@@ -210,7 +210,7 @@ def openfdLocked(filename, mode, perms):
 		else:
 			fcntl.lockf(fd, fcntl.LOCK_EX)
 	except OSError as (errno, strerr):
-		if fd != -1:
+		if fd != None:
 			try:
 				os.close(fd)
 			except OSError:
@@ -1086,9 +1086,14 @@ class FileBackup:
 			srcfd = openfdLocked(src, os.O_RDONLY, 0)
 		except IOError:
 			return True
+		try:
+			mode = stat.S_IMODE(os.fstat(srcfd).st_mode)
+		except (IOError, OSError):
+			os.close(srcfd)
+			return True
 
 		try:
-			destfile = SafeFile(dest, 0644)
+			destfile = SafeFile(dest, mode)
 			destfile.rewind()
 		except IOError:
 			rv = False
@@ -1140,6 +1145,11 @@ class FileBackup:
 		backuppath = backupdir+"/"+self.backupName
 		if rv and os.path.isfile(backuppath):
 			rv = self.safeCopy(backuppath, self.origPath)
+
+		try:
+			os.system("restorecon '"+self.origPath+"'")
+		except (IOError, OSError):
+			pass
 
 		return rv
 
@@ -1212,7 +1222,7 @@ class CacheBackup(FileBackup):
 (CFG_HESIOD, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER, CFG_PWQUALITY,
-	CFG_LOGIN_DEFS, CFG_SSSD) = range(0, 24)
+	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP) = range(0, 28)
 all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
@@ -1237,7 +1247,11 @@ all_configs = [
 	FileBackup("libuser.conf", SYSCONFDIR+"/libuser.conf"),
 	FileBackup("pwquality.conf", SYSCONFDIR+"/security/pwquality.conf"),
 	FileBackup("login.defs", SYSCONFDIR+"/login.defs"),
-	FileBackup("sssd.conf", SYSCONFDIR+"/sssd/sssd.conf")]
+	FileBackup("sssd.conf", SYSCONFDIR+"/sssd/sssd.conf"),
+	FileBackup("shadow", SYSCONFDIR+"/shadow"),
+	FileBackup("passwd", SYSCONFDIR+"/passwd"),
+	FileBackup("gshadow", SYSCONFDIR+"/gshadow"),
+	FileBackup("group", SYSCONFDIR+"/group")]
 
 sssdopt_map = {
 	'ldapServer': 'ldap_uri',
@@ -1440,7 +1454,8 @@ class AuthInfo:
 		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b"),
 		("ipav2Server", "i"), ("ipav2Domain", "i"), ("ipav2Realm", "c"),
 		("enableIPAv2", "b"), ("ipaDomainJoined", "b"), ("ipav2NoNTP", "b")]),
-	SaveGroup(self.writeNetwork, [("nisDomain", "c")])]
+	SaveGroup(self.writeNetwork, [("nisDomain", "c")]),
+	SaveGroup(self.toggleShadow, [("enableShadow", "b")])]
 
 	def setParam(self, attr, value, ref):
 		oldval = getattr(self, attr)
@@ -3900,6 +3915,7 @@ class AuthInfo:
 			ret = ret and self.writePAM()
 			ret = ret and self.writeSysconfig()
 			ret = ret and self.writeNetwork()
+			ret = ret and self.toggleShadow()
 		except (OSError, IOError):
 			return False
 		return ret
@@ -4076,6 +4092,8 @@ class AuthInfo:
 		print "Authenticate system accounts against network services is %s" % formatBool(self.enableSysNetAuth)
 
 	def toggleShadow(self):
+		for cfg in (CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP):
+			all_configs[cfg].backup(self.backupDir)
 		# now, do file manipulation on the password files themselves.
 		if self.enableShadow:
 			os.system("/usr/sbin/pwconv")
@@ -4139,7 +4157,6 @@ class AuthInfo:
 				self.messageCB(_("IPAv2 domain join was not succesful. The ipa-client-install command failed."))
 
 	def post(self, nostart):
-		self.toggleShadow()
 		onlystart = not self.confChanged
 		toggleNisService(self.enableNIS, self.nisDomain, nostart, onlystart)
 		toggleSplatbindService(self.enableWinbind or self.enableWinbindAuth,
