@@ -880,6 +880,19 @@ def toggleNisService(enableNis, nisDomain, nostart, onlystart):
 			pass
 	return True
 
+def toggleLDAPService(enableLDAP):
+	if enableLDAP:
+		try:
+			os.system("[[ $(getsebool authlogin_nsswitch_use_ldap) == *off* ]] && setsebool -P authlogin_nsswitch_use_ldap 1")
+		except OSError:
+			pass
+	else:
+		try:
+			os.system("[[ $(getsebool authlogin_nsswitch_use_ldap) == *on* ]] && setsebool -P authlogin_nsswitch_use_ldap 0")
+		except OSError:
+			pass
+	return True
+
 def toggleSplatbindService(enable, path, name, nostart, onlystart):
 	if enable:
 		try:
@@ -4146,6 +4159,7 @@ class AuthInfo:
 	def post(self, nostart):
 		onlystart = not self.confChanged
 		toggleNisService(self.enableNIS, self.nisDomain, nostart, onlystart)
+		toggleLDAPService(self.enableLDAP or self.enableLDAPAuth)
 		toggleSplatbindService(self.enableWinbind or self.enableWinbindAuth,
 			PATH_WINBIND,
 			"winbind", nostart, onlystart)
