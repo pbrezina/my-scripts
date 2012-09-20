@@ -288,6 +288,7 @@ argv_afs_password = [
 
 argv_pwquality_password = [
 	"try_first_pass",
+	"local_users_only",
 	"retry=3",
 	"type="
 ]
