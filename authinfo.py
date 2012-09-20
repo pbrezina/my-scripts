@@ -1291,8 +1291,7 @@ class AuthInfo:
 		self.smbRealm = ""
 		self.smbServers = ""
 		self.smbSecurity = ""
-		self.smbIdmapUid = ""
-		self.smbIdmapGid = ""
+		self.smbIdmapRange = ""
 
 		self.winbindSeparator = ""
 		self.winbindTemplateHomedir = ""
@@ -1421,8 +1420,8 @@ class AuthInfo:
 		("enableLDAPAuth", "b"), ("enableIPAv2", "b")]),
 	SaveGroup(self.writeSmartcard, [("smartcardAction", "i"), ("smartcardModule", "c")]),
 	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
-		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapUid", "i"),
-		("smbIdmapGid", "i"), ("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
+		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapRange", "i"),
+		("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
 		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
 		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b")]),
 	SaveGroup(self.writeNSS, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
@@ -1943,19 +1942,12 @@ class AuthInfo:
 			self.setParam("smbSecurity", tmp, ref)
 		if not self.smbSecurity:
 			self.smbSecurity = "user"
-		tmp = self.readWinbindGlobal("idmap uid")
+		tmp = self.readWinbindGlobal("idmap config * : range")
 		if tmp:
-			self.setParam("smbIdmapUid", tmp, ref)
-		if not self.smbIdmapUid:
+			self.setParam("smbIdmapRange", tmp, ref)
+		if not self.smbIdmapRange:
 			# 2^24 to 2^25 - 1 should be safe
-			self.smbIdmapUid = "16777216-33554431"
-		tmp = self.readWinbindGlobal("idmap gid")
-		if tmp:
-			self.setParam("smbIdmapGid", tmp, ref)
-
-		if not self.smbIdmapGid:
-			# 2^24 to 2^25 - 1 should be safe
-			self.smbIdmapGid = "16777216-33554431"
+			self.smbIdmapRange = "16777216-33554431"
 		tmp = self.readWinbindGlobal("winbind separator")
 		if tmp:
 			self.setParam("winbindSeparator", tmp, ref)
@@ -3304,16 +3296,11 @@ class AuthInfo:
 			output += self.smbSecurity
 			output += "\n"
 			wrotesecurity = True
-		if self.smbIdmapUid:
-			output += "   idmap uid = "
-			output += self.smbIdmapUid
+		if self.smbIdmapRange:
+			output += "   idmap config * : range = "
+			output += self.smbIdmapRange
 			output += "\n"
-			wroteidmapuid = True
-		if self.smbIdmapGid:
-			output += "   idmap gid = "
-			output += self.smbIdmapGid
-			output += "\n"
-			wroteidmapgid = True
+			wroteidmaprange = True
 		if self.winbindSeparator:
 			output += "   winbind separator = "
 			output += self.winbindSeparator
@@ -4040,8 +4027,7 @@ class AuthInfo:
 		print " SMB security = \"%s\"" % self.smbSecurity
 		print " SMB realm = \"%s\"" % self.smbRealm
 		print " Winbind template shell = \"%s\"" % self.winbindTemplateShell
-		print " SMB idmap uid = \"%s\"" % self.smbIdmapUid
-		print " SMB idmap gid = \"%s\"" % self.smbIdmapGid
+		print " SMB idmap range = \"%s\"" % self.smbIdmapRange
 		print "nss_sss is %s by default" % formatBool(self.enableSSSD)
 		print "nss_wins is %s" % formatBool(self.enableWINS)
 		print "nss_mdns4_minimal is %s" % formatBool(self.enableMDNS)

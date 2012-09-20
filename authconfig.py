@@ -224,10 +224,8 @@ class Authconfig:
 			help=_("names of servers to authenticate against"))
 		parser.add_option("--smbworkgroup", metavar=_("<workgroup>"),
 			help=_("workgroup authentication servers are in"))
-		parser.add_option("--smbidmapuid", metavar=_("<lowest-highest>"),
+		parser.add_option("--smbidmaprange", "--smbidmapuid", "--smbidmapgid", metavar=_("<lowest-highest>"),
 			help=_("uid range winbind will assign to domain or ads users"))
-		parser.add_option("--smbidmapgid", metavar=_("<lowest-highest>"),
-			help=_("gid range winbind will assign to domain or ads users"))
 		parser.add_option("--winbindseparator", metavar="<\\>",
 			help=_("the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"))
 		parser.add_option("--winbindtemplatehomedir", metavar="</home/%D/%U>",
@@ -481,8 +479,7 @@ class Authconfig:
 			"smbservers":"smbServers",
 			"smbsecurity":"smbSecurity",
 			"smbrealm" : "smbRealm",
-			"smbidmapuid":"smbIdmapUid",
-			"smbidmapgid":"smbIdmapGid",
+			"smbidmaprange":"smbIdmapRange",
 			"winbindseparator":"winbindSeparator",
 			"winbindtemplatehomedir":"winbindTemplateHomedir",
 			"winbindtemplateprimarygroup":"winbindTemplatePrimaryGroup",
