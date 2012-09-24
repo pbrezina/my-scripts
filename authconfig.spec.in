@@ -130,6 +130,8 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 - use the new smb.conf idmap config range syntax (#850824)
 - use local_users_only with pam_pwquality (#849072)
 - enable the authlogin_nsswitch_use_ldap SELinux boolean when enabling LDAP (#846084)
+- preserve the value of cache_credentials in sssd.conf
+- do not fail PAM session if pam_lastlog module fails
 
 * Thu Jul 19 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.3-1
 - fix missing linkage to libresolv
