@@ -132,6 +132,7 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 - enable the authlogin_nsswitch_use_ldap SELinux boolean when enabling LDAP (#846084)
 - preserve the value of cache_credentials in sssd.conf
 - do not fail PAM session if pam_lastlog module fails
+- use sssd also for automount map (#847823)
 
 * Thu Jul 19 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.3-1
 - fix missing linkage to libresolv

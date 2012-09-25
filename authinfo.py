@@ -111,6 +111,8 @@ PATH_PAM_PKCS11 = AUTH_MODULE_DIR + "/pam_pkcs11.so"
 PATH_PAM_FPRINTD = AUTH_MODULE_DIR + "/pam_fprintd.so"
 PATH_PAM_SSS = AUTH_MODULE_DIR + "/pam_sss.so"
 
+PATH_LIBSSS_AUTOFS = "/usr" + LIBDIR + "/sssd/modules/libsss_autofs.so"
+
 PATH_WINBIND_NET = "/usr/bin/net"
 PATH_IPA_CLIENT_INSTALL = "/usr/sbin/ipa-client-install"
 
@@ -3495,13 +3497,12 @@ class AuthInfo:
 			if self.enableWinbind:
 				users += " winbind"
 
-			# Now replace sss with ldap or remove it
-			# in all non-user info entries - this might be changed in future
-			# if sssd is able to provide automounts, netgroups, and so on.
-			if self.enableLDAP and self.implicitSSSD:
-				normal = normal.replace("sss", "ldap")
-			else:
-				normal = normal.replace(" sss", "")
+			if not os.access(PATH_LIBSSS_AUTOFS, os.R_OK):
+				# No support for automount in sssd
+				if self.enableLDAP and self.implicitSSSD:
+					normal = normal.replace("sss", "ldap")
+				else:
+					normal = normal.replace(" sss", "")
 
 			# Hostnames we treat specially.
 			hosts += " files"
@@ -3597,7 +3598,7 @@ class AuthInfo:
 				output += "\n"
 			if not wrotenetgroup:
 				output += "netgroup:  "
-				output += normal
+				output += netgroup
 				output += "\n"
 			if not wroteautomount:
 				output += "automount: "
