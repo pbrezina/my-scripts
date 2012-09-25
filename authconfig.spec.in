@@ -133,6 +133,7 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 - preserve the value of cache_credentials in sssd.conf
 - do not fail PAM session if pam_lastlog module fails
 - use sssd also for automount map (#847823)
+- enable deferred_kinit if cache_credentials is enabled (#814384)
 
 * Thu Jul 19 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.3-1
 - fix missing linkage to libresolv

@@ -1278,7 +1278,8 @@ sssdopt_map = {
 	'kerberosKDC': 'krb5_server',
 	'kerberosAdminServer': 'krb5_kpasswd',
 	'kerberosRealm': 'krb5_realm',
-	'enableCacheCreds': 'cache_credentials'}
+	'enableCacheCreds': 'cache_credentials',
+	'enableCacheCreds': 'krb5_store_password_if_offline'}
 
 class AuthInfo:
 	def __init__(self, msgcb):
@@ -1875,6 +1876,8 @@ class AuthInfo:
 				if opt == 'ldap_uri':
 					val = " ".join(val.split(","))
 				elif opt == 'ldap_schema' and val == 'rfc2307':
+					continue
+				elif opt == 'krb5_store_password_if_offline':
 					continue
 				self.setParam(attr, val, ref)
 			except SSSDConfig.NoOptionError:
