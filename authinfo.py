@@ -1269,17 +1269,17 @@ all_configs = [
 	FileBackup("gshadow", SYSCONFDIR+"/gshadow"),
 	FileBackup("group", SYSCONFDIR+"/group")]
 
-sssdopt_map = {
-	'ldapServer': 'ldap_uri',
-	'ldapBaseDN': 'ldap_search_base',
-	'enableLDAPS': 'ldap_id_use_start_tls',
-	'ldapSchema': 'ldap_schema',
-	'ldapCacertDir': 'ldap_tls_cacertdir',
-	'kerberosKDC': 'krb5_server',
-	'kerberosAdminServer': 'krb5_kpasswd',
-	'kerberosRealm': 'krb5_realm',
-	'enableCacheCreds': 'cache_credentials',
-	'enableCacheCreds': 'krb5_store_password_if_offline'}
+sssd_options = [
+	('ldapServer', 'ldap_uri'),
+	('ldapBaseDN', 'ldap_search_base'),
+	('enableLDAPS', 'ldap_id_use_start_tls'),
+	('ldapSchema', 'ldap_schema'),
+	('ldapCacertDir', 'ldap_tls_cacertdir'),
+	('kerberosKDC', 'krb5_server'),
+	('kerberosAdminServer', 'krb5_kpasswd'),
+	('kerberosRealm', 'krb5_realm'),
+	('enableCacheCreds', 'cache_credentials'),
+	('enableCacheCreds', 'krb5_store_password_if_offline')]
 
 class AuthInfo:
 	def __init__(self, msgcb):
@@ -1870,7 +1870,7 @@ class AuthInfo:
 				authprov = domain.get_option('auth_provider')
 			except SSSDConfig.NoOptionError:
 				authprov = None
-		for attr, opt in sssdopt_map.iteritems():
+		for (attr, opt) in sssd_options:
 			try:
 				val = domain.get_option(opt)
 				if opt == 'ldap_uri':
@@ -3237,7 +3237,7 @@ class AuthInfo:
 			self.changeProvider(domain, 'ldap', 'auth')
 			self.changeProvider(domain, 'ldap', 'chpass')
 
-		for attr, option in sssdopt_map.iteritems():
+		for (attr, option) in sssd_options:
 			try:
 				val = getattr(self, attr)
 				if option == 'ldap_uri':

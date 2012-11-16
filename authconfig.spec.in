@@ -125,6 +125,9 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Mon Oct  1 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.4-2
+- fix missing cache_credentials option when saving sssd.conf
+
 * Tue Sep 25 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.4-1
 - backup also passwd and friends when toggling enableshadow (#853074)
 - use the new smb.conf idmap config range syntax (#850824)
