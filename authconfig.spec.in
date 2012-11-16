@@ -125,8 +125,9 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
-* Mon Oct  1 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.4-2
+* Fri Nov 16 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.5-1
 - fix missing cache_credentials option when saving sssd.conf
+- do not try to start/restart sssd with incomplete default domain
 
 * Tue Sep 25 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.4-1
 - backup also passwd and friends when toggling enableshadow (#853074)

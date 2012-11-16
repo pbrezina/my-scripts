@@ -3220,6 +3220,9 @@ class AuthInfo:
 			return True
 
 		if not self.sssdDomain:
+			if not self.implicitSSSD:
+				# do not create a domain that would be incomplete anyway
+				return True
 			try:
 				self.sssdDomain = self.sssdConfig.new_domain(SSSD_AUTHCONFIG_DOMAIN)
 			except SSSDConfig.DomainAlreadyExistsError:
@@ -4167,8 +4170,8 @@ class AuthInfo:
 		toggleSplatbindService(self.enableWinbind or self.enableWinbindAuth,
 			PATH_WINBIND,
 			"winbind", nostart, onlystart)
-		toggleSplatbindService(self.enableSSSD or self.enableSSSDAuth or
-			self.implicitSSSD or self.implicitSSSDAuth or self.enableIPAv2,
+		toggleSplatbindService(self.implicitSSSD or self.implicitSSSDAuth or
+			self.enableIPAv2,
 			PATH_SSSD,
 			"sssd", nostart, onlystart)
 		toggleSplatbindService((self.enableLDAP or self.enableLDAPAuth) and
