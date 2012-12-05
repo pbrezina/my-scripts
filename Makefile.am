@@ -16,7 +16,6 @@ pkgdata_SCRIPTS = authconfig-gtk.py authconfig.py
 pkgdata_DATA = authconfig.glade authinfo.py shvfile.py dnsclient.py msgarea.py
 pythonsite_LTLIBRARIES = acutilmodule.la
 backupdir = $(localstatedir)/lib/authconfig
-backup_DATA =
 
 install-exec-local:
 	mkdir -p $(DESTDIR)/$(bindir)
@@ -37,6 +36,7 @@ install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(applnkdir)
 	mkdir -p $(DESTDIR)/$(startheredir)
 	mkdir -p $(DESTDIR)/$(pkgdatadir)
+	mkdir -p $(DESTDIR)/$(backupdir)
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig-tui
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig-gtk
