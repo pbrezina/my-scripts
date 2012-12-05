@@ -3237,10 +3237,13 @@ class AuthInfo:
 				self.sssdDomain = self.sssdConfig.get_domain(SSSD_AUTHCONFIG_DOMAIN)
 		domain = self.sssdDomain
 
+		self.sssdConfig.activate_service('autofs')
+
 		activate = False
 		if self.enableLDAP:
 			activate = True
 			self.changeProvider(domain, 'ldap', 'id')
+			self.changeProvider(domain, 'ldap', 'autofs')
 		if self.enableKerberos:
 			self.changeProvider(domain, 'krb5', 'auth')
 			self.changeProvider(domain, 'krb5', 'chpass')
