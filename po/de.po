@@ -20,14 +20,14 @@ msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-18 10:34+0100\n"
-"PO-Revision-Date: 2012-03-06 10:10+0000\n"
+"PO-Revision-Date: 2012-09-29 20:46+0000\n"
 "Last-Translator: Roman Spirgi <bigant@fedoraproject.org>\n"
 "Language-Team: German <trans-de@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../authconfig.py:116
 #, python-format
@@ -197,11 +197,11 @@ msgstr "Standard-Kerberos-Admin-Server"
 
 #: ../authconfig.py:200 ../authconfig.py:221 ../authconfig.py:256
 msgid "<realm>"
-msgstr "<Realm>"
+msgstr "<Bereich>"
 
 #: ../authconfig.py:201
 msgid "default kerberos realm"
-msgstr "Standard-Kerberos-Realm"
+msgstr "Standard-Kerberos-Bereich"
 
 #: ../authconfig.py:203
 msgid "enable use of DNS to find kerberos KDCs"
@@ -213,11 +213,11 @@ msgstr "Verwendung von DNS für Ermittlung von Kerberos-KDCs deaktivieren"
 
 #: ../authconfig.py:207
 msgid "enable use of DNS to find kerberos realms"
-msgstr "Verwendung von DNS für Ermittlung von Kerberos-Realms aktivieren"
+msgstr "Verwendung von DNS für die Ermittlung von Kerberos-Bereichen aktivieren"
 
 #: ../authconfig.py:209
 msgid "disable use of DNS to find kerberos realms"
-msgstr "Verwendung von DNS für Ermittlung von Kerberos-Realms deaktivieren"
+msgstr "Verwendung von DNS für die Ermittlung von Kerberos-Bereichen deaktivieren"
 
 #: ../authconfig.py:212
 msgid "enable winbind for user information by default"
@@ -241,7 +241,7 @@ msgstr "Von Samba und Winbind zu verwendender Sicherheitsmodus"
 
 #: ../authconfig.py:222
 msgid "default realm for samba and winbind when security=ads"
-msgstr "Standard-Realm für Samba und Winbind, wenn security=ads"
+msgstr "Standard-Bereich für Samba und Winbind, wenn security=ads"
 
 #: ../authconfig.py:223 ../authconfig.py:258
 msgid "<servers>"
@@ -312,7 +312,7 @@ msgstr "Konfiguriert Winbind, um Offline-Anmeldung zu verhindern"
 
 #: ../authconfig.py:248
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr "Jetzt der Winbind-Domain oder ADS-Realm als dieser Administrator beitreten"
+msgstr "Jetzt der Winbind-Domäne oder dem ADS-Bereich mit diesem Administrator beitreten"
 
 #: ../authconfig.py:251
 msgid "enable IPAv2 for user information and authentication by default"
@@ -729,7 +729,7 @@ msgstr "Domain:"
 
 #: ../authconfig.py:862 ../authconfig.py:882
 msgid "Realm:"
-msgstr "Realm:"
+msgstr "Bereich:"
 
 #: ../authconfig.py:863 ../authconfig.py:870 ../authconfig.py:877
 msgid "Server:"
@@ -769,11 +769,11 @@ msgstr "Admin-Server:"
 
 #: ../authconfig.py:885
 msgid "Use DNS to resolve hosts to realms"
-msgstr "DNS benutzen, um Rechner in Realms aufzulösen"
+msgstr "DNS benutzen, um Rechner nach Bereichen  aufzulösen"
 
 #: ../authconfig.py:886
 msgid "Use DNS to locate KDCs for realms"
-msgstr "DNS benutzen, um KDCs für Realms zu bestimmen"
+msgstr "DNS benutzen, um KDCs für Bereiche festzulegen"
 
 #: ../authconfig.py:887
 msgid "Kerberos Settings"
@@ -822,7 +822,7 @@ msgstr "Domain-Controller:"
 
 #: ../authconfig.py:936
 msgid "ADS Realm:"
-msgstr "ADS-Realm:"
+msgstr "ADS-Bereich:"
 
 #: ../authconfig.py:937
 msgid "Template Shell:"
@@ -1092,7 +1092,7 @@ msgstr "Andere Zeichen"
 
 #: ../authconfig.glade.h:47
 msgid "Pass_word Options"
-msgstr "Pass_word Options"
+msgstr "Pass_wort-Optionen"
 
 #: ../authconfig.glade.h:48
 msgid "R_ealm:"
@@ -1131,7 +1131,7 @@ msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr "Um sich mit einem LDAP-Server mit aktiviertem TLS-Protokoll zu verbinden, benötigen Sie ein CA-Zertifikat, mit dem Ihr Server-Zertifikat signiert ist. Bitte geben Sie den URL an, von welchem das CA-Zertifikat im PEM-Format heruntergeladen werden kann."
+msgstr "Um sich mit einem LDAP-Server mit aktiviertem TLS-Protokoll zu verbinden, benötigen Sie ein CA-Zertifikat, mit dem Ihr Server-Zertifikat signiert ist. Bitte geben Sie die URL an, von welcher das CA-Zertifikat im PEM-Format heruntergeladen werden kann."
 
 #: ../authconfig.glade.h:57
 msgid "Use DNS to _locate KDCs for realms"
@@ -1139,7 +1139,7 @@ msgstr "DNS benutzen, um KDCs für Rea_lms zu bestimmen"
 
 #: ../authconfig.glade.h:58
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "D_NS benutzen, um Rechner in Realms aufzulösen"
+msgstr "D_NS benutzen, um Rechner nach Bereichen aufzulösen"
 
 #: ../authconfig.glade.h:59
 msgid ""
@@ -1171,7 +1171,7 @@ msgstr "Winbind-_Domain:"
 
 #: ../authconfig.glade.h:65
 msgid "_Digits"
-msgstr "_Zahlen:"
+msgstr "_Zahlen"
 
 #: ../authconfig.glade.h:66
 msgid "_Download CA Certificate..."
