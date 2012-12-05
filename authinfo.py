@@ -3237,6 +3237,10 @@ class AuthInfo:
 				self.sssdDomain = self.sssdConfig.get_domain(SSSD_AUTHCONFIG_DOMAIN)
 		domain = self.sssdDomain
 
+		try:
+			self.sssdConfig.get_service('autofs')
+		except SSSDConfig.NoServiceError:
+			self.sssdConfig.new_service('autofs')
 		self.sssdConfig.activate_service('autofs')
 
 		activate = False
