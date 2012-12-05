@@ -545,7 +545,9 @@ pam_modules[STANDARD] = [
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "ldap",		[]]
+	 "ldap",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "winbind",		[]]
 ]
 
 pam_modules[POSTLOGIN] = [
@@ -652,6 +654,8 @@ pam_modules[PASSWORD_ONLY] = [
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "ldap",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "winbind",		[]]
 ]
 
 pam_modules[FINGERPRINT] = [
@@ -704,7 +708,9 @@ pam_modules[FINGERPRINT] = [
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "ldap",		[]]
+	 "ldap",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "winbind",		[]]
 ]
 
 pam_modules[SMARTCARD] = [
@@ -759,7 +765,9 @@ pam_modules[SMARTCARD] = [
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
-	 "ldap",		[]]
+	 "ldap",		[]],
+	[False, SESSION,	LOGIC_OPTIONAL,
+	 "winbind",		[]]
 ]
 
 def domain2dn(domain):
