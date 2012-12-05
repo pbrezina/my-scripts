@@ -3884,9 +3884,9 @@ class AuthInfo:
 		return True
 
 	def prewriteUpdate(self):
+		oldimplicit = self.implicitSSSD
+		self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
 		if not self.enableSSSD and not self.enableSSSDAuth:
-			oldimplicit = self.implicitSSSD
-			self.implicitSSSD = self.implicitSSSDAuth = self.sssdSupported()
 			if self.implicitSSSD and not oldimplicit:
 				self.inconsistentAttrs.append('forceSSSDUpdate')
 		modules = getSmartcardModules()
