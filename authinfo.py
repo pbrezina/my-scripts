@@ -1422,6 +1422,7 @@ class AuthInfo:
 		if SSSDConfig:
 			try:
 				self.sssdConfig = SSSDConfig.SSSDConfig()
+				self.sssdConfig.new_config()
 			except IOError:
 				pass
 		self.save_groups = [
@@ -1856,9 +1857,11 @@ class AuthInfo:
 	def readSSSD(self, ref):
 		if not self.sssdConfig:
 			return True
+		self.sssdConfig = SSSDConfig.SSSDConfig()
 		try:
 			self.sssdConfig.import_config(all_configs[CFG_SSSD].origPath)
 		except (IOError, SSSDConfig.ParsingError):
+			self.sssdConfig = SSSDConfig.SSSDConfig()
 			self.sssdConfig.new_config()
 		try:
 			domain = self.sssdDomain = self.sssdConfig.get_domain(SSSD_AUTHCONFIG_DOMAIN)
