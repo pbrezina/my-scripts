@@ -183,6 +183,15 @@ def stringsDiffer(a, b, case_sensitive):
 	else:
 		return a.lower() != b.lower()
 
+# Heuristic check whether a string is LDAP DN
+def checkDN(value):
+	lst = value.lstrip().split("=",1)
+	if len(lst) != 2:
+		return False
+	if " " in lst[0]:
+		return False
+	return True
+
 # Check for a string in an nss configuration line.
 def checkNSS(configuration, candidate):
 	lst = configuration.split(":",1)
@@ -1633,7 +1642,7 @@ class AuthInfo:
 
 			# Is it a "base" statement?
 			value = matchKey(line, "base")
-			if value:
+			if value and checkDN(value):
 				# Save the base DN.
 				self.setParam("ldapBaseDN", value, ref)
 				continue
