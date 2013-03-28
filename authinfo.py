@@ -413,6 +413,7 @@ argv_ecryptfs_session = [
 
 argv_succeed_if_not_gdm = [
 	"service !~ gdm*",
+        "service !~ su*",
 	"quiet"
 ]
 
