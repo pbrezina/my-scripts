@@ -5,7 +5,6 @@ Release: 1%{?dist}
 License: GPLv2+
 ExclusiveOS: Linux
 Group: System Environment/Base
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: https://fedorahosted.org/authconfig
 Source: https://fedorahosted.org/releases/a/u/%{name}/%{name}-%{version}.tar.bz2
 Requires: newt-python, pam >= 0.99.10.0, python, libpwquality > 0.9
@@ -42,7 +41,6 @@ authentication schemes.
 make
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutilmodule.a
 rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutilmodule.la
@@ -51,9 +49,6 @@ ln -s authconfig.py $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
 
 %find_lang %{name}
 find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %post gtk
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
@@ -66,9 +61,6 @@ fi
 
 %posttrans gtk
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-
-%triggerin -- authconfig <= 5.4.9
-authconfig --update --nostart >/dev/null 2>&1 || :
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
@@ -125,6 +117,13 @@ authconfig --update --nostart >/dev/null 2>&1 || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Thu Mar 28 2013 Tomáš Mráz <tmraz@redhat.com> - 6.2.6-1
+- add use_first_pass to pam_sss in password stack
+- more robust initialization of sssdConfig
+- check whether base DN value is a real base DN
+- use non-deprecated pam_pwquality option authtok_type= instead of type=
+- update lastlog for su
+
 * Wed Dec  5 2012 Tomas Mraz <tmraz@redhat.com> - 6.2.5-1
 - fix missing cache_credentials option when saving sssd.conf
 - do not try to start/restart sssd with incomplete default domain

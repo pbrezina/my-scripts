@@ -1,12 +1,3 @@
-Bite the bullet and do PAM configuration the Hard Way.  (Using pam_stack to
-sidestep the thorniness of this problem was a hack.)
-  * Per-service configuration, probably using a parallel array for each of the
-    services we care about.  Experimental model in authconfig.conf in this
-    directory.  Needs to be expandible using only configuration data.  Probably
-    will use alchemist for the final setup, because I hate writing parsers now.
-  * Go from hard-coded knowledge of whether or not a module is applicable to
-    a service to checking the module file itself for the appropriate function.
-
 Probing:
   * Probing DNS for Kerberos and LDAP configuration.  To be added as a button
     for one-time use.
@@ -26,18 +17,3 @@ Probing:
   * An easy-to-parse way to dump what we think the current configuration is (for
     anaconda to use if we want to add probing for default options at
     install-time).
-
-UI issues:
-  * Make it clear that no server set for NIS forces "use broadcast".  Probably
-    need to reintroduce that checkbox.
-  * Make it clear that no server set for LDAP forces "use DNS".  Probably needs
-    a checkbox.
-  * Make no settings for Kerberos force "use DNS", as above.
-  * Glob /lib/libnss_{libc-version}*.so for a list of possible services, and
-    hide others?
-  * Hide LDAP/Kerberos/SMB authentication if modules for PAM not already
-    present?
-
-New options:
-  * Add an "Automatically create home directories on Logons" checkbox for
-    calling pam_mkhomedir at login-time (suggested by Shanker Balan).
