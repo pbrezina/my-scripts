@@ -301,7 +301,7 @@ argv_pwquality_password = [
 	"try_first_pass",
 	"local_users_only",
 	"retry=3",
-	"type="
+	"authtok_type="
 ]
 
 argv_passwdqc_password = [
