@@ -391,7 +391,6 @@ argv_sss_auth = [
 ]
 
 argv_sss_password = [
-	"use_first_pass",
 	"use_authtok"
 ]
 
