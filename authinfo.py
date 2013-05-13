@@ -4198,9 +4198,10 @@ class AuthInfo:
 			PATH_WINBIND,
 			"winbind", nostart, onlystart)
 		toggleSplatbindService(self.implicitSSSD or self.implicitSSSDAuth or
-			self.enableIPAv2,
+			self.enableIPAv2 or self.enableSSSD or self.enableSSSDAuth,
 			PATH_SSSD,
-			"sssd", nostart, onlystart)
+			"sssd", nostart or not (self.implicitSSSD or self.implicitSSSDAuth
+			or self.enableIPAv2), onlystart)
 		toggleSplatbindService((self.enableLDAP or self.enableLDAPAuth) and
 			not self.implicitSSSD,
 			PATH_NSLCD,
