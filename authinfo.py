@@ -869,8 +869,6 @@ def toggleNisService(enableNis, nisDomain, nostart, onlystart):
 			os.stat(PATH_RPCBIND)
 			Service.enable("rpcbind")
 			if not nostart:
-				if not onlystart:
-					Service.stop("rpcbind")
 				Service.start("rpcbind")
 		except OSError:
 			pass
