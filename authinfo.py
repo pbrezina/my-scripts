@@ -2475,6 +2475,13 @@ class AuthInfo:
 		self.readNSS(ref)
 		self.readLibuser(ref)
 		self.readPAM(ref)
+
+		reallyimplicit = self.sssdSupported()
+		if self.implicitSSSD and not reallyimplicit:
+			self.setParam("enableSSSD", True, ref)
+		if self.implicitSSSDAuth and not reallyimplicit:
+			self.setParam("enableSSSDAuth", True, ref)
+
 		self.readLogindefs(ref)
                 self.readPWQuality(ref)
 		self.readHesiod(ref)
