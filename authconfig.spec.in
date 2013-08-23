@@ -117,6 +117,17 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Fri Aug 23 2013 Tomáš Mráz <tmraz@redhat.com> - 6.2.7-1
+- samba-winbind-clients package contains the nsswitch and pam modules (#919117)
+- do not drop sss from nsswitch.conf on --update (#980861)
+- writing out smartcard/fingerprint auth policy to dconf (original patch by
+  Ray Strode) (#990625)
+- document other possible return codes from authconfig invocation (#991804)
+- print error message if config file save fails (#994596)
+- never stop rpcbind (#990788)
+- do not disable sssd.service when --enablesssd is used (#953851)
+- revert use_first_pass addition to pam_sss in password stack (#953116)
+
 * Thu Mar 28 2013 Tomáš Mráz <tmraz@redhat.com> - 6.2.6-1
 - add use_first_pass to pam_sss in password stack
 - more robust initialization of sssdConfig
