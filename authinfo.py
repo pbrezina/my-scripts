@@ -39,6 +39,7 @@ import dnsclient
 import sys
 import errno
 import urllib2
+import urlparse
 import time
 import tempfile
 from subprocess import *
@@ -1606,6 +1607,20 @@ class AuthInfo:
 		f.close()
 		return True
 
+	def validateLDAPURI(self, s):
+		"""
+		Check LDAP URI provided in the form of literal IPv6 address
+		for correctness.
+
+		Return False if IPv6 valid is invalid or urlparse failed to
+		obtain integer port value, True otherwise.
+		"""
+		try:
+			p = urlparse.urlparse(s).port
+			return True
+		except ValueError:
+			return False
+
 	def ldapHostsToURIs(self, s):
 		l = s.split(",")
 		ret = ""
@@ -1617,6 +1632,9 @@ class AuthInfo:
 					ret += item
 				else:
 					ret += "ldap://" + item + "/"
+		if not self.validateLDAPURI(ret):
+			self.messageCB(_("Invalid LDAP URI."))
+			return ""
 		return ret
 
 	# Read LDAP setup from /etc/ldap.conf.

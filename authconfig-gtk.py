@@ -513,7 +513,13 @@ class Authconfig:
 			self.msgctrl.clear()
 			apply.set_tooltip_markup(None)
 
+	def is_ldap_URI_valid(self, xml):
+		ldapserver = xml.get_widget('ldapserver')
+		uritovalidate = ldapserver.get_text()
+		return self.info.validateLDAPURI(uritovalidate)
+
 	def enable_cacert_download(self, active, xml):
+		ldapurivalid = self.is_ldap_URI_valid(xml)
 		downloadcacert = xml.get_widget('downloadcacert')
 		if downloadcacert:
 			secureldap = self.is_ldap_secure(xml)
@@ -521,8 +527,11 @@ class Authconfig:
 			secureldap = secureldap or self.currauth != "LDAPAuth"
 		else:
 			secureldap = True
-		if secureldap:
+		if secureldap and ldapurivalid:
 			self.clear_msgctrl()
+		elif not ldapurivalid:
+			text = _("Invalid LDAP URI.")
+			self.display_msgctrl(text)
 		else:
 			text = _("You must provide ldaps:// server address or use TLS for LDAP authentication.")
 			self.display_msgctrl(text)
