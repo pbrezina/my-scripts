@@ -100,7 +100,7 @@ authentication as the system user, run the \fB/usr/sbin/authconfig\fR command.
 2 if not running with sufficient privileges, 3 if unknown password hash algorithm
 is specified (this error is non fatal), 4 if download of CA certificate fails,
 5 if writing configuration files fails on \fB--updateall\fR action, 6 if writing
-fails on \fB--update\fR action.
+fails on \fB--update\fR action, 7 if Winbind or IPA domain join fails.
 
 
 \fBauthconfig-tui\fR returns 0 on success, 2 on error, and 1 if the user cancelled

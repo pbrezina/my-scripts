@@ -1340,6 +1340,7 @@ class AuthInfo:
 		self.ipav2Realm = None
 		self.ipav2NoNTP = None
 		self.ipaDomainJoined = False
+		self.ipaUninstall = False
 
 		self.smartcardModule = ""
 		self.smartcardAction = ""
@@ -2495,9 +2496,9 @@ class AuthInfo:
 		self.readPAM(ref)
 
 		reallyimplicit = self.sssdSupported()
-		if self.implicitSSSD and not reallyimplicit:
+		if self.implicitSSSD and not reallyimplicit and not self.enableIPAv2:
 			self.setParam("enableSSSD", True, ref)
-		if self.implicitSSSDAuth and not reallyimplicit:
+		if self.implicitSSSDAuth and not reallyimplicit and not self.enableIPAv2:
 			self.setParam("enableSSSDAuth", True, ref)
 
 		self.readLogindefs(ref)
@@ -4031,6 +4032,10 @@ class AuthInfo:
 		modules = getSmartcardModules()
 		if len(modules) > 0 and self.smartcardModule not in modules:
 			self.smartcardModule = modules[0]
+		if self.ipaDomainJoined and not self.enableIPAv2:
+			# must uninstall IPAv2
+			self.ipaDomainJoined = False
+			self.ipaUninstall = True
 
 	def write(self):
 		self.update()
@@ -4253,6 +4258,7 @@ class AuthInfo:
 		return True
 
 	def joinDomain(self, echo):
+		status = 0
 		if (self.enableWinbind or self.enableWinbindAuth) and self.joinUser:
 			server = self.smbServers.split(",", 1)[0].split(" ", 1)[0].split("\t", 1)[0]
 			domain = self.smbWorkgroup
@@ -4271,11 +4277,13 @@ class AuthInfo:
 			if echo:
 				sys.stderr.write("[%s]\n" % cmd)
 			if self.joinPassword:
-				feedFork(cmd, echo, "sword:", self.joinPassword)
+				status = feedFork(cmd, echo, "sword:", self.joinPassword)
 			else:
-				os.system(cmd)
+				status = os.system(cmd)
+		return status == 0
 
 	def joinIPADomain(self, echo):
+		status = 0
 		if self.enableIPAv2:
 			server = self.ipav2Server
 			domain = self.ipav2Domain
@@ -4304,6 +4312,11 @@ class AuthInfo:
 				self.ipaDomainJoined = True
 			else:
 				self.messageCB(_("IPAv2 domain join was not succesful. The ipa-client-install command failed."))
+		return status == 0
+
+	def uninstallIPA(self):
+		cmd = PATH_IPA_CLIENT_INSTALL + " --uninstall --noac"
+		os.system(cmd)
 
 	def post(self, nostart):
 		onlystart = not self.confChanged
@@ -4343,6 +4356,8 @@ class AuthInfo:
 				PATH_ODDJOBD,
 				"oddjobd", nostart, onlystart)
 		toggleCachingService(self.enableCache, nostart, onlystart)
+		if self.ipaUninstall:
+			self.uninstallIPA()
 
 	def testLDAPCACerts(self):
 		if self.enableLDAP or self.enableLDAPAuth:

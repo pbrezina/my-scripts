@@ -573,10 +573,18 @@ class Authconfig:
 		return True
 
 	def joinDomain(self):
+		ret = True
 		if self.options.winbindjoin:
-			self.info.joinDomain(True)
+			ret = self.info.joinDomain(True)
 		if self.options.ipav2join != None:
-			self.info.joinIPADomain(True)
+			if self.info.joinIPADomain(True):
+				# This is a hack but otherwise we cannot
+				# get the IPAV2DOMAINJOINED saved
+				# unfortunately the backup will be overwritten
+				self.info.writeSysconfig()
+			else:
+				ret = False
+		return ret
 
 	def writeAuthInfo(self):
 		self.info.testLDAPCACerts()
@@ -591,7 +599,8 @@ class Authconfig:
 			if not self.info.writeChanged(self.pristineinfo):
 				self.retval = 6
 		# FIXME: what about printing critical errors writing individual configs?
-		self.joinDomain()
+		if not self.joinDomain():
+			self.retval = 7
 		self.info.post(self.options.nostart)
 
 	def run(self):
