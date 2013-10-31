@@ -241,6 +241,10 @@ class Authconfig:
 			help=_("configures winbind to allow offline login"))
 		parser.add_option("--disablewinbindoffline", action="store_true",
 			help=_("configures winbind to prevent offline login"))
+		parser.add_option("--enablewinbindkrb5", action="store_true",
+			help=_("winbind will use Kerberos 5 to authenticate"))
+		parser.add_option("--disablewinbindkrb5", action="store_true",
+			help=_("winbind will use the default authentication method"))
 		parser.add_option("--winbindjoin", metavar="<Administrator>",
 			help=_("join the winbind domain or ads realm now as this administrator"))
 
@@ -448,6 +452,7 @@ class Authconfig:
 			"winbindauth":"enableWinbindAuth",
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
 			"winbindoffline":"winbindOffline",
+			"winbindkrb5":"winbindKrb5",
 			"ipav2":"enableIPAv2",
 			"ipav2nontp":"ipav2NoNTP",
 			"wins":"enableWINS",

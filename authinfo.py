@@ -1334,6 +1334,7 @@ class AuthInfo:
 		self.winbindTemplateShell = ""
 		self.winbindUseDefaultDomain = None
 		self.winbindOffline = None
+		self.winbindKrb5 = None
 
 		self.ipav2Server = None
 		self.ipav2Domain = None
@@ -1462,7 +1463,7 @@ class AuthInfo:
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapRange", "i"),
 		("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
 		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
-		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b")]),
+		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b"), ("winbindKrb5", "b")]),
 	SaveGroup(self.writeNSS, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
@@ -1479,13 +1480,14 @@ class AuthInfo:
 		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
 		("enableAFSKerberos", "b"), ("enablePWQuality", "b"), ("enableEPS", "b"),
 		("enableEcryptfs", "b"), ("enableOTP", "b"), ("enablePasswdQC", "b"),
-		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"), ("winbindOffline", "b"),
+		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"),
+		("winbindOffline", "b"), ("winbindKrb5", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
 		("implicitSSSDAuth", "b"), ("systemdArgs", "c"), ("uidMin", "i"), ("enableIPAv2", "b")]),
 	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
-		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("enableDB", "b"),
+		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("winbindKrb5", "b"), ("enableDB", "b"),
 		("enableHesiod", "b"), ("enablePWQuality", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"), ("enableCacheCreds", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
@@ -2194,6 +2196,7 @@ class AuthInfo:
 				continue
 			if module.startswith("pam_winbind"):
 				self.setParam("enableWinbindAuth", True, ref)
+				self.setParam("winbindKrb5", args.find("krb5_auth") >= 0, ref)
 				continue
 			if module.startswith("pam_sss"):
 				self.setParam("implicitSSSDAuth", True, ref)
@@ -2375,6 +2378,10 @@ class AuthInfo:
 				pass
 			try:
 				self.enableWinbindAuth = shv.getBoolValue("USEWINBINDAUTH")
+			except ValueError:
+				pass
+			try:
+				self.winbindKrb5 = shv.getBoolValue("WINBINDKRB5")
 			except ValueError:
 				pass
 			try:
@@ -3442,47 +3449,44 @@ class AuthInfo:
 			output += "   workgroup = "
 			output += self.smbWorkgroup
 			output += "\n"
-			wroteworkgroup = True
 		if self.smbServers:
 			output += "   password server = "
 			output += self.smbServers.replace(",", " ")
 			output += "\n"
-			wroteservers = True
 		if self.smbRealm:
 			output += "   realm = "
 			output += self.smbRealm
 			output += "\n"
-			wroterealm = True
 		if self.smbSecurity:
 			output += "   security = "
 			output += self.smbSecurity
 			output += "\n"
-			wrotesecurity = True
 		if self.smbIdmapRange:
 			output += "   idmap config * : range = "
 			output += self.smbIdmapRange
 			output += "\n"
-			wroteidmaprange = True
 		if self.winbindSeparator:
 			output += "   winbind separator = "
 			output += self.winbindSeparator
 			output += "\n"
-			wroteseparator = True
 		if self.winbindTemplateHomedir:
 			output += "   template homedir = "
 			output += self.winbindTemplateHomedir
 			output += "\n"
-			wrotetemplateh = True
 		if self.winbindTemplatePrimaryGroup:
 			output += "   template primary group = "
 			output += self.winbindTemplatePrimaryGroup
 			output += "\n"
-			wrotetemplatep = True
 		if self.winbindTemplateShell:
 			output += "   template shell = "
 			output += self.winbindTemplateShell
 			output += "\n"
-			wrotetemplates = True
+		if self.winbindKrb5:
+			output += "   kerberos method = secrets and keytab"
+			output += "\n"
+		else:
+			output += "   kerberos method = secrets only"
+			output += "\n"
 		output += "   winbind use default domain = "
 		output += str(bool(self.winbindUseDefaultDomain)).lower()
 		output += "\n"
@@ -3518,7 +3522,7 @@ class AuthInfo:
 			   "idmap uid", "idmap gid", "winbind separator",
 			   "template homedir", "template primary group",
 			   "template shell", "winbind use default domain",
-			   "winbind offline logon"]
+			   "winbind offline logon", "kerberos method"]
 		f = None
 		output = ""
 		try:
@@ -3835,6 +3839,8 @@ class AuthInfo:
 				args = " ".join(module[ARGV])
 			if name == "winbind" and self.winbindOffline and stack != "password":
 				output += " cached_login"
+			if name == "winbind" and self.winbindKrb5:
+				output += " krb5_auth krb5_ccache_type=KEYRING"
 			if name == "unix":
 				if stack == "password":
 					if self.passwordAlgorithm and self.passwordAlgorithm != "descrypt":
@@ -3980,6 +3986,7 @@ class AuthInfo:
 		shv.setBoolValue("USEECRYPTFS", self.enableEcryptfs)
 		shv.setBoolValue("USEPASSWDQC", self.enablePasswdQC)
 		shv.setBoolValue("USEWINBIND", self.enableWinbind)
+		shv.setBoolValue("WINBINDKRB5", self.winbindKrb5)
 		shv.setBoolValue("USESSSD", self.enableSSSD)
 		shv.setBoolValue("USEKERBEROS", self.enableKerberos)
 		shv.setBoolValue("USELDAPAUTH", self.enableLDAPAuth)
