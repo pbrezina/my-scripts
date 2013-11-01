@@ -534,6 +534,10 @@ class Authconfig:
             				self.printError(_("The passminclass value must not be negative"))
             				self.options.passminclass = None
             				self.retval = 3
+            			if val > 4:
+            				self.printError(_("The passminclass value must not be higher than 4"))
+            				self.options.passminclass = None
+            				self.retval = 3
                 except ValueError:
                         self.printError(_("The passminclass option value is not an integer"))
                         self.options.passminclass = None
