@@ -518,30 +518,50 @@ class Authconfig:
             		val = self.options.passminlen
             		if val != None:
             			val = int(val)
+            			if val < 6:
+            				self.printError(_("The passminlen minimum value is 6"))
+            				self.options.passminlen = None
+            				self.retval = 3
                 except ValueError:
                         self.printError(_("The passminlen option value is not an integer"))
                         self.options.passminlen = None
+                        self.retval = 3
                 try:
             		val = self.options.passminclass
             		if val != None:
             			val = int(val)
+            			if val < 0:
+            				self.printError(_("The passminclass value must not be negative"))
+            				self.options.passminclass = None
+            				self.retval = 3
                 except ValueError:
                         self.printError(_("The passminclass option value is not an integer"))
                         self.options.passminclass = None
+                        self.retval = 3
                 try:
             		val = self.options.passmaxrepeat
             		if val != None:
             			val = int(val)
+            			if val < 0:
+            				self.printError(_("The passmaxrepeat value must not be negative"))
+            				self.options.passmaxrepeat = None
+            				self.retval = 3
                 except ValueError:
                         self.printError(_("The passmaxrepeat option value is not an integer"))
                         self.options.passmaxrepeat = None
+                        self.retval = 3
                 try:
             		val = self.options.passmaxclassrepeat
             		if val != None:
             			val = int(val)
+            			if val < 0:
+            				self.printError(_("The passmaxclassrepeat value must not be negative"))
+            				self.options.passmaxclassrepeat = None
+            				self.retval = 3
                 except ValueError:
                         self.printError(_("The passmaxclassrepeat option value is not an integer"))
                         self.options.passmaxclassrepeat = None
+                        self.retval = 3
 
 		for opt, aival in string_settings.iteritems():
 			if getattr(self.options, opt) != None:

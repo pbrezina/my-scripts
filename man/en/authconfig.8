@@ -98,7 +98,8 @@ authentication as the system user, run the \fB/usr/sbin/authconfig\fR command.
 .SH "RETURN CODES"
 \fBauthconfig\fR returns 0 on success, 1 on backup operation errors,
 2 if not running with sufficient privileges, 3 if unknown password hash algorithm
-is specified (this error is non fatal), 4 if download of CA certificate fails,
+is specified or incorrect values are set for password strength checking
+(this error is non fatal), 4 if download of CA certificate fails,
 5 if writing configuration files fails on \fB--updateall\fR action, 6 if writing
 fails on \fB--update\fR action, 7 if Winbind or IPA domain join fails.
 
