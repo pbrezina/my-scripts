@@ -117,6 +117,13 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Fri Nov  1 2013 Tomáš Mráz <tmraz@redhat.com> - 6.2.8-1
+- detect invalid LDAP uri and report error
+- fix handling of IPA domain join errors and uninstall
+- add support for winbind authentication over Kerberos 5
+- set umask=077 by default for pam_mkhomedir and pam_oddjob_mkhomedir
+- better error checking for password quality options
+
 * Fri Aug 23 2013 Tomáš Mráz <tmraz@redhat.com> - 6.2.7-1
 - samba-winbind-clients package contains the nsswitch and pam modules (#919117)
 - do not drop sss from nsswitch.conf on --update (#980861)
