@@ -90,7 +90,7 @@ EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd \
 	authconfig.desktop.in $(pkgdata_SCRIPTS) $(pkgdata_DATA) \
 	NOTES utf8ify-mo \
 	intltool-extract.in intltool-merge.in intltool-update.in \
-	$(pixmap_DATA) README.samba3 mkinstalldirs authconfig.glade.h \
+	$(pixmap_DATA) README.samba3 authconfig.glade.h \
 	$(sbin_SCRIPTS)
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update authconfig.desktop
 
