@@ -1417,7 +1417,7 @@ class AuthInfo:
 		self.passwdqcArgs = ""
 		self.localuserArgs = ""
 		self.pamAccessArgs = ""
-		self.mkhomedirArgs = ""
+		self.mkhomedirArgs = "umask=0077"
 		self.systemdArgs = ""
 		self.ldapCacertDir = ""
 		self.ldapCacertURL = ""
@@ -2209,7 +2209,8 @@ class AuthInfo:
 			if module.startswith("pam_mkhomedir") or module.startswith("pam_oddjob_mkhomedir"):
 				self.setParam("enableMkHomeDir", True, ref)
 				if args:
-					self.setParam("mkhomedirArgs", args, ref)
+					# first place where we are setting them
+					self.mkhomedirArgs = args
 				continue
 			if module.startswith("pam_localuser"):
 				self.setParam("enableLocAuthorize", True, ref)
