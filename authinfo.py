@@ -320,12 +320,12 @@ argv_fprintd_auth = [
 ]
 
 argv_pkcs11_auth = [
-	"card_only"
+	"nodebug"
 ]
 
 argv_force_pkcs11_auth = [
-	"wait_for_card",
-	"card_only"
+	"nodebug",
+	"wait_for_card"
 ]
 
 argv_krb5_auth = [
