@@ -511,6 +511,8 @@ class Authconfig:
 
 	def is_ldap_URI_valid(self, xml):
 		ldapserver = xml.get_widget('ldapserver')
+		if not ldapserver:
+			return True
 		uritovalidate = ldapserver.get_text()
 		return self.info.validateLDAPURI(uritovalidate)
 
