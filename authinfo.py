@@ -80,11 +80,6 @@ PATH_PWCONV = "/usr/sbin/pwconv"
 PATH_RPCBIND = "/sbin/rpcbind"
 PATH_NSCD = "/usr/sbin/nscd"
 PATH_NSLCD = "/usr/sbin/nslcd"
-PATH_DBBIND = "/usr/sbin/dbbind"
-PATH_DBIBIND = "/usr/sbin/dbibind"
-PATH_HESIODBIND = "/usr/sbin/hesiodbind"
-PATH_LDAPBIND = "/usr/sbin/ldapbind"
-PATH_ODBCBIND = "/usr/sbin/odbcbind"
 PATH_WINBIND = "/usr/sbin/winbindd"
 PATH_SSSD = "/usr/sbin/sssd"
 PATH_YPBIND = "/usr/sbin/ypbind"
@@ -848,77 +843,13 @@ try:
 except OSError:
 	Service = SysVInitService()
 
-def toggleCachingService(enableCaching, nostart, onlystart):
-	if not nostart:
-		if enableCaching:
-			if not onlystart:
-				Service.stop("nscd")
-			Service.start("nscd")
-		else:
-			try:
-				Service.stop("nscd")
-			except OSError:
-				pass
-	return True
-
-def toggleNisService(enableNis, nisDomain, nostart, onlystart):
-	if enableNis and nisDomain:
-		if not nostart:
-			os.system("/bin/domainname " + nisDomain)
-		try:
-			os.system("[[ $(getsebool allow_ypbind) == *off* ]] && setsebool -P allow_ypbind 1")
-			os.stat(PATH_RPCBIND)
-			Service.enable("rpcbind")
-			if not nostart:
-				Service.start("rpcbind")
-		except OSError:
-			pass
-		try:
-			os.stat(PATH_YPBIND)
-			Service.enable("ypbind")
-			if not nostart:
-				if not onlystart:
-					Service.stop("ypbind")
-				Service.start("ypbind")
-		except OSError:
-			pass
-	else:
-		if not nostart:
-			os.system("/bin/domainname \"(none)\"")
-		try:
-			os.system("[[ $(getsebool allow_ypbind) == *on* ]] && setsebool -P allow_ypbind 0")
-			os.stat(PATH_YPBIND)
-			if not nostart:
-				try:
-					Service.stop("ypbind")
-				except OSError:
-					pass
-			Service.disable("ypbind")
-		except OSError:
-			pass
-	return True
-
-def toggleLDAPService(enableLDAP):
-	if enableLDAP:
-		try:
-			os.system("[[ $(getsebool authlogin_nsswitch_use_ldap) == *off* ]] && setsebool -P authlogin_nsswitch_use_ldap 1")
-		except OSError:
-			pass
-	else:
-		try:
-			os.system("[[ $(getsebool authlogin_nsswitch_use_ldap) == *on* ]] && setsebool -P authlogin_nsswitch_use_ldap 0")
-		except OSError:
-			pass
-	return True
-
-def toggleSplatbindService(enable, path, name, nostart, onlystart):
+def toggleSplatbindService(enable, path, name, nostart):
 	if enable:
 		try:
 			os.stat(path)
 			Service.enable(name)
 			if not nostart:
-				if not onlystart:
-					Service.stop(name)
+				Service.stop(name)
 				Service.start(name)
 		except OSError:
 			pass
@@ -1055,8 +986,9 @@ def read(msgcb):
 	return info
 
 class SaveGroup:
-	def __init__(self, savefunc, attrlist):
+	def __init__(self, savefunc, togglefunc, attrlist):
 		self.saveFunction = savefunc
+		self.toggleFunction = togglefunc
 		self.attrlist = attrlist
 
 	def attrsDiffer(self, a, b):
@@ -1429,49 +1361,49 @@ class AuthInfo:
 		self.sssdConfig = None
 		self.sssdDomain = None
 		self.forceSSSDUpdate = None
-		self.confChanged = False
 		if SSSDConfig:
 			try:
 				self.sssdConfig = SSSDConfig.SSSDConfig()
 				self.sssdConfig.new_config()
 			except IOError:
 				pass
+		self.toggleFunctions = set()
 		self.save_groups = [
-	SaveGroup(self.writeCache, [("enableCache", "b"), ("implicitSSSD", "b")]),
-	SaveGroup(self.writeHesiod, [("hesiodLHS", "i"), ("hesiodRHS", "i")]),
-	SaveGroup(self.writeNIS, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
-	SaveGroup(self.writeLDAP, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
+	SaveGroup(self.writeCache, self.toggleCachingService, [("enableCache", "b"), ("implicitSSSD", "b")]),
+	SaveGroup(self.writeHesiod, None, [("hesiodLHS", "i"), ("hesiodRHS", "i")]),
+	SaveGroup(self.writeNIS, self.toggleNisService, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
+	SaveGroup(self.writeLDAP, None, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
 		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
-	SaveGroup(self.writeLibuser, [("passwordAlgorithm", "i")]),
-	SaveGroup(self.writeLogindefs, [("passwordAlgorithm", "i")]), # for now we do not rewrite uidMin
-        SaveGroup(self.writePWQuality, [("passMinLen", "c"), ("passMinClass", "c"),
+	SaveGroup(self.writeLibuser, None, [("passwordAlgorithm", "i")]),
+	SaveGroup(self.writeLogindefs, None, [("passwordAlgorithm", "i")]), # for now we do not rewrite uidMin
+        SaveGroup(self.writePWQuality, None,  [("passMinLen", "c"), ("passMinClass", "c"),
                 ("passMaxRepeat", "c"), ("passMaxClassRepeat", "c"), ("passReqLower", "b"),
                 ("passReqUpper", "b"), ("passReqDigit", "b"), ("passReqOther", "b")]),
-	SaveGroup(self.writeKerberos, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
+	SaveGroup(self.writeKerberos, None, [("kerberosRealm", "c"), ("kerberosKDC", "i"),
 		("smbSecurity", "i"), ("smbRealm", "c"), ("smbServers", "i"),
 		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
 		("kerberosKDCviaDNS", "b")]),
-	SaveGroup(self.writeSSSD, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
+	SaveGroup(self.writeSSSD, self.toggleSSSDService, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
 		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("enableCacheCreds", "b"),
 		("kerberosRealm", "c"), ("kerberosKDC", "i"), ("kerberosAdminServer", "i"),
 		("forceSSSDUpdate", "b"), ("enableLDAP", "b"), ("enableKerberos", "b"),
 		("enableLDAPAuth", "b"), ("enableIPAv2", "b")]),
-	SaveGroup(self.writeSmartcard, [("smartcardAction", "i"), ("smartcardModule", "c")]),
-	SaveGroup(self.writeDConf, [("smartcardAction", "i"), ("smartcardModule", "c"),
+	SaveGroup(self.writeSmartcard, None, [("smartcardAction", "i"), ("smartcardModule", "c")]),
+	SaveGroup(self.writeDConf, None, [("smartcardAction", "i"), ("smartcardModule", "c"),
 		("enableFprintd", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b")]),
-	SaveGroup(self.writeWinbind, [("smbWorkgroup", "i"), ("smbServers", "i"),
+	SaveGroup(self.writeWinbind, self.toggleWinbindService, [("smbWorkgroup", "i"), ("smbServers", "i"),
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapRange", "i"),
 		("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
 		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
 		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b"), ("winbindKrb5", "b")]),
-	SaveGroup(self.writeNSS, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
+	SaveGroup(self.writeNSS, None, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
 		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
 		("enableCompat", "b"), ("enableWINS", "b"), ("enableMDNS", "b"),
 		("enableNIS3", "b"), ("enableNIS", "b"), ("enableIPAv2", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
-	SaveGroup(self.writePAM, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
+	SaveGroup(self.writePAM, None, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
 		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
 		("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
@@ -1484,7 +1416,7 @@ class AuthInfo:
 		("winbindOffline", "b"), ("winbindKrb5", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
 		("implicitSSSDAuth", "b"), ("systemdArgs", "c"), ("uidMin", "i"), ("enableIPAv2", "b")]),
-	SaveGroup(self.writeSysconfig, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
+	SaveGroup(self.writeSysconfig, None, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("winbindKrb5", "b"), ("enableDB", "b"),
@@ -1494,8 +1426,14 @@ class AuthInfo:
 		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b"),
 		("ipav2Server", "i"), ("ipav2Domain", "i"), ("ipav2Realm", "c"),
 		("enableIPAv2", "b"), ("ipaDomainJoined", "b"), ("ipav2NoNTP", "b")]),
-	SaveGroup(self.writeNetwork, [("nisDomain", "c")]),
-	SaveGroup(self.toggleShadow, [("enableShadow", "b")])]
+	SaveGroup(self.writeNetwork, None, [("nisDomain", "c")]),
+	SaveGroup(self.toggleShadow, None, [("enableShadow", "b")]),
+	SaveGroup(None, self.toggleNisService, [("enableNIS", "b")]),
+	SaveGroup(None, self.toggleOddjobService, [("enableMkHomeDir", "b")]),
+	SaveGroup(None, self.toggleLDAPService, [("enableLDAP", "b"), ("enableLDAPAuth", "b")]),
+	SaveGroup(None, self.toggleSSSDService, [("implicitSSSD", "b"), ("implicitSSSDAuth", "b"),
+		("enableIPAv2", "b"), ("enableSSSD", "b"), ("enableSSSDAuth", "b")]),
+	SaveGroup(None, self.toggleWinbindService, [("enableWinbind", "b"), ("enableWinbindAuth", "b")])]
 
 	def setParam(self, attr, value, ref):
 		oldval = getattr(self, attr)
@@ -4049,7 +3987,6 @@ class AuthInfo:
 		self.update()
 		self.prewriteUpdate()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
-		self.confChanged = True
 		try:
 			ret = self.writeLibuser()
 			ret = ret and self.writeLogindefs()
@@ -4080,6 +4017,9 @@ class AuthInfo:
 		except (OSError, IOError):
 			sys.stderr.write(str(sys.exc_info()[1]) + "\n")
 			return False
+		for group in self.save_groups:
+			if group.toggleFunction:
+				self.toggleFunctions.add(group.toggleFunction)
 		return ret
 
 	def writeChanged(self, ref):
@@ -4091,8 +4031,10 @@ class AuthInfo:
 		try:
 			for group in self.save_groups:
 				if group.attrsDiffer(self, ref):
-					self.confChanged = True
-					ret = ret and group.saveFunction()
+					if group.saveFunction:
+						ret = ret and group.saveFunction()
+					if group.toggleFunction:
+						self.toggleFunctions.add(group.toggleFunction)
 		except (OSError, IOError):
 			sys.stderr.write(str(sys.exc_info()[1]) + "\n")
 			return False
@@ -4326,44 +4268,93 @@ class AuthInfo:
 		cmd = PATH_IPA_CLIENT_INSTALL + " --uninstall --noac"
 		os.system(cmd)
 
-	def post(self, nostart):
-		onlystart = not self.confChanged
-		toggleNisService(self.enableNIS, self.nisDomain, nostart, onlystart)
-		toggleLDAPService(self.enableLDAP or self.enableLDAPAuth)
+	def toggleCachingService(self, nostart):
+		if not nostart:
+			if self.enableCache:
+				Service.stop("nscd")
+				Service.start("nscd")
+			else:
+				try:
+					Service.stop("nscd")
+				except OSError:
+					pass
+		return True
+	def toggleNisService(self, nostart):
+		if self.enableNis and self.nisDomain:
+			if not nostart:
+				os.system("/bin/domainname " + self.nisDomain)
+			try:
+				os.system("[[ $(getsebool allow_ypbind) == *off* ]] && setsebool -P allow_ypbind 1")
+				os.stat(PATH_RPCBIND)
+				Service.enable("rpcbind")
+				if not nostart:
+					Service.start("rpcbind")
+			except OSError:
+				pass
+			try:
+				os.stat(PATH_YPBIND)
+				Service.enable("ypbind")
+				if not nostart:
+					Service.stop("ypbind")
+					Service.start("ypbind")
+			except OSError:
+				pass
+		else:
+			if not nostart:
+				os.system("/bin/domainname \"(none)\"")
+			try:
+				os.system("[[ $(getsebool allow_ypbind) == *on* ]] && setsebool -P allow_ypbind 0")
+				os.stat(PATH_YPBIND)
+				if not nostart:
+					try:
+						Service.stop("ypbind")
+					except OSError:
+						pass
+				Service.disable("ypbind")
+			except OSError:
+				pass
+		return True
+
+	def toggleLDAPService(self, nostart):
+		toggleSplatbindService((self.enableLDAP or self.enableLDAPAuth) and
+			not self.implicitSSSD,
+			PATH_NSLCD,
+			"nslcd", nostart)
+		if self.enableLDAP:
+			try:
+				os.system("[[ $(getsebool authlogin_nsswitch_use_ldap) == *off* ]] && setsebool -P authlogin_nsswitch_use_ldap 1")
+			except OSError:
+				pass
+		else:
+			try:
+				os.system("[[ $(getsebool authlogin_nsswitch_use_ldap) == *on* ]] && setsebool -P authlogin_nsswitch_use_ldap 0")
+			except OSError:
+				pass
+		return True
+
+	def toggleWinbindService(self, nostart):
 		toggleSplatbindService(self.enableWinbind or self.enableWinbindAuth,
 			PATH_WINBIND,
-			"winbind", nostart, onlystart)
+			"winbind", nostart)
+
+	def toggleSSSDService(self, nostart):
 		toggleSplatbindService(self.implicitSSSD or self.implicitSSSDAuth or
 			self.enableIPAv2 or self.enableSSSD or self.enableSSSDAuth,
 			PATH_SSSD,
 			"sssd", nostart or not (self.implicitSSSD or self.implicitSSSDAuth
-			or self.enableIPAv2), onlystart)
-		toggleSplatbindService((self.enableLDAP or self.enableLDAPAuth) and
-			not self.implicitSSSD,
-			PATH_NSLCD,
-			"nslcd", nostart, onlystart)
-		toggleSplatbindService(self.enableDBbind,
-			PATH_DBBIND,
-			"dbbind", nostart, onlystart)
-		toggleSplatbindService(self.enableDBIbind,
-			PATH_DBIBIND,
-			"dbibind", nostart, onlystart)
-		toggleSplatbindService(self.enableHesiodbind,
-			PATH_HESIODBIND,
-			"hesiodbind", nostart, onlystart)
-		toggleSplatbindService(self.enableLDAPbind,
-			PATH_LDAPBIND,
-			"ldapbind", nostart, onlystart)
-		toggleSplatbindService(self.enableOdbcbind,
-			PATH_ODBCBIND,
-			"odbcbind", nostart, onlystart)
+			or self.enableIPAv2))
+
+	def toggleOddjobService(self, nostart):
 		if self.enableMkHomeDir and os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
 			# only switch on and only if pam_oddjob_mkhomedir exists
 			toggleSplatbindService(True,
 				PATH_ODDJOBD,
-				"oddjobd", nostart, onlystart)
-		toggleCachingService(self.enableCache, nostart, onlystart)
+				"oddjobd", nostart)
+
+	def post(self, nostart):
+		for togglefunc in self.toggleFunctions:
+			togglefunc(nostart)
 		if self.ipaUninstall:
 			self.uninstallIPA()
 
