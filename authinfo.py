@@ -4280,7 +4280,7 @@ class AuthInfo:
 					pass
 		return True
 	def toggleNisService(self, nostart):
-		if self.enableNis and self.nisDomain:
+		if self.enableNIS and self.nisDomain:
 			if not nostart:
 				os.system("/bin/domainname " + self.nisDomain)
 			try:
