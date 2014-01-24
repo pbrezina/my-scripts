@@ -1009,10 +1009,12 @@ class SaveGroup:
 class SafeFile:
 	def __init__(self, filename, default_mode):
 		(base, name) = os.path.split(filename)
+		self.missing = False
 		self.file = tempfile.NamedTemporaryFile(dir=base, prefix=name, delete=True)
 		# overwrite the inode attributes and contents
 		if call(["/bin/cp", "-af", filename, self.file.name],
 			stderr=os.open('/dev/null', os.O_WRONLY)) == 1:
+			self.missing = True
 			# the mode was not copied, use the default
 			os.fchmod(self.file.fileno(), default_mode)
 		self.filename = filename
@@ -1021,6 +1023,9 @@ class SafeFile:
 		self.file.flush()
 		os.fsync(self.file.fileno())
 		os.rename(self.file.name, self.filename)
+		if self.missing:
+			call(["/usr/sbin/restorecon", self.filename],
+				stderr=os.open('/dev/null', os.O_WRONLY))
 
 	def close(self):
 		# we may have renamed the temp file, need to catch OSError
