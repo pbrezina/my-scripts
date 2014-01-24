@@ -1111,7 +1111,8 @@ class FileBackup:
 			rv = self.safeCopy(backuppath, self.origPath)
 
 		try:
-			os.system("restorecon '"+self.origPath+"'")
+			if rv:
+				os.system("restorecon '"+self.origPath+"'")
 		except (IOError, OSError):
 			pass
 
