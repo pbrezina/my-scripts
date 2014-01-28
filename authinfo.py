@@ -1436,9 +1436,10 @@ class AuthInfo:
 	SaveGroup(self.toggleShadow, None, [("enableShadow", "b")]),
 	SaveGroup(None, self.toggleNisService, [("enableNIS", "b")]),
 	SaveGroup(None, self.toggleOddjobService, [("enableMkHomeDir", "b")]),
-	SaveGroup(None, self.toggleLDAPService, [("enableLDAP", "b"), ("enableLDAPAuth", "b")]),
+	SaveGroup(None, self.toggleLDAPService, [("enableLDAP", "b"), ("enableLDAPAuth", "b"),
+		("implicitSSSD", "b"), ("implicitSSSDAuth", "b"), ("enableForceLegacy", "b")]),
 	SaveGroup(None, self.toggleSSSDService, [("implicitSSSD", "b"), ("implicitSSSDAuth", "b"),
-		("enableIPAv2", "b"), ("enableSSSD", "b"), ("enableSSSDAuth", "b")]),
+		("enableIPAv2", "b"), ("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
 	SaveGroup(None, self.toggleWinbindService, [("enableWinbind", "b"), ("enableWinbindAuth", "b")])]
 
 	def setParam(self, attr, value, ref):
