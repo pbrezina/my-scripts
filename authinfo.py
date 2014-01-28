@@ -4226,7 +4226,7 @@ class AuthInfo:
 				# Not needed -- "joining" is meaningless for other
 				# models.
 				return
-			cmd = "/usr/bin/net join %s%s %s%s -U %s" % (
+			cmd = PATH_WINBIND_NET + " join %s%s %s%s -U %s" % (
 				domain and "-w " or "", domain,
 				server and "-S " or "", server,
 				self.joinUser)
