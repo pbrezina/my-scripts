@@ -1117,7 +1117,8 @@ class FileBackup:
 
 		try:
 			if rv:
-				os.system("restorecon '"+self.origPath+"'")
+				call(["/usr/sbin/restorecon", self.origPath],
+					stderr=os.open('/dev/null', os.O_WRONLY))
 		except (IOError, OSError):
 			pass
 
