@@ -1218,7 +1218,7 @@ all_configs = [
 	FileBackup("libuser.conf", SYSCONFDIR+"/libuser.conf"),
 	FileBackup("pwquality.conf", SYSCONFDIR+"/security/pwquality.conf"),
 	FileBackup("login.defs", SYSCONFDIR+"/login.defs"),
-	FileBackup("sssd.conf", SYSCONFDIR+"/sssd/sssd.conf"),
+	FileBackup("sssd.conf", PATH_SSSD_CONFIG),
 	FileBackup("shadow", SYSCONFDIR+"/shadow"),
 	FileBackup("passwd", SYSCONFDIR+"/passwd"),
 	FileBackup("gshadow", SYSCONFDIR+"/gshadow"),
@@ -4346,8 +4346,12 @@ class AuthInfo:
 			"winbind", nostart)
 
 	def toggleSSSDService(self, nostart):
+		
+		explicitenable = (self.enableSSSD and self.enableSSSDAuth) or
+			(self.enableSSSD and os.path.exists(PATH_SSSD_CONFIG)) or
+			(self.enableSSSDAuth and os.path.exists(PATH_SSSD_CONFIG))
 		toggleSplatbindService(self.implicitSSSD or self.implicitSSSDAuth or
-			self.enableIPAv2 or self.enableSSSD or self.enableSSSDAuth,
+			self.enableIPAv2 or explicitenable,
 			PATH_SSSD,
 			"sssd", nostart or not (self.implicitSSSD or self.implicitSSSDAuth
 			or self.enableIPAv2))
