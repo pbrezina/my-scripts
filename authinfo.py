@@ -4347,9 +4347,9 @@ class AuthInfo:
 
 	def toggleSSSDService(self, nostart):
 		
-		explicitenable = (self.enableSSSD and self.enableSSSDAuth) or
+		explicitenable = ((self.enableSSSD and self.enableSSSDAuth) or
 			(self.enableSSSD and os.path.exists(PATH_SSSD_CONFIG)) or
-			(self.enableSSSDAuth and os.path.exists(PATH_SSSD_CONFIG))
+			(self.enableSSSDAuth and os.path.exists(PATH_SSSD_CONFIG)))
 		toggleSplatbindService(self.implicitSSSD or self.implicitSSSDAuth or
 			self.enableIPAv2 or explicitenable,
 			PATH_SSSD,
