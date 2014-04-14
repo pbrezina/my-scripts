@@ -187,6 +187,13 @@ def checkDN(value):
 		return False
 	return True
 
+def matchBaseLine(line, key):
+	value = matchKey(line, key)
+	if value:
+		return checkDN(value)
+	else:
+		return False
+
 # Check for a string in an nss configuration line.
 def checkNSS(configuration, candidate):
 	lst = configuration.split(":",1)
@@ -2616,7 +2623,7 @@ class AuthInfo:
 				elif matchLine(ls, host):
 					if self.ldapServer:
 						output += "#" + line 
-				elif matchLine(ls, base):
+				elif matchBaseLine(ls, base):
 					# If it's a 'base' line, insert ours instead.
 					if not wrotebasedn and self.ldapBaseDN:
 						output += base + " "
