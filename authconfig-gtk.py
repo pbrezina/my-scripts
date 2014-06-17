@@ -236,6 +236,7 @@ class Authconfig:
 		self.oldrealm = ""
 		self.oldkdc = ""
 		self.oldadminserver = ""
+		self.messageParent = None
 
 	def destroy_widget(self, button, widget):
 		widget.destroy()
@@ -272,7 +273,9 @@ class Authconfig:
 		response = self.run_on_button(None, "joinwbdomain",
 					      "winbindjoin_map", parent)
 		if (response == gtk.RESPONSE_OK):
+			self.messageParent = parent
 			self.info.joinDomain(True)
+			self.messageParent = None
 		self.info.joinUser = None
 		self.info.joinPassword = None
 
@@ -287,7 +290,9 @@ class Authconfig:
 		response = self.run_on_button(None, "joinipadomain",
 					      "ipav2join_map", parent)
 		if (response == gtk.RESPONSE_OK):
+			self.messageParent = parent
 			self.info.joinIPADomain(True)
+			self.messageParent = None
 
 	def info_apply(self, map, xml):
 		for entry in map.keys():
@@ -796,10 +801,12 @@ class Authconfig:
 		response = self.run_on_button(None, "ldapcacertdownload",
 					      "ldapcacert_map", parent)
 		if (response == gtk.RESPONSE_OK):
+			self.messageParent = parent
 			self.info.downloadLDAPCACert()
+			self.messageParent = None
 
 	def message_callback(self, text):
-		msg = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING, gtk.BUTTONS_OK, text)
+		msg = gtk.MessageDialog(self.messageParent, 0, gtk.MESSAGE_WARNING, gtk.BUTTONS_OK, text)
 		msg.set_title(_("Authentication Configuration"))
 		msg.run()
 		msg.destroy()
