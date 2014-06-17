@@ -891,7 +891,7 @@ def feedFork(command, echo, query, response):
 		child.wait()
 		status = child.returncode
 		os._exit(status)
-	output = ""
+	(output, error) = ("","")
 	try:
 		i = fcntl.fcntl(master, fcntl.F_GETFL)
 		fcntl.fcntl(master, fcntl.F_SETFL, i & ~os.O_NONBLOCK)
@@ -928,13 +928,24 @@ def feedFork(command, echo, query, response):
 		if c:
 			try:
 				output += c
+				error += c
 				if echo:
 					sys.stderr.write(c)
 				if query in output:
+					# Search for password prompt start
+					index = error.rfind("\r\n")
 					os.write(master, response)
 					os.write(master, "\r\n")
+					if index != -1:
+						# Drop password prompt substring from error
+						error = "\n" + error[:index]
+					else:
+						# Drop whole error content, password prompt
+						# was the first line
+						error = ""
 					output = ""
-					sys.stderr.write("<...>\n")
+					if echo:
+						sys.stderr.write("<...>\n")
 			except OSError, (err, text):
 				sys.stderr.write("write: " + text + "\n")
 				os.close(master)
@@ -951,7 +962,7 @@ def feedFork(command, echo, query, response):
 		(child, status) = os.waitpid(pid, 0)
 	except OSError, (err, text):
 		sys.stderr.write("waitpid: " + text + "\n")
-	return status
+	return (status, error)
 
 def isEmptyDir(path):
 	try:
@@ -4245,11 +4256,16 @@ class AuthInfo:
 			if echo:
 				sys.stderr.write("[%s]\n" % cmd)
 			if self.joinPassword:
-				status = feedFork(cmd, echo, "sword:", self.joinPassword)
+				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
 			else:
-				status = os.system(cmd)
+				child = Popen([cmd], stderr=PIPE, shell=True)
+				cout, cerr = child.communicate()
+				status = child.returncode
+				error = "\n" + cerr
 			if status != 0:
-				self.messageCB(_("Winbind domain join was not successful. The net join command failed."))
+				errmsg = _("Winbind domain join was not successful. The net join command failed with the following error:")
+				errmsg += "\n" + error
+				self.messageCB(_(errmsg))
 		return status == 0
 
 	def joinIPADomain(self, echo):
@@ -4275,13 +4291,18 @@ class AuthInfo:
 			if echo:
 				sys.stderr.write("[%s]\n" % cmd)
 			if self.joinPassword:
-				status = feedFork(cmd, echo, "sword:", self.joinPassword)
+				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
 			else:
-				status = os.system(cmd)
+				child = Popen([cmd], stderr=PIPE, shell=True)
+				cout, cerr = child.communicate()
+				status = child.returncode
+				error = "\n" + cerr
 			if status == 0:
 				self.ipaDomainJoined = True
 			else:
-				self.messageCB(_("IPAv2 domain join was not successful. The ipa-client-install command failed."))
+				errmsg = _("IPAv2 domain join was not successful. The ipa-client-install command failed with the following error:")
+				errmsg += "\n" + error
+				self.messageCB(_(errmsg))
 		return status == 0
 
 	def uninstallIPA(self):

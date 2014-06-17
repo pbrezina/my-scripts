@@ -274,7 +274,7 @@ class Authconfig:
 					      "winbindjoin_map", parent)
 		if (response == gtk.RESPONSE_OK):
 			self.messageParent = parent
-			self.info.joinDomain(True)
+			self.info.joinDomain(False)
 			self.messageParent = None
 		self.info.joinUser = None
 		self.info.joinPassword = None
@@ -291,7 +291,7 @@ class Authconfig:
 					      "ipav2join_map", parent)
 		if (response == gtk.RESPONSE_OK):
 			self.messageParent = parent
-			self.info.joinIPADomain(True)
+			self.info.joinIPADomain(False)
 			self.messageParent = None
 
 	def info_apply(self, map, xml):
