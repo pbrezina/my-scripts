@@ -886,7 +886,10 @@ def feedFork(command, echo, query, response):
 		return 255
 	if not pid:
 		# child
-		status = os.system(command)
+		child = Popen([command], shell=True)
+		# wait for the child to terminate & set the returncode
+		child.wait()
+		status = child.returncode
 		os._exit(status)
 	output = ""
 	try:
@@ -4245,6 +4248,8 @@ class AuthInfo:
 				status = feedFork(cmd, echo, "sword:", self.joinPassword)
 			else:
 				status = os.system(cmd)
+			if status != 0:
+				self.messageCB(_("Winbind domain join was not successful. The net join command failed."))
 		return status == 0
 
 	def joinIPADomain(self, echo):
@@ -4276,7 +4281,7 @@ class AuthInfo:
 			if status == 0:
 				self.ipaDomainJoined = True
 			else:
-				self.messageCB(_("IPAv2 domain join was not succesful. The ipa-client-install command failed."))
+				self.messageCB(_("IPAv2 domain join was not successful. The ipa-client-install command failed."))
 		return status == 0
 
 	def uninstallIPA(self):
