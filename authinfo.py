@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 #
 # Authconfig - client authentication configuration program
-# Copyright (c) 1999-2011 Red Hat, Inc.
+# Copyright (c) 1999-2014 Red Hat, Inc.
 #
 # Authors: Preston Brown <pbrown@redhat.com>
 #          Nalin Dahyabhai <nalin@redhat.com>
@@ -10,6 +10,7 @@
 #          Ray Strode <rstrode@redhat.com>
 #          Paolo Bonzini <pbonzini@redhat.com>
 #          Miloslav Trmac <mitr@redhat.com>
+#          Jan Lieskovsky <jlieskov@redhat.com>
 #
 # This is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by

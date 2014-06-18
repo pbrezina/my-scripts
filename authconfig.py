@@ -2,12 +2,13 @@
 # -*- coding: UTF-8 -*-
 #
 # Authconfig - client authentication configuration program
-# Copyright (c) 1999-2008 Red Hat, Inc.
+# Copyright (c) 1999-2014 Red Hat, Inc.
 #
 # Original authors: Preston Brown <pbrown@redhat.com>
 #                   Nalin Dahyabhai <nalin@redhat.com>
 #                   Matt Wilson <msw@redhat.com>
 # Python rewrite and further development by: Tomas Mraz <tmraz@redhat.com>
+# Additional authors: Jan Lieskovsky <jlieskov@redhat.com>
 #
 # This is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
