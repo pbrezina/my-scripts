@@ -4266,7 +4266,7 @@ class AuthInfo:
 			if status != 0:
 				errmsg = _("Winbind domain join was not successful. The net join command failed with the following error:")
 				errmsg += "\n" + error
-				self.messageCB(_(errmsg))
+				self.messageCB(errmsg)
 		return status == 0
 
 	def joinIPADomain(self, echo):
@@ -4303,7 +4303,7 @@ class AuthInfo:
 			else:
 				errmsg = _("IPAv2 domain join was not successful. The ipa-client-install command failed with the following error:")
 				errmsg += "\n" + error
-				self.messageCB(_(errmsg))
+				self.messageCB(errmsg)
 		return status == 0
 
 	def uninstallIPA(self):
