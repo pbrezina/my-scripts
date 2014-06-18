@@ -4380,15 +4380,15 @@ class AuthInfo:
 			"winbind", nostart)
 
 	def toggleSSSDService(self, nostart):
-		
 		explicitenable = ((self.enableSSSD and self.enableSSSDAuth) or
 			(self.enableSSSD and os.path.exists(PATH_SSSD_CONFIG)) or
 			(self.enableSSSDAuth and os.path.exists(PATH_SSSD_CONFIG)))
-		toggleSplatbindService(self.implicitSSSD or self.implicitSSSDAuth or
-			self.enableIPAv2 or explicitenable,
+		enable = (self.implicitSSSD or self.implicitSSSDAuth or
+			self.enableIPAv2 or explicitenable)
+		toggleSplatbindService(enable,
 			PATH_SSSD,
-			"sssd", nostart or not (self.implicitSSSD or self.implicitSSSDAuth
-			or self.enableIPAv2))
+			"sssd", nostart or (enable and not (self.implicitSSSD or
+			self.implicitSSSDAuth or self.enableIPAv2)))
 
 	def toggleOddjobService(self, nostart):
 		if self.enableMkHomeDir and os.access("%s/pam_%s.so"
