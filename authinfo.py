@@ -1580,19 +1580,15 @@ class AuthInfo:
 
 	def validateLDAPURI(self, s):
 		"""
-		Check LDAP URI provided in the form of literal IPv6 address
-		for correctness.
-
-		Return False if IPv6 valid is invalid or urlparse failed to
-		obtain integer port value, True otherwise.
+		Check whether LDAP URI is valid.
 		"""
 		try:
 			p = urlparse.urlparse(s).port
 			return True
-		except ValueError:
+		except (ValueError, socket.error):
 			return False
 
-	def ldapHostsToURIs(self, s):
+	def ldapHostsToURIs(self, s, validate):
 		l = s.split(",")
 		ret = ""
 		for item in l:
@@ -1603,9 +1599,8 @@ class AuthInfo:
 					ret += item
 				else:
 					ret += "ldap://" + item + "/"
-		if not self.validateLDAPURI(ret):
+		if validate and not self.validateLDAPURI(ret):
 			self.messageCB(_("Invalid LDAP URI."))
-			return ""
 		return ret
 
 	# Read LDAP setup from /etc/ldap.conf.
@@ -2448,12 +2443,12 @@ class AuthInfo:
 	# suggestions we "know".  The second case is when the user has just made a
 	# change to one field and we need to update another field to somehow
 	# compensate for the change.
-	def update(self):
+	def update(self, validate=False):
 		self.smbServers = cleanList(self.smbServers)
 		self.ipav2Server = cleanList(self.ipav2Server)
 		self.kerberosKDC = cleanList(self.kerberosKDC)
 		self.kerberosAdminServer = cleanList(self.kerberosAdminServer)
-		self.ldapServer = self.ldapHostsToURIs(self.ldapServer)
+		self.ldapServer = self.ldapHostsToURIs(self.ldapServer, validate)
 		if self.smbSecurity == "ads":
 			# As of this writing, an ADS implementation always
 			# upper-cases the realm name, even if only internally,
@@ -4014,7 +4009,7 @@ class AuthInfo:
 			self.ipaUninstall = True
 
 	def write(self):
-		self.update()
+		self.update(True)
 		self.prewriteUpdate()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		try:
@@ -4054,7 +4049,7 @@ class AuthInfo:
 
 	def writeChanged(self, ref):
 		self.checkPAMLinked()
-		self.update()
+		self.update(True)
 		self.prewriteUpdate()
 		self.setupBackup(PATH_CONFIG_BACKUPS + "/last")
 		ret = True
