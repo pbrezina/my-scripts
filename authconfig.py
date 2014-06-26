@@ -941,9 +941,9 @@ class AuthconfigTUI(Authconfig):
 			self.screen.suspend()
 			self.info.update()
 			if self.info.enableWinbind:
-				self.info.joinDomain(False)
+				self.info.joinDomain(True)
 			elif self.info.enableIPAv2:
-				self.info.joinIPADomain(False)
+				self.info.joinIPADomain(True)
 			self.screen.resume()
 		return True
 

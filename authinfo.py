@@ -4253,15 +4253,21 @@ class AuthInfo:
 				sys.stderr.write("[%s]\n" % cmd)
 			if self.joinPassword:
 				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
+				cerr = ''
 			else:
 				child = Popen([cmd], stderr=PIPE, shell=True)
 				cout, cerr = child.communicate()
 				status = child.returncode
 				error = "\n" + cerr
-			if status != 0:
-				errmsg = _("Winbind domain join was not successful. The net join command failed with the following error:")
-				errmsg += "\n" + error
-				self.messageCB(errmsg)
+			if echo:
+				sys.stderr.write(cerr)
+				if status != 0:
+					self.messageCB(_("Winbind domain join was not successful."))
+			else:
+				if status != 0:
+					errmsg = _("Winbind domain join was not successful. The net join command failed with the following error:")
+					errmsg += "\n" + error
+					self.messageCB(errmsg)
 		return status == 0
 
 	def joinIPADomain(self, echo):
@@ -4288,6 +4294,7 @@ class AuthInfo:
 				sys.stderr.write("[%s]\n" % cmd)
 			if self.joinPassword:
 				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
+				cerr = ''
 			else:
 				child = Popen([cmd], stderr=PIPE, shell=True)
 				cout, cerr = child.communicate()
@@ -4295,10 +4302,15 @@ class AuthInfo:
 				error = "\n" + cerr
 			if status == 0:
 				self.ipaDomainJoined = True
+			if echo:
+				sys.stderr.write(cerr)
+				if status != 0:
+					self.messageCB(_("IPAv2 domain join was not successful."))
 			else:
-				errmsg = _("IPAv2 domain join was not successful. The ipa-client-install command failed with the following error:")
-				errmsg += "\n" + error
-				self.messageCB(errmsg)
+				if status != 0:
+					errmsg = _("IPAv2 domain join was not successful. The ipa-client-install command failed with the following error:")
+					errmsg += "\n" + error
+					self.messageCB(errmsg)
 		return status == 0
 
 	def uninstallIPA(self):
