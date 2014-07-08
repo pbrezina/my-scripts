@@ -35,7 +35,7 @@ be restored by the \fB--restorelastbackup\fR action.
 
 If \fB--nostart\fR is specified (which is what the install program does),
 ypbind or other daemons will not be started or stopped immediately following
-program execution, but only enabled to start or stop at boot time. 
+program execution, but only enabled to start or stop at boot time.
 
 The \fB--enablenis\fP, \fB--enableldap\fP, \fB--enablewinbind\fP,
 and \fB--enablehesiod\fP options
@@ -94,6 +94,22 @@ The \fB/usr/bin/authconfig\fR uses the \fBconsolehelper\fR to authenticate as th
 system user before it starts up. If you want to run it directly without the 
 authentication as the system user, run the \fB/usr/sbin/authconfig\fR command.
 
+The SSSD service is enabled and possibly started by authconfig when at least two of
+the following three conditions are met:
+.br
+1) /etc/sssd/sssd.conf file exists (or is configured via the implicit SSSD support)
+.br
+2) SSSD authentication is enabled (pam_sss.so is used in PAM configuration)
+.br
+3) SSSD is enabled for user identity (nsswitch.conf contains sss)
+
+When \fB--update\fR action is used the enablement or disablement and possible restart
+of services happens only in case the changed configuration options affect the
+service to be restarted. This means that if for example the ypbind service is
+enabled with \fBauthconfig --update --nostart --enablenis\fR but not started
+and you run the same command without the \fB--nostart\fR later the ypbind
+service will not be started because no configuration change affecting ypbind
+happened.
 .PD
 .SH "RETURN CODES"
 \fBauthconfig\fR returns 0 on success, 1 on backup operation errors,
