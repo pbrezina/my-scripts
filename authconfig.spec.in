@@ -117,6 +117,16 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Fri Jul 25 2014 Tomáš Mráz <tmraz@redhat.com> - 6.2.9-1
+- support screensaver lock handling by GDM
+- fix pam_pkcs11 options
+- enable/disable/restart only services that are affected by the configuration
+  changes
+- do not overwrite special ldap base values
+- display error message if winbind or IPA domain join fails
+- fix invocation of IPA domain join from GUI
+- translation updates
+
 * Fri Nov  1 2013 Tomáš Mráz <tmraz@redhat.com> - 6.2.8-1
 - detect invalid LDAP uri and report error
 - fix handling of IPA domain join errors and uninstall
