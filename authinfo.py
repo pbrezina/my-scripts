@@ -1333,6 +1333,9 @@ class AuthInfo:
 		self.preferDNSinHosts = None
 		self.enableSSSD = None
 		self.enableIPAv2 = None
+                # This one we don't have a config entry, we just
+                # preserve the entry if we see it.
+		self.enableAltfiles = None
 
 		# Authentication setup.
 		self.enableAFS = None
@@ -2037,7 +2040,7 @@ class AuthInfo:
 		if nssconfig:
 			nssmap = (('Compat', 'compat'), ('DB', 'db'),
 				  ('Directories', 'directories'), ('Hesiod', 'hesiod'),
-				  ('LDAP', 'ldap'), ('NIS', 'nis'),
+				  ('LDAP', 'ldap'), ('NIS', 'nis'), ('Altfiles', 'altfiles'),
 				  ('NIS3', 'nisplus'), ('Winbind', 'winbind'))
 			for attr, nssentry in nssmap:
 				if checkNSS(nssconfig, nssentry):
@@ -3578,6 +3581,8 @@ class AuthInfo:
 			if self.enableDB:
 				normal += " db"
 			normal += " files"
+                        if self.enableAltfiles:
+                                normal += " altfiles"
 			services = normal
 			if self.enableDirectories:
 				normal += " directories"
