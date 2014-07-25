@@ -887,7 +887,12 @@ def feedFork(command, echo, query, response):
 		return 255
 	if not pid:
 		# child
-		child = Popen([command], shell=True)
+		if query:
+			child = Popen([command], shell=True)
+		else:
+			child = Popen([command], stdin=PIPE, shell=True)
+			child.communicate(input=(response or '')+'\n')
+
 		# wait for the child to terminate & set the returncode
 		child.wait()
 		status = child.returncode
@@ -932,10 +937,10 @@ def feedFork(command, echo, query, response):
 				error += c
 				if echo:
 					sys.stderr.write(c)
-				if query in output:
+				if query and query in output:
 					# Search for password prompt start
 					index = error.rfind("\r\n")
-					os.write(master, response)
+					os.write(master, response or '')
 					os.write(master, "\r\n")
 					if index != -1:
 						# Drop password prompt substring from error
@@ -4251,16 +4256,12 @@ class AuthInfo:
 			
 			if echo:
 				sys.stderr.write("[%s]\n" % cmd)
-			if self.joinPassword:
-				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
-				cerr = ''
-			else:
-				child = Popen([cmd], stderr=PIPE, shell=True)
-				cout, cerr = child.communicate()
+				child = Popen([cmd], shell=True)
+				child.communicate()
 				status = child.returncode
-				error = "\n" + cerr
+			else:
+				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
 			if echo:
-				sys.stderr.write(cerr)
 				if status != 0:
 					self.messageCB(_("Winbind domain join was not successful."))
 			else:
@@ -4288,22 +4289,19 @@ class AuthInfo:
 				realm and "--realm=" or "", realm,
 				principal and "--principal=" or "", principal,
 				nontp,
-				password and "-W" or "")
-			
+				not echo and "--unattended" or "-W")
+
 			if echo:
 				sys.stderr.write("[%s]\n" % cmd)
-			if self.joinPassword:
-				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
-				cerr = ''
-			else:
-				child = Popen([cmd], stderr=PIPE, shell=True)
-				cout, cerr = child.communicate()
+				child = Popen([cmd], shell=True)
+				child.communicate()
 				status = child.returncode
-				error = "\n" + cerr
+			else:
+				status, error = feedFork(cmd, echo, '', password)
+
 			if status == 0:
 				self.ipaDomainJoined = True
 			if echo:
-				sys.stderr.write(cerr)
 				if status != 0:
 					self.messageCB(_("IPAv2 domain join was not successful."))
 			else:

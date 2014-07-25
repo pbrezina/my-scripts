@@ -257,7 +257,7 @@ class Authconfig:
 				self.info = backup
 			# Save.
 			if (response == 1):
-				self.apply()
+				self.apply(nostart=True)
 				backup = self.info
 		return backup
 
@@ -266,7 +266,10 @@ class Authconfig:
 		if not backup:
 			return
 		self.winbindjoin_launch(button, map, xml, parent)
-		self.info = backup
+		if self.info != backup:
+			self.info = backup
+		else:
+			self.apply()
 
 	def winbindjoin_launch(self, button, map, xml, parent):
 		if not self.info.joinUser:
@@ -285,7 +288,10 @@ class Authconfig:
 		if not backup:
 			return
 		self.ipav2join_launch(button, map, xml, parent)
-		self.info = backup
+		if self.info != backup:
+			self.info = backup
+		else:
+			self.apply()
 
 	def ipav2join_launch(self, button, map, xml, parent):
 		response = self.run_on_button(None, "joinipadomain",
@@ -772,7 +778,7 @@ class Authconfig:
 		return dialog
 
 	# Save changes.
-	def apply(self):
+	def apply(self, nostart = False):
 		self.update_type(self.id_map, self.currid)
 		self.update_type(self.auth_map, self.currauth)
 		self.apply_idsettings()
@@ -788,7 +794,7 @@ class Authconfig:
 		else:
 			self.info.writeChanged(self.pristineinfo)
 
-		self.info.post(False)
+		self.info.post(nostart)
 		if "--firstboot" in sys.argv:
 			for service in firstbootservices:
 				if authinfo.Service.isEnabled(service):
