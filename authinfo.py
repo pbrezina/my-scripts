@@ -1664,7 +1664,7 @@ class AuthInfo:
 			# We'll pull MD5/DES crypt ("pam_password") from the config
 			# file, or from the pam_unix PAM config lines.
 
-		self.ldapServer = self.ldapHostsToURIs(cleanList(self.ldapServer))
+		self.ldapServer = self.ldapHostsToURIs(cleanList(self.ldapServer), False)
 		f.close()
 		return True
 
