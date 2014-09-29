@@ -526,6 +526,7 @@ class Authconfig:
 		if not ldapserver:
 			return True
 		uritovalidate = ldapserver.get_text()
+		uritovalidate = self.info.ldapHostsToURIs(uritovalidate, False)
 		return self.info.validateLDAPURI(uritovalidate)
 
 	def enable_cacert_download(self, active, xml):

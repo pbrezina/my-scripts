@@ -1590,14 +1590,22 @@ class AuthInfo:
 		"""
 		Check whether LDAP URI is valid.
 		"""
-		try:
-			p = urlparse.urlparse(s).port
-			return True
-		except (ValueError, socket.error):
-			return False
+		if ',' in s:
+			uris = s.split(',')
+		else:
+			uris = s.split()
+		for uri in uris:
+			try:
+				p = urlparse.urlparse(uri).port
+			except (ValueError, socket.error):
+				return False
+		return True
 
 	def ldapHostsToURIs(self, s, validate):
-		l = s.split(",")
+		if ',' in s:
+			l = s.split(',')
+		else:
+			l = s.split()
 		ret = ""
 		for item in l:
 			if item:
