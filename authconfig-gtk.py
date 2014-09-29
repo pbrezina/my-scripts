@@ -130,7 +130,7 @@ class Authconfig:
 			 "nisoptions", "nis_map", authinfo.PATH_LIBNSS_NIS, "ypbind"),
 			"Winbind":
 			(_("Winbind"), ("WinbindAuth",),
-			 "winbindoptions", "winbind_map", authinfo.PATH_WINBIND, "samba-winbind-clients"),
+			 "winbindoptions", "winbind_map", authinfo.PATH_WINBIND, "samba-winbind"),
 			"IPAv2":
 			(_("IPAv2"), ("IPAv2Auth",),
 			 "ipav2options", "ipav2_map", authinfo.PATH_IPA_CLIENT_INSTALL, "freeipa-client")
