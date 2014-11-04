@@ -1330,6 +1330,7 @@ class AuthInfo:
 		self.enableWinbind = None
 		self.enableWINS = None
 		self.enableMDNS = None
+		self.enableMyhostname = None
 		self.preferDNSinHosts = None
 		self.enableSSSD = None
 		self.enableIPAv2 = None
@@ -1437,7 +1438,7 @@ class AuthInfo:
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
 		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
-		("enableCompat", "b"), ("enableWINS", "b"), ("enableMDNS", "b"),
+		("enableCompat", "b"), ("enableWINS", "b"), ("enableMDNS", "b"), ("enableMyhostname", "b"),
 		("enableNIS3", "b"), ("enableNIS", "b"), ("enableIPAv2", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
 	SaveGroup(self.writePAM, None, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
@@ -2037,6 +2038,8 @@ class AuthInfo:
 						self.setParam("enableWINS", True, ref)
 					if checkNSS(value, "mdns4_minimal [NOTFOUND=return]"):
 						self.setParam("enableMDNS", True, ref)
+					if checkNSS(value, "myhostname"):
+						self.setParam("enableMyhostname", True, ref)
 
 					nispos = checkNSS(value, "nis")
 					if nispos == None:
@@ -3650,6 +3653,8 @@ class AuthInfo:
 				hosts += " nis"
 			if not self.preferDNSinHosts:
 				hosts += " dns"
+			if self.enableMyhostname:
+				hosts += " myhostname"
 
 			# Read in the old file.
 			for line in f.file:
@@ -4192,6 +4197,7 @@ class AuthInfo:
 		print "nss_sss is %s by default" % formatBool(self.enableSSSD)
 		print "nss_wins is %s" % formatBool(self.enableWINS)
 		print "nss_mdns4_minimal is %s" % formatBool(self.enableMDNS)
+		print "myhostname is %s" % formatBool(self.enableMyhostname)
 		print "DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts)
 		print "pam_unix is always enabled"
 		print " shadow passwords are %s" % formatBool(self.enableShadow)
