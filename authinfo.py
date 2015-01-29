@@ -1702,6 +1702,7 @@ class AuthInfo:
 			return False
 	
 		for line in f:
+			line = line.split('#')[0]
 			line = line.strip()
 
 			# If it's a new section, note which one we're "in".
@@ -3206,7 +3207,7 @@ class AuthInfo:
 					output += str(bool(self.kerberosKDCviaDNS)).lower()
 					output += "\n"
 			# If we haven't encountered a realms section yet...
-			if not wroterealms2:
+			if not wroterealms2 and (self.kerberosRealm or self.smbRealm):
 				if not wroterealms:
 					output += "[realms]\n"
 				if not wroterealm:
@@ -3214,7 +3215,7 @@ class AuthInfo:
 						self.kerberosAdminServer)
 				if not wrotesmbrealm:
 					output += krbRealm(self.smbRealm, self.smbServers, "")
-			if not wrotedomrealm2:
+			if not wrotedomrealm2 and self.kerberosRealm:
 				if not wrotedomrealm:
 					output += "[domain_realm]\n"
 				if self.kerberosRealm and not wroteourdomrealm:
