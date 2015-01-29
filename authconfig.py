@@ -29,7 +29,11 @@ import gettext, os, signal, sys
 _ = gettext.lgettext
 from optparse import OptionParser, IndentedHelpFormatter
 import locale
-locale.setlocale(locale.LC_ALL, '')
+
+try:
+	locale.setlocale(locale.LC_ALL, '')
+except locale.Error:
+	sys.stderr.write('Warning: Unsupported locale setting.\n')
 
 def runsAs(name):
 	return sys.argv[0].find(name) >= 0

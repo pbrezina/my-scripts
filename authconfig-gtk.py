@@ -30,7 +30,10 @@ _ = gettext.lgettext
 import locale
 import dbus
 
-locale.setlocale(locale.LC_ALL, '')
+try:
+	locale.setlocale(locale.LC_ALL, '')
+except locale.Error:
+	sys.stderr.write('Warning: Unsupported locale setting.\n')
 
 firstbootservices = [
 	"autofs",
