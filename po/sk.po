@@ -1,25 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Dimitris Glezos <glezos@transifex.com>, 2011
 # Dušan Kazik <prescott66@gmail.com>, 2011
+# feonsu <feonsu@gmail.com>, 2014
 # mmahut <mmahut@fedoraproject.org>, 2008
-# Michal Hriň <michalhrin@aol.com>, 2011
+# Michal Hriň <michal.hrin@yahoo.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: Authconfig\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-25 17:48+0200\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/fedora/language/"
-"sk/)\n"
-"Language: sk\n"
+"PO-Revision-Date: 2014-10-07 11:33+0000\n"
+"Last-Translator: feonsu <feonsu@gmail.com>\n"
+"Language-Team: Slovak (http://www.transifex.com/projects/p/authconfig/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../authconfig.py:116
@@ -114,15 +114,11 @@ msgstr "zakázať použitie TLS s LDAP (RFC-2830)"
 
 #: ../authconfig.py:162
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-"povoliť použitie schémy RFC-2307bis pre hľadanie používateľských informácií "
-"v LDAP"
+msgstr "povoliť použitie schémy RFC-2307bis pre hľadanie používateľských informácií v LDAP"
 
 #: ../authconfig.py:164
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
-msgstr ""
-"zakázať použitie schémy RFC-2307bis pre hľadanie používateľských informácií "
-"v LDAP"
+msgstr "zakázať použitie schémy RFC-2307bis pre hľadanie používateľských informácií v LDAP"
 
 #: ../authconfig.py:165
 msgid "<URL>"
@@ -162,13 +158,11 @@ msgstr "akcia, ktorá bude zvolená pri odstránení smart karty"
 
 #: ../authconfig.py:183
 msgid "enable authentication with fingerprint readers by default"
-msgstr ""
-"predvolene povoliť overenie totožnosti pomocou snímačov odtlačkov prstov"
+msgstr "predvolene povoliť overenie totožnosti pomocou snímačov odtlačkov prstov"
 
 #: ../authconfig.py:185
 msgid "disable authentication with fingerprint readers by default"
-msgstr ""
-"predvolene zakázať overenie totožnosti pomocou snímačov odtlačkov prstov"
+msgstr "predvolene zakázať overenie totožnosti pomocou snímačov odtlačkov prstov"
 
 #: ../authconfig.py:188
 msgid "enable automatic per-user ecryptfs"
@@ -196,11 +190,11 @@ msgstr "predvolený administrátorský server kerberos"
 
 #: ../authconfig.py:200 ../authconfig.py:221 ../authconfig.py:258
 msgid "<realm>"
-msgstr "<realm>"
+msgstr "<oblasť>"
 
 #: ../authconfig.py:201
 msgid "default kerberos realm"
-msgstr "predvolený realm pre kerberos"
+msgstr "predvolená oblasť pre kerberos"
 
 #: ../authconfig.py:203
 msgid "enable use of DNS to find kerberos KDCs"
@@ -212,11 +206,11 @@ msgstr "zakázať použitie DNS na nájdenie KDC pre kerberos"
 
 #: ../authconfig.py:207
 msgid "enable use of DNS to find kerberos realms"
-msgstr "povoliť použitie DNS na nájdenie realmov pre kerberos"
+msgstr "povoliť použitie DNS na nájdenie oblastí pre kerberos"
 
 #: ../authconfig.py:209
 msgid "disable use of DNS to find kerberos realms"
-msgstr "zakázať použitie DNS na nájdenie realmov pre kerberos"
+msgstr "zakázať použitie DNS na nájdenie oblastí pre kerberos"
 
 #: ../authconfig.py:212
 msgid "enable winbind for user information by default"
@@ -240,7 +234,7 @@ msgstr "bezpečnostný režim, ktorý použiť pre sambu a winbind"
 
 #: ../authconfig.py:222
 msgid "default realm for samba and winbind when security=ads"
-msgstr "predvolený realm pre sambu a winbind ak security=ads"
+msgstr "predvolená oblasť pre sambu a winbind ak security=ads"
 
 #: ../authconfig.py:223 ../authconfig.py:260
 msgid "<servers>"
@@ -270,44 +264,32 @@ msgstr "rozsah uid, ktorý bude winbind priraďovať doméne alebo ads užívate
 msgid ""
 "the character which will be used to separate the domain and user part of "
 "winbind-created user names if winbindusedefaultdomain is not enabled"
-msgstr ""
-"znak, ktorý bude použitý na oddelenie doménových a používateľských častí "
-"mien winbind-om vytvorených používateľov ak winbindusedefaultdomain nie je "
-"povolené"
+msgstr "znak, ktorý bude použitý na oddelenie doménových a používateľských častí mien winbind-om vytvorených používateľov ak winbindusedefaultdomain nie je povolené"
 
 #: ../authconfig.py:232
-msgid "the directory which winbind-created users will have as home directories"
-msgstr ""
-"priečinok, ktorý bude pre winbind-om vytvorených používateľov ich domovským "
-"priečinkom"
+msgid ""
+"the directory which winbind-created users will have as home directories"
+msgstr "priečinok, ktorý bude pre winbind-om vytvorených používateľov ich domovským priečinkom"
 
 #: ../authconfig.py:234
 msgid "the group which winbind-created users will have as their primary group"
-msgstr ""
-"skupina, ktorá bude pre winbind-om vytvorených používateľov ich primárnou "
-"skupinou"
+msgstr "skupina, ktorá bude pre winbind-om vytvorených používateľov ich primárnou skupinou"
 
 #: ../authconfig.py:236
 msgid "the shell which winbind-created users will have as their login shell"
-msgstr ""
-"shell, ktorý budú mať winbind-om vytvorení používatelia ako ich prihlasovací "
-"shell"
+msgstr "shell, ktorý budú mať winbind-om vytvorení používatelia ako ich prihlasovací shell"
 
 #: ../authconfig.py:238
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
-msgstr ""
-"nastaví winbind aby predpokladal, že používatelia bez domény v ich "
-"používateľskom mene sú doménovými používateľmi"
+msgstr "nastaví winbind aby predpokladal, že používatelia bez domény v ich používateľskom mene sú doménovými používateľmi"
 
 #: ../authconfig.py:240
 msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
-msgstr ""
-"nastaví winbind aby predpokladal, že používatelia bez domény v ich "
-"užívateľskom mene nie sú doménovými používateľmi"
+msgstr "nastaví winbind aby predpokladal, že používatelia bez domény v ich užívateľskom mene nie sú doménovými používateľmi"
 
 #: ../authconfig.py:242
 msgid "configures winbind to allow offline login"
@@ -319,11 +301,11 @@ msgstr "zakáže winbind pre nepriame (offline) prihlásenie"
 
 #: ../authconfig.py:246
 msgid "winbind will use Kerberos 5 to authenticate"
-msgstr ""
+msgstr "windind bude používať pre overenie protokol Kerberos 5"
 
 #: ../authconfig.py:248
 msgid "winbind will use the default authentication method"
-msgstr ""
+msgstr "winbind bude používať predvolenú metódu overenia"
 
 #: ../authconfig.py:250
 msgid "join the winbind domain or ads realm now as this administrator"
@@ -331,35 +313,35 @@ msgstr "pripojiť sa do winbind domény alebo realmu ads ako tento správca"
 
 #: ../authconfig.py:253
 msgid "enable IPAv2 for user information and authentication by default"
-msgstr ""
+msgstr "predvolene povoliť IPAv2 pre používateľské informácie a overenie"
 
 #: ../authconfig.py:255
 msgid "disable IPAv2 for user information and authentication by default"
-msgstr ""
+msgstr "predvolene zakázať IPAv2 pre používateľské informácie a overenie"
 
 #: ../authconfig.py:257
 msgid "the IPAv2 domain the system should be part of"
-msgstr ""
+msgstr "IPAv2 doména, do ktorej má byť systém zaradený"
 
 #: ../authconfig.py:259
 msgid "the realm for the IPAv2 domain"
-msgstr ""
+msgstr "oblasť pre IPAv2 doménu"
 
 #: ../authconfig.py:261
 msgid "the server for the IPAv2 domain"
-msgstr ""
+msgstr "server pre IPAv2 doménu"
 
 #: ../authconfig.py:263
 msgid "do not setup the NTP against the IPAv2 domain"
-msgstr ""
+msgstr "nenastavovať NTP proti IPAv2 doméne"
 
 #: ../authconfig.py:265
 msgid "setup the NTP against the IPAv2 domain (default)"
-msgstr ""
+msgstr "nastaviť NTP proti IPAv2 doméne (predvolene)"
 
 #: ../authconfig.py:267
 msgid "join the IPAv2 domain as this account"
-msgstr ""
+msgstr "pripojiť sa k IPAv2 doméne s týmto účtom"
 
 #: ../authconfig.py:270
 msgid "enable wins for hostname resolution"
@@ -397,31 +379,25 @@ msgstr "predvolené hesiod RHS"
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
-msgstr ""
-"povoliť SSSD s manuálnym nastavením konfigurácie pre používateľské informácie"
+msgstr "povoliť SSSD s manuálnym nastavením konfigurácie pre používateľské informácie"
 
 #: ../authconfig.py:291
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
-msgstr ""
-"zakázať SSSD pre používateľské informácie (stále používané pre podporované "
-"konfigurácie)"
+msgstr "zakázať SSSD pre používateľské informácie (stále používané pre podporované konfigurácie)"
 
 #: ../authconfig.py:293
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
-msgstr ""
-"predvolene povoliť SSSD pre overenie totožnosti s manuálnym nastavením "
-"konfigurácie"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
+msgstr "predvolene povoliť SSSD pre overenie totožnosti s manuálnym nastavením konfigurácie"
 
 #: ../authconfig.py:295
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations)"
-msgstr ""
-"vypnúť štandardne SSSD autorizáciu (stále použitú pre podporované "
-"konfigurácie)"
+msgstr "vypnúť štandardne SSSD autorizáciu (stále použitú pre podporované konfigurácie)"
 
 #: ../authconfig.py:297
 msgid "never use SSSD implicitly even for supported configurations"
@@ -443,9 +419,7 @@ msgstr "predvolene zakázať kešovanie používateľských overení v SSSD"
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
-msgstr ""
-"predvolene povoliť kešovanie používateľských informácii (automaticky "
-"vypnuté, ak sa používa SSSD)"
+msgstr "predvolene povoliť kešovanie používateľských informácii (automaticky vypnuté, ak sa používa SSSD)"
 
 #: ../authconfig.py:309
 msgid "disable caching of user information by default"
@@ -486,55 +460,55 @@ msgstr "nevytvárať používateľom domovské priečinky pri ich prvom prihlás
 #: ../authconfig.py:331 ../authconfig.py:333 ../authconfig.py:335
 #: ../authconfig.py:337
 msgid "<number>"
-msgstr ""
+msgstr "<číslo>"
 
 #: ../authconfig.py:332
 msgid "minimum length of a password"
-msgstr ""
+msgstr "minimálna dĺžka hesla"
 
 #: ../authconfig.py:334
 msgid "minimum number of character classes in a password"
-msgstr ""
+msgstr "minimálny počet tried znakov v hesle"
 
 #: ../authconfig.py:336
 msgid "maximum number of same consecutive characters in a password"
-msgstr ""
+msgstr "maximálny počet rovnakých znakov v hesle nasledujúcich po sebe"
 
 #: ../authconfig.py:338
 msgid "maximum number of consecutive characters of same class in a password"
-msgstr ""
+msgstr "maximálny počet rovnakej triedy znakov v hesle nasledujúcich po sebe"
 
 #: ../authconfig.py:340
 msgid "require at least one lowercase character in a password"
-msgstr ""
+msgstr "vyžadovať najmenej jedno malé písmeno v hesle"
 
 #: ../authconfig.py:342
 msgid "do not require lowercase characters in a password"
-msgstr ""
+msgstr "nevyžadovať malé písmená v heslu"
 
 #: ../authconfig.py:344
 msgid "require at least one uppercase character in a password"
-msgstr ""
+msgstr "vyžadovať najmenej jedno veľké písmeno v hesle"
 
 #: ../authconfig.py:346
 msgid "do not require uppercase characters in a password"
-msgstr ""
+msgstr "nevyžadovať veľké písmená v hesle"
 
 #: ../authconfig.py:348
 msgid "require at least one digit in a password"
-msgstr ""
+msgstr "vyžadovať najmenej jednu číslicu v hesle"
 
 #: ../authconfig.py:350
 msgid "do not require digits in a password"
-msgstr ""
+msgstr "nevyžadovať číslice v hesle"
 
 #: ../authconfig.py:352
 msgid "require at least one other character in a password"
-msgstr ""
+msgstr "vyžadovať najmenej jeden iný znak v hesle"
 
 #: ../authconfig.py:354
 msgid "do not require other characters in a password"
-msgstr ""
+msgstr "nevyžadovať iné znaky v hesle"
 
 #: ../authconfig.py:357
 msgid "do not start/stop portmap, ypbind, and nscd"
@@ -580,9 +554,7 @@ msgstr "obnoviť súbory nastavení zo záložnej kópie"
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
-msgstr ""
-"obnoviť súbory nastavení zo záložnej kópie uloženej pred predchádzajúcou "
-"zmenou nastavení"
+msgstr "obnoviť súbory nastavení zo záložnej kópie uloženej pred predchádzajúcou zmenou nastavení"
 
 #: ../authconfig.py:389
 msgid "unexpected argument"
@@ -590,39 +562,39 @@ msgstr "neočakávaný parameter"
 
 #: ../authconfig.py:523
 msgid "The passminlen minimum value is 6"
-msgstr ""
+msgstr "Minimálna hodnota passminlen je 6"
 
 #: ../authconfig.py:527
 msgid "The passminlen option value is not an integer"
-msgstr ""
+msgstr "Hodnota passminlen nie je celé číslo"
 
 #: ../authconfig.py:535
 msgid "The passminclass value must not be negative"
-msgstr ""
+msgstr "Hodnota passminclass nesmie byť záporná"
 
 #: ../authconfig.py:539
 msgid "The passminclass value must not be higher than 4"
-msgstr ""
+msgstr "Hodnota passminclass nesmie byť vyššia ako 4"
 
 #: ../authconfig.py:543
 msgid "The passminclass option value is not an integer"
-msgstr ""
+msgstr "Hodnota passminclass nie je celé číslo"
 
 #: ../authconfig.py:551
 msgid "The passmaxrepeat value must not be negative"
-msgstr ""
+msgstr "Hodnota passmaxrepeat nesmie byť záporná"
 
 #: ../authconfig.py:555
 msgid "The passmaxrepeat option value is not an integer"
-msgstr ""
+msgstr "Hodnota voľby passmaxrepeat nie je celé číslo"
 
 #: ../authconfig.py:563
 msgid "The passmaxclassrepeat value must not be negative"
-msgstr ""
+msgstr "Hodnota voľby passmaxclassrepeat nesmie byť záporná"
 
 #: ../authconfig.py:567
 msgid "The passmaxclassrepeat option value is not an integer"
-msgstr ""
+msgstr "Hodnota voľby passmaxclassrepeat nie je celé číslo"
 
 #: ../authconfig.py:589
 msgid "Bad smart card removal action specified."
@@ -643,12 +615,9 @@ msgstr "dialóg bol zrušený"
 #: ../authconfig.py:690 ../authconfig-gtk.py:582
 #, python-format
 msgid ""
-"The %s file was not found, but it is required for %s support to work "
-"properly.\n"
+"The %s file was not found, but it is required for %s support to work properly.\n"
 "Install the %s package, which provides this file."
-msgstr ""
-"Súbor %s nebol nájdený, ale je požadovaný pre správnu činnosť podpory %s.\n"
-"Nainštalujte balíček %s, ktorý tento súbor poskytuje."
+msgstr "Súbor %s nebol nájdený, ale je požadovaný pre správnu činnosť podpory %s.\nNainštalujte balíček %s, ktorý tento súbor poskytuje."
 
 #: ../authconfig.py:692 ../authconfig.py:1038
 msgid "Warning"
@@ -714,7 +683,7 @@ msgstr "Použiť NIS"
 
 #: ../authconfig.py:722
 msgid "Use IPAv2"
-msgstr ""
+msgstr "Použiť IPAv2"
 
 #: ../authconfig.py:725
 msgid "Use Winbind"
@@ -777,7 +746,7 @@ msgstr "Doména:"
 
 #: ../authconfig.py:906 ../authconfig.py:926
 msgid "Realm:"
-msgstr "Realm:"
+msgstr "Oblasť:"
 
 #: ../authconfig.py:907 ../authconfig.py:914 ../authconfig.py:921
 msgid "Server:"
@@ -785,7 +754,7 @@ msgstr "Server:"
 
 #: ../authconfig.py:908
 msgid "IPAv2 Settings"
-msgstr ""
+msgstr "Nastavenia IPAv2"
 
 #: ../authconfig.py:910 ../authconfig.py:985
 msgid "Join Domain"
@@ -817,11 +786,11 @@ msgstr "Administrátorský server:"
 
 #: ../authconfig.py:929
 msgid "Use DNS to resolve hosts to realms"
-msgstr "Použiť DNS pre prevod počítačov na realmy"
+msgstr "Použiť DNS pre prevod počítačov na oblasti"
 
 #: ../authconfig.py:930
 msgid "Use DNS to locate KDCs for realms"
-msgstr "Použiť DNS pre lokalizovanie KDC pre realmy"
+msgstr "Použiť DNS pre lokalizovanie KDC pre oblasti"
 
 #: ../authconfig.py:931
 msgid "Kerberos Settings"
@@ -841,13 +810,10 @@ msgstr "Nastavenia pripojenia"
 
 #: ../authconfig.py:952 ../authconfig.glade.h:44
 msgid ""
-"Some of the configuration changes you've made should be saved to disk before "
-"continuing.  If you do not save them, then your attempt to join the domain "
+"Some of the configuration changes you've made should be saved to disk before"
+" continuing.  If you do not save them, then your attempt to join the domain "
 "may fail.  Save changes?"
-msgstr ""
-"Niektoré zo zmien v nastaveniach, ktoré ste vykonali by mali byť pred "
-"pokračovaním uložené na disk.  Ak ich neuložíte, môže pokus o pripojenie do "
-"domény zlyhať.  Uložiť zmeny?"
+msgstr "Niektoré zo zmien v nastaveniach, ktoré ste vykonali by mali byť pred pokračovaním uložené na disk.  Ak ich neuložíte, môže pokus o pripojenie do domény zlyhať.  Uložiť zmeny?"
 
 #: ../authconfig.py:959
 msgid "Save Settings"
@@ -873,7 +839,7 @@ msgstr "Radiče domény:"
 
 #: ../authconfig.py:980
 msgid "ADS Realm:"
-msgstr "ADS Realm:"
+msgstr "ADS oblasti:"
 
 #: ../authconfig.py:981
 msgid "Template Shell:"
@@ -886,39 +852,27 @@ msgstr "Nastavenia Winbind"
 #: ../authconfig.py:1033
 #, python-format
 msgid ""
-"To connect to a LDAP server with TLS protocol enabled you need a CA "
-"certificate which signed your server's certificate. Copy the certificate in "
-"the PEM format to the '%s' directory.\n"
+"To connect to a LDAP server with TLS protocol enabled you need a CA certificate which signed your server's certificate. Copy the certificate in the PEM format to the '%s' directory.\n"
 "Then press OK."
-msgstr ""
-"Na pripojenie k LDAP serveru s povoleným TLS protokolom potrebujete "
-"certifikát CA, ktorým je podpísaný certifikát vášho servera. Prekopírujte "
-"tento certifikát vo formáte PEM do priečinku '%s'.\n"
-"Potom kliknite na Ok."
+msgstr "Na pripojenie k LDAP serveru s povoleným TLS protokolom potrebujete certifikát CA, ktorým je podpísaný certifikát vášho servera. Prekopírujte tento certifikát vo formáte PEM do priečinku '%s'.\nPotom kliknite na Ok."
 
 #. FIXME - version
 #: ../authconfig.py:1047
 msgid ""
 " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
 "screen"
-msgstr ""
-"  <Tab>/<Alt-Tab> medzi položkami  |  <Space> vyberá  |  <F12> nasl. obr. "
+msgstr "  <Tab>/<Alt-Tab> medzi položkami  |  <Space> vyberá  |  <F12> nasl. obr. "
 
 #: ../authconfig.desktop.in.h:2
 msgid "Control how the system verifies users who attempt to log in"
-msgstr ""
-"Kontroluje ako systém overuje používateľov, ktorí žiadajú o prihlásenie"
+msgstr "Kontroluje ako systém overuje používateľov, ktorí žiadajú o prihlásenie"
 
 #: ../authconfig-gtk.py:65
 msgid ""
 "Unable to initialize graphical environment. Most likely cause of failure\n"
 "is that the tool was not run using a graphical environment. Please either\n"
 "start your graphical user interface or set your DISPLAY variable.\n"
-msgstr ""
-"Nedá sa inicializovať grafické prostredie. Najskôr bude závada\n"
-"spôsoben tým, že nástroj nebol spustený použitím grafického\n"
-"prostredia. Prosím, spustite Vaše grafické užívateľské prostredie\n"
-"alebo nastavte premennú DISPLAY.\n"
+msgstr "Nedá sa inicializovať grafické prostredie. Najskôr bude závada\nspôsoben tým, že nástroj nebol spustený použitím grafického\nprostredia. Prosím, spustite Vaše grafické užívateľské prostredie\nalebo nastavte premennú DISPLAY.\n"
 
 #: ../authconfig-gtk.py:120
 msgid "Local accounts only"
@@ -930,7 +884,7 @@ msgstr "FreeIPA"
 
 #: ../authconfig-gtk.py:135
 msgid "IPAv2"
-msgstr ""
+msgstr "IPAv2"
 
 #: ../authconfig-gtk.py:144
 msgid "Password"
@@ -954,21 +908,20 @@ msgstr "Winbind heslo"
 
 #: ../authconfig-gtk.py:159
 msgid "IPAv2 password"
-msgstr ""
+msgstr "IPAv2 hesla"
 
 #: ../authconfig-gtk.py:543 ../authinfo.py:1608
 msgid "Invalid LDAP URI."
-msgstr ""
+msgstr "Neplatné URI pre LDAP."
 
 #: ../authconfig-gtk.py:546
 msgid ""
 "You must provide ldaps:// server address or use TLS for LDAP authentication."
-msgstr ""
-"Musíte zadať adresu servera ldaps:// alebo použiť TLS pre LDAP overenie."
+msgstr "Musíte zadať adresu servera ldaps:// alebo použiť TLS pre LDAP overenie."
 
 #: ../authconfig-gtk.py:553
 msgid "Use the \"Join Domain\" button to join the IPAv2 domain."
-msgstr ""
+msgstr "Použite tlačidlo \"Pripojiť sa do domény\" na pripojenie k IPAv2 doméne."
 
 #: ../authconfig.glade.h:2
 msgid ""
@@ -1010,11 +963,9 @@ msgstr "Povoliť podporu s_nímača odtlačkov prstov"
 
 #: ../authconfig.glade.h:11
 msgid ""
-"Fingerprint authentication allows you to log in by scanning your finger with "
-"the fingerprint reader."
-msgstr ""
-"Overenie totožnosti odtlačkom prstov vám umožňuje prihlásiť sa zoskenovaním "
-"prsta pomocou snímača odtlačkov prstov."
+"Fingerprint authentication allows you to log in by scanning your finger with"
+" the fingerprint reader."
+msgstr "Overenie totožnosti odtlačkom prstov vám umožňuje prihlásiť sa zoskenovaním prsta pomocou snímača odtlačkov prstov."
 
 #: ../authconfig.glade.h:12
 msgid "Enable _local access control"
@@ -1024,21 +975,16 @@ msgstr "Povoliť _lokálnu kontrolu prístupu"
 msgid ""
 "When enabled /etc/security/access.conf will be consulted for authorization "
 "of users access."
-msgstr ""
-"Ak je povolené, /etc/security/access.conf bude konzultované pre oprávnenia "
-"prístupu používateľov."
+msgstr "Ak je povolené, /etc/security/access.conf bude konzultované pre oprávnenia prístupu používateľov."
 
 #: ../authconfig.glade.h:14
 msgid ""
 "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-msgstr ""
-"<small><b>Tip:</b> Toto je riadené súborom /etc/security/access.conf.</small>"
+msgstr "<small><b>Tip:</b> Toto je riadené súborom /etc/security/access.conf.</small>"
 
 #: ../authconfig.glade.h:15
 msgid "Hashing or crypto algorithm used for storing passwords of local users"
-msgstr ""
-"Hašovací lebo kryptovací algoritmus použitý pre ukladanie hesiel lokálnych "
-"používateľov"
+msgstr "Hašovací lebo kryptovací algoritmus použitý pre ukladanie hesiel lokálnych používateľov"
 
 #: ../authconfig.glade.h:16
 msgid "_Password Hashing Algorithm:"
@@ -1056,9 +1002,7 @@ msgstr "_Vytvoriť domovské priečinky pri prvom prihlásení"
 msgid ""
 "If the home directory of an user doesn't exist yet it will be created "
 "automatically on his first login."
-msgstr ""
-"Ak domovský priečinok nejakého používateľa neexistuje, bude automaticky "
-"vytvorený pri jeho prvom prihlásení."
+msgstr "Ak domovský priečinok nejakého používateľa neexistuje, bude automaticky vytvorený pri jeho prvom prihlásení."
 
 #: ../authconfig.glade.h:20
 msgid "<b>Smart Card Authentication Options</b>"
@@ -1072,17 +1016,13 @@ msgstr "Povoliť podporu _smart karty"
 msgid ""
 "Smart card authentication allows you to log in using a certificate and key "
 "associated with a smart card."
-msgstr ""
-"Overenie totožnosti Smart kartou vám umožňuje prihlásiť sa použitím "
-"certifikátu a kľúča priradeným k smart karte."
+msgstr "Overenie totožnosti Smart kartou vám umožňuje prihlásiť sa použitím certifikátu a kľúča priradeným k smart karte."
 
 #: ../authconfig.glade.h:23
 msgid ""
-"<small><b>Tip:</b> Smart cards support logging into both local and centrally "
-"managed accounts.</small>"
-msgstr ""
-"<small><b>Tip:</b> Smart karty podporujú prihlásenie k lokálne aj k "
-"centrálne spracovaným účtom.</small>"
+"<small><b>Tip:</b> Smart cards support logging into both local and centrally"
+" managed accounts.</small>"
+msgstr "<small><b>Tip:</b> Smart karty podporujú prihlásenie k lokálne aj k centrálne spracovaným účtom.</small>"
 
 #: ../authconfig.glade.h:24
 msgid "Advanced _Options"
@@ -1090,60 +1030,60 @@ msgstr "Pokročilé _voľby"
 
 #: ../authconfig.glade.h:25
 msgid "<b>Minimal Password Requirements</b>"
-msgstr ""
+msgstr "<b>Minimálne požiadavky na heslo</b>"
 
 #: ../authconfig.glade.h:26
 msgid "_Length:"
-msgstr ""
+msgstr "_Dĺžka:"
 
 #: ../authconfig.glade.h:27
 msgid "C_haracter Classes:"
-msgstr ""
+msgstr "_Trieda znakov:"
 
 #: ../authconfig.glade.h:28
 msgid "<b>Required Character Classes</b>"
-msgstr ""
+msgstr "<b>Vyžadované triedy znakov</b>"
 
 #: ../authconfig.glade.h:29
 msgid "Low_ercase"
-msgstr ""
+msgstr "Malé _písmená"
 
 #: ../authconfig.glade.h:30
 msgid "_Uppercase"
-msgstr ""
+msgstr "_Veľké písmená"
 
 #: ../authconfig.glade.h:31
 msgid "_Digits"
-msgstr ""
+msgstr "Číslic_e"
 
 #: ../authconfig.glade.h:32
 msgid "O_ther characters"
-msgstr ""
+msgstr "O_statné znaky"
 
 #: ../authconfig.glade.h:33
 msgid "<b>Maximal Consecutive Character Repetition</b>"
-msgstr ""
+msgstr "<b>Maximálne opakovanie znakov nasledujúcich po sebe</b>"
 
 #: ../authconfig.glade.h:34
 msgid "_Same Character:"
-msgstr ""
+msgstr "_Rovnaký znak:"
 
 #: ../authconfig.glade.h:35
 msgid "Sa_me Class:"
-msgstr ""
+msgstr "Rovnaká _trieda:"
 
 #: ../authconfig.glade.h:36
-msgid "<small><b>Tip:</b> These checks are disabled if the value is 0.</small>"
-msgstr ""
+msgid ""
+"<small><b>Tip:</b> These checks are disabled if the value is 0.</small>"
+msgstr "<small><b>Tip:</b> Tieto kontroly sú vypnuté ak majú hodnotu 0.</small>"
 
 #: ../authconfig.glade.h:37
 msgid "Pass_word Options"
-msgstr ""
+msgstr "Voľby _hesla"
 
 #: ../authconfig.glade.h:38
-#, fuzzy
 msgid "Joining IPA Domain"
-msgstr "Pripojiť sa do domény"
+msgstr "Pripájanie sa do IPA domény"
 
 #: ../authconfig.glade.h:39
 msgid "Domain _administrator:"
@@ -1178,10 +1118,7 @@ msgid ""
 "To verify the LDAP server with TLS protocol enabled you need a CA "
 "certificate which signed the server's certificate. Please fill in the URL "
 "where the CA certificate in the PEM format can be downloaded from."
-msgstr ""
-"Na pripojenie k LDAP serveru s povoleným TLS protokolom potrebujete "
-"certifikát CA, ktorý podpísal certifikát vášho servera. Napíšte adresu tohto "
-"certifikátu vo formáte PEM, z ktorej sa dá získať."
+msgstr "Na pripojenie k LDAP serveru s povoleným TLS protokolom potrebujete certifikát CA, ktorý podpísal certifikát vášho servera. Napíšte adresu tohto certifikátu vo formáte PEM, z ktorej sa dá získať."
 
 #: ../authconfig.glade.h:49
 msgid "NIS _Server:"
@@ -1197,7 +1134,7 @@ msgstr "_Admin servery:"
 
 #: ../authconfig.glade.h:52
 msgid "R_ealm:"
-msgstr "R_ealm:"
+msgstr "O_blasť:"
 
 #: ../authconfig.glade.h:53
 msgid "_KDCs:"
@@ -1205,16 +1142,15 @@ msgstr "_KDC:"
 
 #: ../authconfig.glade.h:54
 msgid "Use D_NS to resolve hosts to realms"
-msgstr "Použiť D_NS pre prevod počítačov na realmy"
+msgstr "Použiť D_NS pre prevod počítačov na oblasti"
 
 #: ../authconfig.glade.h:55
 msgid "Use DNS to _locate KDCs for realms"
-msgstr "Použiť DNS pre _lokalizáciu KDC pre realmy"
+msgstr "Použiť DNS pre _lokalizáciu KDC pre oblasti"
 
 #: ../authconfig.glade.h:56
 msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-msgstr ""
-"Názov počítača alebo ldap:// alebo ldaps:// URI ukazujúce na LDAP server."
+msgstr "Názov počítača alebo ldap:// alebo ldaps:// URI ukazujúce na LDAP server."
 
 #: ../authconfig.glade.h:57
 msgid "LDAP Search _Base DN:"
@@ -1228,17 +1164,13 @@ msgstr "Použiť _TLS na zabezpečenie pripojenia"
 msgid ""
 "Use Transport Layer Security extension for LDAP as defined by RFC-2830. It "
 "must not be ticked with ldaps server URI."
-msgstr ""
-"Použiť rozšírenie Transport Layer Security (TLS) pre LDAP ako je definované "
-"v RFC-2830. Nesmie byť zvolené pri ldaps URI servera."
+msgstr "Použiť rozšírenie Transport Layer Security (TLS) pre LDAP ako je definované v RFC-2830. Nesmie byť zvolené pri ldaps URI servera."
 
 #: ../authconfig.glade.h:60
 msgid ""
 "Click this button if you did not download a CA certificate yet or you have "
 "not set the CA certificate up by other means."
-msgstr ""
-"Stlačte toto tlačidlo, ak ste ešte nestiahli certifikát CA, alebo "
-"nenastavili certifikát CA iným spôsobom."
+msgstr "Stlačte toto tlačidlo, ak ste ešte nestiahli certifikát CA, alebo nenastavili certifikát CA iným spôsobom."
 
 #: ../authconfig.glade.h:61
 msgid "_Download CA Certificate..."
@@ -1266,7 +1198,7 @@ msgstr "Ša_blóna shellu:"
 
 #: ../authconfig.glade.h:67
 msgid "Winbind ADS R_ealm:"
-msgstr "Winbind ADS _Realm:"
+msgstr "Winbind ADS _oblasť:"
 
 #: ../authconfig.glade.h:68
 msgid "Allow offline _login"
@@ -1278,19 +1210,19 @@ msgstr "_Pripojiť sa do domény..."
 
 #: ../authconfig.glade.h:70
 msgid "IPA _Domain:"
-msgstr ""
+msgstr "IPA _doména:"
 
 #: ../authconfig.glade.h:71
 msgid "IPA _Server:"
-msgstr ""
+msgstr "IPA _server:"
 
 #: ../authconfig.glade.h:72
 msgid "IPA R_ealm:"
-msgstr ""
+msgstr "IPA o_blasť:"
 
 #: ../authconfig.glade.h:73
 msgid "Do not configure _NTP"
-msgstr ""
+msgstr "Nenastavovať _NTP"
 
 #: ../authconfig.glade.h:74
 msgid "Card Re_moval Action:"
@@ -1308,9 +1240,7 @@ msgstr "Vrátiť"
 msgid ""
 "All configuration files which were modified by the previous authentication "
 "configuration change will be restored from backup. Revert the changes?"
-msgstr ""
-"Všetky súbory nastavení, ktoré boli zmenené predošlou zmenou overovania "
-"totožnosti budú obnovené zo zálohy. Chcete vrátiť stav pred zmenami?"
+msgstr "Všetky súbory nastavení, ktoré boli zmenené predošlou zmenou overovania totožnosti budú obnovené zo zálohy. Chcete vrátiť stav pred zmenami?"
 
 #: ../authinfo.py:1008 ../authinfo.py:1911 ../authinfo.py:3311
 #: ../authinfo.py:3364
@@ -1326,29 +1256,27 @@ msgstr "Ignorovať"
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
-msgstr ""
-"Chýba modul overovania totožnosti %s/pam_%s.so. Proces overenia totožnosti "
-"nemusí pracovať správne."
+msgstr "Chýba modul overovania totožnosti %s/pam_%s.so. Proces overenia totožnosti nemusí pracovať správne."
 
 #: ../authinfo.py:4266
 msgid "Winbind domain join was not successful."
-msgstr ""
+msgstr "Pripojenie k Winbind doméne sa nepodarilo."
 
 #: ../authinfo.py:4269
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
-msgstr ""
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
+msgstr "Pripojenie k Winbind doméne sa nepodarilo. Príkaz net join zlyhal s nasledujúcou chybou:"
 
 #: ../authinfo.py:4306
 msgid "IPAv2 domain join was not successful."
-msgstr ""
+msgstr "Pripojenie k IPAv2 doméne sa nepodarilo."
 
 #: ../authinfo.py:4309
 msgid ""
 "IPAv2 domain join was not successful. The ipa-client-install command failed "
 "with the following error:"
-msgstr ""
+msgstr "Pripojenie k IPAv2 doméne sa nepodarilo. Príkaz ipa-client-install zlyhal s nasledujúcou chybou:"
 
 #: ../authinfo.py:4439
 msgid "Error downloading CA certificate"
