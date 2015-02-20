@@ -14,7 +14,7 @@ startheredir = $(sysconfdir)/X11/sysconfig
 sbin_SCRIPTS = cacertdir_rehash
 pkgdata_SCRIPTS = authconfig-gtk.py authconfig.py
 pkgdata_DATA = authconfig.glade authinfo.py shvfile.py dnsclient.py msgarea.py
-pythonsite_LTLIBRARIES = acutilmodule.la
+pythonsite_LTLIBRARIES = acutil.la
 backupdir = $(localstatedir)/lib/authconfig
 
 install-exec-local:
@@ -82,8 +82,8 @@ uninstall-local:
 
 AM_CFLAGS = @CFLAGS@ @PYTHON_CFLAGS@ -Wall
 
-acutilmodule_la_SOURCES = acutilmodule.c
-acutilmodule_la_LDFLAGS = -module -avoid-version -export-dynamic @LDFLAGS@
+acutil_la_SOURCES = acutilmodule.c
+acutil_la_LDFLAGS = -module -avoid-version -export-dynamic @LDFLAGS@
 
 EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd \
 	authconfig.console authconfig-tui.console authconfig-gtk.console \

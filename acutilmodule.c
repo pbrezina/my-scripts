@@ -25,8 +25,16 @@
 #include <resolv.h>
 #include <unistd.h>
 
-#define DEFAULT_ASIZE 4096
+#if PY_MAJOR_VERSION >= 3
+#define IS_PY3K
+#define PYBUILD_BYTES "y#"
+PyMODINIT_FUNC PyInit_acutil(void);
+#else
+#define PYBUILD_BYTES "s#"
 PyMODINIT_FUNC initacutil(void);
+#endif
+
+#define DEFAULT_ASIZE 4096
 
 static PyObject *
 getusershells(PyObject *self, PyObject *args)
@@ -40,7 +48,13 @@ getusershells(PyObject *self, PyObject *args)
 	ret = PyList_New(0);
 	setusershell();
 	while ((p = getusershell()) != NULL) {
-		PyList_Append(ret, PyString_FromString(p));
+		PyList_Append(ret,
+#ifdef IS_PY3K
+			PyUnicode_FromString(p)
+#else
+			PyString_FromString(p)
+#endif
+			);
 	}
 	endusershell();
 	
@@ -79,7 +93,7 @@ resolver_send(PyObject *self, PyObject *args)
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
-	ret = Py_BuildValue("s#", ans, rv);
+	ret = Py_BuildValue(PYBUILD_BYTES, ans, rv);
 	free(ans);
 	return ret;
 }
@@ -90,8 +104,29 @@ static PyMethodDef acutil_methods[] = {
 	{NULL, NULL, 0, NULL}
 };
 
+#ifdef IS_PY3K
+static struct PyModuleDef acutil_def = {
+	PyModuleDef_HEAD_INIT,
+	"acutil",
+	NULL,
+	-1,
+	acutil_methods,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+};
+
+PyMODINIT_FUNC
+PyInit_acutil(void)
+#else
 PyMODINIT_FUNC
 initacutil(void)
+#endif
 {
+#ifdef IS_PY3K
+    return PyModule_Create(&acutil_def);
+#else
     (void)Py_InitModule("acutil", acutil_methods);
+#endif
 }

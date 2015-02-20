@@ -39,8 +39,12 @@ import shvfile
 import dnsclient
 import sys
 import errno
-import urllib2
-import urlparse
+if sys.version_info[0] < 3:
+	import urllib2 as request
+	import urlparse as parse
+else:
+	from urllib import request
+	from urllib import parse
 import time
 import tempfile
 from subprocess import *
@@ -223,13 +227,13 @@ def openfdLocked(filename, mode, perms):
 			fcntl.lockf(fd, fcntl.LOCK_SH)
 		else:
 			fcntl.lockf(fd, fcntl.LOCK_EX)
-	except OSError as (errno, strerr):
+	except OSError as err:
 		if fd != None:
 			try:
 				os.close(fd)
 			except OSError:
 				pass
-		raise IOError(errno, strerr)
+		raise IOError(err.errno, err.strerror)
 	return fd
 
 def openLocked(filename, perms):
@@ -435,13 +439,13 @@ argv_lastlog_not_gdm = [
 password_algorithms = ["descrypt", "bigcrypt", "md5", "sha256", "sha512"]
 
 # Enumerations for PAM control flags and stack names.
-(AUTH, ACCOUNT, SESSION, PASSWORD) = range(0,4)
+(AUTH, ACCOUNT, SESSION, PASSWORD) = list(range(0,4))
 
 pam_stacks = ["auth", "account", "session", "password"]
 
-(MANDATORY, STACK, LOGIC, NAME, ARGV) = range(0,5)
+(MANDATORY, STACK, LOGIC, NAME, ARGV) = list(range(0,5))
 
-(STANDARD, POSTLOGIN, PASSWORD_ONLY, FINGERPRINT, SMARTCARD) = range(0,5)
+(STANDARD, POSTLOGIN, PASSWORD_ONLY, FINGERPRINT, SMARTCARD) = list(range(0,5))
 
 pam_modules = [[] for service in (STANDARD, POSTLOGIN, PASSWORD_ONLY, FINGERPRINT, SMARTCARD)]
 
@@ -910,7 +914,8 @@ def feedFork(command, echo, query, response):
 			ifds = []
 			efds = []
 			(ifds,ofds,efds) = select.select([master],[],[master], 60)
-		except select.error, (err, text):
+		except select.error as err:
+			text = err.strerror if hasattr(err, "strerror") else err.message
 			sys.stderr.write("select: " + text + "\n")
 		if not ifds and not efds:
 			# timeout or error
@@ -920,14 +925,14 @@ def feedFork(command, echo, query, response):
 		c = ""
 		try:
 			c = os.read(master, 1)
-		except OSError as (err, text):
+		except OSError as err:
 			if err == errno.EINTR or err == errno.EAGAIN:
 				pass
 			elif err == errno.EIO:
 				os.close(master)
 				eof = True
 			else:
-				sys.stderr.write("read: " + text + "\n")
+				sys.stderr.write("read: " + err.strerror + "\n")
 				os.close(master)
 				eof = True
 			continue
@@ -952,8 +957,8 @@ def feedFork(command, echo, query, response):
 					output = ""
 					if echo:
 						sys.stderr.write("<...>\n")
-			except OSError, (err, text):
-				sys.stderr.write("write: " + text + "\n")
+			except OSError as err:
+				sys.stderr.write("write: " + err.strerror + "\n")
 				os.close(master)
 				eof = True
 		else:
@@ -966,8 +971,8 @@ def feedFork(command, echo, query, response):
 	status = 255
 	try:
 		(child, status) = os.waitpid(pid, 0)
-	except OSError, (err, text):
-		sys.stderr.write("waitpid: " + text + "\n")
+	except OSError as err:
+		sys.stderr.write("waitpid: " + err.strerror + "\n")
 	return (status, error)
 
 def isEmptyDir(path):
@@ -989,7 +994,7 @@ def isEmptyDir(path):
 def callPKCS11Setup(options):
 	try:
 		child = Popen([PATH_SCSETUP] + options, stdout=PIPE)
-		lst = child.communicate()[0].split("\n")
+		lst = child.communicate()[0].split(b"\n")
 		if child.returncode != 0:
 			return None
 		if lst[-1] == '':
@@ -1220,7 +1225,7 @@ class CacheBackup(FileBackup):
 (CFG_HESIOD, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER, CFG_PWQUALITY,
-	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP, CFG_DCONF, CFG_DCONF_LOCKS) = range(0, 30)
+	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP, CFG_DCONF, CFG_DCONF_LOCKS) = list(range(0, 30))
 all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
@@ -1371,14 +1376,14 @@ class AuthInfo:
 		self.enableCacheCreds = None
 
                 # Password quality
-                self.passMinLen = "9"
-                self.passMinClass = "1"
-                self.passMaxRepeat = "0"
-                self.passMaxClassRepeat = "0"
-                self.passReqLower = None
-                self.passReqUpper = None
-                self.passReqDigit = None
-                self.passReqOther = None
+		self.passMinLen = "9"
+		self.passMinClass = "1"
+		self.passMaxRepeat = "0"
+		self.passMaxClassRepeat = "0"
+		self.passReqLower = None
+		self.passReqUpper = None
+		self.passReqDigit = None
+		self.passReqOther = None
 
 		# Not really options.
 		self.joinUser = ""
@@ -1481,21 +1486,21 @@ class AuthInfo:
 			if oldval != getattr(ref, attr):
 				self.inconsistentAttrs.append(attr)
 
-        def setIntParam(self, attr, value, ref):
-                try:
-                        value = int(value)
-                except ValueError:
-                        return
-                return self.setParam(attr, str(value), ref)
+	def setIntParam(self, attr, value, ref):
+		try:
+			value = int(value)
+		except ValueError:
+			return
+		return self.setParam(attr, str(value), ref)
 
-        def setClassReqParam(self, attr, value, ref):
-                try:
-                        value = int(value)
-                except ValueError:
-                        return
-                if value < 0:
-                        return self.setParam(attr, True, ref)
-                return self.setParam(attr, False, ref)
+	def setClassReqParam(self, attr, value, ref):
+		try:
+			value = int(value)
+		except ValueError:
+			return
+		if value < 0:
+			return self.setParam(attr, True, ref)
+		return self.setParam(attr, False, ref)
 
 	def sssdSupported(self):
 		if self.enableForceLegacy or not self.sssdConfig:
@@ -1597,7 +1602,7 @@ class AuthInfo:
 			uris = s.split()
 		for uri in uris:
 			try:
-				p = urlparse.urlparse(uri).port
+				p = parse.urlparse(uri).port
 			except (ValueError, socket.error):
 				return False
 		return True
@@ -1827,7 +1832,7 @@ class AuthInfo:
 			return False
 	
 		for line in f:
-                        line = line.split('#')[0]
+			line = line.split('#')[0]
 			line = line.strip()
 
 			# Check for the settings that interest us.
@@ -1918,7 +1923,7 @@ class AuthInfo:
 		if rmactions == None:
 			return False
 		for action in rmactions:
-			if "lockhelper.sh" in action:
+			if b"lockhelper.sh" in action:
 				lock = True
 		if lock:
 			self.setParam("smartcardAction", _("Lock"), ref)
@@ -2493,7 +2498,7 @@ class AuthInfo:
 			self.setParam("enableSSSDAuth", True, ref)
 
 		self.readLogindefs(ref)
-                self.readPWQuality(ref)
+		self.readPWQuality(ref)
 		self.readHesiod(ref)
 		self.readWinbind(ref)
 		self.readNetwork(ref)
@@ -2531,7 +2536,7 @@ class AuthInfo:
 		shv.setValue("lhs", self.hesiodLHS)
 		shv.setValue("rhs", self.hesiodRHS)
 
-		shv.write(0644)
+		shv.write(0o644)
 		shv.close()
 
 		return True
@@ -2543,10 +2548,11 @@ class AuthInfo:
 		output = ""
 		all_configs[CFG_YP].backup(self.backupDir)
 		try:
-			f = SafeFile(all_configs[CFG_YP].origPath, 0644)
+			f = SafeFile(all_configs[CFG_YP].origPath, 0o644)
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				ls = line.strip()
 				
 				value = matchKey(ls, "domain")
@@ -2611,7 +2617,7 @@ class AuthInfo:
 						output += "ypserver " + s + "\n"
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -2637,10 +2643,11 @@ class AuthInfo:
 		else: 
 			passalgo = "crypt"
 		try:
-			f = SafeFile(filename, 0644)
+			f = SafeFile(filename, 0o644)
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				ls = line.strip()
 				# If it's a 'uri' line, insert ours instead.
 				if matchLine(ls, uri):
@@ -2729,7 +2736,7 @@ class AuthInfo:
 				output += "\n"
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -2779,10 +2786,11 @@ class AuthInfo:
 		output = ""
 		all_configs[CFG_LIBUSER].backup(self.backupDir)
 		try:
-			f = SafeFile(all_configs[CFG_LIBUSER].origPath, 0644)
+			f = SafeFile(all_configs[CFG_LIBUSER].origPath, 0o644)
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				ls = line.strip()
 
 				# If this is the "crypt_style" in the defaults section,
@@ -2813,7 +2821,7 @@ class AuthInfo:
 				wrotecryptstyle = True
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -2842,10 +2850,11 @@ class AuthInfo:
 		else:
 			encmethod = "ENCRYPT_METHOD " + self.passwordAlgorithm.upper() + "\n"
 		try:
-			f = SafeFile(all_configs[CFG_LOGIN_DEFS].origPath, 0644)
+			f = SafeFile(all_configs[CFG_LOGIN_DEFS].origPath, 0o644)
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				match = ld_line_re.match(line)
 				if match is not None:
 					name = match.group(1)
@@ -2880,7 +2889,7 @@ class AuthInfo:
 				output += encmethod
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -2890,110 +2899,111 @@ class AuthInfo:
 				pass
 		return True
 
-        def formatClassReqParam(self, line, value):
-                ls = line.split('=')
-                if len(ls) <= 1:
-                        ls = line.split(' ')
-                if len(ls) > 1:
-                        try:
-                                oldval = int(ls[1])
-                                if value == None:
-                                        return line
-                                if value and oldval >= 0:
-                                        return ls[0] + " = -1"
-                                if not value and oldval < 0:
-                                        return ls[0] + " = 0"
-                        except ValueError:
-                                pass
-                if value:
-                        value = "-1"
-                else:
-                        value = "0"
-                return ls[0] + " = " + value
+	def formatClassReqParam(self, line, value):
+		ls = line.split('=')
+		if len(ls) <= 1:
+			ls = line.split(' ')
+		if len(ls) > 1:
+			try:
+				oldval = int(ls[1])
+				if value == None:
+					return line
+				if value and oldval >= 0:
+					return ls[0] + " = -1"
+				if not value and oldval < 0:
+					return ls[0] + " = 0"
+			except ValueError:
+				pass
+		if value:
+			value = "-1"
+		else:
+			value = "0"
+		return ls[0] + " = " + value
 
 	# Write pwquality password requirements settings to /etc/security/pwquality.conf.
 	def writePWQuality(self):
 		wroteminlen = False
-                wroteminclass = False
-                wrotemaxrepeat = False
-                wrotemaxclassrepeat = False
-                wrotereqlower = False
-                wroterequpper = False
-                wrotereqdigit = False
-                wrotereqother = False
+		wroteminclass = False
+		wrotemaxrepeat = False
+		wrotemaxclassrepeat = False
+		wrotereqlower = False
+		wroterequpper = False
+		wrotereqdigit = False
+		wrotereqother = False
 		f = None
 		output = ""
 		all_configs[CFG_PWQUALITY].backup(self.backupDir)
 		try:
-			f = SafeFile(all_configs[CFG_PWQUALITY].origPath, 0644)
+			f = SafeFile(all_configs[CFG_PWQUALITY].origPath, 0o644)
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				ls = line.split('#')[0].strip()
 
 				if matchLine(ls, "minlen"):
-                                        if not wroteminlen:
+					if not wroteminlen:
         					output += "minlen = " + self.passMinLen + "\n"
 	        				wroteminlen = True
 					continue
 				if matchLine(ls, "minclass"):
-                                        if not wroteminclass:
+					if not wroteminclass:
         					output += "minclass = " + self.passMinClass + "\n"
 	        				wroteminclass = True
 					continue
 				if matchLine(ls, "maxrepeat"):
-                                        if not wrotemaxrepeat:
+					if not wrotemaxrepeat:
         					output += "maxrepeat = " + self.passMaxRepeat + "\n"
 	        				wrotemaxrepeat = True
 					continue
 				if matchLine(ls, "maxclassrepeat"):
-                                        if not wrotemaxclassrepeat:
+					if not wrotemaxclassrepeat:
         					output += "maxclassrepeat = " + self.passMaxClassRepeat + "\n"
 	        				wrotemaxclassrepeat = True
 					continue
 				if matchLine(ls, "lcredit"):
-                                        if not wrotereqlower:
+					if not wrotereqlower:
         					output += self.formatClassReqParam(ls, self.passReqLower) + "\n"
 	        				wrotereqlower = True
 					continue
 				if matchLine(ls, "ucredit"):
-                                        if not wroterequpper:
+					if not wroterequpper:
         					output += self.formatClassReqParam(ls, self.passReqUpper) + "\n"
 	        				wroterequpper = True
 					continue
 				if matchLine(ls, "dcredit"):
-                                        if not wrotereqdigit:
+					if not wrotereqdigit:
         					output += self.formatClassReqParam(ls, self.passReqDigit) + "\n"
         					wrotereqdigit = True
 					continue
 				if matchLine(ls, "ocredit"):
-                                        if not wrotereqother:
+					if not wrotereqother:
         					output += self.formatClassReqParam(ls, self.passReqOther) + "\n"
 	        				wrotereqother = True
 					continue
 
 				output += line
 
-                        if not wroteminlen:
+			if not wroteminlen:
         			output += "minlen = " + self.passMinLen + "\n"
-                        if not wroteminclass:
+			if not wroteminclass:
 				output += "minclass = " + self.passMinClass + "\n"
-                        if not wrotemaxrepeat:
+			if not wrotemaxrepeat:
 				output += "maxrepeat = " + self.passMaxRepeat + "\n"
-                        if not wrotemaxclassrepeat:
+			if not wrotemaxclassrepeat:
 				output += "maxclassrepeat = " + self.passMaxClassRepeat + "\n"
-                        if not wrotereqlower:
+			if not wrotereqlower:
         			output += self.formatClassReqParam("lcredit", self.passReqLower) + "\n"
-                        if not wroterequpper:
+			if not wroterequpper:
 				output += self.formatClassReqParam("ucredit", self.passReqUpper) + "\n"
-                        if not wrotereqdigit:
+			if not wrotereqdigit:
         		        output += self.formatClassReqParam("dcredit", self.passReqDigit) + "\n"
-                        if not wrotereqother:
+			if not wrotereqother:
 				output += self.formatClassReqParam("ocredit", self.passReqOther) + "\n"
 
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -3035,10 +3045,11 @@ class AuthInfo:
 		if self.kerberosRealm == self.smbRealm:
 			wrotesmbrealm = True
 		try:
-			f = SafeFile(all_configs[CFG_KRB5].origPath, 0644)
+			f = SafeFile(all_configs[CFG_KRB5].origPath, 0o644)
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				ls = line.strip()
 
 				# If this is the "kdc" in our realm, replace it with
@@ -3228,7 +3239,7 @@ class AuthInfo:
 
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -3395,9 +3406,9 @@ class AuthInfo:
 
 		if locks != "":
 			try:
-				f = SafeFile(all_configs[CFG_DCONF].origPath, 0644)
+				f = SafeFile(all_configs[CFG_DCONF].origPath, 0o644)
 				f.rewind()
-				f.write(output)
+				f.write(output.encode('utf-8'))
 				f.save()
 			finally:
 				try:
@@ -3407,9 +3418,9 @@ class AuthInfo:
 					pass
 
 			try:
-				f = SafeFile(all_configs[CFG_DCONF_LOCKS].origPath, 0644)
+				f = SafeFile(all_configs[CFG_DCONF_LOCKS].origPath, 0o644)
 				f.rewind()
-				f.write(locks)
+				f.write(locks.encode('utf-8'))
 				f.save()
 			finally:
 				try:
@@ -3510,10 +3521,11 @@ class AuthInfo:
 		f = None
 		output = ""
 		try:
-			f = SafeFile(all_configs[CFG_SMB].origPath, 0644)
+			f = SafeFile(all_configs[CFG_SMB].origPath, 0o644)
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				ls = line.strip()
 
 				if authsection:
@@ -3558,7 +3570,7 @@ class AuthInfo:
 
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -3585,7 +3597,7 @@ class AuthInfo:
 		output = ""
 		all_configs[CFG_NSSWITCH].backup(self.backupDir)
 		try:
-			f = SafeFile(all_configs[CFG_NSSWITCH].origPath, 0644)
+			f = SafeFile(all_configs[CFG_NSSWITCH].origPath, 0o644)
 
 			# Determine what we want in that file for most of the databases. If
 			# we're using DB, we're doing it for speed, so put it in first.  Then
@@ -3593,8 +3605,8 @@ class AuthInfo:
 			if self.enableDB:
 				normal += " db"
 			normal += " files"
-                        if self.enableAltfiles:
-                                normal += " altfiles"
+			if self.enableAltfiles:
+				normal += " altfiles"
 			services = normal
 			if self.enableDirectories:
 				normal += " directories"
@@ -3659,6 +3671,7 @@ class AuthInfo:
 
 			# Read in the old file.
 			for line in f.file:
+				line = line.decode('utf-8')
 				ls = line.strip()
 
 				# If it's a 'passwd' line, insert ours instead.
@@ -3755,7 +3768,7 @@ class AuthInfo:
 
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -3882,7 +3895,7 @@ class AuthInfo:
 		output = ""
 		all_configs[cfg].backup(self.backupDir)
 		try:
-			f = SafeFile(all_configs[cfg].origPath, 0644)
+			f = SafeFile(all_configs[cfg].origPath, 0o644)
 
 			output += "#%PAM-1.0\n"
 			output += "# This file is auto-generated.\n"
@@ -3936,7 +3949,7 @@ class AuthInfo:
 
 			# Write it out and close it.
 			f.rewind()
-			f.write(output)
+			f.write(output.encode('utf-8'))
 			f.save()
 		finally:
 			try:
@@ -3999,7 +4012,7 @@ class AuthInfo:
 		shv.setValue("IPAV2DOMAIN", self.ipav2Domain)
 		shv.setValue("IPAV2REALM", self.ipav2Realm)
 
-		shv.write(0644)
+		shv.write(0o644)
 		shv.close()
 
 		return True
@@ -4013,7 +4026,7 @@ class AuthInfo:
 
 		shv.setValue("NISDOMAIN", self.nisDomain)
 
-		shv.write(0644)
+		shv.write(0o644)
 		shv.close()
 
 		return True
@@ -4173,77 +4186,77 @@ class AuthInfo:
 					break
 
 	def printInfo(self):
-		print "caching is %s" % formatBool(self.enableCache)
-		print "nss_files is always enabled"
-		print "nss_compat is %s" % formatBool(self.enableCompat)
-		print "nss_db is %s" % formatBool(self.enableDB)
-		print "nss_hesiod is %s" % formatBool(self.enableHesiod)
-		print " hesiod LHS = \"%s\"" % self.hesiodLHS
-		print " hesiod RHS = \"%s\"" % self.hesiodRHS
-		print "nss_ldap is %s" % formatBool(self.enableLDAP)
-		print " LDAP+TLS is %s" % formatBool(self.enableLDAPS)
-		print " LDAP server = \"%s\"" % self.ldapServer
-		print " LDAP base DN = \"%s\"" % self.ldapBaseDN
-		print "nss_nis is %s" % formatBool(self.enableNIS)
-		print " NIS server = \"%s\"" % self.nisServer
-		print " NIS domain = \"%s\"" % self.nisDomain
-		print "nss_nisplus is %s" % formatBool(self.enableNIS3)
-		print "nss_winbind is %s" % formatBool(self.enableWinbind)
-		print " SMB workgroup = \"%s\"" % self.smbWorkgroup
-		print " SMB servers = \"%s\"" % self.smbServers
-		print " SMB security = \"%s\"" % self.smbSecurity
-		print " SMB realm = \"%s\"" % self.smbRealm
-		print " Winbind template shell = \"%s\"" % self.winbindTemplateShell
-		print " SMB idmap range = \"%s\"" % self.smbIdmapRange
-		print "nss_sss is %s by default" % formatBool(self.enableSSSD)
-		print "nss_wins is %s" % formatBool(self.enableWINS)
-		print "nss_mdns4_minimal is %s" % formatBool(self.enableMDNS)
-		print "myhostname is %s" % formatBool(self.enableMyhostname)
-		print "DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts)
-		print "pam_unix is always enabled"
-		print " shadow passwords are %s" % formatBool(self.enableShadow)
-		print " password hashing algorithm is %s" % self.passwordAlgorithm
-		print "pam_krb5 is %s" % formatBool(self.enableKerberos)
-		print " krb5 realm = \"%s\"" % self.kerberosRealm
-		print " krb5 realm via dns is %s" % formatBool(self.kerberosRealmviaDNS)
-		print " krb5 kdc = \"%s\"" % self.kerberosKDC
-		print " krb5 kdc via dns is %s" % formatBool(self.kerberosKDCviaDNS)
-		print " krb5 admin server = \"%s\"" % self.kerberosAdminServer
-		print "pam_ldap is %s" % formatBool(self.enableLDAPAuth)
-		print " LDAP+TLS is %s" % formatBool(self.enableLDAPS)
-		print " LDAP server = \"%s\"" % self.ldapServer
-		print " LDAP base DN = \"%s\"" % self.ldapBaseDN
-		print " LDAP schema = \"%s\"" % (self.ldapSchema or "rfc2307")
-		print "pam_pkcs11 is %s" % formatBool(self.enableSmartcard)
-		print " use only smartcard for login is %s" % formatBool(self.forceSmartcard)
-		print " smartcard module = \"%s\"" % self.smartcardModule
-		print " smartcard removal action = \"%s\"" % self.smartcardAction
-		print "pam_fprintd is %s" % formatBool(self.enableFprintd)
-		print "pam_ecryptfs is %s" % (formatBool(self.enableEcryptfs))
-		print "pam_winbind is %s" % formatBool(self.enableWinbindAuth)
-		print " SMB workgroup = \"%s\"" % self.smbWorkgroup
-		print " SMB servers = \"%s\"" % self.smbServers
-		print " SMB security = \"%s\"" % self.smbSecurity
-		print " SMB realm = \"%s\"" % self.smbRealm
-		print "pam_sss is %s by default" % formatBool(self.enableSSSDAuth)
-		print " credential caching in SSSD is %s" % formatBool(self.enableCacheCreds)
-		print " SSSD use instead of legacy services if possible is %s" % formatBool(not self.enableForceLegacy)
-		print "IPAv2 is %s" % formatBool(self.enableIPAv2)
-		print "IPAv2 domain was %sjoined" % (not self.ipaDomainJoined and "not " or "")
-		print " IPAv2 server = \"%s\"" % self.ipav2Server
-		print " IPAv2 realm = \"%s\"" % self.ipav2Realm
-		print " IPAv2 domain = \"%s\"" % self.ipav2Domain
-		print "pam_pwquality is %s (%s)" % (formatBool(self.enablePWQuality),
-			self.pwqualityArgs)
-		print "pam_passwdqc is %s (%s)" % (formatBool(self.enablePasswdQC),
-			self.passwdqcArgs)
-		print "pam_access is %s (%s)" % (formatBool(self.enablePAMAccess),
-			self.pamAccessArgs)
-		print "pam_mkhomedir or pam_oddjob_mkhomedir is %s (%s)" % (formatBool(self.enableMkHomeDir),
-			self.mkhomedirArgs)
-		print "Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),
-			self.localuserArgs)
-		print "Authenticate system accounts against network services is %s" % formatBool(self.enableSysNetAuth)
+		print("caching is %s" % formatBool(self.enableCache))
+		print("nss_files is always enabled")
+		print("nss_compat is %s" % formatBool(self.enableCompat))
+		print("nss_db is %s" % formatBool(self.enableDB))
+		print("nss_hesiod is %s" % formatBool(self.enableHesiod))
+		print(" hesiod LHS = \"%s\"" % self.hesiodLHS)
+		print(" hesiod RHS = \"%s\"" % self.hesiodRHS)
+		print("nss_ldap is %s" % formatBool(self.enableLDAP))
+		print(" LDAP+TLS is %s" % formatBool(self.enableLDAPS))
+		print(" LDAP server = \"%s\"" % self.ldapServer)
+		print(" LDAP base DN = \"%s\"" % self.ldapBaseDN)
+		print("nss_nis is %s" % formatBool(self.enableNIS))
+		print(" NIS server = \"%s\"" % self.nisServer)
+		print(" NIS domain = \"%s\"" % self.nisDomain)
+		print("nss_nisplus is %s" % formatBool(self.enableNIS3))
+		print("nss_winbind is %s" % formatBool(self.enableWinbind))
+		print(" SMB workgroup = \"%s\"" % self.smbWorkgroup)
+		print(" SMB servers = \"%s\"" % self.smbServers)
+		print(" SMB security = \"%s\"" % self.smbSecurity)
+		print(" SMB realm = \"%s\"" % self.smbRealm)
+		print(" Winbind template shell = \"%s\"" % self.winbindTemplateShell)
+		print(" SMB idmap range = \"%s\"" % self.smbIdmapRange)
+		print("nss_sss is %s by default" % formatBool(self.enableSSSD))
+		print("nss_wins is %s" % formatBool(self.enableWINS))
+		print("nss_mdns4_minimal is %s" % formatBool(self.enableMDNS))
+		print("myhostname is %s" % formatBool(self.enableMyhostname))
+		print("DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts))
+		print("pam_unix is always enabled")
+		print(" shadow passwords are %s" % formatBool(self.enableShadow))
+		print(" password hashing algorithm is %s" % self.passwordAlgorithm)
+		print("pam_krb5 is %s" % formatBool(self.enableKerberos))
+		print(" krb5 realm = \"%s\"" % self.kerberosRealm)
+		print(" krb5 realm via dns is %s" % formatBool(self.kerberosRealmviaDNS))
+		print(" krb5 kdc = \"%s\"" % self.kerberosKDC)
+		print(" krb5 kdc via dns is %s" % formatBool(self.kerberosKDCviaDNS))
+		print(" krb5 admin server = \"%s\"" % self.kerberosAdminServer)
+		print("pam_ldap is %s" % formatBool(self.enableLDAPAuth))
+		print(" LDAP+TLS is %s" % formatBool(self.enableLDAPS))
+		print(" LDAP server = \"%s\"" % self.ldapServer)
+		print(" LDAP base DN = \"%s\"" % self.ldapBaseDN)
+		print(" LDAP schema = \"%s\"" % (self.ldapSchema or "rfc2307"))
+		print("pam_pkcs11 is %s" % formatBool(self.enableSmartcard))
+		print(" use only smartcard for login is %s" % formatBool(self.forceSmartcard))
+		print(" smartcard module = \"%s\"" % self.smartcardModule)
+		print(" smartcard removal action = \"%s\"" % self.smartcardAction)
+		print("pam_fprintd is %s" % formatBool(self.enableFprintd))
+		print("pam_ecryptfs is %s" % (formatBool(self.enableEcryptfs)))
+		print("pam_winbind is %s" % formatBool(self.enableWinbindAuth))
+		print(" SMB workgroup = \"%s\"" % self.smbWorkgroup)
+		print(" SMB servers = \"%s\"" % self.smbServers)
+		print(" SMB security = \"%s\"" % self.smbSecurity)
+		print(" SMB realm = \"%s\"" % self.smbRealm)
+		print("pam_sss is %s by default" % formatBool(self.enableSSSDAuth))
+		print(" credential caching in SSSD is %s" % formatBool(self.enableCacheCreds))
+		print(" SSSD use instead of legacy services if possible is %s" % formatBool(not self.enableForceLegacy))
+		print("IPAv2 is %s" % formatBool(self.enableIPAv2))
+		print("IPAv2 domain was %sjoined" % (not self.ipaDomainJoined and "not " or ""))
+		print(" IPAv2 server = \"%s\"" % self.ipav2Server)
+		print(" IPAv2 realm = \"%s\"" % self.ipav2Realm)
+		print(" IPAv2 domain = \"%s\"" % self.ipav2Domain)
+		print("pam_pwquality is %s (%s)" % (formatBool(self.enablePWQuality),
+			self.pwqualityArgs))
+		print("pam_passwdqc is %s (%s)" % (formatBool(self.enablePasswdQC),
+			self.passwdqcArgs))
+		print("pam_access is %s (%s)" % (formatBool(self.enablePAMAccess),
+			self.pamAccessArgs))
+		print("pam_mkhomedir or pam_oddjob_mkhomedir is %s (%s)" % (formatBool(self.enableMkHomeDir),
+			self.mkhomedirArgs))
+		print("Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),
+			self.localuserArgs))
+		print("Authenticate system accounts against network services is %s" % formatBool(self.enableSysNetAuth))
 
 	def toggleShadow(self):
 		for cfg in (CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP):
@@ -4433,9 +4446,9 @@ class AuthInfo:
 		if self.enableLDAP or self.enableLDAPAuth:
 			try:
 				os.stat(self.ldapCacertDir)
-			except OSError as (err, text):
+			except OSError as err:
 				if err == errno.ENOENT:
-					os.mkdir(self.ldapCacertDir, 0755)
+					os.mkdir(self.ldapCacertDir, 0o755)
 
 			return isEmptyDir(self.ldapCacertDir)
 		return False
@@ -4450,8 +4463,8 @@ class AuthInfo:
 			return False
 		self.testLDAPCACerts()
 		try:
-			readf = urllib2.urlopen(self.ldapCacertURL)
-			writef = openLocked(self.ldapCacertDir + "/" + LDAP_CACERT_DOWNLOADED, 0644)
+			readf = request.urlopen(self.ldapCacertURL)
+			writef = openLocked(self.ldapCacertDir + "/" + LDAP_CACERT_DOWNLOADED, 0o644)
 			writef.write(readf.read())
 			readf.close()
 			writef.close()

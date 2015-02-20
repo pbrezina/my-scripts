@@ -94,8 +94,8 @@ if gtk.pygtk_version < (2, 17):
     def __on_style_set(self, w, style):
         if self.__changing_style:
             return
-	style = self.get_style().copy()
-	style.bg[gtk.STATE_NORMAL] = gtk.gdk.Color('#e9afaf')
+        style = self.get_style().copy()
+        style.bg[gtk.STATE_NORMAL] = gtk.gdk.Color('#e9afaf')
 
         self.__changing_style = True
         self.set_style(style)
@@ -211,8 +211,8 @@ else:
         def __init__(self, buttons):
             super(MsgArea, self).__init__()
             self._current_contents = None
-	    if buttons:
-	        self.add_buttons(buttons)
+            if buttons:
+                self.add_buttons(buttons)
 
         def add_buttons(self, args):
             for (btext, respid) in args:
@@ -231,7 +231,7 @@ else:
             self._current_contents = contents
             content_area.pack_start(contents, True, True, 0)
 
-	def set_text_and_icon(self, stockid, primary_text, secondary_text=None):
+        def set_text_and_icon(self, stockid, primary_text, secondary_text=None):
             hbox_content = gtk.HBox(False, 8)
             hbox_content.show()
 

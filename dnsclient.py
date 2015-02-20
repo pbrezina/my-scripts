@@ -42,6 +42,9 @@ DNS_T_ANY = 255
 
 DEBUG_DNSCLIENT = False
 
+if sys.version_info[0] < 3:
+	range = xrange
+
 class DNSQueryHeader:
 	FORMAT = "!HBBHHHH"
 	def __init__(self):
@@ -193,11 +196,11 @@ def dnsFormatQuery(query, qclass, qtype):
 	if not qlabel:
 		return ""
 
-	out = header.pack() + qlabel
-	out += chr(qtype >> 8)
-	out += chr(qtype & 0xff)
-	out += chr(qclass >> 8)
-	out += chr(qclass & 0xff)
+	out = header.pack() + qlabel.encode('utf-8')
+	out += chr(qtype >> 8).encode('utf-8')
+	out += chr(qtype & 0xff).encode('utf-8')
+	out += chr(qclass >> 8).encode('utf-8')
+	out += chr(qclass & 0xff).encode('utf-8')
 
 	return out
 
@@ -236,7 +239,7 @@ def dnsParseA(data, base):
 	rdata.address = (ord(data[0])<<24) | (ord(data[1])<<16) | (ord(data[2])<<8) | (ord(data[3])<<0)
 
 	if DEBUG_DNSCLIENT:
-		print "A = %d.%d.%d.%d." % (ord(data[0]), ord(data[1]), ord(data[2]), ord(data[3]))
+		print("A = %d.%d.%d.%d." % (ord(data[0]), ord(data[1]), ord(data[2]), ord(data[3])))
 	return rdata
 
 def dnsParseText(data):	
@@ -251,14 +254,14 @@ def dnsParseNS(data, base):
 	rdata = DNSRData()
 	(rest, rdata.nsdname) = dnsParseLabel(data, base)
 	if DEBUG_DNSCLIENT:
-		print "NS DNAME = \"%s\"." % (rdata.nsdname)
+		print("NS DNAME = \"%s\"." % (rdata.nsdname))
 	return rdata
 
 def dnsParseCNAME(data, base):
 	rdata = DNSRData()
 	(rest, rdata.cname) = dnsParseLabel(data, base)
 	if DEBUG_DNSCLIENT:
-		print "CNAME = \"%s\"." % (rdata.cname)
+		print("CNAME = \"%s\"." % (rdata.cname))
 	return rdata
 
 def dnsParseSOA(data, base):
@@ -278,13 +281,13 @@ def dnsParseSOA(data, base):
 		rdata.minimum) = struct.unpack(format, rest[:struct.calcsize(format)])
 
 	if DEBUG_DNSCLIENT:
-		print "SOA(mname) = \"%s\"." % rdata.mname
-		print "SOA(rname) = \"%s\"." % rdata.rname
-		print "SOA(serial) = %d." % rdata.serial
-		print "SOA(refresh) = %d." % rdata.refresh
-		print "SOA(retry) = %d." % rdata.retry
-		print "SOA(expire) = %d." % rdata.expire
-		print "SOA(minimum) = %d." % rdata.minimum
+		print("SOA(mname) = \"%s\"." % rdata.mname)
+		print("SOA(rname) = \"%s\"." % rdata.rname)
+		print("SOA(serial) = %d." % rdata.serial)
+		print("SOA(refresh) = %d." % rdata.refresh)
+		print("SOA(retry) = %d." % rdata.retry)
+		print("SOA(expire) = %d." % rdata.expire)
+		print("SOA(minimum) = %d." % rdata.minimum)
 	return rdata
 
 def dnsParseNULL(data, base):
@@ -300,8 +303,8 @@ def dnsParseHINFO(data, base):
 	if rest:
 		(rest, rdata.os) = dnsParseText(rest)
 	if DEBUG_DNSCLIENT:
-		print "HINFO(cpu) = \"%s\"." % rdata.cpu
-		print "HINFO(os) = \"%s\"." % rdata.os
+		print("HINFO(cpu) = \"%s\"." % rdata.cpu)
+		print("HINFO(os) = \"%s\"." % rdata.os)
 	return rdata
 
 def dnsParseMX(data, base):
@@ -311,22 +314,22 @@ def dnsParseMX(data, base):
 	rdata.preference = (ord(data[0]) << 8) | ord(data[1])
 	(rest, rdata.exchange) = dnsParseLabel(data[2:], base)
 	if DEBUG_DNSCLIENT:
-		print "MX(exchanger) = \"%s\"." % rdata.exchange
-		print "MX(preference) = %d." % rdata.preference
+		print("MX(exchanger) = \"%s\"." % rdata.exchange)
+		print("MX(preference) = %d." % rdata.preference)
 	return rdata
 
 def dnsParseTXT(data, base):
 	rdata = DNSRData()
 	(rest, rdata.data) = dnsParseText(data)
 	if DEBUG_DNSCLIENT:
-		print "TXT = \"%s\"." % rdata.data
+		print("TXT = \"%s\"." % rdata.data)
 	return rdata
 
 def dnsParsePTR(data, base):
 	rdata = DNSRData()
 	(rest, rdata.ptrdname) = dnsParseLabel(data, base)
 	if DEBUG_DNSCLIENT:
-		print "PTR = \"%s\"." % rdata.ptrdname
+		print("PTR = \"%s\"." % rdata.ptrdname)
 
 def dnsParseSRV(data, base):
 	rdata = DNSRData()
@@ -338,10 +341,10 @@ def dnsParseSRV(data, base):
 	(rdata.priority, rdata.weight, rdata.port) = struct.unpack(format, data[:flen])
 	(rest, rdata.server) = dnsParseLabel(data[flen:], base)
 	if DEBUG_DNSCLIENT:
-		print "SRV(server) = \"%s\"." % rdata.server
-		print "SRV(weight) = %d." % rdata.weight
-		print "SRV(priority) = %d." % rdata.priority
-		print "SRV(port) = %d." % rdata.port
+		print("SRV(server) = \"%s\"." % rdata.server)
+		print("SRV(weight) = %d." % rdata.weight)
+		print("SRV(priority) = %d." % rdata.priority)
+		print("SRV(port) = %d." % rdata.port)
 	return rdata
 
 def dnsParseResults(results):
@@ -360,7 +363,7 @@ def dnsParseResults(results):
 
 	rrlist = []
 
-	for i in xrange(header.dns_qdcount):
+	for i in range(header.dns_qdcount):
 		if not rest:
 			return []
 
@@ -378,10 +381,10 @@ def dnsParseResults(results):
 		rest = rest[rr.qsize():]
 
 		if DEBUG_DNSCLIENT:
-			print "Queried for '%s', class = %d, type = %d." % (label,
-				rr.dns_class, rr.dns_type)
+			print("Queried for '%s', class = %d, type = %d." % (label,
+				rr.dns_class, rr.dns_type))
 
-	for i in xrange(header.dns_ancount + header.dns_nscount + header.dns_arcount):
+	for i in range(header.dns_ancount + header.dns_nscount + header.dns_arcount):
 		(rest, label) = dnsParseLabel(rest, results)
 		if label is None:
 			return []
@@ -398,13 +401,13 @@ def dnsParseResults(results):
 		rest = rest[rr.size():]
 
 		if DEBUG_DNSCLIENT:
-			print "Answer %d for '%s', class = %d, type = %d, ttl = %d." % (i,
+			print("Answer %d for '%s', class = %d, type = %d, ttl = %d." % (i,
 				rr.dns_name, rr.dns_class, rr.dns_type,
-				rr.dns_ttl)
+				rr.dns_ttl))
 
 		if len(rest) < rr.dns_rlength:
 			if DEBUG_DNSCLIENT:
-				print "Answer too short."
+				print("Answer too short.")
 			return []
 
 		fmap = { DNS_T_A: dnsParseA, DNS_T_NS: dnsParseNS,
@@ -416,7 +419,7 @@ def dnsParseResults(results):
 
 		if not rr.dns_type in fmap:
 			if DEBUG_DNSCLIENT:
-				print "Don't know how to parse RR type %d!" %	rr.dns_type
+				print("Don't know how to parse RR type %d!" %	rr.dns_type)
 		else:
 			rr.rdata = fmap[rr.dns_type](rest[:rr.dns_rlength], results)
 
@@ -438,7 +441,7 @@ def query(query, qclass, qtype):
 
 if __name__ == '__main__':
 	DEBUG_DNSCLIENT = True
-	print "Sending query."
+	print("Sending query.")
 	rr = query(len(sys.argv) > 1 and sys.argv[1] or "devserv.devel.redhat.com.",
 		DNS_C_IN, DNS_T_ANY)
 	sys.exit(0)

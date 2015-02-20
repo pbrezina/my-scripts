@@ -49,7 +49,13 @@ class UnihelpOptionParser(OptionParser):
 		encoding = getattr(file, "encoding", None)
 		if not encoding or encoding == "ascii":
 			encoding = srcencoding
-		file.write(self.format_help().decode(srcencoding).encode(encoding, "replace"))
+		if sys.version_info[0] < 3:
+			file.write(self.format_help().decode(srcencoding).encode(encoding, "replace"))
+		else:
+			if 'b' in file.mode:
+				file.write(self.format_help().encode(encoding, "replace"))
+			else:
+				file.write(self.format_help())
 
 class NonWrapFormatter(IndentedHelpFormatter):
 	def format_option(self, option):
@@ -332,30 +338,30 @@ class Authconfig:
 		parser.add_option("--disablemkhomedir", action="store_true",
 			help=_("do not create home directories for users on their first login"))
 
-                parser.add_option("--passminlen", metavar=_("<number>"),
-                        help=_("minimum length of a password"))
-                parser.add_option("--passminclass", metavar=_("<number>"),
-                        help=_("minimum number of character classes in a password"))
-                parser.add_option("--passmaxrepeat", metavar=_("<number>"),
-                        help=_("maximum number of same consecutive characters in a password"))
-                parser.add_option("--passmaxclassrepeat", metavar=_("<number>"),
-                        help=_("maximum number of consecutive characters of same class in a password"))
-                parser.add_option("--enablereqlower", action="store_true",
-                        help=_("require at least one lowercase character in a password"))
-                parser.add_option("--disablereqlower", action="store_true",
-                        help=_("do not require lowercase characters in a password"))
-                parser.add_option("--enablerequpper", action="store_true",
-                        help=_("require at least one uppercase character in a password"))
-                parser.add_option("--disablerequpper", action="store_true",
-                        help=_("do not require uppercase characters in a password"))
-                parser.add_option("--enablereqdigit", action="store_true",
-                        help=_("require at least one digit in a password"))
-                parser.add_option("--disablereqdigit", action="store_true",
-                        help=_("do not require digits in a password"))
-                parser.add_option("--enablereqother", action="store_true",
-                        help=_("require at least one other character in a password"))
-                parser.add_option("--disablereqother", action="store_true",
-                        help=_("do not require other characters in a password"))
+		parser.add_option("--passminlen", metavar=_("<number>"),
+			help=_("minimum length of a password"))
+		parser.add_option("--passminclass", metavar=_("<number>"),
+			help=_("minimum number of character classes in a password"))
+		parser.add_option("--passmaxrepeat", metavar=_("<number>"),
+			help=_("maximum number of same consecutive characters in a password"))
+		parser.add_option("--passmaxclassrepeat", metavar=_("<number>"),
+			help=_("maximum number of consecutive characters of same class in a password"))
+		parser.add_option("--enablereqlower", action="store_true",
+			help=_("require at least one lowercase character in a password"))
+		parser.add_option("--disablereqlower", action="store_true",
+			help=_("do not require lowercase characters in a password"))
+		parser.add_option("--enablerequpper", action="store_true",
+			help=_("require at least one uppercase character in a password"))
+		parser.add_option("--disablerequpper", action="store_true",
+			help=_("do not require uppercase characters in a password"))
+		parser.add_option("--enablereqdigit", action="store_true",
+			help=_("require at least one digit in a password"))
+		parser.add_option("--disablereqdigit", action="store_true",
+			help=_("do not require digits in a password"))
+		parser.add_option("--enablereqother", action="store_true",
+			help=_("require at least one other character in a password"))
+		parser.add_option("--disablereqother", action="store_true",
+			help=_("do not require other characters in a password"))
 
 		parser.add_option("--nostart", action="store_true",
 			help=_("do not start/stop portmap, ypbind, and nscd"))
@@ -406,14 +412,14 @@ class Authconfig:
 		info = authinfo.AuthInfo(self.printError)
 		info.probe()
 		if info.hesiodLHS and info.hesiodRHS:
-			print "hesiod %s/%s" % (info.hesiodLHS,
-				info.hesiodRHS)
+			print("hesiod %s/%s" % (info.hesiodLHS,
+				info.hesiodRHS))
 		if info.ldapServer and info.ldapBaseDN:
-			print "ldap %s/%s\n" % (info.ldapServer,
-				info.ldapBaseDN)
+			print("ldap %s/%s\n" % (info.ldapServer,
+				info.ldapBaseDN))
 		if info.kerberosRealm:
-			print "krb5 %s/%s/%s\n" % (info.kerberosRealm,
-				info.kerberosKDC or "", info.kerberosAdminServer or "")
+			print("krb5 %s/%s/%s\n" % (info.kerberosRealm,
+				info.kerberosKDC or "", info.kerberosAdminServer or ""))
 
 	def readAuthInfo(self):
 		self.info = authinfo.read(self.printError)
@@ -501,7 +507,7 @@ class Authconfig:
                         "passmaxrepeat":"passMaxRepeat",
                         "passmaxclassrepeat":"passMaxClassRepeat"}
 
-		for opt, aival in bool_settings.iteritems():
+		for opt, aival in bool_settings.items():
 			if getattr(self.options, "enable"+opt):
 				setattr(self.info, aival, True)
 			if getattr(self.options, "disable"+opt):
@@ -519,7 +525,7 @@ class Authconfig:
 			self.info.kerberosKDC = self.info.getKerberosKDC(self.options.krb5realm)
 			self.info.kerberosAdminServer = self.info.getKerberosAdminServer(self.options.krb5realm)
 
-                try:
+		try:
             		val = self.options.passminlen
             		if val != None:
             			val = int(val)
@@ -527,11 +533,11 @@ class Authconfig:
             				self.printError(_("The passminlen minimum value is 6"))
             				self.options.passminlen = None
             				self.retval = 3
-                except ValueError:
-                        self.printError(_("The passminlen option value is not an integer"))
-                        self.options.passminlen = None
-                        self.retval = 3
-                try:
+		except ValueError:
+			self.printError(_("The passminlen option value is not an integer"))
+			self.options.passminlen = None
+			self.retval = 3
+		try:
             		val = self.options.passminclass
             		if val != None:
             			val = int(val)
@@ -543,11 +549,11 @@ class Authconfig:
             				self.printError(_("The passminclass value must not be higher than 4"))
             				self.options.passminclass = None
             				self.retval = 3
-                except ValueError:
-                        self.printError(_("The passminclass option value is not an integer"))
-                        self.options.passminclass = None
-                        self.retval = 3
-                try:
+		except ValueError:
+			self.printError(_("The passminclass option value is not an integer"))
+			self.options.passminclass = None
+			self.retval = 3
+		try:
             		val = self.options.passmaxrepeat
             		if val != None:
             			val = int(val)
@@ -555,11 +561,11 @@ class Authconfig:
             				self.printError(_("The passmaxrepeat value must not be negative"))
             				self.options.passmaxrepeat = None
             				self.retval = 3
-                except ValueError:
-                        self.printError(_("The passmaxrepeat option value is not an integer"))
-                        self.options.passmaxrepeat = None
-                        self.retval = 3
-                try:
+		except ValueError:
+			self.printError(_("The passmaxrepeat option value is not an integer"))
+			self.options.passmaxrepeat = None
+			self.retval = 3
+		try:
             		val = self.options.passmaxclassrepeat
             		if val != None:
             			val = int(val)
@@ -567,12 +573,12 @@ class Authconfig:
             				self.printError(_("The passmaxclassrepeat value must not be negative"))
             				self.options.passmaxclassrepeat = None
             				self.retval = 3
-                except ValueError:
-                        self.printError(_("The passmaxclassrepeat option value is not an integer"))
-                        self.options.passmaxclassrepeat = None
-                        self.retval = 3
+		except ValueError:
+			self.printError(_("The passmaxclassrepeat option value is not an integer"))
+			self.options.passmaxclassrepeat = None
+			self.retval = 3
 
-		for opt, aival in string_settings.iteritems():
+		for opt, aival in string_settings.items():
 			if getattr(self.options, opt) != None:
 				setattr(self.info, aival, getattr(self.options, opt))
 
@@ -975,7 +981,7 @@ class AuthconfigTUI(Authconfig):
 		def shellexists(shell):
 			return os.access(shell, os.X_OK)
 
-		shells = filter(shellexists, shells)
+		shells = list(filter(shellexists, shells))
 		# Why does your favorite shell not show up in the list?  Because it won't
 		# fit, that's why!
 		questions = [("rvalue", _("Security Model:"), "smbSecurity", security),

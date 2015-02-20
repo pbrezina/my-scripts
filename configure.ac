@@ -38,15 +38,15 @@ AC_ARG_WITH(python-rev,
             [  --with-pythonrev=2.2    version of python for which modules should be built],
             PYTHONREV=$withval,[
 	    AC_MSG_CHECKING([python version])
-	    [PYTHONREV=`python -c 'import sys;print "%s.%s" % (sys.version_info[0], sys.version_info[1])'`]
+	    [PYTHONREV=`python${PYTHONREV} -c 'import sys;print("%s.%s" % (sys.version_info[0], sys.version_info[1]))'`]
 	    AC_MSG_RESULT($PYTHONREV)
 	    ])
 AC_SUBST(PYTHONREV)
 
 AC_MSG_CHECKING(python includes)
-PYTHONPREFIX=`python -c 'import sys;print sys.prefix'`
-AC_MSG_RESULT($PYTHONPREFIX/include/python$PYTHONREV)
-PYTHON_CFLAGS=-I$PYTHONPREFIX/include/python$PYTHONREV
+INCLUDEPY=`python${PYTHONREV} -c 'import sysconfig;print(sysconfig.get_config_var("INCLUDEPY"))'`
+AC_MSG_RESULT($INCLUDEPY)
+PYTHON_CFLAGS=-I$INCLUDEPY
 AC_SUBST(PYTHON_CFLAGS)
 
 if test x$GCC = xyes ; then

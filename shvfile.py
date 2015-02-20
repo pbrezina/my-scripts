@@ -106,7 +106,7 @@ class SHVFile:
 		try:
 			self.f.seek(0)
 			self.f.truncate()
-			for name, value in self.variables.iteritems():
+			for name, value in self.variables.items():
 				self.f.write(name + "=" + escape(value) + "\n")
 			self.f.flush()
 			os.fsync(self.f.fileno())
