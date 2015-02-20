@@ -1,4 +1,4 @@
-AC_INIT(authconfig, 6.2.9)
+AC_INIT(authconfig, 6.2.10)
 AM_INIT_AUTOMAKE([dist-bzip2 no-dist-gzip])
 AC_PREFIX_DEFAULT(/usr)
 AC_PROG_CC

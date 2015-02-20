@@ -43,8 +43,8 @@ make
 
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
-rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutilmodule.a
-rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutilmodule.la
+rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutil.a
+rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutil.la
 rm $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
 ln -s authconfig.py $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
 
@@ -79,7 +79,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %exclude %{_mandir}/man8/authconfig-gtk.*
 %{_mandir}/man8/*
 %{_mandir}/man5/*
-%{_libdir}/python*/site-packages/acutilmodule.so
+%{_libdir}/python*/site-packages/acutil.so
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/authconfig.py*
 %{_datadir}/%{name}/authconfig-tui.py*
@@ -118,6 +118,14 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
 
 %changelog
+* Fri Feb 20 2014 Tomáš Mráz <tmraz@redhat.com> - 6.2.10-1
+- allow multiple LDAP URIs in the setting again
+- winbind modules are now in samba-winbind package
+- add support for keeping myhostname in nsswitch.conf hosts entry
+- do not misinterpret comment for realm in krb5.conf
+- warn about unsupported locale, do not bail out with exception
+- python 3 compatibility for authconfig command line
+
 * Fri Jul 25 2014 Tomáš Mráz <tmraz@redhat.com> - 6.2.9-1
 - support screensaver lock handling by GDM
 - fix pam_pkcs11 options
