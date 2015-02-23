@@ -4289,11 +4289,12 @@ class AuthInfo:
 			
 			if echo:
 				sys.stderr.write("[%s]\n" % cmd)
+			if self.joinPassword or not echo:
+				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
+			else:
 				child = Popen([cmd], shell=True)
 				child.communicate()
 				status = child.returncode
-			else:
-				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
 			if echo:
 				if status != 0:
 					self.messageCB(_("Winbind domain join was not successful."))
