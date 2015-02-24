@@ -35,12 +35,11 @@ AC_CHECK_FUNC(res_init,,[AC_CHECK_LIB(resolv,res_init,,[
  AC_CHECK_LIB(resolv,__res_init,,)])])
 
 AC_ARG_WITH(python-rev,
-            [  --with-pythonrev=2.2    version of python for which modules should be built],
-            PYTHONREV=$withval,[
-	    AC_MSG_CHECKING([python version])
-	    [PYTHONREV=`python${PYTHONREV} -c 'import sys;print("%s.%s" % (sys.version_info[0], sys.version_info[1]))'`]
-	    AC_MSG_RESULT($PYTHONREV)
-	    ])
+            [  --with-python-rev=2    version of python for which modules should be built],
+            PYTHONREV=$withval,[PYTHONREV=2])
+AC_MSG_CHECKING([python version])
+PYTHONREV=`python${PYTHONREV} -c 'import sys;print("%s.%s" % (sys.version_info[[0]], sys.version_info[[1]]))'`
+AC_MSG_RESULT($PYTHONREV)
 AC_SUBST(PYTHONREV)
 
 AC_MSG_CHECKING(python includes)

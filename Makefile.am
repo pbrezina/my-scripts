@@ -3,7 +3,6 @@ SUBDIRS = po man icons
 @INTLTOOL_DESKTOP_RULE@
 
 PYTHONREV=@PYTHONREV@
-pythonincdir = $(includedir)/python@PYTHONREV@
 pythonsitedir = $(libdir)/python@PYTHONREV@/site-packages
 pamdir = $(sysconfdir)/pam.d
 consoledir = $(sysconfdir)/security/console.apps
