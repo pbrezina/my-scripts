@@ -136,6 +136,7 @@ LOGIC_FORCE_PKCS11_KRB5 = "[success=ok ignore=2 default=die]"
 LOGIC_SKIPNEXT = "[success=1 default=ignore]"
 LOGIC_SKIPNEXT3 = "[success=3 default=ignore]"
 LOGIC_ALWAYS_SKIP = "[default=1]"
+LOGIC_SKIPNEXT_ON_FAILURE = "[default=1 success=ok]"
 
 # Snip off line terminators and final whitespace from a passed-in string.
 def snipString(s):
@@ -464,6 +465,8 @@ pam_modules[STANDARD] = [
 	 "permit",		[]],
 	[False,  AUTH,          LOGIC_SUFFICIENT,
 	 "fprintd",		[]],
+	[False, AUTH,		LOGIC_SKIPNEXT_ON_FAILURE,
+	 "localuser",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
@@ -587,6 +590,8 @@ pam_modules[PASSWORD_ONLY] = [
 	 "env",			[]],
 	[False, AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
+	[False, AUTH,		LOGIC_SKIPNEXT_ON_FAILURE,
+	 "localuser",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
 	 "unix",		argv_unix_auth],
 	[False, AUTH,		LOGIC_REQUISITE,
@@ -3814,6 +3819,10 @@ class AuthInfo:
 						argv = module[ARGV][0:] # shallow copy
 						argv[1] = self.uidMin
 						args = " ".join(argv)
+			# do not continue to following modules if authentication fails
+			if name == "unix" and stack == "auth" and (self.enableSSSDAuth or
+				self.implicitSSSDAuth or self.enableIPAv2) and (not self.enableNIS):
+				logic = LOGIC_FORCE_PKCS11 # make it or break it logic
 			# use oddjob_mkhomedir if available
 			if name == "mkhomedir" and os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
@@ -3841,6 +3850,8 @@ class AuthInfo:
 				args = self.mkhomedirArgs
 			if name == "systemd":
 				args = self.systemdArgs
+			if name == "sss" and stack == "auth" and not self.enableNIS:
+				args = "forward_pass"
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
 			if name == "winbind" and self.winbindOffline and stack != "password":
@@ -3945,7 +3956,9 @@ class AuthInfo:
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					((self.enableSSSDAuth or self.implicitSSSDAuth or self.enableIPAv2) and module[NAME] == "sss") or
-					(self.enableLocAuthorize and module[NAME] == "localuser") or
+					((self.enableSSSDAuth or self.implicitSSSDAuth or self.enableIPAv2) and
+						(not self.enableNIS) and module[NAME] == "localuser" and module[STACK] == AUTH) or
+					(self.enableLocAuthorize and module[NAME] == "localuser" and module[STACK] == ACCOUNT) or
 					(self.enablePAMAccess and module[NAME] == "access") or
 					(self.enableMkHomeDir and module[NAME] == "mkhomedir") or
 					(not self.enableSysNetAuth and module[STACK] == AUTH and
