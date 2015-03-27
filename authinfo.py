@@ -116,7 +116,7 @@ PATH_LIBSSS_AUTOFS = "/usr" + LIBDIR + "/sssd/modules/libsss_autofs.so"
 PATH_WINBIND_NET = "/usr/bin/net"
 PATH_IPA_CLIENT_INSTALL = "/usr/sbin/ipa-client-install"
 
-PATH_LDAP_CACERTS = "/etc/openldap/cacerts"
+PATH_LDAP_CACERTS = "/etc/openldap/certs"
 LDAP_CACERT_DOWNLOADED = "authconfig_downloaded.pem"
 
 PATH_CONFIG_BACKUPS = "/var/lib/authconfig"
@@ -1627,7 +1627,6 @@ class AuthInfo:
 
 	# Read LDAP setup from /etc/ldap.conf.
 	def readLDAP(self, ref):
-		self.ldapCacertDir = PATH_LDAP_CACERTS
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		try:
@@ -1675,10 +1674,16 @@ class AuthInfo:
 			if value:
 				self.setParam("ldapSchema", value, ref)
 				continue
+			value = matchKey(line, "tls_cacertdir")
+			if value:
+				self.setParam("ldapCacertDir", value, ref)
+				continue
 			# We'll pull MD5/DES crypt ("pam_password") from the config
 			# file, or from the pam_unix PAM config lines.
 
 		self.ldapServer = self.ldapHostsToURIs(cleanList(self.ldapServer), False)
+		if not self.ldapCacertDir:
+			self.ldapCacertDir = PATH_LDAP_CACERTS
 		f.close()
 		return True
 
@@ -4444,7 +4449,7 @@ class AuthInfo:
 			self.uninstallIPA()
 
 	def testLDAPCACerts(self):
-		if self.enableLDAP or self.enableLDAPAuth:
+		if self.enableLDAP or self.enableLDAPAuth or self.ldapCacertURL:
 			try:
 				os.stat(self.ldapCacertDir)
 			except OSError as err:
@@ -4456,7 +4461,7 @@ class AuthInfo:
 
 	def rehashLDAPCACerts(self):
 		if ((self.enableLDAP or self.enableLDAPAuth) and
-			(self.enableLDAPS or 'ldaps:' in self.ldapServer)):
+			(self.enableLDAPS or 'ldaps:' in self.ldapServer)) or self.ldapCacertURL:
 			os.system("/usr/sbin/cacertdir_rehash " + self.ldapCacertDir)
 
 	def downloadLDAPCACert(self):
