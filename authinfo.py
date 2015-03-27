@@ -4351,7 +4351,7 @@ class AuthInfo:
 		return status == 0
 
 	def uninstallIPA(self):
-		cmd = PATH_IPA_CLIENT_INSTALL + " --uninstall --noac"
+		cmd = PATH_IPA_CLIENT_INSTALL + " --uninstall --noac --unattended"
 		os.system(cmd)
 
 	def toggleCachingService(self, nostart):
