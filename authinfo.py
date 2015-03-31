@@ -1653,6 +1653,7 @@ class AuthInfo:
 					try:
 						f = open(all_configs[CFG_LDAP].origPath, "r")
 					except IOError:
+						self.ldapCacertDir = PATH_LDAP_CACERTS
 						return False
 
 		for line in f:
