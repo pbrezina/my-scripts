@@ -156,6 +156,13 @@ def matchKey(line, key):
 	else:
 		return False
 
+def matchKeyI(line, key):
+	if line.lower().startswith(key.lower()):
+		# Skip intervening whitespace.
+		return line[len(key):].lstrip()
+	else:
+		return False
+
 def matchKeyEquals(line, key):
 	if line.startswith(key):
 		# Skip intervening whitespace.
@@ -1652,34 +1659,34 @@ class AuthInfo:
 			line = line.strip()
 
 			# Is it a "base" statement?
-			value = matchKey(line, "base")
+			value = matchKeyI(line, "base")
 			if value and checkDN(value):
 				# Save the base DN.
 				self.setParam("ldapBaseDN", value, ref)
 				continue
 			# Is it a "host" statement?
-			value = matchKey(line, "host")
+			value = matchKeyI(line, "host")
 			if value:
 				# Save the host name or IP.
 				self.setParam("ldapServer", value, ref)
 				continue
 			# Is it a "uri" statement?
-			value = matchKey(line, "uri")
+			value = matchKeyI(line, "uri")
 			if value:
 				# Save the host name or IP.
 				self.setParam("ldapServer", value, ref)
 				continue
 			# Is it a "ssl" statement?
-			value = matchKey(line, "ssl")
+			value = matchKeyI(line, "ssl")
 			if value:
 				self.setParam("enableLDAPS", matchLine(value, "start_tls"), ref)
 				continue
 			# Is it a "nss_schema" statement?
-			value = matchKey(line, "nss_schema")
+			value = matchKeyI(line, "nss_schema")
 			if value:
 				self.setParam("ldapSchema", value, ref)
 				continue
-			value = matchKey(line, "tls_cacertdir")
+			value = matchKeyI(line, "tls_cacertdir")
 			if value:
 				self.setParam("ldapCacertDir", value, ref)
 				continue
