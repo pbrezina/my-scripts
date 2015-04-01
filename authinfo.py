@@ -1234,14 +1234,13 @@ class CacheBackup(FileBackup):
 		return rv
 
 # indexes for the configs
-(CFG_HESIOD, CFG_YP, CFG_LDAP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
+(CFG_HESIOD, CFG_YP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER, CFG_PWQUALITY,
-	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP, CFG_DCONF, CFG_DCONF_LOCKS) = list(range(0, 30))
+	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP, CFG_DCONF, CFG_DCONF_LOCKS) = list(range(0, 29))
 all_configs = [
 	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
-	FileBackup("ldap.conf", SYSCONFDIR+"/ldap.conf"),
 	FileBackup("nss_ldap.conf", SYSCONFDIR+"/nss_ldap.conf"),
 	FileBackup("pam_ldap.conf", SYSCONFDIR+"/pam_ldap.conf"),
 	FileBackup("nslcd.conf", SYSCONFDIR+"/nslcd.conf"),
@@ -1651,7 +1650,7 @@ class AuthInfo:
 					f = open(all_configs[CFG_PAMLDAP].origPath, "r")
 				except IOError:
 					try:
-						f = open(all_configs[CFG_LDAP].origPath, "r")
+						f = open(all_configs[CFG_OPENLDAP].origPath, "r")
 					except IOError:
 						self.ldapCacertDir = PATH_LDAP_CACERTS
 						return False
@@ -2765,10 +2764,6 @@ class AuthInfo:
 		return True
 
 	def writeLDAP(self):
-		if os.path.isfile(all_configs[CFG_LDAP].origPath):
-			all_configs[CFG_LDAP].backup(self.backupDir)
-			self.writeLDAP2(all_configs[CFG_LDAP].origPath,
-					"uri", "host", "base", True, True, True)
 		if os.path.isfile(all_configs[CFG_NSSLDAP].origPath):
 			all_configs[CFG_NSSLDAP].backup(self.backupDir)
 			self.writeLDAP2(all_configs[CFG_NSSLDAP].origPath,
