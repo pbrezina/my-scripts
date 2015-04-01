@@ -938,9 +938,9 @@ def feedFork(command, echo, query, response):
 		try:
 			c = os.read(master, 1)
 		except OSError as err:
-			if err == errno.EINTR or err == errno.EAGAIN:
+			if err.errno == errno.EINTR or err.errno == errno.EAGAIN:
 				pass
-			elif err == errno.EIO:
+			elif err.errno == errno.EIO:
 				os.close(master)
 				eof = True
 			else:
@@ -4469,7 +4469,7 @@ class AuthInfo:
 			try:
 				os.stat(self.ldapCacertDir)
 			except OSError as err:
-				if err == errno.ENOENT:
+				if err.errno == errno.ENOENT:
 					os.mkdir(self.ldapCacertDir, 0o755)
 
 			return isEmptyDir(self.ldapCacertDir)
