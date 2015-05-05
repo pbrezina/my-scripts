@@ -50,7 +50,7 @@ import tempfile
 from subprocess import *
 import acutil
 import gettext
-_ = gettext.lgettext
+_ = gettext.gettext
 try:
         import SSSDConfig
 except ImportError:

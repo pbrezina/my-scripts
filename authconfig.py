@@ -26,7 +26,7 @@
 
 import authinfo, acutil
 import gettext, os, signal, sys
-_ = gettext.lgettext
+_ = gettext.gettext
 from optparse import OptionParser, IndentedHelpFormatter
 import locale
 

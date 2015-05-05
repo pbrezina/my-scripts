@@ -26,7 +26,7 @@
 
 import authinfo, acutil
 import gettext, os, signal, sys
-_ = gettext.lgettext
+_ = gettext.gettext
 import locale
 import dbus
 
