@@ -904,9 +904,9 @@ def feedFork(command, echo, query, response):
 	if not pid:
 		# child
 		if query:
-			child = Popen([command], shell=True)
+			child = Popen([command], shell=True, universal_newlines=True)
 		else:
-			child = Popen([command], stdin=PIPE, shell=True)
+			child = Popen([command], stdin=PIPE, shell=True, universal_newlines=True)
 			child.communicate(input=(response or '')+'\n')
 
 		# wait for the child to terminate & set the returncode
@@ -1005,8 +1005,8 @@ def isEmptyDir(path):
 
 def callPKCS11Setup(options):
 	try:
-		child = Popen([PATH_SCSETUP] + options, stdout=PIPE)
-		lst = child.communicate()[0].split(b"\n")
+		child = Popen([PATH_SCSETUP] + options, stdout=PIPE, universal_newlines=True)
+		lst = child.communicate()[0].split("\n")
 		if child.returncode != 0:
 			return None
 		if lst[-1] == '':
@@ -4313,7 +4313,7 @@ class AuthInfo:
 			if self.joinPassword or not echo:
 				status, error = feedFork(cmd, echo, "sword:", self.joinPassword)
 			else:
-				child = Popen([cmd], shell=True)
+				child = Popen([cmd], shell=True, universal_newlines=True)
 				child.communicate()
 				status = child.returncode
 			if echo:
@@ -4348,7 +4348,7 @@ class AuthInfo:
 
 			if echo:
 				sys.stderr.write("[%s]\n" % cmd)
-				child = Popen([cmd], shell=True)
+				child = Popen([cmd], shell=True, universal_newlines=True)
 				child.communicate()
 				status = child.returncode
 			else:
@@ -4487,7 +4487,7 @@ class AuthInfo:
 		try:
 			readf = request.urlopen(self.ldapCacertURL)
 			writef = openLocked(self.ldapCacertDir + "/" + LDAP_CACERT_DOWNLOADED, 0o644)
-			writef.write(readf.read())
+			writef.write(readf.read().decode())
 			readf.close()
 			writef.close()
 		except (IOError, OSError, ValueError):
