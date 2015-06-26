@@ -1940,7 +1940,7 @@ class AuthInfo:
 		if rmactions == None:
 			return False
 		for action in rmactions:
-			if b"lockhelper.sh" in action:
+			if "lockhelper.sh" in action:
 				lock = True
 		if lock:
 			self.setParam("smartcardAction", _("Lock"), ref)
