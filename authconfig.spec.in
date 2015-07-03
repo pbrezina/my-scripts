@@ -48,6 +48,7 @@ rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutil.a
 rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutil.la
 rm $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
 ln -s authconfig.py $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
+touch $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig/authconfig
 
 %find_lang %{name}
 find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
@@ -67,7 +68,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc COPYING NOTES TODO README.samba3
-%ghost %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
+%config(noreplace) %{_sysconfdir}/sysconfig/authconfig
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/system-auth-ac
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/password-auth-ac
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/fingerprint-auth-ac
