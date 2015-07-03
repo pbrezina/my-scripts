@@ -711,8 +711,8 @@ class AuthconfigTUI(Authconfig):
 		warnNIS = [authinfo.PATH_YPBIND, _("NIS"), "ypbind", None]
 		warnShadow = [authinfo.PATH_PWCONV, _("shadow password"), "shadow-utils", None]
 		warnWinbindNet = [authinfo.PATH_WINBIND_NET, _("Winbind"), "samba-client", None]
-		warnWinbindAuth = [authinfo.PATH_PAM_WINBIND, _("Winbind authentication"), "samba-common", warnWinbindNet]
-		warnWinbind = [authinfo.PATH_LIBNSS_WINBIND, _("Winbind"), "samba-common", warnWinbindAuth]
+		warnWinbindAuth = [authinfo.PATH_PAM_WINBIND, _("Winbind authentication"), "samba-winbind", warnWinbindNet]
+		warnWinbind = [authinfo.PATH_LIBNSS_WINBIND, _("Winbind"), "samba-winbind", warnWinbindAuth]
 
 		# Information
 		infoGrid = snack.Grid(1, 6)
