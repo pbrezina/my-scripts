@@ -240,8 +240,6 @@ class Authconfig:
 			help=_("the character which will be used to separate the domain and user part of winbind-created user names if winbindusedefaultdomain is not enabled"))
 		parser.add_option("--winbindtemplatehomedir", metavar="</home/%D/%U>",
 			help=_("the directory which winbind-created users will have as home directories"))
-		parser.add_option("--winbindtemplateprimarygroup", metavar="<nobody>",
-			help=_("the group which winbind-created users will have as their primary group"))
 		parser.add_option("--winbindtemplateshell", metavar="</bin/false>",
 			help=_("the shell which winbind-created users will have as their login shell"))
 		parser.add_option("--enablewinbindusedefaultdomain", action="store_true",
@@ -497,7 +495,6 @@ class Authconfig:
 			"smbidmaprange":"smbIdmapRange",
 			"winbindseparator":"winbindSeparator",
 			"winbindtemplatehomedir":"winbindTemplateHomedir",
-			"winbindtemplateprimarygroup":"winbindTemplatePrimaryGroup",
 			"winbindtemplateshell":"winbindTemplateShell",
 			"ipav2domain":"ipav2Domain",
 			"ipav2realm":"ipav2Realm",

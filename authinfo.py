@@ -1312,7 +1312,6 @@ class AuthInfo:
 
 		self.winbindSeparator = ""
 		self.winbindTemplateHomedir = ""
-		self.winbindTemplatePrimaryGroup = ""
 		self.winbindTemplateShell = ""
 		self.winbindUseDefaultDomain = None
 		self.winbindOffline = None
@@ -1447,8 +1446,7 @@ class AuthInfo:
 		("enableFprintd", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b")]),
 	SaveGroup(self.writeWinbind, self.toggleWinbindService, [("smbWorkgroup", "i"), ("smbServers", "i"),
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapRange", "i"),
-		("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"),
-		("winbindTemplatePrimaryGroup", "c"), ("winbindTemplateShell", "c"),
+		("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"), ("winbindTemplateShell", "c"),
 		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b"), ("winbindKrb5", "b")]),
 	SaveGroup(self.writeNSS, None, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
@@ -2019,9 +2017,6 @@ class AuthInfo:
 		tmp = self.readWinbindGlobal("template homedir")
 		if tmp:
 			self.setParam("winbindTemplateHomedir", tmp, ref)
-		tmp = self.readWinbindGlobal("template primary group")
-		if tmp:
-			self.setParam("winbindTemplatePrimaryGroup", tmp, ref)
 		tmp = self.readWinbindGlobal("template shell")
 		if tmp:
 			self.setParam("winbindTemplateShell", tmp, ref)
@@ -3481,10 +3476,6 @@ class AuthInfo:
 			output += "   template homedir = "
 			output += self.winbindTemplateHomedir
 			output += "\n"
-		if self.winbindTemplatePrimaryGroup:
-			output += "   template primary group = "
-			output += self.winbindTemplatePrimaryGroup
-			output += "\n"
 		if self.winbindTemplateShell:
 			output += "   template shell = "
 			output += self.winbindTemplateShell
@@ -3527,8 +3518,7 @@ class AuthInfo:
 		all_configs[CFG_SMB].backup(self.backupDir)
 		options = ["workgroup", "password server", "realm", "security",
 			   "domain logons", "domain master",
-			   "idmap uid", "idmap gid", "winbind separator",
-			   "template homedir", "template primary group",
+			   "idmap uid", "idmap gid", "winbind separator", "template homedir",
 			   "template shell", "winbind use default domain",
 			   "winbind offline logon", "kerberos method"]
 		f = None
