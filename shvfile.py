@@ -95,7 +95,7 @@ class SHVFile:
 	def write(self, perms):
 		if not self.f:
 			try:
-				fd = os.open(self.filename, os.O_RDWR | os.O_CREAT, perms)				
+				fd = os.open(self.filename, os.O_RDWR | os.O_CREAT, perms)
 			except OSError:
 				return
 			try:
@@ -106,7 +106,9 @@ class SHVFile:
 		try:
 			self.f.seek(0)
 			self.f.truncate()
-			for name, value in self.variables.items():
+			ordereditems = self.variables.items()
+			ordereditems.sort(lambda x, y: cmp(x[0], y[0]))
+			for name, value in ordereditems:
 				self.f.write(name + "=" + escape(value) + "\n")
 			self.f.flush()
 			os.fsync(self.f.fileno())
