@@ -4065,19 +4065,19 @@ class AuthInfo:
 			ret = ret and self.writeLogindefs()
 			ret = ret and self.writeCache()
 
-			if self.enableHesiod:
+			if self.enableHesiod or os.path.isfile(all_configs[CFG_HESIOD].origPath):
 				ret = ret and self.writeHesiod()
-			if self.enableLDAP or self.enableLDAPAuth:
+			if self.enableLDAP or self.enableLDAPAuth or os.path.isfile(all_configs[CFG_OPENLDAP].origPath):
 				ret = ret and self.writeLDAP()
 			if (self.enableKerberos or
 				(self.enableWinbindAuth and
-				self.smbSecurity == "ads")):
+				self.smbSecurity == "ads") or os.path.isfile(all_configs[CFG_KRB5].origPath)):
 				ret = ret and self.writeKerberos()
-			if self.enableSmartcard:
+			if self.enableSmartcard or os.path.isfile(all_configs[CFG_PAM_PKCS11].origPath):
 				ret = ret and self.writeSmartcard()
-			if self.enableNIS:
+			if self.enableNIS or os.path.isfile(all_configs[CFG_YP].origPath):
 				ret = ret and self.writeNIS()
-			if self.enableWinbind or self.enableWinbindAuth:
+			if self.enableWinbind or self.enableWinbindAuth or os.path.isfile(all_configs[CFG_SMB].origPath):
 				ret = ret and self.writeWinbind()
 			if self.implicitSSSD or self.implicitSSSDAuth:
 				ret = ret and self.writeSSSD()
