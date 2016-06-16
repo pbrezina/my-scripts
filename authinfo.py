@@ -1294,7 +1294,7 @@ class AuthInfo:
 		self.ldapServer = ""
 		self.ldapBaseDN = ""
 
-		self.kerberosRealm = ""
+		self.kerberosRealm = None
 		self.kerberosRealmviaDNS = None
 		self.kerberosKDC = ""
 		self.kerberosKDCviaDNS = None
@@ -1714,6 +1714,7 @@ class AuthInfo:
 		section = ""
 		self.allKerberosKDCs = {}
 		self.allKerberosAdminServers = {}
+		realm_found = False
 		# Open the file.  Bail if it's not there or there's some problem
 		# reading it.
 		try:
@@ -1736,6 +1737,7 @@ class AuthInfo:
 				value = matchKeyEquals(line, "default_realm")
 				if value:
 					self.setParam("kerberosRealm", value, ref)
+					realm_found = True;
 					continue;
 				# Check for the DNS settings.
 				value = matchKeyEquals(line, "dns_lookup_kdc")
@@ -1762,6 +1764,7 @@ class AuthInfo:
 					if not self.kerberosRealm:
 						# No reason to use setParam here
 						self.kerberosRealm = subsection
+						realm_found = True;
 					# See if this is a key we care about.
 					value = matchKeyEquals(line, "kdc")
 					if value:
@@ -1774,6 +1777,11 @@ class AuthInfo:
 			self.setParam("kerberosKDC", self.getKerberosKDC(self.kerberosRealm), ref)
 			self.setParam("kerberosAdminServer", self.getKerberosAdminServer(self.kerberosRealm), ref)
 		f.close()
+		if not realm_found:
+			if self.kerberosRealm:
+				self.inconsistentAttrs.append("kerberosRealm")
+			else:
+				self.setParam("kerberosRealm", "", ref)
 		return True
 
 	def readLibuser(self, ref):
@@ -2495,6 +2503,8 @@ class AuthInfo:
 		self.passwordAlgorithm = self.passwordAlgorithm.lower()
 		if self.enableCacheCreds == None:
 			self.enableCacheCreds = True # enabled by default
+		if self.kerberosRealm == None:
+			self.kerberosRealm = ""
 
 	def read(self):
 		ref = self.copy()
