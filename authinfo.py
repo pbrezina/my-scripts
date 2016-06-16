@@ -2516,8 +2516,10 @@ class AuthInfo:
 		reallyimplicit = self.sssdSupported()
 		if self.implicitSSSD and not reallyimplicit and not self.enableIPAv2:
 			self.setParam("enableSSSD", True, ref)
+			self.implicitSSSD = False
 		if self.implicitSSSDAuth and not reallyimplicit and not self.enableIPAv2:
 			self.setParam("enableSSSDAuth", True, ref)
+			self.implicitSSSDAuth = False
 
 		self.readLogindefs(ref)
 		self.readPWQuality(ref)
