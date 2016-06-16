@@ -64,6 +64,9 @@ fi
 %posttrans gtk
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
+%triggerin -- oddjob-mkhomedir
+sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/dev/null || :
+
 %files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc COPYING NOTES TODO README.samba3
