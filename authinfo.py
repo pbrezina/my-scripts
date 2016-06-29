@@ -1773,11 +1773,12 @@ class AuthInfo:
 					value = matchKeyEquals(line, "admin_server")
 					if value:
 						self.allKerberosAdminServers[subsection] = commaAppend(self.getKerberosAdminServer(subsection), value)
-		if self.kerberosRealm:
-			self.setParam("kerberosKDC", self.getKerberosKDC(self.kerberosRealm), ref)
-			self.setParam("kerberosAdminServer", self.getKerberosAdminServer(self.kerberosRealm), ref)
 		f.close()
-		if not realm_found:
+		if realm_found:
+			if self.kerberosRealm:
+				self.setParam("kerberosKDC", self.getKerberosKDC(self.kerberosRealm), ref)
+				self.setParam("kerberosAdminServer", self.getKerberosAdminServer(self.kerberosRealm), ref)
+		else:
 			if self.kerberosRealm:
 				self.inconsistentAttrs.append("kerberosRealm")
 			else:
