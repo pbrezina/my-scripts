@@ -8,10 +8,9 @@ system to be a client for certain networked user information and
 authentication schemes. It can also set up a shadow passwords and the algorithm
 of password hash used.
 
-Please report bugs to [https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&component=authconfig Red Hat Bugzilla - component authconfig].
+Please report bugs to [Red Hat Bugzilla - component authconfig](https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&component=authconfig).
 
 
 ## Download
 
- * [https://fedorahosted.org/releases/a/u/authconfig/ Fedora Hosted repository]
-
+ * [Fedora Hosted repository](https://fedorahosted.org/releases/a/u/authconfig/)
