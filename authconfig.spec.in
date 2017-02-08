@@ -69,7 +69,7 @@ sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/de
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
-%doc COPYING NOTES TODO README.samba3
+%doc COPYING NOTES TODO HOWTO.AD-client
 %config(noreplace) %{_sysconfdir}/sysconfig/authconfig
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/system-auth-ac
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/password-auth-ac

@@ -1,0 +1,36 @@
+The version of winbind included with Samba 3.0 and later can act as an AD
+client.  To set this up using authconfig, you'll need an account in the
+directory which has the privileges necessary to create computer accounts in
+the directory.
+
+An AD client requires SMB, Kerberos, and winbind-specific configuration
+settings to be made in /etc/krb5.conf and /etc/samba/smb.conf, and authconfig
+includes some additional switches for controlling these settings.
+
+authconfig --kickstart \
+	--smbworkgroup=TEST \
+	--smbservers=server1.test.example.com \
+	--smbrealm=TEST.EXAMPLE.COM \
+	--smbsecurity=ads \
+	--enablewinbind \
+	--enablewinbindauth \
+	--winbindtemplateshell=/bin/bash \
+	--winbindjoin=USER[%PASSWORD]
+
+The --smbworkgroup, --smbservers, and --smbsecurity options are used to
+configure the default workgroup, password server, and security settings
+in /etc/samba/smb.conf, and in case smbsecurity is set to "ads", a realm
+in /etc/krb5.conf.
+
+The --enablewinbind option lists 'winbind' as a naming source in
+/etc/nsswitch.conf, and the --enablewinbindauth option enables
+pam_winbind.so as an authentication option in /etc/pam.d/system-auth.
+
+Authconfig does not configure any way to supply user home directories,
+which may be on a network store or created as needed by pam_mkhomedir.
+
+The pam_winbind module does not create a krb5 ccache file, so users
+who log in via pam_winbind will not automatically be able access any
+services which authenticate using Kerberos.  Using pam_krb5 instead
+of pam_winbind for authentication currently requires additional
+configuration beyond what authconfig provides.
