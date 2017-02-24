@@ -23,18 +23,6 @@ to use shadow (more secure) passwords.  Authconfig can also configure a
 system to be a client for certain networked user information and
 authentication schemes.
 
-%package gtk
-Summary: Graphical tool for setting up authentication from network services
-Group: System Environment/Base
-Requires: %{name} = %{version}-%{release}, pygtk2-libglade >= 2.14.0
-Requires: usermode-gtk, hicolor-icon-theme
-
-%description gtk
-Authconfig-gtk is a GUI program which can configure a workstation
-to use shadow (more secure) passwords.  Authconfig-gtk can also configure
-a system to be a client for certain networked user information and
-authentication schemes.
-
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -52,18 +40,6 @@ ln -s authconfig.py $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
 %find_lang %{name}
 find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
 
-%post gtk
-touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-
-%postun gtk
-if [ $1 -eq 0 ] ; then
-    touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-fi
-
-%posttrans gtk
-gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-
 %triggerin -- oddjob-mkhomedir
 sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/dev/null || :
 
@@ -79,8 +55,6 @@ sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/de
 %{_sbindir}/cacertdir_rehash
 %{_sbindir}/authconfig
 %{_sbindir}/authconfig-tui
-%exclude %{_mandir}/man8/system-config-authentication.*
-%exclude %{_mandir}/man8/authconfig-gtk.*
 %{_mandir}/man8/*
 %{_mandir}/man5/*
 %{_libdir}/python*/site-packages/acutil.so
@@ -93,35 +67,10 @@ sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/de
 %{_datadir}/%{name}/msgarea.py*
 %attr(700,root,root) %dir %{_localstatedir}/lib/%{name}
 
-%files gtk
-%defattr(-,root,root,-)
-%{_bindir}/authconfig
-%{_bindir}/authconfig-tui
-%{_bindir}/authconfig-gtk
-%{_bindir}/system-config-authentication
-%{_sbindir}/authconfig-gtk
-%{_sbindir}/system-config-authentication
-%{_mandir}/man8/system-config-authentication.*
-%{_mandir}/man8/authconfig-gtk.*
-%{_datadir}/%{name}/authconfig.glade
-%{_datadir}/%{name}/authconfig-gtk.py*
-%config(noreplace) %{_sysconfdir}/pam.d/authconfig-gtk
-%config(noreplace) %{_sysconfdir}/pam.d/system-config-authentication
-%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-gtk
-%config(noreplace) %{_sysconfdir}/security/console.apps/system-config-authentication
-%config(noreplace) %{_sysconfdir}/pam.d/authconfig
-%config(noreplace) %{_sysconfdir}/pam.d/authconfig-tui
-%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig
-%config(noreplace) %{_sysconfdir}/security/console.apps/authconfig-tui
-%{_datadir}/applications/*
-%{_datadir}/icons/hicolor/16x16/apps/system-config-authentication.*
-%{_datadir}/icons/hicolor/22x22/apps/system-config-authentication.*
-%{_datadir}/icons/hicolor/24x24/apps/system-config-authentication.*
-%{_datadir}/icons/hicolor/32x32/apps/system-config-authentication.*
-%{_datadir}/icons/hicolor/48x48/apps/system-config-authentication.*
-%{_datadir}/icons/hicolor/256x256/apps/system-config-authentication.*
-
 %changelog
+* Fri Feb 24 2017 Tomáš Mráz <tmraz@redhat.com> - 7.0.0-1
+- dropped authconfig-gtk (system-config-authentication)
+
 * Fri Feb 20 2015 Tomáš Mráz <tmraz@redhat.com> - 6.2.10-1
 - allow multiple LDAP URIs in the setting again
 - winbind modules are now in samba-winbind package

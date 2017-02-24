@@ -65,13 +65,6 @@ AC_OUTPUT([
 Makefile
 man/Makefile
 man/en/Makefile
-icons/Makefile
-icons/16x16/Makefile
-icons/22x22/Makefile
-icons/24x24/Makefile
-icons/32x32/Makefile
-icons/48x48/Makefile
-icons/256x256/Makefile
 po/Makefile.in
 authconfig.spec
 ])
