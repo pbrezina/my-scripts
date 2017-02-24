@@ -251,24 +251,10 @@ class Authconfig:
 		parser.add_option("--winbindjoin", metavar="<Administrator>",
 			help=_("join the winbind domain or ads realm now as this administrator"))
 
-		parser.add_option("--enablewins", action="store_true",
-			help=_("enable wins for hostname resolution"))
-		parser.add_option("--disablewins", action="store_true",
-			help=_("disable wins for hostname resolution"))
-
 		parser.add_option("--enablepreferdns", action="store_true",
-			help=_("prefer dns over wins or nis for hostname resolution"))
+			help=_("prefer dns over nis for hostname resolution"))
 		parser.add_option("--disablepreferdns", action="store_true",
-			help=_("do not prefer dns over wins or nis for hostname resolution"))
-
-		parser.add_option("--enablehesiod", action="store_true",
-			help=_("enable hesiod for user information by default"))
-		parser.add_option("--disablehesiod", action="store_true",
-			help=_("disable hesiod for user information by default"))
-		parser.add_option("--hesiodlhs", metavar="<lhs>",
-			help=_("default hesiod LHS"))
-		parser.add_option("--hesiodrhs", metavar="<rhs>",
-			help=_("default hesiod RHS"))
+			help=_("do not prefer dns over nis for hostname resolution"))
 
 		parser.add_option("--enablesssd", action="store_true",
 			help=_("enable SSSD for user information by default with manually managed configuration"))
@@ -380,9 +366,6 @@ class Authconfig:
 	def probe(self):
 		info = authinfo.AuthInfo(self.printError)
 		info.probe()
-		if info.hesiodLHS and info.hesiodRHS:
-			print("hesiod %s/%s" % (info.hesiodLHS,
-				info.hesiodRHS))
 		if info.ldapServer and info.ldapBaseDN:
 			print("ldap %s/%s\n" % (info.ldapServer,
 				info.ldapBaseDN))
@@ -416,7 +399,6 @@ class Authconfig:
 			"mkhomedir":"enableMkHomeDir",
 			"cache":"enableCache",
 			"ecryptfs":"enableEcryptfs",
-			"hesiod":"enableHesiod",
 			"ldap":"enableLDAP",
 			"ldaptls":"enableLDAPS",
 			"rfc2307bis":"enableRFC2307bis",
@@ -433,7 +415,6 @@ class Authconfig:
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
 			"winbindoffline":"winbindOffline",
 			"winbindkrb5":"winbindKrb5",
-			"wins":"enableWINS",
 			"sssd":"enableSSSD",
 			"sssdauth":"enableSSSDAuth",
 			"forcelegacy":"enableForceLegacy",
@@ -445,8 +426,6 @@ class Authconfig:
                         "reqother":"passReqOther"}
 
 		string_settings = {"passalgo":"passwordAlgorithm",
-			"hesiodlhs":"hesiodLHS",
-			"hesiodrhs":"hesiodRHS",
 			"ldapserver":"ldapServer",
 			"ldapbasedn":"ldapBaseDN",
 			"ldaploadcacert":"ldapCacertURL",

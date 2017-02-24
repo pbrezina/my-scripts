@@ -98,10 +98,8 @@ PATH_LIBNSS_LDAP = "/usr" + LIBDIR + "/libnss_ldap.so.2"
 if not os.path.isfile(PATH_LIBNSS_LDAP):
 	PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
 PATH_LIBNSS_NIS = LIBDIR + "/libnss_nis.so.2"
-PATH_LIBNSS_HESIOD = LIBDIR + "/libnss_hesiod.so.2"
 PATH_LIBNSS_ODBCBIND = LIBDIR + "/libnss_odbcbind.so.2"
 PATH_LIBNSS_WINBIND = LIBDIR + "/libnss_winbind.so.2"
-PATH_LIBNSS_WINS = LIBDIR + "/libnss_wins.so.2"
 PATH_LIBNSS_SSS = LIBDIR + "/libnss_sss.so.2"
 
 PATH_PAM_KRB5 = AUTH_MODULE_DIR + "/pam_krb5.so"
@@ -1233,12 +1231,11 @@ class CacheBackup(FileBackup):
 		return rv
 
 # indexes for the configs
-(CFG_HESIOD, CFG_YP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
+(CFG_YP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER, CFG_PWQUALITY,
 	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP, CFG_DCONF, CFG_DCONF_LOCKS) = list(range(0, 29))
 all_configs = [
-	FileBackup("hesiod.conf", SYSCONFDIR+"/hesiod.conf"),
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
 	FileBackup("nss_ldap.conf", SYSCONFDIR+"/nss_ldap.conf"),
 	FileBackup("pam_ldap.conf", SYSCONFDIR+"/pam_ldap.conf"),
@@ -1287,9 +1284,6 @@ class AuthInfo:
 		self.inconsistentAttrs = []
 
 		# Service-specific settings.
-		self.hesiodLHS = ""
-		self.hesiodRHS = ""
-
 		self.ldapServer = ""
 		self.ldapBaseDN = ""
 
@@ -1324,7 +1318,6 @@ class AuthInfo:
 		self.enableCompat = None
 		self.enableDB = None
 		self.enableDirectories = None
-		self.enableHesiod = None
 		self.enableLDAP = None
 		self.enableLDAPS = None
 		self.enableNIS = None
@@ -1335,7 +1328,6 @@ class AuthInfo:
 		self.enableLDAPbind = None
 		self.enableOdbcbind = None
 		self.enableWinbind = None
-		self.enableWINS = None
 		self.enableMDNS = None
 		self.enableMyhostname = None
 		self.preferDNSinHosts = None
@@ -1414,7 +1406,6 @@ class AuthInfo:
 		self.toggleFunctions = set()
 		self.save_groups = [
 	SaveGroup(self.writeCache, self.toggleCachingService, [("enableCache", "b"), ("implicitSSSD", "b")]),
-	SaveGroup(self.writeHesiod, None, [("hesiodLHS", "i"), ("hesiodRHS", "i")]),
 	SaveGroup(self.writeNIS, self.toggleNisService, [("nisDomain", "c"), ("nisLocalDomain", "c"), ("nisServer", "c")]),
 	SaveGroup(self.writeLDAP, None, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
 		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("passwordAlgorithm", "i")]),
@@ -1441,9 +1432,9 @@ class AuthInfo:
 		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b"), ("winbindKrb5", "b")]),
 	SaveGroup(self.writeNSS, None, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
 		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
-		("enableLDAPbind", "b"), ("enableLDAP", "b"), ("enableHesiodbind", "b"),
-		("enableHesiod", "b"), ("enableDBIbind", "b"), ("enableDBbind", "b"),
-		("enableCompat", "b"), ("enableWINS", "b"), ("enableMDNS", "b"), ("enableMyhostname", "b"),
+		("enableLDAPbind", "b"), ("enableLDAP", "b"),
+		("enableDBIbind", "b"), ("enableDBbind", "b"),
+		("enableCompat", "b"), ("enableMDNS", "b"), ("enableMyhostname", "b"),
 		("enableNIS3", "b"), ("enableNIS", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
 	SaveGroup(self.writePAM, None, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
@@ -1463,7 +1454,7 @@ class AuthInfo:
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("winbindKrb5", "b"), ("enableDB", "b"),
-		("enableHesiod", "b"), ("enablePWQuality", "b"), ("enablePasswdQC", "b"),
+		("enablePWQuality", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"), ("enableCacheCreds", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
 		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
@@ -1504,7 +1495,7 @@ class AuthInfo:
 		if self.enableForceLegacy or not self.sssdConfig:
 			return False
 		# we just ignore things which have no support on command line
-		nssall = ('NIS', 'LDAP', 'Winbind', 'Hesiod')
+		nssall = ('NIS', 'LDAP', 'Winbind')
 		pamall = ('Kerberos', 'LDAPAuth', 'WinbindAuth', 'Smartcard')
 		idsupported = ('LDAP')
 		authsupported = ('Kerberos', 'LDAPAuth')
@@ -1527,24 +1518,6 @@ class AuthInfo:
 		# realm via DNS is not supported by the current SSSD
 		if self.enableKerberos and self.kerberosRealmviaDNS:
 			return False
-		return True
-
-	# Read hesiod setup.  Luckily, /etc/hesiod.conf is simple enough that shvfile
-	# can read it just fine.
-	def readHesiod(self, ref):
-		# Open the file.  Bail if it's not there.
-		try:
-			shv = shvfile.read(all_configs[CFG_HESIOD].origPath)
-		except IOError:
-			return False
-
-		# Read the LHS.
-		self.setParam("hesiodLHS", snipString(shv.getValue("lhs")), ref)
-
-		# Read the RHS.
-		self.setParam("hesiodRHS", snipString(shv.getValue("rhs")), ref)
-
-		shv.close()
 		return True
 
 	# Read NIS setup from /etc/yp.conf.
@@ -2047,26 +2020,22 @@ class AuthInfo:
 			if value:
 				nssconfig = value
 			else:
-				# wins can be found in hosts only
+				# some modules can be found in hosts only
 				value = matchKey(line, "hosts:")
 				if value:
-					if checkNSS(value, "wins"):
-						self.setParam("enableWINS", True, ref)
 					if checkNSS(value, "mdns4_minimal [NOTFOUND=return]"):
 						self.setParam("enableMDNS", True, ref)
 					if checkNSS(value, "myhostname"):
 						self.setParam("enableMyhostname", True, ref)
 
 					nispos = checkNSS(value, "nis")
-					if nispos == None:
-						nispos = checkNSS(value, "wins")
 					dnspos = checkNSS(value, "dns")
 					if nispos != None and dnspos != None:
 						self.setParam("preferDNSinHosts", dnspos < nispos, ref)
 
 		if nssconfig:
 			nssmap = (('Compat', 'compat'), ('DB', 'db'),
-				  ('Directories', 'directories'), ('Hesiod', 'hesiod'),
+				  ('Directories', 'directories'),
 				  ('LDAP', 'ldap'), ('NIS', 'nis'), ('Altfiles', 'altfiles'),
 				  ('NIS3', 'nisplus'), ('Winbind', 'winbind'))
 			for attr, nssentry in nssmap:
@@ -2304,14 +2273,6 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
-				self.enableHesiod = shv.getBoolValue("USEHESIOD")
-			except ValueError:
-				pass
-			try:
-				self.enableHesiodbind = shv.getBoolValue("USEHESIODBIND")
-			except ValueError:
-				pass
-			try:
 				self.enableKerberos = shv.getBoolValue("USEKERBEROS")
 			except ValueError:
 				pass
@@ -2497,7 +2458,6 @@ class AuthInfo:
 
 		self.readLogindefs(ref)
 		self.readPWQuality(ref)
-		self.readHesiod(ref)
 		self.readWinbind(ref)
 		self.readNetwork(ref)
 		self.readNIS(ref)
@@ -2523,20 +2483,6 @@ class AuthInfo:
 	def writeCache(self):
 		all_configs[CFG_CACHE].backup(self.backupDir)
 		writeCache(self.enableCache and not self.implicitSSSD)
-		return True
-
-	def writeHesiod(self):
-		all_configs[CFG_HESIOD].backup(self.backupDir)
-		try:
-			shv = shvfile.rcreate(all_configs[CFG_HESIOD].origPath)
-		except IOError:
-			return False
-		shv.setValue("lhs", self.hesiodLHS)
-		shv.setValue("rhs", self.hesiodRHS)
-
-		shv.write(0o644)
-		shv.close()
-
 		return True
 
 	# Write NIS setup to /etc/yp.conf.
@@ -3608,10 +3554,6 @@ class AuthInfo:
 				normal += " ldapbind"
 			if self.enableLDAP and not self.implicitSSSD:
 				normal += " ldap"
-			if self.enableHesiodbind:
-				normal += " hesiodbind"
-			if self.enableHesiod:
-				normal += " hesiod"
 			if self.enableDBIbind:
 				normal += " dbibind"
 			if self.enableDBbind:
@@ -3643,8 +3585,6 @@ class AuthInfo:
 				hosts += " mdns4_minimal [NOTFOUND=return]"
 			if self.preferDNSinHosts:
 				hosts += " dns"
-			if self.enableWINS:
-				hosts += " wins"
 			if self.enableNIS3:
 				hosts += " nisplus"
 			if self.enableNIS:
@@ -3974,7 +3914,6 @@ class AuthInfo:
 
 		shv.setBoolValue("USEPWQUALITY", self.enablePWQuality)
 		shv.setBoolValue("USEDB", self.enableDB)
-		shv.setBoolValue("USEHESIOD", self.enableHesiod)
 		shv.setBoolValue("USELDAP", self.enableLDAP)
 		shv.setBoolValue("USENIS", self.enableNIS)
 		shv.setBoolValue("USEECRYPTFS", self.enableEcryptfs)
@@ -4037,8 +3976,6 @@ class AuthInfo:
 			ret = ret and self.writeLogindefs()
 			ret = ret and self.writeCache()
 
-			if self.enableHesiod or os.path.isfile(all_configs[CFG_HESIOD].origPath):
-				ret = ret and self.writeHesiod()
 			if self.enableLDAP or self.enableLDAPAuth or os.path.isfile(all_configs[CFG_OPENLDAP].origPath):
 				ret = ret and self.writeLDAP()
 			if (self.enableKerberos or
@@ -4090,12 +4027,6 @@ class AuthInfo:
 		qname = ""
 		results = []
 		result = []
-		hesiod = [
-			[dnsclient.DNS_C_IN, "hs"],
-			[dnsclient.DNS_C_IN, "ns"],
-			[dnsclient.DNS_C_HS, "hs"],
-			[dnsclient.DNS_C_HS, "ns"]
-		]
 
 		# get the local host name
 		hostname = socket.getfqdn()
@@ -4156,26 +4087,11 @@ class AuthInfo:
 					else:
 						self.kerberosAdminServer = qname
 
-		# now check for SOA records for hesiod-style domains under .hs.DOMAIN
- 		# and .ns.DOMAIN
-		for h in hesiod:
-			qname = h[1] + domain
-			results = dnsclient.query(qname, h[0], dnsclient.DNS_T_SOA)
-			for result in results:
-				if (result.dns_type == dnsclient.DNS_T_SOA and
-					result.dns_name == qname):
-					self.hesiodLHS = "." + h[1]
-					self.hesiodRHS = domain.rstrip(".")
-					break
-
 	def printInfo(self):
 		print("caching is %s" % formatBool(self.enableCache))
 		print("nss_files is always enabled")
 		print("nss_compat is %s" % formatBool(self.enableCompat))
 		print("nss_db is %s" % formatBool(self.enableDB))
-		print("nss_hesiod is %s" % formatBool(self.enableHesiod))
-		print(" hesiod LHS = \"%s\"" % self.hesiodLHS)
-		print(" hesiod RHS = \"%s\"" % self.hesiodRHS)
 		print("nss_ldap is %s" % formatBool(self.enableLDAP))
 		print(" LDAP+TLS is %s" % formatBool(self.enableLDAPS))
 		print(" LDAP server = \"%s\"" % self.ldapServer)
@@ -4192,10 +4108,9 @@ class AuthInfo:
 		print(" Winbind template shell = \"%s\"" % self.winbindTemplateShell)
 		print(" SMB idmap range = \"%s\"" % self.smbIdmapRange)
 		print("nss_sss is %s by default" % formatBool(self.enableSSSD))
-		print("nss_wins is %s" % formatBool(self.enableWINS))
 		print("nss_mdns4_minimal is %s" % formatBool(self.enableMDNS))
 		print("myhostname is %s" % formatBool(self.enableMyhostname))
-		print("DNS preference over NSS or WINS is %s" % formatBool(self.preferDNSinHosts))
+		print("DNS preference over NSS is %s" % formatBool(self.preferDNSinHosts))
 		print("pam_unix is always enabled")
 		print(" shadow passwords are %s" % formatBool(self.enableShadow))
 		print(" password hashing algorithm is %s" % self.passwordAlgorithm)
