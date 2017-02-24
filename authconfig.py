@@ -251,23 +251,6 @@ class Authconfig:
 		parser.add_option("--winbindjoin", metavar="<Administrator>",
 			help=_("join the winbind domain or ads realm now as this administrator"))
 
-		parser.add_option("--enableipav2", action="store_true",
-			help=_("enable IPAv2 for user information and authentication by default"))
-		parser.add_option("--disableipav2", action="store_true",
-			help=_("disable IPAv2 for user information and authentication by default"))
-		parser.add_option("--ipav2domain", metavar=_("<domain>"),
-			help=_("the IPAv2 domain the system should be part of"))
-		parser.add_option("--ipav2realm", metavar=_("<realm>"),
-			help=_("the realm for the IPAv2 domain"))
-		parser.add_option("--ipav2server", metavar=_("<servers>"),
-			help=_("the server for the IPAv2 domain"))
-		parser.add_option("--enableipav2nontp", action="store_true",
-			help=_("do not setup the NTP against the IPAv2 domain"))
-		parser.add_option("--disableipav2nontp", action="store_true",
-			help=_("setup the NTP against the IPAv2 domain (default)"))
-		parser.add_option("--ipav2join", metavar="<account>",
-			help=_("join the IPAv2 domain as this account"))
-
 		parser.add_option("--enablewins", action="store_true",
 			help=_("enable wins for hostname resolution"))
 		parser.add_option("--disablewins", action="store_true",
@@ -450,8 +433,6 @@ class Authconfig:
 			"winbindusedefaultdomain":"winbindUseDefaultDomain",
 			"winbindoffline":"winbindOffline",
 			"winbindkrb5":"winbindKrb5",
-			"ipav2":"enableIPAv2",
-			"ipav2nontp":"ipav2NoNTP",
 			"wins":"enableWINS",
 			"sssd":"enableSSSD",
 			"sssdauth":"enableSSSDAuth",
@@ -484,9 +465,6 @@ class Authconfig:
 			"winbindseparator":"winbindSeparator",
 			"winbindtemplatehomedir":"winbindTemplateHomedir",
 			"winbindtemplateshell":"winbindTemplateShell",
-			"ipav2domain":"ipav2Domain",
-			"ipav2realm":"ipav2Realm",
-			"ipav2server":"ipav2Server",
                         "passminlen":"passMinLen",
                         "passminclass":"passMinClass",
                         "passmaxrepeat":"passMaxRepeat",
@@ -573,9 +551,6 @@ class Authconfig:
 			if len(lst) > 1:
 				self.info.joinPassword = lst[1]
 
-		if self.options.ipav2join != None:
-			self.info.joinUser = self.options.ipav2join
-
 		if self.options.smartcardaction:
 			try:
 				idx = int(self.options.smartcardaction)
@@ -601,14 +576,6 @@ class Authconfig:
 		ret = True
 		if self.options.winbindjoin:
 			ret = self.info.joinDomain(True)
-		if self.options.ipav2join != None:
-			if self.info.joinIPADomain(True):
-				# This is a hack but otherwise we cannot
-				# get the IPAV2DOMAINJOINED saved
-				# unfortunately the backup will be overwritten
-				self.info.writeSysconfig()
-			else:
-				ret = False
 		return ret
 
 	def writeAuthInfo(self):

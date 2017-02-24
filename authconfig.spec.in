@@ -65,8 +65,10 @@ sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/de
 
 %changelog
 * Fri Feb 24 2017 Tomáš Mráz <tmraz@redhat.com> - 7.0.0-1
-- dropped authconfig-gtk (system-config-authentication)
-- dropped authconfig-tui
+- dropped authconfig-gtk (system-config-authentication) (no GTK3 support)
+- dropped authconfig-tui (deprecated long ago)
+- dropped IPA domain join support (conflicts with the recommended way to
+  install IPA client on a machine)
 
 * Fri Feb 20 2015 Tomáš Mráz <tmraz@redhat.com> - 6.2.10-1
 - allow multiple LDAP URIs in the setting again
