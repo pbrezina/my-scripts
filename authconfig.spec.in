@@ -7,13 +7,13 @@ ExclusiveOS: Linux
 Group: System Environment/Base
 URL: https://fedorahosted.org/authconfig
 Source: https://fedorahosted.org/releases/a/u/%{name}/%{name}-%{version}.tar.bz2
-Requires: newt-python, pam >= 0.99.10.0, python, libpwquality > 0.9
+Requires: pam >= 0.99.10.0, python, libpwquality > 0.9
 Requires: python-sssdconfig
 Conflicts: pam_krb5 < 1.49, samba-common < 3.0, samba-client < 3.0
 Conflicts: nss_ldap < 254, sssd < 0.99.1
 Conflicts: freeipa-client < 2.2.0, ipa-client < 2.2.0
 BuildRequires: glib2-devel, python >= 2.6, python-devel
-BuildRequires: desktop-file-utils, intltool, gettext, perl-XML-Parser
+BuildRequires: intltool, gettext
 Requires: /usr/bin/openssl
 Requires: policycoreutils
 
@@ -34,8 +34,6 @@ make
 make install DESTDIR=$RPM_BUILD_ROOT
 rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutil.a
 rm $RPM_BUILD_ROOT/%{_libdir}/python*/site-packages/acutil.la
-rm $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
-ln -s authconfig.py $RPM_BUILD_ROOT/%{_datadir}/%{name}/authconfig-tui.py
 
 %find_lang %{name}
 find $RPM_BUILD_ROOT%{_datadir} -name "*.mo" | xargs ./utf8ify-mo
@@ -54,22 +52,20 @@ sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/de
 %ghost %config(noreplace) %{_sysconfdir}/pam.d/postlogin-ac
 %{_sbindir}/cacertdir_rehash
 %{_sbindir}/authconfig
-%{_sbindir}/authconfig-tui
 %{_mandir}/man8/*
 %{_mandir}/man5/*
 %{_libdir}/python*/site-packages/acutil.so
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/authconfig.py*
-%{_datadir}/%{name}/authconfig-tui.py*
 %{_datadir}/%{name}/authinfo.py*
 %{_datadir}/%{name}/shvfile.py*
 %{_datadir}/%{name}/dnsclient.py*
-%{_datadir}/%{name}/msgarea.py*
 %attr(700,root,root) %dir %{_localstatedir}/lib/%{name}
 
 %changelog
 * Fri Feb 24 2017 Tomáš Mráz <tmraz@redhat.com> - 7.0.0-1
 - dropped authconfig-gtk (system-config-authentication)
+- dropped authconfig-tui
 
 * Fri Feb 20 2015 Tomáš Mráz <tmraz@redhat.com> - 6.2.10-1
 - allow multiple LDAP URIs in the setting again

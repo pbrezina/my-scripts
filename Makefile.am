@@ -18,9 +18,7 @@ install-exec-local:
 	mkdir -p $(DESTDIR)/$(bindir)
 	mkdir -p $(DESTDIR)/$(sbindir)
 	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig
-	ln -sf consolehelper $(DESTDIR)/$(bindir)/authconfig-tui
 	ln -sf $(pkgdatadir)/authconfig.py $(DESTDIR)/$(sbindir)/authconfig
-	ln -sf $(pkgdatadir)/authconfig-tui.py $(DESTDIR)/$(sbindir)/authconfig-tui
 
 install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(pamdir)
@@ -29,10 +27,7 @@ install-data-local: authconfig.desktop
 	mkdir -p $(DESTDIR)/$(pkgdatadir)
 	mkdir -p $(DESTDIR)/$(backupdir)
 	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig
-	$(INSTALL_DATA) $(srcdir)/authconfig.pamd $(DESTDIR)/$(pamdir)/authconfig-tui
 	$(INSTALL_DATA) $(srcdir)/authconfig.console $(DESTDIR)/$(consoledir)/authconfig
-	$(INSTALL_DATA) $(srcdir)/authconfig-tui.console $(DESTDIR)/$(consoledir)/authconfig-tui
-	ln -sf authconfig.py $(DESTDIR)/$(pkgdatadir)/authconfig-tui.py
 	touch $(DESTDIR)/$(sysconfigdir)/authconfig
 	touch $(DESTDIR)/$(pamdir)/system-auth-ac
 	touch $(DESTDIR)/$(pamdir)/password-auth-ac
@@ -46,14 +41,10 @@ install-data-local: authconfig.desktop
 
 uninstall-local:
 	$(RM) $(DESTDIR)/$(bindir)/authconfig
-	$(RM) $(DESTDIR)/$(bindir)/authconfig-tui
 	$(RM) $(DESTDIR)/$(pamdir)/authconfig
-	$(RM) $(DESTDIR)/$(pamdir)/authconfig-tui
 	$(RM) $(DESTDIR)/$(consoledir)/authconfig
-	$(RM) $(DESTDIR)/$(consoledir)/authconfig-tui
 	$(RM) $(DESTDIR)/$(sysconfigdir)/authconfig
 	$(RM) $(DESTDIR)$(pkgdatadir)/*.pyc
-	$(RM) $(DESTDIR)$(pkgdatadir)/authconfig-tui.py
 	rmdir $(DESTDIR)/$(applnkdir)
 	rmdir $(DESTDIR)/$(startheredir)
 	rmdir $(DESTDIR)/$(bindir)
@@ -67,7 +58,7 @@ acutil_la_SOURCES = acutilmodule.c
 acutil_la_LDFLAGS = -module -avoid-version -export-dynamic @LDFLAGS@
 
 EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd \
-	authconfig.console authconfig-tui.console \
+	authconfig.console \
 	$(pkgdata_SCRIPTS) $(pkgdata_DATA) \
 	NOTES utf8ify-mo \
 	intltool-extract.in intltool-merge.in intltool-update.in \
