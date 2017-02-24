@@ -93,12 +93,10 @@ PATH_SEBOOL = "/usr/sbin/setsebool"
 PATH_SCEVENTD = "/usr/bin/pkcs11_eventmgr"
 PATH_SCSETUP = "/usr/bin/pkcs11_setup"
 
-PATH_LIBNSS_DB = LIBDIR + "/libnss_db.so.2"
 PATH_LIBNSS_LDAP = "/usr" + LIBDIR + "/libnss_ldap.so.2"
 if not os.path.isfile(PATH_LIBNSS_LDAP):
 	PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
 PATH_LIBNSS_NIS = LIBDIR + "/libnss_nis.so.2"
-PATH_LIBNSS_ODBCBIND = LIBDIR + "/libnss_odbcbind.so.2"
 PATH_LIBNSS_WINBIND = LIBDIR + "/libnss_winbind.so.2"
 PATH_LIBNSS_SSS = LIBDIR + "/libnss_sss.so.2"
 
@@ -297,18 +295,6 @@ argv_unix_password = [
 	"use_authtok"
 ]
 
-argv_afs_auth = [
-	"use_first_pass"
-]
-
-argv_afs_password = [
-	# It looks like current pam_afs (from OpenAFS 1.1.1) doesn't support
-	# "use_authtok", so it'll probably interact badly with pam_pwquality,
-	# but thanks to stack-traversal changes in Linux-PAM 0.75 and higher,
-	# the password-changing should work anyway.
-	"use_first_pass"
-]
-
 argv_pwquality_password = [
 	"try_first_pass",
 	"local_users_only",
@@ -318,14 +304,6 @@ argv_pwquality_password = [
 
 argv_passwdqc_password = [
 	"enforce=users"
-]
-
-argv_eps_auth = [
-	"use_first_pass"
-]
-
-argv_eps_password = [
-	"use_authtok"
 ]
 
 argv_fprintd_auth = [
@@ -363,10 +341,6 @@ argv_ldap_password = [
 
 # This probably won't work straight-off because pam_unix won't give the right
 # challenge, but what the heck.
-argv_otp_auth = [
-	"use_first_pass"
-]
-
 argv_succeed_if_auth = [
 	"uid >=",
 	"500", # this must be the second arg - to be replaced
@@ -478,17 +452,9 @@ pam_modules[STANDARD] = [
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "sss",			argv_sss_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "afs",			argv_afs_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "afs.krb",		argv_afs_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "eps_auth",		argv_eps_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "ldap",		argv_ldap_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "otp",			argv_otp_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth],
 	[True,  AUTH,		LOGIC_REQUIRED,
@@ -535,12 +501,6 @@ pam_modules[STANDARD] = [
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "sss",			argv_sss_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
-	 "afs",			argv_afs_password],
-	[False, PASSWORD,	LOGIC_SUFFICIENT,
-	 "afs.krb",		argv_afs_password],
-	[False, PASSWORD,	LOGIC_SUFFICIENT,
-	 "eps_passwd",		argv_eps_password],
-	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "ldap",		argv_ldap_password],
@@ -562,10 +522,6 @@ pam_modules[STANDARD] = [
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "sss",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs.krb",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -603,17 +559,9 @@ pam_modules[PASSWORD_ONLY] = [
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "sss",			argv_sss_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "afs",			argv_afs_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "afs.krb",		argv_afs_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "eps_auth",		argv_eps_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "ldap",		argv_ldap_auth],
-	[False, AUTH,		LOGIC_SUFFICIENT,
-	 "otp",			argv_otp_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth],
 	[True,  AUTH,		LOGIC_REQUIRED,
@@ -645,12 +593,6 @@ pam_modules[PASSWORD_ONLY] = [
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "sss",			argv_sss_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
-	 "afs",			argv_afs_password],
-	[False, PASSWORD,	LOGIC_SUFFICIENT,
-	 "afs.krb",		argv_afs_password],
-	[False, PASSWORD,	LOGIC_SUFFICIENT,
-	 "eps_passwd",		argv_eps_password],
-	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "krb5",		argv_krb5_password],
 	[False, PASSWORD,	LOGIC_SUFFICIENT,
 	 "ldap",		argv_ldap_password],
@@ -672,10 +614,6 @@ pam_modules[PASSWORD_ONLY] = [
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "sss",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs.krb",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -727,10 +665,6 @@ pam_modules[FINGERPRINT] = [
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "sss",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs.krb",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -784,10 +718,6 @@ pam_modules[SMARTCARD] = [
 	 "unix",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "sss",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs",			[]],
-	[False, SESSION,	LOGIC_OPTIONAL,
-	 "afs.krb",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
 	 "krb5",		[]],
 	[False, SESSION,	LOGIC_OPTIONAL,
@@ -1315,18 +1245,10 @@ class AuthInfo:
 
 		# NSSwitch setup.  Files is always in there.
 		self.enableCache = None
-		self.enableCompat = None
-		self.enableDB = None
-		self.enableDirectories = None
 		self.enableLDAP = None
 		self.enableLDAPS = None
 		self.enableNIS = None
 		self.enableNIS3 = None
-		self.enableDBbind = None
-		self.enableDBIbind = None
-		self.enableHesiodbind = None
-		self.enableLDAPbind = None
-		self.enableOdbcbind = None
 		self.enableWinbind = None
 		self.enableMDNS = None
 		self.enableMyhostname = None
@@ -1337,18 +1259,14 @@ class AuthInfo:
 		self.enableAltfiles = None
 
 		# Authentication setup.
-		self.enableAFS = None
-		self.enableAFSKerberos = None
 		self.enableNullOk = True
 		self.enablePWQuality = None
 		self.enableEcryptfs = None
-		self.enableEPS = None
 		self.enableKerberos = None
 		self.enableLDAPAuth = None
 		self.passwordAlgorithm = ""
 		self.algoRounds = ""
 		self.uidMin = None
-		self.enableOTP = None
 		self.enablePasswdQC = None
 		self.enableShadow = None
 		self.enableWinbindAuth = None
@@ -1430,12 +1348,8 @@ class AuthInfo:
 		("smbRealm", "c"), ("smbSecurity", "i"), ("smbIdmapRange", "i"),
 		("winbindSeparator", "c"), ("winbindTemplateHomedir", "c"), ("winbindTemplateShell", "c"),
 		("winbindUseDefaultDomain", "b"), ("winbindOffline", "b"), ("winbindKrb5", "b")]),
-	SaveGroup(self.writeNSS, None, [("enableDB", "b"), ("enableDirectories", "b"), ("enableWinbind", "b"),
-		("enableOdbcbind", "b"), ("enableNIS3", "b"), ("enableNIS", "b"),
-		("enableLDAPbind", "b"), ("enableLDAP", "b"),
-		("enableDBIbind", "b"), ("enableDBbind", "b"),
-		("enableCompat", "b"), ("enableMDNS", "b"), ("enableMyhostname", "b"),
-		("enableNIS3", "b"), ("enableNIS", "b"),
+	SaveGroup(self.writeNSS, None, [("enableWinbind", "b"), ("enableNIS", "b"), ("enableNIS3", "b"),
+		("enableLDAP", "b"), ("enableMDNS", "b"), ("enableMyhostname", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
 	SaveGroup(self.writePAM, None, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
@@ -1443,9 +1357,8 @@ class AuthInfo:
 		("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableNullOk", "b"), ("forceBrokenShadow", "b"), ("enableLDAPAuth", "b"),
 		("enableKerberos", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
-		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"), ("enableAFS", "b"),
-		("enableAFSKerberos", "b"), ("enablePWQuality", "b"), ("enableEPS", "b"),
-		("enableEcryptfs", "b"), ("enableOTP", "b"), ("enablePasswdQC", "b"),
+		("enableWinbindAuth", "b"), ("enableMkHomeDir", "b"),
+		("enablePWQuality", "b"), ("enableEcryptfs", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enableSysNetAuth", "b"),
 		("winbindOffline", "b"), ("winbindKrb5", "b"),
 		("enableSSSDAuth", "b"), ("enableFprintd", "b"), ("pamLinked", "b"),
@@ -2034,10 +1947,8 @@ class AuthInfo:
 						self.setParam("preferDNSinHosts", dnspos < nispos, ref)
 
 		if nssconfig:
-			nssmap = (('Compat', 'compat'), ('DB', 'db'),
-				  ('Directories', 'directories'),
-				  ('LDAP', 'ldap'), ('NIS', 'nis'), ('Altfiles', 'altfiles'),
-				  ('NIS3', 'nisplus'), ('Winbind', 'winbind'))
+			nssmap = (('LDAP', 'ldap'), ('NIS', 'nis'), ('Altfiles', 'altfiles'),
+				('NIS3', 'nisplus'), ('Winbind', 'winbind'))
 			for attr, nssentry in nssmap:
 				if checkNSS(nssconfig, nssentry):
 					self.setParam('enable' + attr, True, ref)
@@ -2237,39 +2148,11 @@ class AuthInfo:
 			shv = shvfile.read(all_configs[CFG_AUTHCONFIG].origPath)
 
 			try:
-				self.enableAFS = shv.getBoolValue("USEAFS")
-			except ValueError:
-				pass
-			try:
-				self.enableAFSKerberos = shv.getBoolValue("USEAFSKERBEROS")
-			except ValueError:
-				pass
-			try:
-				self.enableDB = shv.getBoolValue("USEDB")
-			except ValueError:
-				pass
-			try:
 				self.enablePWQuality = shv.getBoolValue("USEPWQUALITY")
 			except ValueError:
 				pass
 			try:
-				self.enableDBbind = shv.getBoolValue("USEDBBIND")
-			except ValueError:
-				pass
-			try:
-				self.enableDBIbind = shv.getBoolValue("USEDBIBIND")
-			except ValueError:
-				pass
-			try:
-				self.enableDirectories = shv.getBoolValue("USEDIRECTORIES")
-			except ValueError:
-				pass
-			try:
 				self.enableEcryptfs = shv.getBoolValue("USEECRYPTFS")
-			except ValueError:
-				pass
-			try:
-				self.enableEPS = shv.getBoolValue("USEEPS")
 			except ValueError:
 				pass
 			try:
@@ -2297,10 +2180,6 @@ class AuthInfo:
 			except ValueError:
 				pass
 			try:
-				self.enableLDAPbind = shv.getBoolValue("USELDAPBIND")
-			except ValueError:
-				pass
-			try:
 				enableMD5 = shv.getBoolValue("USEMD5")
 				if enableMD5:
 					self.passwordAlgorithm = 'md5'
@@ -2314,14 +2193,6 @@ class AuthInfo:
 				pass
 			try:
 				self.enableNISP3 = shv.getBoolValue("USENISPLUS")
-			except ValueError:
-				pass
-			try:
-				self.enableOdbcbind = shv.getBoolValue("USEODBCBIND")
-			except ValueError:
-				pass
-			try:
-				self.enableOTP = shv.getBoolValue("USEOTP")
 			except ValueError:
 				pass
 			try:
@@ -3530,19 +3401,11 @@ class AuthInfo:
 		try:
 			f = SafeFile(all_configs[CFG_NSSWITCH].origPath, 0o644)
 
-			# Determine what we want in that file for most of the databases. If
-			# we're using DB, we're doing it for speed, so put it in first.  Then
-			# comes files.  Then everything else in reverse alphabetic order.
-			if self.enableDB:
-				normal += " db"
+			# Determine what we want in that file for most of the databases.
 			normal += " files"
 			if self.enableAltfiles:
 				normal += " altfiles"
 			services = normal
-			if self.enableDirectories:
-				normal += " directories"
-			if self.enableOdbcbind:
-				normal += " odbcbind"
 			if self.enableNIS3:
 				normal += " nisplus"
 			if self.enableNIS:
@@ -3550,24 +3413,10 @@ class AuthInfo:
 			if self.enableSSSD or self.implicitSSSD:
 				normal += " sss"
 				services += " sss"
-			if self.enableLDAPbind:
-				normal += " ldapbind"
 			if self.enableLDAP and not self.implicitSSSD:
 				normal += " ldap"
-			if self.enableDBIbind:
-				normal += " dbibind"
-			if self.enableDBbind:
-				normal += " dbbind"
 
 			netgroup = normal
-
-			# Generate the list for users and groups.  The same as most other
-			# services, just use "compat" instead of "files" if "compat" is
-			# enabled.
-			if self.enableCompat:
-				users = normal.replace("files", "compat")
-			else:
-				users = normal
 
 			if self.enableWinbind:
 				users += " winbind"
@@ -3851,11 +3700,8 @@ class AuthInfo:
 					output += "\n"
 				prevmodule = module
 				if (module[MANDATORY] or
-					(self.enableAFS and module[NAME] == "afs") or
-					(self.enableAFSKerberos and module[NAME] == "afs.krb") or
 					(self.enablePWQuality and module[NAME] == "pwquality") or
 					(self.enableEcryptfs and module[NAME] == "ecryptfs") or
-					(self.enableEPS and module[NAME] == "eps") or
 					((self.enableKerberos and not self.implicitSSSDAuth)and module[NAME] == "krb5" and
 						not module[ARGV] == argv_krb5_sc_auth) or
 					(self.enableKerberos and enableSmartcard and
@@ -3867,7 +3713,6 @@ class AuthInfo:
 					(enableSmartcard and module[NAME] == "pkcs11") or 
 					(enableSmartcard and forceSmartcard and module[NAME] == "deny") or 
 					(enableFprintd and module[NAME] == "fprintd") or
-					(self.enableOTP and module[NAME] == "otp") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					((self.enableSSSDAuth or self.implicitSSSDAuth) and module[NAME] == "sss") or
@@ -4090,8 +3935,6 @@ class AuthInfo:
 	def printInfo(self):
 		print("caching is %s" % formatBool(self.enableCache))
 		print("nss_files is always enabled")
-		print("nss_compat is %s" % formatBool(self.enableCompat))
-		print("nss_db is %s" % formatBool(self.enableDB))
 		print("nss_ldap is %s" % formatBool(self.enableLDAP))
 		print(" LDAP+TLS is %s" % formatBool(self.enableLDAPS))
 		print(" LDAP server = \"%s\"" % self.ldapServer)
