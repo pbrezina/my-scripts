@@ -1164,7 +1164,7 @@ class CacheBackup(FileBackup):
 (CFG_YP, CFG_NSSLDAP, CFG_PAMLDAP, CFG_NSLCD, CFG_OPENLDAP, CFG_KRB5,
 	CFG_KRB, CFG_PAM_PKCS11, CFG_SMB, CFG_NSSWITCH, CFG_CACHE,
 	CFG_PAM, CFG_POSTLOGIN_PAM, CFG_PASSWORD_PAM, CFG_FINGERPRINT_PAM, CFG_SMARTCARD_PAM, CFG_AUTHCONFIG, CFG_NETWORK, CFG_LIBUSER, CFG_PWQUALITY,
-	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP, CFG_DCONF, CFG_DCONF_LOCKS) = list(range(0, 29))
+	CFG_LOGIN_DEFS, CFG_SSSD, CFG_SHADOW, CFG_PASSWD, CFG_GSHADOW, CFG_GROUP, CFG_DCONF, CFG_DCONF_LOCKS) = list(range(0, 28))
 all_configs = [
 	FileBackup("yp.conf", SYSCONFDIR+"/yp.conf"),
 	FileBackup("nss_ldap.conf", SYSCONFDIR+"/nss_ldap.conf"),
@@ -1366,7 +1366,7 @@ class AuthInfo:
 	SaveGroup(self.writeSysconfig, None, [("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
 		("enableLDAP", "b"), ("enableLDAPAuth", "b"), ("enableKerberos", "b"),
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
-		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("winbindKrb5", "b"), ("enableDB", "b"),
+		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("winbindKrb5", "b"),
 		("enablePWQuality", "b"), ("enablePasswdQC", "b"),
 		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"), ("enableCacheCreds", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
@@ -3758,7 +3758,6 @@ class AuthInfo:
 			return False
 
 		shv.setBoolValue("USEPWQUALITY", self.enablePWQuality)
-		shv.setBoolValue("USEDB", self.enableDB)
 		shv.setBoolValue("USELDAP", self.enableLDAP)
 		shv.setBoolValue("USENIS", self.enableNIS)
 		shv.setBoolValue("USEECRYPTFS", self.enableEcryptfs)
