@@ -67,24 +67,11 @@ EXTRA_DIST = authconfig.spec.in authconfig.spec authconfig.pamd \
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update
 
 VERSION=@PACKAGE_VERSION@
-TAG=$(shell echo r-$(VERSION) | sed 's,\.,-,g')
+TAG=authconfig-$(VERSION)
 distdir=$(PACKAGE)-$(VERSION)
 
 update-po:
 	$(MAKE) -C po update-po
 
 tag:
-	hg tag $(TAG)
-
-force-tag forcetag:
-	hg tag --force $(TAG)
-
-archive:
-	rm -fr /tmp/$(PACKAGE) $(PACKAGE)-$(VERSION).tar.bz2
-	mkdir /tmp/$(PACKAGE) && \
-	hg archive -r $(TAG) /tmp/$(PACKAGE)/$(distdir) && \
-	(cd /tmp/$(PACKAGE)/$(distdir) && \
-	./autogen.sh && \
-	./configure && \
-	make dist) && \
-	mv /tmp/$(PACKAGE)/$(distdir)/$(distdir).tar.bz2 .
+	git tag $(TAG)
