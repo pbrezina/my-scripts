@@ -106,10 +106,8 @@ class SHVFile:
 		try:
 			self.f.seek(0)
 			self.f.truncate()
-			ordereditems = self.variables.items()
-			ordereditems.sort(lambda x, y: cmp(x[0], y[0]))
-			for name, value in ordereditems:
-				self.f.write(name + "=" + escape(value) + "\n")
+			for name in sorted(self.variables):
+				self.f.write(name + "=" + escape(self.variables[name]) + "\n")
 			self.f.flush()
 			os.fsync(self.f.fileno())
 		except IOError:
