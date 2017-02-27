@@ -67,7 +67,7 @@ sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/de
 %attr(700,root,root) %dir %{_localstatedir}/lib/%{name}
 
 %changelog
-* Fri Feb 24 2017 Tomáš Mráz <tmraz@redhat.com> - 7.0.0-1
+* Mon Feb 27 2017 Tomáš Mráz <tmraz@redhat.com> - 7.0.0-1
 - dropped authconfig-gtk (system-config-authentication) (no GTK3 support)
 - dropped authconfig-tui (deprecated long ago)
 - dropped IPA domain join support (conflicts with the recommended way to

@@ -19,10 +19,10 @@ If \fB--test\fR action is specified, the \fBauthconfig\fR just reads the
 current settings from the various configuration files and prints
 their values.
 If \fB--update\fR action is specified, \fBauthconfig\fR must be run by
-root (or through console helper), and configuration changes are saved. Only
+root and configuration changes are saved. Only
 the files affected by the configuration changes are overwritten.
 If \fB--updateall\fR action is specified, \fBauthconfig\fR must be run by
-root (or through console helper), and all configuration files are written.
+root and all configuration files are written.
 The \fB--probe\fP action instructs \fBauthconfig\fP to use DNS and other means
 to guess at configuration information for the current host, print its guesses
 if it finds them, to standard output, and exit.
@@ -75,25 +75,10 @@ by setting FORCELEGACY=yes in \fB/etc/sysconfig/authconfig\fP.
 The list of options mentioned here in the manual page is not exhaustive, please
 refer to \fBauthconfig --help\fR for the complete list of the options.
 
-The \fBauthconfig-tui\fR supports all options of authconfig but it implies
-\fB--update\fR as the default action. Its window contains a \fBCancel\fR
-button by default. If \fB--back\fR option is specified at run time, a \fBBack\fR
-button is presented instead. If \fB--kickstart\fR is specified, no interactive
-screens will be seen. The values the program will use will be those specified by
-the other options (\fB--passalgo\fR, \fB--enableshadow\fR, etc.).
-
 For \fInamelist\fR you may substitute either a single name or a 
 comma-separated list of names.
 .PD
 .SH NOTES
-The \fBauthconfig-tui\fR is deprecated. No new configuration settings will be
-supported by its text user interface. Use \fBsystem-config-authentication\fR GUI
-application or the command line options instead.
-
-The \fB/usr/bin/authconfig\fR uses the \fBconsolehelper\fR to authenticate as the
-system user before it starts up. If you want to run it directly without the 
-authentication as the system user, run the \fB/usr/sbin/authconfig\fR command.
-
 The SSSD service is enabled and possibly started by authconfig when at least two of
 the following three conditions are met:
 .br
@@ -119,11 +104,6 @@ is specified or incorrect values are set for password strength checking
 5 if writing configuration files fails on \fB--updateall\fR action, 6 if writing
 fails on \fB--update\fR action, 7 if Winbind domain join fails.
 
-
-\fBauthconfig-tui\fR returns 0 on success, 2 on error, and 1 if the user cancelled
-the program (by using either the \fBCancel\fR or \fBBack\fR button). It can also
-return the same codes as \fBauthconfig\fR.
-
 .PD
 .SH FILES
 .PD 0
@@ -132,7 +112,7 @@ return the same codes as \fBauthconfig\fR.
 .FN /etc/sysconfig/authconfig
 Used to track whether or not particular authentication mechanisms are enabled.
 Currently includes variables named USESHADOW, USEMD5, USEKERBEROS, USELDAPAUTH,
-USESMBAUTH, USEWINBIND, USEWINBINDAUTH, USEHESIOD, USENIS, USELDAP, and others.
+USEWINBIND, USEWINBINDAUTH, USENIS, USELDAP, and others.
 .TP
 .FN /etc/passwd
 .TP
@@ -159,9 +139,6 @@ the files already existing on the system are modified.
 .TP
 .FN /etc/krb5.conf
 Used to configure Kerberos 5.
-.TP
-.FN /etc/hesiod.conf
-Used to configure Hesiod.
 .TP
 .FN /etc/samba/smb.conf
 Used to configure winbind authentication.
