@@ -17,6 +17,8 @@ BuildRequires: python3-devel
 BuildRequires: intltool, gettext
 Requires: /usr/bin/openssl
 Requires: policycoreutils
+# We need to obsolete the removed subpackage to avoid broken dependencies
+Obsoletes: authconfig-gtk < 7.0.0
 
 %description 
 Authconfig is a command line utility which can configure a workstation
