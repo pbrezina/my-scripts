@@ -75,9 +75,9 @@ SMARTCARD_AUTH_PAM_SERVICE_AC = "smartcard-auth-ac"
 SSSD_AUTHCONFIG_DOMAIN = "default"
 
 if "lib64" in str(globals()["acutil"]):
-	LIBDIR = "/lib64"
+	LIBDIR = "/usr/lib64"
 else:
-	LIBDIR = "/lib"	
+	LIBDIR = "/usr/lib"
 
 AUTH_MODULE_DIR = LIBDIR + "/security"
 
