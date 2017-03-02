@@ -66,7 +66,10 @@ and \fB/etc/pam.d/system-auth\fP, but they do not set up the domain in the
 \fISSSD\fR configuration files. The \fISSSD\fR configuration has to be
 set up manually. The allowed configuration of services for \fISSSD\fR are: LDAP for
 user information (\fB--enableldap\fR) and either LDAP (\fB--enableldapauth\fR), or
-Kerberos (\fB--enablekrb5\fR) for authentication.
+Kerberos (\fB--enablekrb5\fR) for authentication. Please note that even though
+these options alone do not trigger any change in SSSD configuration files this
+may not be true if any of these options is used in conjunction with other
+options such as \fB--enableldap\fR or \fB--updateall\fR.
 
 In case \fISSSD\fR does not support some feature of the legacy services that are
 required for the site configuration, the use of the legacy services can be forced
