@@ -3586,7 +3586,7 @@ class AuthInfo:
 			# do not continue to following modules if authentication fails
 			if name == "unix" and stack == "auth" and (self.enableSSSDAuth or
 				self.implicitSSSDAuth) and (not self.enableNIS):
-				logic = LOGIC_FORCE_PKCS11 # make it or break it logic
+				logic = LOGIC_SUFFICIENT
 			# use oddjob_mkhomedir if available
 			if name == "mkhomedir" and os.access("%s/pam_%s.so"
 				% (AUTH_MODULE_DIR, "oddjob_mkhomedir"), os.X_OK):
