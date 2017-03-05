@@ -538,6 +538,10 @@ class Authconfig:
 				self.printError(_("Bad smart card removal action specified."))
 				self.info.smartcardAction = ""
 
+		if self.options.enablerequiresmartcard and self.options.smartcardmodule == "sssd":
+			self.printError(_("--enablerequiresmartcard is not supported for module 'sssd', option is ignored."))
+			self.options.enablerequiresmartcard = False
+
 		if not self.options.passalgo:
 			if self.options.enablemd5:
 				self.info.passwordAlgorithm = "md5"
