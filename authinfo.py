@@ -318,6 +318,10 @@ argv_force_pkcs11_auth = [
 	"wait_for_card"
 ]
 
+argv_sssd_missing_name = [
+	"allow_missing_name"
+]
+
 argv_krb5_auth = [
 	"use_first_pass"
 ]
@@ -676,6 +680,8 @@ pam_modules[FINGERPRINT] = [
 pam_modules[SMARTCARD] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[False,  AUTH,		LOGIC_SUFFICIENT,
+	 "sss",			argv_sssd_missing_name],
 	[False,  AUTH,		LOGIC_PKCS11,
 	 "pkcs11",		argv_force_pkcs11_auth],
 	[False, AUTH,		LOGIC_OPTIONAL,
@@ -1337,7 +1343,7 @@ class AuthInfo:
 		("kerberosAdminServer", "i"), ("kerberosRealmviaDNS", "b"),
 		("kerberosKDCviaDNS", "b")]),
 	SaveGroup(self.writeSSSD, self.toggleSSSDService, [("ldapServer", "i"), ("ldapBaseDN", "c"), ("enableLDAPS", "b"),
-		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("enableCacheCreds", "b"),
+		("ldapSchema", "c"), ("ldapCacertDir", "c"), ("enableCacheCreds", "b"), ("enableSmartcard", "b"),
 		("kerberosRealm", "c"), ("kerberosKDC", "i"), ("kerberosAdminServer", "i"),
 		("forceSSSDUpdate", "b"), ("enableLDAP", "b"), ("enableKerberos", "b"),
 		("enableLDAPAuth", "b")]),
@@ -3070,11 +3076,35 @@ class AuthInfo:
 				domain.remove_provider(subtype)
 			domain.add_provider(newprovider, subtype)
 
+	def writeSSSDPAM(self):
+		if not self.sssdConfig:
+			return True
+
+		pam = self.sssdConfig.get_service('pam')
+
+		if self.enableSmartcard and self.enableSSSDAuth and self.smartcardModule == "sssd" :
+			pam.set_option('pam_cert_auth', 'True')
+		else:
+			try:
+				pam.remove_option('pam_cert_auth')
+			except SSSDConfig.NoOptionError:
+				pass
+
+		self.sssdConfig.save_service(pam)
+		try:
+			self.sssdConfig.write(all_configs[CFG_SSSD].origPath)
+		except IOError:
+			pass
+
+		return True
+
 	def writeSSSD(self):
 		if not self.sssdConfig:
 			return True
 
 		all_configs[CFG_SSSD].backup(self.backupDir)
+
+		self.writeSSSDPAM()
 
 		if not self.sssdDomain:
 			if not self.implicitSSSD:
@@ -3619,7 +3649,7 @@ class AuthInfo:
 				args = self.mkhomedirArgs
 			if name == "systemd":
 				args = self.systemdArgs
-			if name == "sss" and stack == "auth" and not self.enableNIS:
+			if name == "sss" and stack == "auth" and not self.enableNIS and not module[ARGV] == argv_sssd_missing_name:
 				args = "forward_pass"
 			if not args and module[ARGV]:
 				args = " ".join(module[ARGV])
@@ -3699,6 +3729,10 @@ class AuthInfo:
 				enableSmartcard = True
 				forceSmartcard = True
 
+			# configure SSSD Smartcard support instead of
+			# pam_pkcs11 if SSSD is used for authentication and no
+			# Smartcard module is set, e.g. if pam_pkcs11 is not installed.
+			use_sssd_smartcard_support = self.enableSSSDAuth and self.smartcardModule == "sssd"
 			prevmodule = []
 			for module in pam_modules[service]:
 				if prevmodule and module[STACK] != prevmodule[STACK]:
@@ -3713,14 +3747,15 @@ class AuthInfo:
 					    ((module[NAME] == "krb5" and module[ARGV] == argv_krb5_sc_auth) or
 					    (module[NAME] == "permit" and module[STACK] == AUTH))) or
 					((self.enableLDAPAuth and not self.implicitSSSDAuth) and module[NAME] == "ldap") or
-					(enableSmartcard and module[STACK] == AUTH and
+					(enableSmartcard and use_sssd_smartcard_support and module[NAME] == "sss" and module[ARGV] == argv_sssd_missing_name) or
+					(enableSmartcard and not use_sssd_smartcard_support and module[STACK] == AUTH and
 						module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_SKIPNEXT) or
-					(enableSmartcard and module[NAME] == "pkcs11") or 
-					(enableSmartcard and forceSmartcard and module[NAME] == "deny") or 
+					(enableSmartcard and not use_sssd_smartcard_support and module[NAME] == "pkcs11") or
+					(enableSmartcard and not use_sssd_smartcard_support and forceSmartcard and module[NAME] == "deny") or
 					(enableFprintd and module[NAME] == "fprintd") or
 					(self.enablePasswdQC and module[NAME] == "passwdqc") or
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
-					((self.enableSSSDAuth or self.implicitSSSDAuth) and module[NAME] == "sss") or
+					((self.enableSSSDAuth or self.implicitSSSDAuth) and module[NAME] == "sss" and module[ARGV] != argv_sssd_missing_name) or
 					((self.enableSSSDAuth or self.implicitSSSDAuth) and
 						(not self.enableNIS) and module[NAME] == "localuser" and module[STACK] == AUTH) or
 					(self.enableLocAuthorize and module[NAME] == "localuser" and module[STACK] == ACCOUNT) or
@@ -3839,6 +3874,8 @@ class AuthInfo:
 				ret = ret and self.writeWinbind()
 			if self.implicitSSSD or self.implicitSSSDAuth:
 				ret = ret and self.writeSSSD()
+			elif self.enableSSSDAuth:
+				ret = ret and self.writeSSSDPAM()
 			ret = ret and self.writeNSS()
 			ret = ret and self.writePAM()
 			ret = ret and self.writeSysconfig()
@@ -3972,7 +4009,8 @@ class AuthInfo:
 		print(" LDAP server = \"%s\"" % self.ldapServer)
 		print(" LDAP base DN = \"%s\"" % self.ldapBaseDN)
 		print(" LDAP schema = \"%s\"" % (self.ldapSchema or "rfc2307"))
-		print("pam_pkcs11 is %s" % formatBool(self.enableSmartcard))
+		print("pam_pkcs11 is %s" % formatBool(self.enableSmartcard and not (self.enableSSSDAuth and self.smartcardModule == "sssd")))
+		print("SSSD smartcard support is %s" % formatBool(self.enableSmartcard and (self.enableSSSDAuth and self.smartcardModule == "sssd")))
 		print(" use only smartcard for login is %s" % formatBool(self.forceSmartcard))
 		print(" smartcard module = \"%s\"" % self.smartcardModule)
 		print(" smartcard removal action = \"%s\"" % self.smartcardAction)
