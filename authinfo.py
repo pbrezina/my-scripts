@@ -461,6 +461,8 @@ pam_modules[STANDARD] = [
 	 "ldap",		argv_ldap_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",	["authfail"]],
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
 # Account management is tricky.  Because we've implicitly committed to
@@ -480,6 +482,8 @@ pam_modules[STANDARD] = [
 # successful call to pam_permit at the end as a requirement.
 	[False, ACCOUNT,	LOGIC_REQUIRED,
 	 "access",		[]],
+	[False, ACCOUNT,	LOGIC_REQUIRED,
+	 "faillock",	[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
@@ -568,10 +572,14 @@ pam_modules[PASSWORD_ONLY] = [
 	 "ldap",		argv_ldap_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "winbind",		argv_winbind_auth],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",	["authfail"]],
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
 	[False, ACCOUNT,	LOGIC_REQUIRED,
 	 "access",		[]],
+	[False, ACCOUNT,	LOGIC_REQUIRED,
+	 "faillock",	[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
@@ -633,10 +641,14 @@ pam_modules[FINGERPRINT] = [
 	 "deny",		[]],
 	[False,  AUTH,		LOGIC_SUFFICIENT,
 	 "fprintd",		[]],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",	["authfail"]],
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
 	[False, ACCOUNT,	LOGIC_REQUIRED,
 	 "access",		[]],
+	[False, ACCOUNT,		LOGIC_REQUIRED,
+	 "faillock",	[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
@@ -688,10 +700,14 @@ pam_modules[SMARTCARD] = [
 	 "krb5",		argv_krb5_sc_auth],
 	[False, AUTH,		LOGIC_SUFFICIENT,
 	 "permit",		[]],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",	["authfail"]],
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
 	[False, ACCOUNT,	LOGIC_REQUIRED,
 	 "access",		[]],
+	[False, ACCOUNT,	LOGIC_REQUIRED,
+	 "faillock",	[]],
 	[True,  ACCOUNT,	LOGIC_REQUIRED,
 	 "unix",		[]],
 	[False,  ACCOUNT,	LOGIC_SUFFICIENT,
@@ -1302,6 +1318,10 @@ class AuthInfo:
 		self.passReqDigit = None
 		self.passReqOther = None
 
+		# Faillock
+		self.enableFaillock = None
+		self.faillockArgs = "deny=4 unlock_time=1200"
+
 		# Not really options.
 		self.joinUser = ""
 		self.joinPassword = ""
@@ -1358,6 +1378,7 @@ class AuthInfo:
 		("enableLDAP", "b"), ("enableMDNS", "b"), ("enableMyhostname", "b"),
 		("enableSSSD", "b"), ("preferDNSinHosts", "b"), ("implicitSSSD", "b")]),
 	SaveGroup(self.writePAM, None, [("pwqualityArgs", "c"), ("passwdqcArgs", "c"),
+		("faillockArgs", "c"), ("enableFaillock", "b"),
 		("localuserArgs", "c"), ("pamAccessArgs", "c"), ("enablePAMAccess", "b"),
 		("mkhomedirArgs", "c"), ("enableMkHomeDir", "b"), ("algoRounds", "c"),
 		("passwordAlgorithm", "i"), ("enableShadow", "b"), ("enableNIS", "b"),
@@ -1374,6 +1395,7 @@ class AuthInfo:
 		("enableEcryptfs", "b"), ("enableSmartcard", "b"), ("forceSmartcard", "b"),
 		("enableWinbindAuth", "b"), ("enableWinbind", "b"), ("winbindKrb5", "b"),
 		("enablePWQuality", "b"), ("enablePasswdQC", "b"),
+		("enableFaillock", "b"), ("faillockArgs", "c"),
 		("enableLocAuthorize", "b"), ("enablePAMAccess", "b"), ("enableCacheCreds", "b"),
 		("enableMkHomeDir", "b"), ("enableSysNetAuth", "b"), ("enableFprintd", "b"),
 		("enableSSSD", "b"), ("enableSSSDAuth", "b"), ("enableForceLegacy", "b")]),
@@ -2124,6 +2146,12 @@ class AuthInfo:
 			if stack == "auth":
 				if module.startswith("pam_unix"):
 					self.setParam("enableNullOk", args.find("nullok") >= 0, ref)
+				if module.startswith("pam_faillock"):
+					self.setParam("enableFaillock", True, ref)
+					if args:
+						args.replace('authfail', '').strip()
+						self.setParam("faillockArgs", args, ref)
+					continue
 			if stack == "account":
 				if module.startswith("pam_unix"):
 					self.setParam("brokenShadow", args.find("broken_shadow") >= 0, ref)
@@ -2155,6 +2183,11 @@ class AuthInfo:
 
 			try:
 				self.enablePWQuality = shv.getBoolValue("USEPWQUALITY")
+			except ValueError:
+				pass
+			try:
+				self.enableFaillock = shv.getBoolValue("USEFAILLOCK")
+				self.faillockArgs = shv.getValue("FAILLOCKARGS")
 			except ValueError:
 				pass
 			try:
@@ -3676,6 +3709,8 @@ class AuthInfo:
 					if (self.forceBrokenShadow or self.enableLDAPAuth or
 						self.enableKerberos or self.enableWinbindAuth):
 						output += " broken_shadow"
+			if name == "faillock" and stack == "auth":
+				args = " ".join(module[ARGV]) + " " + self.faillockArgs
 			if args:
 				output += " " + args
 		output += "\n"
@@ -3740,6 +3775,7 @@ class AuthInfo:
 				prevmodule = module
 				if (module[MANDATORY] or
 					(self.enablePWQuality and module[NAME] == "pwquality") or
+					(self.enableFaillock and module[NAME] == "faillock") or
 					(self.enableEcryptfs and module[NAME] == "ecryptfs") or
 					((self.enableKerberos and not self.implicitSSSDAuth)and module[NAME] == "krb5" and
 						not module[ARGV] == argv_krb5_sc_auth) or
@@ -3798,6 +3834,8 @@ class AuthInfo:
 			return False
 
 		shv.setBoolValue("USEPWQUALITY", self.enablePWQuality)
+		shv.setBoolValue("USEFAILLOCK", self.enableFaillock)
+		shv.setValue("FAILLOCKARGS", self.faillockArgs)
 		shv.setBoolValue("USELDAP", self.enableLDAP)
 		shv.setBoolValue("USENIS", self.enableNIS)
 		shv.setBoolValue("USEECRYPTFS", self.enableEcryptfs)
@@ -4030,6 +4068,8 @@ class AuthInfo:
 			self.passwdqcArgs))
 		print("pam_access is %s (%s)" % (formatBool(self.enablePAMAccess),
 			self.pamAccessArgs))
+		print("pam_faillock is %s (%s)" % (formatBool(self.enableFaillock),
+			self.faillockArgs))
 		print("pam_mkhomedir or pam_oddjob_mkhomedir is %s (%s)" % (formatBool(self.enableMkHomeDir),
 			self.mkhomedirArgs))
 		print("Always authorize local users is %s (%s)" % (formatBool(self.enableLocAuthorize),

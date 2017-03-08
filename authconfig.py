@@ -323,6 +323,13 @@ class Authconfig:
 			help=_("require at least one other character in a password"))
 		parser.add_option("--disablereqother", action="store_true",
 			help=_("do not require other characters in a password"))
+		
+		parser.add_option("--enablefaillock", action="store_true",
+			help=_("enable account locking in case of too many consecutive authentication failures"))
+		parser.add_option("--disablefaillock", action="store_true",
+			help=_("disable account locking on too many consecutive authentication failures"))
+		parser.add_option("--faillockargs", metavar=_("<options>"),
+			help=_("the pam_faillock module options"))
 
 		parser.add_option("--nostart", action="store_true",
 			help=_("do not start/stop portmap, ypbind, and nscd"))
@@ -423,7 +430,8 @@ class Authconfig:
                         "reqlower":"passReqLower",
                         "requpper":"passReqUpper",
                         "reqdigit":"passReqDigit",
-                        "reqother":"passReqOther"}
+                        "reqother":"passReqOther",
+                        "faillock":"enableFaillock"}
 
 		string_settings = {"passalgo":"passwordAlgorithm",
 			"ldapserver":"ldapServer",
@@ -447,7 +455,8 @@ class Authconfig:
                         "passminlen":"passMinLen",
                         "passminclass":"passMinClass",
                         "passmaxrepeat":"passMaxRepeat",
-                        "passmaxclassrepeat":"passMaxClassRepeat"}
+                        "passmaxclassrepeat":"passMaxClassRepeat",
+                        "faillockargs":"faillockArgs"}
 
 		for opt, aival in bool_settings.items():
 			if getattr(self.options, "enable"+opt):
