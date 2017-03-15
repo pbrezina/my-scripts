@@ -3384,9 +3384,6 @@ class AuthInfo:
 
 	# Write NSS setup to /etc/nsswitch.conf.
 	def writeNSS(self):
-		users = ""
-		normal = ""
-		hosts = ""
 		wrotepasswd = False
 		wrotegroup = False
 		wroteshadow = False
@@ -3402,10 +3399,13 @@ class AuthInfo:
 			f = SafeFile(all_configs[CFG_NSSWITCH].origPath, 0o644)
 
 			# Determine what we want in that file for most of the databases.
-			normal += " files"
+			normal = "files"
 			if self.enableAltfiles:
 				normal += " altfiles"
+
+			# That's all that goes into services.
 			services = normal
+
 			if self.enableNIS3:
 				normal += " nisplus"
 			if self.enableNIS:
@@ -3416,20 +3416,25 @@ class AuthInfo:
 			if self.enableLDAP and not self.implicitSSSD:
 				normal += " ldap"
 
+			# Netgroup is done now.
 			netgroup = normal
 
+			# Adjust users from normal.
+			users = normal
 			if self.enableWinbind:
 				users += " winbind"
 
+			# Adjust automount from normal.
+			automount = normal
 			if not os.access(PATH_LIBSSS_AUTOFS, os.R_OK):
 				# No support for automount in sssd
 				if self.enableLDAP and self.implicitSSSD:
-					normal = normal.replace("sss", "ldap")
+					automount = automount.replace("sss", "ldap")
 				else:
-					normal = normal.replace(" sss", "")
+					automount = automount.replace(" sss", "")
 
 			# Hostnames we treat specially.
-			hosts += " files"
+			hosts = "files"
 			if self.enableMDNS:
 				hosts += " mdns4_minimal [NOTFOUND=return]"
 			if self.preferDNSinHosts:
@@ -3487,7 +3492,7 @@ class AuthInfo:
 				elif matchLine(ls, "automount:"):
 					if not wroteautomount:
 						output += "automount: "
-						output += normal
+						output += automount
 						output += "\n"
 						wroteautomount = True
 				# If it's a 'hosts' line, insert ours instead.
@@ -3527,7 +3532,7 @@ class AuthInfo:
 				output += "\n"
 			if not wroteautomount:
 				output += "automount: "
-				output += normal
+				output += automount
 				output += "\n"
 			if not wrotehosts:
 				output += "hosts:     "
