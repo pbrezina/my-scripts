@@ -3113,7 +3113,10 @@ class AuthInfo:
 		if not self.sssdConfig:
 			return True
 
-		pam = self.sssdConfig.get_service('pam')
+		try:
+			pam = self.sssdConfig.get_service('pam')
+		except SSSDConfig.NoServiceError:
+			pam = self.sssdConfig.new_service('pam')
 
 		if self.enableSmartcard and self.enableSSSDAuth and self.smartcardModule == "sssd" :
 			pam.set_option('pam_cert_auth', 'True')
