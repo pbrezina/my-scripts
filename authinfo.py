@@ -1341,6 +1341,7 @@ class AuthInfo:
 		self.sssdConfig = None
 		self.sssdDomain = None
 		self.forceSSSDUpdate = None
+		self.sssdConfigPresent = False
 		if SSSDConfig:
 			try:
 				self.sssdConfig = SSSDConfig.SSSDConfig()
@@ -1804,6 +1805,7 @@ class AuthInfo:
 		self.sssdConfig = SSSDConfig.SSSDConfig()
 		try:
 			self.sssdConfig.import_config(all_configs[CFG_SSSD].origPath)
+			self.sssdConfigPresent = True
 		except (IOError, SSSDConfig.ParsingError):
 			self.sssdConfig = SSSDConfig.SSSDConfig()
 			self.sssdConfig.new_config()
@@ -3109,8 +3111,13 @@ class AuthInfo:
 				domain.remove_provider(subtype)
 			domain.add_provider(newprovider, subtype)
 
-	def writeSSSDPAM(self):
+	def writeSSSDPAM(self, write_config):
 		if not self.sssdConfig:
+			return True
+		
+		if not self.sssdConfigPresent and not self.implicitSSSD:
+			# do not write to sssd.conf since the file does not exist yet and
+			# we are not creating the domain ourselves
 			return True
 
 		try:
@@ -3127,10 +3134,11 @@ class AuthInfo:
 				pass
 
 		self.sssdConfig.save_service(pam)
-		try:
-			self.sssdConfig.write(all_configs[CFG_SSSD].origPath)
-		except IOError:
-			pass
+		if write_config:
+			try:
+				self.sssdConfig.write(all_configs[CFG_SSSD].origPath)
+			except IOError:
+				pass
 
 		return True
 
@@ -3139,8 +3147,9 @@ class AuthInfo:
 			return True
 
 		all_configs[CFG_SSSD].backup(self.backupDir)
-
-		self.writeSSSDPAM()
+		
+		# do not write to the file yet since we will write all changes at ones
+		self.writeSSSDPAM(False)
 
 		if not self.sssdDomain:
 			if not self.implicitSSSD:
@@ -3151,7 +3160,7 @@ class AuthInfo:
 			except SSSDConfig.DomainAlreadyExistsError:
 				self.sssdDomain = self.sssdConfig.get_domain(SSSD_AUTHCONFIG_DOMAIN)
 		domain = self.sssdDomain
-
+		
 		try:
 			self.sssdConfig.get_service('autofs')
 		except SSSDConfig.NoServiceError:
@@ -3916,7 +3925,7 @@ class AuthInfo:
 			if self.implicitSSSD or self.implicitSSSDAuth:
 				ret = ret and self.writeSSSD()
 			elif self.enableSSSDAuth:
-				ret = ret and self.writeSSSDPAM()
+				ret = ret and self.writeSSSDPAM(True)
 			ret = ret and self.writeNSS()
 			ret = ret and self.writePAM()
 			ret = ret and self.writeSysconfig()
