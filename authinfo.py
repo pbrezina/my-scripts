@@ -2158,8 +2158,8 @@ class AuthInfo:
 					self.setParam("enableNullOk", args.find("nullok") >= 0, ref)
 				if module.startswith("pam_faillock"):
 					self.setParam("enableFaillock", True, ref)
-					if args:
-						args.replace('authfail', '').strip()
+					if args and 'authfail' in args:
+						args = args.replace('authfail', '').strip()
 						self.setParam("faillockArgs", args, ref)
 					continue
 			if stack == "account":
