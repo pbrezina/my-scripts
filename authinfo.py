@@ -437,6 +437,8 @@ pam_modules = [[] for service in (STANDARD, POSTLOGIN, PASSWORD_ONLY, FINGERPRIN
 pam_modules[STANDARD] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",		["preauth", "silent"]],
 	[False,  AUTH,          LOGIC_SKIPNEXT,
 	 "succeed_if",		argv_succeed_if_nonlogin],
 	[False,  AUTH,          LOGIC_PKCS11,
@@ -556,6 +558,8 @@ pam_modules[POSTLOGIN] = [
 pam_modules[PASSWORD_ONLY] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",		["preauth", "silent"]],
 	[False, AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
 	[False, AUTH,		LOGIC_SKIPNEXT_ON_FAILURE,
@@ -638,6 +642,8 @@ pam_modules[FINGERPRINT] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
 	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",		["preauth", "silent"]],
+	[False,  AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
 	[False,  AUTH,		LOGIC_SUFFICIENT,
 	 "fprintd",		[]],
@@ -692,6 +698,8 @@ pam_modules[FINGERPRINT] = [
 pam_modules[SMARTCARD] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[False,  AUTH,		LOGIC_REQUIRED,
+	 "faillock",		["preauth", "silent"]],
 	[False,  AUTH,		LOGIC_SUFFICIENT,
 	 "sss",			argv_sssd_missing_name],
 	[False,  AUTH,		LOGIC_PKCS11,
