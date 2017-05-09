@@ -343,12 +343,10 @@ argv_ldap_password = [
 	"use_authtok"
 ]
 
-# This probably won't work straight-off because pam_unix won't give the right
-# challenge, but what the heck.
 argv_succeed_if_auth = [
 	"uid >=",
 	"500", # this must be the second arg - to be replaced
-	"quiet_success"
+	"quiet_success" # this will be replaced in the first entry
 ]
 
 argv_succeed_if_account = [
@@ -418,6 +416,10 @@ argv_lastlog_not_gdm = [
 	"showfailed"
 ]
 
+argv_faildelay = [
+	"delay=2000000"
+]
+
 # Password hashing algorithms.
 password_algorithms = ["descrypt", "bigcrypt", "md5", "sha256", "sha512"]
 
@@ -437,6 +439,8 @@ pam_modules = [[] for service in (STANDARD, POSTLOGIN, PASSWORD_ONLY, FINGERPRIN
 pam_modules[STANDARD] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "faildelay",		argv_faildelay],
 	[False,  AUTH,		LOGIC_REQUIRED,
 	 "faillock",		["preauth", "silent"]],
 	[False,  AUTH,          LOGIC_SKIPNEXT,
@@ -449,6 +453,8 @@ pam_modules[STANDARD] = [
 	 "permit",		[]],
 	[False,  AUTH,          LOGIC_SUFFICIENT,
 	 "fprintd",		[]],
+	[False, AUTH,		LOGIC_SKIPNEXT_ON_FAILURE,
+	 "succeed_if",		argv_succeed_if_auth],
 	[False, AUTH,		LOGIC_SKIPNEXT_ON_FAILURE,
 	 "localuser",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
@@ -558,10 +564,14 @@ pam_modules[POSTLOGIN] = [
 pam_modules[PASSWORD_ONLY] = [
 	[True,  AUTH,		LOGIC_REQUIRED,
 	 "env",			[]],
+	[True,  AUTH,		LOGIC_REQUIRED,
+	 "faildelay",		argv_faildelay],
 	[False,  AUTH,		LOGIC_REQUIRED,
 	 "faillock",		["preauth", "silent"]],
 	[False, AUTH,		LOGIC_REQUIRED,
 	 "deny",		[]],
+	[False, AUTH,		LOGIC_SKIPNEXT_ON_FAILURE,
+	 "succeed_if",		argv_succeed_if_auth],
 	[False, AUTH,		LOGIC_SKIPNEXT_ON_FAILURE,
 	 "localuser",		[]],
 	[True,  AUTH,		LOGIC_SUFFICIENT,
@@ -3731,6 +3741,8 @@ class AuthInfo:
 						output += " broken_shadow"
 			if name == "faillock" and stack == "auth":
 				args = " ".join(module[ARGV]) + " " + self.faillockArgs
+			if name == "succeed_if" and stack == "auth" and logic == LOGIC_SKIPNEXT_ON_FAILURE:
+				args = args.replace("quiet_success", "quiet")
 			if args:
 				output += " " + args
 		output += "\n"
@@ -3813,7 +3825,9 @@ class AuthInfo:
 					(self.enableWinbindAuth and module[NAME] == "winbind") or
 					((self.enableSSSDAuth or self.implicitSSSDAuth) and module[NAME] == "sss" and module[ARGV] != argv_sssd_missing_name) or
 					((self.enableSSSDAuth or self.implicitSSSDAuth) and
-						(not self.enableNIS) and module[NAME] == "localuser" and module[STACK] == AUTH) or
+						(not self.enableNIS) and (module[NAME] == "localuser" or
+						    (module[NAME] == "succeed_if" and module[LOGIC] == LOGIC_SKIPNEXT_ON_FAILURE and not self.enableSysNetAuth))
+						and module[STACK] == AUTH) or
 					(self.enableLocAuthorize and module[NAME] == "localuser" and module[STACK] == ACCOUNT) or
 					(self.enablePAMAccess and module[NAME] == "access") or
 					(self.enableMkHomeDir and module[NAME] == "mkhomedir") or
