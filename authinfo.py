@@ -131,7 +131,7 @@ LOGIC_FORCE_PKCS11_KRB5 = "[success=ok ignore=2 default=die]"
 LOGIC_SKIPNEXT = "[success=1 default=ignore]"
 LOGIC_SKIPNEXT3 = "[success=3 default=ignore]"
 LOGIC_ALWAYS_SKIP = "[default=1]"
-LOGIC_SKIPNEXT_ON_FAILURE = "[default=1 success=ok]"
+LOGIC_SKIPNEXT_ON_FAILURE = "[default=1 ignore=ignore success=ok]"
 
 # Snip off line terminators and final whitespace from a passed-in string.
 def snipString(s):
