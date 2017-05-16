@@ -5,20 +5,22 @@
 # Translators:
 # Besnik <besnik@programeshqip.org>, 2008
 # Dimitris Glezos <glezos@transifex.com>, 2011
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Albanian (http://www.transifex.com/projects/p/fedora/language/"
-"sq/)\n"
-"Language: sq\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 11:01-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Albanian (http://www.transifex.com/projects/p/fedora/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -27,7 +29,7 @@ msgstr "përdorimi: %s [mundësi]"
 
 #: ../authconfig.py:126
 msgid "show this help message and exit"
-msgstr ""
+msgstr "trego këtë mesazh ndihmues dhe dil"
 
 #: ../authconfig.py:129
 msgid "enable shadowed passwords by default"
@@ -59,7 +61,7 @@ msgstr "çaktivizo si parazgjedhje NIS për të dhëna përdoruesi"
 
 #: ../authconfig.py:144
 msgid "<domain>"
-msgstr "<përkatësi>"
+msgstr "<domain>"
 
 #: ../authconfig.py:145
 msgid "default NIS domain"
@@ -68,7 +70,7 @@ msgstr "përkatësi NIS parazgjedhje"
 #: ../authconfig.py:146 ../authconfig.py:157 ../authconfig.py:200
 #: ../authconfig.py:202
 msgid "<server>"
-msgstr "<shërbyes>"
+msgstr "<server>"
 
 #: ../authconfig.py:147
 msgid "default NIS server"
@@ -113,10 +115,14 @@ msgstr "çaktivizo përdorimin e TLS-së me LDAP (RFC-2830)"
 #: ../authconfig.py:166
 msgid "enable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"mundëso përdorimin e skemës RFC-2307bis për kërkimin e të dhënave për "
+"përdoruesit LDAP"
 
 #: ../authconfig.py:168
 msgid "disable use of RFC-2307bis schema for LDAP user information lookups"
 msgstr ""
+"mos e mundëso përdorimin e skemës RFC-2307bis për kërkimin e të dhënave për "
+"përdoruesit LDAP"
 
 #: ../authconfig.py:169
 msgid "<URL>"
@@ -157,18 +163,21 @@ msgstr "veprim për t'u bërë kur hiqet karta e mençur"
 #: ../authconfig.py:187
 msgid "enable authentication with fingerprint readers by default"
 msgstr ""
+"mundëso vërtetimin me lexuesit e shenjave të gishtave si e paravendosur"
 
 #: ../authconfig.py:189
 msgid "disable authentication with fingerprint readers by default"
 msgstr ""
+"mos e mundëso vërtetimin me lexuesit e shenjave të gishtave si e "
+"paravendosur"
 
 #: ../authconfig.py:192
 msgid "enable automatic per-user ecryptfs"
-msgstr ""
+msgstr "mundëso ecryptfs automatikisht për çdo përdorues"
 
 #: ../authconfig.py:194
 msgid "disable automatic per-user ecryptfs"
-msgstr ""
+msgstr "mos e mundëso ecryptfs automatikisht për çdo përdorues"
 
 #: ../authconfig.py:197
 msgid "enable kerberos authentication by default"
@@ -270,7 +279,8 @@ msgstr ""
 "winbindusedefaultdomain nuk është e aktivizuar"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr ""
 "drejtoria që përdorues të krijuar nga \"winbind\"-i do ta kenë si drejtori "
 "shtëpi"
@@ -307,72 +317,86 @@ msgstr "formëson \"winbind\"-in për moslejim hyrjesh \"offline\""
 
 #: ../authconfig.py:248
 msgid "winbind will use Kerberos 5 to authenticate"
-msgstr ""
+msgstr "winbind do të përdorë Kerberos 5 për të vërtetuar"
 
 #: ../authconfig.py:250
 msgid "winbind will use the default authentication method"
-msgstr ""
+msgstr "winbind do të përdorë metodën e paravendosur të vërtetimit"
 
 #: ../authconfig.py:252
 msgid "join the winbind domain or ads realm now as this administrator"
-msgstr ""
+msgstr "bashko domain winbind ose fushën e reklamave tani si ky administrator"
 
 #: ../authconfig.py:255
 #, fuzzy
 msgid "prefer dns over nis for hostname resolution"
-msgstr ""
-"për ftillim emrëstrehash parapëlqe më mirë \"dns\" sesa \"wins\" ose \"nis\""
+msgstr "për ftillim emrëstrehash parapëlqe më mirë \"dns\" sesa \"wins\" ose \"nis\""
 
 #: ../authconfig.py:257
 #, fuzzy
 msgid "do not prefer dns over nis for hostname resolution"
-msgstr ""
-"për ftillim emrëstrehash parapëlqe më mirë \"wins\" ose \"nis\" sesa \"dns\""
+msgstr "për ftillim emrëstrehash parapëlqe më mirë \"wins\" ose \"nis\" sesa \"dns\""
 
 #: ../authconfig.py:260
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
 msgstr ""
+"mundëso SSSD për informacione për përdoruesit si e paravendosur me "
+"konfigurim të menaxhuar manualisht"
 
 #: ../authconfig.py:262
 msgid ""
 "disable SSSD for user information by default (still used for supported "
 "configurations)"
 msgstr ""
+"mos e mundëso SSSD për informacione për përdoruesit si e paravendosur me "
+"konfigurim të menaxhuar manualisht"
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr ""
+"mundëso SSSD për vërtetimin si e paravendosur me konfigurim të menaxhuar "
+"manualisht"
 
 #: ../authconfig.py:266
 msgid ""
 "disable SSSD for authentication by default (still used for supported "
 "configurations)"
 msgstr ""
+"mundëso SSSD për vërtetimin si e paravendosur (ende e përdorur për "
+"konfigurimet e mbështetura)"
 
 #: ../authconfig.py:268
 msgid "never use SSSD implicitly even for supported configurations"
 msgstr ""
+"mos përdor kurrë SSSD në mënyrë absolute edhe për konfigurimet e mbështetura"
 
 #: ../authconfig.py:270
 msgid "use SSSD implicitly if it supports the configuration"
-msgstr ""
+msgstr "përdor absolutisht SSSD në qoftë se e mbështet konfigurimin"
 
 #: ../authconfig.py:273
 msgid "enable caching of user credentials in SSSD by default"
 msgstr ""
+"mundëso mbledhjen e kredencialeve të përdoruesve në SSSD në mënyrë të "
+"paravendosur"
 
 #: ../authconfig.py:275
 msgid "disable caching of user credentials in SSSD by default"
 msgstr ""
+"mos e mundëso mbledhjen e kredencialeve të përdoruesve në SSSD në mënyrë të "
+"paravendosur"
 
 #: ../authconfig.py:278
 msgid ""
 "enable caching of user information by default (automatically disabled when "
 "SSSD is used)"
 msgstr ""
+"mundëso mbledhjen e të dhënave të përdoruesve si të paravendosur "
+"(automatikisht e fikur kur përdoret SSSD)"
 
 #: ../authconfig.py:280
 msgid "disable caching of user information by default"
@@ -415,90 +439,112 @@ msgstr ""
 #: ../authconfig.py:302 ../authconfig.py:304 ../authconfig.py:306
 #: ../authconfig.py:308
 msgid "<number>"
-msgstr ""
+msgstr "<number>"
 
 #: ../authconfig.py:303
 msgid "minimum length of a password"
-msgstr ""
+msgstr "gjatësia minimale e një fjalëkalimi"
 
 #: ../authconfig.py:305
 msgid "minimum number of character classes in a password"
-msgstr ""
+msgstr "numri minimal  i klasave të karaktereve në një fjalëkalim"
 
 #: ../authconfig.py:307
 msgid "maximum number of same consecutive characters in a password"
 msgstr ""
+"numri maksimal i karaktereve të njëjtë të njëpasnjëshëm në një fjalëkalim"
 
 #: ../authconfig.py:309
 msgid "maximum number of consecutive characters of same class in a password"
 msgstr ""
+"numri maksimal i karaktereve të së njëjtës klasë të njëpasnjëshme në një "
+"fjalëkalim"
 
 #: ../authconfig.py:311
 msgid "require at least one lowercase character in a password"
-msgstr ""
+msgstr "kërko të paktën një karakter me gërmë të vogël në një fjalëkalim"
 
 #: ../authconfig.py:313
 msgid "do not require lowercase characters in a password"
-msgstr ""
+msgstr "mos kërko karaktere me gërma të vogla në një fjalëkalim"
 
 #: ../authconfig.py:315
 msgid "require at least one uppercase character in a password"
-msgstr ""
+msgstr "kërko të paktën një karakter me gërmë të madhe në një fjalëkalim"
 
 #: ../authconfig.py:317
 msgid "do not require uppercase characters in a password"
-msgstr ""
+msgstr "mos kërko karaktere me gërma të mëdha në një fjalëkalim"
 
 #: ../authconfig.py:319
 msgid "require at least one digit in a password"
-msgstr ""
+msgstr "kërko të paktën një shifër në një fjalëkalim"
 
 #: ../authconfig.py:321
 msgid "do not require digits in a password"
-msgstr ""
+msgstr "mos kërko shifra në një fjalëkalim"
 
 #: ../authconfig.py:323
 msgid "require at least one other character in a password"
-msgstr ""
+msgstr "kërko të paktën një karakter tjetër në një fjalëkalim"
 
 #: ../authconfig.py:325
 msgid "do not require other characters in a password"
-msgstr ""
+msgstr "mos kërko karaktere të tjerë në një fjalëkalim"
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "mos fillo/ndalo portmap, ypbind, dhe nscd"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr "mos përditëso kartela formësimi, vetëm shtyp rregullimet e reja"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "e kundërta e --test, përditëso kartela formësimi me rregullime të ndryshuara"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "përditëso tërë kartelat e formësimit"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "analizo rrjet për parazgjedhje dhe shtypi ato"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr "<emër>"
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr "ruaj një kopjeruajtje të tërë kartelave të formësimeve"
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr "rikthe kopjeruajtjen e kartelave të formësimit"
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
@@ -506,396 +552,104 @@ msgstr ""
 "rikthe kopjeruajtjen e kartelave të formësimit të ruajtura përpara "
 "ndryshimit të mëparshëm të formësimit"
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "argument i papritur"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
-msgstr ""
+msgstr "Vlera e gjatësisë minimale të një fjalëkalimi është 6"
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr ""
+"Vlera e mundësimit për gjatësinë minimale të një fjalëkalimi nuk është numër"
+" i plotë"
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
-msgstr ""
+msgstr "Vlera e passminclass nuk duhet të jetë negative"
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
-msgstr ""
+msgstr "Vlera e passminclass nuk duhet të jetë më e madhe se 4"
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
-msgstr ""
+msgstr "Vlera e mundësimit passminclass nuk është një numër i plotë"
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
-msgstr ""
+msgstr "Vlera e passmaxrepeat nuk duhet të jetë negative"
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
-msgstr ""
+msgstr "Vlera e mundësimit passmaxrepeat nuk është një numër i plotë"
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
-msgstr ""
+msgstr "Vlera e passmaxclassrepeat nuk duhet të jetë negative"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
-msgstr ""
+msgstr "Vlera e mundësimit passmaxclassrepeat nuk është një numër i plotë"
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr "U caktua veprimi për raste heqjesh karte të mençur të dëmtuar."
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "U dha algoritëm i panjohur \"hash\"-i fjalëkalimi, po përdoret sha256."
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "mund të xhirohet vetëm si rrënjë"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "dialogu u anulua"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
-msgstr ""
+msgstr "Kyç"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "Shpërfille"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
-msgstr ""
+msgstr "LDAP URI e pavlefshme."
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
+"Moduli i vërtetimit %s/pam_%s.so mungon. Procesi i vërtetimit mund të mos "
+"funksionojë në mënyrë korrekte."
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
-msgstr ""
+msgstr "Lidhja me domain Winbind nuk ishte e suksesshme."
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
+"Lidhja me domain Winbind nuk ishte e suksesshme. Komanda e lidhjes në rrjet "
+"dështoi me gabimin e mëposhtëm:"
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr "Gabim gjatë shkarkimit të dëshmisë AD"
-
-#~ msgid "enable wins for hostname resolution"
-#~ msgstr "aktivizo \"wins\" për ftillim emërstrehësh"
-
-#~ msgid "disable wins for hostname resolution"
-#~ msgstr "çaktivizo \"wins\" për ftillim emërstrehësh"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "aktivizo si parazgjedhje hesiod për të dhëna përdoruesi"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "çaktivizo si parazgjedhje hesiod për të dhëna përdoruesi"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "LHS parazgjedhje hesiodi"
-
-#~ msgid "default hesiod RHS"
-#~ msgstr "RHS parazgjedhje hesiodi"
-
-#~ msgid "display Back instead of Cancel in the main dialog of the TUI"
-#~ msgstr "shfaq Prapa dhe jo Anulo te dialogu kryesor i TUI-t"
-
-#~ msgid "do not display the deprecated text user interface"
-#~ msgstr "mos shfaq ndërfaqen e vjetëruar tekst të përdoruesit"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.\n"
-#~ "Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Kartela %s nuk u gjet, por është e nevojshme që mbulimi për %s të punojë "
-#~ "si duhet.\n"
-#~ "Instaloni paketën %s, që sjell këtë kartelë."
-
-#~ msgid "Warning"
-#~ msgstr "Kujdes"
-
-#~ msgid "Ok"
-#~ msgstr "Ok"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "mirëfilltësim LDAP"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "shadow password"
-#~ msgstr "fjalëkalim hije"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "mirëfilltësim Winbind"
-
-#~ msgid "User Information"
-#~ msgstr "Të dhëna Përdoruesi"
-
-#~ msgid "Cache Information"
-#~ msgstr "Të dhëna Fshehtine"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Përdor LDAP"
-
-#~ msgid "Use NIS"
-#~ msgstr "Përdor NIS"
-
-#~ msgid "Use Winbind"
-#~ msgstr "Përdor Winbind"
-
-#~ msgid "Authentication"
-#~ msgstr "Mirëfilltësim"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Përdor Fjalëkalime MD5"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Përdor Fjalëkalime Hije"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Përdor Mirëfilltësim LDAP"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "Përdor Kerberos"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "Përdor Mirëfilltësim Winbind"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "Autorizimi vendor është i mjaftueshëm"
-
-#~ msgid "Back"
-#~ msgstr "Prapa"
-
-#~ msgid "Cancel"
-#~ msgstr "Anulo"
-
-#~ msgid "Next"
-#~ msgstr "Pasues"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "Formësim Mirëfilltësimi"
-
-#~ msgid "Domain:"
-#~ msgstr "Përkatësi:"
-
-#~ msgid "Realm:"
-#~ msgstr "Emër i vërtetë:"
-
-#~ msgid "Server:"
-#~ msgstr "Shërbyes:"
-
-#~ msgid "Join Domain"
-#~ msgstr "Bashkojuni Përkatësisë"
-
-#~ msgid "Use TLS"
-#~ msgstr "Përdor TLS"
-
-#~ msgid "Base DN:"
-#~ msgstr "DN Bazë:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "Rregullime LDAP"
-
-#~ msgid "NIS Settings"
-#~ msgstr "Rregullime NIS"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Shërbyes Admin:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "Përdor DNS për të shquar strehë për emra të vërtetë"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "Përdor DNS për të kapur KDC-ra për emra të vërtetë"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Rregullime Kerberos"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "Administrues Përkatësie:"
-
-#~ msgid "Password:"
-#~ msgstr "Fjalëkalim:"
-
-#~ msgid "Join Settings"
-#~ msgstr "Rregullime për Bashkojuni"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "Disa prej ndryshimeve në formësim që bëtë duhen ruajtur në disk përpara "
-#~ "se të vazhdohet.  Nëse nuk i ruani, përpjekja juaj për t'iu bashkuar "
-#~ "përkatësisë mund të dështojë.  T'i ruaj ndryshimet?"
-
-#~ msgid "Save Settings"
-#~ msgstr "Ruaj Rregullimet"
-
-#~ msgid "No"
-#~ msgstr "Jo"
-
-#~ msgid "Yes"
-#~ msgstr "Po"
-
-#~ msgid "Security Model:"
-#~ msgstr "Model Sigurie:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "Kontrolluesa Përkatësie:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "Emër i vërtetë ADS-je:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "Rregullime Winbind"
-
-#~ msgid ""
-#~ "To connect to a LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed your server's certificate. Copy the certificate "
-#~ "in the PEM format to the '%s' directory.\n"
-#~ "Then press OK."
-#~ msgstr ""
-#~ "Për t'u lidhur me një shërbyes LDAP me protokollin TLS të aktivizuar keni "
-#~ "nevojë për një dëshmi AD e cila nënshkroi dëshminë e shërbyesit tuaj. "
-#~ "Kopjojeni dëshminë nën formatin PEM te drejtoria '%s'.\n"
-#~ "Mandej shtypni OK."
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> përmes elementesh   |   <Space> përzgjedh   |  <F12> "
-#~ "pamja pasuese "
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Kontrolloni se si i verifikon sistemi përdoruesit që përpiqen të hyjnë në "
-#~ "të"
-
-#~ msgid ""
-#~ "Restore the configuration files backed up before the previous "
-#~ "configuration change"
-#~ msgstr ""
-#~ "Rikthe kartela formësimesh të kopjeruajtura përpara ndryshimit të "
-#~ "mëparshëm të formësimit"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid ""
-#~ "When enabled /etc/security/access.conf will be consulted for "
-#~ "authorization of users access."
-#~ msgstr ""
-#~ "Kur aktivizohet /etc/security/access.conf, do të konsultohet për "
-#~ "autorizim hyrjesh përdoruesi."
-
-#~ msgid "Create _home directories on the first login"
-#~ msgstr "Krijo drejtorira _shtëpi gjatë hyrjes së parë"
-
-#~ msgid ""
-#~ "If the home directory of an user doesn't exist yet it will be created "
-#~ "automatically on his first login."
-#~ msgstr ""
-#~ "Po qe se drejtoria shtëpi e një përdoruesi nuk ekziston ende, ajo do të "
-#~ "krijohet vetvetiu gjatë hyrjes së tij të parë."
-
-#~ msgid ""
-#~ "Smart card authentication allows you to log in using a certificate and "
-#~ "key associated with a smart card."
-#~ msgstr ""
-#~ "Mirëfilltësimi përmes kartash të mençura ju lejon hyrje duke përdorur një "
-#~ "dëshmi dhe një kyç shoqëruar një karte të mençur."
-
-#, fuzzy
-#~ msgid "Joining IPA Domain"
-#~ msgstr "Bashkojuni Përkatësisë"
-
-#~ msgid "Alert"
-#~ msgstr "Njoftim"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "M_os Ruaj"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "Po i bashkohem Përkatësie \"Winbind\" "
-
-#~ msgid "Download CA Certificate"
-#~ msgstr "Shkarko Dëshmi AD-je"
-
-#~ msgid ""
-#~ "To verify the LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed the server's certificate. Please fill in the URL "
-#~ "where the CA certificate in the PEM format can be downloaded from."
-#~ msgstr ""
-#~ "Për të verifikuar një shërbyes LDAP me protokollin TLS të aktivizuar, "
-#~ "keni nevojë për një dëshmi AD e cila nënshkroi dëshminë e shërbyesit "
-#~ "tuaj. Ju lutem plotësoni URL-në prej nga mund të shkarkohet dëshmia AD te "
-#~ "formati PEM."
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "Përdor DNS për të _kapur KDCra për të vërtetë"
-
-#~ msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-#~ msgstr ""
-#~ "Emërstreha ose ldap:// apo ldaps:// URI që shpien te shërbyesi LDAP."
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Përdor _TLS për kodim lidhjesh"
-
-#~ msgid ""
-#~ "Use Transport Layer Security extension for LDAP as defined by RFC-2830. "
-#~ "It must not be ticked with ldaps server URI."
-#~ msgstr ""
-#~ "Përdor për LDAP-në zgjerimin Siguri Shtrese Transporti (Transport Layer "
-#~ "Security), si përcaktohet nga RFC-2830. Nuk duhet trajtuar me URI "
-#~ "shërbyesi ldaps."
-
-#~ msgid "Revert"
-#~ msgstr "Riktheje"
-
-#~ msgid ""
-#~ "All configuration files which were modified by the previous "
-#~ "authentication configuration change will be restored from backup. Revert "
-#~ "the changes?"
-#~ msgstr ""
-#~ "Tërë kartelat e formësimit që qenë ndryshuar nga ndryshimi i mëparshëm i "
-#~ "formësimit do të rikthehen prej kopjeruajtjes. Të përmbysen ndryshimet?"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr ""
-#~ "grupi që përdorues të krijuar nga \"winbind\"-i do ta kenë si grupin e "
-#~ "tyre parësor"

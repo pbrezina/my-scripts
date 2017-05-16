@@ -6,22 +6,24 @@
 # Bernabé Borrero <bernabeborrero@gmail.com>, 2012
 # Dimitris Glezos <glezos@transifex.com>, 2011
 # Oscar Osta <oostap.listas@gmail.com>, 2011
-# Robert Antoni Buj i Gelonch, 2014-2015
 # Xavier Conde Rueda <xavi.conde@gmail.com>, 2004
+# Robert Antoni Buj i Gelonch, 2014-2015
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2015-02-04 16:21+0000\n"
-"Last-Translator: Robert Antoni Buj i Gelonch\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/authconfig/"
-"language/ca/)\n"
-"Language: ca\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 10:57-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/authconfig/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -267,8 +269,8 @@ msgstr "<inferior-superior>"
 #: ../authconfig.py:232
 msgid "uid range winbind will assign to domain or ads users"
 msgstr ""
-"rang de valors de l'identificador d'usuari que Winbind assignarà als usuaris "
-"de domini o d'ads"
+"rang de valors de l'identificador d'usuari que Winbind assignarà als usuaris"
+" de domini o d'ads"
 
 #: ../authconfig.py:234
 msgid ""
@@ -280,7 +282,8 @@ msgstr ""
 "winbindusedefaultdomain"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr ""
 "el directori amb el qual els usuaris creats amb Winbind el tindran com a "
 "directori d'inici"
@@ -331,7 +334,8 @@ msgstr ""
 #: ../authconfig.py:255
 #, fuzzy
 msgid "prefer dns over nis for hostname resolution"
-msgstr "prefereix els dns sobre wins o nis per a resoldre els noms dels equips"
+msgstr ""
+"prefereix els dns sobre wins o nis per a resoldre els noms dels equips"
 
 #: ../authconfig.py:257
 #, fuzzy
@@ -357,7 +361,8 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr ""
 "habilita per defecte SSSD per a l'autenticació amb la configuració "
 "gestionada de forma manual"
@@ -424,7 +429,8 @@ msgstr "autentica els comptes del sistema a través de serveis de xarxa"
 
 #: ../authconfig.py:295
 msgid "authenticate system accounts by local files only"
-msgstr "autentica els comptes del sistema únicament a través de fitxers locals"
+msgstr ""
+"autentica els comptes del sistema únicament a través de fitxers locals"
 
 #: ../authconfig.py:298
 msgid "create home directories for users on their first login"
@@ -455,7 +461,8 @@ msgstr "número màxim de caràcters consecutius idèntics en una contrasenya"
 #: ../authconfig.py:309
 msgid "maximum number of consecutive characters of same class in a password"
 msgstr ""
-"número màxim de caràcters consecutius de la mateixa classe en una contrasenya"
+"número màxim de caràcters consecutius de la mateixa classe en una "
+"contrasenya"
 
 #: ../authconfig.py:311
 msgid "require at least one lowercase character in a password"
@@ -490,122 +497,147 @@ msgid "do not require other characters in a password"
 msgstr "no sol·licitis altres caràcters en una contrasenya"
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "no iniciïs/aturis ni el portmap, ni el ypbind ni l'nscd"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
 "no actualitzis els fitxers de configuració, imprimeix únicament les noves "
 "preferències"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "el contrari de --test, actualitza els fitxers de configuració amb els nous "
 "canvis"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "actualitza els fitxers de configuració"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "prova la xarxa amb als predeterminats, i imprimeix-les"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr "<nom>"
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr "desa una còpia de seguretat dels fitxers de configuració"
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr "restaura la còpia de seguretat dels fitxers de configuració"
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
-"restaura la còpia de seguretat dels fitxers de configuració abans que canviï "
-"la configuració anterior"
+"restaura la còpia de seguretat dels fitxers de configuració abans que canviï"
+" la configuració anterior"
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "no s'esperava l'argument"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr "El valor mínim de passminlen és 6"
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr "El valor de l'opció passminlen no és un enter"
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr "El valor de passminclass no ha de ser negatiu"
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr "El valor de passminclass no ha de ser més gran que 4"
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr "El valor de l'opció passminclass no és un enter"
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr "El valor de passmaxrepeat no ha de ser negatiu"
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr "El valor de l'opció passmaxrepeat no és un enter"
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr "El valor de passmaxclassrepeat no ha de ser negatiu"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr "El valor de l'opció passmaxclassrepeat no és un enter"
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr ""
 "S'ha especificat una acció d'extracció de targetes intel·ligents equivocada."
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 "S'ha especificat un algorisme de dispersió de contrasenyes desconegut, "
 "s'utilitzarà sha256."
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "únicament pot executar-se com a root"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "s'ha cancel·lat el diàleg"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr "Bloqueig"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "Ignora"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr "URL d'LDAP no vàlida."
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -614,621 +646,20 @@ msgstr ""
 "Falta el mòdul d'autenticació %s/pam_%s.so. El procés d'autenticació pot no "
 "funcionar de forma correcta."
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
 msgstr "La unió al domini winbind no va tenir èxit."
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
 "La unió al domini winbind no va tenir èxit. La comanda net join va fallar "
 "amb el següent error:"
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr ""
 "S'ha produït un error mentre s'estava baixant el certificat de l'entitat de "
 "certificació."
-
-#~ msgid "enable IPAv2 for user information and authentication by default"
-#~ msgstr ""
-#~ "habilita IPAv2 per a la informació d'usuari i l'autentificació de forma "
-#~ "predeterminada"
-
-#~ msgid "disable IPAv2 for user information and authentication by default"
-#~ msgstr ""
-#~ "deshabilita IPAv2 per a la informació d'usuari i l'autentificació de "
-#~ "forma predeterminada"
-
-#~ msgid "the IPAv2 domain the system should be part of"
-#~ msgstr "el domini IPAv2 del qual el sistema n'ha de ser part"
-
-#~ msgid "the realm for the IPAv2 domain"
-#~ msgstr "el reialme per al domini IPAv2"
-
-#~ msgid "the server for the IPAv2 domain"
-#~ msgstr "el servidor per al domini IPAv2"
-
-#~ msgid "do not setup the NTP against the IPAv2 domain"
-#~ msgstr "no configuris l'NTP contra el domini IPAv2"
-
-#~ msgid "setup the NTP against the IPAv2 domain (default)"
-#~ msgstr "configura l'NTP contra el domini IPAv2 (predeterminat)"
-
-#~ msgid "join the IPAv2 domain as this account"
-#~ msgstr "uneix-te al domini IPAv2 com aquest compte"
-
-#~ msgid "enable wins for hostname resolution"
-#~ msgstr "habilita el Wins per a resoldre els noms dels equips"
-
-#~ msgid "disable wins for hostname resolution"
-#~ msgstr "inhabilita el Wins per a resoldre els noms dels equips"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr ""
-#~ "habilita de forma predetermina el Hesiod per a la informació de l'usuari"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr ""
-#~ "inhabilita de forma predetermina el Hesiod per a la informació de l'usuari"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "LHS predeterminat del Hesiod"
-
-#~ msgid "default hesiod RHS"
-#~ msgstr "RHS predeterminat del Hesiod"
-
-#~ msgid "display Back instead of Cancel in the main dialog of the TUI"
-#~ msgstr "mostra Anterior enlloc de Cancel·la en el diàleg principal del TUI"
-
-#~ msgid "do not display the deprecated text user interface"
-#~ msgstr "no mostris la interfície d'usuari obsoleta en mode text"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.\n"
-#~ "Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "No s'ha trobat el fitxer %s, necessari perquè funcionin les "
-#~ "característiques %s. Instal·leu el paquet %s, el qual proporciona aquest "
-#~ "fitxer."
-
-#~ msgid "Warning"
-#~ msgstr "Avís"
-
-#~ msgid "Ok"
-#~ msgstr "D'acord"
-
-#~ msgid "caching"
-#~ msgstr "memòria cau"
-
-#~ msgid "Fingerprint reader"
-#~ msgstr "Lector d'empremtes digitals"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "Autenticació amb LDAP"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "shadow password"
-#~ msgstr "contrasenyes ocultes"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "Autenticació amb Winbind"
-
-#~ msgid "User Information"
-#~ msgstr "Informació de l'usuari"
-
-#~ msgid "Cache Information"
-#~ msgstr "Informació de la memòria cau"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Utilitza LDAP"
-
-#~ msgid "Use NIS"
-#~ msgstr "Utilitza NIS"
-
-#~ msgid "Use IPAv2"
-#~ msgstr "Utilitza IPAv2"
-
-#~ msgid "Use Winbind"
-#~ msgstr "Utilitza Winbind"
-
-#~ msgid "Authentication"
-#~ msgstr "Autenticació"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Utilitza contrasenyes MD5"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Utilitza contrasenyes ocultes"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Utilitza autenticació de LDAP"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "Utilitza Kerberos"
-
-#~ msgid "Use Fingerprint reader"
-#~ msgstr "Utilitza lector d'empremtes digitals"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "Utilitza autenticació de Winbind"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "L'autorització local és suficient"
-
-#~ msgid "Back"
-#~ msgstr "Anterior"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancel·la"
-
-#~ msgid "Next"
-#~ msgstr "Següent"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "Configuració de l'autenticació"
-
-#~ msgid "Domain:"
-#~ msgstr "Domini:"
-
-#~ msgid "Realm:"
-#~ msgstr "Regne:"
-
-#~ msgid "Server:"
-#~ msgstr "Servidor:"
-
-#~ msgid "IPAv2 Settings"
-#~ msgstr "Preferències IPAv2"
-
-#~ msgid "Join Domain"
-#~ msgstr "Ingressa al domini"
-
-#~ msgid "Use TLS"
-#~ msgstr "Utilitza TLS"
-
-#~ msgid "Base DN:"
-#~ msgstr "DN base:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "Preferències de LDAP"
-
-#~ msgid "NIS Settings"
-#~ msgstr "Preferències de NIS"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Servidor d'administració:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "Utilitza el DNS per a resoldre els equips als reialmes"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "Utilitza elDNS per a localitzar els KDC per als reialmes"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Preferències de Kerberos"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "Administrador del domini:"
-
-#~ msgid "Password:"
-#~ msgstr "Contrasenya:"
-
-#~ msgid "Join Settings"
-#~ msgstr "Configuració d'ingrés"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "Abans de continuar s'han de desar alguns dels canvis que heu fet. Si no "
-#~ "els deseu, no podreu ingressar al domini. Voleu desar els canvis?"
-
-#~ msgid "Save Settings"
-#~ msgstr "Desa la configuració"
-
-#~ msgid "No"
-#~ msgstr "No"
-
-#~ msgid "Yes"
-#~ msgstr "Sí"
-
-#~ msgid "Security Model:"
-#~ msgstr "Model de seguretat:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "Controladors de domini:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "Reialme ADS:"
-
-#~ msgid "Template Shell:"
-#~ msgstr "Intèrpret d'ordres predeterminat:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "Preferències de Winbind"
-
-#~ msgid ""
-#~ "To connect to a LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed your server's certificate. Copy the certificate "
-#~ "in the PEM format to the '%s' directory.\n"
-#~ "Then press OK."
-#~ msgstr ""
-#~ "Per a connectar a un servidor LDAP que tingui el protocol TLS habilitat, "
-#~ "cal que tingueu un certificat de l'entitat certificadora que hagi signat "
-#~ "el certificat del vostre servidor. Copieu el certificat en format PEM al "
-#~ "directori '%s'.\n"
-#~ "Després premeu D'acord."
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> entre elements | <barra espaiadora> selecciona | <F12> "
-#~ "següent"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Controleu com el sistema verifica els usuaris que intenten entrar-hi"
-
-#~ msgid ""
-#~ "Unable to initialize graphical environment. Most likely cause of failure\n"
-#~ "is that the tool was not run using a graphical environment. Please "
-#~ "either\n"
-#~ "start your graphical user interface or set your DISPLAY variable.\n"
-#~ msgstr ""
-#~ "No s'ha pogut inicialitzar l'entorn gràfic. La causa més probable de "
-#~ "fallada\n"
-#~ "és que l'eina no s'hagi inicialitzat utilitzant un entorn gràfic.\n"
-#~ "Inicialitza l'interfície gràfica d'usuari o estableix la variable "
-#~ "DISPLAY.\n"
-
-#~ msgid "Local accounts only"
-#~ msgstr "Únicament comptes locals"
-
-#~ msgid "FreeIPA"
-#~ msgstr "FreeIPA"
-
-#~ msgid "IPAv2"
-#~ msgstr "IPAv2"
-
-#~ msgid "Password"
-#~ msgstr "Contrasenya"
-
-#~ msgid "LDAP password"
-#~ msgstr "Contrasenya de LDAP"
-
-#~ msgid "Kerberos password"
-#~ msgstr "Contrasenya de Kerberos"
-
-#~ msgid "NIS password"
-#~ msgstr "Contrasenya de NIS"
-
-#~ msgid "Winbind password"
-#~ msgstr "Contrasenya de Winbind"
-
-#~ msgid "IPAv2 password"
-#~ msgstr "Contrasenya IPAv2"
-
-#~ msgid ""
-#~ "You must provide ldaps:// server address or use TLS for LDAP "
-#~ "authentication."
-#~ msgstr ""
-#~ "Heu de proporcionar una adreça de servidor ldaps:// o bé utilitzar TLS "
-#~ "per a l'autenticació."
-
-#~ msgid "Use the \"Join Domain\" button to join the IPAv2 domain."
-#~ msgstr ""
-#~ "Utilitzeu el botó \"Uneix-te al domini\" per a unir-vos al domini IPAv2."
-
-#~ msgid ""
-#~ "Restore the configuration files backed up before the previous "
-#~ "configuration change"
-#~ msgstr ""
-#~ "Restaura els fitxers de configuració desats abans de canviar la "
-#~ "configuració anterior"
-
-#~ msgid "<b>User Account Configuration</b>"
-#~ msgstr "<b>Configuració del compte d'usuari</b>"
-
-#~ msgid "_User Account Database:"
-#~ msgstr "Base de dades per als comptes d'_usuari:"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "<b>Authentication Configuration</b>"
-#~ msgstr "<b>Configuració de l'autenticació</b>"
-
-#~ msgid "Aut_hentication Method:"
-#~ msgstr "Mètode per l'autenticació:"
-
-#~ msgid "_Identity & Authentication"
-#~ msgstr "Identitat i autenticació"
-
-#~ msgid "<b>Local Authentication Options</b>"
-#~ msgstr "<b>Opcions d'autenticació local</b>"
-
-#~ msgid "Enable _fingerprint reader support"
-#~ msgstr "Habilita el suport per a la lectura d'empremtes digitals"
-
-#~ msgid ""
-#~ "Fingerprint authentication allows you to log in by scanning your finger "
-#~ "with the fingerprint reader."
-#~ msgstr ""
-#~ "L'autenticació mitjançant empremtes digitals us permet entrar amb "
-#~ "l'escaneig del dit amb el lector d'empremtes digitals."
-
-#~ msgid "Enable _local access control"
-#~ msgstr "habilita el control d'accés _local"
-
-#~ msgid ""
-#~ "When enabled /etc/security/access.conf will be consulted for "
-#~ "authorization of users access."
-#~ msgstr ""
-#~ "Quan s'habiliti, es consultarà /etc/security/access.conf per a "
-#~ "l'autorització de l'accés als usuaris."
-
-#~ msgid ""
-#~ "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-#~ msgstr ""
-#~ "<small><b>Consell:</b> Això es gestiona a través de /etc/security/access."
-#~ "conf.</small>"
-
-#~ msgid ""
-#~ "Hashing or crypto algorithm used for storing passwords of local users"
-#~ msgstr ""
-#~ "algorisme de dispersió/encriptació utilitzat per a l'emmagatzemament de "
-#~ "les noves contrasenyes per als usuaris locals"
-
-#~ msgid "_Password Hashing Algorithm:"
-#~ msgstr "Algorisme de dispersió per a la contrasenya"
-
-#~ msgid "<b>Other Authentication Options</b>"
-#~ msgstr "<b>Opcions d'altres autenticacions</b>"
-
-#~ msgid "Create _home directories on the first login"
-#~ msgstr "Crea carpetes d'_inici en la primera entrada"
-
-#~ msgid ""
-#~ "If the home directory of an user doesn't exist yet it will be created "
-#~ "automatically on his first login."
-#~ msgstr ""
-#~ "Si el directori d'inici d'un usuari encara no existeix, es crearà "
-#~ "automàticament la primera vegada que aquest hi entri."
-
-#~ msgid "<b>Smart Card Authentication Options</b>"
-#~ msgstr "<b>Opcions d'autenticació de la targeta intel·ligent</b>"
-
-#~ msgid "Enable _smart card support"
-#~ msgstr "Habilita el _suport per a targetes intel·ligents"
-
-#~ msgid ""
-#~ "Smart card authentication allows you to log in using a certificate and "
-#~ "key associated with a smart card."
-#~ msgstr ""
-#~ "L'autenticació amb una targeta intel·ligent us permet entrar mitjançant "
-#~ "un certificat i una clau associada a una targeta intel·ligent."
-
-#~ msgid ""
-#~ "<small><b>Tip:</b> Smart cards support logging into both local and "
-#~ "centrally managed accounts.</small>"
-#~ msgstr ""
-#~ "<small><b>Consell:</b> Les targetes intel·ligents suporten "
-#~ "l'enregistrament local i als comptes gestionats de forma centalitzada.</"
-#~ "small>"
-
-#~ msgid "Advanced _Options"
-#~ msgstr "_Opcions avançades"
-
-#~ msgid "<b>Minimal Password Requirements</b>"
-#~ msgstr "<b>Requisits mínims de les contrasenyes</b>"
-
-#~ msgid "_Length:"
-#~ msgstr "_Longitud:"
-
-#~ msgid "C_haracter Classes:"
-#~ msgstr "_Classes de caràcters:"
-
-#~ msgid "<b>Required Character Classes</b>"
-#~ msgstr "<b>Classes de caràcters sol·licitades</b>"
-
-#~ msgid "Low_ercase"
-#~ msgstr "Minúscul_es"
-
-#~ msgid "_Uppercase"
-#~ msgstr "Majúsc_ules"
-
-#~ msgid "_Digits"
-#~ msgstr "_Dígits"
-
-#~ msgid "O_ther characters"
-#~ msgstr "Al_tres caràcters"
-
-#~ msgid "<b>Maximal Consecutive Character Repetition</b>"
-#~ msgstr "<b>Màxima repetició de caràcters consecutius</b>"
-
-#~ msgid "_Same Character:"
-#~ msgstr "M_ateix caràcter:"
-
-#~ msgid "Sa_me Class:"
-#~ msgstr "_Mateixa classe:"
-
-#~ msgid ""
-#~ "<small><b>Tip:</b> These checks are disabled if the value is 0.</small>"
-#~ msgstr ""
-#~ "<small><b>Consell:</b> Aquests controls es desactiven si el valor és 0.</"
-#~ "small>"
-
-#~ msgid "Pass_word Options"
-#~ msgstr "_Opcions de contrasenya"
-
-#~ msgid "Joining IPA Domain"
-#~ msgstr "Uneix-te al domini IPA"
-
-#~ msgid "Domain _administrator:"
-#~ msgstr "_Administrador del domini::"
-
-#~ msgid "_Password:"
-#~ msgstr "Contrasenya:"
-
-#~ msgid "Alert"
-#~ msgstr "Alerta"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "_No ho desis"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "S'està ingressant al domini Winbind"
-
-#~ msgid "Download CA Certificate"
-#~ msgstr "Baixa el certificat de l'entitat certificadora"
-
-#~ msgid "Certificate _URL:"
-#~ msgstr "_URL del certificat:"
-
-#~ msgid ""
-#~ "To verify the LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed the server's certificate. Please fill in the URL "
-#~ "where the CA certificate in the PEM format can be downloaded from."
-#~ msgstr ""
-#~ "Per a verificar un servidor LDAP que tingui habilitat el protocol TLS, "
-#~ "cal que tingueu un certificat d'una entitat certificadora que hagi signat "
-#~ "el certificat del vostre servidor. Empleneu l'URL des d'on es baixarà el "
-#~ "certificat de l'entitat certificadora amb format PEM."
-
-#~ msgid "NIS _Server:"
-#~ msgstr "_Servidor NIS:"
-
-#~ msgid "NIS _Domain:"
-#~ msgstr "_Domini NIS:"
-
-#~ msgid "Ad_min Servers:"
-#~ msgstr "Ad_ministrador de servidors:"
-
-#~ msgid "R_ealm:"
-#~ msgstr "R_eialme:"
-
-#~ msgid "_KDCs:"
-#~ msgstr "_KDC:"
-
-#~ msgid "Use D_NS to resolve hosts to realms"
-#~ msgstr "Utilitza el DNS per a resoldre els equips als reialmes"
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "Utilitza el DNS per a _localitzar els KDC per als reialmes"
-
-#~ msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-#~ msgstr ""
-#~ "Nom de màquina o URI ldap:// o ldaps:// que apunta al servidor LDAP."
-
-#~ msgid "LDAP Search _Base DN:"
-#~ msgstr "DN _base de cerques LDAP:"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Utilitza _TLS per a encriptar les connexions"
-
-#~ msgid ""
-#~ "Use Transport Layer Security extension for LDAP as defined by RFC-2830. "
-#~ "It must not be ticked with ldaps server URI."
-#~ msgstr ""
-#~ "Utilitzar l'extensió de seguretat de la capa de transport per a LDAP tal "
-#~ "com defineix RFC-2830. No ha d'estar etiquetat amb la URI de servidor "
-#~ "ldaps."
-
-#~ msgid ""
-#~ "Click this button if you did not download a CA certificate yet or you "
-#~ "have not set the CA certificate up by other means."
-#~ msgstr ""
-#~ "Cliqueu a aquest botó si encara no heu baixat o configurat el certificat "
-#~ "de l'entitat certificadora."
-
-#~ msgid "_Download CA Certificate..."
-#~ msgstr "Baixa el certificat _de l'entitat certificadora"
-
-#~ msgid "LDAP _Server:"
-#~ msgstr "_Servidor LDAP:"
-
-#~ msgid "_Security Model:"
-#~ msgstr "Model de _seguretat:"
-
-#~ msgid "Winbind _Domain:"
-#~ msgstr "_Domini Winbind:"
-
-#~ msgid "Winbind Domain Co_ntrollers:"
-#~ msgstr "Co_ntroladors de domini Winbind:"
-
-#~ msgid "Te_mplate Shell:"
-#~ msgstr "Intèrpret d'ordres predeter_minat:"
-
-#~ msgid "Winbind ADS R_ealm:"
-#~ msgstr "_Reialme ADS de Winbind:"
-
-#~ msgid "Allow offline _login"
-#~ msgstr "Permet _l'entrada fora de línia"
-
-#~ msgid "_Join Domain..."
-#~ msgstr "In_gressa al domini..."
-
-#~ msgid "IPA _Domain:"
-#~ msgstr "_Domini IPA:"
-
-#~ msgid "IPA _Server:"
-#~ msgstr "_Servidor IPA:"
-
-#~ msgid "IPA R_ealm:"
-#~ msgstr "R_eialme IPA:"
-
-#~ msgid "Do not configure _NTP"
-#~ msgstr "No configuris l'_NTP"
-
-#~ msgid "Card Re_moval Action:"
-#~ msgstr "_Acció en treure la targeta:"
-
-#~ msgid "Require smart car_d for login"
-#~ msgstr "Per a entrar es necessita una targeta intel·ligent"
-
-#~ msgid "Revert"
-#~ msgstr "Restaura"
-
-#~ msgid ""
-#~ "All configuration files which were modified by the previous "
-#~ "authentication configuration change will be restored from backup. Revert "
-#~ "the changes?"
-#~ msgstr ""
-#~ "Tots els fitxers de configuració que van modificar-se amb l'anterior "
-#~ "configuració de l'autenticació, seran restaurats des de la còpia de "
-#~ "seguretat. Voleu desfer els canvis?"
-
-#~ msgid "IPAv2 domain join was not successful."
-#~ msgstr "La unió al domini IPAv2 no va tenir èxit."
-
-#~ msgid ""
-#~ "IPAv2 domain join was not successful. The ipa-client-install command "
-#~ "failed with the following error:"
-#~ msgstr ""
-#~ "La unió al domini IPAv2 no va tenir èxit. La comanda ipa-client-install "
-#~ "va fallar amb el següent error:"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr ""
-#~ "el grup amb el qual els usuaris creats amb Winbind el tindran com a grup "
-#~ "primari"

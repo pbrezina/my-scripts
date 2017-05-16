@@ -7,20 +7,22 @@
 # adib rastegarnia <adib.rastegar.ir@gmail.com>, 2011
 # Dimitris Glezos <glezos@transifex.com>, 2011
 # Meelad Zakaria <meelad@farsiweb.info>, 2006
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Persian (http://www.transifex.com/projects/p/fedora/language/"
-"fa/)\n"
-"Language: fa\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 11:01-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Persian (http://www.transifex.com/projects/p/fedora/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -258,7 +260,8 @@ msgstr "<lowest-highest>"
 
 #: ../authconfig.py:232
 msgid "uid range winbind will assign to domain or ads users"
-msgstr "محدودهٔ شناسهٔ کاربر که winbind به دامنه یا کاربرهای ads تخصیص خواهد داد"
+msgstr ""
+"محدودهٔ شناسهٔ کاربر که winbind به دامنه یا کاربرهای ads تخصیص خواهد داد"
 
 #: ../authconfig.py:234
 msgid ""
@@ -266,10 +269,12 @@ msgid ""
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
 "نویسه‌ای که اگر winbindusedefaultdomain به کار نیافتاده باشد برای جدا کردن "
-"قسمت‌های دامنه و کاربر نام‌های کاربری ایجاد شده توسط winbind استفاده خواهد شد."
+"قسمت‌های دامنه و کاربر نام‌های کاربری ایجاد شده توسط winbind استفاده خواهد "
+"شد."
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr "شاخهٔ آغازهٔ کاربرهای ایجاد شده توسط winbind"
 
 #: ../authconfig.py:238
@@ -281,8 +286,8 @@ msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are domain users"
 msgstr ""
-"پیکربندی winbind طوری که فرض کند کاربرهایی در نام کاربری آنها نام دامنه وجود "
-"ندارد، کاربر این دامنه هستند"
+"پیکربندی winbind طوری که فرض کند کاربرهایی در نام کاربری آنها نام دامنه وجود"
+" ندارد، کاربر این دامنه هستند"
 
 #: ../authconfig.py:242
 msgid ""
@@ -336,7 +341,8 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr ""
 
 #: ../authconfig.py:266
@@ -457,338 +463,154 @@ msgid "do not require other characters in a password"
 msgstr ""
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "‏portmap, ypbind, و nscd آغاز/متوقف نشوند"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr ""
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "کاوش در شبکه به دنبال پیش‌فرض‌ها و چاپ آنها"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr ""
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr ""
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr ""
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr ""
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr ""
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr ""
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr ""
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr ""
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr ""
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr ""
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr ""
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr ""
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
 msgstr ""
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr ""
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "به کار انداختن hesiod برای اطلاعات کاربر به طور پیش‌فرض"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "از کار انداختن hesiod برای اطلاعات کاربر به طور پیش‌فرض"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "پیش‌فرض hesiod LHS"
-
-#~ msgid "Warning"
-#~ msgstr "اخطار"
-
-#~ msgid "Ok"
-#~ msgstr "تأیید"
-
-#~ msgid "caching"
-#~ msgstr "در حال ذخیره در حافظهٔ نهان"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "تأیید هویت LDAP"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "shadow password"
-#~ msgstr "گذرواژهٔ سایه"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "تأیید هویت Winbind"
-
-#~ msgid "User Information"
-#~ msgstr "اطلاعات کاربر"
-
-#~ msgid "Cache Information"
-#~ msgstr "اطلاعات حافظهٔ نهان"
-
-#~ msgid "Use LDAP"
-#~ msgstr "استفاده از LDAP"
-
-#~ msgid "Use NIS"
-#~ msgstr "استفاده از NIS"
-
-#~ msgid "Use Winbind"
-#~ msgstr "استفاده از Winbind"
-
-#~ msgid "Authentication"
-#~ msgstr "تأیید هویت"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "استفاده از گذرواژه‌های MD5"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "استفاده از گذرواژه‌های سایه"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "استفاده از تأیید هویت LDAP"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "استفاده از Kerberos"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "استفاده از تأیید هویت Winbind"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "تأیید اختیارات محلی کافی است"
-
-#~ msgid "Back"
-#~ msgstr "عقب"
-
-#~ msgid "Cancel"
-#~ msgstr "انصراف"
-
-#~ msgid "Next"
-#~ msgstr "بعد"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "پیکربندی تأیید هویت"
-
-#~ msgid "Domain:"
-#~ msgstr "دامنه:"
-
-#~ msgid "Realm:"
-#~ msgstr "Realm:"
-
-#~ msgid "Server:"
-#~ msgstr "کارگزار:"
-
-#~ msgid "Join Domain"
-#~ msgstr "پیوستن به دامنه"
-
-#~ msgid "Use TLS"
-#~ msgstr "استفاده از TLS"
-
-#~ msgid "Base DN:"
-#~ msgstr "DN پایه:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "تنظیمات LDAP"
-
-#~ msgid "NIS Settings"
-#~ msgstr "تنظیمات NIS"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "کارگزار مدیریت:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "استفاده از DNS برای بازیافت میزبان‌ها به realms"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "استفاده از DNS برای جایابی KDCs برای realms"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "تنظیمات Kerberos"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "مدیر دامنه:"
-
-#~ msgid "Password:"
-#~ msgstr "گذرواژه:"
-
-#~ msgid "Join Settings"
-#~ msgstr "تنظیمات پیوستن"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "پیش از ادامه بعضی از تغییرات پیکربندی شما باید در دیسک ذخیره شوند. اگر "
-#~ "آن‌ها را ذخیره نکنید ممکن است اقدام شما در پیوستن به دامنه با شکست مواجه "
-#~ "شود. آیا تغییرات ذخیره شوند؟"
-
-#~ msgid "Save Settings"
-#~ msgstr "ذخیرهٔ تنظیمات"
-
-#~ msgid "No"
-#~ msgstr "نه"
-
-#~ msgid "Yes"
-#~ msgstr "بله"
-
-#~ msgid "Security Model:"
-#~ msgstr "مدل امنیت:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "کنترل کننده‌های دامنه:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "ADS Realm:"
-
-#~ msgid "Template Shell:"
-#~ msgstr "قالب پوسته:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "تنظیمات Winbind"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr " <Tab>/<Alt-Tab> بین اجزا   |   <Space> گزینش   |  <F12> صفحه بعد"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "چگونگی سنجش هویت کاربرانی را که سعی می‌کنند وارود رایانه شوند را کنترل کنید"
-
-#~ msgid "Password"
-#~ msgstr "رمز عبور"
-
-#~ msgid "LDAP password"
-#~ msgstr "رمز عبور LDAP"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#, fuzzy
-#~ msgid "Joining IPA Domain"
-#~ msgstr "پیوستن به دامنه"
-
-#~ msgid "Alert"
-#~ msgstr "هشدار"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "ذخیره _نشود"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "در حال پیوستن به دامنهٔ Winbind"
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "استفاده از DNS برای یافتن KDC برای realms"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "استفاده از TLS برای _رمز کردن اتصالات"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr "گروه اصلی کاربرهای ایجاد شده توسط winbind"

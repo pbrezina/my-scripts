@@ -67,6 +67,14 @@ sed -i 's/pam_mkhomedir.so/pam_oddjob_mkhomedir.so/g' /etc/pam.d/*-auth-ac &>/de
 %attr(700,root,root) %dir %{_localstatedir}/lib/%{name}
 
 %changelog
+* Tue May 16 2017 Tomáš Mráz <tmraz@redhat.com> - 7.0.1-1
+- fix CVE-2017-7488 incorrect PAM configuration with SSSD (#1441604)
+  (if you use configuration with pam_sss, use authconfig --updateall
+  to fix the PAM configuration)
+- support locking accounts after multiple authentication failures via
+  pam_faillock
+- enable SSSD smartcard support if module sssd is used
+
 * Mon Feb 27 2017 Tomáš Mráz <tmraz@redhat.com> - 7.0.0-1
 - dropped authconfig-gtk (system-config-authentication) (no GTK3 support)
 - dropped authconfig-tui (deprecated long ago)

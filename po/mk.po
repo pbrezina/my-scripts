@@ -7,20 +7,22 @@
 # Dimitris Glezos <glezos@transifex.com>, 2011
 # Jonoski PAvle <pavle@lugola.net>, 2007
 # Tomislav Markovski <herrera@users.sourceforge.net>, 2004
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Macedonian (http://www.transifex.com/projects/p/fedora/"
-"language/mk/)\n"
-"Language: mk\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 10:59-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/fedora/language/mk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mk\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -270,7 +272,8 @@ msgstr ""
 "креирани од winbind доколку не е овозможен winbindusedefaultdomain"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr ""
 "директориумот кој ќе ги содржи домашните директориуми на корисниците "
 "креирани од winbind"
@@ -340,7 +343,8 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr ""
 
 #: ../authconfig.py:266
@@ -461,379 +465,157 @@ msgid "do not require other characters in a password"
 msgstr ""
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "не прави start/stop portmap, ypbind, и nscd"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
 "не ги ажурирај конфигурационите датотеки, прикажи ги само новите поставувања"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "обратно од --test, ажурирај ги конфигурационите датотеки со променетите "
 "поставувања"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "ажурирај ги сите конфигурациони датотеки"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "тестирај ја мрежата за стандардни параметри и отпечати го излезот"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr ""
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr ""
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr ""
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "неочекуван праметар"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr ""
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr ""
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr "Посочена е лоша акција за отстранување на smart card."
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "може да се изврши само како root"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "дијалогот е откажан"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr "Заклучи"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "Игнорирај"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr ""
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
 msgstr ""
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr "Грешка при преземањето на CA сертификатот"
-
-#~ msgid "disable wins for hostname resolution"
-#~ msgstr "оневозможи wins за барање на имиња на хост"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "стандардно овозможи hesiod за информациите на корисникот"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "стандардно оневозможи hesiod за информациите на корисникот"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "стандарден hesiod LHS"
-
-#~ msgid "default hesiod RHS"
-#~ msgstr "стандарден hesiod RHS"
-
-#~ msgid "display Back instead of Cancel in the main dialog of the TUI"
-#~ msgstr "прикажи Назад наместо Откажи во главниот дијалог на TUI"
-
-#~ msgid "do not display the deprecated text user interface"
-#~ msgstr "не го покажувај корисничкиот интерфејс"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.\n"
-#~ "Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Датотеката %s не е пронајдена, но е потребна за правилна работа на %s.\n"
-#~ "Инсталирајте го пакетот %s, кој ја содржи оваа датотека."
-
-#~ msgid "Warning"
-#~ msgstr "Предупредување"
-
-#~ msgid "Ok"
-#~ msgstr "Во ред"
-
-#~ msgid "caching"
-#~ msgstr "кеширање"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "Автентикација на LDAP"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "shadow password"
-#~ msgstr "засенета лозинка"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "Автентикација на Winbind"
-
-#~ msgid "User Information"
-#~ msgstr "Информации за корисникот"
-
-#~ msgid "Cache Information"
-#~ msgstr "Кеширај ги информациите"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Користи LDAP"
-
-#~ msgid "Use NIS"
-#~ msgstr "Користи NIS"
-
-#~ msgid "Use Winbind"
-#~ msgstr "Користи Winbind"
-
-#~ msgid "Authentication"
-#~ msgstr "Автентикација"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Користи MD5 лозинки"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Користи засенети лозники"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Користи автентикација на LDAP"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "Користи Kerberos"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "Користи автентикација на Winbind"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "Доволна е локална проверка"
-
-#~ msgid "Back"
-#~ msgstr "Назад"
-
-#~ msgid "Cancel"
-#~ msgstr "Откажи"
-
-#~ msgid "Next"
-#~ msgstr "Следно"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "Конфигурација за проверка (автентикација)"
-
-#~ msgid "Domain:"
-#~ msgstr "Домен:"
-
-#~ msgid "Realm:"
-#~ msgstr "Realm:"
-
-#~ msgid "Server:"
-#~ msgstr "Сервер:"
-
-#~ msgid "Join Domain"
-#~ msgstr "Вклучи се во домен"
-
-#~ msgid "Use TLS"
-#~ msgstr "Користи TLS"
-
-#~ msgid "Base DN:"
-#~ msgstr "Основно DN:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "Поставувања за LDAP:"
-
-#~ msgid "NIS Settings"
-#~ msgstr "Поставувања за NIS:"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Админ сервер:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "Користи DNS за наоѓање адреси во доменот"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "Користи DNS за лоцирање KDC во доменот"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Поставувања за Kerberos"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "Администратор на доменот:"
-
-#~ msgid "Password:"
-#~ msgstr "Лозинка:"
-
-#~ msgid "Join Settings"
-#~ msgstr "Поставувања за вклучување:"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "Некои од промените што ги направивте треба да бидат зачувани на дискот "
-#~ "пред да продолжите.  Ако не ги зачувате, Вашиот обид за вклучување во "
-#~ "доменот може да биде неуспешен.  Зачувајте ги промените?"
-
-#~ msgid "Save Settings"
-#~ msgstr "Зачувај ги промените"
-
-#~ msgid "No"
-#~ msgstr "Не"
-
-#~ msgid "Yes"
-#~ msgstr "Да"
-
-#~ msgid "Security Model:"
-#~ msgstr "Модел за сигурност:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "Контролери на доменот:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "ADS Realm:"
-
-#~ msgid "Template Shell:"
-#~ msgstr "Школка-мостра:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "Поставувања за Winbind"
-
-#~ msgid ""
-#~ "To connect to a LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed your server's certificate. Copy the certificate "
-#~ "in the PEM format to the '%s' directory.\n"
-#~ "Then press OK."
-#~ msgstr ""
-#~ "За да се поврзете како што треба на LDAP сервер со користење на TLS "
-#~ "потребен Ви е CA сертификат потпишан од сертификатот на Вашиот сервер. "
-#~ "Ископирајте го серфтификатот во PEM формат во директориумот „%s“.\n"
-#~ "Потоа притиснете Во ред."
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> помеѓу ставките   |   <Space> одбира   |  <F12> следна "
-#~ "страница"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Контрола на начинот на кој корисниците се проверуваат при најава во "
-#~ "системот"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid ""
-#~ "Smart card authentication allows you to log in using a certificate and "
-#~ "key associated with a smart card."
-#~ msgstr ""
-#~ "Smart card автентикацијата Ви дозволува да се логирате со користење на "
-#~ "сертификат и клуч асоциран со smart card."
-
-#, fuzzy
-#~ msgid "Joining IPA Domain"
-#~ msgstr "Вклучи се во домен"
-
-#~ msgid "Alert"
-#~ msgstr "Известување"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "_Не снимај"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "Вклучување кон Winbind доменот"
-
-#~ msgid "Download CA Certificate"
-#~ msgstr "Преземи СА сертификат"
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "Користи DNS за _лоцирање на KDC во доменот"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Користи _TLS за енкрипција на врските"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr "стандардна школката која ќе ја имаат групите креирани преку winbind"

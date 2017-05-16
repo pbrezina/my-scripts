@@ -5,20 +5,22 @@
 # Translators:
 # Dimitris Glezos <glezos@indifex.com>, 2011
 # Miloslav Trmač <mitr@volny.cz>, 2002-2004
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 11:46-0400\n"
 "Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/fedora/language/"
-"cs/)\n"
-"Language: cs\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/fedora/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -31,11 +33,11 @@ msgstr "zobrazit tuto nápovědu a skončit"
 
 #: ../authconfig.py:129
 msgid "enable shadowed passwords by default"
-msgstr "povolit stínová hesla"
+msgstr "povolit hesla v shadow"
 
 #: ../authconfig.py:131
 msgid "disable shadowed passwords by default"
-msgstr "zakázat stínová hesla"
+msgstr "zakázat hesla v shadow"
 
 #: ../authconfig.py:133
 msgid "enable MD5 passwords by default"
@@ -270,7 +272,8 @@ msgstr ""
 "uživatelů vytvářených winbindem, pokud není povoleno winbindusedefaultdomain"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr ""
 "adresář, který budou mít uživatelé vytvoření winbindem jako domovský adresář"
 
@@ -340,7 +343,8 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr "povolit SSSD s manuálním nastavením konfigurace pro autentizaci"
 
 #: ../authconfig.py:266
@@ -465,39 +469,62 @@ msgid "do not require other characters in a password"
 msgstr "nevyžadovat jiné znaky v heslu"
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+"povolit dočasné zamykání účtů v případě překročení počtu po sobě "
+"následujících neúspěšných autentizací"
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+"zakázat dočasné zamykání účtů v případě překročení počtu po sobě "
+"následujících neúspěšných autentizací"
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr "<parametry>"
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr "parametry modulu pam_faillock"
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "nestartovat/nevypínat portmap, ypbind a nscd"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr "nepřepisovat konfigurační soubory, pouze vytisknout nová nastavení"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "opak volby --test, přepsat konfigurační soubory se změněnými nastaveními"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "přepsat všechny konfigurační soubory"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "získat ze sítě implicitní hodnoty a vypsat je"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr "<název>"
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr "uložit zálohu všech konfiguračních souborů"
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr "obnovit konfigurační soubory ze zálohy"
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
@@ -505,76 +532,84 @@ msgstr ""
 "obnovit konfigurační soubory ze zálohy uložené před předchozízměnou "
 "konfigurace"
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "neočekávaný argument"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr "hodnota volby passminlen musí být nejméně 6"
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr "hodnota volby passminlen není celé číslo"
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr "hodnota volby passminclass nesmí být záporná"
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr "hodnota volby passminclass nesmí být vyšší než 4"
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr "hodnota volby passminclass není celé číslo"
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr "hodnota volby passmaxrepeat nesmí být záporná"
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr "hodnota volby passmaxrepeat není celé číslo"
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr "hodnota volby passmaxclassrepeat nesmí být záporná"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr "hodnota volby passmaxclassrepeat není celé číslo"
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr "Zadána špatná akce po vyjmutí čipové karty."
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+"--enablerequiresmartcard není podporováno s modulem 'sssd', volba je "
+"ignorována."
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr "Zadán neznámý algoritmus hašování hesel, bude použit sha256."
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "může být spuštěn pouze uživatelem root"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "dialog byl stornován"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr "Uzamknout"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "Ignorovat"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr "Neplatné URI pro LDAP."
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -582,18 +617,18 @@ msgid ""
 msgstr ""
 "Autentizační modul %s/pam_%s.so chybí. Autentizace nemusí správně fungovat."
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
 msgstr "Připojení k Winbind doméně se nezdařilo."
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
 "Připojení k Winbind doméně se nezdařilo. Příkaz net join selhal s "
 "následující chybou:"
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr "Chyba při stahování certifikátu CA"

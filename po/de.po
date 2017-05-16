@@ -13,25 +13,28 @@
 # hpeters <hpeters@redhat.com>, 2009
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2011
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2011
-# Roman Spirgi <bigant@fedoraproject.org>, 2012-2014
+# Roman Spirgi <bigant@fedoraproject.org>, 2012-2013
 # Roman Spirgi <rspirgi@gmail.com>, 2011
 # Ronny Buchmann <ronny-vlug@vlugnet.org>, 2004-2006
 # Severin Heiniger <severinheiniger@gmail.com>, 2005
 # sknirT omiT <moc.tahder@sknirtt>, 2010
+# Roman Spirgi <bigant@fedoraproject.org>, 2012-2014
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2014-09-21 22:25+0000\n"
-"Last-Translator: Roman Spirgi <bigant@fedoraproject.org>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/authconfig/"
-"language/de/)\n"
-"Language: de\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 10:58-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/authconfig/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -287,11 +290,12 @@ msgid ""
 "winbind-created user names if winbindusedefaultdomain is not enabled"
 msgstr ""
 "Das Zeichen, das zur Trennung von Domain und Benutzer in von Winbind "
-"erzeugten Benutzernamen verwendet wird, sofern winbindusedefaultdomain nicht "
-"aktiviert ist"
+"erzeugten Benutzernamen verwendet wird, sofern winbindusedefaultdomain nicht"
+" aktiviert ist"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr ""
 "Der Ordner, den von Winbind erzeugte Benutzer als persönlichen Ordner haben"
 
@@ -365,10 +369,11 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr ""
-"SSSD für Authentifizierung als Vorgabe mit manuell verwalteter Konfiguration "
-"aktivieren"
+"SSSD für Authentifizierung als Vorgabe mit manuell verwalteter Konfiguration"
+" aktivieren"
 
 #: ../authconfig.py:266
 msgid ""
@@ -408,7 +413,8 @@ msgstr ""
 
 #: ../authconfig.py:280
 msgid "disable caching of user information by default"
-msgstr "Zwischenspeicherung von Benutzerinformation standardmäßig deaktivieren"
+msgstr ""
+"Zwischenspeicherung von Benutzerinformation standardmäßig deaktivieren"
 
 #: ../authconfig.py:283
 msgid "local authorization is sufficient for local users"
@@ -499,120 +505,145 @@ msgid "do not require other characters in a password"
 msgstr "Keine anderen Zeichen in einem Kennwort verlangen"
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "portmap, ypbind und nscd nicht starten/anhalten"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr ""
 "Konfigurationsdateien nicht aktualisieren, stattdessen nur die neuen "
 "Einstellungen ausgeben"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "Im Gegensatz zu --test die Konfigurationsdateien mit geänderten "
 "Einstellungen aktualisieren"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "Alle Konfigurationsdateien aktualisieren"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "Im Netzwerk nach Standards suchen und diese ausgeben"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr "<Name>"
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr "Eine Sicherung aller Konfigurationsdateien speichern"
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr "Eine Sicherung der Konfigurationsdateien wiederherstellen"
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
-"Die vor der letzten Konfigurationsänderung gesicherten Konfigurationsdateien "
-"wiederherstellen"
+"Die vor der letzten Konfigurationsänderung gesicherten Konfigurationsdateien"
+" wiederherstellen"
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "Unerwartetes Argument"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr "Der passminlen minimale Wert ist 6"
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr "Die Wert der Option passminlen ist keine Ganzzahl"
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr "Der passminclass Wert darf nicht negativ sein"
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr "Der Passminlen-Wert darf nicht höher als 4 sein"
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr "Die Wert der Option passminclass ist keine Ganzzahl"
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr "Der passmaxrepeat Wert darf nicht negativ sein"
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr "Die Wert der Option passmaxrepeat ist keine Ganzzahl"
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr "Der passmaxclassrepeat Wert darf nicht negativ sein"
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr "Die Wert der Option passmaxclassrepeat ist keine Ganzzahl"
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr "Unzulässige Aktion beim Entfernen der Smartcard angegeben."
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 "Unbekannter Passwort-Hashing-Algorithmus angegeben, sha256 wird benutzt."
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "Kann nur als Root ausgeführt werden"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "Dialog wurde abgebrochen"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr "Sperren"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "Ignorieren"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr "Ungültige LDAP URI."
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
@@ -621,601 +652,18 @@ msgstr ""
 "Das Authentifizierungsmodul %s/pam_%s.so fehlt. Der "
 "Authentifizierungsprozess arbeitet eventuell nicht korrekt."
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
-msgstr ""
+msgstr "Das Verbinden mit der Winbind-Domain war nicht erfolgreich."
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
+"Das Verbinden mit der Winbind-Domain war nicht erfolgreich. Der net join "
+"Befehl scheiterte mit folgendem Fehler:"
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr "Error downloading CA certificate"
-
-#~ msgid "enable IPAv2 for user information and authentication by default"
-#~ msgstr ""
-#~ "Aktiviere IPAv2 für Benutzerinformationen und Authentifizierung "
-#~ "standardmässig"
-
-#~ msgid "disable IPAv2 for user information and authentication by default"
-#~ msgstr ""
-#~ "Deaktiviere IPAv2 für Benutzerinformationen und Authentifizierung "
-#~ "standardmässig"
-
-#~ msgid "the IPAv2 domain the system should be part of"
-#~ msgstr "Die IPAv2 Domäne, bei der das System enthalten sein soll"
-
-#~ msgid "the realm for the IPAv2 domain"
-#~ msgstr "Der Bereich für die IPAv2-Domäne"
-
-#~ msgid "the server for the IPAv2 domain"
-#~ msgstr "Server der IPAv2 Domäne"
-
-#~ msgid "do not setup the NTP against the IPAv2 domain"
-#~ msgstr "NTP für die IPAv2-Domain nicht einrichten"
-
-#~ msgid "setup the NTP against the IPAv2 domain (default)"
-#~ msgstr "NTP für die IPAv2-Domain einrichten (Standard)"
-
-#~ msgid "join the IPAv2 domain as this account"
-#~ msgstr "Mit diesem Konto der IPAv2-Domäne beitreten"
-
-#~ msgid "enable wins for hostname resolution"
-#~ msgstr "WINS zur Auflösung von Hostnamen aktivieren"
-
-#~ msgid "disable wins for hostname resolution"
-#~ msgstr "WINS zur Auflösung von Hostnamen deaktivieren"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "Hesiod für die Benutzerinformationen standardmäßig aktivieren"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "Hesiod für die Benutzerinformationen standardmäßig deaktivieren"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "Standard-Hesiod-LHS"
-
-#~ msgid "default hesiod RHS"
-#~ msgstr "Standard-Hesiod-RHS"
-
-#~ msgid "display Back instead of Cancel in the main dialog of the TUI"
-#~ msgstr "»Zurück« anstelle von »Abbrechen« im Hauptdialog des TUI anzeigen"
-
-#~ msgid "do not display the deprecated text user interface"
-#~ msgstr "Die veraltete Text-Benutzerschnittstelle nicht anzeigen"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.\n"
-#~ "Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Die Datei %s, die für die Unterstützung von %s erforderlich ist, wurde "
-#~ "nicht gefunden.\n"
-#~ "Installieren Sie das Paket %s, das diese Datei enthält."
-
-#~ msgid "Warning"
-#~ msgstr "Warnung"
-
-#~ msgid "Ok"
-#~ msgstr "OK"
-
-#~ msgid "caching"
-#~ msgstr "Zwischenspeicherung"
-
-#~ msgid "Fingerprint reader"
-#~ msgstr "Fingerabdruck-Leser"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "LDAP-Authentifizierung"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "shadow password"
-#~ msgstr "Shadow-Passwort"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "Winbind-Authentifizierung"
-
-#~ msgid "User Information"
-#~ msgstr "Benutzerinformationen"
-
-#~ msgid "Cache Information"
-#~ msgstr "Informationen zwischenspeichern"
-
-#~ msgid "Use LDAP"
-#~ msgstr "LDAP verwenden"
-
-#~ msgid "Use NIS"
-#~ msgstr "NIS verwenden"
-
-#~ msgid "Use IPAv2"
-#~ msgstr "Benutze IPAv2"
-
-#~ msgid "Use Winbind"
-#~ msgstr "Winbind verwenden"
-
-#~ msgid "Authentication"
-#~ msgstr "Authentifizierung"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "MD5-Passwörter verwenden"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Shadow-Passwörter verwenden"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "LDAP-Authentifizierung verwenden"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "Kerberos verwenden"
-
-#~ msgid "Use Fingerprint reader"
-#~ msgstr "Fingerabdruck-Leser benutzen"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "Winbind-Authentifizierung verwenden"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "Lokale Autorisierung ist ausreichend"
-
-#~ msgid "Back"
-#~ msgstr "Zurück"
-
-#~ msgid "Cancel"
-#~ msgstr "Abbrechen"
-
-#~ msgid "Next"
-#~ msgstr "Weiter"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "Konfiguration der Authentifizierung"
-
-#~ msgid "Domain:"
-#~ msgstr "Domain:"
-
-#~ msgid "Realm:"
-#~ msgstr "Bereich:"
-
-#~ msgid "Server:"
-#~ msgstr "Server:"
-
-#~ msgid "IPAv2 Settings"
-#~ msgstr "IPAv2 Einstellungen"
-
-#~ msgid "Join Domain"
-#~ msgstr "Domain-Mitglied werden"
-
-#~ msgid "Use TLS"
-#~ msgstr "TLS verwenden"
-
-#~ msgid "Base DN:"
-#~ msgstr "Basis-DN:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "LDAP-Einstellungen"
-
-#~ msgid "NIS Settings"
-#~ msgstr "NIS-Einstellungen"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Admin-Server:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "DNS benutzen, um Rechner nach Bereichen  aufzulösen"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "DNS benutzen, um KDCs für Bereiche festzulegen"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Kerberos-Einstellungen"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "Domain-Administrator:"
-
-#~ msgid "Password:"
-#~ msgstr "Passwort:"
-
-#~ msgid "Join Settings"
-#~ msgstr "Einstellungen beitreten"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "Einige der von Ihnen getätigten Konfigurationsänderungen sollten auf der "
-#~ "Festplatte gespeichert werden, bevor Sie fortfahren. Sollten Sie diese "
-#~ "nicht speichern, könnte Ihr Versuch fehlschlagen, Mitglied der Domain zu "
-#~ "werden. Änderungen speichern?"
-
-#~ msgid "Save Settings"
-#~ msgstr "Einstellungen speichern"
-
-#~ msgid "No"
-#~ msgstr "Nein"
-
-#~ msgid "Yes"
-#~ msgstr "Ja"
-
-#~ msgid "Security Model:"
-#~ msgstr "Sicherheitsmodell:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "Domain-Controller:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "ADS-Bereich:"
-
-#~ msgid "Template Shell:"
-#~ msgstr "Standard-Shell:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "Winbind-Einstellungen"
-
-#~ msgid ""
-#~ "To connect to a LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed your server's certificate. Copy the certificate "
-#~ "in the PEM format to the '%s' directory.\n"
-#~ "Then press OK."
-#~ msgstr ""
-#~ "Um sich mit einem LDAP-Server mit aktiviertem TLS-Protokoll zu verbinden, "
-#~ "benötigen Sie ein CA-Zertifikat, mit dem Ihr Server-Zertifikat signiert "
-#~ "ist. Kopieren Sie dieses Zertifikat im PEM-Format in den Ordner »%s«.\n"
-#~ "Klicken Sie danach auf OK."
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt+Tab> Zwischen Elementen wechseln  |  <Leertaste> Auswählen  | "
-#~ "<F12> Weiter"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr ""
-#~ "Kontrollieren, wie das System die Benutzer prüft, die sich anmelden "
-#~ "möchten."
-
-#~ msgid ""
-#~ "Unable to initialize graphical environment. Most likely cause of failure\n"
-#~ "is that the tool was not run using a graphical environment. Please "
-#~ "either\n"
-#~ "start your graphical user interface or set your DISPLAY variable.\n"
-#~ msgstr ""
-#~ "Grafische Oberfläche kann nicht initialisiert werden. Wahrscheinlichste "
-#~ "Fehlerursache ist, dass das Tool nicht unter einer grafischen Oberfläche "
-#~ "ausgeführt wurde. Bitte starten Sie entweder Ihre grafische "
-#~ "Benutzeroberfläche oder konfigurieren Sie Ihre DISPLAY-Einstellung.\n"
-
-#~ msgid "Local accounts only"
-#~ msgstr "Nur lokale Benutzerkonten"
-
-#~ msgid "FreeIPA"
-#~ msgstr "FreeIPA"
-
-#~ msgid "IPAv2"
-#~ msgstr "IPAv2"
-
-#~ msgid "Password"
-#~ msgstr "Passwort"
-
-#~ msgid "LDAP password"
-#~ msgstr "LDAP-Passwort"
-
-#~ msgid "Kerberos password"
-#~ msgstr "Kerberos-Passwort"
-
-#~ msgid "NIS password"
-#~ msgstr "NIS-Passwort"
-
-#~ msgid "Winbind password"
-#~ msgstr "Winbind-Passwort"
-
-#~ msgid "IPAv2 password"
-#~ msgstr "IPAv2 Passwort"
-
-#~ msgid ""
-#~ "You must provide ldaps:// server address or use TLS for LDAP "
-#~ "authentication."
-#~ msgstr ""
-#~ "Sie müssen die »ldaps://«-Serveradresse angeben oder TLS zur LDAP-"
-#~ "Authentifikation verwenden."
-
-#~ msgid "Use the \"Join Domain\" button to join the IPAv2 domain."
-#~ msgstr ""
-#~ "Benutzen Sie die Schaltfläche \"Domäne beitreten\"  um der IPAv2 Domäne "
-#~ "beizutreten"
-
-#~ msgid ""
-#~ "Restore the configuration files backed up before the previous "
-#~ "configuration change"
-#~ msgstr ""
-#~ "Wiederherstellen der gesicherten Konfigurationsdateien vor der letzten "
-#~ "Konfigurationsänderung"
-
-#~ msgid "<b>User Account Configuration</b>"
-#~ msgstr "<b>Benutzerkonto-Konfiguration</b>"
-
-#~ msgid "_User Account Database:"
-#~ msgstr "Ben_utzerkonto-Datenbank:"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "<b>Authentication Configuration</b>"
-#~ msgstr "<b>Konfiguration der Authentifizierung</b>"
-
-#~ msgid "Aut_hentication Method:"
-#~ msgstr "Aut_hentifizierungsmethode:"
-
-#~ msgid "_Identity & Authentication"
-#~ msgstr "_Identität und Authentifizierung"
-
-#~ msgid "<b>Local Authentication Options</b>"
-#~ msgstr "<b>Lokale Authentifizierungsoptionen</b>"
-
-#~ msgid "Enable _fingerprint reader support"
-#~ msgstr "Unterstützung für _Fingerabdruck-Leser aktivieren"
-
-#~ msgid ""
-#~ "Fingerprint authentication allows you to log in by scanning your finger "
-#~ "with the fingerprint reader."
-#~ msgstr ""
-#~ "Fingerabdruck-Authentifizierung gestattet es Ihnen, sich durch Scannen "
-#~ "des Fingers mit dem Fingerabdruck-Leser anzumelden."
-
-#~ msgid "Enable _local access control"
-#~ msgstr "_Lokale Zugriffskontrolle aktivieren"
-
-#~ msgid ""
-#~ "When enabled /etc/security/access.conf will be consulted for "
-#~ "authorization of users access."
-#~ msgstr ""
-#~ "Falls aktiviert, wird /etc/security/access.conf zur Authentifizierung der "
-#~ "Benutzerzugriffe abgefragt."
-
-#~ msgid ""
-#~ "<small><b>Tip:</b> This is managed via /etc/security/access.conf.</small>"
-#~ msgstr ""
-#~ "<small><b>Hinweis:</b> Dies wird via /etc/security/access.conf verwaltet."
-#~ "</small>"
-
-#~ msgid ""
-#~ "Hashing or crypto algorithm used for storing passwords of local users"
-#~ msgstr ""
-#~ "Hash/Crypt-Algorithmen zur Speicherung von Passwörtern lokaler Benutzer"
-
-#~ msgid "_Password Hashing Algorithm:"
-#~ msgstr "_Passwort-Hashing-Algorithmus:"
-
-#~ msgid "<b>Other Authentication Options</b>"
-#~ msgstr "<b>Weitere Authentifizierungsoptionen</b>"
-
-#~ msgid "Create _home directories on the first login"
-#~ msgstr "Persönlic_he Ordner beim ersten Anmelden erstellen"
-
-#~ msgid ""
-#~ "If the home directory of an user doesn't exist yet it will be created "
-#~ "automatically on his first login."
-#~ msgstr ""
-#~ "Wenn der persönliche Ordner eines Benutzers nicht existiert, wird er bei "
-#~ "der ersten Anmeldung automatisch angelegt."
-
-#~ msgid "<b>Smart Card Authentication Options</b>"
-#~ msgstr "<b>Smartcard-Authentifizierungsoptionen</b>"
-
-#~ msgid "Enable _smart card support"
-#~ msgstr "_Smartcard-Unterstützung aktivieren"
-
-#~ msgid ""
-#~ "Smart card authentication allows you to log in using a certificate and "
-#~ "key associated with a smart card."
-#~ msgstr ""
-#~ "Smartcard-Authentifizierung gestattet es Ihnen, sich mit einem Zertifikat "
-#~ "und Schlüssel anzumelden, die mit einer Smartcard verknüpft sind."
-
-#~ msgid ""
-#~ "<small><b>Tip:</b> Smart cards support logging into both local and "
-#~ "centrally managed accounts.</small>"
-#~ msgstr ""
-#~ "<small><b>Hinweis:</b> Smartcards unterstützen das Anmelden an sowohl "
-#~ "lokalen als auch zentral verwalteten Benutzerkonten.</small>"
-
-#~ msgid "Advanced _Options"
-#~ msgstr "Erweiterte _Optionen"
-
-#~ msgid "<b>Minimal Password Requirements</b>"
-#~ msgstr "<b>Minimale Passwortanforderungen</b>"
-
-#~ msgid "_Length:"
-#~ msgstr "_Länge:"
-
-#~ msgid "C_haracter Classes:"
-#~ msgstr "Zei_chenklassen:"
-
-#~ msgid "<b>Required Character Classes</b>"
-#~ msgstr "<b>Benötigte Zeichenklassen</b>"
-
-#~ msgid "Low_ercase"
-#~ msgstr "Kl_einbuchstaben"
-
-#~ msgid "_Uppercase"
-#~ msgstr "_Grossbuchstabe"
-
-#~ msgid "_Digits"
-#~ msgstr "_Zahlen"
-
-#~ msgid "O_ther characters"
-#~ msgstr "Andere Zeichen"
-
-#~ msgid "<b>Maximal Consecutive Character Repetition</b>"
-#~ msgstr "<b>Maximal aufeinanderfolgende Zeichenwiederholung</b>"
-
-#~ msgid "_Same Character:"
-#~ msgstr "Da_sselbe Zeichen:"
-
-#~ msgid "Sa_me Class:"
-#~ msgstr "Identische Zeichenklasse:"
-
-#~ msgid ""
-#~ "<small><b>Tip:</b> These checks are disabled if the value is 0.</small>"
-#~ msgstr ""
-#~ "<small><b>Hinweis:</b> Diese Überprüfungen sind deaktiviert, falls der "
-#~ "Wert 0 ist.</small>"
-
-#~ msgid "Pass_word Options"
-#~ msgstr "Pass_wort-Optionen"
-
-#~ msgid "Domain _administrator:"
-#~ msgstr "Domain-_Administrator:"
-
-#~ msgid "_Password:"
-#~ msgstr "_Passwort:"
-
-#~ msgid "Alert"
-#~ msgstr "Alarm"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "_Nicht speichern"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "Winbind-Domain beitreten"
-
-#~ msgid "Download CA Certificate"
-#~ msgstr "CA-Zertifikat herunterladen"
-
-#~ msgid "Certificate _URL:"
-#~ msgstr "Zertifikat-_URL:"
-
-#~ msgid ""
-#~ "To verify the LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed the server's certificate. Please fill in the URL "
-#~ "where the CA certificate in the PEM format can be downloaded from."
-#~ msgstr ""
-#~ "Um sich mit einem LDAP-Server mit aktiviertem TLS-Protokoll zu verbinden, "
-#~ "benötigen Sie ein CA-Zertifikat, mit dem Ihr Server-Zertifikat signiert "
-#~ "ist. Bitte geben Sie die URL an, von welcher das CA-Zertifikat im PEM-"
-#~ "Format heruntergeladen werden kann."
-
-#~ msgid "NIS _Server:"
-#~ msgstr "NIS-_Server:"
-
-#~ msgid "NIS _Domain:"
-#~ msgstr "NIS-_Domain:"
-
-#~ msgid "Ad_min Servers:"
-#~ msgstr "Ad_min-Server:"
-
-#~ msgid "R_ealm:"
-#~ msgstr "R_ealm:"
-
-#~ msgid "_KDCs:"
-#~ msgstr "_KDCs:"
-
-#~ msgid "Use D_NS to resolve hosts to realms"
-#~ msgstr "D_NS benutzen, um Rechner nach Bereichen aufzulösen"
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "DNS benutzen, um KDCs für Rea_lms zu bestimmen"
-
-#~ msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-#~ msgstr ""
-#~ "Hostname oder ldap:// oder ldaps:// URI, welche auf den LDAP-Server zeigt."
-
-#~ msgid "LDAP Search _Base DN:"
-#~ msgstr "LDAP Suche _Basis-DN:"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "_TLS zum Verschlüsseln von Verbindungen verwenden"
-
-#~ msgid ""
-#~ "Use Transport Layer Security extension for LDAP as defined by RFC-2830. "
-#~ "It must not be ticked with ldaps server URI."
-#~ msgstr ""
-#~ "Die »Transport Layer Security«-Erweiterung für LDAP verwenden, wie in "
-#~ "RFC-2830 definiert. Dies muss bei einer ldaps-Server-URI nicht aktiviert "
-#~ "werden."
-
-#~ msgid ""
-#~ "Click this button if you did not download a CA certificate yet or you "
-#~ "have not set the CA certificate up by other means."
-#~ msgstr ""
-#~ "Klicken Sie auf diesen Knopf, wenn Sie noch kein CA-Zertifikat "
-#~ "heruntergeladen oder in sonstiger Form eingerichtet haben."
-
-#~ msgid "_Download CA Certificate..."
-#~ msgstr "CA-Zertifikat herunterla_den …"
-
-#~ msgid "LDAP _Server:"
-#~ msgstr "LDAP-_Server:"
-
-#~ msgid "_Security Model:"
-#~ msgstr "_Sicherheitsmodell:"
-
-#~ msgid "Winbind _Domain:"
-#~ msgstr "Winbind-_Domain:"
-
-#~ msgid "Winbind Domain Co_ntrollers:"
-#~ msgstr "Winbind-Domain-Co_ntroller:"
-
-#~ msgid "Te_mplate Shell:"
-#~ msgstr "Sta_ndard-Shell:"
-
-#~ msgid "Winbind ADS R_ealm:"
-#~ msgstr "Winbind-ADS-R_ealm:"
-
-#~ msgid "Allow offline _login"
-#~ msgstr "Offline-Anme_ldung erlauben"
-
-#~ msgid "_Join Domain..."
-#~ msgstr "Domain _beitreten …"
-
-#~ msgid "IPA _Domain:"
-#~ msgstr "IPA _Domäne:"
-
-#~ msgid "IPA _Server:"
-#~ msgstr "IPA _Server:"
-
-#~ msgid "IPA R_ealm:"
-#~ msgstr "IPA B_ereich:"
-
-#~ msgid "Do not configure _NTP"
-#~ msgstr "Konfiguriere _NTP nicht"
-
-#~ msgid "Card Re_moval Action:"
-#~ msgstr "Aktion bei_m Entfernen der Karte:"
-
-#~ msgid "Require smart car_d for login"
-#~ msgstr "Smartcar_d für Anmeldung voraussetzen"
-
-#~ msgid "Revert"
-#~ msgstr "Rückgängig machen"
-
-#~ msgid ""
-#~ "All configuration files which were modified by the previous "
-#~ "authentication configuration change will be restored from backup. Revert "
-#~ "the changes?"
-#~ msgstr ""
-#~ "Alle Konfigurationsdateien, welche durch die vorherige "
-#~ "Authentifizierungskonfigurationsänderung angepasst wurden, werden von der "
-#~ "Sicherung wiederhergestellt. Änderungen rückgängig machen?"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr ""
-#~ "Die Gruppe, die von Winbind erzeugte Benutzer als primäre Gruppe haben"

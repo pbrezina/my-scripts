@@ -6,21 +6,22 @@
 # Dimitris Glezos <glezos@transifex.com>, 2011
 # Munzir Taha <munzirtaha@gmail.com>, 2011
 # Tareq Al Jurf <taljurf.fedora@gmail.com>, 2009
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Arabic (http://www.transifex.com/projects/p/fedora/language/"
-"ar/)\n"
-"Language: ar\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 11:00-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/fedora/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -79,12 +80,14 @@ msgstr "خادم خدمة معلومات الشّبكة (NIS) الافتراضي
 #: ../authconfig.py:150
 msgid "enable LDAP for user information by default"
 msgstr ""
-"مكّن البروتوكول خفيف الثّقل لوصول الدّليل (LDAP) لمعلومات المستخدم بشكل افتراضي"
+"مكّن البروتوكول خفيف الثّقل لوصول الدّليل (LDAP) لمعلومات المستخدم بشكل "
+"افتراضي"
 
 #: ../authconfig.py:152
 msgid "disable LDAP for user information by default"
 msgstr ""
-"عطّل البروتوكول خفيف الثّقل لوصول الدّليل (LDAP) لمعلومات المستخدم بشكل افتراضي"
+"عطّل البروتوكول خفيف الثّقل لوصول الدّليل (LDAP) لمعلومات المستخدم بشكل "
+"افتراضي"
 
 #: ../authconfig.py:154
 msgid "enable LDAP for authentication by default"
@@ -263,8 +266,8 @@ msgstr "<lowest-highest>"
 #: ../authconfig.py:232
 msgid "uid range winbind will assign to domain or ads users"
 msgstr ""
-"مدى أرقام هويّة المستخدمين (uid) الذي سيُعيّنه winbind لمستخدمي النّطاق أو خدمة "
-"الدّليل النّشط (ads)"
+"مدى أرقام هويّة المستخدمين (uid) الذي سيُعيّنه winbind لمستخدمي النّطاق أو "
+"خدمة الدّليل النّشط (ads)"
 
 #: ../authconfig.py:234
 msgid ""
@@ -275,7 +278,8 @@ msgstr ""
 "بواسطة winbind إن كانالخيار winbindusedefaultdomain غير مُمكّن"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr "الدّليل الذي سيحصل عليه المُتسخدمون الذين أنشأهم winbind كدليل موطن"
 
 #: ../authconfig.py:238
@@ -295,8 +299,8 @@ msgid ""
 "configures winbind to assume that users with no domain in their user names "
 "are not domain users"
 msgstr ""
-"يقوم بتهيئة winbind ليفترض أنّ المستخدمين غير ذوي النّطاق في أسمائهم هم ليسو "
-"مستخدمي نطاق"
+"يقوم بتهيئة winbind ليفترض أنّ المستخدمين غير ذوي النّطاق في أسمائهم هم ليسو"
+" مستخدمي نطاق"
 
 #: ../authconfig.py:244
 msgid "configures winbind to allow offline login"
@@ -342,7 +346,8 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr ""
 
 #: ../authconfig.py:266
@@ -463,364 +468,154 @@ msgid "do not require other characters in a password"
 msgstr ""
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "لا تقم بتشغيل/إيقاف portmap، ypbind، وnscd"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr "لا تحدث ملفات التهيئة، فقط اطبع الاعدادات الجديدة"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "حدث جميع ملفات التهيئة"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "جسّ الشّبكة للافتراضيّات واطبعها"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr "<الاسم>"
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr "حفظ نسخة احتياطية عن جميع ملفات التهيئة"
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr "استعادة النسخة الاحتياطية لملفات التهيئة"
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "مُعطى غير متوقّع"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr ""
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr ""
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr ""
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "يمكن تشغيله فقط من قبل المستخدم root"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "تمّ إلغاء الحوار"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr "قفل"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "تجاهل"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr ""
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
 msgstr ""
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr "خطأ أثناء تحميل شهادة CA"
-
-#~ msgid "enable wins for hostname resolution"
-#~ msgstr "مكّن wins لحلّ اسم المضيف"
-
-#~ msgid "disable wins for hostname resolution"
-#~ msgstr "عطّل wins لحلّ اسم المضيف"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "مكّن hesiod لمعلومات المستخدمين بشكل افتراضي"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "عطّل hesiod لمعلومات المستخدمين بشكل افتراضي"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "Hesiod LHS الافتراضي"
-
-#~ msgid "default hesiod RHS"
-#~ msgstr "Hesiod RHS الافتراضي"
-
-#~ msgid "do not display the deprecated text user interface"
-#~ msgstr "لا تُظهر واجهة المستخدم النصية"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.\n"
-#~ "Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "لم يُعثر على الملفّ %s، إلّا أنّه مطلوب لدعم %s كي يعمل بشكل سليم.\n"
-#~ "قم بتثبيت الحزمة %s، التّي تُوفّر هذا الملفّ."
-
-#~ msgid "Warning"
-#~ msgstr "تحذير"
-
-#~ msgid "Ok"
-#~ msgstr "موافق"
-
-#~ msgid "caching"
-#~ msgstr "التّخبئة"
-
-#~ msgid "Fingerprint reader"
-#~ msgstr "قارئ البصمة"
-
-#~ msgid "Kerberos"
-#~ msgstr "كربِروس"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "توثيق البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
-
-#~ msgid "LDAP"
-#~ msgstr "البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
-
-#~ msgid "NIS"
-#~ msgstr "خدمة معلومات الشّبكة (NIS)"
-
-#~ msgid "shadow password"
-#~ msgstr "كلمة المرور المُظلّلة"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "توثيق Winbind"
-
-#~ msgid "User Information"
-#~ msgstr "معلومات المستخدم"
-
-#~ msgid "Cache Information"
-#~ msgstr "تخبئة المعلومات"
-
-#~ msgid "Use LDAP"
-#~ msgstr "استخدم البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
-
-#~ msgid "Use NIS"
-#~ msgstr "استخدم خدمة معلومات الشّبكة (NIS)"
-
-#~ msgid "Use Winbind"
-#~ msgstr "استخدم Winbind"
-
-#~ msgid "Authentication"
-#~ msgstr "التّوثيق"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "استخدم كلمات مرور MD5"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "استخدم كلمات المرور المُظلّلة"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "استخدم توثيق البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "استخدم كربِروس"
-
-#~ msgid "Use Fingerprint reader"
-#~ msgstr "استخدم قارئ البصمة"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "استخدم توثيق Winbind"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "التفويض المحلي كافي"
-
-#~ msgid "Back"
-#~ msgstr "سابق"
-
-#~ msgid "Cancel"
-#~ msgstr "إلغاء"
-
-#~ msgid "Next"
-#~ msgstr "تالي"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "تهيئة التّوثيق"
-
-#~ msgid "Domain:"
-#~ msgstr "النّطاق:"
-
-#~ msgid "Realm:"
-#~ msgstr "المملكة:"
-
-#~ msgid "Server:"
-#~ msgstr "الخادم:"
-
-#~ msgid "Join Domain"
-#~ msgstr "انضمّ إلى النّطاق"
-
-#~ msgid "Use TLS"
-#~ msgstr "استخدم TLS"
-
-#~ msgid "Base DN:"
-#~ msgstr "الاسم المُميّز (DN) الأساسي:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "إعدادات البروتوكول خفيف الثّقل لوصول الدّليل (LDAP)"
-
-#~ msgid "NIS Settings"
-#~ msgstr "إعدادات خدمة معلومات الشّبكة (NIS)"
-
-#~ msgid "KDC:"
-#~ msgstr "مركز توزيع كِربيروس (KDC):"
-
-#~ msgid "Admin Server:"
-#~ msgstr "خادم الإدارة:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "استخدم DNS لتحويل المضيفين إلى مملكات"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "استخدم DNS للعثور على مراكز توزيع كِربيروس (KDC) للملكات"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "إعدادات كربِروس"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "مُدير النّطاق:"
-
-#~ msgid "Password:"
-#~ msgstr "كلمة السّر:"
-
-#~ msgid "Join Settings"
-#~ msgstr "إعدادات الانضمام"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "يجب حفظ بعض تغييرات التّهيئة التي قمت بها إلى القرص قبل الاستمرار.  إن لم "
-#~ "تقم بحفظها، فإنّ مُحاولتك الانضمام إلى النّطاق قد تفشل.  أحفظ التّغييرات؟"
-
-#~ msgid "Save Settings"
-#~ msgstr "احفظ الإعدادات"
-
-#~ msgid "No"
-#~ msgstr "لا"
-
-#~ msgid "Yes"
-#~ msgstr "نعم"
-
-#~ msgid "Security Model:"
-#~ msgstr "مُخطّط الأمن:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "مُتحكّمات النّطاق:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "مملكة خدمة الدّليل النّشط (ADS):"
-
-#~ msgid "Template Shell:"
-#~ msgstr "الصّدفة القالب:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "إعدادات Winbind"
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> بين العناصر   |   <مسافة> تُحدّد   |  <F12> الشّاشة التّالية"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "تحكّم بكيفيّة تحقّق النّظام من المستخدمين الذي يحاولون تسجيل الدّخول"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#, fuzzy
-#~ msgid "Joining IPA Domain"
-#~ msgstr "انضمّ إلى النّطاق"
-
-#~ msgid "Alert"
-#~ msgstr "إنذار"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "لا_ تحفظ"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "جاري الانضمام إلى نطاق Winbind"
-
-#~ msgid "Download CA Certificate"
-#~ msgstr "حمل شهادة CA"
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "استخدم DNS لل_عثور على مراكز توزيع كِربيروس (KDC) للملكات"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "استخدم TLS لتشفير الاتّصالات"
-
-#~ msgid "Revert"
-#~ msgstr "اقلب"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr ""
-#~ "المجموعة التي سيُضمّ إليها المستخدمون الذين أنشأهم winbind كمجوعة أوّليّة"

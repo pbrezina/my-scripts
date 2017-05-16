@@ -4,21 +4,22 @@
 #
 # Translators:
 # Dimitris Glezos <glezos@transifex.com>, 2011
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Croatian (http://www.transifex.com/projects/p/fedora/language/"
-"hr/)\n"
-"Language: hr\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 10:58-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Croatian (http://www.transifex.com/projects/p/fedora/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -271,7 +272,8 @@ msgstr ""
 "omogućeno winbindusedefaultdomain"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr ""
 "Mapa koju će korisnici, izrađeni pomoću winbind-a, upotrebljavati kao svoju "
 "početnu mapu"
@@ -342,7 +344,8 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr ""
 
 #: ../authconfig.py:266
@@ -463,378 +466,157 @@ msgid "do not require other characters in a password"
 msgstr ""
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "Ne pokreći/zaustavljaj portmap, ypbind, i nscd"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
-msgstr "Ne ažuriraj konfiguracijske datoteke, dovoljan je ispis novih postavki"
+msgstr ""
+"Ne ažuriraj konfiguracijske datoteke, dovoljan je ispis novih postavki"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr ""
 "Suprotno od --test, ažuriraj konfiguracijske datoteka s izmijenjenim "
 "postavkama"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "Ažuriraj sve konfiguracijske datoteke"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "istraživanje mreže za zadane postavke i njihovo ispisivanje"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr ""
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr ""
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr ""
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "Neočekivani argument"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr ""
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr ""
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr "Zadana je nepravilna aktivnost za uklanjanje Smart Card modula."
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "može biti pokrenut samo od korijenskog korisnika"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "Dijalog je otkazan"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr "Zaključaj"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "Ignoriraj"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr ""
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
 msgstr ""
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr "Pogreška pri preuzimanju CA potvrde"
-
-#~ msgid "disable wins for hostname resolution"
-#~ msgstr "Onemogući WINS za razrješavanje naziva računala"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "Omogući hesoid za korisničke podatke u obliku zadane postavke"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "Onemogući hesoid za korisničke podatke u obliku zadane postavke"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "Zadani Hesiod LHS"
-
-#~ msgid "default hesiod RHS"
-#~ msgstr "Hesiod RHS u obliku zadane postavke"
-
-#~ msgid "display Back instead of Cancel in the main dialog of the TUI"
-#~ msgstr "Na glavnom TUI dijalogu prikaži 'Povratak' umjesto 'Odustani'"
-
-#~ msgid "do not display the deprecated text user interface"
-#~ msgstr "Ne prikazuj zanemarena tekstualna korisnička sučelja"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.\n"
-#~ "Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Datoteka %s nije pronađena, li je potrebna za ispravan rad podrške %s.\n"
-#~ "Instalirajte paket %s s kojim dolazi ova datoteka."
-
-#~ msgid "Warning"
-#~ msgstr "Upozorenje"
-
-#~ msgid "Ok"
-#~ msgstr "U redu"
-
-#~ msgid "caching"
-#~ msgstr "pohranjivanje"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "LDAP provjera autentičnosti"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "shadow password"
-#~ msgstr "Lozinka u sjeni"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "Winbind provjera autentičnosti"
-
-#~ msgid "User Information"
-#~ msgstr "Korisnički podaci"
-
-#~ msgid "Cache Information"
-#~ msgstr "Podaci o pohrani"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Upotrijebi LDAP"
-
-#~ msgid "Use NIS"
-#~ msgstr "Upotrijebi NIS"
-
-#~ msgid "Use Winbind"
-#~ msgstr "Upotrijebi Winbind"
-
-#~ msgid "Authentication"
-#~ msgstr "Provjera vjerodostojnosti"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Upotrijebi MD5 lozinke"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Upotrijebi lozinke u sjeni"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Upotrijebi LDAP provjeru autentičnosti"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "Upotrijebi Kerberos"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "Upotrijebi Winbind provjeru autentičnosti"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "Dovoljna je lokalna provjera autentičnosti"
-
-#~ msgid "Back"
-#~ msgstr "Povratak"
-
-#~ msgid "Cancel"
-#~ msgstr "Odustani"
-
-#~ msgid "Next"
-#~ msgstr "Sljedeće"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "Konfiguracija autentičnosti"
-
-#~ msgid "Domain:"
-#~ msgstr "Domena:"
-
-#~ msgid "Realm:"
-#~ msgstr "Područje:"
-
-#~ msgid "Server:"
-#~ msgstr "Poslužitelj:"
-
-#~ msgid "Join Domain"
-#~ msgstr "Pridruživanje domeni"
-
-#~ msgid "Use TLS"
-#~ msgstr "Upotrijebi TLS"
-
-#~ msgid "Base DN:"
-#~ msgstr "Osnovni DN:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "LDAP postavke"
-
-#~ msgid "NIS Settings"
-#~ msgstr "NIS postavke"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Administrativni poslužitelj:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "Upotrijebi DNS za razrješavanje računala prema područjima"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "Upotrijebi DNS za razrješavanje KDC-ova za područja"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Kerberos postavke"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "Administrator domene:"
-
-#~ msgid "Password:"
-#~ msgstr "Lozinka:"
-
-#~ msgid "Join Settings"
-#~ msgstr "Postavke pridruživanja"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "Neke od izmjena unesenih u konfiguraciju bilo bi potrebno spremiti na "
-#~ "disk prije nastavljanja. Ukoliko ih ne spremite vaš pokušaj pridruživanja "
-#~ "domeni neće biti uspješan. Spremiti izmjene?"
-
-#~ msgid "Save Settings"
-#~ msgstr "Spremi postavke"
-
-#~ msgid "No"
-#~ msgstr "Ne"
-
-#~ msgid "Yes"
-#~ msgstr "Da"
-
-#~ msgid "Security Model:"
-#~ msgstr "Model sigurnosti:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "Kontrolori domene:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "ADS područje"
-
-#~ msgid "Template Shell:"
-#~ msgstr "Predložak ljuske:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "Winbind postavke"
-
-#~ msgid ""
-#~ "To connect to a LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed your server's certificate. Copy the certificate "
-#~ "in the PEM format to the '%s' directory.\n"
-#~ "Then press OK."
-#~ msgstr ""
-#~ "Kako biste se pomoću TLS protokola povezali s LDAP poslužiteljem potrebna "
-#~ "vam je provjera autentičnosti (CA) koju je potpisao CA vašeg "
-#~ "poslužitelja. Certifikat u PEM obliku kopirajte u mapu '%s'.\n"
-#~ "Po završetku kliknite 'U redu'."
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> između elemenata  | <razmaknica> odabir  | <F12> "
-#~ "sljedeći zaslon"
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "Nadzor sistemske provjere korisnika koji se namjeravaju prijaviti"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid ""
-#~ "Smart card authentication allows you to log in using a certificate and "
-#~ "key associated with a smart card."
-#~ msgstr ""
-#~ "Provjera autentičnosti pomoću Smart Carda omogućuje vam prijavljivanje "
-#~ "pomoću potvrde i ključa pridruženih kartici."
-
-#, fuzzy
-#~ msgid "Joining IPA Domain"
-#~ msgstr "Pridruživanje domeni"
-
-#~ msgid "Alert"
-#~ msgstr "Upozorenje"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "_Ne spremaj"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "Pridruživanje Winbind domeni"
-
-#~ msgid "Download CA Certificate"
-#~ msgstr "Preuzimanje CA potvrde"
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "Upotrijebi DNS za pronalaženje KDC-ova za područja"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Za šifriranje veza upotrijebi _TSL"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr ""
-#~ "Grupa koju će korisnici, izrađeni pomoću winbind-a, upotrebljavati kao "
-#~ "svoju osnovnu grupu"

@@ -6,20 +6,22 @@
 # Dimitris Glezos <glezos@transifex.com>, 2011
 # Richard Allen <ra@ra.is>, 2002
 # tommi <tommi@tommi.org>, 2011
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2016. #zanata
+# Tomáš Mráz <tmraz@fedoraproject.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Authconfig\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 16:33+0100\n"
-"PO-Revision-Date: 2013-11-20 11:01+0000\n"
-"Last-Translator: Tomáš Mráz <tmraz@fedoraproject.org>\n"
-"Language-Team: Icelandic (http://www.transifex.com/projects/p/fedora/"
-"language/is/)\n"
-"Language: is\n"
+"POT-Creation-Date: 2016-06-17 11:35+0200\n"
+"PO-Revision-Date: 2017-05-09 10:59-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Icelandic (http://www.transifex.com/projects/p/fedora/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Zanata 3.9.6\n"
 
 #: ../authconfig.py:120
 #, python-format
@@ -269,7 +271,8 @@ msgstr ""
 "notandanöfnum sem winbind býr til ef winbindusedefaultdomain er ekki virkt"
 
 #: ../authconfig.py:236
-msgid "the directory which winbind-created users will have as home directories"
+msgid ""
+"the directory which winbind-created users will have as home directories"
 msgstr "mappan sem winbind notendur hafa sem heimasvæði"
 
 #: ../authconfig.py:238
@@ -326,7 +329,8 @@ msgstr "ekki taka dns fram yfir wins eða nis fyrir uppflettingu véla"
 msgid ""
 "enable SSSD for user information by default with manually managed "
 "configuration"
-msgstr "virkja SSSD uppflettingu notenda sjálfgefið með handvirkri uppsetningu"
+msgstr ""
+"virkja SSSD uppflettingu notenda sjálfgefið með handvirkri uppsetningu"
 
 #: ../authconfig.py:262
 msgid ""
@@ -338,7 +342,8 @@ msgstr ""
 
 #: ../authconfig.py:264
 msgid ""
-"enable SSSD for authentication by default with manually managed configuration"
+"enable SSSD for authentication by default with manually managed "
+"configuration"
 msgstr "virkja SSSD auðkenningu notenda sjálfgefið með handvirkri uppsetningu"
 
 #: ../authconfig.py:266
@@ -462,456 +467,154 @@ msgid "do not require other characters in a password"
 msgstr ""
 
 #: ../authconfig.py:328
+msgid ""
+"enable account locking in case of too many consecutive authentication "
+"failures"
+msgstr ""
+
+#: ../authconfig.py:330
+msgid ""
+"disable account locking on too many consecutive authentication failures"
+msgstr ""
+
+#: ../authconfig.py:331
+msgid "<options>"
+msgstr ""
+
+#: ../authconfig.py:332
+msgid "the pam_faillock module options"
+msgstr ""
+
+#: ../authconfig.py:335
 msgid "do not start/stop portmap, ypbind, and nscd"
 msgstr "ekki ræsa eða stöðva portmap, ypbind og nscd"
 
-#: ../authconfig.py:331
+#: ../authconfig.py:338
 msgid "do not update the configuration files, only print new settings"
 msgstr "ekki uppfæra stillingaskrar heldur prenta út nýjar stillingar"
 
-#: ../authconfig.py:334
+#: ../authconfig.py:341
 msgid "opposite of --test, update configuration files with changed settings"
 msgstr "andstæða --test, uppfæra stillingaskrár með nýjar stillingar"
 
-#: ../authconfig.py:337
+#: ../authconfig.py:344
 msgid "update all configuration files"
 msgstr "uppfæra allar stillingaskrár"
 
-#: ../authconfig.py:340
+#: ../authconfig.py:347
 msgid "probe network for defaults and print them"
 msgstr "leita á netinu að sjálfgefnum gildum og birta þau"
 
-#: ../authconfig.py:342 ../authconfig.py:345
+#: ../authconfig.py:349 ../authconfig.py:352
 msgid "<name>"
 msgstr "<nafn>"
 
-#: ../authconfig.py:343
+#: ../authconfig.py:350
 msgid "save a backup of all configuration files"
 msgstr "vista afrit af öllum stilliskrám"
 
-#: ../authconfig.py:346
+#: ../authconfig.py:353
 msgid "restore the backup of configuration files"
 msgstr ""
 
-#: ../authconfig.py:349
+#: ../authconfig.py:356
 msgid ""
 "restore the backup of configuration files saved before the previous "
 "configuration change"
 msgstr ""
 
-#: ../authconfig.py:354
+#: ../authconfig.py:361
 msgid "unexpected argument"
 msgstr "óvænt viðfang"
 
-#: ../authconfig.py:475
+#: ../authconfig.py:484
 msgid "The passminlen minimum value is 6"
 msgstr ""
 
-#: ../authconfig.py:479
+#: ../authconfig.py:488
 msgid "The passminlen option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:487
+#: ../authconfig.py:496
 msgid "The passminclass value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:491
+#: ../authconfig.py:500
 msgid "The passminclass value must not be higher than 4"
 msgstr ""
 
-#: ../authconfig.py:495
+#: ../authconfig.py:504
 msgid "The passminclass option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:503
+#: ../authconfig.py:512
 msgid "The passmaxrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:507
+#: ../authconfig.py:516
 msgid "The passmaxrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:515
+#: ../authconfig.py:524
 msgid "The passmaxclassrepeat value must not be negative"
 msgstr ""
 
-#: ../authconfig.py:519
+#: ../authconfig.py:528
 msgid "The passmaxclassrepeat option value is not an integer"
 msgstr ""
 
-#: ../authconfig.py:538
+#: ../authconfig.py:547
 msgid "Bad smart card removal action specified."
 msgstr "Ógild sjálfgefin snjallkortaeining."
 
-#: ../authconfig.py:547
+#: ../authconfig.py:551
+msgid ""
+"--enablerequiresmartcard is not supported for module 'sssd', option is "
+"ignored."
+msgstr ""
+
+#: ../authconfig.py:560
 msgid "Unknown password hashing algorithm specified, using sha256."
 msgstr ""
 
-#: ../authconfig.py:583
+#: ../authconfig.py:596
 msgid "can only be run as root"
 msgstr "má eingöngu keyra sem rót"
 
-#: ../authconfig.py:599
+#: ../authconfig.py:612
 msgid "dialog was cancelled"
 msgstr "hætt var við val"
 
-#: ../authinfo.py:952 ../authinfo.py:1828 ../authinfo.py:3144
-#: ../authinfo.py:3197
+#: ../authinfo.py:992 ../authinfo.py:1876 ../authinfo.py:3237
+#: ../authinfo.py:3290
 msgid "Lock"
 msgstr "Læsa"
 
-#: ../authinfo.py:952 ../authinfo.py:1830
+#: ../authinfo.py:992 ../authinfo.py:1878
 msgid "Ignore"
 msgstr "Hunsa"
 
-#: ../authinfo.py:1509
+#: ../authinfo.py:1556
 msgid "Invalid LDAP URI."
 msgstr ""
 
-#: ../authinfo.py:3602
+#: ../authinfo.py:3700
 #, python-format
 msgid ""
 "Authentication module %s/pam_%s.so is missing. Authentication process might "
 "not work correctly."
 msgstr ""
 
-#: ../authinfo.py:4036
+#: ../authinfo.py:4152
 msgid "Winbind domain join was not successful."
 msgstr ""
 
-#: ../authinfo.py:4039
+#: ../authinfo.py:4155
 msgid ""
-"Winbind domain join was not successful. The net join command failed with the "
-"following error:"
+"Winbind domain join was not successful. The net join command failed with the"
+" following error:"
 msgstr ""
 
-#: ../authinfo.py:4163
+#: ../authinfo.py:4279
 msgid "Error downloading CA certificate"
 msgstr "Villa við að sækja CA skírteini"
-
-#~ msgid "enable wins for hostname resolution"
-#~ msgstr "Nota wins til að fletta upp vélarheitum"
-
-#~ msgid "disable wins for hostname resolution"
-#~ msgstr "Ekki nota wins til að fletta upp vélarheitum"
-
-#~ msgid "enable hesiod for user information by default"
-#~ msgstr "nota sjálfgefið hesiod fyrir notandaupplýsingar"
-
-#~ msgid "disable hesiod for user information by default"
-#~ msgstr "ekki nota hesiod fyrir notandaupplýsingar sjálfgefið"
-
-#~ msgid "default hesiod LHS"
-#~ msgstr "sjálfgefið hesiod LHS"
-
-#~ msgid "default hesiod RHS"
-#~ msgstr "sjálfgefið hesiod RHS"
-
-#~ msgid "display Back instead of Cancel in the main dialog of the TUI"
-#~ msgstr "birta Til baka í stað Hætta við í aðalglugga forritsins"
-
-#~ msgid "do not display the deprecated text user interface"
-#~ msgstr "ekki birta úrelt textanotendaskil"
-
-#~ msgid ""
-#~ "The %s file was not found, but it is required for %s support to work "
-#~ "properly.\n"
-#~ "Install the %s package, which provides this file."
-#~ msgstr ""
-#~ "Skráin %s fannst ekki en hún er nauðsynleg svo %s stuðningur vinni rétt. "
-#~ "Þú þarft að setja inn %s pakkann sem inniheldur þessa skrá."
-
-#~ msgid "Warning"
-#~ msgstr "Aðvörun"
-
-#~ msgid "Ok"
-#~ msgstr "Í lagi"
-
-#~ msgid "caching"
-#~ msgstr "biðminni"
-
-#~ msgid "Kerberos"
-#~ msgstr "Kerberos"
-
-#~ msgid "LDAP authentication"
-#~ msgstr "LDAP auðkenning"
-
-#~ msgid "LDAP"
-#~ msgstr "LDAP"
-
-#~ msgid "NIS"
-#~ msgstr "NIS"
-
-#~ msgid "shadow password"
-#~ msgstr "falin lykilorð"
-
-#~ msgid "Winbind"
-#~ msgstr "Winbind"
-
-#~ msgid "Winbind authentication"
-#~ msgstr "Winbind auðkenning"
-
-#~ msgid "User Information"
-#~ msgstr "Notandaupplýsingar"
-
-#~ msgid "Cache Information"
-#~ msgstr "Upplýsingar um biðminni"
-
-#~ msgid "Use LDAP"
-#~ msgstr "Nota LDAP"
-
-#~ msgid "Use NIS"
-#~ msgstr "Nota NIS"
-
-#~ msgid "Use Winbind"
-#~ msgstr "Nota Winbind"
-
-#~ msgid "Authentication"
-#~ msgstr "Auðkenning"
-
-#~ msgid "Use MD5 Passwords"
-#~ msgstr "Nota MD5 lykilorð"
-
-#~ msgid "Use Shadow Passwords"
-#~ msgstr "Nota falin lykilorð"
-
-#~ msgid "Use LDAP Authentication"
-#~ msgstr "Nota LDAP auðkenningu"
-
-#~ msgid "Use Kerberos"
-#~ msgstr "Nota Kerberos"
-
-#~ msgid "Use Winbind Authentication"
-#~ msgstr "Nota Winbind auðkenningu"
-
-#~ msgid "Local authorization is sufficient"
-#~ msgstr "Staðbundin auðkenning nægir"
-
-#~ msgid "Back"
-#~ msgstr "Til baka"
-
-#~ msgid "Cancel"
-#~ msgstr "Hætta við"
-
-#~ msgid "Next"
-#~ msgstr "Áfram"
-
-#~ msgid "Authentication Configuration"
-#~ msgstr "Stillingar auðkenningar"
-
-#~ msgid "Domain:"
-#~ msgstr "Lén:"
-
-#~ msgid "Realm:"
-#~ msgstr "Svæði:"
-
-#~ msgid "Server:"
-#~ msgstr "Þjónn:"
-
-#~ msgid "Join Domain"
-#~ msgstr "Bindast léni"
-
-#~ msgid "Use TLS"
-#~ msgstr "Nota TLS"
-
-#~ msgid "Base DN:"
-#~ msgstr "Grunn DN:"
-
-#~ msgid "LDAP Settings"
-#~ msgstr "Stillingar LDAP"
-
-#~ msgid "NIS Settings"
-#~ msgstr "Stillingar NIS"
-
-#~ msgid "KDC:"
-#~ msgstr "KDC:"
-
-#~ msgid "Admin Server:"
-#~ msgstr "Stjórnþjónn:"
-
-#~ msgid "Use DNS to resolve hosts to realms"
-#~ msgstr "Nota DNS til að finna vélar í svæðum"
-
-#~ msgid "Use DNS to locate KDCs for realms"
-#~ msgstr "Nota DNS til að finna KDC svæðanna"
-
-#~ msgid "Kerberos Settings"
-#~ msgstr "Stillingar Kerberos"
-
-#~ msgid "Domain Administrator:"
-#~ msgstr "Lénstjóri:"
-
-#~ msgid "Password:"
-#~ msgstr "Lykilorð:"
-
-#~ msgid "Join Settings"
-#~ msgstr "Stillingar bindingar"
-
-#~ msgid ""
-#~ "Some of the configuration changes you've made should be saved to disk "
-#~ "before continuing.  If you do not save them, then your attempt to join "
-#~ "the domain may fail.  Save changes?"
-#~ msgstr ""
-#~ "Eitthvað af breytingunum sem þú hefur gert á stillingaskrám vélarinnar "
-#~ "þarf að vista á disk áður en lengra er haldið. Ef þú vistar ekki getur "
-#~ "tilraun þín til að bindast léninu mistekist.  Vista breytingum?"
-
-#~ msgid "Save Settings"
-#~ msgstr "Vista stillingum"
-
-#~ msgid "No"
-#~ msgstr "Nei"
-
-#~ msgid "Yes"
-#~ msgstr "Já"
-
-#~ msgid "Security Model:"
-#~ msgstr "Öryggisstillingar:"
-
-#~ msgid "Domain Controllers:"
-#~ msgstr "Lénstjórar:"
-
-#~ msgid "ADS Realm:"
-#~ msgstr "ADS svæði:"
-
-#~ msgid "Template Shell:"
-#~ msgstr "Sniðmátsskel:"
-
-#~ msgid "Winbind Settings"
-#~ msgstr "Stillingar Winbind"
-
-#~ msgid ""
-#~ "To connect to a LDAP server with TLS protocol enabled you need a CA "
-#~ "certificate which signed your server's certificate. Copy the certificate "
-#~ "in the PEM format to the '%s' directory.\n"
-#~ "Then press OK."
-#~ msgstr ""
-#~ "Til þess að geta tengst LDAP þjóni í TLS ham þarftu að afrita PEM skrána "
-#~ "frá CA skilríkjaþjónustunni sem undirritaði skilríkið þitt í '%s' "
-#~ "möppuna.\n"
-#~ "Smelltu svo á Í lagi."
-
-#~ msgid ""
-#~ " <Tab>/<Alt-Tab> between elements   |   <Space> selects   |  <F12> next "
-#~ "screen"
-#~ msgstr ""
-#~ " <Tab>/<Alt-Tab> milli atriða    |   <Bilslá> velur   |  <F12> næsti "
-#~ "skjár "
-
-#~ msgid "Control how the system verifies users who attempt to log in"
-#~ msgstr "Stýrir hvernig kerfið auðkennir notendur sem reyna að tengjast"
-
-#~ msgid ""
-#~ "Restore the configuration files backed up before the previous "
-#~ "configuration change"
-#~ msgstr ""
-#~ "Endurheimta stilliskrár sem afritaðar voru fyrir síðustu breytingu á "
-#~ "stillingum."
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Aut_hentication Method:"
-#~ msgstr "Auð_kenningaraðferð:"
-
-#~ msgid "Enable _fingerprint reader support"
-#~ msgstr "Virkja stuðning við _fingrafaralesara"
-
-#~ msgid ""
-#~ "Fingerprint authentication allows you to log in by scanning your finger "
-#~ "with the fingerprint reader."
-#~ msgstr ""
-#~ "Auðkenning með fingrafaralesara gerir þér kleyft að skrá þig inn með því "
-#~ "að renna fingrinum yfir fingrafaraskannan."
-
-#~ msgid "Enable _local access control"
-#~ msgstr "Virkja st_aðbundna aðgangsstjórnun"
-
-#~ msgid "Create _home directories on the first login"
-#~ msgstr "Búa til _heimamöppur þegar notandi skráir sig fyrst inn"
-
-#~ msgid ""
-#~ "If the home directory of an user doesn't exist yet it will be created "
-#~ "automatically on his first login."
-#~ msgstr ""
-#~ "Ef að heimamappa notanda er ekki til þá mun verða búin til sjálfvirkt við "
-#~ "fyrstu innskráningu."
-
-#~ msgid "Enable _smart card support"
-#~ msgstr "Virkja stuðning við _smartkort"
-
-#~ msgid ""
-#~ "Smart card authentication allows you to log in using a certificate and "
-#~ "key associated with a smart card."
-#~ msgstr ""
-#~ "Snjallkortaauðkenning gerir þér kleyft að tengjast með því að nota "
-#~ "skilríki tengdu snjallkorti."
-
-#, fuzzy
-#~ msgid "Joining IPA Domain"
-#~ msgstr "Bindast léni"
-
-#~ msgid "Domain _administrator:"
-#~ msgstr "S_tjórnandi léns:"
-
-#~ msgid "Alert"
-#~ msgstr "Aðvörun"
-
-#~ msgid "Do_n't Save"
-#~ msgstr "E_kki vista"
-
-#~ msgid "Joining Winbind Domain"
-#~ msgstr "Ganga í Winbind lén"
-
-#~ msgid "Download CA Certificate"
-#~ msgstr "Sækja CA skírteini"
-
-#~ msgid "Certificate _URL:"
-#~ msgstr "S_lóð skírteinis:"
-
-#~ msgid "NIS _Server:"
-#~ msgstr "NIS þ_jónn"
-
-#~ msgid "NIS _Domain:"
-#~ msgstr "NIS _lén"
-
-#~ msgid "R_ealm:"
-#~ msgstr "Rí_ki:"
-
-#~ msgid "Use DNS to _locate KDCs for realms"
-#~ msgstr "Nota DNS til að _finna KDC svæðanna"
-
-#~ msgid "Hostname or ldap:// or ldaps:// URI pointing to the LDAP server."
-#~ msgstr "Vélarheiti, ldap:// eða ldaps:// URI sem vísar á LDAP þjóninn."
-
-#~ msgid "LDAP Search _Base DN:"
-#~ msgstr "LDAP Leit _Grunn DN"
-
-#~ msgid "Use _TLS to encrypt connections"
-#~ msgstr "Nota _TLS dulritun"
-
-#~ msgid ""
-#~ "Click this button if you did not download a CA certificate yet or you "
-#~ "have not set the CA certificate up by other means."
-#~ msgstr ""
-#~ "Smelltu á þennan takka ef þú hefur ekki náð í CA skírteini ennþá eða "
-#~ "hefur ekki sett upp CA skírteini með öðrum aðferðum."
-
-#~ msgid "LDAP _Server:"
-#~ msgstr "LDAP þ_jónn"
-
-#~ msgid "Te_mplate Shell:"
-#~ msgstr "Snið_máts skel:"
-
-#~ msgid "Card Re_moval Action:"
-#~ msgstr "Aðgerð við f_jarlægingu korts:"
-
-#~ msgid "Require smart car_d for login"
-#~ msgstr "Krefjast smartkor_ts við innskráningu"
-
-#~ msgid "Revert"
-#~ msgstr "Endurheimt"
-
-#~ msgid ""
-#~ "the group which winbind-created users will have as their primary group"
-#~ msgstr "aðalhópurinn sem winbind notendur eru í"
