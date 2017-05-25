@@ -93,7 +93,7 @@ PATH_SEBOOL = "/usr/sbin/setsebool"
 PATH_SCEVENTD = "/usr/bin/pkcs11_eventmgr"
 PATH_SCSETUP = "/usr/bin/pkcs11_setup"
 
-PATH_LIBNSS_LDAP = "/usr" + LIBDIR + "/libnss_ldap.so.2"
+PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
 if not os.path.isfile(PATH_LIBNSS_LDAP):
 	PATH_LIBNSS_LDAP = LIBDIR + "/libnss_ldap.so.2"
 PATH_LIBNSS_NIS = LIBDIR + "/libnss_nis.so.2"
@@ -107,7 +107,7 @@ PATH_PAM_PKCS11 = AUTH_MODULE_DIR + "/pam_pkcs11.so"
 PATH_PAM_FPRINTD = AUTH_MODULE_DIR + "/pam_fprintd.so"
 PATH_PAM_SSS = AUTH_MODULE_DIR + "/pam_sss.so"
 
-PATH_LIBSSS_AUTOFS = "/usr" + LIBDIR + "/sssd/modules/libsss_autofs.so"
+PATH_LIBSSS_AUTOFS = LIBDIR + "/sssd/modules/libsss_autofs.so"
 
 PATH_WINBIND_NET = "/usr/bin/net"
 
