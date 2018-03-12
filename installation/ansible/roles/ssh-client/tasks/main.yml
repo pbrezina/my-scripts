@@ -1,0 +1,11 @@
+- name: Add servers to global known hosts file
+  become: True
+  known_hosts:
+    path: /etc/ssh/ssh_known_hosts
+    name: '{{ item }}'
+    key: "{{ lookup('pipe', 'ssh-keyscan -t rsa {{ item }}') }}"
+  with_items:
+  - fedorapeople.org
+  - github.com
+  - pagure.io
+  

@@ -1,0 +1,15 @@
+---
+- hosts: all 
+  roles:
+  - ssh-client
+  - developer-machine
+  - eclipse
+  vars:
+    HOME: '{{ ansible_env.HOME }}' 
+    USER: '{{ ansible_env.USER }}'
+    WORKSPACE: '{{ HOME }}/workspace'
+    ECLIPSE_RELEASE: 'neon'
+    GIT_NAME: 'Pavel Březina'
+    GIT_EMAIL: 'pbrezina@redhat.com'
+    GITHUB_USER: '{{ USER }}'
+    PAGURE_USER: '{{ USER }}'

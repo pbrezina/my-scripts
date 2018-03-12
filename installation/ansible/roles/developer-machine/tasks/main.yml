@@ -1,0 +1,55 @@
+- name: Run SELinux in permissive mode
+  become: True
+  selinux:
+    policy: targeted
+    state: permissive
+
+- name: 'Add .bashrc for user {{ USER }}' 
+  become: True
+  template:
+    src: bashrc
+    dest: '{{ HOME }}/.bashrc'
+    owner: '{{ USER }}' 
+    group: '{{ USER }}' 
+    mode: 0644
+    force: yes 
+
+- name: 'Add .vimrc for user {{ USER }}' 
+  become: True
+  template:
+    src: vimrc
+    dest: '{{ HOME }}/.vimrc'
+    owner: '{{ USER }}' 
+    group: '{{ USER }}' 
+    mode: 0644
+    force: yes 
+
+- name: Add .bashrc for root
+  become: True
+  template:
+    src: bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+    force: yes 
+
+- name: Add .vimrc for root
+  become: True
+  template:
+    src: vimrc
+    dest: /root/.vimrc
+    owner: root
+    group: root
+    mode: 0644
+    force: yes
+
+- name: Set global git configuration
+  git_config:
+    scope: global
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+  with_items:
+  - { name: 'user.name', value: '{{ GIT_NAME }}' }
+  - { name: 'user.email', value: '{{ GIT_EMAIL }}' }
+  - { name: 'color.ui', value: 'true' }

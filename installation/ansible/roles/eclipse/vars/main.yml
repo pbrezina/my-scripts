@@ -1,0 +1,78 @@
+project_authselect: {
+  libs: {},
+  include_dirs: {
+    '${workspace_loc:/authselect/include}'
+  },
+  symbols: {
+    'AUTHSELECT_CONFIG_DIR="${ProjDirPath}/test/config"',
+    'AUTHSELECT_PROFILE_DIR="${ProjDirPath}/test/profiles/default"',
+    'AUTHSELECT_PAM_DIR="${ProjDirPath}/test/pam.d"',
+    'AUTHSELECT_NSSWITCH_CONF="${ProjDirPath}/test/nsswitch.conf"',
+    'AUTHSELECT_DCONF_FILE="20-authselect"',
+    'AUTHSELECT_DCONF_DIR="${ProjDirPath}/test/dconf"',
+    'PACKAGE="authselect"',
+    'LOCALEDIR="po"',
+    'AUTHSELECT_VENDOR_DIR="${ProjDirPath}/test/profiles/vendor"',
+    'AUTHSELECT_CUSTOM_DIR="${ProjDirPath}/test/profiles/custom"'
+  }
+}
+
+project_talloc: {
+  libs: {},
+  include_dirs: {
+    '${workspace_loc:/tevent}',
+    '/usr/include',
+    '/usr/lib/gcc/x86_64-redhat-linux/6.4.1/include',
+    '/home/pbrezina/workspace/samba/lib/replace'
+  },
+  symbols: {'_PUBLIC_'}
+}
+
+project_tevent: {
+  libs: {},
+  include_dirs: {
+    '${workspace_loc:/talloc}',
+    '/usr/include',
+    '/usr/lib/gcc/x86_64-redhat-linux/6.4.1/include',
+    '/home/pbrezina/workspace/samba/lib/replace'
+  },
+  symbols: {'_PUBLIC_'}
+}
+
+project_ldb: {
+  libs: {},
+  include_dirs: {
+    '${workspace_loc:/talloc}',
+    '${workspace_loc:/tevent}',
+    '/usr/include',
+    '/usr/lib/gcc/x86_64-redhat-linux/6.4.1/include',
+    '/home/pbrezina/workspace/samba/lib/replace'
+  },
+  symbols: {'_PUBLIC_'}
+}
+
+project_sssd: {
+  libs: {},
+  include_dirs: {
+    '${workspace_loc:/talloc}',
+    '${workspace_loc:/tevent}',
+    '${workspace_loc:/ldb}',
+    '/usr/include',
+    '/usr/include/dbus-1.0',
+    '/usr/lib64/dbus-1.0/include/',
+    '/usr/lib/gcc/x86_64-redhat-linux/6.4.1/include'
+  },
+  symbols: {'BASE_FILE_STEM="test"'}
+}
+
+project_sudo: {
+  libs: {},
+  include_dirs: {},
+  symbols: {'HAVE_SSSD=1'}
+}
+
+project_test_area: {
+  libs: {'talloc', 'tevent'},
+  include_dirs: {},
+  symbols: {}
+}
