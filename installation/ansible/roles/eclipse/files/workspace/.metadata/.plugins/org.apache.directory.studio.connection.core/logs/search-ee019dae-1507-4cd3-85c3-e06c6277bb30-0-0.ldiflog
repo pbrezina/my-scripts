@@ -1,0 +1,403 @@
+#!SEARCH REQUEST (0) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:43.005
+# LDAP URL     : ldap://master.ipa.vm:389/?subschemaSubentry??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "" -s base -a always "(objectClass=*)" "subschemaSubentry"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : subschemaSubentry
+
+#!SEARCH REQUEST (1) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:43.018
+# LDAP URL     : ldap://master.ipa.vm:389/cn=schema?objectClasses,attributeTypes,ldapSyntaxes,matchingRules,matchingRuleUse,createTimestamp,modifyTimestamp??(objectClass=subschema)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=schema" -s base -a always "(objectClass=subschema)" "objectClasses" "attributeTypes" "ldapSyntaxes" "matchingRules" "matchingRuleUse" "createTimestamp" "modifyTimestamp"
+# baseObject   : cn=schema
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=subschema)
+# attributes   : objectClasses attributeTypes ldapSyntaxes matchingRules matchingRuleUse createTimestamp modifyTimestamp
+
+#!SEARCH REQUEST (2) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.770
+# LDAP URL     : ldap://master.ipa.vm:389/?namingContexts,subschemaSubentry,supportedLDAPVersion,supportedSASLMechanisms,supportedExtension,supportedControl,supportedFeatures,vendorName,vendorVersion,+,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "" -s base "(objectClass=*)" "namingContexts" "subschemaSubentry" "supportedLDAPVersion" "supportedSASLMechanisms" "supportedExtension" "supportedControl" "supportedFeatures" "vendorName" "vendorVersion" "+" "objectClass"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : neverDerefAliases (0)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : namingContexts subschemaSubentry supportedLDAPVersion supportedSASLMechanisms supportedExtension supportedControl supportedFeatures vendorName vendorVersion + objectClass
+
+#!SEARCH RESULT DONE (2) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.789
+# numEntries : 1
+
+#!SEARCH REQUEST (3) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.796
+# LDAP URL     : ldap://master.ipa.vm:389/?*??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "" -s base "(objectClass=*)" "*"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : neverDerefAliases (0)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : *
+
+#!SEARCH RESULT DONE (3) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.798
+# numEntries : 1
+
+#!SEARCH REQUEST (4) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.825
+# LDAP URL     : ldap://master.ipa.vm:389/cn=changelog?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=changelog" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=changelog
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (4) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.826
+# numEntries : 0
+
+#!SEARCH REQUEST (5) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.829
+# LDAP URL     : ldap://master.ipa.vm:389/cn=server,cn=plugins,cn=config?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=server,cn=plugins,cn=config" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=server,cn=plugins,cn=config
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (5) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.829
+# numEntries : 0
+
+#!SEARCH REQUEST (6) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.831
+# LDAP URL     : ldap://master.ipa.vm:389/cn=ldap://dc=master,dc=ipa,dc=vm:389?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=ldap://dc=master,dc=ipa,dc=vm:389" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=ldap://dc=master,dc=ipa,dc=vm:389
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (6) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.831
+# numEntries : 0
+
+#!SEARCH REQUEST (7) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.833
+# LDAP URL     : ldap://master.ipa.vm:389/dc=ipa,dc=vm?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "dc=ipa,dc=vm" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : dc=ipa,dc=vm
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (7) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.835
+# numEntries : 1
+
+#!SEARCH REQUEST (8) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.839
+# LDAP URL     : ldap://master.ipa.vm:389/cn=Directory%20Manager?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=Directory Manager" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=Directory Manager
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (8) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.839
+# numEntries : 0
+
+#!SEARCH REQUEST (9) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.840
+# LDAP URL     : ldap://master.ipa.vm:389/cn=schema?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=schema" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=schema
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (9) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.962
+# numEntries : 1
+
+#!SEARCH REQUEST (10) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.963
+# LDAP URL     : ldap://master.ipa.vm:389/o=ipaca?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "o=ipaca" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : o=ipaca
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (10) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:44.964
+# numEntries : 0
+
+#!SEARCH REQUEST (11) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:52.992
+# LDAP URL     : ldap://master.ipa.vm:389/?subschemaSubentry??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "" -s base -a always "(objectClass=*)" "subschemaSubentry"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : subschemaSubentry
+
+#!SEARCH REQUEST (12) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:52.994
+# LDAP URL     : ldap://master.ipa.vm:389/cn=schema?createTimestamp,modifyTimestamp??(objectClass=subschema)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=schema" -s base -a always "(objectClass=subschema)" "createTimestamp" "modifyTimestamp"
+# baseObject   : cn=schema
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=subschema)
+# attributes   : createTimestamp modifyTimestamp
+
+#!SEARCH RESULT DONE (12) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.118
+# numEntries : 1
+
+#!SEARCH REQUEST (13) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.225
+# LDAP URL     : ldap://master.ipa.vm:389/?namingContexts,subschemaSubentry,supportedLDAPVersion,supportedSASLMechanisms,supportedExtension,supportedControl,supportedFeatures,vendorName,vendorVersion,+,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "" -s base "(objectClass=*)" "namingContexts" "subschemaSubentry" "supportedLDAPVersion" "supportedSASLMechanisms" "supportedExtension" "supportedControl" "supportedFeatures" "vendorName" "vendorVersion" "+" "objectClass"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : neverDerefAliases (0)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : namingContexts subschemaSubentry supportedLDAPVersion supportedSASLMechanisms supportedExtension supportedControl supportedFeatures vendorName vendorVersion + objectClass
+
+#!SEARCH RESULT DONE (13) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.228
+# numEntries : 1
+
+#!SEARCH REQUEST (14) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.229
+# LDAP URL     : ldap://master.ipa.vm:389/?*??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "" -s base "(objectClass=*)" "*"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : neverDerefAliases (0)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : *
+
+#!SEARCH RESULT DONE (14) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.232
+# numEntries : 1
+
+#!SEARCH REQUEST (15) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.234
+# LDAP URL     : ldap://master.ipa.vm:389/cn=changelog?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=changelog" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=changelog
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (15) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.235
+# numEntries : 0
+
+#!SEARCH REQUEST (16) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.236
+# LDAP URL     : ldap://master.ipa.vm:389/cn=server,cn=plugins,cn=config?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=server,cn=plugins,cn=config" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=server,cn=plugins,cn=config
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (16) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.236
+# numEntries : 0
+
+#!SEARCH REQUEST (17) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.237
+# LDAP URL     : ldap://master.ipa.vm:389/cn=ldap://dc=master,dc=ipa,dc=vm:389?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=ldap://dc=master,dc=ipa,dc=vm:389" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=ldap://dc=master,dc=ipa,dc=vm:389
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (17) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.238
+# numEntries : 0
+
+#!SEARCH REQUEST (18) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.239
+# LDAP URL     : ldap://master.ipa.vm:389/dc=ipa,dc=vm?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "dc=ipa,dc=vm" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : dc=ipa,dc=vm
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (18) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.240
+# numEntries : 1
+
+#!SEARCH REQUEST (19) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.241
+# LDAP URL     : ldap://master.ipa.vm:389/cn=Directory%20Manager?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=Directory Manager" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=Directory Manager
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (19) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.242
+# numEntries : 0
+
+#!SEARCH REQUEST (20) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.243
+# LDAP URL     : ldap://master.ipa.vm:389/cn=schema?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "cn=schema" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=schema
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (20) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.319
+# numEntries : 1
+
+#!SEARCH REQUEST (21) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.320
+# LDAP URL     : ldap://master.ipa.vm:389/o=ipaca?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ipa.vm:389 -ZZ -x -D "uid=admin,cn=users,cn=accounts,dc=ipa,dc=vm" -W -b "o=ipaca" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : o=ipaca
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (21) OK
+#!CONNECTION ldap://master.ipa.vm:389
+#!DATE 2018-03-16T14:19:53.321
+# numEntries : 0
+

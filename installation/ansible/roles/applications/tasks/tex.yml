@@ -1,0 +1,44 @@
+- name: Check if TeX Live is already installed
+  stat:
+    path: /usr/local/texlive
+  register: texlive
+
+- name: 'Create /tmp/install-texlive direcotry'
+  file:
+    path: /tmp/install-texlive
+    state: directory
+  when: texlive.stat.exists == False
+
+- name: Fetch TeX Live
+  get_url:
+    url: http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+    dest: /tmp/install-texlive/install-tl-unx.tar.gz
+    mode: 0700
+  when: texlive.stat.exists == False
+
+- name: Extract TeX Live /tmp/texlive
+  unarchive:
+    src: /tmp/install-texlive/install-tl-unx.tar.gz
+    dest: /tmp/install-texlive
+    extra_opts: [--strip-components=1]
+  when: texlive.stat.exists == False
+    
+- name: Create TeX Live profile
+  template:
+    src: texlive.profile
+    dest: /tmp/install-texlive/texlive.profile
+    force: yes
+  when: texlive.stat.exists == False
+
+- name: Install Tex Live
+  become: True
+  shell: |
+    /tmp/install-texlive/install-tl \
+      -profile /tmp/install-texlive/texlive.profile
+  args:
+    creates: /usr/local/texlive
+
+- name: Remove TeX Live artifacts
+  file:
+    path: /tmp/install-texlive
+    state: absent

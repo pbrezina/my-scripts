@@ -1,0 +1,32 @@
+- name: Check if the system have NVIDIA VGA
+  become: True
+  shell: |
+    /sbin/lspci | grep VGA | grep -i NVIDIA
+  register: vga_result
+  failed_when: "vga_result.rc != 0 and vga_result.rc != 1"
+  changed_when: False
+  
+- name: Set nvidia_vga to True
+  set_fact:
+    nvidia_vga=True
+  when: vga_result.rc == 0
+
+- name: Set nvidia_vga to False
+  set_fact:
+    nvidia_vga=False
+  when: vga_result.rc != 0
+
+- name: Install NVIDIA drivers
+  become: True
+  package:
+    name: '{{ item }}'
+    state: present
+  when: nvidia_vga == True
+  with_items:
+  - xorg-x11-drv-nvidia
+  - akmod-nvidia
+  - xorg-x11-drv-nvidia-cuda
+  - xorg-x11-drv-nvidia-cuda-libs
+  - vdpauinfo
+  - libva-vdpau-driver
+  - libva-utils

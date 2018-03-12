@@ -1,0 +1,58 @@
+- name: Install google-drive-ocamlfuse
+  become: True
+  package:
+    name: google-drive-ocamlfuse
+    state: present
+
+- name: Acquire authentication tokens
+  shell: |
+    notify-send "Authenticate to your {{ item }} account"
+    google-drive-ocamlfuse -label {{ item }}
+  args:
+    creates: '{{ HOME }}/.gdfuse/{{ item }}'
+  with_items: '{{ GDRIVE_ACCOUNTS }}'
+
+- name: Create mount points
+  file:
+    path: '{{ HOME }}/gdrive/{{ item }}'
+    state: directory
+  with_items: '{{ GDRIVE_ACCOUNTS }}'
+
+- name: Create gdfuse script
+  become: True
+  template:
+    src: gdfuse
+    dest: '/bin/gdfuse'
+    force: yes
+    owner: root
+    group: root
+    mode: a=rx,u+w
+
+- name: Allow root access in fuse.conf
+  become: True
+  lineinfile:
+    path: /etc/fuse.conf
+    line: 'user_allow_other'
+
+- name: Add drive to /etc/fstab
+  become: True
+  lineinfile:
+    path: /etc/fstab
+    line: 'gdfuse#{{ USER }}:{{ item }} {{ HOME }}/gdrive/{{ item }} fuse uid={{ UID }},gid={{ GID }},allow_root 0 0'
+  with_items: '{{ GDRIVE_ACCOUNTS }}'
+
+# mount module tends to open file browser which is undesirable, do it the old way
+- name: Mount drives
+  become: True
+  shell: |
+    mount | grep "{{ HOME }}/gdrive/{{ item }}"
+    if [ $? -eq 0 ]; then
+      echo "Mount point {{ HOME }}/gdrive/{{ item }} is already mounted. Nothing to do."
+      exit 255
+    fi
+     
+    mount "{{ HOME }}/gdrive/{{ item }}"
+  register: result
+  failed_when: "result.rc != 255 and result.rc != 0"
+  changed_when: "result.rc == 0"
+  with_items: '{{ GDRIVE_ACCOUNTS }}'

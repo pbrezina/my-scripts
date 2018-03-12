@@ -1,0 +1,21 @@
+---
+- hosts: all 
+  roles:
+  - google-drive
+  vars_files:
+  - variables.yml
+
+- hosts: all
+  roles:
+  - selinux
+  - certificates
+  - vpn
+  - nvidia
+  - ssh-client
+  - developer-machine
+  - eclipse
+  - applications
+  - cinnamon
+  vars_files:
+  - variables.yml
+  - '{{ SECRETS_PATH }}/secrets.yml'

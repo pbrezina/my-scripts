@@ -1,0 +1,36 @@
+- name: Copy certificates to /etc/pki/ca-trust/source/anchors
+  become: True
+  synchronize:
+    src: '{{ SECRETS_PATH }}/cert/{{ item }}'
+    dest: '/etc/pki/ca-trust/source/anchors'
+  with_items:
+  - redhat/Eng_Ops_CA.crt
+  - redhat/PKI_CA_Chain.crt
+  - redhat/Red_Hat_IS_CA.crt
+  - redhat/Red_Hat_IT_Root_CA.crt
+  - fedora/fedora-server-ca.cert
+  - fedora/fedora-upload-ca.cert
+  register: result
+  
+- name: Create symbolic link to CA bundle
+  become: True
+  file:
+    src: "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
+    dest: "/etc/pki/tls/certs/ca-bundle.crt"
+    state: link
+
+- name: Update CA trust
+  shell: |
+    /usr/bin/update-ca-trust
+  when: result.changed
+
+- name: Copy certificates to user home
+  become: True
+  synchronize:
+    src: '{{ SECRETS_PATH }}/fedora/{{ item }}'
+    dest: '{{ HOME }}/.{{ item }}'
+  with_items:
+  - fedora.cert
+  - fedora-server-ca.cert
+  - fedora-upload-ca.cert
+  register: result

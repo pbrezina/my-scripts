@@ -1,0 +1,13 @@
+#!/bin/bash
+# Bashrc file sourced automatically on vagrant machines.
+
+MY_USER_HOME="/shared"
+MY_SCRIPTS_PATH="$MY_USER_HOME/workspace/my-scripts"
+MY_BASHRC="$MY_SCRIPTS_PATH/environment-setup.sh"
+
+if [ ! -f $MY_BASHRC ]; then
+  echo "Missing file: $MY_BASHRC"
+  return 1
+fi
+
+. $MY_BASHRC

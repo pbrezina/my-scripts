@@ -1,0 +1,11 @@
+kinit pbrezina@FEDORAPROJECT.ORG
+wget pkg.tar.gz
+fedpkg srpm
+mock -r fedora-rawhide-x86_64 /home/pbrezina/packages/fedora/authselect/authselect-0.2-1.fc28.src.rpm
+fedpkg new-sources pkg.tar.gz
+fedpkg commit
+fedpkg push
+fedpkg build
+
+update:
+https://bodhi.fedoraproject.org/

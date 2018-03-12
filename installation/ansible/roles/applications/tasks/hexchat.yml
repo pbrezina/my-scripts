@@ -1,0 +1,17 @@
+- name: 'Create directories'
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+  - '{{ HOME }}/.config'
+
+- name: Check if hexchat configuration exists     
+  stat:
+    path: '{{ HOME }}/.config/hexchat/'
+  register: hexchat
+
+- name: 'Copy hexchat configuration to .config directory'
+  synchronize:
+    src: '{{ SECRETS_PATH }}/hexchat/'
+    dest: '{{ HOME }}/.config/hexchat/'
+  when: not hexchat.stat.exists

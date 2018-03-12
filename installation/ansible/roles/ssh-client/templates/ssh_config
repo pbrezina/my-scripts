@@ -1,0 +1,9 @@
+Host *.fedoraproject.org
+User {{ USER }}
+GSSAPIAuthentication no
+GSSAPIDelegateCredentials no
+
+Host *.redhat.com
+User {{ USER }}
+GSSAPIAuthentication yes 
+GSSAPIDelegateCredentials yes

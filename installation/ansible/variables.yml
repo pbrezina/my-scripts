@@ -1,0 +1,22 @@
+HOME: '{{ ansible_env.HOME }}' 
+USER: '{{ ansible_env.USER }}'
+UID: '{{ ansible_real_user_id }}'
+GID: '{{ ansible_real_group_id }}'
+
+GITHUB_USER: '{{ USER }}'
+PAGURE_USER: '{{ USER }}'
+WORKSPACE: '{{ HOME }}/workspace'
+FIREFOX_PROFILE: 'workstation'
+THUNDERBIRD_PROFILE: 'workstation'
+LIBVIRT_STORAGE: '/home/qemu'
+
+# Google drive labels
+GDRIVE_ACCOUNTS:
+- personal
+- redhat
+
+SECRETS_PATH: '{{ HOME }}/gdrive/personal/workstation'
+# Specify in SECRET_DATA_PATH/secrets.yml
+# GIT_NAME
+# GIT_EMAIL
+# FAS_PASSWORD

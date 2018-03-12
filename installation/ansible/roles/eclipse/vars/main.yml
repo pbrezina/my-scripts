@@ -1,0 +1,95 @@
+project_authselect: {
+  libs: [],
+  include_dirs: [
+    '"${ProjDirPath}"',
+    '"${ProjDirPath}/src"',
+    '"${ProjDirPath}/include"',
+    '/usr/include'
+  ],
+  symbols: [
+    'AUTHSELECT_CONFIG_DIR="${ProjDirPath}/test/config"',
+    'AUTHSELECT_PROFILE_DIR="${ProjDirPath}/test/profiles/default"',
+    'AUTHSELECT_PAM_DIR="${ProjDirPath}/test/pam.d"',
+    'AUTHSELECT_NSSWITCH_CONF="${ProjDirPath}/test/nsswitch.conf"',
+    'AUTHSELECT_DCONF_FILE="20-authselect"',
+    'AUTHSELECT_DCONF_DIR="${ProjDirPath}/test/dconf"',
+    'PACKAGE="authselect"',
+    'LOCALEDIR="po"',
+    'AUTHSELECT_VENDOR_DIR="${ProjDirPath}/test/profiles/vendor"',
+    'AUTHSELECT_CUSTOM_DIR="${ProjDirPath}/test/profiles/custom"'
+  ]
+}
+
+project_talloc: {
+  libs: [],
+  include_dirs: [
+    '"${ProjDirPath}"',
+    '"${workspace_loc:/tevent}"',
+    '"${workspace_loc:/samba/lib/replace}"',
+    '/usr/include'
+  ],
+  symbols: ['_PUBLIC_']
+}
+
+project_tevent: {
+  libs: [],
+  include_dirs: [
+    '"${ProjDirPath}"',
+    '"${workspace_loc:/talloc}"',
+    '"${workspace_loc:/samba/lib/replace}"',
+    '/usr/include'
+  ],
+  symbols: ['_PUBLIC_']
+}
+
+project_ldb: {
+  libs: [],
+  include_dirs: [
+    '"${ProjDirPath}"',
+    '"${workspace_loc:/talloc}"',
+    '"${workspace_loc:/tevent}"',
+    '"${workspace_loc:/samba/lib/replace}"',
+    '/usr/include'
+  ],
+  symbols: ['_PUBLIC_']
+}
+
+project_sssd: {
+  libs: [],
+  include_dirs: [
+    '"${ProjDirPath}"',
+    '"${ProjDirPath}/src"',
+    '"${ProjDirPath}/src/lib/sifp"',
+    '"${workspace_loc:/talloc}"',
+    '"${workspace_loc:/tevent}"',
+    '"${workspace_loc:/ldb}"',
+    '/usr/include',
+    '/usr/include/dbus-1.0',
+    '/usr/include/glib-2.0',
+    '/usr/include/libnl3',
+    '/usr/include/nspr4',
+    '/usr/include/nss3',
+    '/usr/include/python2.7',
+    '/usr/include/python3.5m',
+    '/usr/include/uuid',
+    '/usr/lib64/dbus-1.0/include',
+    '/usr/lib64/glib-2.0/include'
+  ],
+  symbols: ['BASE_FILE_STEM="test"']
+}
+
+project_sudo: {
+  libs: [],
+  include_dirs: [
+    '"${ProjDirPath}"',
+    '"${ProjDirPath}/src"',
+    '/usr/include'
+  ],
+  symbols: ['HAVE_SSSD=1']
+}
+
+project_test_area: {
+  libs: ['talloc', 'tevent'],
+  include_dirs: [],
+  symbols: []
+}

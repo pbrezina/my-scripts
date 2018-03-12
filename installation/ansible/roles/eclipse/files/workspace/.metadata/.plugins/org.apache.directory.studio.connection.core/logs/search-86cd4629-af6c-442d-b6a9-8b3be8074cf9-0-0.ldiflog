@@ -1,0 +1,142 @@
+#!SEARCH REQUEST (22) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.190
+# LDAP URL     : ldap://master.ldap.vm:389/?subschemaSubentry??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "" -s base -a always "(objectClass=*)" "subschemaSubentry"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : subschemaSubentry
+
+#!SEARCH REQUEST (23) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.192
+# LDAP URL     : ldap://master.ldap.vm:389/cn=schema?objectClasses,attributeTypes,ldapSyntaxes,matchingRules,matchingRuleUse,createTimestamp,modifyTimestamp??(objectClass=subschema)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "cn=schema" -s base -a always "(objectClass=subschema)" "objectClasses" "attributeTypes" "ldapSyntaxes" "matchingRules" "matchingRuleUse" "createTimestamp" "modifyTimestamp"
+# baseObject   : cn=schema
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=subschema)
+# attributes   : objectClasses attributeTypes ldapSyntaxes matchingRules matchingRuleUse createTimestamp modifyTimestamp
+
+#!SEARCH REQUEST (24) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.652
+# LDAP URL     : ldap://master.ldap.vm:389/?namingContexts,subschemaSubentry,supportedLDAPVersion,supportedSASLMechanisms,supportedExtension,supportedControl,supportedFeatures,vendorName,vendorVersion,+,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "" -s base "(objectClass=*)" "namingContexts" "subschemaSubentry" "supportedLDAPVersion" "supportedSASLMechanisms" "supportedExtension" "supportedControl" "supportedFeatures" "vendorName" "vendorVersion" "+" "objectClass"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : neverDerefAliases (0)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : namingContexts subschemaSubentry supportedLDAPVersion supportedSASLMechanisms supportedExtension supportedControl supportedFeatures vendorName vendorVersion + objectClass
+
+#!SEARCH RESULT DONE (24) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.654
+# numEntries : 1
+
+#!SEARCH REQUEST (25) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.655
+# LDAP URL     : ldap://master.ldap.vm:389/?*??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "" -s base "(objectClass=*)" "*"
+# baseObject   : 
+# scope        : baseObject (0)
+# derefAliases : neverDerefAliases (0)
+# sizeLimit    : 0
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : *
+
+#!SEARCH RESULT DONE (25) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.657
+# numEntries : 1
+
+#!SEARCH REQUEST (26) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.659
+# LDAP URL     : ldap://master.ldap.vm:389/cn=server,cn=plugins,cn=config?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "cn=server,cn=plugins,cn=config" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=server,cn=plugins,cn=config
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (26) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.659
+# numEntries : 0
+
+#!SEARCH REQUEST (27) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.660
+# LDAP URL     : ldap://master.ldap.vm:389/cn=ldap://dc=master,dc=ldap,dc=vm:389?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "cn=ldap://dc=master,dc=ldap,dc=vm:389" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=ldap://dc=master,dc=ldap,dc=vm:389
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (27) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.661
+# numEntries : 0
+
+#!SEARCH REQUEST (28) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.662
+# LDAP URL     : ldap://master.ldap.vm:389/cn=schema?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "cn=schema" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : cn=schema
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (28) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.711
+# numEntries : 1
+
+#!SEARCH REQUEST (29) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.712
+# LDAP URL     : ldap://master.ldap.vm:389/dc=ldap,dc=vm?hasSubordinates,objectClass??(objectClass=*)
+# command line : ldapsearch -H ldap://master.ldap.vm:389 -ZZ -x -D "cn=Directory Manager" -W -b "dc=ldap,dc=vm" -s base -a always -z 1 "(objectClass=*)" "hasSubordinates" "objectClass"
+# baseObject   : dc=ldap,dc=vm
+# scope        : baseObject (0)
+# derefAliases : derefAlways (3)
+# sizeLimit    : 1
+# timeLimit    : 0
+# typesOnly    : False
+# filter       : (objectClass=*)
+# attributes   : hasSubordinates objectClass
+
+#!SEARCH RESULT DONE (29) OK
+#!CONNECTION ldap://master.ldap.vm:389
+#!DATE 2018-03-16T14:20:36.713
+# numEntries : 1
+

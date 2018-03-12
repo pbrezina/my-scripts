@@ -1,0 +1,5 @@
+- name: Run SELinux in permissive mode
+  become: True
+  selinux:
+    policy: targeted
+    state: permissive

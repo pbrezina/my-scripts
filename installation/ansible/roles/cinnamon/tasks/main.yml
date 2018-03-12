@@ -1,0 +1,21 @@
+- name: Install cinnamon packages
+  become: True
+  package:
+    name: 'cinnamon-*' 
+    state: present
+
+- name: 'Create {{ HOME }}/.cinnamon directory'
+  file:
+    path: '{{ HOME }}/.cinnamon'
+    state: directory
+
+- name: Copy cinnamon settings
+  synchronize:
+    src: 'cinnamon/'
+    dest: '{{ HOME }}/.cinnamon/'
+  register: result
+
+- name: Set cinnamon dconf settings
+  shell: |
+    dconf load /org/cinnamon/ < {{ HOME }}/.cinnamon/dconf.dump
+  when: result.changed

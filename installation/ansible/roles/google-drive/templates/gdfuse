@@ -1,0 +1,15 @@
+#!/bin/bash
+
+gdrive-mount() {
+    local GDUSER=`echo $1 | cut -f1 -d:`
+    local GDLABEL=`echo $1 | cut -f2 -d:`
+    local GDPOINT=$2
+    
+    shift 2
+    
+    su $GDUSER -c "google-drive-ocamlfuse -label $GDLABEL $GDPOINT $*"
+}
+
+gdrive-mount $*
+
+exit 0

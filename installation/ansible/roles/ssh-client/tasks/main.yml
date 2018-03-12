@@ -1,0 +1,32 @@
+- name: Add servers to global known hosts file
+  become: True
+  known_hosts:
+    path: /etc/ssh/ssh_known_hosts
+    name: '{{ item }}'
+    key: "{{ lookup('pipe', 'ssh-keyscan -t rsa {{ item }}') }}"
+  with_items:
+  - pkgs.fedoraproject.org
+  - fedorapeople.org
+  - github.com
+  - pagure.io
+
+- name: 'Create SSH directories'
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+  - '{{ HOME }}/.ssh'
+
+- name: Copy own SSH keys
+  synchronize:
+    src: '{{ SECRETS_PATH }}/cert/ssh/{{ item }}'
+    dest: '{{ HOME }}/.ssh/{{ item }}'
+  with_items:
+  - id_rsa
+  - id_rsa.pub
+ 
+- name: Create SSH config
+  template:
+    src: ssh_config
+    dest: '{{ HOME }}/.ssh/config'
+    mode: a=,u=rw
