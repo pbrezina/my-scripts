@@ -12,6 +12,6 @@ fi
 # We are on host machine.
 
 export SSSD_TEST_SUITE_BASHRC="/shared/workspace/my-scripts/vagrant-bashrc.sh"
-export SSSD_TEST_SUITE_MOUNT=""
+export SSSD_TEST_SUITE_SSHFS=""
 
-SSSD_TEST_SUITE_MOUNT="$MY_WORKSPACE:/shared/workspace"
+SSSD_TEST_SUITE_SSHFS="$MY_WORKSPACE:/shared/workspace"

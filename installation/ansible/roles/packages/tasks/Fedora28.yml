@@ -1,0 +1,222 @@
+- name: Install certificates
+  become: True
+  shell: |
+    rpm --import "{{ item }}"
+  with_items:
+  - https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Install RPM Fusion repositories
+  become: True
+  dnf:
+    state: present
+    name:
+    - 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+    - 'https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+
+- name: Install additional repositories
+  become: True
+  template:
+    src: repo
+    dest: '/etc/yum.repos.d/{{ item.name }}.repo'
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+  - {name: 'visual-studio-code', url: 'https://packages.microsoft.com/yumrepos/vscode'}
+
+- name: Install additional copr repositories
+  become: True
+  shell: |
+    dnf copr enable -y "{{ item }}"
+  with_items:
+  - sergiomb/google-drive-ocamlfuse
+
+- name: Install packages
+  become: True
+  dnf:
+    state: present
+    name:
+    - abrt
+    - adcli
+    - ansible
+    - asciidoc
+    - augeas-devel
+    - authselect
+    - autoconf
+    - automake
+    - bash-completion
+    - bind-utils
+    - c-ares-devel
+    - check
+    - check-devel
+    - cifs-utils-devel
+    - cinnamon
+    - clang
+    - code
+    - cryptsetup
+    - cups
+    - curl
+    - d-feet
+    - dbus-devel
+    - dbus-libs
+    - diffstat
+    - dnsmasq
+    - docbook-style-xsl
+    - doxygen
+    - fakeroot
+    - fedora-packager
+    - fedpkg
+    - filezilla
+    - findutils
+    - firefox
+    - firewalld
+    - freeipa-client
+    - gcc
+    - gdb
+    - gdm-pam-extensions-devel
+    - gettext
+    - gettext-devel
+    - gimp
+    - git
+    - glib2-devel
+    - gnutls-utils
+    - google-drive-ocamlfuse
+    - hexchat
+    - http-parser-devel
+    - hub
+    - ImageMagick
+    - jansson-devel
+    - keepass
+    - keyutils-libs-devel
+    - koji
+    - krb5-devel
+    - krb5-server
+    - ldb-tools
+    - libcap
+    - libcap-ng
+    - libcmocka
+    - libcmocka-devel
+    - libcollection-devel
+    - libcurl-devel
+    - libdhash-devel
+    - libini_config-devel
+    - libldb
+    - libldb-devel
+    - libnfsidmap-devel
+    - libnl3-devel
+    - libpath_utils-devel
+    - libref_array-devel
+    - libreoffice
+    - libselinux-devel
+    - libselinux-python
+    - libsemanage-devel
+    - libsmbclient-devel
+    - libtalloc
+    - libtalloc-devel
+    - libtdb
+    - libtdb-devel
+    - libtevent
+    - libtevent-devel
+    - libtool
+    - libuuid-devel
+    - libvirt
+    - libvirt-daemon-kvm
+    - libvirt-devel
+    - libxml2
+    - libxslt
+    - m4
+    - meld
+    - NetworkManager
+    - NetworkManager-ppp
+    - nodejs
+    - npm
+    - nspr-devel
+    - nss-devel
+    - nss-tools
+    - nss-util-devel
+    - nss_wrapper
+    - oddjob
+    - oddjob-mkhomedir
+    - openldap-clients
+    - openldap-devel
+    - openldap-servers
+    - openssh
+    - openssl
+    - openssl-devel
+    - openvpn
+    - p11-kit-devel
+    - pam-devel
+    - pam_wrapper
+    - pcre-devel
+    - pkgconfig
+    - po4a
+    - popt-devel
+    - python
+    - python-devel
+    - python-dnf
+    - python-ldap
+    - python2-dbus
+    - python2-devel
+    - python2-ldap
+    - python2-ldb
+    - python2-psutil
+    - python2-pytest
+    - python2-requests
+    - python2-winrm
+    - python3
+    - python3-dbus
+    - python3-devel
+    - python3-ldb
+    - python3-psutil
+    - python3-pytest
+    - python3-requests
+    - python3-winrm
+    - qemu-kvm
+    - rdesktop
+    - realmd
+    - resolv_wrapper
+    - ruby-devel
+    - rubygem-ruby-libvirt
+    - samba-common-tools
+    - samba-devel
+    - samba-winbind
+    - samba4-devel
+    - selinux-policy-targeted
+    - socket_wrapper
+    - softhsm >= 2.1.0
+    - spice-xpi
+    - sssd
+    - sssd-*
+    - systemd
+    - systemd-devel
+    - systemtap-sdt-devel
+    - thunderbird
+    - tig
+    - uid_wrapper
+    - vagrant
+    - vagrant-libvirt
+    - vagrant-sshfs
+    - valgrind
+    - vim-common
+    - vim-enhanced
+    - virt-manager
+    - wget
+    - wireshark
+    - xclip
+
+- name: Install debug information for specific packages
+  become: True
+  dnf:
+    state: present
+    enablerepo: '*-debuginfo'
+    name:
+    - authselect-debuginfo
+    - authselect-libs-debuginfo
+    - dbus-debuginfo
+    - ding-libs-debuginfo
+    - libcmocka-debuginfo
+    - libdhash-debuginfo
+    - libini_config-debuginfo
+    - libldb-debuginfo
+    - libtalloc-debuginfo
+    - libtevent-debuginfo
