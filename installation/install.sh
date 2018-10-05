@@ -20,7 +20,11 @@ sudo dnf install -y ansible > /dev/null
 success_or_die $? "Unable to install Ansible!"
 
 echo "3. Provision machine with Ansible"
-ansible-playbook -i "localhost," -c local "$__DIR/ansible/playbook.yml"
+ansible-playbook                                     \
+    -i "localhost,"                                  \
+    -c local                                         \
+    -e "ansible_python_interpreter=/usr/bin/python3" \
+    "$__DIR/ansible/playbook.yml"
 success_or_die $? "Unable to provision machine with ansible scripts!"
 
 echo ""
