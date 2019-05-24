@@ -61,3 +61,8 @@ export XDEBUG_CONFIG="idekey=VSCODE"
 
 . $MY_SCRIPTS_PATH/vagrant-setup.sh
 . $MY_SCRIPTS_PATH/include-scripts.sh
+
+# Source local environment
+if [ -f $MY_SCRIPTS_PATH/local-environment.sh ]; then
+    . $MY_SCRIPTS_PATH/local-nvironment.sh
+fi
