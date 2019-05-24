@@ -1,21 +1,21 @@
 - name: Find GCC include directory
-  set_fact: 
+  set_fact:
     gcc_include_dir="{{ lookup('pipe', '/bin/bash -c \"ls -d /usr/lib/gcc/x86_64-redhat-linux/* | tail -n 1\"') }}/include"
 
 - name: Set Fedora 25 specific facts
-  set_fact: 
+  set_fact:
     ECLIPSE_RELEASE="neon"
   when: ansible_distribution == 'Fedora' and ansible_distribution_version == '25'
 
 - name: Set Fedora 26+ specific facts
-  set_fact: 
+  set_fact:
     ECLIPSE_RELEASE="oxygen"
   when: ansible_distribution == 'Fedora' and ansible_distribution_version >= '26'
 
 - name: Install eclipse packages
   become: True
   package:
-    name: '{{ item }}' 
+    name: '{{ item }}'
     state: present
   with_items:
   - eclipse-cdt
@@ -45,82 +45,11 @@
   - { plugin: 'org.eclipse.wst.xml_ui.feature.feature.group',                   repo: 'http://download.eclipse.org/releases/{{ ECLIPSE_RELEASE }}' }
   - { plugin: 'org.psem2m.eclipse.rest.editor.feature.group',                   repo: 'http://resteditor.sourceforge.net/eclipse' }
 
-- name: Attention!
-  debug:
-    msg: '{{ vars["gcc_include_dir"] }}'
-
-- name: 'Create local project directories at {{ WORKSPACE }}'
-  file:
-    path: '{{ WORKSPACE }}/{{ item }}'
-    state: directory
-  with_items:
-  - 'test-area'
-  - 'packages'
-  - 'virtual-machines'
-
-- name: Clone git repositories
-  shell: |
-    git -C "{{ WORKSPACE }}/{{ item.name }}" remote | grep "{{ GITHUB_USER }}"
-    if [ -d "{{ WORKSPACE }}/{{ item.name }}" ]; then
-      echo "Project already {{ WORKSPACE }}/{{ item.name }} already exists. Nothing to do."
-      exit 255
-    fi
-
-    git -C "{{ WORKSPACE }}" clone {{ item.repo }} {{ item.name }}
-  register: result
-  failed_when: "result.rc != 255 and result.rc != 0"
-  changed_when: "result.rc == 0"
-  with_items:
-  - { name: 'authconfig',      repo: 'ssh://git@pagure.io/authconfig.git' }
-  - { name: 'authselect',      repo: 'ssh://git@github.com/pbrezina/authselect.git' }
-  - { name: 'my-scripts',      repo: 'ssh://git@github.com/pbrezina/my-scripts.git' }
-  - { name: 'samba',           repo: 'git://github.com/samba-team/samba.git' }
-  - { name: 'sssd',            repo: 'ssh://git@github.com/SSSD/sssd.git' }
-  - { name: 'sssd-dev-utils',  repo: 'ssh://git@github.com/pbrezina/sssd-dev-utils.git' }
-  - { name: 'sssd_docs',       repo: 'ssh://git@pagure.io/SSSD/docs.git' }
-  - { name: 'sssd-test-suite', repo: 'ssh://git@github.com/pbrezina/sssd-test-suite.git' }
-  - { name: 'sudo',            repo: 'git://github.com/millert/sudo.git' }
-
-- name: Add additional remotes
-  shell: |
-    git -C "{{ WORKSPACE }}/{{ item.name }}" remote | grep "{{ GITHUB_USER }}"
-    if [ $? -eq 0 ]; then
-      echo "Remote {{ GITHUB_USER }} already exists in {{ WORKSPACE }}/{{ item.name }}. Nothing to do."
-      exit 255
-    fi
-
-    git -C "{{ WORKSPACE }}/{{ item.name }}" remote add -f {{ GITHUB_USER }} {{ item.repo }}
-  register: result
-  failed_when: "result.rc != 255 and result.rc != 0"
-  changed_when: "result.rc == 0"
-  with_items:
-  - { name: 'authconfig',      repo: 'ssh://git@pagure.io/forks/{{ PAGURE_USER }}/authconfig.git' }
-  - { name: 'sssd',            repo: 'ssh://git@github.com/{{ GITHUB_USER }}/sssd.git' }
-  - { name: 'sssd_docs',       repo: 'ssh://git@pagure.io/forks/{{ PAGURE_USER }}/SSSD/docs.git' }
-
-- name: Set projects specific git options 
-  git_config:
-    scope: local
-    repo: '{{ WORKSPACE }}/{{ item.project }}'
-    name: '{{ item.name }}'
-    value: '{{ item.value }}'
-  with_items:
-  - { project: 'sssd', name: 'commit.template', value: '.git-commit-template' }
-  
-- name: Create local projects
-  synchronize:
-    src: 'projects/{{ item }}'
-    dest: '{{ WORKSPACE }}'
-  with_items:
-  - 'packages'
-  - 'test-area'
-  - 'virtual-machines'
-  
 - name: Create .project files
   template:
     src: eclipse_project
     dest: '{{ WORKSPACE }}/{{ item.path }}/.project'
-    force: yes
+    force: no
   with_items:
   - { name: 'authconfig',       path: 'authconfig',       cproject: False }
   - { name: 'authselect',       path: 'authselect',       cproject: True }
@@ -128,9 +57,11 @@
   - { name: 'talloc',           path: 'samba/lib/talloc', cproject: True }
   - { name: 'tevent',           path: 'samba/lib/tevent', cproject: True }
   - { name: 'ldb',              path: 'samba/lib/ldb',    cproject: True }
+  - { name: 'leapp-repository', path: 'leapp-repository', cproject: False }
   - { name: 'sssd',             path: 'sssd',             cproject: True }
   - { name: 'sssd-dev-utils',   path: 'sssd-dev-utils',   cproject: False }
   - { name: 'sssd_docs',        path: 'sssd_docs',        cproject: False }
+  - { name: 'sssd-ci',          path: 'sssd-ci',          cproject: False }
   - { name: 'sssd-test-suite',  path: 'sssd-test-suite',  cproject: False }
   - { name: 'sudo',             path: 'sudo',             cproject: True }
   - { name: 'test-area',        path: 'test-area',        cproject: True }
@@ -141,7 +72,7 @@
   template:
     src: eclipse_cproject_makefile
     dest: '{{ WORKSPACE }}/{{ item.path }}/.cproject'
-    force: yes
+    force: no
   with_items:
   - { name: 'authselect',      path: 'authselect',       settings: '{{ project_authselect }}' }
   - { name: 'talloc',          path: 'samba/lib/talloc', settings: '{{ project_talloc }}' }
@@ -154,11 +85,11 @@
   template:
     src: eclipse_cproject_build
     dest: '{{ WORKSPACE }}/{{ item.path }}/.cproject'
-    force: yes
+    force: no
   with_items:
   - { name: 'test-area',       path: 'test-area',        settings: '{{ project_test_area }}' }
 
-- name: Check if Eclipse workspace already exists    
+- name: Check if Eclipse workspace already exists
   stat:
     path: '{{ WORKSPACE }}/.metadata'
   register: workspace

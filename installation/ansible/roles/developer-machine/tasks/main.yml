@@ -1,59 +1,7 @@
-- name: 'Add .bashrc for user {{ USER }}' 
-  become: True
-  template:
-    src: bashrc
-    dest: '{{ HOME }}/.bashrc'
-    owner: '{{ USER }}' 
-    group: '{{ USER }}' 
-    mode: 0644
-    force: yes 
-
-- name: 'Add .vimrc for user {{ USER }}' 
-  become: True
-  template:
-    src: vimrc
-    dest: '{{ HOME }}/.vimrc'
-    owner: '{{ USER }}' 
-    group: '{{ USER }}' 
-    mode: 0644
-    force: yes 
-
-- name: Add .bashrc for root
-  become: True
-  template:
-    src: bashrc
-    dest: /root/.bashrc
-    owner: root
-    group: root
-    mode: 0644
-    force: yes 
-
-- name: Add .vimrc for root
-  become: True
-  template:
-    src: vimrc
-    dest: /root/.vimrc
-    owner: root
-    group: root
-    mode: 0644
-    force: yes
-
-- name: Add krb5.conf
-  become: True
-  template:
-    src: '{{ SECRETS_PATH }}/krb5.conf'
-    dest: /etc/krb5.conf
-    owner: root
-    group: root
-    mode: 0644
-    force: yes
-
-- name: Set global git configuration
-  git_config:
-    scope: global
-    name: '{{ item.name }}'
-    value: '{{ item.value }}'
-  with_items:
-  - { name: 'user.name', value: '{{ GIT_NAME }}' }
-  - { name: 'user.email', value: '{{ GIT_EMAIL }}' }
-  - { name: 'color.ui', value: 'true' }
+- include_tasks: bash.yml
+- include_tasks: vim.yml
+- include_tasks: git.yml
+- include_tasks: httpd.yml
+- include_tasks: php.yml
+- include_tasks: workspace.yml
+- include_tasks: vagrant.yml

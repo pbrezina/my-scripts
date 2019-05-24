@@ -9,6 +9,7 @@
   - fedorapeople.org
   - github.com
   - pagure.io
+  - '{{ INTERNAL_KNOWN_HOSTS }}'
 
 - name: 'Create SSH directories'
   file:
@@ -17,16 +18,19 @@
   with_items:
   - '{{ HOME }}/.ssh'
 
-- name: Copy own SSH keys
-  synchronize:
-    src: '{{ SECRETS_PATH }}/cert/ssh/{{ item }}'
+- name: Copy SSH keys
+  copy:
+    src: '{{ SECRETS }}/certificates/ssh/{{ item }}'
     dest: '{{ HOME }}/.ssh/{{ item }}'
+    owner: '{{ USER }}'
+    group: '{{ USER }}'
+    mode: 0600
   with_items:
   - id_rsa
   - id_rsa.pub
- 
+
 - name: Create SSH config
   template:
-    src: ssh_config
+    src: user_config
     dest: '{{ HOME }}/.ssh/config'
     mode: a=,u=rw

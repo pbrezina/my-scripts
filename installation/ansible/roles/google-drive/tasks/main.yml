@@ -14,7 +14,7 @@
 
 - name: Create mount points
   file:
-    path: '{{ HOME }}/gdrive/{{ item }}'
+    path: '{{ GDRIVE }}/{{ item }}'
     state: directory
   with_items: '{{ GDRIVE_ACCOUNTS }}'
 
@@ -38,20 +38,22 @@
   become: True
   lineinfile:
     path: /etc/fstab
-    line: 'gdfuse#{{ USER }}:{{ item }} {{ HOME }}/gdrive/{{ item }} fuse uid={{ UID }},gid={{ GID }},allow_root 0 0'
+    line: 'gdfuse#{{ USER }}:{{ item }} {{ GDRIVE }}/{{ item }} fuse uid={{ UID }},gid={{ GID }},allow_root 0 0'
   with_items: '{{ GDRIVE_ACCOUNTS }}'
 
 # mount module tends to open file browser which is undesirable, do it the old way
 - name: Mount drives
   become: True
   shell: |
-    mount | grep "{{ HOME }}/gdrive/{{ item }}"
+    mount | grep "{{ GDRIVE }}/{{ item }}"
     if [ $? -eq 0 ]; then
-      echo "Mount point {{ HOME }}/gdrive/{{ item }} is already mounted. Nothing to do."
+      echo "Mount point {{ GDRIVE }}/{{ item }} is already mounted. Nothing to do."
       exit 255
     fi
-     
-    mount "{{ HOME }}/gdrive/{{ item }}"
+
+    mount "{{ GDRIVE }}/{{ item }}"
+  args:
+    warn: false
   register: result
   failed_when: "result.rc != 255 and result.rc != 0"
   changed_when: "result.rc == 0"

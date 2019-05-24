@@ -1,0 +1,12 @@
+- name: 'Create secrets directory: {{ SECRETS }}'
+  file:
+    path: '{{ SECRETS }}'
+    state: directory
+
+- name: 'Extract ansible-secrets into {{ HOME }}/ansible-secrets'
+  unarchive:
+    src: '{{ SECRETS_ARCHIVE }}'
+    dest: '{{ SECRETS }}'
+    extra_opts:
+    - --strip=1
+

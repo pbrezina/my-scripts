@@ -1,0 +1,9 @@
+- name: 'Create vagrant-setup.sh'
+  become: True
+  template:
+    src: vagrant-setup.sh
+    dest: '{{ WORKSPACE }}/my-scripts/vagrant-setup.sh'
+    owner: '{{ USER }}'
+    group: '{{ USER }}'
+    mode: 0644
+    force: no

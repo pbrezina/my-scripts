@@ -1,0 +1,11 @@
+- name: 'Add .bashrc for user {{ USER }}'
+  become: True
+  template:
+    src: vhost
+    dest: '/etc/httpd/conf.d/{{ item.name }}.conf'
+    owner: root
+    group: root
+    mode: 0644
+    force: yes
+  with_items:
+  - { name: 'shockie', path: '{{ WWW_BUILD_PATH }}/shockie' }

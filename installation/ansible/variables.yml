@@ -1,4 +1,4 @@
-HOME: '{{ ansible_env.HOME }}' 
+HOME: '{{ ansible_env.HOME }}'
 USER: '{{ ansible_env.USER }}'
 UID: '{{ ansible_real_user_id }}'
 GID: '{{ ansible_real_group_id }}'
@@ -9,14 +9,29 @@ WORKSPACE: '{{ HOME }}/workspace'
 FIREFOX_PROFILE: 'workstation'
 THUNDERBIRD_PROFILE: 'workstation'
 LIBVIRT_STORAGE: '/home/qemu'
+WWW_BUILD_PATH: '/dev/shm/www'
+VAGRANT_HOME: '{{ HOME }}/.vagrant.d'
 
 # Google drive labels
+GDRIVE: '{{ HOME }}/gdrive'
 GDRIVE_ACCOUNTS:
 - personal
 - redhat
 
-SECRETS_PATH: '{{ HOME }}/gdrive/personal/workstation'
-# Specify in SECRET_DATA_PATH/secrets.yml
+SECRETS_ARCHIVE: '{{ GDRIVE }}/personal/workstation/ansible-secrets.tgz'
+SECRETS_VARS: '{{ GDRIVE }}/personal/workstation/secrets.yml'
+SECRETS: '{{ HOME }}/ansible-secrets'
+#
+# Specify in SECRETS/secrets.yml
+#
 # GIT_NAME
 # GIT_EMAIL
 # FAS_PASSWORD
+# KERBEROS_REALM
+# KERBEROS_DOMAIN
+# KERBEROS_KDC
+# INTERNAL_REPOS
+# INTERNAL_REMOTES
+# INTERNAL_KNOWN_HOSTS
+#
+

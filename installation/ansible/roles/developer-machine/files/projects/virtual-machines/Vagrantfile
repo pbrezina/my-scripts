@@ -1,0 +1,23 @@
+require_relative '../sssd-test-suite/ruby/config.rb'
+require_relative '../sssd-test-suite/ruby/machine.rb'
+require_relative '../sssd-test-suite/ruby/guest.rb'
+
+config = Config.new(nil, nil, nil)
+
+machines = [
+  Machine.new(
+    name: "f29",
+    type: Machine::LINUX,
+    hostname: "f29.test.vm",
+    ip: "192.168.200.10",
+    box: "fedora/29-cloud-base",
+    memory: 2048
+  ),
+]
+
+# Create environment
+Vagrant.configure("2") do |vagrant_config|
+  machines.each do |machine|
+    Guest.Add(config, vagrant_config, machine)
+  end
+end

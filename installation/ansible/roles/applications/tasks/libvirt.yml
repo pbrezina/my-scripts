@@ -29,7 +29,7 @@
       echo "Pool default in {{ LIBVIRT_STORAGE }} already exists. Nothing to do."
       exit 255
     fi
-    
+
     virsh pool-destroy default
     virsh pool-undefine default
     virsh pool-define-as --name default --type dir --target "{{ LIBVIRT_STORAGE }}"
@@ -38,3 +38,11 @@
   register: result
   failed_when: "result.rc != 255 and result.rc != 0"
   changed_when: "result.rc == 0"
+
+- name: 'Restart libvirt service'
+  become: True
+  service:
+    name: libvirtd.service
+    enabled: yes
+    state: restarted
+  when: result.changed

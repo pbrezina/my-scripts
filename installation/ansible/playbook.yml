@@ -1,22 +1,23 @@
 ---
-- hosts: all 
+- hosts: all
   roles:
+  - nvidia
   - packages
+  - selinux
   - google-drive
+  - fetch-internals
   vars_files:
   - variables.yml
 
 - hosts: all
   roles:
-  - selinux
-  - certificates
-  - vpn
-  - nvidia
+  - internals
   - ssh-client
   - developer-machine
   - eclipse
   - applications
   - cinnamon
+  - clean-artifacts
   vars_files:
   - variables.yml
-  - '{{ SECRETS_PATH }}/secrets.yml'
+  - '{{ SECRETS_VARS }}'

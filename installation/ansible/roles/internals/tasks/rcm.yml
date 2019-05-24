@@ -1,0 +1,13 @@
+- name: Add RCM Tools repository
+  become: True
+  synchronize:
+    src: '{{ SECRETS }}/repos/rcm-tools-fedora.repo'
+    dest: '/etc/yum.repos.d'
+
+- name: Install RCM packages
+  become: True
+  package:
+    name:
+    - rhpkg
+    - brewkoji
+    state: present

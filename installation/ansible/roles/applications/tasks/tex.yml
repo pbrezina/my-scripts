@@ -22,7 +22,7 @@
     dest: /tmp/install-texlive
     extra_opts: [--strip-components=1]
   when: texlive.stat.exists == False
-    
+
 - name: Create TeX Live profile
   template:
     src: texlive.profile

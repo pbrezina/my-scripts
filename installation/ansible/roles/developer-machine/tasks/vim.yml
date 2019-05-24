@@ -1,0 +1,19 @@
+- name: 'Add .vimrc for user {{ USER }}'
+  become: True
+  template:
+    src: vimrc
+    dest: '{{ HOME }}/.vimrc'
+    owner: '{{ USER }}'
+    group: '{{ USER }}'
+    mode: 0644
+    force: yes
+
+- name: Add .vimrc for root
+  become: True
+  template:
+    src: vimrc
+    dest: /root/.vimrc
+    owner: root
+    group: root
+    mode: 0644
+    force: yes

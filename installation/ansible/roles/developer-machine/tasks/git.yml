@@ -1,0 +1,9 @@
+- name: Set global git configuration
+  git_config:
+    scope: global
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+  with_items:
+  - { name: 'user.name', value: '{{ GIT_NAME }}' }
+  - { name: 'user.email', value: '{{ GIT_EMAIL }}' }
+  - { name: 'color.ui', value: 'true' }

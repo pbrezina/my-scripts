@@ -1,0 +1,32 @@
+- name: Setup NetworkManager VPN connection
+  become: True
+  copy:
+    src: '{{ SECRETS }}/vpn/BRQ.ovpn'
+    dest: /etc/NetworkManager/system-connections/BRQ.ovpn
+    owner: root
+    group: root
+    mode: 0600
+    force: yes
+  register: result
+
+- name: Reload NetworkManager configuration
+  become: True
+  shell: |
+    nmcli con reload
+  args:
+    warn: False
+  when: result.changed
+
+- name: Connect to internal VPN
+  shell: |
+    nmcli con show --active | grep "Brno (BRQ)"
+    if [ $? -eq 0 ]; then
+      echo "Already connected. Nothing to do."
+      exit 255
+    fi
+    nmcli con up id "Brno (BRQ)"
+  args:
+    warn: False
+  register: result
+  failed_when: "result.rc != 255 and result.rc != 0"
+  changed_when: "result.rc == 0"

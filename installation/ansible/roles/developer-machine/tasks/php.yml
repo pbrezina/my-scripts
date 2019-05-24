@@ -1,0 +1,9 @@
+- name: 'Add .bashrc for user {{ USER }}'
+  become: True
+  template:
+    src: php
+    dest: '/etc/php.d/99-custom.conf'
+    owner: root
+    group: root
+    mode: 0644
+    force: yes

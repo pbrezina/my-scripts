@@ -1,0 +1,85 @@
+- name: 'Create workspace directory: {{ WORKSPACE }}'
+  file:
+    path: '{{ WORKSPACE }}'
+    state: directory
+
+- name: Clone git repositories
+  shell: |
+    if [ -z "{{ item.name }}" ]; then
+      echo "Empty name. Nothing to do."
+      exit 255
+    fi
+
+    if [ -d "{{ WORKSPACE }}/{{ item.name }}" ]; then
+      echo "Project already {{ WORKSPACE }}/{{ item.name }} already exists. Nothing to do."
+      exit 255
+    fi
+
+    git -C "{{ WORKSPACE }}" clone {{ item.repo }} {{ item.name }}
+  register: result
+  failed_when: "result.rc != 255 and result.rc != 0"
+  changed_when: "result.rc == 0"
+  with_items:
+  - { name: 'authconfig',      repo: 'ssh://git@pagure.io/authconfig.git' }
+  - { name: 'authselect',      repo: 'ssh://git@github.com/pbrezina/authselect.git' }
+  - { name: 'leapp-repository',repo: 'git://github.com/oamg/leapp-repository.git' }
+  - { name: 'my-scripts',      repo: 'ssh://git@github.com/pbrezina/my-scripts.git' }
+  - { name: 'samba',           repo: 'git://github.com/samba-team/samba.git' }
+  - { name: 'sssd',            repo: 'ssh://git@github.com/SSSD/sssd.git' }
+  - { name: 'sssd-dev-utils',  repo: 'ssh://git@github.com/pbrezina/sssd-dev-utils.git' }
+  - { name: 'sssd_docs',       repo: 'ssh://git@pagure.io/SSSD/docs.git' }
+  - { name: 'sssd-test-suite', repo: 'ssh://git@github.com/SSSD/sssd-test-suite.git' }
+  - { name: 'sudo',            repo: 'git://github.com/millert/sudo.git' }
+  - '{{ INTERNAL_REPOS }}'
+
+- name: Add additional remotes
+  shell: |
+    if [ -z "{{ item.name }}" ]; then
+      echo "Empty name. Nothing to do."
+      exit 255
+    fi
+  
+    git -C "{{ WORKSPACE }}/{{ item.name }}" remote | grep "{{ GITHUB_USER }}"
+    if [ $? -eq 0 ]; then
+      echo "Remote {{ GITHUB_USER }} already exists in {{ WORKSPACE }}/{{ item.name }}. Nothing to do."
+      exit 255
+    fi
+
+    git -C "{{ WORKSPACE }}/{{ item.name }}" remote add -f {{ GITHUB_USER }} {{ item.repo }}
+  register: result
+  failed_when: "result.rc != 255 and result.rc != 0"
+  changed_when: "result.rc == 0"
+  with_items:
+  - { name: 'authconfig',      repo: 'ssh://git@pagure.io/forks/{{ PAGURE_USER }}/authconfig.git' }
+  - { name: 'leapp-repository',repo: 'ssh://git@github.com/{{ GITHUB_USER }}/leapp-repository.git' }
+  - { name: 'sssd',            repo: 'ssh://git@github.com/{{ GITHUB_USER }}/sssd.git' }
+  - { name: 'sssd_docs',       repo: 'ssh://git@pagure.io/forks/{{ PAGURE_USER }}/SSSD/docs.git' }
+  - { name: 'sssd-test-suite', repo: 'ssh://git@github.com/{{ GITHUB_USER }}/sssd-test-suite.git' }
+  - '{{ INTERNAL_REMOTES }}'
+
+- name: Set projects specific git options
+  git_config:
+    scope: local
+    repo: '{{ WORKSPACE }}/{{ item.project }}'
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+  with_items:
+  - { project: 'sssd', name: 'commit.template', value: '.git-commit-template' }
+
+- name: 'Create local project directories at {{ WORKSPACE }}'
+  file:
+    path: '{{ WORKSPACE }}/{{ item }}'
+    state: directory
+  with_items:
+  - 'test-area'
+  - 'packages'
+  - 'virtual-machines'
+
+- name: Create local projects
+  synchronize:
+    src: 'projects/{{ item }}'
+    dest: '{{ WORKSPACE }}'
+  with_items:
+  - 'packages'
+  - 'test-area'
+  - 'virtual-machines'

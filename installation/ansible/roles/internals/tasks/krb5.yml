@@ -1,0 +1,6 @@
+- name: Create /etc/krb5.conf
+  become: True
+  template:
+    src: krb5.conf
+    dest: '/etc/krb5.conf'
+    mode: 0644

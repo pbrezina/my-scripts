@@ -1,0 +1,19 @@
+- name: 'Add .bashrc for user {{ USER }}'
+  become: True
+  template:
+    src: bashrc
+    dest: '{{ HOME }}/.bashrc'
+    owner: '{{ USER }}'
+    group: '{{ USER }}'
+    mode: 0644
+    force: yes
+
+- name: Add .bashrc for root
+  become: True
+  template:
+    src: bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+    force: yes

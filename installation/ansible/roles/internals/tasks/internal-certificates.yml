@@ -1,0 +1,31 @@
+- name: Install CA certificates to /etc/pki/ca-trust/source/anchors
+  become: True
+  copy:
+    src: '{{ item }}'
+    dest: '/etc/pki/ca-trust/source/anchors/'
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob:
+  - '{{ SECRETS }}/certificates/ca/*'
+  register: result
+
+- name: Create symbolic link to CA bundle
+  become: True
+  file:
+    src: "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
+    dest: "/etc/pki/tls/certs/ca-bundle.crt"
+    state: link
+
+- name: Update CA trust
+  become: True
+  shell: |
+    /usr/bin/update-ca-trust
+  when: result.changed
+
+- name: 'Copy Fedora certificate to {{ HOME }}/.fedora.cert'
+  become: True
+  synchronize:
+    src: '{{ SECRETS }}/certificates/fedora/fedora.cert'
+    dest: '{{ HOME }}/.fedora.cert'
+  register: result

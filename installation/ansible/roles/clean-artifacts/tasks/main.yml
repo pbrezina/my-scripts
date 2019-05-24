@@ -1,0 +1,4 @@
+- name: 'Cleaning ansible-secrets: deleting {{ SECRETS }}'
+  file:
+    state: absent
+    path: "{{ SECRETS }}/"

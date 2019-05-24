@@ -7,7 +7,7 @@
   - '{{ HOME }}/.mozilla/firefox'
   - '{{ HOME }}/.thunderbird'
 
-- name: Check if Firefox profile "{{ FIREFOX_PROFILE }}" exists     
+- name: Check if Firefox profile "{{ FIREFOX_PROFILE }}" exists
   stat:
     path: '{{ HOME }}/.mozilla/firefox/{{ FIREFOX_PROFILE }}/'
   register: profile
@@ -32,7 +32,7 @@
       echo "Certificate {{ item.name }} already exists. Nothing to do."
       exit 255
     fi
-    
+
     /usr/bin/pk12util \
       -i "{{ item.path }}" \
       -d "{{ HOME }}/.mozilla/firefox/{{ FIREFOX_PROFILE }}" \
@@ -41,21 +41,21 @@
   failed_when: "result.rc != 255 and result.rc != 0"
   changed_when: "result.rc == 0"
   with_items:
-  - { name: '{{ USER }} - Fedora Project', password: '{{ FAS_PASSWORD }}', path: '{{ SECRETS_PATH }}/cert/fedora/fedora-browser-cert.p12' }
+  - { name: '{{ USER }} - Fedora Project', password: '{{ FAS_PASSWORD }}', path: '{{ SECRETS }}/certificates/fedora/fedora-browser-cert.p12' }
 
 - name: Attention!
   debug:
-    msg: "Do not forget to set Firefox master password and active Synchronization."
+    msg: "Do not forget to set Firefox master password and activate synchronization."
   when: not profile.stat.exists
 
-- name: Check if Thunderbird profile "{{ THUNDERBIRD_PROFILE }}" exists     
+- name: Check if Thunderbird profile "{{ THUNDERBIRD_PROFILE }}" exists
   stat:
     path: '{{ HOME }}/.thunderbird/{{ THUNDERBIRD_PROFILE }}/'
   register: profile
 
 - name: 'Copy Thunderbird profile'
   synchronize:
-    src: '{{ SECRETS_PATH }}/thunderbird-profile/'
+    src: '{{ SECRETS }}/configs/thunderbird-profile/'
     dest: '{{ HOME }}/.thunderbird/{{ THUNDERBIRD_PROFILE }}/'
   when: not profile.stat.exists
 

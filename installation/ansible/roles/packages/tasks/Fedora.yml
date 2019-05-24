@@ -2,6 +2,8 @@
   become: True
   shell: |
     rpm --import "{{ item }}"
+  args:
+    warn: false
   with_items:
   - https://packages.microsoft.com/keys/microsoft.asc
 
@@ -12,6 +14,21 @@
     name:
     - 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm'
     - 'https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+
+- name: Install NVIDIA drivers
+  become: True
+  package:
+    name: '{{ item }}'
+    state: present
+  when: nvidia_vga == True
+  with_items:
+  - akmod-nvidia
+  - libva-utils
+  - libva-vdpau-driver
+  - vdpauinfo
+  - xorg-x11-drv-nvidia
+  - xorg-x11-drv-nvidia-cuda
+  - xorg-x11-drv-nvidia-cuda-libs
 
 - name: Install additional repositories
   become: True
@@ -28,6 +45,8 @@
   become: True
   shell: |
     dnf copr enable -y "{{ item }}"
+  args:
+    warn: false
   with_items:
   - sergiomb/google-drive-ocamlfuse
 
@@ -38,13 +57,16 @@
     name:
     - abrt
     - adcli
+    - aircrack-ng
     - ansible
     - asciidoc
     - augeas-devel
     - authselect
     - autoconf
     - automake
+    - awscli
     - bash-completion
+    - bc
     - bind-utils
     - c-ares-devel
     - check
@@ -63,6 +85,16 @@
     - dnsmasq
     - docbook-style-xsl
     - doxygen
+    - eclipse-cdt
+    - eclipse-changelog
+    - eclipse-dltk-ruby
+    - eclipse-dltk-sh
+    - eclipse-egit
+    - eclipse-linuxtools
+    - eclipse-manpage
+    - eclipse-mpc
+    - eclipse-pydev
+    - eclipse-rpm-editor
     - fakeroot
     - fedora-packager
     - fedpkg
@@ -83,9 +115,11 @@
     - google-drive-ocamlfuse
     - hexchat
     - http-parser-devel
+    - httpd
     - hub
     - ImageMagick
     - jansson-devel
+    - java
     - keepass
     - keyutils-libs-devel
     - koji
@@ -109,6 +143,7 @@
     - libreoffice
     - libselinux-devel
     - libselinux-python
+    - libselinux-python3
     - libsemanage-devel
     - libsmbclient-devel
     - libtalloc
@@ -125,6 +160,8 @@
     - libxml2
     - libxslt
     - m4
+    - mariadb
+    - mariadb-server
     - meld
     - NetworkManager
     - NetworkManager-ppp
@@ -148,24 +185,30 @@
     - pam-devel
     - pam_wrapper
     - pcre-devel
+    - php
+    - php-common
+    - php-mysqlnd
+    - phpmyadmin
+    - phpunit7
     - pkgconfig
     - po4a
     - popt-devel
-    - python
-    - python-devel
-    - python-dnf
-    - python-ldap
+    - python2
     - python2-dbus
     - python2-devel
     - python2-ldap
     - python2-ldb
+    - python2-pep8
     - python2-psutil
     - python2-pytest
     - python2-requests
     - python2-winrm
     - python3
+    - python3-clint
     - python3-dbus
     - python3-devel
+    - python3-dnf
+    - python3-ldap
     - python3-ldb
     - python3-psutil
     - python3-pytest
@@ -184,7 +227,6 @@
     - selinux-policy-targeted
     - socket_wrapper
     - softhsm >= 2.1.0
-    - spice-xpi
     - sssd
     - sssd-*
     - systemd
@@ -198,6 +240,7 @@
     - vagrant-libvirt
     - vagrant-sshfs
     - valgrind
+    - vim
     - vim-common
     - vim-enhanced
     - virt-manager
@@ -216,6 +259,7 @@
     - authselect-libs-debuginfo
     - dbus-debuginfo
     - ding-libs-debuginfo
+    - glibc-debuginfo
     - libcmocka-debuginfo
     - libdhash-debuginfo
     - libini_config-debuginfo
