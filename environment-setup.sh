@@ -46,7 +46,7 @@ export MY_INCLUDE="$MY_SCRIPTS_PATH/include $MY_WORKSPACE/sssd-dev-utils"
 export SSSD_SOURCE=$MY_WORKSPACE/sssd
 export SSSD_BUILD=/dev/shm/sssd
 export SSSD_TEST_DIR=/dev/shm/sssd-tests
-export SSSD_USER=sssd
+export SSSD_USER=root
 export SSSD_RHEL_PACKAGE=$MY_USER_HOME/packages/rhel/sssd
 export CFLAGS_CUSTOM=""
 
