@@ -56,5 +56,8 @@ export GIT_PUSH_REPOSITORIES="pbrezina"
 
 export NTP_SERVER="master.ipa.vm"
 
+# PHP Development
+export XDEBUG_CONFIG="idekey=VSCODE"
+
 . $MY_SCRIPTS_PATH/vagrant-setup.sh
 . $MY_SCRIPTS_PATH/include-scripts.sh
