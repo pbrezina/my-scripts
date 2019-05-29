@@ -1,0 +1,9 @@
+- name: 'Create /etc/sssd/sssd.conf'
+  become: True
+  template:
+    src: sssd.conf
+    dest: '/etc/sssd/sssd.conf'
+    owner: root
+    group: root
+    mode: 0600
+    force: no
