@@ -13,6 +13,5 @@ fi
 
 export VAGRANT_HOME="{{ VAGRANT_HOME }}"
 
-export SSSD_TEST_SUITE_CONFIG="$MY_WORKSPACE/sssd-test-suite/boxes/configs/f29.json"
 export SSSD_TEST_SUITE_BASHRC="/shared/workspace/my-scripts/vagrant-bashrc.sh"
 export SSSD_TEST_SUITE_SSHFS="$MY_WORKSPACE:/shared/workspace"
