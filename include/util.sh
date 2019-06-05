@@ -18,3 +18,11 @@ mygit-commit-diff() {
     git log --pretty=format:$format origin/$1..$1
     git log --graph --pretty="format:$format" --abbrev-commit --date=relative $1..$2
 }
+
+mygit-fixed-issues() {
+    issues=`git log $2..HEAD | grep "https://github.com/.*/$1/issues" | uniq`
+    for issue in $issues; do
+        issue=`echo "$issue" | sed "s|.*/||"`
+        hub issue show -f '* %i - %t%n' $issue
+    done
+}
