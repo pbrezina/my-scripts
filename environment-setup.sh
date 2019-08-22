@@ -59,6 +59,8 @@ export NTP_SERVER="master.ipa.vm"
 # PHP Development
 export XDEBUG_CONFIG="idekey=VSCODE"
 
+alias my="$MY_SCRIPTS_PATH/my"
+
 . $MY_SCRIPTS_PATH/vagrant-setup.sh
 . $MY_SCRIPTS_PATH/include-scripts.sh
 
