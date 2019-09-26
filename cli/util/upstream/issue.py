@@ -31,7 +31,7 @@ class Issue(object):
 
     def comment(self, msg):
         self.api.create_comment(msg)
-    
+
     def close(self):
         self.api.edit(state='closed')
 
@@ -42,29 +42,29 @@ class Issue(object):
             matches = re.findall(r'^https://pagure.io/{}/issue/(\d+)$'.format(repo.name), url)
             if not matches:
                 raise ValueError('Unknown issue link: {}'.format(url))
-            
+
             return PagureIssue(repo, matches[0], url)
-        
+
         return Issue(repo, matches[0])
-    
+
     def __str__(self):
         return '{} {}'.format(self.url, self.title)
 
     def __repr__(self):
         return self.__str__()
-    
+
     def __lt__(self, value):
         return self.id < value.id
 
     def __eq__(self, value):
         if not isinstance(value, self.__class__):
             return False
-    
+
         return self.id == value.id
-      
+
     def __ne__(self, value):
         return not self.__eq__(value)
-      
+
     def __hash__(self):
         return hash(self.id)
 
@@ -79,6 +79,6 @@ class PagureIssue(Issue):
 
     def comment(self, msg):
         self.api.comment_issue(self.id, msg)
-    
+
     def close(self):
         self.api.change_issue_status(self.id, 'Closed', 'Fixed')

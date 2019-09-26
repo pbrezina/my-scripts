@@ -23,7 +23,7 @@ class Author(object):
     def __init__(self, github_login):
         (self.name, self.email) = self._map_login(github_login)
         self.login = github_login
-    
+
     def _map_login(self, github_login):
         logins = {
             'abbra': ('Alexander Bokovoy', 'abokovoy@redhat.com'),
@@ -36,13 +36,13 @@ class Author(object):
             'sumit-bose': ('Sumit Bose', 'sbose@redhat.com'),
             'thalman': ('Tomáš Halman', 'thalman@redhat.com')
         }
-        
+
         author = logins.get(github_login, None)
         if author is None:
             raise ValueError('Unknown author: {}'.format(github_login))
-        
+
         return author
-    
+
     def __str__(self):
         return '{} <{}>'.format(self.name, self.email)
 
@@ -52,11 +52,11 @@ class Author(object):
     def __eq__(self, value):
         if not isinstance(value, self.__class__):
             return False
-    
+
         return self.login == value.login
-      
+
     def __ne__(self, value):
         return not self.__eq__(value)
-      
+
     def __hash__(self):
         return hash(self.login)

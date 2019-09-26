@@ -34,17 +34,17 @@ class AutoPushActor(Actor):
     def __init__(self, repo):
         super().__init__()
         self.repo = repo
-        
+
     def run(self):
         tasks = self.tasklist('autopush')
         for pr in self.get_pull_requests():
             tasks.add(pr.title, self.task_push, pr)
 
         tasks.run()
-    
+
     def get_pull_requests(self):
         required = [self.repo.labels.accepted, self.repo.labels.ready]
-        
+
         pulls = []
         for gh_pr in self.repo.api.get_pulls(state='open'):
             pr = PullRequest(self.repo, gh_pr)
@@ -52,7 +52,7 @@ class AutoPushActor(Actor):
                 pulls.append(pr)
 
         return pulls
-    
+
     def task_push(self, task, pr):
         pr.push(self.repo)
 

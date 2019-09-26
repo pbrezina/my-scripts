@@ -23,7 +23,7 @@ import re
 import textwrap
 
 from github import Github
-from lib.command import Command, CommandList, CommandParser 
+from lib.command import Command, CommandList, CommandParser
 from util.actor import MyActor, MyCommandParserActor
 from util.upstream.upstream import Upstream
 from util.upstream.repository import Repository
@@ -32,7 +32,7 @@ from util.upstream.repository import Repository
 class SSSDAutoPushActor(MyActor):
     def __init__(self):
         super().__init__()
-    
+
     def run(self, args, argv=None):
         gh = Github(self.config.tokens.github)
         labels = WellKnownLabels()
@@ -49,7 +49,7 @@ class SSSDUpstreamActor(MyCommandParserActor):
         config = self.config.upstream.sssd
         repo = Repository(config.type, config.repo, config.token, config.localdir, config.pagure)
         return Upstream.GetCommands(repo)
-   
+
 #Commands = Command('sssd', 'SSSD Operations', CommandParser([
 #    Command('upstream', 'Upstream operations', CommandParser([
 #        Command('autopush', 'Push acked pull requests', SSSDAutoPushActor)

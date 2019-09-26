@@ -31,6 +31,6 @@ class Repository(object):
         self.localdir = localdir
         self.labels = WellKnownLabels()
         self.pagure = None
-        
+
         if pagure:
             self.pagure = Pagure(pagure_token=pagure,repo_to=repo)

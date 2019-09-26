@@ -41,12 +41,18 @@ class PullRequest(object):
         self.url = gh_pr.html_url
 
         self._labels = None
-        self._targets = None
+        self._target = None
+        self._backport_to = None
         self._reviewers = None
         self._patch = None
         self._patchcount = None
         self._issues = None
         
+        self.shell = Shell(
+            cwd=self.repo.localdir,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+
     @property
     def labels(self):
         if self._labels is not None:
@@ -59,25 +65,25 @@ class PullRequest(object):
     def patch(self):
         if self._patch is not None:
             return self._patch
-        
+
         response = requests.get(self.api.patch_url)
         self._patch = response.content.decode('utf-8')
         return self._patch
-    
+
     @property
     def patchcount(self):
         if self._patchcount is not None:
             return self._patchcount
-        
+
         matches = re.search(r'^Subject: \[PATCH \d+/(\d+)\]', self.patch, re.MULTILINE)
         self._patchcount = 1 if not matches else matches.group(1)
         return self._patchcount
-    
+
     @property
     def issues(self):
         if self._issues is not None:
             return self._issues
-        
+
         matches = re.findall(r'^^(Resolves:\n(?:http.+\n)+)', self.patch, re.MULTILINE)
         issues = set()
 
@@ -89,28 +95,34 @@ class PullRequest(object):
         self._issues = sorted(list(issues))
 
         return self._issues
-        
+
     @property
-    def targets(self):
-        if self._targets is not None:
-            return self._targets
+    def target(self):
+        if self._target is not None:
+            return self._target
+
+        self._target = self.api.base.label.split(':')[1]
+        return self._target
+
+    @property
+    def backport_to(self):
+        if self._backport_to is not None:
+            return self._backport_to
 
         targets = set()
-        targets.add(self.api.base.label.split(':')[1])
-
         for label in self.labels:
             matches = re.findall(r'^branch: (\S+)$', label.name)
             if matches:
                 targets.add(matches[0])
 
-        self._targets = sorted(list(targets))
-        return self._targets
+        self._backport_to = sorted(list(targets))
+        return self._backport_to
 
     @property
     def reviewers(self):
         if self._reviewers is not None:
             return self._reviewers
-        
+
         reviewers = set()
         for assignee in self.api.assignees:
             author = Author(assignee.login)
@@ -126,98 +138,130 @@ class PullRequest(object):
             tags.append('Reviewed-by: {} <{}>'.format(author.name, author.email))
 
         return tags
-    
+
     def comment(self, msg):
         self.api.create_issue_comment(msg)
-    
+
     def close(self):
         self.api.as_issue().edit(state='closed')
-    
+
     def add_label(self, label):
         if label in self.labels:
             return
-        
+
         label.add(self.repo, self.api)
         self.labels.append(label)
-    
+
     def remove_label(self, label):
         if label not in self.labels:
             return
-        
+
         label.remove(self.api)
         self.labels.remove(label)
-    
+
     def push(self, confirm=True, manualcheck=True):
         print(str(self))
 
         if confirm and not self._confirm('Push the Pull Request?'):
             return
-        
-        sh = Shell(cwd=self.repo.localdir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
         with tempfile.NamedTemporaryFile() as f:
             f.write(self.patch.encode('utf-8'))
             f.flush()
 
+            # First apply patch to target branch
+            commits = self._apply_path(f.name, self.target)
+            if not commits:
+                return
+
             # First apply the patch to all target branches
-            for target in self.targets:
-                sh('git fetch origin')
-                sh('git checkout {}'.format(target))
-                sh('git branch --set-upstream-to=origin/{target} {target}'.format(target=target))
-                sh('git pull --rebase')
-                
-                try:
-                    sh('git am -3 --whitespace=fix {}'.format(f.name))
-                except ShellScriptError:
-                    sh('git am --abort || :')
-                    self._reset_push_state()
-                    self.add_label(self.repo.labels.conflict)
-                    self.remove_label(self.repo.labels.ready)
-                    print('Conflict in {}'.format(target))
-                    return
-
-                # Add Reviewed-by tags
-                if self.reviewers:
-                    sh('git rebase HEAD~{count} -x \'git commit --amend -m"{msg}$(echo -ne \\\\n\\\\n{tags})"\''.format(
-                        count=self.patchcount,
-                        msg='$(git log --format=%B -n1)',
-                        tags='\\\\n'.join(self.tags).replace('<', '\\<').replace('>', '\\>')
-                    ))
-
-                # Dry run push
-                sh('git push --dry-run origin {}'.format(target))
+            for target in self.backport_to:
+                self._cherry_pick(commits, target)
 
         if manualcheck and not self._confirm('Dry run succeeded. Continue?'):
             self._reset_push_state()
             return
 
         # Get push diff
-        diff = self._get_push_diff(sh)
+        diff = self._get_push_diff()
 
         # Push patches
-        for target in self.targets:
-            sh('git checkout {}'.format(target))
-            sh('git push origin {}'.format(target))
-            
+        for target in [self.target] + self.backport_to:
+            self.shell('git checkout {}'.format(target))
+            self.shell('git push origin {}'.format(target))
+
         # Close PR
         self.comment(diff)
         self.add_label(self.repo.labels.pushed)
         self.remove_label(self.repo.labels.accepted)
         self.remove_label(self.repo.labels.ready)
         self.close()
-        
+
         # Close issues
         for issue in self.issues:
             issue.comment(diff)
             issue.close()
-    
+
+    def _rebase(self, branch):
+        self.shell('git fetch origin')
+        self.shell('git checkout {}'.format(branch))
+        self.shell('git branch --set-upstream-to=origin/{branch} {branch}'.format(branch=branch))
+        self.shell('git pull --rebase')
+
+    def _apply_path(self, patch, target):
+        self._rebase(target)
+
+        try:
+            self.shell('git am -3 --whitespace=fix {}'.format(patch))
+        except ShellScriptError:
+            self.shell('git am --abort || :')
+            self._reset_push_state()
+            self.remove_label(self.repo.labels.ready)
+            print('Conflict in {}'.format(target))
+            return None
+
+        # Add Reviewed-by tags
+        if self.reviewers:
+            self.shell('git rebase HEAD~{count} -x \'git commit --amend -m"{msg}$(echo -ne \\\\n\\\\n{tags})"\''.format(
+                count=self.patchcount,
+                msg='$(git log --format=%B -n1)',
+                tags='\\\\n'.join(self.tags).replace('<', '\\<').replace('>', '\\>')
+            ))
+
+        # Dry run push
+        self.shell('git push --dry-run origin {}'.format(target))
+
+        # Get list of commits
+        result = self.shell('git log --pretty="format:%H" origin/{0}..{0}'.format(target))
+        commits = result.stdout.decode('utf-8').split()
+        commits.reverse()
+
+        return commits
+
+    def _cherry_pick(self, commits, target):
+        self._rebase(target)
+
+        try:
+            self.shell('git cherry-pick -x {}'.format(' '.join(commits)))
+        except ShellScriptError:
+            self.shell('git cherry-pick --abort || :')
+            self._reset_push_state()
+            self.remove_label(self.repo.labels.ready)
+            print('Conflict in {}'.format(target))
+            return False
+
+        # Dry run push
+        self.shell('git push --dry-run origin {}'.format(target))
+
+        return True
+
     def _reset_push_state(self):
-        sh = Shell(cwd=self.repo.localdir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        for target in self.targets:
-            sh('git checkout {}'.format(target))
-            sh('git reset --hard origin/{}'.format(target))
-    
-    def _get_push_diff(self, sh):
-        result = sh(
+        for branch in [self.target] + self.backport_to:
+            self.shell('git checkout {}'.format(branch))
+            self.shell('git reset --hard origin/{}'.format(branch))
+
+    def _get_push_diff(self):
+        result = self.shell(
             '''
             for branch in {targets}
             do
@@ -226,9 +270,9 @@ class PullRequest(object):
                 git log --pretty="format:$format" origin/$branch..$branch
                 echo ""
             done
-            '''.format(targets=' '.join(['"{}"'.format(x) for x in self.targets]))
+            '''.format(targets=' '.join(['"{}"'.format(x) for x in [self.target] + self.backport_to]))
         )
-        
+
         return result.stdout.decode('utf-8')
 
     def _confirm(self, msg):
@@ -238,7 +282,7 @@ class PullRequest(object):
 
         if answer == 'n':
             return False
-        
+
         return True
 
     def __str__(self):
@@ -248,7 +292,9 @@ class PullRequest(object):
           Reviewed by:
           - {reviewed}
           Targeting:
-          - {targets}
+          - {target}
+          Backport to:
+          - {backports}
           Fixed issues:
           - {issues}
         ''').strip().format(
@@ -256,7 +302,8 @@ class PullRequest(object):
             title=self.title,
             url=self.url,
             reviewed='\n  - '.join([str(x) for x in self.reviewers]),
-            targets='\n  - '.join(self.targets),
+            target=self.target,
+            backports='\n  - '.join(self.backport_to),
             issues='\n  - '.join([str(x) for x in self.issues])
-            
+
         )

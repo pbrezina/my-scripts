@@ -42,17 +42,17 @@ class MyActor(Actor):
     def _to_namespace(self, d):
         if type(d) != dict:
             return d
-        
+
         ns = Namespace()
         for key, value in d.items():
             setattr(ns, key, self._to_namespace(value))
-        
+
         return ns
 
 
 class MyCommandParserActor(CommandParserActor, MyActor):
     pass
-    
+
 
 
 

@@ -24,14 +24,14 @@ class Label(object):
         self.name = name
         self.color = color
         self.description = description
-    
+
     def create(self, repo):
         repo.create_label(
             name=self.name,
             color=self.color,
             description=self.description
         )
-    
+
     def add(self, repo, issue):
         try:
             self.create(repo.api)
@@ -39,19 +39,19 @@ class Label(object):
             pass
 
         issue.add_to_labels(self.name)
-    
+
     def remove(self, issue):
         issue.remove_from_labels(self.name)
-    
+
     def __eq__(self, value):
       if type(value) is str:
         return self.name == value
-      
+
       if not isinstance(value, self.__class__):
         return False
-      
+
       return self.name == value.name
-  
+
     def __ne__(self, value):
         return not self.__eq__(value)
 

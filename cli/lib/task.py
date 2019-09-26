@@ -78,18 +78,18 @@ class TaskList(object):
             kwargs['file'] = sys.stderr
 
         self.message(message, **kwargs)
-    
+
     def _print_task_info(self, idx, total, task, error):
         if not error:
             self.message('[{}/{}] {}'.format(idx, total, task.name))
             return
-        
+
         if task.run_on_error:
             self.message('[{}/{}] {} (finalizing)'.format(idx, total, task.name))
             return
-        
+
         self.message('[{}/{}] {} (skipped on error)'.format(idx, total, task.name))
-    
+
     def _print_error_info(self, idx, total, task, error):
         task.step('{c-r}{cls}{s-r}: {message}'.format(
             cls=error.__class__.__name__,
@@ -100,7 +100,7 @@ class TaskList(object):
     def _run_task_list(self):
         total = len(self.tasks)
         start = datetime.datetime.now()
-        
+
         error = None
         for idx, task in enumerate(self.tasks, start=1):
             self._print_task_info(idx, total, task, error)
@@ -114,7 +114,7 @@ class TaskList(object):
                 if task.ignore_error:
                     continue
 
-                if not error:                
+                if not error:
                     error = e
                 continue
 

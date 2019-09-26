@@ -80,10 +80,10 @@ class Actor(object):
 class CommandParserActor(Actor):
     def subcommands(self):
         raise NotImplementedError("subcommands() method is not implemented")
-    
+
     def setup_parser(self, parent_parser):
         CommandParser(self.subcommands()).setup_parser(parent_parser)
-    
+
     def run(self):
         self.parser.print_help()
 
