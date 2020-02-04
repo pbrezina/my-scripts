@@ -66,5 +66,5 @@ alias my="$MY_SCRIPTS_PATH/my"
 
 # Source local environment
 if [ -f $MY_SCRIPTS_PATH/local-environment.sh ]; then
-    . $MY_SCRIPTS_PATH/local-nvironment.sh
+    . $MY_SCRIPTS_PATH/local-environment.sh
 fi
