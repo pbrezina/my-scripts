@@ -47,7 +47,7 @@ class PullRequest(object):
         self._patch = None
         self._patchcount = None
         self._issues = None
-        
+
         self.shell = Shell(
             cwd=self.repo.localdir,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
@@ -84,7 +84,7 @@ class PullRequest(object):
         if self._issues is not None:
             return self._issues
 
-        matches = re.findall(r'^^(Resolves:\n(?:http.+\n)+)', self.patch, re.MULTILINE)
+        matches = re.findall(r'^^(Resolves: *\n?(?:http.+\n?)+)', self.patch, re.MULTILINE)
         issues = set()
 
         for match in matches:
@@ -178,12 +178,13 @@ class PullRequest(object):
             for target in self.backport_to:
                 self._cherry_pick(commits, target)
 
+        # Get push diff
+        diff = self._get_push_diff()
+        print(diff)
+
         if manualcheck and not self._confirm('Dry run succeeded. Continue?'):
             self._reset_push_state()
             return
-
-        # Get push diff
-        diff = self._get_push_diff()
 
         # Push patches
         for target in [self.target] + self.backport_to:

@@ -31,10 +31,12 @@ class Author(object):
             'jhrozek': ('Jakub Hrozek', 'jhrozek@redhat.com'),
             'mrniranjan': ('Niranjan Mallapadi', 'mrniranjan@redhat.com'),
             'mzidek-rh': ('Michal Židek', 'mzidek@redhat.com'),
+            'mzidek-gh': ('Michal Židek', 'mzidek@redhat.com'),
             'pbrezina': ('Pavel Březina', 'pbrezina@redhat.com'),
             'sgallagher': ('Stephen Gallagher ', 'sgallagher@redhat.com'),
             'sumit-bose': ('Sumit Bose', 'sbose@redhat.com'),
-            'thalman': ('Tomáš Halman', 'thalman@redhat.com')
+            'thalman': ('Tomáš Halman', 'thalman@redhat.com'),
+            'elkoniu': ('Pawel Polawski', 'ppolawsk@redhat.com')
         }
 
         author = logins.get(github_login, None)
@@ -57,6 +59,9 @@ class Author(object):
 
     def __ne__(self, value):
         return not self.__eq__(value)
+
+    def __lt__(self, value):
+        return self.name < value.name
 
     def __hash__(self):
         return hash(self.login)

@@ -80,5 +80,8 @@ class PagureIssue(Issue):
     def comment(self, msg):
         self.api.comment_issue(self.id, msg)
 
-    def close(self):
-        self.api.change_issue_status(self.id, 'Closed', 'Fixed')
+    def close(self, status=None):
+        if status is None:
+            status = 'Fixed'
+
+        self.api.change_issue_status(self.id, 'Closed', status)
