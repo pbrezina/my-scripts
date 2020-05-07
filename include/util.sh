@@ -26,3 +26,18 @@ mygit-fixed-issues() {
         hub issue show -f '* %i - %t%n' $issue
     done
 }
+
+rst-to-md() {
+    md=`basename -s .rst $i`.md
+    pandoc --wrap=none -f rst -t markdown_strict -o $md $1
+    sed -i -E 's/<span class="title-ref">(.*)<\/span>/`\1`/g' $md &> /dev/null
+    sed -i -E 's/> //g' $md &> /dev/null
+    sed -i -E 's/-   /- /g' $md &> /dev/null
+    sed -i -E 's/    -/  -/g' $md &> /dev/null
+    sed -i -E 's/\\\[/[/g' $md &> /dev/null
+    sed -i -E 's/\\\]/]/g' $md &> /dev/null
+    sed -i -E 's/\\_/_/g' $md &> /dev/null
+    sed -i -E 's/\[(.*)\]\(\)\\\*/`\1*()`/g' $md &> /dev/null
+    sed -i -E 's/\[(.*)\]\(\)/`\1()`/g' $md &> /dev/null
+
+}
