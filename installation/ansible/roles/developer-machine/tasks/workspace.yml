@@ -38,7 +38,7 @@
       echo "Empty name. Nothing to do."
       exit 255
     fi
-  
+
     git -C "{{ WORKSPACE }}/{{ item.name }}" remote | grep "{{ GITHUB_USER }}"
     if [ $? -eq 0 ]; then
       echo "Remote {{ GITHUB_USER }} already exists in {{ WORKSPACE }}/{{ item.name }}. Nothing to do."

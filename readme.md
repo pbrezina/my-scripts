@@ -2,7 +2,7 @@
 
 This is a set of scripts that I use to make things easier. Feel free to use them
 or inspire with them but please, keep in mind that I can modify them without
-any forward notice. 
+any forward notice.
 
 ## Contribution
 

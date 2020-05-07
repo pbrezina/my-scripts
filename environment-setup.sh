@@ -11,12 +11,12 @@
 #   MY_USER_HOME="/home/pbrezina"
 #   MY_SCRIPTS_PATH="$MY_USER_HOME/workspace/scripts"
 #   MY_BASHRC="$MY_SCRIPTS_PATH/environment-setup.sh"
-# 
+#
 #   if [ ! -f $MY_BASHRC ]; then
 #       echo "Missing file: $MY_BASHRC"
 #       return 1
 #   fi
-# 
+#
 #   . $MY_BASHRC
 #
 
