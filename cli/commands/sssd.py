@@ -22,26 +22,10 @@
 import re
 import textwrap
 
-from github import Github
 from lib.command import Command, CommandList, CommandParser
 from util.actor import MyActor, MyCommandParserActor
 from util.upstream.upstream import Upstream
 from util.upstream.repository import Repository
-
-
-class SSSDAutoPushActor(MyActor):
-    def __init__(self):
-        super().__init__()
-
-    def run(self, args, argv=None):
-        gh = Github(self.config.tokens.github)
-        labels = WellKnownLabels()
-        upstream = Upstream(
-            gh.get_repo('pbrezina/apitest'),
-            '/home/pbrezina/workspace/sssd-origin',
-            labels
-        )
-        upstream.autopush(self, [labels.accepted, labels.ready])
 
 
 class SSSDUpstreamActor(MyCommandParserActor):
