@@ -67,3 +67,4 @@ class WellKnownLabels(object):
         self.ready = Label('Ready to push', 'c5def5', 'Ready to push')
         self.conflict = Label('Conflict', 'ff0000', 'Conflicts with target branch')
         self.pushed = Label('Pushed', 'c5def5', 'Pull request has been pushed')
+        self.fixed = Label('Closed: Fixed', 'ededed', 'Issue was closed as fixed')

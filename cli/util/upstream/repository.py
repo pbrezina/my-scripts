@@ -20,17 +20,12 @@
 #
 
 from github import Github
-from libpagure import Pagure
 from util.upstream.label import WellKnownLabels
 
 class Repository(object):
-    def __init__(self, type, repo, token, localdir, pagure=None):
+    def __init__(self, type, repo, token, localdir):
         self.github = Github(token)
         self.name = repo
         self.api = self.github.get_repo(repo)
         self.localdir = localdir
         self.labels = WellKnownLabels()
-        self.pagure = None
-
-        if pagure:
-            self.pagure = Pagure(pagure_token=pagure,repo_to=repo)

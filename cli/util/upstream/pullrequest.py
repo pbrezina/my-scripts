@@ -84,13 +84,13 @@ class PullRequest(object):
         if self._issues is not None:
             return self._issues
 
-        matches = re.findall(r'^^(Resolves: *\n?(?:http.+\n?)+)', self.patch, re.MULTILINE)
+        resolves = re.findall(r'^Resolves: *\n?(?:http\S+\n?)+', self.patch, re.MULTILINE)
         issues = set()
 
-        for match in matches:
-            for line in match.splitlines():
-                if line.startswith('http'):
-                    issues.add(Issue.fromURL(self.repo, line))
+        for match in resolves:
+            urls = re.findall(r'(http\S+)', match)
+            for url in urls:
+                issues.add(Issue.fromURL(self.repo, url))
 
         self._issues = sorted(list(issues))
 
@@ -150,14 +150,14 @@ class PullRequest(object):
             return
 
         label.add(self.repo, self.api)
-        self.labels.append(label)
+        self._labels.append(label)
 
     def remove_label(self, label):
         if label not in self.labels:
             return
 
         label.remove(self.api)
-        self.labels.remove(label)
+        self._labels.remove(label)
 
     def push(self, confirm=True, manualcheck=True):
         print(str(self))
@@ -179,8 +179,8 @@ class PullRequest(object):
                 self._cherry_pick(commits, target)
 
         # Get push diff
-        diff = self._get_push_diff()
-        print(diff)
+        comment = f'Pushed PR: {self.url}\n\n{self._get_push_diff()}'
+        print(comment)
 
         if manualcheck and not self._confirm('Dry run succeeded. Continue?'):
             self._reset_push_state()
@@ -192,7 +192,7 @@ class PullRequest(object):
             self.shell('git push origin {}'.format(target))
 
         # Close PR
-        self.comment(diff)
+        self.comment(comment)
         self.add_label(self.repo.labels.pushed)
         self.remove_label(self.repo.labels.accepted)
         self.remove_label(self.repo.labels.ready)
@@ -200,8 +200,9 @@ class PullRequest(object):
 
         # Close issues
         for issue in self.issues:
-            issue.comment(diff)
+            issue.comment(comment)
             issue.close()
+            issue.add_label(self.repo.labels.fixed)
 
     def _rebase(self, branch):
         self.shell('git fetch origin')

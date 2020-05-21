@@ -31,7 +31,7 @@ from util.upstream.repository import Repository
 class SSSDUpstreamActor(MyCommandParserActor):
     def subcommands(self):
         config = self.config.upstream.sssd
-        repo = Repository(config.type, config.repo, config.token, config.localdir, config.pagure)
+        repo = Repository(config.type, config.repo, config.token, config.localdir)
         return Upstream.GetCommands(repo)
 
 #Commands = Command('sssd', 'SSSD Operations', CommandParser([

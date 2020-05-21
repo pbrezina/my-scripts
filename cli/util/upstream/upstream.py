@@ -61,5 +61,5 @@ class Upstream(object):
     @staticmethod
     def GetCommands(repo):
         return CommandList([
-            Command('autopush', 'Push acked pull requests', AutoPushActor(repo))
+            Command('autopush', 'Push acked pull requests', AutoPushActor(repo)),
         ])

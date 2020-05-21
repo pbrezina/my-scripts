@@ -21,6 +21,8 @@
 
 import re
 
+from util.upstream.label import Label
+
 class Issue(object):
     def __init__(self, repo, id):
         self.repo = repo
@@ -28,6 +30,15 @@ class Issue(object):
         self.api = self.repo.api.get_issue(int(id))
         self.title = self.api.title
         self.url = self.api.html_url
+        self._labels = None
+
+    @property
+    def labels(self):
+        if self._labels is not None:
+            return self._labels
+
+        self._labels = [Label(x.name, x.color, x.description) for x in self.api.get_labels()]
+        return self._labels
 
     def comment(self, msg):
         self.api.create_comment(msg)
@@ -35,15 +46,25 @@ class Issue(object):
     def close(self):
         self.api.edit(state='closed')
 
+    def add_label(self, label):
+        if label in self.labels:
+            return
+
+        label.add(self.repo, self.api)
+        self._labels.append(label)
+
+    def remove_label(self, label):
+        if label not in self.labels:
+            return
+
+        label.remove(self.api)
+        self._labels.remove(label)
+
     @staticmethod
     def fromURL(repo, url):
         matches = re.findall(r'^https://github.com/{}/issues/(\d+)$'.format(repo.name), url)
         if not matches:
-            matches = re.findall(r'^https://pagure.io/{}/issue/(\d+)$'.format(repo.name), url)
-            if not matches:
-                raise ValueError('Unknown issue link: {}'.format(url))
-
-            return PagureIssue(repo, matches[0], url)
+            raise ValueError('Unknown issue link: {}'.format(url))
 
         return Issue(repo, matches[0])
 
@@ -67,21 +88,3 @@ class Issue(object):
 
     def __hash__(self):
         return hash(self.id)
-
-
-class PagureIssue(Issue):
-    def __init__(self, repo, id, url):
-        self.repo = repo
-        self.id = id
-        self.api = self.repo.pagure
-        self.title = self.api.issue_info(id)['title']
-        self.url = url
-
-    def comment(self, msg):
-        self.api.comment_issue(self.id, msg)
-
-    def close(self, status=None):
-        if status is None:
-            status = 'Fixed'
-
-        self.api.change_issue_status(self.id, 'Closed', status)
