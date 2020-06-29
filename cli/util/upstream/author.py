@@ -27,7 +27,7 @@ class Author(object):
     def _map_login(self, github_login):
         logins = {
             'abbra': ('Alexander Bokovoy', 'abokovoy@redhat.com'),
-            'alexey-tikhonov': ('Alexey Tikhonov', 'atikhonov@redhat.com'),
+            'alexey-tikhonov': ('Alexey Tikhonov', 'atikhono@redhat.com'),
             'jhrozek': ('Jakub Hrozek', 'jhrozek@redhat.com'),
             'mrniranjan': ('Niranjan Mallapadi', 'mrniranjan@redhat.com'),
             'mzidek-rh': ('Michal Židek', 'mzidek@redhat.com'),
