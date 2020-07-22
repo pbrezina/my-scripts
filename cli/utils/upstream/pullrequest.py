@@ -20,16 +20,15 @@
 #
 
 import re
-import requests
 import tempfile
 import textwrap
-import subprocess
 
-from github import Github
-from util.upstream.author import Author
-from util.upstream.label import Label
-from util.upstream.issue import Issue
-from lib.shell import Shell, ShellScriptError
+import requests
+from nutcli.shell import Shell, ShellError
+
+from utils.upstream.author import Author
+from utils.upstream.issue import Issue
+from utils.upstream.label import Label
 
 
 class PullRequest(object):
@@ -50,7 +49,7 @@ class PullRequest(object):
 
         self.shell = Shell(
             cwd=self.repo.localdir,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            capture_output=True
         )
 
     @property
@@ -215,7 +214,7 @@ class PullRequest(object):
 
         try:
             self.shell('git am -3 --whitespace=fix {}'.format(patch))
-        except ShellScriptError:
+        except ShellError:
             self.shell('git am --abort || :')
             self._reset_push_state()
             self.remove_label(self.repo.labels.ready)
@@ -245,7 +244,7 @@ class PullRequest(object):
 
         try:
             self.shell('git cherry-pick -x {}'.format(' '.join(commits)))
-        except ShellScriptError:
+        except ShellError:
             self.shell('git cherry-pick --abort || :')
             self._reset_push_state()
             self.remove_label(self.repo.labels.ready)
@@ -267,7 +266,7 @@ class PullRequest(object):
             '''
             for branch in {targets}
             do
-                echo "* \`$branch\`"
+                echo "* \\`$branch\\`"
                 format="    * %Cred%H%Creset - %s"
                 git log --pretty="format:$format" origin/$branch..$branch
                 echo ""

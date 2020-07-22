@@ -19,15 +19,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import colorama
+from github import Github
+
+from utils.upstream.label import WellKnownLabels
 
 
-def format_colors():
-    return {
-        'c-r': colorama.Fore.RED,
-        'c-b': colorama.Fore.BLUE,
-        'c-g': colorama.Fore.GREEN,
-        'c-k': colorama.Fore.BLACK,
-        's-b': colorama.Style.BRIGHT,
-        's-r': colorama.Style.RESET_ALL
-    }
+class Repository(object):
+    def __init__(self, type, repo, token, localdir):
+        self.github = Github(token)
+        self.name = repo
+        self.api = self.github.get_repo(repo)
+        self.localdir = localdir
+        self.labels = WellKnownLabels()

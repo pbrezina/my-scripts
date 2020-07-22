@@ -19,27 +19,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
-import textwrap
+from nutcli.commands import Command, CommandParser
 
-from lib.command import Command, CommandList, CommandParser
-from util.actor import MyActor, MyCommandParserActor
-from util.upstream.upstream import Upstream
-from util.upstream.repository import Repository
+from utils.actor import MySubcommandsActor
+from utils.upstream.repository import Repository
+from utils.upstream.upstream import Upstream
 
 
-class SSSDUpstreamActor(MyCommandParserActor):
-    def subcommands(self):
+class SSSDUpstreamActor(MySubcommandsActor):
+    def get_commands(self):
         config = self.config.upstream.sssd
-        repo = Repository(config.type, config.repo, config.token, config.localdir)
+        repo = Repository(
+            config.type,
+            config.repo,
+            config.token,
+            config.localdir
+        )
+
         return Upstream.GetCommands(repo)
 
-#Commands = Command('sssd', 'SSSD Operations', CommandParser([
-#    Command('upstream', 'Upstream operations', CommandParser([
-#        Command('autopush', 'Push acked pull requests', SSSDAutoPushActor)
-#    ]))
-#]))
 
-Commands = Command('sssd', 'SSSD Operations', CommandParser([
-    Command('upstream', 'Upstream operations', SSSDUpstreamActor)
+Commands = Command('sssd', 'SSSD Operations', CommandParser()([
+    Command('upstream', 'Upstream operations', SSSDUpstreamActor())
 ]))

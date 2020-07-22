@@ -21,7 +21,8 @@
 
 import re
 
-from util.upstream.label import Label
+from utils.upstream.label import Label
+
 
 class Issue(object):
     def __init__(self, repo, id):

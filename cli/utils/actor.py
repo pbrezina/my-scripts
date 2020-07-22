@@ -20,39 +20,33 @@
 #
 
 import os
+
+import nutcli
 import yaml
 
-from argparse import Namespace
-from lib.command import Actor, CommandParserActor
 
+class MyActor(nutcli.commands.Actor):
+    def __init__(self,  *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-class MyActor(Actor):
-    def __init__(self):
-        super().__init__()
+        self.project_dir = os.path.abspath(
+            os.path.dirname(os.path.realpath(__file__)) + '/../..'
+        )
+        self.config = self.__load_config(self.project_dir + '/my.yml')
 
-        self.root_dir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + '/../..')
-        self.config = self._load_config(self.root_dir + '/my.yml')
-
-    def _load_config(self, config):
+    def __load_config(self, config):
         with open(config) as f:
             data = yaml.safe_load(f)
 
-        return self._to_namespace(data[0])
+        merged = {}
+        if type(data) is list:
+            for item in data:
+                merged.update(item)
+        else:
+            merged = data
 
-    def _to_namespace(self, d):
-        if type(d) != dict:
-            return d
-
-        ns = Namespace()
-        for key, value in d.items():
-            setattr(ns, key, self._to_namespace(value))
-
-        return ns
+        return nutcli.utils.dict_to_namespace(merged)
 
 
-class MyCommandParserActor(CommandParserActor, MyActor):
+class MySubcommandsActor(nutcli.commands.SubcommandsActor, MyActor):
     pass
-
-
-
-

@@ -19,6 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+
 class Label(object):
     def __init__(self, name, color, description):
         self.name = name
@@ -44,22 +45,23 @@ class Label(object):
         issue.remove_from_labels(self.name)
 
     def __eq__(self, value):
-      if type(value) is str:
-        return self.name == value
+        if type(value) is str:
+            return self.name == value
 
-      if not isinstance(value, self.__class__):
-        return False
+        if not isinstance(value, self.__class__):
+            return False
 
-      return self.name == value.name
+        return self.name == value.name
 
     def __ne__(self, value):
         return not self.__eq__(value)
 
     def __str__(self):
-      return self.name
+        return self.name
 
     def __hash__(self):
         return hash(self.name)
+
 
 class WellKnownLabels(object):
     def __init__(self):

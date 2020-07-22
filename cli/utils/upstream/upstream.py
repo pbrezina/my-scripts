@@ -19,28 +19,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
-import shutil
-import textwrap
-import tempfile
-import requests
-import subprocess
+from nutcli.commands import Actor, Command
+from nutcli.tasks import Task, TaskList
 
-from github import Github
-from util.upstream.pullrequest import PullRequest
-from lib.command import Actor, CommandList, Command
+from utils.upstream.pullrequest import PullRequest
+
 
 class AutoPushActor(Actor):
-    def __init__(self, repo):
-        super().__init__()
+    def __init__(self, repo, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.repo = repo
 
-    def run(self):
-        tasks = self.tasklist('autopush')
+    def __call__(self):
+        tasks = TaskList('autopush')
         for pr in self.get_pull_requests():
-            tasks.add(pr.title, self.task_push, pr)
+            tasks.append(Task(pr.title)(self.task_push, pr))
 
-        tasks.run()
+        tasks.execute()
 
     def get_pull_requests(self):
         required = [self.repo.labels.accepted, self.repo.labels.ready]
@@ -60,6 +55,6 @@ class AutoPushActor(Actor):
 class Upstream(object):
     @staticmethod
     def GetCommands(repo):
-        return CommandList([
+        return [
             Command('autopush', 'Push acked pull requests', AutoPushActor(repo)),
-        ])
+        ]

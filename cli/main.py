@@ -1,34 +1,38 @@
 #!/bin/python3
 # -*- coding: utf-8 -*-
 
-import argcomplete
 import argparse
 import sys
-import textwrap
 
-# Command Actors
-import commands.sssd as sssd
+import argcomplete
+import nutcli.commands
+import nutcli.runner
 
-from lib.command import CommandParser, CommandGroup, Runner
+import commands.sssd
 
 
 class Program:
     def setup_parser(self):
-        commands = CommandParser([
-            sssd.Commands
-        ])
-
         parser = argparse.ArgumentParser(
             formatter_class=argparse.RawTextHelpFormatter
         )
 
-        commands.setup_parser(parser)
+        nutcli.commands.CommandParser()([
+            nutcli.commands.CommandGroup('Project Managers')([
+                commands.sssd.Commands,
+            ])
+        ]).setup_parser(parser)
         argcomplete.autocomplete(parser)
 
         return parser
 
     def main(self, argv):
-        return Runner('my').execute(self.setup_parser(), argv)
+        parser = self.setup_parser()
+        runner = nutcli.runner.Runner('my', parser).setup_parser()
+
+        args = runner.parse_args(argv)
+        runner.default_logger()
+        return runner.execute(args)
 
 
 if __name__ == "__main__":
