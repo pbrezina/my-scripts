@@ -8,6 +8,7 @@ import argcomplete
 import nutcli.commands
 import nutcli.runner
 
+import commands.projects
 import commands.sssd
 
 
@@ -19,6 +20,9 @@ class Program:
 
         nutcli.commands.CommandParser()([
             nutcli.commands.CommandGroup('Project Managers')([
+                commands.projects.Commands,
+            ]),
+            nutcli.commands.CommandGroup('Old')([
                 commands.sssd.Commands,
             ])
         ]).setup_parser(parser)

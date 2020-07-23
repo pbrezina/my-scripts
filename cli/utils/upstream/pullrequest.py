@@ -234,7 +234,7 @@ class PullRequest(object):
 
         # Get list of commits
         result = self.shell('git log --pretty="format:%H" origin/{0}..{0}'.format(target))
-        commits = result.stdout.decode('utf-8').split()
+        commits = result.stdout.split()
         commits.reverse()
 
         return commits
@@ -274,7 +274,7 @@ class PullRequest(object):
             '''.format(targets=' '.join(['"{}"'.format(x) for x in [self.target] + self.backport_to]))
         )
 
-        return result.stdout.decode('utf-8')
+        return result.stdout
 
     def _confirm(self, msg):
         answer = ''

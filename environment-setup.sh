@@ -33,6 +33,8 @@ if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
     MY_GIT_PROMPT='$(__git_ps1 " (%s)")'
 fi
 
+export GPG_TTY=$(tty)
+
 export MY_PS1_SIGN="\$"
 if [[ $EUID -eq 0 ]]; then
     export MY_PS1_SIGN="#"

@@ -48,7 +48,7 @@ class AutoPushActor(Actor):
 
         return pulls
 
-    def task_push(self, task, pr):
+    def task_push(self, pr):
         pr.push(self.repo)
 
 

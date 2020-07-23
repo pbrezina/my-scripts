@@ -19,25 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from nutcli.commands import Command, CommandParser
+from nutcli.commands import Command
 
-from utils.actor import MySubcommandsActor
-from utils.upstream.repository import Repository
-from utils.upstream.upstream import Upstream
+from utils.project import ProjectActor
 
 
-class SSSDUpstreamActor(MySubcommandsActor):
-    def get_commands(self):
-        repo = Repository(
-            'github',
-            self.config.projects.sssd.github.repo,
-            self.config.projects.sssd.github.token,
-            self.config.projects.sssd.local.path
-        )
-
-        return Upstream.GetCommands(repo)
-
-
-Commands = Command('sssd-old', 'SSSD Operations', CommandParser()([
-    Command('upstream', 'Upstream operations', SSSDUpstreamActor())
-]))
+Commands = [
+    Command('authselect', 'Authselect Project', ProjectActor('authselect')),
+    Command('sssd', 'SSSD Project', ProjectActor('sssd')),
+]

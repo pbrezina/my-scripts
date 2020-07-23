@@ -37,7 +37,9 @@ class Author(object):
             'sgallagher': ('Stephen Gallagher ', 'sgallagher@redhat.com'),
             'sumit-bose': ('Sumit Bose', 'sbose@redhat.com'),
             'thalman': ('Tomáš Halman', 'thalman@redhat.com'),
-            'elkoniu': ('Pawel Polawski', 'ppolawsk@redhat.com')
+            'elkoniu': ('Pawel Polawski', 'ppolawsk@redhat.com'),
+            'ikerexxe': ('Iker Pedrosa', 'ipedrosa@redhat.com'),
+            'sgoveas': ('Steeve Goveas', 'sgoveas@redhat.com'),
         }
 
         author = logins.get(github_login, None)
