@@ -40,6 +40,10 @@ class Author(object):
             'elkoniu': ('Pawel Polawski', 'ppolawsk@redhat.com'),
             'ikerexxe': ('Iker Pedrosa', 'ipedrosa@redhat.com'),
             'sgoveas': ('Steeve Goveas', 'sgoveas@redhat.com'),
+            'madhuriupadhye': ('Madhuri Upadhye', 'mupadhye@redhat.com'),
+            'shridhargadekar': ('Shridhar Gadekar', 'sgadekar@redhat.com'),
+            'justin-stephenson': ('Justin Stephenson', 'jstephen@redhat.com'),
+            'aborah-sudo': ('Anuj Borah', 'aborah@redhat.com'),
         }
 
         author = logins.get(github_login, None)
