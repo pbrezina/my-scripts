@@ -7,9 +7,11 @@ from github import Github
 from nutcli.commands import Actor, Command
 
 from utils.actor import MyActor, MySubcommandsActor
+from .release_notes import ReleaseNotesActor
 
 class Project(object):
     def __init__(self, config):
+        self.name = config.name
         self.github = Github(config.github.token)
         self.repo = self.github.get_repo(config.github.repo)
         self.path = config.local.path
@@ -32,7 +34,8 @@ class ProjectActor(MySubcommandsActor):
             return []
 
         return [
-            Command('fixed-issues', 'Print fixed issue', FixedIssuesActor(self.project))
+            Command('fixed-issues', 'Print fixed issue', FixedIssuesActor(self.project)),
+            Command('release-notes', 'Print release notes', ReleaseNotesActor(self.project)),
         ]
 
 class FixedIssuesActor(MyActor):
