@@ -33,7 +33,13 @@ if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
     MY_GIT_PROMPT='$(__git_ps1 " (%s)")'
 fi
 
+# Source FZF
+if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
+    . /usr/share/fzf/shell/key-bindings.bash
+fi
+
 export GPG_TTY=$(tty)
+export EDITOR=vim
 
 export MY_PS1_SIGN="\$"
 if [[ $EUID -eq 0 ]]; then
