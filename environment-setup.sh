@@ -46,9 +46,15 @@ if [[ $EUID -eq 0 ]]; then
     export MY_PS1_SIGN="#"
 fi
 
-export PS1="[\u \w$MY_GIT_PROMPT]$MY_PS1_SIGN "
+host=""
+if [ ! -z $CONTAINER ]; then
+    host="\e[1;34m\H\e[0m "
+fi
+export PS1="$host[\u \w$MY_GIT_PROMPT]$MY_PS1_SIGN "
 export MY_WORKSPACE="$MY_USER_HOME/workspace"
 export MY_INCLUDE="$MY_SCRIPTS_PATH/include $MY_WORKSPACE/sssd-dev-utils"
+
+#export PS1="\[$(tput bold)\]\[\033[38;5;154m\]\W $\[$(tput sgr0)\] "
 
 # Setup SSSD Developer Tools
 export SSSD_SOURCE=$MY_WORKSPACE/sssd

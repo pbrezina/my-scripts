@@ -46,6 +46,7 @@ class PullRequest(object):
         self._patch = None
         self._patchcount = None
         self._issues = None
+        self._stable = None
 
         self.shell = Shell(
             cwd=self.repo.localdir,
@@ -110,6 +111,10 @@ class PullRequest(object):
 
         targets = set()
         for label in self.labels:
+            if label.name == 'backport-to-stable':
+                targets.add(self.stable)
+                continue
+
             matches = re.findall(r'^branch: (\S+)$', label.name)
             if matches:
                 targets.add(matches[0])
@@ -137,6 +142,24 @@ class PullRequest(object):
             tags.append('Reviewed-by: {} <{}>'.format(author.name, author.email))
 
         return tags
+
+    @property
+    def stable(self):
+        if self._stable is not None:
+            return self._stable
+
+        result = self.shell('''
+            set -e -o pipefail
+
+            git fetch &> /dev/null
+            branches=`git branch -r --list origin/sssd-*-*`
+            branch=`echo "$branches" | grep -E -o 'sssd-[[:digit:]]+-[[:digit:]]+' | sort -V | tail -1`
+
+            echo $branch
+        ''')
+
+        self._stable = result.stdout.strip()
+        return self._stable
 
     def comment(self, msg):
         self.api.create_issue_comment(msg)

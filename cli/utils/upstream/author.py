@@ -45,6 +45,9 @@ class Author(object):
             'justin-stephenson': ('Justin Stephenson', 'jstephen@redhat.com'),
             'aborah-sudo': ('Anuj Borah', 'aborah@redhat.com'),
             'jakub-vavra-cz': ('Jakub Vávra', 'jvavra@redhat.com'),
+            'sidecontrol': ('Dan Lavu', 'dlavu@redhat.com'),
+            'spoore1': ('Scott Poore', 'spoore@redhat.com'),
+            'kaushikub': ('Kaushik Banerjee', 'kbanerje@redhat.com'),
         }
 
         author = logins.get(github_login, None)

@@ -10,6 +10,7 @@ import nutcli.runner
 
 import commands.projects
 import commands.sssd
+import commands.ci
 
 
 class Program:
@@ -22,9 +23,12 @@ class Program:
             nutcli.commands.CommandGroup('Project Managers')([
                 commands.projects.Commands,
             ]),
+            nutcli.commands.CommandGroup('Containers')([
+                commands.ci.Commands,
+            ]),
             nutcli.commands.CommandGroup('Old')([
                 commands.sssd.Commands,
-            ])
+            ]),
         ]).setup_parser(parser)
         argcomplete.autocomplete(parser)
 
