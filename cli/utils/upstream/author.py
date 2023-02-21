@@ -48,6 +48,7 @@ class Author(object):
             'sidecontrol': ('Dan Lavu', 'dlavu@redhat.com'),
             'spoore1': ('Scott Poore', 'spoore@redhat.com'),
             'kaushikub': ('Kaushik Banerjee', 'kbanerje@redhat.com'),
+            'aplopez': ('Alejandro López', 'allopez@redhat.com')
         }
 
         author = logins.get(github_login, None)

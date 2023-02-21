@@ -26,6 +26,8 @@ class CIUpActor(CIActor):
         )
 
     def __call__(self, tag, registry, limit):
+        super().__call__(f'setup-dns')
+        super().__call__(f'down')
         super().__call__(f'up TAG="{tag}" REGISTRY="{registry}" LIMIT="{limit}"')
 
 
@@ -45,7 +47,7 @@ class CIShellActor(CIActor):
         )
 
         parser.add_argument(
-            'container', type=str, choices=['client', 'ipa', 'ldap', 'samba'], default='client'
+            'container', type=str, choices=['client', 'ipa', 'ldap', 'samba', 'nfs', 'kdc'], default='client'
         )
 
     def __call__(self, shell, container):
@@ -74,6 +76,8 @@ class CIRemoveImageActor(CIActor):
             'ci-ipa',
             'ci-ldap',
             'ci-samba',
+            'ci-nfs',
+            'ci-kdc',
         ]
 
         for image in images:
