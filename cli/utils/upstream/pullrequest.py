@@ -115,7 +115,7 @@ class PullRequest(object):
                 targets.add(self.stable)
                 continue
 
-            matches = re.findall(r'^branch: (\S+)$', label.name)
+            matches = re.findall(r'^backport-to-(\S+)$', label.name)
             if matches:
                 targets.add(matches[0])
 
