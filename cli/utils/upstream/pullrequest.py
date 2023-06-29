@@ -118,6 +118,12 @@ class PullRequest(object):
             matches = re.findall(r'^backport-to-(\S+)$', label.name)
             if matches:
                 targets.add(matches[0])
+                continue
+
+            matches = re.findall(r'^branch: (\S+)$', label.name)
+            if matches:
+                targets.add(matches[0])
+                continue
 
         self._backport_to = sorted(list(targets))
         return self._backport_to
