@@ -67,7 +67,7 @@ class PullRequest(object):
             return self._patch
 
         response = requests.get(self.api.patch_url)
-        self._patch = response.content.decode('utf-8')
+        self._patch = response.content
         return self._patch
 
     @property
@@ -75,8 +75,8 @@ class PullRequest(object):
         if self._patchcount is not None:
             return self._patchcount
 
-        matches = re.search(r'^Subject: \[PATCH \d+/(\d+)\]', self.patch, re.MULTILINE)
-        self._patchcount = 1 if not matches else matches.group(1)
+        matches = re.search(rb'^Subject: \[PATCH \d+/(\d+)\]', self.patch, re.MULTILINE)
+        self._patchcount = 1 if not matches else matches.group(1).decode('utf-8')
         return self._patchcount
 
     @property
@@ -84,11 +84,11 @@ class PullRequest(object):
         if self._issues is not None:
             return self._issues
 
-        resolves = re.findall(r'^Resolves: *\n?(?:http\S+\n?)+', self.patch, re.MULTILINE)
+        resolves = re.findall(rb'^Resolves: *\n?(?:http\S+\n?)+', self.patch, re.MULTILINE)
         issues = set()
 
         for match in resolves:
-            urls = re.findall(r'(http\S+)', match)
+            urls = re.findall(r'(http\S+)', match.decode('utf-8'))
             for url in urls:
                 issues.add(Issue.fromURL(self.repo, url))
 
@@ -194,7 +194,7 @@ class PullRequest(object):
             return
 
         with tempfile.NamedTemporaryFile() as f:
-            f.write(self.patch.encode('utf-8'))
+            f.write(self.patch)
             f.flush()
 
             # First apply patch to target branch
