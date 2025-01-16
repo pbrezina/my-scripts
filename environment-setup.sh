@@ -47,10 +47,15 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 host=""
-if [ ! -z $CONTAINER ]; then
-    host="\e[1;34m\H\e[0m "
+prefix=""
+
+if [ -f /run/.containerenv ]; then
+    prefix=`source /run/.containerenv && echo "\[\e[1;34m\]$name\[\e[0m\] "`
+    if [ ! -f /run/.toolboxenv ]; then
+        host="\[\e[1;34m\]\H\[\e[0m\] "
+    fi
 fi
-export PS1="$host[\u \w$MY_GIT_PROMPT]$MY_PS1_SIGN "
+export PS1="$prefix$host[\u \w$MY_GIT_PROMPT]$MY_PS1_SIGN "
 export MY_WORKSPACE="$MY_USER_HOME/workspace"
 export MY_INCLUDE="$MY_SCRIPTS_PATH/include $MY_WORKSPACE/sssd-dev-utils"
 
@@ -82,3 +87,4 @@ alias my="$MY_SCRIPTS_PATH/my"
 if [ -f $MY_SCRIPTS_PATH/local-environment.sh ]; then
     . $MY_SCRIPTS_PATH/local-environment.sh
 fi
+
