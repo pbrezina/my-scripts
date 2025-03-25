@@ -83,6 +83,24 @@ alias my="$MY_SCRIPTS_PATH/my"
 . $MY_SCRIPTS_PATH/vagrant-setup.sh
 . $MY_SCRIPTS_PATH/include-scripts.sh
 
+function vagrant {
+    dir="${VAGRANT_HOME:-$HOME/.vagrant.d}"
+    mkdir -p "$dir/"{boxes,data,tmp}
+
+    podman run -it --rm \
+        -e LIBVIRT_DEFAULT_URI \
+        -v /var/run/libvirt/:/var/run/libvirt/ \
+        -v "$dir/boxes:/vagrant/boxes" \
+        -v "$dir/data:/vagrant/data" \
+        -v "$dir/tmp:/vagrant/tmp" \
+        -v $(realpath "${PWD}"):$(realpath "${PWD}") \
+        -w $(realpath "${PWD}") \
+        --network host \
+        --security-opt label=disable \
+        quay.io/sssd/vagrant:latest \
+        vagrant $@
+}
+
 # Source local environment
 if [ -f $MY_SCRIPTS_PATH/local-environment.sh ]; then
     . $MY_SCRIPTS_PATH/local-environment.sh
