@@ -78,6 +78,9 @@ export NTP_SERVER="master.ipa.vm"
 # PHP Development
 export XDEBUG_CONFIG="idekey=VSCODE"
 
+# Python venvs
+export WORKON_HOME=$MY_WORKSPACE/.venvs
+
 alias my="$MY_SCRIPTS_PATH/my"
 
 . $MY_SCRIPTS_PATH/vagrant-setup.sh
@@ -105,4 +108,3 @@ function vagrant {
 if [ -f $MY_SCRIPTS_PATH/local-environment.sh ]; then
     . $MY_SCRIPTS_PATH/local-environment.sh
 fi
-
