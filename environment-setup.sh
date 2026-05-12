@@ -68,6 +68,9 @@ export SSSD_TEST_DIR=/dev/shm/sssd-tests
 export SSSD_USER=root
 export SSSD_RHEL_PACKAGE=$MY_USER_HOME/packages/rhel/sssd
 export CFLAGS_CUSTOM=""
+if [ -f /run/.toolboxenv ]; then
+    export SSSD_BUILD=/run/host/dev/shm/sssd
+fi
 
 export GIT_PATCH_LOCATION="$MY_USER_HOME/Downloads"
 export GIT_DEVEL_REPOSITORY="devel"

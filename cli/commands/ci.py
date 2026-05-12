@@ -29,6 +29,8 @@ class CIUpActor(CIActor):
         super().__call__(f'setup-dns')
         super().__call__(f'down')
         super().__call__(f'up TAG="{tag}" REGISTRY="{registry}" LIMIT="{limit}"')
+        self.shell('sudo podman cp "$MY_WORKSPACE/my-scripts/vagrant-bashrc.sh" client:/home/ci/.bashrc')
+        self.shell('sudo podman cp "$MY_WORKSPACE/my-scripts/vagrant-bashrc.sh" client:/root/.bashrc')
 
 
 class CIStopActor(CIActor):
