@@ -107,6 +107,8 @@ function vagrant {
         vagrant $@
 }
 
+export PATH="~/.local/bin:$PATH"
+
 # Source local environment
 if [ -f $MY_SCRIPTS_PATH/local-environment.sh ]; then
     . $MY_SCRIPTS_PATH/local-environment.sh
